@@ -16,5 +16,6 @@ public class CamaraBehaviour : MonoBehaviour
         void Update()
         {
             gameObject.transform.position = target.position - difference;
+            gameObject.transform.rotation = target.rotation;
         }
     }
