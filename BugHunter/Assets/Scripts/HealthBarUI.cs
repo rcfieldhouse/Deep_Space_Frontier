@@ -6,7 +6,7 @@ using UnityEngine;
 public class HealthBarUI : MonoBehaviour
 {
     [SerializeField]
-    private Image foregroundImage;
+    private Image HealthBar;
 
     [SerializeField]
     private float updateSpeedSeconds = 0.5f;
@@ -23,17 +23,17 @@ public class HealthBarUI : MonoBehaviour
 
     private IEnumerator ChangeToPercent(float pct)
     {
-        float preChangePercent = foregroundImage.fillAmount;
+        float preChangePercent = HealthBar.fillAmount;
         float elapsed = 0f;
 
         while (elapsed<updateSpeedSeconds)
         {
             elapsed += Time.deltaTime;
-            foregroundImage.fillAmount = Mathf.Lerp(preChangePercent, pct, elapsed / updateSpeedSeconds);
+            HealthBar.fillAmount = Mathf.Lerp(preChangePercent, pct, elapsed / updateSpeedSeconds);
             yield return null;
         }
 
-        foregroundImage.fillAmount = pct;
+        HealthBar.fillAmount = pct;
     }
     // Update is called once per frame
     void LateUpdate()
