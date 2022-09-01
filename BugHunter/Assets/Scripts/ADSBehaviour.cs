@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class ADSBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    private Camera Cam;
+    [SerializeField] private Camera Cam;
+    [Range(0 , 3)] [SerializeField] private float scopeInRate = 0.1f;
+    [Range(0 , 3)] [SerializeField] private float scopeOutRate = 0.3f;
     private float defaultZoom;
+    private float currentZoom;
+    private float t = 0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,22 +21,26 @@ public class ADSBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        handleZoom();
+ 
+    }
+
+    void handleZoom()
+    {
+
         if (Input.GetButton("Fire2"))
         {
-            zoomIn();
+            t += scopeInRate * Time.deltaTime;
+            if (t >= 1) t = 1;
         }
-        else zoomOut();
-        
-        
-    }
 
-    void zoomIn()
-    {
-        Cam.fieldOfView = defaultZoom/2;
-    }
+        else
+        {
+            t -= scopeOutRate * Time.deltaTime;
+            if (t <= 0) t = 0;
+        }
 
-    void zoomOut()
-    {
-        Cam.fieldOfView = defaultZoom;
+        Cam.fieldOfView = Mathf.Lerp(defaultZoom, defaultZoom / 2, t);
     }
 }
