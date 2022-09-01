@@ -16,6 +16,7 @@ public class RaycastGun : MonoBehaviour
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);    // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
     private AudioSource gunAudio;                                        // Reference to the audio source which will play our shooting sound effect
     private LineRenderer laserLine;                                        // Reference to the LineRenderer component which will display our laserline
+    private ParticleSystem muzzleFlash;
     private float nextFire;                                                // Float to store the time the player will be allowed to fire again, after firing
 
 
@@ -23,6 +24,8 @@ public class RaycastGun : MonoBehaviour
     {
         // Get and store a reference to our LineRenderer component
         laserLine = GetComponent<LineRenderer>();
+
+        muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
         // Get and store a reference to our AudioSource component
         //gunAudio = GetComponent<AudioSource>();
@@ -88,6 +91,9 @@ public class RaycastGun : MonoBehaviour
     {
         // Play the shooting sound effect
         //gunAudio.Play();
+
+        //play Shooting Effect
+        muzzleFlash.Play();
 
         // Turn on our line renderer
         laserLine.enabled = true;
