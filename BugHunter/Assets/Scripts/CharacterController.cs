@@ -6,9 +6,13 @@ public class CharacterController : MonoBehaviour
 {
     public Rigidbody rigidbody;
     public GameObject Player;
+    [SerializeField]
+    private LayerMask m_WhatIsGround;
     [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;
     [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;    
     [SerializeField] private Vector3 mover,targetVelocity,JumpForce;
+    [SerializeField] private bool m_Grounded = true;
+    [SerializeField] private BoxCollider coll;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +42,11 @@ public class CharacterController : MonoBehaviour
         rigidbody.velocity = targetVelocity;
         rigidbody.angularVelocity = Vector3.zero;
      
+    }
+    public bool isGrounded()
+    {
+
+        m_Grounded = Physics.BoxCast(coll.bounds.center - Vector3.down / 10, coll.bounds.size / 2, Vector3.down, Quaternion.Euler(Vector3.down), 0.1f, m_WhatIsGround);
+        return Physics.BoxCast(coll.bounds.center - Vector3.down / 10, coll.bounds.size / 2, Vector3.down, Quaternion.Euler(Vector3.down), 0.1f, m_WhatIsGround);
     }
 }
