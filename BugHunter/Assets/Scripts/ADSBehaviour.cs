@@ -6,11 +6,12 @@ public class ADSBehaviour : MonoBehaviour
 {
     [SerializeField] private Camera Cam;
     [SerializeField] private Transform Gun;
-    [Range(0 , 3)] [SerializeField] private float scopeInRate = 0.1f;
-    [Range(0 , 3)] [SerializeField] private float scopeOutRate = 0.3f;
+    [Range(0 , 3)] [SerializeField] private float scopeInRate = 2f;
+    [Range(0 , 3)] [SerializeField] private float scopeOutRate = 2f;
     [Range(0, 179)] [SerializeField] private float targetZoom = 40f;
-    [SerializeField] private Vector3 targetGunPosition = new Vector3(0.05f, -0.18f, 0.5f);
-    [SerializeField] private Vector3 targetGunRotation = new Vector3(0, 0, 0);
+    [SerializeField] private Vector3 targetGunPosition = new Vector3(0f, -0.254000008f, 0.861999989f);
+    [SerializeField] private Vector3 targetGunRotation = new Vector3(10f, 30f, 0f);
+
 
 
     private float defaultZoom;
@@ -24,7 +25,7 @@ public class ADSBehaviour : MonoBehaviour
     {
         defaultZoom = Cam.fieldOfView;
         defaultGunPosition = Gun.localPosition;
-        defaultGunRotation = Gun.localRotation.eulerAngles;
+        defaultGunRotation = new Vector3(0,180,0);
     }
 
     // Update is called once per frame
@@ -52,7 +53,8 @@ public class ADSBehaviour : MonoBehaviour
 
         Cam.fieldOfView = Mathf.Lerp(defaultZoom, targetZoom, t);
 
-        Gun.localRotation = Quaternion.Euler(Vector3.Lerp(defaultGunRotation, targetGunRotation, t));
         Gun.localPosition = Vector3.Lerp(defaultGunPosition, targetGunPosition, t);
+        Gun.localRotation = Quaternion.Euler(Vector3.Lerp(defaultGunRotation, targetGunRotation, t));
+        //Quaternion.Lerp(quat1,quat2)
     }
 }
