@@ -1,38 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] private float Health = 500.0f;
-    // Start is called before the first frame update
-    void Start()
+
+
+    [SerializeField] private int maxHealth = 500;
+    private int currentHealth;
+
+    public event Action<float> OnHealthPercentChanged = delegate { };
+
+    private void OnEnable()
     {
-        
+        currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public float GetHealth()
     {
-        return Health;
+        return currentHealth;
     }
-    public void SetHealth(float health)
+    public void SetHealth(int health)
     {
-        Health = health;
+        currentHealth = health;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
     }
-    public void takeDamage(float damage)
+
+    public void ModifyHealth(int amount)
     {
-        Health -= damage;
-    }
-    public void gainHealth(float health)
-    {
-        if (Health !< 500.0f)
+
+        currentHealth += amount;
+        
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        Debug.Log("Current health is " + currentHealth);
+
+        float currentHealthPercent = (float)currentHealth / (float)maxHealth;
+        OnHealthPercentChanged(currentHealthPercent);
+
+        //Check if health has fallen below zero
+        if (currentHealth <= 0)
         {
-            Health += health;
-        }     
+            //if health has fallen below zero, deactivate it 
+            gameObject.SetActive(false);
+        }
     }
 }

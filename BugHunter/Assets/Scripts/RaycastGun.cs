@@ -5,7 +5,7 @@ using UnityEngine;
 public class RaycastGun : MonoBehaviour
 {
 
-    public int gunDamage = 1;                                            // Set the number of hitpoints that this gun will take away from shot objects with a health script
+    public int gunDamage = -25;                                            // Set the number of hitpoints that this gun will take away from shot objects with a health script
     public float fireRate = 0.25f;                                        // Number in seconds which controls how often the player can fire
     public float weaponRange = 50f;                                        // Distance in Unity units over which the player can fire
     public float hitForce = 100f;                                        // Amount of force which will be added to objects with a rigidbody shot by the player
@@ -62,13 +62,13 @@ public class RaycastGun : MonoBehaviour
                 laserLine.SetPosition(1, hit.point);
 
                 // Get a reference to a health script attached to the collider we hit
-                ShootableObject health = hit.collider.GetComponent<ShootableObject>();
+                HealthSystem health = hit.collider.GetComponent<HealthSystem>();
 
                 // If there was a health script attached
                 if (health != null)
                 {
                     // Call the damage function of that script, passing in our gunDamage variable
-                    health.Damage(gunDamage);
+                    health.ModifyHealth(gunDamage);
                 }
 
                 // Check if the object we hit has a rigidbody attached
