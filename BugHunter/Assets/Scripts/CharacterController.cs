@@ -7,8 +7,8 @@ public class CharacterController : MonoBehaviour
     public Rigidbody rigidbody;
     public GameObject Player;
     [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;
-    [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;
-    [SerializeField] private Vector3 mover,targetVelocity;
+    [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;    
+    [SerializeField] private Vector3 mover,targetVelocity,JumpForce;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,11 @@ public class CharacterController : MonoBehaviour
       
              targetVelocity = new Vector3(mover.x * SpeedSlider * 5 * Sprint, rigidbody.velocity.y, mover.z * SpeedSlider * 5 * Sprint);
 
-      
+      if (jump == true)
+        {
+            targetVelocity += JumpForce;
+
+        }
        
 
         // And then smoothing it out and applying it to the character
