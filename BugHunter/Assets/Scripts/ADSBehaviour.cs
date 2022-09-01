@@ -5,10 +5,17 @@ using UnityEngine;
 public class ADSBehaviour : MonoBehaviour
 {
     [SerializeField] private Camera Cam;
+    [SerializeField] private Transform Gun;
     [Range(0 , 3)] [SerializeField] private float scopeInRate = 0.1f;
     [Range(0 , 3)] [SerializeField] private float scopeOutRate = 0.3f;
+    [Range(0, 179)] [SerializeField] private float targetZoom = 40f;
+    [SerializeField] private Vector3 targetGunPosition = new Vector3(0.05f, -0.18f, 0.5f);
+    [SerializeField] private Vector3 targetGunRotation = new Vector3(0, 0, 0);
+
+
     private float defaultZoom;
-    private float currentZoom;
+    private Vector3 defaultGunPosition;
+    private Vector3 defaultGunRotation;
     private float t = 0f;
 
 
@@ -16,17 +23,19 @@ public class ADSBehaviour : MonoBehaviour
     void Start()
     {
         defaultZoom = Cam.fieldOfView;
+        defaultGunPosition = Gun.localPosition;
+        defaultGunRotation = Gun.localRotation.eulerAngles;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        handleZoom();
+        HandleZoom();
  
     }
 
-    void handleZoom()
+    void HandleZoom()
     {
 
         if (Input.GetButton("Fire2"))
@@ -41,6 +50,9 @@ public class ADSBehaviour : MonoBehaviour
             if (t <= 0) t = 0;
         }
 
-        Cam.fieldOfView = Mathf.Lerp(defaultZoom, defaultZoom / 2, t);
+        Cam.fieldOfView = Mathf.Lerp(defaultZoom, targetZoom, t);
+
+        Gun.localRotation = Quaternion.Euler(Vector3.Lerp(defaultGunRotation, targetGunRotation, t));
+        Gun.localPosition = Vector3.Lerp(defaultGunPosition, targetGunPosition, t);
     }
 }
