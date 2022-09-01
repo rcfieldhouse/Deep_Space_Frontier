@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    [SerializeField] Rigidbody rigidbody;
-    private Vector3 m_Velocity = Vector3.zero;
-    [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;           // Amount of maxSpeed applied to crouching movement. 1 = 100%
-    [Range(0, .3f)][SerializeField] private float m_MovementSmoothing = 0.5f;
+    public Rigidbody rigidbody;
+    public GameObject Player;
+    [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;
+    [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;
+    [SerializeField] private Vector3 mover,targetVelocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +20,19 @@ public class CharacterController : MonoBehaviour
     {
         
     }
-    public void Move(float LR, float FB, bool jump)
+    public void Move(Vector2 move, bool jump,float Sprint,Quaternion quaternion)
     {
-        Vector3 targetVelocity = new Vector3(LR * 10f, rigidbody.velocity.y, FB * 10f);
+        rigidbody.gameObject.transform.localRotation = quaternion;
+         mover = transform.right * move.x + transform.forward * move.y;
+      
+             targetVelocity = new Vector3(mover.x * SpeedSlider * 5 * Sprint, rigidbody.velocity.y, mover.z * SpeedSlider * 5 * Sprint);
+
+      
+       
 
         // And then smoothing it out and applying it to the character
-        rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        rigidbody.velocity = targetVelocity;
+        rigidbody.angularVelocity = Vector3.zero;
+     
     }
 }
