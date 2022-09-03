@@ -28,7 +28,7 @@ public class RaycastGun : MonoBehaviour
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
         // Get and store a reference to our AudioSource component
-        //gunAudio = GetComponent<AudioSource>();
+        gunAudio = GetComponent<AudioSource>();
 
         // Get and store a reference to our Camera by searching this GameObject and its parents
         //fpsCam = GetComponentInParent<Camera>();
@@ -90,7 +90,7 @@ public class RaycastGun : MonoBehaviour
     private IEnumerator ShotEffect()
     {
         // Play the shooting sound effect
-        //gunAudio.Play();
+        SoundManager.instance.PlaySound(gunAudio);
 
         //play Shooting Effect
         muzzleFlash.Play();
