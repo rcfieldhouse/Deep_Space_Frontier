@@ -26,6 +26,7 @@ public class CharacterController : MonoBehaviour
     }
     public void Move(Vector2 move, bool jump,float Sprint,Quaternion quaternion)
     {
+        
         rigidbody.gameObject.transform.localRotation = quaternion;
          mover = transform.right * move.x + transform.forward * move.y;
       

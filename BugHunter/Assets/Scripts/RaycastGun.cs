@@ -14,7 +14,7 @@ public class RaycastGun : MonoBehaviour
     [SerializeField]
     public Camera fpsCam;                                                // Holds a reference to the first person camera
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);    // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
-    private AudioSource gunAudio;                                        // Reference to the audio source which will play our shooting sound effect
+    private AudioClip gunAudio;                                        // Reference to the audio source which will play our shooting sound effect
     private LineRenderer laserLine;                                        // Reference to the LineRenderer component which will display our laserline
     private ParticleSystem muzzleFlash;
     private float nextFire;                                                // Float to store the time the player will be allowed to fire again, after firing
@@ -28,7 +28,7 @@ public class RaycastGun : MonoBehaviour
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
         // Get and store a reference to our AudioSource component
-        gunAudio = GetComponent<AudioSource>();
+        gunAudio = GetComponent<AudioClip>();
 
         // Get and store a reference to our Camera by searching this GameObject and its parents
         //fpsCam = GetComponentInParent<Camera>();
