@@ -5,13 +5,19 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
 
-    [SerializeField] private bool Jump = false;
-    [SerializeField] private float Sprint = 1.0f; 
-    [SerializeField] private Quaternion Direction;
+    private bool Jump = false;
+
+    [SerializeField] private float Sprint = 1.0f;
     [SerializeField] private CharacterController controller;
-    [SerializeField] private Vector2 MouseInput;
-    [SerializeField] private Vector2 KeyboardInput;
-    [Range(0, 1)][SerializeField] private float Sensitivity=.5f;
+    [Range(0, 1)] [SerializeField] private float Sensitivity = .5f;
+
+    private Quaternion Direction;    
+    private Vector2 MouseInput;
+    private Vector2 KeyboardInput;
+    private bool UIToggle =true;
+    
+
+    public GameObject userInterface;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +31,7 @@ public class PlayerInput : MonoBehaviour
        MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2; ;
        Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
 
-
+        //Turn this to GetButtonDown at some point
        if (Input.GetKeyDown("space") && (controller.isGrounded()==true))
             Jump = true; 
 
@@ -34,6 +40,13 @@ public class PlayerInput : MonoBehaviour
 
        if (Input.GetKeyUp(KeyCode.LeftShift))
             Sprint = 1.0f;
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            UIToggle = !UIToggle;
+            userInterface.SetActive(UIToggle);
+        }
+            
 
         KeyboardInput.x = Input.GetAxisRaw("Horizontal");
         KeyboardInput.y = Input.GetAxisRaw("Vertical");
