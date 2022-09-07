@@ -90,7 +90,7 @@ public class RaycastGun : MonoBehaviour
     private IEnumerator ShotEffect()
     {
         // Play the shooting sound effect
-        SoundManager.instance.PlaySound(gunAudio);
+        //SoundManager.instance.PlaySound(gunAudio);
 
         //play Shooting Effect
         muzzleFlash.Play();
