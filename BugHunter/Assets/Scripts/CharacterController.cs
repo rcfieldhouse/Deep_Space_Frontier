@@ -8,7 +8,8 @@ public class CharacterController : MonoBehaviour
     public GameObject Player;
     [SerializeField]
     private LayerMask m_WhatIsGround;
-    [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;
+
+    [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
     [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;    
     [SerializeField] private Vector3 mover,targetVelocity,JumpForce;
     [SerializeField] private bool m_Grounded = true;
@@ -24,13 +25,13 @@ public class CharacterController : MonoBehaviour
     {
         
     }
-    public void Move(Vector2 move, bool jump,float Sprint,Quaternion quaternion)
+    public void Move(Vector2 move, bool jump,float SpeedMod,Quaternion quaternion)
     {
-        
+    
         rigidbody.gameObject.transform.localRotation = quaternion;
          mover = transform.right * move.x + transform.forward * move.y;
       
-             targetVelocity = new Vector3(mover.x * SpeedSlider * 5 * Sprint, rigidbody.velocity.y, mover.z * SpeedSlider * 5 * Sprint);
+             targetVelocity = new Vector3(mover.x * SpeedSlider * 5 * SpeedMod, rigidbody.velocity.y, mover.z * SpeedSlider * 5 * SpeedMod);
 
       if (jump == true)
         {

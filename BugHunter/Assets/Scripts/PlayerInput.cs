@@ -7,14 +7,14 @@ public class PlayerInput : MonoBehaviour
 
     private bool Jump = false;
 
-    [SerializeField] private float Sprint = 1.0f;
+    [SerializeField] private float SpeedMod = 1.0f;
     [SerializeField] private CharacterController controller;
     [Range(0, 1)] [SerializeField] private float Sensitivity = .5f;
 
     private Quaternion Direction;    
     private Vector2 MouseInput;
     private Vector2 KeyboardInput;
-    private bool UIToggle =true;
+    private bool UIToggle = true;
 
     public WeaponSwap weaponSwap;
     public GameObject userInterface;
@@ -37,10 +37,10 @@ public class PlayerInput : MonoBehaviour
             Jump = true; 
 
        if (Input.GetKeyDown(KeyCode.LeftShift)) 
-            Sprint = 2.0f;
+            SpeedMod = 2.0f;
 
        if (Input.GetKeyUp(KeyCode.LeftShift))
-            Sprint = 1.0f;
+            SpeedMod = 1.0f;
 
         if (Input.GetButtonDown("Fire2"))
         {
@@ -56,10 +56,19 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
             weaponSwap.SetWeapon(2);
+
+        if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
+            SpeedMod = controller.m_CrouchSpeed;
+        if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
+            SpeedMod = 2.0f;
+        else if (Input.GetButtonUp("Crouch"))
+            SpeedMod = 1.0f;
+
+
         KeyboardInput.x = Input.GetAxisRaw("Horizontal");
         KeyboardInput.y = Input.GetAxisRaw("Vertical");
     
-        controller.Move(KeyboardInput, Jump, Sprint,Direction);
+        controller.Move(KeyboardInput, Jump, SpeedMod,Direction);
         Jump = false;
     }
 }
