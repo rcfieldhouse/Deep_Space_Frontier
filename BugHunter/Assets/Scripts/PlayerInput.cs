@@ -15,8 +15,8 @@ public class PlayerInput : MonoBehaviour
     private Vector2 MouseInput;
     private Vector2 KeyboardInput;
     private bool UIToggle =true;
-    
 
+    public WeaponSwap weaponSwap;
     public GameObject userInterface;
     // Start is called before the first frame update
     //damn you dante, make ur own file 
@@ -46,9 +46,16 @@ public class PlayerInput : MonoBehaviour
         {
             UIToggle = !UIToggle;
             userInterface.SetActive(UIToggle);
+           
         }
-            
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            weaponSwap.SetWeapon(0);
 
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            weaponSwap.SetWeapon(1);
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            weaponSwap.SetWeapon(2);
         KeyboardInput.x = Input.GetAxisRaw("Horizontal");
         KeyboardInput.y = Input.GetAxisRaw("Vertical");
     

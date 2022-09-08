@@ -5,7 +5,6 @@ using UnityEngine;
 public class WeaponSwap : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int weaponChoice;
    public GameObject[] WeaponArray;
     void Start()
     {
@@ -17,9 +16,14 @@ public class WeaponSwap : MonoBehaviour
     {
         
     }
-    public void SetEnabled()
+    public void SetWeapon(int num)
     {
-
+          for (int i = 0; i < WeaponArray.Length; i++)
+        {
+            WeaponArray[i].SetActive(false);
+        }      
+      
+        WeaponArray[num].SetActive(true);
     
     }
 }

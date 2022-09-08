@@ -674,6 +674,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2d588b37313680c4bbeea64ae95e0dfd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d588b37313680c4bbeea64ae95e0dfd, type: 3}
 --- !u!1 &407719044
@@ -6017,7 +6022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponArray:
-  - {fileID: 919132149155446097, guid: ad34abc6393c0914d94f744071f5199d, type: 3}
+  - {fileID: 1944450698}
   - {fileID: 1155511498}
 --- !u!1 &977202867
 GameObject:
@@ -6661,6 +6666,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnakeShotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad34abc6393c0914d94f744071f5199d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad34abc6393c0914d94f744071f5199d, type: 3}
 --- !u!1 &1146387208
@@ -6930,6 +6940,7 @@ MonoBehaviour:
   Sprint: 1
   controller: {fileID: 1180305570}
   Sensitivity: 0.5
+  weaponSwap: {fileID: 884127269}
   userInterface: {fileID: 43276820}
 --- !u!136 &1180305572
 CapsuleCollider:
@@ -8447,6 +8458,12 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1944450698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ad34abc6393c0914d94f744071f5199d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1140750855}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1959381843
 GameObject:
   m_ObjectHideFlags: 0
