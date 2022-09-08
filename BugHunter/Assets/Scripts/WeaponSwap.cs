@@ -17,5 +17,9 @@ public class WeaponSwap : MonoBehaviour
     {
         
     }
+    public void SetEnabled()
+    {
 
+    
+    }
 }
