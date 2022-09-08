@@ -19,6 +19,7 @@ public class PlayerInput : MonoBehaviour
 
     public GameObject userInterface;
     // Start is called before the first frame update
+    //damn you dante, make ur own file 
     void Start()
     {
         Cursor.lockState= CursorLockMode.Locked;
