@@ -76,11 +76,11 @@ public class PlayerInput : MonoBehaviour
 
         if (MouseScroll > 0)
         {
-            weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() + 1);
+            weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() - 1);
         }
         else if (MouseScroll < 0)
         {
-            weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() - 1);
+            weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() + 1);
         }
 
 
