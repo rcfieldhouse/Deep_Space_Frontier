@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 MouseInput;
     private Vector2 KeyboardInput;
     private bool UIToggle = true;
+    [SerializeField] private float MouseScroll=0.0f;
 
     public WeaponSwap weaponSwap;
     public GameObject userInterface;
@@ -28,10 +29,13 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //MouseInput for aim
        MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; ;
        MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2; ;
        Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
 
+      
+        //PlayerINput for controls
         //Turn this to GetButtonDown at some point
        if (Input.GetKeyDown("space") && (controller.isGrounded()==true))
             Jump = true; 
@@ -42,12 +46,25 @@ public class PlayerInput : MonoBehaviour
        if (Input.GetKeyUp(KeyCode.LeftShift))
             SpeedMod = 1.0f;
 
+        if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
+            SpeedMod = controller.m_CrouchSpeed;
+        if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
+            SpeedMod = 2.0f;
+        else if (Input.GetButtonUp("Crouch"))
+            SpeedMod = 1.0f;
+
+
+        //aim code
         if (Input.GetButtonDown("Fire2"))
         {
             UIToggle = !UIToggle;
             userInterface.SetActive(UIToggle);
            
         }
+
+        //weapon swapping 
+        MouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
             weaponSwap.SetWeapon(0);
 
@@ -57,12 +74,14 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
             weaponSwap.SetWeapon(2);
 
-        if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
-            SpeedMod = controller.m_CrouchSpeed;
-        if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
-            SpeedMod = 2.0f;
-        else if (Input.GetButtonUp("Crouch"))
-            SpeedMod = 1.0f;
+        if (MouseScroll > 0)
+        {
+            weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() + 1);
+        }
+        else if (MouseScroll < 0)
+        {
+            weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() - 1);
+        }
 
 
         KeyboardInput.x = Input.GetAxisRaw("Horizontal");

@@ -6,9 +6,10 @@ public class WeaponSwap : MonoBehaviour
 {
     // Start is called before the first frame update
    public GameObject[] WeaponArray;
+    private int WeaponChoice = 0;
     void Start()
     {
-        
+        WeaponArray[WeaponChoice].SetActive(true);
     }
 
     // Update is called once per frame
@@ -16,14 +17,23 @@ public class WeaponSwap : MonoBehaviour
     {
         
     }
+
+    public int GetWeaponNum()
+    {
+        return WeaponChoice;
+    }
     public void SetWeapon(int num)
     {
-          for (int i = 0; i < WeaponArray.Length; i++)
+        if (WeaponArray[num] != null)
         {
-            WeaponArray[i].SetActive(false);
-        }      
-      
-        WeaponArray[num].SetActive(true);
-    
+            for (int i = 0; i < WeaponArray.Length; i++)
+            {
+                WeaponArray[i].SetActive(false);
+            }
+
+            WeaponArray[num].SetActive(true);
+            WeaponChoice = num;
+        }
+       
     }
 }

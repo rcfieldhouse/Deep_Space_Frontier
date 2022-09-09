@@ -6938,8 +6938,8 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  m_CrouchSpeed: 0.36
-  SpeedSlider: 0.5
+  m_CrouchSpeed: 0.5
+  SpeedSlider: 1
   mover: {x: 0, y: 0, z: 0}
   targetVelocity: {x: 0, y: 0, z: 0}
   JumpForce: {x: 0, y: 10, z: 0}
@@ -6957,7 +6957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dead27ba2c022fe4ebf214a011334a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprint: 1
+  SpeedMod: 1
   controller: {fileID: 1180305570}
   Sensitivity: 0.5
   weaponSwap: {fileID: 884127269}
@@ -8239,12 +8239,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155511498}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c2bf3d642549cd340a0bbf5d2e2b99f2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.523
+  m_Volume: 0.067
   m_Pitch: 1
   Loop: 0
   Mute: 0
