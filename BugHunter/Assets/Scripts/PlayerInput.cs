@@ -23,7 +23,8 @@ public class PlayerInput : MonoBehaviour
     //damn you dante, make ur own file 
     void Start()
     {
-        Cursor.lockState= CursorLockMode.Locked;
+        // Commented temporarily unitl inventory system is implemented
+        //Cursor.lockState= CursorLockMode.Locked;
     }
 
     // Update is called once per frame
