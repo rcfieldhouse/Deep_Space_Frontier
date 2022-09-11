@@ -24,7 +24,7 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         // Commented temporarily unitl inventory system is implemented
-        //Cursor.lockState= CursorLockMode.Locked;
+        Cursor.lockState= CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -90,5 +90,14 @@ public class PlayerInput : MonoBehaviour
     
         controller.Move(KeyboardInput, Jump, SpeedMod,Direction);
         Jump = false;
+    }
+    // UI buttons call this when they want to enable mouse lock
+    // Currently used by "Exit_Inventory" Button
+    public void MouseState()
+    {
+        if (Cursor.lockState == CursorLockMode.None)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
