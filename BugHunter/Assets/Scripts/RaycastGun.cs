@@ -67,7 +67,7 @@ public class RaycastGun : MonoBehaviour
             if (m_IsShotgun)
             {
                 //for setting the start points
-                for (int i = 2; i <=7; i+=2)
+                for (int i = 2; i <=15; i+=2)
                 {
                     laserLine.SetPosition(i, gunEnd.position);
                 }
@@ -113,7 +113,7 @@ public class RaycastGun : MonoBehaviour
             //for shotguns
            if (m_IsShotgun)
             {
-                for (int i = 1; i <= 7; i += 2)
+                for (int i = 1; i <= 15; i += 2)
                 {
                     AimSpread.x = Random.Range(-maxShotGunSpread, maxShotGunSpread);
                     AimSpread.y = Random.Range(-maxShotGunSpread, maxShotGunSpread);
