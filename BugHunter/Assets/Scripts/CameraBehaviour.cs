@@ -17,15 +17,15 @@ public class CameraBehaviour : MonoBehaviour
     void Update()
     {
         transform.rotation=player.transform.rotation;
-        if (timer > 0.0f)
-        {
-       transform.position += bobDistance;
-            timer -= Time.deltaTime;
-        }
-        else
-        {
-            bobDistance *= -1;
-            timer += bobSpeed;
-        }
+     // if (timer > 0.0f)
+     // {
+     //transform.position += bobDistance;
+     //     timer -= Time.deltaTime;
+     // }
+     // else
+     // {
+     //     bobDistance *= -1;
+     //     timer += bobSpeed;
+     // }
     }
 }

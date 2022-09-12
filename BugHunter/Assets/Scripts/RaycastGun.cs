@@ -94,7 +94,7 @@ public class RaycastGun : MonoBehaviour
 
         //play Shooting Effect
         muzzleFlash.Play();
-
+        GetComponent<AudioSource>().Play();
         // Turn on our line renderer
         laserLine.enabled = true;
 
