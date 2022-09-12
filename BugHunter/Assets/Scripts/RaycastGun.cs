@@ -113,7 +113,7 @@ public class RaycastGun : MonoBehaviour
             //for shotguns
            if (m_IsShotgun)
             {
-                for (int i = 3; i <= 7; i += 2)
+                for (int i = 1; i <= 7; i += 2)
                 {
                     AimSpread.x = Random.Range(-maxShotGunSpread, maxShotGunSpread);
                     AimSpread.y = Random.Range(-maxShotGunSpread, maxShotGunSpread);
@@ -142,7 +142,7 @@ public class RaycastGun : MonoBehaviour
                         // Add force to the rigidbody we hit, in the direction from which it was hit
                         hit.rigidbody.AddForce(-hit.normal * hitForce);
                     }
-                    laserLine.SetPosition(i, rayOrigin + (hit.point) + AimSpread);
+                    laserLine.SetPosition(i, (hit.point) );
                 }
                 
                 else
