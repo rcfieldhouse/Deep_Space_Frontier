@@ -12,8 +12,8 @@ public class CharacterController : MonoBehaviour
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
     [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;    
     [SerializeField] private Vector3 mover,targetVelocity,JumpForce;
-    [SerializeField] private bool m_Grounded = true;
-    [SerializeField] private BoxCollider coll;
+     private bool m_Grounded = true;
+    [SerializeField] private CapsuleCollider coll;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +48,7 @@ public class CharacterController : MonoBehaviour
     public bool isGrounded()
     {
 
-        m_Grounded = Physics.BoxCast(coll.bounds.center - Vector3.down / 10, coll.bounds.size / 2, Vector3.down, Quaternion.Euler(Vector3.down), 0.1f, m_WhatIsGround);
-        return Physics.BoxCast(coll.bounds.center - Vector3.down / 10, coll.bounds.size / 2, Vector3.down, Quaternion.Euler(Vector3.down), 0.1f, m_WhatIsGround);
+        m_Grounded = Physics.BoxCast(coll.bounds.center - Vector3.down / 10, coll.bounds.size / 2, Vector3.down, Quaternion.Euler(Vector3.down), 1f, m_WhatIsGround);
+        return Physics.BoxCast(coll.bounds.center - Vector3.down / 10, coll.bounds.size / 2, Vector3.down, Quaternion.Euler(Vector3.down), 1f, m_WhatIsGround);
     }
 }
