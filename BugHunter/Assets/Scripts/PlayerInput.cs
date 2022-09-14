@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
 
-    private bool Jump = false;
+    private bool Jump = false, Crouch = false;
 
     [SerializeField] private float SpeedMod = 1.0f;
     [SerializeField] private CharacterController controller;
@@ -47,6 +47,9 @@ public class PlayerInput : MonoBehaviour
        if (Input.GetKeyUp(KeyCode.LeftShift))
             SpeedMod = 1.0f;
 
+       //cursed crouch controls
+       if (Input.GetButtonDown("Crouch"))
+        Crouch=true;
         if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
             SpeedMod = controller.m_CrouchSpeed;
         if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
@@ -88,7 +91,7 @@ public class PlayerInput : MonoBehaviour
         KeyboardInput.x = Input.GetAxisRaw("Horizontal");
         KeyboardInput.y = Input.GetAxisRaw("Vertical");
     
-        controller.Move(KeyboardInput, Jump, SpeedMod,Direction);
+        controller.Move(KeyboardInput, Jump, SpeedMod,Direction, Crouch);
         Jump = false;
     }
     // UI buttons call this when they want to enable mouse lock

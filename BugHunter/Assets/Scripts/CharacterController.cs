@@ -6,8 +6,9 @@ public class CharacterController : MonoBehaviour
 {
     public Rigidbody rigidbody;
     public GameObject Player;
-    [SerializeField]
-    private LayerMask m_WhatIsGround;
+    public GameObject Cam;
+
+    [SerializeField] private LayerMask m_WhatIsGround;
 
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
     [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;    
@@ -25,9 +26,13 @@ public class CharacterController : MonoBehaviour
     {
         
     }
-    public void Move(Vector2 move, bool jump,float SpeedMod,Quaternion quaternion)
+    public void Move(Vector2 move, bool jump,float SpeedMod,Quaternion quaternion, bool crouch)
     {
-    
+    if (crouch==true)
+            Cam.transform.position=Player.transform.position- new Vector3(0.0f,10.0f,0.0f);
+
+
+
         rigidbody.gameObject.transform.localRotation = quaternion;
          mover = transform.right * move.x + transform.forward * move.y;
       
