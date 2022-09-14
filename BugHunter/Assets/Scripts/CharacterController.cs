@@ -6,8 +6,8 @@ public class CharacterController : MonoBehaviour
 {
     public Rigidbody rigidbody;
     public GameObject Player;
-    public GameObject Cam;
-
+    public GameObject Cam,CrouchCam;
+ 
     [SerializeField] private LayerMask m_WhatIsGround;
 
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
@@ -28,8 +28,21 @@ public class CharacterController : MonoBehaviour
     }
     public void Move(Vector2 move, bool jump,float SpeedMod,Quaternion quaternion, bool crouch)
     {
-    if (crouch==true)
-            Cam.transform.position=Player.transform.position- new Vector3(0.0f,10.0f,0.0f);
+        Cam.SetActive(false);
+        CrouchCam.SetActive(false);
+
+        if (crouch == true)
+        {       
+            CrouchCam.SetActive(true);
+            Cam.SetActive(false);
+        }
+    else if (crouch != true)
+        {
+            CrouchCam.SetActive(false);
+            Cam.SetActive(true);
+
+        }
+          
 
 
 

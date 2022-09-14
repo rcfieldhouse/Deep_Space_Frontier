@@ -47,9 +47,16 @@ public class PlayerInput : MonoBehaviour
        if (Input.GetKeyUp(KeyCode.LeftShift))
             SpeedMod = 1.0f;
 
-       //cursed crouch controls
-       if (Input.GetButtonDown("Crouch"))
-        Crouch=true;
+        //cursed crouch controls
+        if (Input.GetButtonDown("Crouch"))
+            Crouch = true;
+        else if (Input.GetButtonUp("Crouch")) 
+            Crouch= false;
+
+
+
+
+
         if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
             SpeedMod = controller.m_CrouchSpeed;
         if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
