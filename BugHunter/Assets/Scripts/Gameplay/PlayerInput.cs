@@ -70,11 +70,15 @@ public class PlayerInput : MonoBehaviour
         {
             UIToggle = !UIToggle;
             userInterface.SetActive(UIToggle);
-           
+        }
+        else if (Input.GetButtonUp("Fire2"))
+        {
+            UIToggle = !UIToggle;
+            userInterface.SetActive(UIToggle);
         }
 
-        //weapon swapping 
-        MouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
+            //weapon swapping 
+            MouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
             weaponSwap.SetWeapon(0);
