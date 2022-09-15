@@ -19,6 +19,7 @@ public class PlayerInput : MonoBehaviour
 
     public WeaponSwap weaponSwap;
     public GameObject userInterface;
+    public GrenadeThrow _GrenadeThrow; 
     // Start is called before the first frame update
     //damn you dante, make ur own file 
     void Start()
@@ -54,7 +55,12 @@ public class PlayerInput : MonoBehaviour
             Crouch= false;
 
 
-
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            StartCoroutine(_GrenadeThrow.ThowGrenade(Direction * (Vector3.forward * 15+Vector3.up*5)));
+           
+        }
+          
 
 
         if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
