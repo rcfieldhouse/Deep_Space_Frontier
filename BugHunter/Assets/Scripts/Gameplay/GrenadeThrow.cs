@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GrenadeThrow : MonoBehaviour
 {
-    public Rigidbody rigidbody;
+    private Rigidbody rigidbody;
+    private CapsuleCollider CapsuleCollider;
     private WaitForSeconds GrenadeFuse = new WaitForSeconds(2.0f);
     private WaitForSeconds BoomTimer = new WaitForSeconds(0.25f);
-
+    [SerializeField] int GrenadeDamage = 100;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        CapsuleCollider = GetComponent<CapsuleCollider>();
         rigidbody.isKinematic = true;
     }
 
@@ -36,11 +38,19 @@ public class GrenadeThrow : MonoBehaviour
 
     public IEnumerator TingGoBoom()
     {
-        rigidbody.gameObject.transform.localScale *= 25.0f;
+        rigidbody.gameObject.transform.localScale *= 55.0f;
+        rigidbody.isKinematic = true;
+        CapsuleCollider.isTrigger = true;
 
         yield return BoomTimer;
 
         rigidbody.gameObject.SetActive(false);
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<HealthSystem>())
+        other.gameObject.GetComponentInParent<HealthSystem>().ModifyHealth(-GrenadeDamage); ;
+       
+    }
 }

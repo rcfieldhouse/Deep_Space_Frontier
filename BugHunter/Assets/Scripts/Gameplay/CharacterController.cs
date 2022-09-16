@@ -42,12 +42,18 @@ public class CharacterController : MonoBehaviour
             Cam.SetActive(true);
 
         }
-          
 
-
+        //lock camera if looking above where we want so that they cant rotate indefinatley on the up down axis 
+        //Debug.Log(Player.transform.localRotation.x);
+        //if (Player.transform.rotation.x < -90.0f )
+        //{
+        //    //quaternion.x -= (quaternion.x - 0.65f);
+        //    
+        //    Debug.Log("ahhhhhh");         
+        //}
 
         rigidbody.gameObject.transform.localRotation = quaternion;
-         mover = transform.right * move.x + transform.forward * move.y;
+        mover = transform.right * move.x + transform.forward * move.y;
       
              targetVelocity = new Vector3(mover.x * SpeedSlider * 5 * SpeedMod, rigidbody.velocity.y, mover.z * SpeedSlider * 5 * SpeedMod);
 
