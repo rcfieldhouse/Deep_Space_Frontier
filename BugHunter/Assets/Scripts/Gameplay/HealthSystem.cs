@@ -23,6 +23,9 @@ public class HealthSystem : MonoBehaviour
     {
         currentHealth = health;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
+
+        float currentHealthPercent = (float)currentHealth / (float)maxHealth;
+        OnHealthPercentChanged(currentHealthPercent);
     }
 
     public void ModifyHealth(int amount)

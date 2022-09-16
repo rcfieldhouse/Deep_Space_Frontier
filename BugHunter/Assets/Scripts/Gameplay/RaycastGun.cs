@@ -110,7 +110,8 @@ public class RaycastGun : MonoBehaviour
             
 
 
-            //for shotguns
+            //for shotguns shhhh i hate it 
+
            if (m_IsShotgun)
             {
                 for (int i = 1; i <= 15; i += 2)
@@ -160,10 +161,7 @@ public class RaycastGun : MonoBehaviour
         }
     }
 
-  private void checkShotHit(Vector3 Origin, Vector3 Direction,float range )
-    {
-
-    }
+ 
     private IEnumerator ShotEffect()
     {
         // Play the shooting sound effect
