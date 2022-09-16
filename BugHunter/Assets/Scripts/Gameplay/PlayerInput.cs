@@ -55,7 +55,7 @@ public class PlayerInput : MonoBehaviour
             Crouch= false;
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             StartCoroutine(_GrenadeThrow.ThowGrenade(Direction * (Vector3.forward * 15+Vector3.up*5)));
            

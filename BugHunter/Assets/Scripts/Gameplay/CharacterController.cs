@@ -71,7 +71,7 @@ public class CharacterController : MonoBehaviour
     }
     public bool isGrounded()
     {
-
+        Physics.Raycast(coll.bounds.center - Vector3.down / 10, Vector3.down, 1.0f, m_WhatIsGround);
         m_Grounded = Physics.BoxCast(coll.bounds.center - Vector3.down / 10, coll.bounds.size / 2, Vector3.down, Quaternion.Euler(Vector3.down), 1f, m_WhatIsGround);
         return Physics.BoxCast(coll.bounds.center - Vector3.down / 10, coll.bounds.size / 2, Vector3.down, Quaternion.Euler(Vector3.down), 1f, m_WhatIsGround);
     }
