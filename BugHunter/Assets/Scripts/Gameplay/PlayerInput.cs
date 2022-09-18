@@ -94,6 +94,8 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
             weaponSwap.SetWeapon(2);
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            weaponSwap.SetWeapon(3);
 
         if (MouseScroll > 0)
         {
