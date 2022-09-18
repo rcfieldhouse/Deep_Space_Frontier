@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class NetworkManager : MonoBehaviour
+using UnityEngine.InputSystem;
+public class Controls : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
