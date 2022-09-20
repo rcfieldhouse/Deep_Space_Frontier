@@ -68,7 +68,7 @@ public class GrenadeThrow : MonoBehaviour
 
         //dunno why but transform isnt writable
         Rigidbody.gameObject.transform.SetParent(player.transform);
-        Rigidbody.gameObject.transform.localPosition = new Vector3(-0.5f, -0.03f, 0.4f);
+        Rigidbody.gameObject.transform.localPosition = new Vector3(-0.5f, 1.03f, 0.4f);
         Rigidbody.gameObject.transform.localRotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
         Rigidbody.gameObject.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
         Rigidbody.isKinematic = true;
@@ -80,6 +80,7 @@ public class GrenadeThrow : MonoBehaviour
         yield return GrenadeResetTimer;
        // Debug.Log("grenadeReset2");
         _isReady = true;
+        Rigidbody.gameObject.transform.localPosition = new Vector3(-0.5f, -0.03f, 0.4f);
         Rigidbody.gameObject.GetComponent<MeshRenderer>().enabled = true;
         Rigidbody.gameObject.SetActive(false);
     }
