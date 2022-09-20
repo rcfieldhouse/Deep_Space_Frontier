@@ -6397,42 +6397,42 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1180305568}
+    m_TransformParent: {fileID: 884127266}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 9.98393
+      value: 9.983931
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 9.983928
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
-        type: 3}
-      propertyPath: m_LocalScale.z
       value: 9.983929
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
+      propertyPath: m_LocalScale.z
+      value: 9.983928
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.591
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.034
+      value: -0.03399998
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.276
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
@@ -6447,12 +6447,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.000000029802319
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.000000029802319
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
@@ -6500,6 +6500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e292ce974c96ebb4d9c17721375ccc93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 884127265}
   GrenadeDamage: 100
 --- !u!54 &368870036
 Rigidbody:
@@ -12650,7 +12651,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1180305568}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &630972428
 MonoBehaviour:
@@ -12924,6 +12925,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b6b834e5be72d964689ee5f508939ee6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b834e5be72d964689ee5f508939ee6, type: 3}
@@ -13392,8 +13398,9 @@ Transform:
   - {fileID: 1104631561}
   - {fileID: 592176926}
   - {fileID: 545545298}
+  - {fileID: 368870031}
   m_Father: {fileID: 1180305568}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &884127267
 Animator:
@@ -15057,7 +15064,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 368870031}
   - {fileID: 884127266}
   - {fileID: 1885606631}
   - {fileID: 630972427}
@@ -15123,7 +15129,7 @@ MonoBehaviour:
   MouseScroll: 0
   weaponSwap: {fileID: 884127269}
   userInterface: {fileID: 43276820}
-  _GrenadeThrow: {fileID: 368870033}
+  _Grenade: {fileID: 368870033}
 --- !u!136 &1180305572
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15669,7 +15675,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 633c7ab19faa3d343a2c6021a72d299f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3503079536372887608, guid: 633c7ab19faa3d343a2c6021a72d299f,
         type: 3}
@@ -22334,7 +22340,7 @@ Transform:
   m_Children:
   - {fileID: 1759789175}
   m_Father: {fileID: 1180305568}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1885606632
 MonoBehaviour:

@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
 
     public WeaponSwap weaponSwap;
     public GameObject userInterface;
-    public GrenadeThrow _GrenadeThrow; 
+    public GrenadeThrow _Grenade; 
     // Start is called before the first frame update
     //damn you dante, make ur own file 
     void Start()
@@ -57,7 +57,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            StartCoroutine(_GrenadeThrow.ThowGrenade(Direction * (Vector3.forward * 15+Vector3.up*5)));
+            StartCoroutine(_Grenade.ThowGrenade(Direction * (Vector3.forward * 15+Vector3.up*5)));
            
         }
           
