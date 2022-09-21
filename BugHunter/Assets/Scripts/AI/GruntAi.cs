@@ -43,15 +43,16 @@ public class GruntAi : MonoBehaviour
          
             transform.LookAt(player.transform);
             Chase();
-            Debug.Log("holy shit it works");
+
         }
     }
     public void IdleMove()
     {
         //i have no idea how to do this rn, will do later cause lazy
+        //some type of ai thing
     }
     public void Attack()
     {
-
+        //make de boi attack 
     }
 }
