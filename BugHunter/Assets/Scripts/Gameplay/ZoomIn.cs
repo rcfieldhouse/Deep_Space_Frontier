@@ -5,7 +5,7 @@ using UnityEngine;
 public class ZoomIn : MonoBehaviour
 {
     public Animator animator;
-    [SerializeField] private bool isScoped = false;
+    [SerializeField] private bool isScoped = false,isSwitchingGuns;
 
     // Update is called once per frame
     void Update()

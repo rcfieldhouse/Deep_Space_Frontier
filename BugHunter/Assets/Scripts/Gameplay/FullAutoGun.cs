@@ -8,7 +8,8 @@ public class FullAutoGun : MonoBehaviour
     public float fireRate = 0.25f;                                        // Number in seconds which controls how often the player can fire
     public float weaponRange = 50f;                                        // Distance in Unity units over which the player can fire
     public float hitForce = 100f;                                        // Amount of force which will be added to objects with a rigidbody shot by the player
-    public Transform gunEnd;                                            // Holds a reference to the gun end object, marking the muzzle location of the gun
+    public Transform gunEnd;
+    public Mag Magazine;                                                    // Holds a reference to the gun end object, marking the muzzle location of the gun
     [SerializeField]
     public Camera fpsCam;                                                // Holds a reference to the first person camera
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);    // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
@@ -20,6 +21,7 @@ public class FullAutoGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Magazine = GetComponentInParent<Mag>();
         laserLine = GetComponent<LineRenderer>();
 
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
@@ -31,10 +33,12 @@ public class FullAutoGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        if (Input.GetKeyDown(KeyCode.R))
+            Reload();
+            // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
+            if (Input.GetButton("Fire1") && Time.time > nextFire&&Magazine.getMag()>0)
         {
-
+            Magazine.SetBulletCount();
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;
 
@@ -86,6 +90,11 @@ public class FullAutoGun : MonoBehaviour
 
             }
         }
+    }
+    public void Reload()
+    {
+        //Setting to true reloads
+        Magazine.SetBulletCount(true);
     }
     private IEnumerator ShotEffect()
     {
