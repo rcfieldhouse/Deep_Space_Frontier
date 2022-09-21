@@ -12,6 +12,7 @@ public class GruntAi : MonoBehaviour
     [SerializeField] float speed;
     void Start()
     {
+        player = gameObject.GetComponentInParent<GruntManager>().Player;
         speed = 5.0f;
         rb=GetComponent<Rigidbody>();
         CC=GetComponent<CapsuleCollider>(); 
@@ -48,5 +49,9 @@ public class GruntAi : MonoBehaviour
     public void IdleMove()
     {
         //i have no idea how to do this rn, will do later cause lazy
+    }
+    public void Attack()
+    {
+
     }
 }
