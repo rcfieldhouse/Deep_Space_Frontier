@@ -4,37 +4,42 @@ using UnityEngine;
 
 public class Mag : MonoBehaviour
 {
-    [SerializeField]private int MagLeft, MagSize=1,AmmoCount=1;
+    [SerializeField]private int ammoInMag, maxAmmo, magSize=1,reserveAmmo=1;
+
     // Start is called before the first frame update
     void Start()
     {
-        MagLeft = MagSize;
+        ammoInMag = magSize;
     }
 
     // Update is called once per frame
     //alter mag to subtract a bullet or fill it full on reload 
     public void SetBulletCount()
     {
-        if (MagLeft > 0)
-            MagLeft--;
+        if (ammoInMag > 0)
+            ammoInMag--;
     }
-    public int getMag()
+    public int GetMag()
     {
-        return MagLeft;
+        return ammoInMag;
+    }
+    public int GetReserveAmmo()
+    {
+        return reserveAmmo;
     }
     public void SetBulletCount(bool var)
     {
         if (var)
         {
-            if (AmmoCount > MagSize - MagLeft)
+            if (reserveAmmo > magSize - ammoInMag)
             {
-                AmmoCount -= MagSize - MagLeft;
-                MagLeft = MagSize;
+                reserveAmmo -= magSize - ammoInMag;
+                ammoInMag = magSize;
             }
             else
             {
-                MagLeft += AmmoCount;
-                AmmoCount = 0;
+                ammoInMag +=reserveAmmo;
+                reserveAmmo = 0;
             }
                
         }

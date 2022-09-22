@@ -53,7 +53,7 @@ public class ShotGun : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             Reload();
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFire && Magazine.getMag() > 0)
+        if (Input.GetButtonDown("Fire1") && Time.time > nextFire && Magazine.GetMag() > 0)
         {
             Magazine.SetBulletCount();
             // Update the time when our player can fire next
