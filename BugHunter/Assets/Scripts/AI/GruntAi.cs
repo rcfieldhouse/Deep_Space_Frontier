@@ -24,9 +24,10 @@ public class GruntAi : MonoBehaviour
  
         distVec=(player.transform.position - rb.gameObject.transform.position);
         DistanceToPlayer = Mathf.Abs(distVec.x) + Mathf.Abs(distVec.y) + Mathf.Abs(distVec.z);
-        //Debug.Log(Mathf.Abs(distVec.x) + Mathf.Abs(distVec.y) + Mathf.Abs(distVec.z));
+       // Debug.Log(Mathf.Abs(distVec.x) + Mathf.Abs(distVec.y) + Mathf.Abs(distVec.z));
        
         Seek();
+        Attack();
     }
     public void Chase()
     {
@@ -54,5 +55,15 @@ public class GruntAi : MonoBehaviour
     public void Attack()
     {
         //make de boi attack 
+        //quissue
+        if (DistanceToPlayer < 2.0f)
+        {
+            rb.transform.position -= new Vector3( distVec.normalized.x * 2.0f,0, distVec.normalized.z * 2.0f);
+  
+         
+            HealthSystem health =player.GetComponent<HealthSystem>();
+            health.ModifyHealth(-1);
+           // player.GetComponent<Rigidbody>().AddForce(Vector3.up*10);
+        }
     }
 }
