@@ -23,9 +23,9 @@ public class AmmoChangeUI : MonoBehaviour
     void Update()
     {
         int i = currentWeapon.GetWeaponNum();
-        Debug.LogWarning(currentWeapon.GetWeaponNum());
-        ammoCount.text = magazineSize[i].GetMag().ToString() +
-            " / "+ magazineSize[i].GetReserveAmmo().ToString();
+       // Debug.LogWarning(currentWeapon.GetWeaponNum());
+         ammoCount.text = magazineSize[i].GetMag().ToString() +
+           " / "+ magazineSize[i].GetReserveAmmo().ToString();
     }
 
 }

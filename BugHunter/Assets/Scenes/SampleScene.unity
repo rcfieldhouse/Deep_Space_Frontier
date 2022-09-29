@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21108171, g: 0.05813721, b: 0.036018983, a: 1}
+  m_IndirectSpecularColor: {r: 0.21111907, g: 0.058149654, b: 0.03602633, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12311,6 +12311,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d5bddd70202b547bcb876e8e6dcc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &545545300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545545297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f24b28223270049925ee308f08b403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoInMag: 0
+  maxAmmo: 0
+  magSize: 1
+  reserveAmmo: 3
 --- !u!1001 &568712020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12465,6 +12481,22 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 923851947}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &618022410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618022408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f24b28223270049925ee308f08b403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoInMag: 0
+  maxAmmo: 0
+  magSize: 2
+  reserveAmmo: 10
 --- !u!1 &624740606
 GameObject:
   m_ObjectHideFlags: 0
@@ -13251,6 +13283,8 @@ MonoBehaviour:
   magazineSize:
   - {fileID: 2145418074}
   - {fileID: 1104631567}
+  - {fileID: 433161464}
+  - {fileID: 433161464}
   - {fileID: 433161464}
   currentWeapon: {fileID: 884127269}
 --- !u!114 &810545660
