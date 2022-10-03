@@ -111,12 +111,12 @@ public class GroundAi : MonoBehaviour
     {
         Destroy(gameObject);
     }
-  // private void OnDrawGizmosSelected()
-  // {
-  //     Gizmos.color = Color.red;
-  //     Gizmos.DrawWireSphere(transform.position, attackRange);
-  //     Gizmos.color = Color.yellow;
-  //     Gizmos.DrawWireSphere(transform.position, sightRange);
-  // }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
 
 }
