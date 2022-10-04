@@ -42,15 +42,10 @@ public class RaycastGun : MonoBehaviour
      //  }
      //  }
     }
-    public void Reload()
-    {
-        //Setting to true reloads
-        Magazine.SetBulletCount(true);
-    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            Reload();
+   
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
         if (Input.GetButtonDown("Fire1") && Time.time > nextFire && Magazine.GetMag() > 0)
         {
@@ -79,8 +74,8 @@ public class RaycastGun : MonoBehaviour
             {
                 // Set the end position for our laser line 
                 laserLine.SetPosition(1, hit.point);
-             
-           
+
+                Debug.Log(hit.collider.gameObject.name);
                 // Get a reference to a health script attached to the collider we hit
                 HealthSystem health = hit.collider.GetComponent<HealthSystem>();
 

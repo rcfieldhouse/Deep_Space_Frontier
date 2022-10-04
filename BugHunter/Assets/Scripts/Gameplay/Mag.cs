@@ -11,7 +11,16 @@ public class Mag : MonoBehaviour
     {
         ammoInMag = magSize;
     }
-
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+            Reload();
+    }
+    public void Reload()
+    {
+        //Setting to true reloads
+      SetBulletCount(true);
+    }
     // Update is called once per frame
     //alter mag to subtract a bullet or fill it full on reload 
     public void SetBulletCount()
