@@ -6505,6 +6505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 884127265}
   GrenadeDamage: 100
+  GrenadeManager: {fileID: 0}
 --- !u!54 &368870036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18380,6 +18381,7 @@ GameObject:
   - component: {fileID: 884127267}
   - component: {fileID: 884127268}
   - component: {fileID: 884127269}
+  - component: {fileID: 884127270}
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -18467,6 +18469,19 @@ MonoBehaviour:
   - {fileID: 1337889029}
   - {fileID: 1337889029}
   - {fileID: 2052281630}
+--- !u!114 &884127270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884127265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3cfbb50e920ecc458fec113b7b5c6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrenadeThrow: {fileID: 368870033}
 --- !u!1 &899948021
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,6 +26,7 @@ public class RelicCannonAmmo : MonoBehaviour
     private IEnumerator DestroyThis()
     {
         gameObject.transform.localScale = new Vector3(10.0f, 6.0f, 10.0f);
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         yield return BoomTimer;
         Destroy(gameObject);
     }

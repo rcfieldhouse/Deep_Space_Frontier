@@ -10,22 +10,27 @@ public class GrenadeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GrenadeThrow = GetComponent<GrenadeThrow>();
+        GrenadeThrow = GetComponentInChildren<GrenadeThrow>();
         Transform = GrenadeThrow.GetStartPos();
     }
 
     // Update is called once per frame
-    void Update()
+  public void GainGrenades()
     {
-        
+        numGrenades++;
     }
-
-    public void Throw()
+   public void GainGrenades(int num)
     {
-
+        numGrenades += num;
     }
-    public void ResetPos()
+  
+   public int GetNumGrenades()
     {
-   
+        return numGrenades;
     }
+    public void ThrowGrenade()
+    {
+        numGrenades--;
+    }
+ 
 }
