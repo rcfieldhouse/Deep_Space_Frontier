@@ -33,8 +33,7 @@ public class FullAutoGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            Reload();
+      
             // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
             if (Input.GetButton("Fire1") && Time.time > nextFire&&Magazine.GetMag()>0)
         {
@@ -91,11 +90,7 @@ public class FullAutoGun : MonoBehaviour
             }
         }
     }
-    public void Reload()
-    {
-        //Setting to true reloads
-        Magazine.SetBulletCount(true);
-    }
+
     private IEnumerator ShotEffect()
     {
         // Play the shooting sound effect

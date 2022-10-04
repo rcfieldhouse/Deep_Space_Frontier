@@ -36,7 +36,7 @@ public class WeaponSwap : MonoBehaviour
                 RecticleArray[i].SetActive(false);
                 WeaponArray[i].SetActive(false);
             }
-        Debug.Log(WeaponArray.Length);
+       // Debug.Log(WeaponArray.Length);
 
         if (num < 0)
         {

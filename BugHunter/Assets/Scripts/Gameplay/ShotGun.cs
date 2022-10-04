@@ -43,15 +43,10 @@ public class ShotGun : MonoBehaviour
         //  }
         //  }
     }
-    public void Reload()
-    {
-        //Setting to true reloads
-        Magazine.SetBulletCount(true);
-    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            Reload();
+    
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
         if (Input.GetButtonDown("Fire1") && Time.time > nextFire && Magazine.GetMag() > 0)
         {

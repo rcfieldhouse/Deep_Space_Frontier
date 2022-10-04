@@ -13,6 +13,7 @@ public class GrenadeThrow : MonoBehaviour
     private WaitForSeconds GrenadeResetTimer = new WaitForSeconds(5.0f);
     [SerializeField] int GrenadeDamage = 100;
      private Transform _startValues;
+    public GrenadeManager GrenadeManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class GrenadeThrow : MonoBehaviour
         CapsuleCollider = GetComponent<CapsuleCollider>();
         Rigidbody.isKinematic = true;
         Rigidbody.gameObject.SetActive(false);
+        GrenadeManager = GetComponentInParent<GrenadeManager>();
     }
 
     // Update is called once per frame
@@ -36,7 +38,9 @@ public class GrenadeThrow : MonoBehaviour
     }
     public IEnumerator ThowGrenade(Vector3 ThrowVector)
     {
-        if (_isReady == true) {
+        
+        if (_isReady == true&&GrenadeManager.GetNumGrenades()>0) {
+            GrenadeManager.ThrowGrenade();
             _isReady = false;
         Rigidbody.gameObject.SetActive(true);
         Rigidbody.isKinematic = false;
@@ -83,6 +87,7 @@ public class GrenadeThrow : MonoBehaviour
         Rigidbody.gameObject.transform.localPosition = new Vector3(-0.5f, -0.03f, 0.4f);
         Rigidbody.gameObject.GetComponent<MeshRenderer>().enabled = true;
         Rigidbody.gameObject.SetActive(false);
+     
     }
     public void OnTriggerEnter(Collider other)
     {

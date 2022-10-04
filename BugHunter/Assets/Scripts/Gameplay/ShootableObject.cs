@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootableObject : MonoBehaviour
 {
     //The object's current health point total
+    public HealthSystem HealthSystem; 
     public int currentHealth = 3;
 
     public void Damage(int damageAmount)
