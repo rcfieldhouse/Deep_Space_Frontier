@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PlayerInput : MonoBehaviour
 {
-
+    
     private bool Jump = false, Crouch = false;
-
+    public static Action<bool> DodgeRoll;
+    public static Action<bool> Crouching;
+    public static Action JumpAction;
+    public static Action<Quaternion> Look;
+    public static Action<Vector2,float> Move;
+    //public static Action<bool,int>thing;
     [SerializeField] private float SpeedMod = 1.0f;
     [SerializeField] private CharacterController controller;
     [Range(0, 1)] [SerializeField] private float Sensitivity = .5f;
@@ -35,24 +40,51 @@ public class PlayerInput : MonoBehaviour
        MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; ;
        MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2; ;
        Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
-
       
+
         //PlayerINput for controls
         //Turn this to GetButtonDown at some point
-       if (Input.GetKeyDown("space") && (controller.isGrounded()==true))
-            Jump = true; 
+        if (Input.GetKeyDown("space") && (controller.isGrounded() == true))
+            JumpAction.Invoke(); 
 
+
+
+        //sprint
        if (Input.GetKeyDown(KeyCode.LeftShift)) 
             SpeedMod = 2.0f;
 
        if (Input.GetKeyUp(KeyCode.LeftShift))
             SpeedMod = 1.0f;
 
+
+
+
         //cursed crouch controls
         if (Input.GetButtonDown("Crouch"))
-            Crouch = true;
-        else if (Input.GetButtonUp("Crouch")) 
-            Crouch= false;
+            Crouching.Invoke(true);      
+        else if (Input.GetButtonUp("Crouch"))
+            Crouching.Invoke(false);
+     
+        if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
+            SpeedMod = controller.m_CrouchSpeed;
+        if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
+            SpeedMod = 2.0f;
+        else if (Input.GetButtonUp("Crouch"))
+            SpeedMod = 1.0f;
+
+
+
+
+        //dodge mechanic
+        if (Input.GetKeyDown(KeyCode.C))
+            DodgeRoll.Invoke(true);
+        else if (Input.GetKeyUp(KeyCode.C))
+            DodgeRoll.Invoke(false);
+
+
+
+
+
 
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -63,13 +95,7 @@ public class PlayerInput : MonoBehaviour
           
 
 
-        if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
-            SpeedMod = controller.m_CrouchSpeed;
-        if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
-            SpeedMod = 2.0f;
-        else if (Input.GetButtonUp("Crouch"))
-            SpeedMod = 1.0f;
-
+      
 
         //aim code
         if (Input.GetButtonDown("Fire2"))
@@ -84,14 +110,12 @@ public class PlayerInput : MonoBehaviour
         }
 
             //weapon swapping 
-            MouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
+           
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
             weaponSwap.SetWeapon(0);
-
         if (Input.GetKeyDown(KeyCode.Alpha2))
             weaponSwap.SetWeapon(1);
-
         if (Input.GetKeyDown(KeyCode.Alpha3))
             weaponSwap.SetWeapon(2);
         if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -99,21 +123,19 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
             weaponSwap.SetWeapon(4);
 
+        MouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
         if (MouseScroll > 0)
-        {
             weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() - 1);
-        }
-        else if (MouseScroll < 0)
-        {
+        else if (MouseScroll < 0)       
             weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() + 1);
-        }
+        
 
 
         KeyboardInput.x = Input.GetAxisRaw("Horizontal");
         KeyboardInput.y = Input.GetAxisRaw("Vertical");
-    
-        controller.Move(KeyboardInput, Jump, SpeedMod,Direction);
-        controller.CameraWork(Crouch, true, true);
+
+        Look.Invoke(Direction);
+        Move.Invoke(KeyboardInput,SpeedMod);
         Jump = false;
     }
     // UI buttons call this when they want to enable mouse lock
