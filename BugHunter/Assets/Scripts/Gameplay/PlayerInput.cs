@@ -112,7 +112,8 @@ public class PlayerInput : MonoBehaviour
         KeyboardInput.x = Input.GetAxisRaw("Horizontal");
         KeyboardInput.y = Input.GetAxisRaw("Vertical");
     
-        controller.Move(KeyboardInput, Jump, SpeedMod,Direction, Crouch);
+        controller.Move(KeyboardInput, Jump, SpeedMod,Direction);
+        controller.CameraWork(Crouch, true, true);
         Jump = false;
     }
     // UI buttons call this when they want to enable mouse lock

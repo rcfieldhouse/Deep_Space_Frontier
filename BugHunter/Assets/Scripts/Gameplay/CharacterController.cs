@@ -26,22 +26,26 @@ public class CharacterController : MonoBehaviour
     {
         
     }
-    public void Move(Vector2 move, bool jump,float SpeedMod,Quaternion quaternion, bool crouch)
+    public void CameraWork(bool crouch, bool Dodge,bool sprint)
     {
         Cam.SetActive(false);
         CrouchCam.SetActive(false);
 
         if (crouch == true)
-        {       
+        {
             CrouchCam.SetActive(true);
             Cam.SetActive(false);
         }
-    else if (crouch != true)
+        else if (crouch != true)
         {
             CrouchCam.SetActive(false);
             Cam.SetActive(true);
 
         }
+    }
+    public void Move(Vector2 move, bool jump,float SpeedMod,Quaternion quaternion)
+    {
+       
 
         //lock camera if looking above where we want so that they cant rotate indefinatley on the up down axis 
         //Debug.Log(Player.transform.localRotation.x);
