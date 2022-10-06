@@ -27,6 +27,7 @@ public class CharacterController : MonoBehaviour
         disableCams(false);
         
     }
+
     //functions for delegates 
     //happy programmer noises ;)
 
@@ -34,7 +35,6 @@ public class CharacterController : MonoBehaviour
     {   //set all cameras to false, if called by a function that is setting that camera to false
         //set default cam to main
         CameraCrouch.SetActive(false);
-        Debug.Log("setting main cam to " + !var);
         CameraMain.SetActive(!var);
     }
   
@@ -53,14 +53,19 @@ public class CharacterController : MonoBehaviour
     {
         rigidbody.velocity += JumpForce;
     }
-    private void WASDMovement()
-    {
 
-    }
     private void Aim(Quaternion quaternion)
     {
         rigidbody.gameObject.transform.localRotation = quaternion;
     }
+    public void Move(Vector2 move, float SpeedMod)
+    {
+        SpeedMod *= 5;
+        mover = transform.right * move.x + transform.forward * move.y;
+        rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
+        rigidbody.angularVelocity = Vector3.zero;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -69,14 +74,6 @@ public class CharacterController : MonoBehaviour
     }
 
 
-    
-    public void Move(Vector2 move,float SpeedMod)
-    {
-        SpeedMod *= 5;
-        mover = transform.right * move.x + transform.forward * move.y;
-        rigidbody.velocity = new Vector3(mover.x * SpeedSlider* SpeedMod, rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
-        rigidbody.angularVelocity = Vector3.zero;   
-    }
     public bool isGrounded()
     {
         m_Grounded = Physics.Raycast(coll.bounds.center - Vector3.down / 10, Vector3.down, 1.2f, m_WhatIsGround);

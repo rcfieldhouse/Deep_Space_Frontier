@@ -11,6 +11,8 @@ public class PlayerInput : MonoBehaviour
     public static Action JumpAction;
     public static Action<Quaternion> Look;
     public static Action<Vector2,float> Move;
+    public static Action<bool> ADS;
+    public static Action Shoot;
     //public static Action<bool,int>thing;
     [SerializeField] private float SpeedMod = 1.0f;
     [SerializeField] private CharacterController controller;
@@ -94,7 +96,11 @@ public class PlayerInput : MonoBehaviour
         }
           
 
-
+        if (Input.GetButtonDown("Fire1"))
+        {
+           // Shoot.Invoke();
+            Debug.Log("weeeee");
+        }
       
 
         //aim code
