@@ -6,7 +6,7 @@ public class CharacterController : MonoBehaviour
 {
     public Rigidbody rigidbody;
     public GameObject Player;
-    public GameObject CameraMain,CameraCrouch;
+    public GameObject CameraMain,CameraCrouch,CameraDodge;
  
     [SerializeField] private LayerMask m_WhatIsGround;
 
@@ -42,7 +42,7 @@ public class CharacterController : MonoBehaviour
     {
         disableCams(var);
         //switch to dodge later
-        CameraCrouch.SetActive(var);
+        CameraDodge.SetActive(var);
     }
     private void SwitchCamCrouch(bool var)
     {

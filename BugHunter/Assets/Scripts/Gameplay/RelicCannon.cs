@@ -14,20 +14,20 @@ public class RelicCannon : MonoBehaviour
     void Start()
     {
         Magazine = GetComponentInParent<Mag>();
+        PlayerInput.Shoot += Shoot;
     }
 
     // Update is called once per frame
-    void Update()
+
+    private void Shoot()
     {
-        if (Input.GetButtonDown("Fire1")){
-            
-                StartCoroutine(shoot());
-          
-        }
+        //this exists cause we cant pass an enum to a action of return type void
+        if(gameObject.activeInHierarchy == true)
+            StartCoroutine(shoot());
     }
     private IEnumerator shoot()
     {
-        if (isReady == true && Magazine.GetMag() > 0)
+        if (isReady == true && Magazine.GetMag() > 0 )
         {
             isReady = false;
             Magazine.SetBulletCount();       

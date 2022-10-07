@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FullAutoGun : MonoBehaviour
 {
+    private bool _IsShooting = false; 
     public int gunDamage = -25;                                            // Set the number of hitpoints that this gun will take away from shot objects with a health script
     public float fireRate = 0.25f;                                        // Number in seconds which controls how often the player can fire
     public float weaponRange = 50f;                                        // Distance in Unity units over which the player can fire
@@ -23,19 +24,28 @@ public class FullAutoGun : MonoBehaviour
     {
         Magazine = GetComponentInParent<Mag>();
         laserLine = GetComponent<LineRenderer>();
-
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
         // Get and store a reference to our AudioSource component
         gunAudio = GetComponent<AudioClip>();
-    }
 
-    // Update is called once per frame
-    void Update()
+
+        //observers
+        PlayerInput.Shoot += SetShootingTrue;
+        PlayerInput.Chamber += SetShootingFalse;
+    }
+    private void SetShootingTrue()
     {
-      
-            // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
-            if (Input.GetButton("Fire1") && Time.time > nextFire&&Magazine.GetMag()>0)
+        // 2 functions so i dont need to pass data to all functs
+        _IsShooting = true;
+    }
+    private void SetShootingFalse()
+    {
+        _IsShooting = false;
+    }
+    private void Shoot()
+    {
+        if (Time.time > nextFire && Magazine.GetMag() > 0 && gameObject.activeInHierarchy==true)
         {
             Magazine.SetBulletCount();
             // Update the time when our player can fire next
@@ -89,6 +99,15 @@ public class FullAutoGun : MonoBehaviour
 
             }
         }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        if (_IsShooting == true)
+        {
+            Shoot();
+        }
+          
     }
 
     private IEnumerator ShotEffect()

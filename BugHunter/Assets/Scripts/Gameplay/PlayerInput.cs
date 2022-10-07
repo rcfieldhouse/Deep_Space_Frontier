@@ -12,7 +12,10 @@ public class PlayerInput : MonoBehaviour
     public static Action<Quaternion> Look;
     public static Action<Vector2,float> Move;
     public static Action<bool> ADS;
-    public static Action Shoot;
+    public static Action Shoot,Chamber;
+
+
+
     //public static Action<bool,int>thing;
     [SerializeField] private float SpeedMod = 1.0f;
     [SerializeField] private CharacterController controller;
@@ -94,13 +97,12 @@ public class PlayerInput : MonoBehaviour
             StartCoroutine(_Grenade.ThowGrenade(Direction * (Vector3.forward * 15+Vector3.up*5)));
            
         }
-          
+
 
         if (Input.GetButtonDown("Fire1"))
-        {
-           // Shoot.Invoke();
-            Debug.Log("weeeee");
-        }
+            Shoot.Invoke();
+        else if (Input.GetButtonUp("Fire1"))
+            Chamber.Invoke();
       
 
         //aim code
