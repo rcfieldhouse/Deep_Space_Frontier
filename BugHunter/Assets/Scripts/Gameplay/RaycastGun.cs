@@ -32,22 +32,14 @@ public class RaycastGun : MonoBehaviour
         // Get and store a reference to our AudioSource component
         gunAudio = GetComponent<AudioClip>();
 
-        // Get and store a reference to our Camera by searching this GameObject and its parents
-        //fpsCam = GetComponentInParent<Camera>();
-     //  if (m_IsShotgun == true) { 
-     //  for (int i = 0; i < 7; i++)
-     //  {
-     //
-     //      ShotgunLines[i] = gameObject.GetComponent<LineRenderer>();
-     //  }
-     //  }
+        PlayerInput.Shoot += Shoot;
     }
 
-    void Update()
+    void Shoot()
     {
    
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFire && Magazine.GetMag() > 0)
+        if ( Time.time > nextFire && Magazine.GetMag() > 0 && gameObject.activeInHierarchy == true)
         {
             Magazine.SetBulletCount();
             // Update the time when our player can fire next

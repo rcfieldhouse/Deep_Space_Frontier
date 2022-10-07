@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public Rigidbody rigidbody;
-    public GameObject Player;
-    public GameObject CameraMain,CameraCrouch;
+    public Rigidbody Rigidbody;
+    public GameObject CameraMain,CameraCrouch,CameraDodge;
  
     [SerializeField] private LayerMask m_WhatIsGround;
 
@@ -18,6 +17,7 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Rigidbody = GetComponent<Rigidbody>();
         PlayerInput.DodgeRoll += SwitchDodgeCam;
         PlayerInput.Crouching += SwitchCamCrouch;
         PlayerInput.JumpAction += Jump;
@@ -42,7 +42,7 @@ public class CharacterController : MonoBehaviour
     {
         disableCams(var);
         //switch to dodge later
-        CameraCrouch.SetActive(var);
+        CameraDodge.SetActive(var);
     }
     private void SwitchCamCrouch(bool var)
     {
@@ -51,19 +51,19 @@ public class CharacterController : MonoBehaviour
     }
     private void Jump()
     {
-        rigidbody.velocity += JumpForce;
+        Rigidbody.velocity += JumpForce;
     }
 
     private void Aim(Quaternion quaternion)
     {
-        rigidbody.gameObject.transform.localRotation = quaternion;
+        Rigidbody.gameObject.transform.localRotation = quaternion;
     }
     public void Move(Vector2 move, float SpeedMod)
     {
         SpeedMod *= 5;
         mover = transform.right * move.x + transform.forward * move.y;
-        rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
-        rigidbody.angularVelocity = Vector3.zero;
+        Rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, Rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
+        Rigidbody.angularVelocity = Vector3.zero;
     }
 
     // Update is called once per frame

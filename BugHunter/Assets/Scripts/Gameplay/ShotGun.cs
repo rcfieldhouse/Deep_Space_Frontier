@@ -33,6 +33,7 @@ public class ShotGun : MonoBehaviour
         // Get and store a reference to our AudioSource component
         gunAudio = GetComponent<AudioClip>();
 
+        PlayerInput.Shoot += Shoot;
         // Get and store a reference to our Camera by searching this GameObject and its parents
         //fpsCam = GetComponentInParent<Camera>();
         //  if (m_IsShotgun == true) { 
@@ -44,11 +45,11 @@ public class ShotGun : MonoBehaviour
         //  }
     }
 
-    void Update()
+    void Shoot()
     {
     
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFire && Magazine.GetMag() > 0)
+        if ( Time.time > nextFire && Magazine.GetMag() > 0 && gameObject.activeInHierarchy == true)
         {
             Magazine.SetBulletCount();
             // Update the time when our player can fire next
