@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class GrenadeThrow : MonoBehaviour
@@ -14,6 +15,12 @@ public class GrenadeThrow : MonoBehaviour
     [SerializeField] int GrenadeDamage = 100;
      private Transform _startValues;
     public GrenadeManager GrenadeManager;
+
+    //Grenade VFX Variables
+    public GameObject GrenadeVFX;
+    //private GameObject EffectToSpawn;
+    private MeshRenderer GrenadeRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +31,7 @@ public class GrenadeThrow : MonoBehaviour
         Rigidbody.isKinematic = true;
         Rigidbody.gameObject.SetActive(false);
         GrenadeManager = GetComponentInParent<GrenadeManager>();
+        GrenadeRenderer = GetComponent<MeshRenderer>();
 
        
     }
@@ -55,14 +63,19 @@ public class GrenadeThrow : MonoBehaviour
 
     public IEnumerator TingGoBoom()
     {
+        GrenadeRenderer.enabled = false;
         Rigidbody.gameObject.transform.localScale *= 55.0f;
         Rigidbody.isKinematic = true;
         CapsuleCollider.isTrigger = true;
-      //  Debug.Log("grenade1");
+        
+        //  Debug.Log("grenade1");
+        //Grenade VFX Trigger
+        SpawnGrenadeVFX();
         yield return BoomTimer;
       //  Debug.Log("grenade2");
         _isReady = false;
-   
+
+
         StartCoroutine(ResetNade());
        
     }
@@ -94,6 +107,19 @@ public class GrenadeThrow : MonoBehaviour
         if(other.gameObject.GetComponent<HealthSystem>())
         other.gameObject.GetComponentInParent<HealthSystem>().ModifyHealth(-GrenadeDamage); ;
        
+    }
+    // function for spawning the greande VFX on it's current position
+    public void SpawnGrenadeVFX()
+    {
+        if (GrenadeVFX != null)
+        {
+            Instantiate(GrenadeVFX, gameObject.transform.position, Quaternion.identity);
+            Debug.Log("Grenade VFX Should play here");
+        }
+        else
+        {
+            Debug.Log("GrenadeVFX has no VFX Attached");
+        }
     }
 
 
