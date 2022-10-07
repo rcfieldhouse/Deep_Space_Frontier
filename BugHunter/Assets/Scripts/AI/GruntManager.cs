@@ -10,7 +10,7 @@ public class GruntManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponentInChildren<GroundAi>().player = Player.transform;
     }
 
     // Update is called once per frame

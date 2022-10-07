@@ -29,7 +29,6 @@ public class GroundAi : MonoBehaviour
 
     private void Awake()
     {
-  
         agent = GetComponent<NavMeshAgent>();
         if (agent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
