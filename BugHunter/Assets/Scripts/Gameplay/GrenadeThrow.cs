@@ -24,23 +24,23 @@ public class GrenadeThrow : MonoBehaviour
         Rigidbody.isKinematic = true;
         Rigidbody.gameObject.SetActive(false);
         GrenadeManager = GetComponentInParent<GrenadeManager>();
+
+       
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //StartCoroutine(ThowGrenade(Vector3.forward*5));
-
-    }
+   
     public Transform GetStartPos()
     {
         return _startValues;
     }
+    public bool GetIsReady()
+    {
+        return _isReady;
+    }
     public IEnumerator ThowGrenade(Vector3 ThrowVector)
     {
         
-        if (_isReady == true&&GrenadeManager.GetNumGrenades()>0) {
-            GrenadeManager.ThrowGrenade();
+        if (_isReady == true){
             _isReady = false;
         Rigidbody.gameObject.SetActive(true);
         Rigidbody.isKinematic = false;

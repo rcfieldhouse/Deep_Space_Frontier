@@ -18569,7 +18569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3cfbb50e920ecc458fec113b7b5c6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Grenade: {fileID: 368870032}
   GrenadeThrow: {fileID: 368870033}
+  numGrenades: 3
 --- !u!1 &899948021
 GameObject:
   m_ObjectHideFlags: 0
@@ -24748,8 +24750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ae557d80170f741b2694aeff1e3d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 1180305569}
-  Player: {fileID: 1180305564}
+  Rigidbody: {fileID: 0}
   CameraMain: {fileID: 977202867}
   CameraCrouch: {fileID: 1489350257}
   CameraDodge: {fileID: 166351396}
@@ -24779,7 +24780,6 @@ MonoBehaviour:
   MouseScroll: 0
   weaponSwap: {fileID: 884127269}
   userInterface: {fileID: 43276820}
-  _Grenade: {fileID: 368870033}
 --- !u!136 &1180305572
 CapsuleCollider:
   m_ObjectHideFlags: 0

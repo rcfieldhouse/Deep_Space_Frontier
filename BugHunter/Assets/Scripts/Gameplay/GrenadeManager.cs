@@ -5,17 +5,28 @@ using UnityEngine;
 public class GrenadeManager : MonoBehaviour
 {
     private Transform Transform;
+    public GameObject Grenade;
     public GrenadeThrow GrenadeThrow; 
-    private int numGrenades=3;
+    [SerializeField] private int numGrenades=3;
     // Start is called before the first frame update
     void Start()
     {
-        GrenadeThrow = GetComponentInChildren<GrenadeThrow>();
+        GrenadeThrow = Grenade.GetComponent<GrenadeThrow>();
+        PlayerInput.UseAbility += BeginThrow;
         Transform = GrenadeThrow.GetStartPos();
     }
-
+    public void BeginThrow(Quaternion quaternion)
+    {
+      if (numGrenades > 0 && GrenadeThrow.GetIsReady()==true)
+        {
+            Grenade.SetActive(true);
+            StartCoroutine(GrenadeThrow.ThowGrenade(quaternion * (Vector3.forward * 15 + Vector3.up * 5)));
+            numGrenades--;
+        }
+       
+    }
     // Update is called once per frame
-  public void GainGrenades()
+    public void GainGrenades()
     {
         numGrenades++;
     }
@@ -24,13 +35,7 @@ public class GrenadeManager : MonoBehaviour
         numGrenades += num;
     }
   
-   public int GetNumGrenades()
-    {
-        return numGrenades;
-    }
-    public void ThrowGrenade()
-    {
-        numGrenades--;
-    }
+  
+  
  
 }

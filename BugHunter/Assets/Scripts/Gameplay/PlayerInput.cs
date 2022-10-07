@@ -4,15 +4,12 @@ using UnityEngine;
 using System;
 public class PlayerInput : MonoBehaviour
 {
-    
-    private bool Jump = false, Crouch = false;
-    public static Action<bool> DodgeRoll;
-    public static Action<bool> Crouching;
-    public static Action JumpAction;
-    public static Action<Quaternion> Look;
+    //actions that the player may perform
+    public static Action JumpAction, Shoot, Chamber;
+    public static Action<bool> DodgeRoll,Crouching,ADS;
+    public static Action<Quaternion> Look, UseAbility;
     public static Action<Vector2,float> Move;
-    public static Action<bool> ADS;
-    public static Action Shoot,Chamber;
+
 
 
 
@@ -29,11 +26,11 @@ public class PlayerInput : MonoBehaviour
 
     public WeaponSwap weaponSwap;
     public GameObject userInterface;
-    public GrenadeThrow _Grenade; 
     // Start is called before the first frame update
     //damn you dante, make ur own file 
     void Start()
     {
+
         // Commented temporarily unitl inventory system is implemented
         Cursor.lockState= CursorLockMode.Locked;
     }
@@ -45,8 +42,12 @@ public class PlayerInput : MonoBehaviour
        MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; ;
        MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2; ;
        Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
-      
 
+        MouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
+
+
+        KeyboardInput.x = Input.GetAxisRaw("Horizontal");
+        KeyboardInput.y = Input.GetAxisRaw("Vertical");
         //PlayerINput for controls
         //Turn this to GetButtonDown at some point
         if (Input.GetKeyDown("space") && (controller.isGrounded() == true))
@@ -88,17 +89,15 @@ public class PlayerInput : MonoBehaviour
 
 
 
-
-
-
-
+        //ability
         if (Input.GetKeyDown(KeyCode.Q))
-        {
-            StartCoroutine(_Grenade.ThowGrenade(Direction * (Vector3.forward * 15+Vector3.up*5)));
+            UseAbility.Invoke(Direction);
+          
            
-        }
+        
 
-
+        //shoot 
+        //chamber is for full auto
         if (Input.GetButtonDown("Fire1"))
             Shoot.Invoke();
         else if (Input.GetButtonUp("Fire1"))
@@ -118,7 +117,7 @@ public class PlayerInput : MonoBehaviour
         }
 
             //weapon swapping 
-           
+           //try to find a better way 
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
             weaponSwap.SetWeapon(0);
@@ -131,7 +130,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
             weaponSwap.SetWeapon(4);
 
-        MouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
+        //change with scroll wheel
         if (MouseScroll > 0)
             weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() - 1);
         else if (MouseScroll < 0)       
@@ -139,12 +138,9 @@ public class PlayerInput : MonoBehaviour
         
 
 
-        KeyboardInput.x = Input.GetAxisRaw("Horizontal");
-        KeyboardInput.y = Input.GetAxisRaw("Vertical");
 
         Look.Invoke(Direction);
         Move.Invoke(KeyboardInput,SpeedMod);
-        Jump = false;
     }
     // UI buttons call this when they want to enable mouse lock
     // Currently used by "Exit_Inventory" Button
