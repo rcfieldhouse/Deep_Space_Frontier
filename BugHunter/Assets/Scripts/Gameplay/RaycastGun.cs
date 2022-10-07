@@ -77,7 +77,7 @@ public class RaycastGun : MonoBehaviour
 
                 Debug.Log(hit.collider.gameObject.name);
                 // Get a reference to a health script attached to the collider we hit
-                HealthSystem health = hit.collider.GetComponent<HealthSystem>();
+                HealthSystem health = hit.collider.gameObject.GetComponent<HealthSystem>();
 
                 // If there was a health script attached
                 if (health != null)
