@@ -5,8 +5,8 @@ using System;
 public class PlayerInput : MonoBehaviour
 {
     //actions that the player may perform
-    public static Action JumpAction, Shoot, Chamber;
-    public static Action<bool> DodgeRoll,Crouching,ADS;
+    public static Action JumpAction, DodgeRoll, Shoot, Chamber;
+    public static Action<bool>Crouching,ADS;
     public static Action<Quaternion> Look, UseAbility;
     public static Action<Vector2,float> Move;
 
@@ -83,9 +83,9 @@ public class PlayerInput : MonoBehaviour
 
         //dodge mechanic
         if (Input.GetKeyDown(KeyCode.C))
-            DodgeRoll.Invoke(true);
-        else if (Input.GetKeyUp(KeyCode.C))
-            DodgeRoll.Invoke(false);
+            DodgeRoll.Invoke();
+       // else if (Input.GetKeyUp(KeyCode.C))
+       //     DodgeRoll.Invoke(false);
 
 
 

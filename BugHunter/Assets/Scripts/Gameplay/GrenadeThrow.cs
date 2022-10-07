@@ -14,8 +14,6 @@ public class GrenadeThrow : MonoBehaviour
     private WaitForSeconds GrenadeResetTimer = new WaitForSeconds(5.0f);
     [SerializeField] int GrenadeDamage = 100;
      private Transform _startValues;
-    public GrenadeManager GrenadeManager;
-
     //Grenade VFX Variables
     public GameObject GrenadeVFX;
     //private GameObject EffectToSpawn;
@@ -30,13 +28,11 @@ public class GrenadeThrow : MonoBehaviour
         CapsuleCollider = GetComponent<CapsuleCollider>();
         Rigidbody.isKinematic = true;
         Rigidbody.gameObject.SetActive(false);
-        GrenadeManager = GetComponentInParent<GrenadeManager>();
         GrenadeRenderer = GetComponent<MeshRenderer>();
-
        
     }
 
-   
+
     public Transform GetStartPos()
     {
         return _startValues;
