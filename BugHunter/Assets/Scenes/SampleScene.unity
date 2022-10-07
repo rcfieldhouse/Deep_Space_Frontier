@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21111888, g: 0.058149647, b: 0.036026325, a: 1}
+  m_IndirectSpecularColor: {r: 0.21108171, g: 0.05813721, b: 0.036018983, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8798,6 +8798,8 @@ MonoBehaviour:
   player: {fileID: 884127265}
   GrenadeDamage: 100
   GrenadeManager: {fileID: 0}
+  GrenadeVFX: {fileID: 8100181836093574795, guid: 7b8541dd7c5c6a849bed6780b641405e,
+    type: 3}
 --- !u!54 &368870036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21552,10 +21554,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ae557d80170f741b2694aeff1e3d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 1180305569}
-  Player: {fileID: 1180305564}
+  Rigidbody: {fileID: 0}
   CameraMain: {fileID: 977202867}
   CameraCrouch: {fileID: 1489350257}
+  CameraDodge: {fileID: 0}
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -21582,7 +21584,6 @@ MonoBehaviour:
   MouseScroll: 0
   weaponSwap: {fileID: 884127269}
   userInterface: {fileID: 43276820}
-  _Grenade: {fileID: 368870033}
 --- !u!136 &1180305572
 CapsuleCollider:
   m_ObjectHideFlags: 0
