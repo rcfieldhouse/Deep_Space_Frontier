@@ -115,6 +115,7 @@ public class GrenadeThrow : MonoBehaviour
         {
             Instantiate(GrenadeVFX, gameObject.transform.position, Quaternion.identity);
             Debug.Log("Grenade VFX Should play here");
+            Debug.Log(gameObject.transform.position);
         }
         else
         {
