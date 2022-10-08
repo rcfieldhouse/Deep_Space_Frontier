@@ -6,12 +6,17 @@ public class PlayerInput : MonoBehaviour
 {
     //actions that the player may perform
     public static Action JumpAction, DodgeRoll, Shoot, Chamber;
+  
     public static Action<bool>Crouching,ADS;
     public static Action<Quaternion> Look, UseAbility;
     public static Action<Vector2,float> Move;
 
+    //these are for weapon swapping,
+    //swapping weapon is a placeholder until class selection is introduced
 
-
+    public static Action SwapPrimary, SwapSecondary;
+    public static Action<int> SwappingWeapon;
+    private int WeaponActive = 0,WeaponListLength;
 
     //public static Action<bool,int>thing;
     [SerializeField] private float SpeedMod = 1.0f;
@@ -24,7 +29,6 @@ public class PlayerInput : MonoBehaviour
     private bool UIToggle = true;
     [SerializeField] private float MouseScroll=0.0f;
 
-    public WeaponSwap weaponSwap;
     public GameObject userInterface;
     // Start is called before the first frame update
     //damn you dante, make ur own file 
@@ -33,8 +37,15 @@ public class PlayerInput : MonoBehaviour
 
         // Commented temporarily unitl inventory system is implemented
         Cursor.lockState= CursorLockMode.Locked;
+
+        WeaponSwap.WeaponListData += SetWeaponActive;
     }
 
+    private void SetWeaponActive(int num,int length)
+    {
+        WeaponActive = num;
+        WeaponListLength = length;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -116,26 +127,27 @@ public class PlayerInput : MonoBehaviour
             userInterface.SetActive(UIToggle);
         }
 
-            //weapon swapping 
-           //try to find a better way 
+        //weapon swapping 
+        //trying to find a better way 
+
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            weaponSwap.SetWeapon(0);
+            SwappingWeapon.Invoke(0);
         if (Input.GetKeyDown(KeyCode.Alpha2))
-            weaponSwap.SetWeapon(1);
+            SwappingWeapon.Invoke(1);
         if (Input.GetKeyDown(KeyCode.Alpha3))
-            weaponSwap.SetWeapon(2);
+            SwappingWeapon.Invoke(2);
         if (Input.GetKeyDown(KeyCode.Alpha4))
-            weaponSwap.SetWeapon(3);
+            SwappingWeapon.Invoke(3);
         if (Input.GetKeyDown(KeyCode.Alpha5))
-            weaponSwap.SetWeapon(4);
+            SwappingWeapon.Invoke(4);
 
         //change with scroll wheel
-        if (MouseScroll > 0)
-            weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() - 1);
-        else if (MouseScroll < 0)       
-            weaponSwap.SetWeapon(weaponSwap.GetWeaponNum() + 1);
-        
+        if (MouseScroll > 0 &&WeaponActive>0)
+            SwappingWeapon.Invoke(WeaponActive - 1);
+        else if (MouseScroll < 0&&WeaponActive<WeaponListLength)
+            SwappingWeapon.Invoke(WeaponActive + 1);
+
 
 
 
