@@ -9,6 +9,7 @@ public class HealthSystem : MonoBehaviour
     private int currentHealth;
 
     public event Action<float> OnHealthPercentChanged = delegate { };
+    public event Action<GameObject> OnObjectDeath = delegate { };
 
     private void OnEnable()
     {
@@ -42,8 +43,9 @@ public class HealthSystem : MonoBehaviour
         //Check if health has fallen below zero
         if (currentHealth <= 0)
         {
-            //if health has fallen below zero, deactivate it 
-            gameObject.SetActive(false);
+            //Broadcast that the object has died
+            OnObjectDeath?.Invoke(transform.gameObject);
+            //gameObject.SetActive(false);
         }
     }
 }

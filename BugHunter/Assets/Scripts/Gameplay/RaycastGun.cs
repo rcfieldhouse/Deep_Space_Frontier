@@ -45,9 +45,6 @@ public class RaycastGun : MonoBehaviour
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;
 
-            // Start our ShotEffect coroutine to turn our laser line on and off
-          
-
             // Create a vector at the center of our camera's viewport
             Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
@@ -60,7 +57,7 @@ public class RaycastGun : MonoBehaviour
            
             StartCoroutine(ShotEffect());
             // Check if our raycast has hit anything
-      //for basic guns
+            //for basic guns
       
             if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
             {
@@ -70,6 +67,7 @@ public class RaycastGun : MonoBehaviour
                 Debug.Log(hit.collider.gameObject.name);
                 // Get a reference to a health script attached to the collider we hit
                 HealthSystem health = hit.collider.gameObject.GetComponent<HealthSystem>();
+               
 
                 // If there was a health script attached
                 if (health != null)
@@ -91,12 +89,6 @@ public class RaycastGun : MonoBehaviour
                 laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
                    
             }
-            
-
-
-            //for shotguns shhhh i hate it 
-
-          
         }
     }
 

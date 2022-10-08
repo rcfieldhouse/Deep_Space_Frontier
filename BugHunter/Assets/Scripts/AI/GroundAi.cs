@@ -6,11 +6,10 @@ public class GroundAi : MonoBehaviour
 {
     private NavMeshAgent agent;
 
-    public Transform player;
 
-    public LayerMask whatIsGround, whatIsPlayer;
-
-    public float health;
+    [SerializeField] private Transform player;
+    [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
+    [SerializeField] private HealthSystem Health;
 
     //Patroling
     public Vector3 walkPoint;
@@ -20,8 +19,6 @@ public class GroundAi : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    //public GameObject projectile;
-    //public GameObject projectilePos;
 
     //States
     public float sightRange, attackRange;
@@ -30,8 +27,19 @@ public class GroundAi : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        Health = GetComponent<HealthSystem>();
+        player = GameObject.FindWithTag("Player").transform;
+
         if (agent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
+    }
+    private void OnEnable()
+    {
+        Health.OnObjectDeath += HandleObjectDeath;
+    }
+    private void OnDisable()
+    {
+        Health.OnObjectDeath -= HandleObjectDeath;
     }
 
     private void Update()
@@ -105,9 +113,9 @@ public class GroundAi : MonoBehaviour
         alreadyAttacked = false;
     }
 
-
-    private void DestroyEnemy()
+    public void HandleObjectDeath(GameObject context)
     {
+        //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
         Destroy(gameObject);
     }
     private void OnDrawGizmosSelected()
