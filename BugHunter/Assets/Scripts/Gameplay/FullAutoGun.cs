@@ -31,6 +31,7 @@ public class FullAutoGun : MonoBehaviour
 
 
         //observers
+        PlayerInput.Shoot += Shoot;
         PlayerInput.Shoot += SetShootingTrue;
         PlayerInput.Chamber += SetShootingFalse;
     }
@@ -105,7 +106,7 @@ public class FullAutoGun : MonoBehaviour
     {
         if (_IsShooting == true)
         {
-            Shoot();
+            PlayerInput.Shoot.Invoke(); ;
         }
           
     }
