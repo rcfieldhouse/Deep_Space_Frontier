@@ -53,7 +53,7 @@ public class Recoil : MonoBehaviour
 
         //position
         RecoilPos = RecoilPosSet * vec.x;
-        RecoilFOV=RecoilFOVSet * vec.x;
+        RecoilFOV=RecoilFOVSet+ RecoilFOVSet * (1-vec.x);
         //snappiness and timing
         animTime = vec.z - 0.07f;
         UpTime = vec.w * animTime;
