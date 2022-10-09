@@ -23,10 +23,18 @@ public class WeaponSwap : MonoBehaviour
         WeaponArray[WeaponChoice].SetActive(true);
 
         PlayerInput.SwappingWeapon += SetWeapon;
+        StartCoroutine(StartingWeapon());
     }
-   
-    // Update is called once per frame
 
+    // Update is called once per frame
+    private IEnumerator StartingWeapon()
+    {
+
+
+        yield return new WaitForEndOfFrame();
+        SetWeapon(WeaponChoice);
+
+    }
     public int GetWeaponNum()
     {
         return WeaponChoice;

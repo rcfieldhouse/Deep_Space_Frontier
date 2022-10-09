@@ -41,6 +41,7 @@ public class Recoil : MonoBehaviour
     {
         
     }
+ 
     private void SetAnimProperties(Vector4 vec)
     {
         //x=RecoilRotIntensity
