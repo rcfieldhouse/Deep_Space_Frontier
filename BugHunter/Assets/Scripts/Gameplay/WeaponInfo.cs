@@ -1,25 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Mag : MonoBehaviour
+using System;
+public class WeaponInfo : MonoBehaviour
 {
-    [SerializeField]private int ammoInMag, maxAmmo, magSize=1,reserveAmmo=1;
+    [Range(0, 1)][SerializeField] private float RecoilRotIntensity, RecoilOffsetIntensity,Weight;
+    [Range(0,3)][SerializeField] private float RecoilTimer;
+    [SerializeField] private int ammoInMag, maxAmmo, magSize = 1, reserveAmmo = 1;
+   
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerInput.Reload += Reload;
         ammoInMag = magSize;
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            Reload();
+
+    }
+    public Vector4 GetRecoilInfo()
+    {
+        return new Vector4(RecoilRotIntensity, RecoilOffsetIntensity, RecoilTimer, Weight);
+       
     }
     public void Reload()
     {
         //Setting to true reloads
-      SetBulletCount(true);
+        SetBulletCount(true);
     }
     // Update is called once per frame
     //alter mag to subtract a bullet or fill it full on reload 
@@ -47,11 +55,11 @@ public class Mag : MonoBehaviour
             }
             else
             {
-                ammoInMag +=reserveAmmo;
+                ammoInMag += reserveAmmo;
                 reserveAmmo = 0;
             }
-               
+
         }
-           
+
     }
 }

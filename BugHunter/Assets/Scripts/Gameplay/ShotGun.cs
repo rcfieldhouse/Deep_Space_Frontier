@@ -21,10 +21,10 @@ public class ShotGun : MonoBehaviour
     private float nextFire;                                                // Float to store the time the player will be allowed to fire again, after firing
     private Vector3 AimSpread = new Vector3(0.0f, 0.0f, 0.0f);
     [SerializeField] private float maxShotGunSpread = 5.0f;
-    public Mag Magazine;
+    public WeaponInfo info;
     void Start()
     {
-        Magazine = GetComponentInParent<Mag>();
+        info = GetComponentInParent<WeaponInfo>();
         // Get and store a reference to our LineRenderer component
         laserLine = GetComponent<LineRenderer>();
 
@@ -49,9 +49,9 @@ public class ShotGun : MonoBehaviour
     {
     
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
-        if ( Time.time > nextFire && Magazine.GetMag() > 0 && gameObject.activeInHierarchy == true)
+        if ( Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy == true)
         {
-            Magazine.SetBulletCount();
+            info.SetBulletCount();
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;
 

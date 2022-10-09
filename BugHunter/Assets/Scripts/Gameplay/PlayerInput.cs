@@ -5,7 +5,7 @@ using System;
 public class PlayerInput : MonoBehaviour
 {
     //actions that the player may perform
-    public static Action JumpAction, DodgeRoll, Shoot, Chamber;
+    public static Action JumpAction, DodgeRoll, Shoot, Chamber,Reload;
   
     public static Action<bool>Crouching,ADS;
     public static Action<Quaternion> Look, UseAbility;
@@ -16,7 +16,7 @@ public class PlayerInput : MonoBehaviour
 
     public static Action SwapPrimary, SwapSecondary;
     public static Action<int> SwappingWeapon;
-    private int WeaponActive = 0,WeaponListLength;
+    private int WeaponActive = 0,WeaponListLength=5;
 
     //public static Action<bool,int>thing;
     [SerializeField] private float SpeedMod = 1.0f;
@@ -27,7 +27,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 MouseInput;
     private Vector2 KeyboardInput;
     private bool UIToggle = true;
-    [SerializeField] private float MouseScroll=0.0f;
+    private float MouseScroll=0.0f;
 
     public GameObject userInterface;
     // Start is called before the first frame update
@@ -103,9 +103,10 @@ public class PlayerInput : MonoBehaviour
         //ability
         if (Input.GetKeyDown(KeyCode.Q))
             UseAbility.Invoke(Direction);
-          
-           
-        
+
+        if (Input.GetKeyDown(KeyCode.R))
+            Reload.Invoke(); ;
+
 
         //shoot 
         //chamber is for full auto

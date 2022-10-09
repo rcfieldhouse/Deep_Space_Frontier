@@ -10,7 +10,7 @@ public class FullAutoGun : MonoBehaviour
     public float weaponRange = 50f;                                        // Distance in Unity units over which the player can fire
     public float hitForce = 100f;                                        // Amount of force which will be added to objects with a rigidbody shot by the player
     public Transform gunEnd;
-    public Mag Magazine;                                                    // Holds a reference to the gun end object, marking the muzzle location of the gun
+    public WeaponInfo info;                                                    // Holds a reference to the gun end object, marking the muzzle location of the gun
     [SerializeField]
     public Camera fpsCam;                                                // Holds a reference to the first person camera
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);    // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
@@ -22,7 +22,7 @@ public class FullAutoGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Magazine = GetComponentInParent<Mag>();
+        info = GetComponentInParent<WeaponInfo>();
         laserLine = GetComponent<LineRenderer>();
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
@@ -45,9 +45,9 @@ public class FullAutoGun : MonoBehaviour
     }
     private void Shoot()
     {
-        if (Time.time > nextFire && Magazine.GetMag() > 0 && gameObject.activeInHierarchy==true)
+        if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy==true)
         {
-            Magazine.SetBulletCount();
+            info.SetBulletCount();
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;
 

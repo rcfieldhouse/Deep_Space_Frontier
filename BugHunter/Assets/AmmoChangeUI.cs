@@ -8,7 +8,7 @@ public class AmmoChangeUI : MonoBehaviour
 {
 
     private TextMeshProUGUI ammoCount;
-    public List<Mag> magazineSize;
+    public List<WeaponInfo> magazineSize;
     public WeaponSwap currentWeapon;
 
     // Start is called before the first frame update

@@ -48,6 +48,7 @@ public class CharacterController : MonoBehaviour
         disableCams(true);
         CameraDodge.SetActive(true);
         StartCoroutine(RollTime());
+   
     }
     private IEnumerator RollTime()
     {

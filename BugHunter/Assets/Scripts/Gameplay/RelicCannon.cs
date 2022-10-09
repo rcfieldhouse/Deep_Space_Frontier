@@ -9,11 +9,11 @@ public class RelicCannon : MonoBehaviour
     [SerializeField] float shotStrength=20;
     private WaitForSeconds ShotDelay = new WaitForSeconds(5.0f);
     [SerializeField] private bool isReady = true;
-    public Mag Magazine;
+    public WeaponInfo info;
     // Start is called before the first frame update
     void Start()
     {
-        Magazine = GetComponentInParent<Mag>();
+        info = GetComponentInParent<WeaponInfo>();
         PlayerInput.Shoot += Shoot;
     }
 
@@ -27,10 +27,10 @@ public class RelicCannon : MonoBehaviour
     }
     private IEnumerator shoot()
     {
-        if (isReady == true && Magazine.GetMag() > 0 )
+        if (isReady == true && info.GetMag() > 0 )
         {
             isReady = false;
-            Magazine.SetBulletCount();       
+            info.SetBulletCount();       
             Rigidbody rigidbody = Instantiate(bulletOfDoom, bulletEmitter.position, Quaternion.identity).GetComponent<Rigidbody>();
             rigidbody.velocity=(transform.forward * shotStrength);
         }
