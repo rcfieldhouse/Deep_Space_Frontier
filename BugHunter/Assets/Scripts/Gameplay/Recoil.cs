@@ -69,7 +69,7 @@ public class Recoil : MonoBehaviour
     private IEnumerator DoRecoil()
     {
         //delay for line renderer
-        yield return foo;
+        //yield return foo;
        
         //gun going up anim
         float elapsed = 0f;

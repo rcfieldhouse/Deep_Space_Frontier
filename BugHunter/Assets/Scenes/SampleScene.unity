@@ -5704,10 +5704,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351c2ca60b4f4824786944d1c969aea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bobSpeed: 0.5
-  timer: 0
-  bobDistance: {x: 0, y: 0.0005, z: 0}
+  VirtualCamera: {fileID: 0}
   player: {fileID: 1180305564}
+  offset: {x: 0, y: 0, z: 0.5}
+  RecoilRotSet: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
+  RecoilRot: {x: 0, y: 0, z: 0, w: 0}
+  RecoilRotation: {x: 0, y: 0, z: 0, w: 0}
+  animTime: 0
+  UpTime: 0
+  DownTime: 0
 --- !u!114 &80304792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5755,7 +5760,7 @@ Transform:
   m_GameObject: {fileID: 80304790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 452.97998, y: 2.33, z: 451.40503}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 291024565}
@@ -16481,7 +16486,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1146387209}
-  m_RootOrder: 16
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &776260015
 MonoBehaviour:
@@ -27807,7 +27812,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 1
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1180305568}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
@@ -27835,7 +27840,7 @@ Transform:
   m_GameObject: {fileID: 977202867}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 452.97998, y: 1.04, z: 456}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1088522730}
@@ -27849,15 +27854,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977202867}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 351c2ca60b4f4824786944d1c969aea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bobSpeed: 0.5
-  timer: 0
-  bobDistance: {x: 0, y: 0.0005, z: 0}
+  VirtualCamera: {fileID: 0}
   player: {fileID: 1180305564}
+  offset: {x: -0.02, y: 0.04, z: 0}
+  RecoilRotSet: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
+  RecoilRot: {x: 0, y: 0, z: 0, w: 0}
+  RecoilRotation: {x: 0, y: 0, z: 0, w: 0}
+  animTime: 0
+  UpTime: 0
+  DownTime: 0
 --- !u!1 &983612064 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b02e002762718b94faf4c245c69d7651,
@@ -29127,10 +29137,10 @@ Transform:
   - {fileID: 414052982}
   - {fileID: 1959381845}
   - {fileID: 289529680}
-  - {fileID: 6422195859937423820}
-  - {fileID: 1700444834}
   - {fileID: 776260014}
   - {fileID: 1786297474}
+  - {fileID: 6422195859937423820}
+  - {fileID: 1700444834}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36249,10 +36259,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351c2ca60b4f4824786944d1c969aea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bobSpeed: 0.5
-  timer: 0
-  bobDistance: {x: 0, y: 0.0005, z: 0}
+  VirtualCamera: {fileID: 0}
   player: {fileID: 1180305564}
+  offset: {x: 0, y: 0, z: 0.5}
+  RecoilRotSet: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
+  RecoilRot: {x: 0, y: 0, z: 0, w: 0}
+  RecoilRotation: {x: 0, y: 0, z: 0, w: 0}
+  animTime: 0
+  UpTime: 0
+  DownTime: 0
 --- !u!114 &1489350259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36300,7 +36315,7 @@ Transform:
   m_GameObject: {fileID: 1489350257}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 452.97998, y: 0.482, z: 456}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 453337172}
@@ -39284,7 +39299,7 @@ Transform:
   - {fileID: 530251295}
   - {fileID: 1143908331}
   m_Father: {fileID: 1146387209}
-  m_RootOrder: 17
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1786297475
 MonoBehaviour:
@@ -40885,7 +40900,7 @@ PrefabInstance:
     - target: {fileID: 6821405764984329676, guid: 9db50bfceedab7944b70a838722c230c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6821405764984329676, guid: 9db50bfceedab7944b70a838722c230c,
         type: 3}
@@ -43216,7 +43231,7 @@ PrefabInstance:
     - target: {fileID: 6821405764984329676, guid: 9db50bfceedab7944b70a838722c230c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6821405764984329676, guid: 9db50bfceedab7944b70a838722c230c,
         type: 3}

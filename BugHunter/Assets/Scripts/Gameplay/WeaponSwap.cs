@@ -29,8 +29,6 @@ public class WeaponSwap : MonoBehaviour
     // Update is called once per frame
     private IEnumerator StartingWeapon()
     {
-
-
         yield return new WaitForEndOfFrame();
         SetWeapon(WeaponChoice);
 
