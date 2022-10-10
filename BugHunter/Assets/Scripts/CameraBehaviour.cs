@@ -18,7 +18,6 @@ public class CameraBehaviour : MonoBehaviour
     void Start()
     {
         WeaponSwap.WeaponRecoilData += SetAnimProperties;
-        PlayerInput.DodgeRoll += ResetCams;
         PlayerInput.Shoot += ShootCameraWork;
      VirtualCamera = GetComponent<CinemachineVirtualCamera>();
         VirtualCamera.Follow = player.transform;
@@ -94,8 +93,8 @@ public class CameraBehaviour : MonoBehaviour
         if (_manuallyFollow == true)
         {   
             transform.rotation = player.transform.rotation * Quaternion.Inverse(RecoilRotation) ;
-            transform.position = player.transform.position+offset;
+            transform.position = player.transform.position + ( player.transform.localRotation*offset);
+    };
         }
-
-    }
+      
 }
