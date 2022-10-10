@@ -5,7 +5,7 @@ using UnityEngine;
 public class Recoil : MonoBehaviour
 {
     private bool _CanShoot = true;
-
+    private bool HasAmmo = true;
     [Range(0, 1)] private float Weight;
     private float animTime;
     private float UpTime, DownTime;
@@ -31,7 +31,7 @@ public class Recoil : MonoBehaviour
     //action assignments
         PlayerInput.Shoot += StartShot;
         WeaponSwap.WeaponRecoilData += SetAnimProperties;
-
+        WeaponInfo.maginfo += getIfMagHasAmmo;
         Weight = 1.25f;
         SetAnimProperties(new Vector4(1.0f, 1.0f, 1.0f, Weight));
     }
@@ -41,7 +41,10 @@ public class Recoil : MonoBehaviour
     {
         
     }
- 
+    private void getIfMagHasAmmo(bool var)
+    {
+        HasAmmo = var;
+    }
     private void SetAnimProperties(Vector4 vec)
     {
         //x=RecoilRotIntensity
@@ -61,7 +64,8 @@ public class Recoil : MonoBehaviour
         DownTime = animTime - UpTime;
     }
     private void StartShot()
-    {if (_CanShoot==true)
+    {
+        if (_CanShoot==true&& HasAmmo==true)
         StartCoroutine(DoRecoil());
 
         _CanShoot = false;      

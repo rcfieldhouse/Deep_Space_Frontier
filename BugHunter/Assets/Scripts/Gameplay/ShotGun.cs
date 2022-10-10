@@ -159,7 +159,12 @@ public class ShotGun : MonoBehaviour
         }
     }
 
-
+   // public bool CanShoot()
+   // {
+   //    if (Time.time > nextFire)
+   //         return true;
+   //      else return false;
+   // }
     private IEnumerator ShotEffect()
     {
         // Play the shooting sound effect

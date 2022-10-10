@@ -5706,13 +5706,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VirtualCamera: {fileID: 0}
   player: {fileID: 1180305564}
+  _canShoot: 0
+  ResetAim: 0
   offset: {x: 0, y: 0, z: 0.5}
+  NoRot: {x: 0, y: 0, z: 0, w: 1}
+  BaseRot: {x: 0, y: 0, z: 0, w: 1}
+  RecoilRotSetter: {x: 0, y: 0, z: 0, w: 1}
   RecoilRotSet: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
   RecoilRot: {x: 0, y: 0, z: 0, w: 0}
   RecoilRotation: {x: 0, y: 0, z: 0, w: 0}
   animTime: 0
   UpTime: 0
   DownTime: 0
+  Timer: 0
 --- !u!114 &80304792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17586,7 +17592,7 @@ Transform:
   - {fileID: 618022409}
   - {fileID: 368870031}
   m_Father: {fileID: 1180305568}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &884127267
 Animator:
@@ -27861,13 +27867,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VirtualCamera: {fileID: 0}
   player: {fileID: 1180305564}
+  _canShoot: 0
+  ResetAim: 0
   offset: {x: -0.02, y: 0.04, z: 0}
+  NoRot: {x: 0, y: 0, z: 0, w: 1}
+  BaseRot: {x: 0, y: 0, z: 0, w: 1}
+  RecoilRotSetter: {x: 0, y: 0, z: 0, w: 1}
   RecoilRotSet: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
   RecoilRot: {x: 0, y: 0, z: 0, w: 0}
   RecoilRotation: {x: 0, y: 0, z: 0, w: 0}
   animTime: 0
   UpTime: 0
   DownTime: 0
+  Timer: 0
 --- !u!1 &983612064 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b02e002762718b94faf4c245c69d7651,
@@ -29557,8 +29569,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 884127266}
   - {fileID: 1885606631}
+  - {fileID: 884127266}
   m_Father: {fileID: 1146387209}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36261,13 +36273,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VirtualCamera: {fileID: 0}
   player: {fileID: 1180305564}
+  _canShoot: 0
+  ResetAim: 0
   offset: {x: 0, y: 0, z: 0.5}
+  NoRot: {x: 0, y: 0, z: 0, w: 1}
+  BaseRot: {x: 0, y: 0, z: 0, w: 1}
+  RecoilRotSetter: {x: 0, y: 0, z: 0, w: 1}
   RecoilRotSet: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
   RecoilRot: {x: 0, y: 0, z: 0, w: 0}
   RecoilRotation: {x: 0, y: 0, z: 0, w: 0}
   animTime: 0
   UpTime: 0
   DownTime: 0
+  Timer: 0
 --- !u!114 &1489350259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40303,7 +40321,7 @@ Transform:
   m_Children:
   - {fileID: 1759789175}
   m_Father: {fileID: 1180305568}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1885606632
 MonoBehaviour:
@@ -40900,7 +40918,7 @@ PrefabInstance:
     - target: {fileID: 6821405764984329676, guid: 9db50bfceedab7944b70a838722c230c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6821405764984329676, guid: 9db50bfceedab7944b70a838722c230c,
         type: 3}
@@ -42887,7 +42905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunDamage: -3
-  fireRate: 0.1
+  fireRate: 0.15
   weaponRange: 50
   hitForce: 50
   gunEnd: {fileID: 1447598670}
@@ -43231,7 +43249,7 @@ PrefabInstance:
     - target: {fileID: 6821405764984329676, guid: 9db50bfceedab7944b70a838722c230c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6821405764984329676, guid: 9db50bfceedab7944b70a838722c230c,
         type: 3}

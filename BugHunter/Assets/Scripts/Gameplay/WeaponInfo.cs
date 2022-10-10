@@ -7,7 +7,7 @@ public class WeaponInfo : MonoBehaviour
     [Range(0, 1)][SerializeField] private float RecoilRotIntensity, RecoilOffsetIntensity,Weight;
     [Range(0,3)][SerializeField] private float RecoilTimer;
     [SerializeField] private int ammoInMag, maxAmmo, magSize = 1, reserveAmmo = 1;
-   
+    public static Action<bool> maginfo;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,11 @@ public class WeaponInfo : MonoBehaviour
     }
     public void Update()
     {
-
+        maginfo.Invoke(hasAmmo());
+    }
+    public bool hasAmmo()
+    {
+        return ammoInMag > 0;
     }
     public Vector4 GetRecoilInfo()
     {
