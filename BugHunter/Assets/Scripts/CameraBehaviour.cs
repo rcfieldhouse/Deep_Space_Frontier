@@ -22,11 +22,11 @@ public class CameraBehaviour : MonoBehaviour
     void Start()
     {
         _canShoot = true;
-        WeaponSwap.WeaponRecoilData += SetAnimProperties;
+        WeaponSwap.BroadCastWeaponRecoilData += SetAnimProperties;
         PlayerInput.Shoot += ShootCameraWork;
         WeaponInfo.maginfo += getIfMagHasAmmo;
        // PlayerInput.Chamber += cancel;
-     VirtualCamera = GetComponent<CinemachineVirtualCamera>();
+     VirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         VirtualCamera.Follow = player.transform;
 
         RecoilRotSet = Quaternion.Euler(20.0f, 0f, 0);
@@ -67,6 +67,7 @@ public class CameraBehaviour : MonoBehaviour
         {
             if (interruptPossible == true) { 
             cancel();
+                _manuallyFollow = true;
                 _canShoot = false;
             }
 
@@ -84,6 +85,7 @@ public class CameraBehaviour : MonoBehaviour
     }
     private void ResetCams()
     {
+        gameObject.transform.localRotation = BaseRot;
         _canShoot = true;
         interruptPossible = false;
         RecoilRot = RecoilRotSetter;
@@ -94,7 +96,8 @@ public class CameraBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-  
+        Debug.Log("player "+player.transform.localRotation+ "camera" +  gameObject.transform.localRotation);
+      
     }
     private IEnumerator DoRecoil()
     {
@@ -139,8 +142,6 @@ public class CameraBehaviour : MonoBehaviour
             ResetCams();
         }
 
-       
-        Debug.Log("called");
         interruptPossible = false;
    // 
         // yield return bar;
@@ -153,7 +154,7 @@ public class CameraBehaviour : MonoBehaviour
             
             // Debug.Log(RecoilRotation);
             transform.rotation = player.transform.rotation * Quaternion.Inverse(RecoilRotation) ;
-            transform.position = player.transform.position + ( player.transform.localRotation*offset);
+            transform.position = player.transform.position+ ( player.transform.localRotation*offset);
     }
         }
       

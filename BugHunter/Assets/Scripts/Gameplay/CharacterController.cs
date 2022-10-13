@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public Rigidbody Rigidbody;
-    public GameObject CameraMain,CameraCrouch,CameraDodge;
+    public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager;
  
     [SerializeField] private LayerMask m_WhatIsGround;
 
@@ -25,7 +25,7 @@ public class CharacterController : MonoBehaviour
         PlayerInput.DodgeRoll += Dodge;
         PlayerInput.Crouching += SwitchCamCrouch;
         PlayerInput.JumpAction += Jump;
-        PlayerInput.Look += Aim;
+      //  PlayerInput.Look += Aim;
         PlayerInput.Move += Move;
         //this line sets default cam to main
         disableCams(false);
@@ -86,8 +86,11 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
+        gameObject.transform.rotation = Quaternion.Euler(0.0f, CameraManager.transform.eulerAngles.y, 0.0f);
+     //  gameObject.transform.rotation = CameraManager.transform.rotation;
 
-     
+
     }
 
 

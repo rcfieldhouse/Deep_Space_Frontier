@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Recoil : MonoBehaviour
 {
-    private bool _CanShoot = true;
-    private bool HasAmmo = true;
+    [SerializeField] private bool _CanShoot = true;
+    [SerializeField] private bool HasAmmo = true;
     [Range(0, 1)] private float Weight;
     private float animTime;
     private float UpTime, DownTime;
@@ -16,7 +16,9 @@ public class Recoil : MonoBehaviour
 
     private Quaternion RecoilRot, BaseRot,RecoilRotSet;
 
-    private float RecoilFOV,BaseFOV, RecoilFOVSet;
+    public float RecoilFOV,BaseFOV, RecoilFOVSet, RecoilFOVSetter;
+
+    Camera Camera;
     // Start is called before the first frame update
     void Start()
     { 
@@ -27,13 +29,15 @@ public class Recoil : MonoBehaviour
     //to base each weapons recoil off of
         RecoilRotSet = Quaternion.Euler(20.0f, 0f, 0);
         RecoilPosSet = new Vector3(0.0f, 0.1f, 0.2f);
-        RecoilFOVSet = 30.0f;
+        RecoilFOVSet = 20.0f;
     //action assignments
         PlayerInput.Shoot += StartShot;
-        WeaponSwap.WeaponRecoilData += SetAnimProperties;
+        WeaponSwap.BroadCastWeaponRecoilData += SetAnimProperties;
         WeaponInfo.maginfo += getIfMagHasAmmo;
         Weight = 1.25f;
         SetAnimProperties(new Vector4(1.0f, 1.0f, 1.0f, Weight));
+
+        Camera = GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -51,13 +55,14 @@ public class Recoil : MonoBehaviour
         //y=RecoilOffsetIntensity
         //z=RecoilTimer
         //w=snapiness
-
+        _CanShoot = true;
         //rotation 
         RecoilRot = Quaternion.Lerp(BaseRot, RecoilRotSet, vec.y);
 
         //position
         RecoilPos = RecoilPosSet * vec.x;
-        RecoilFOV=RecoilFOVSet+ RecoilFOVSet * (1-vec.x);
+     //   RecoilFOVSet= BaseFOV+ RecoilFOVSet *(1-vec.x);
+        RecoilFOVSetter = RecoilFOVSet - RecoilFOVSet*(1-vec.y);
         //snappiness and timing
         animTime = vec.z - 0.07f;
         UpTime = vec.w * animTime;
@@ -74,14 +79,15 @@ public class Recoil : MonoBehaviour
     {
         //delay for line renderer
         //yield return foo;
-       
+        BaseFOV = GetComponent<Camera>().fieldOfView;
+        RecoilFOV = BaseFOV - RecoilFOVSetter;
         //gun going up anim
         float elapsed = 0f;
 
         while (elapsed < UpTime)
         {
             elapsed += Time.deltaTime;
-            gameObject.GetComponent<Camera>().fieldOfView = Mathf.Lerp(BaseFOV, RecoilFOV, elapsed / UpTime);
+            Camera.fieldOfView = Mathf.Lerp(BaseFOV, RecoilFOV, elapsed / UpTime);
             gameObject.transform.localPosition =  Vector3.Lerp(BasePos, RecoilPos, elapsed / UpTime);
             gameObject.transform.localRotation = Quaternion.Slerp(BaseRot, RecoilRot, elapsed / UpTime);
             yield return null;
@@ -92,7 +98,7 @@ public class Recoil : MonoBehaviour
         while (elapsed < DownTime)
         {
             elapsed += Time.deltaTime;
-            gameObject.GetComponent<Camera>().fieldOfView = Mathf.Lerp(RecoilFOV, BaseFOV, elapsed / DownTime);
+           Camera.fieldOfView = Mathf.Lerp(RecoilFOV, BaseFOV, elapsed / DownTime);
             gameObject.transform.localPosition = Vector3.Lerp(RecoilPos, BasePos, elapsed / DownTime);
             gameObject.transform.localRotation = Quaternion.Slerp(RecoilRot, BaseRot, elapsed / DownTime);
             yield return null;

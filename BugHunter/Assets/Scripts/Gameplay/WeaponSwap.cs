@@ -4,12 +4,14 @@ using UnityEngine;
 using System;
 public class WeaponSwap : MonoBehaviour
 {
-    public static Action<Vector4> WeaponRecoilData;
+    public static Action<Vector4> BroadCastWeaponRecoilData;
     // Start is called before the first frame update
     //Match each recticle with The Coresponding Weapon
     public GameObject[] WeaponArray;
     public GameObject[] RecticleArray;
-    public static Action<int,int> WeaponListData;
+
+    public static Action<int,int> BroadcastWeaponListData;
+    public static Action<float> BroadcastADSZoom;
     private int WeaponChoice = 0;
     void Start()
     {
@@ -49,8 +51,9 @@ public class WeaponSwap : MonoBehaviour
         WeaponArray[choice].SetActive(true);
         WeaponChoice = choice;
 
-        WeaponRecoilData.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetRecoilInfo());
-        WeaponListData.Invoke(WeaponChoice, WeaponArray.Length-1);       
+        BroadcastADSZoom.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetADSZoom());
+        BroadCastWeaponRecoilData.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetRecoilInfo());
+        BroadcastWeaponListData.Invoke(WeaponChoice, WeaponArray.Length-1);       
     }
     public void SetWeaponChoice(int num)
     {

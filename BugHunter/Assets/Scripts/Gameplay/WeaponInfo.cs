@@ -4,9 +4,11 @@ using UnityEngine;
 using System;
 public class WeaponInfo : MonoBehaviour
 {
+    //this script has data for weapons and is used to change data within classes that need the data from the weapons
     [Range(0, 1)][SerializeField] private float RecoilRotIntensity, RecoilOffsetIntensity,Weight;
     [Range(0,3)][SerializeField] private float RecoilTimer;
     [SerializeField] private int ammoInMag, maxAmmo, magSize = 1, reserveAmmo = 1;
+    [Range(0, 5)][SerializeField] private float AdsZoomScale=0;
     public static Action<bool> maginfo;
 
     // Start is called before the first frame update
@@ -17,7 +19,11 @@ public class WeaponInfo : MonoBehaviour
     }
     public void Update()
     {
-        maginfo.Invoke(hasAmmo());
+        if (gameObject.activeInHierarchy == true)
+        { 
+            maginfo.Invoke(hasAmmo());
+        }
+       
     }
     public bool hasAmmo()
     {
@@ -27,6 +33,10 @@ public class WeaponInfo : MonoBehaviour
     {
         return new Vector4(RecoilRotIntensity, RecoilOffsetIntensity, RecoilTimer, Weight);
        
+    }
+    public float GetADSZoom()
+    {
+        return AdsZoomScale;
     }
     public void Reload()
     {

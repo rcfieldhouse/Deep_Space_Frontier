@@ -38,7 +38,7 @@ public class PlayerInput : MonoBehaviour
         // Commented temporarily unitl inventory system is implemented
         Cursor.lockState= CursorLockMode.Locked;
 
-        WeaponSwap.WeaponListData += SetWeaponActive;
+        WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }
 
     private void SetWeaponActive(int num,int length)
@@ -121,11 +121,13 @@ public class PlayerInput : MonoBehaviour
         {
             UIToggle = !UIToggle;
             userInterface.SetActive(UIToggle);
+            ADS.Invoke(true);
         }
         else if (Input.GetButtonUp("Fire2"))
         {
             UIToggle = !UIToggle;
             userInterface.SetActive(UIToggle);
+            ADS.Invoke(false);
         }
 
         //weapon swapping 
