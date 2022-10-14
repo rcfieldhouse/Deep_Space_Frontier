@@ -9,6 +9,7 @@ public class GrenadeThrow : MonoBehaviour
     private Rigidbody Rigidbody;
     private bool _isReady = true;
     private CapsuleCollider CapsuleCollider;
+    private SphereCollider sphereCollider;
     private WaitForSeconds GrenadeFuse = new WaitForSeconds(2.0f);
     private WaitForSeconds BoomTimer = new WaitForSeconds(0.25f);
     private WaitForSeconds GrenadeResetTimer = new WaitForSeconds(5.0f);
@@ -27,10 +28,10 @@ public class GrenadeThrow : MonoBehaviour
        // _startValues.transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
         Rigidbody = GetComponent<Rigidbody>();
         CapsuleCollider = GetComponent<CapsuleCollider>();
+        sphereCollider = GetComponent<SphereCollider>();
         Rigidbody.isKinematic = true;
         Rigidbody.gameObject.SetActive(false);
         GrenadeRenderer = GetComponent<MeshRenderer>();
-       
     }
 
 
@@ -61,15 +62,12 @@ public class GrenadeThrow : MonoBehaviour
     public IEnumerator TingGoBoom()
     {
         GrenadeRenderer.enabled = false;
-        Rigidbody.gameObject.transform.localScale *= 55.0f;
         Rigidbody.isKinematic = true;
-        CapsuleCollider.isTrigger = true;
+        sphereCollider.enabled = true;
         
-        //  Debug.Log("grenade1");
         //Grenade VFX Trigger
         SpawnGrenadeVFX();
         yield return BoomTimer;
-      //  Debug.Log("grenade2");
         _isReady = false;
 
 
@@ -86,13 +84,11 @@ public class GrenadeThrow : MonoBehaviour
         Rigidbody.gameObject.transform.localRotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
         Rigidbody.gameObject.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
         Rigidbody.isKinematic = true;
-        CapsuleCollider.isTrigger = false;
+        sphereCollider.enabled = false;
         Rigidbody.gameObject.GetComponent<MeshRenderer>().enabled = false;
 
-      //  Debug.Log("grenadeReset1");
         
         yield return GrenadeResetTimer;
-       // Debug.Log("grenadeReset2");
         _isReady = true;
         Rigidbody.gameObject.transform.localPosition = new Vector3(-0.5f, -0.03f, 0.4f);
         Rigidbody.gameObject.GetComponent<MeshRenderer>().enabled = true;
@@ -116,7 +112,6 @@ public class GrenadeThrow : MonoBehaviour
 
             Instantiate(GrenadeVFX, grenadeSpawnPos, Quaternion.identity);
             //Debug.Log("Grenade VFX Should play here");
-           // Debug.Log(gameObject.transform.position);
 
         }
         else
