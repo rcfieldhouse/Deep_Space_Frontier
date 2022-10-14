@@ -18,6 +18,7 @@ public class GrenadeThrow : MonoBehaviour
     public GameObject GrenadeVFX;
     //private GameObject EffectToSpawn;
     private MeshRenderer GrenadeRenderer;
+    private Vector3 grenadeSpawnPos;
 
     // Start is called before the first frame update
     void Start()
@@ -109,9 +110,14 @@ public class GrenadeThrow : MonoBehaviour
     {
         if (GrenadeVFX != null)
         {
-            Instantiate(GrenadeVFX, gameObject.transform.position, Quaternion.identity);
-            Debug.Log("Grenade VFX Should play here");
-            Debug.Log(gameObject.transform.position);
+            grenadeSpawnPos.x = gameObject.transform.position.x;
+            grenadeSpawnPos.y = gameObject.transform.position.y + 1.15f;
+            grenadeSpawnPos.z = gameObject.transform.position.z;
+
+            Instantiate(GrenadeVFX, grenadeSpawnPos, Quaternion.identity);
+            //Debug.Log("Grenade VFX Should play here");
+           // Debug.Log(gameObject.transform.position);
+
         }
         else
         {
