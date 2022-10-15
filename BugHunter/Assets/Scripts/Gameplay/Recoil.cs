@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//this is the class that makes the guns do their recoil anim and should be attached to the weapon camera
 
 public class Recoil : MonoBehaviour
 {

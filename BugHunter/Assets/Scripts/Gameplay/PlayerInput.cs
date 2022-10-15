@@ -24,11 +24,12 @@ public class PlayerInput : MonoBehaviour
     [Range(0, 1)] [SerializeField] private float Sensitivity = .5f;
 
     private Quaternion Direction;    
-    private Vector2 MouseInput;
+    public Vector2 MouseInput;
     private Vector2 KeyboardInput;
     private bool UIToggle = true;
     private float MouseScroll=0.0f;
 
+    public Vector3 Dir;
     public GameObject userInterface;
     // Start is called before the first frame update
     //damn you dante, make ur own file 
@@ -50,10 +51,14 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         //MouseInput for aim
-       MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; ;
-       MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2; ;
-       Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
+       MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; 
+       MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2; 
+        if (Mathf.Abs(MouseInput.y) > 90) {
+            MouseInput.y-= MouseInput.y-(90* (MouseInput.y / Mathf.Abs(MouseInput.y)));
+        }
 
+       Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
+        Dir.x = Direction.eulerAngles.x;
         MouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
 
 
@@ -105,7 +110,7 @@ public class PlayerInput : MonoBehaviour
             UseAbility.Invoke(Direction);
 
         if (Input.GetKeyDown(KeyCode.R))
-            Reload.Invoke(); ;
+            Reload.Invoke(); 
 
 
         //shoot 
