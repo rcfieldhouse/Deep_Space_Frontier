@@ -41,7 +41,7 @@ public class PlayerInput : MonoBehaviour
 
         WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }
-
+ 
     private void SetWeaponActive(int num,int length)
     {
         WeaponActive = num;
