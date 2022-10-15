@@ -5704,21 +5704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351c2ca60b4f4824786944d1c969aea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VirtualCamera: {fileID: 0}
-  player: {fileID: 1180305564}
-  _canShoot: 0
-  ResetAim: 0
-  offset: {x: 0, y: 0, z: 0.5}
-  NoRot: {x: 0, y: 0, z: 0, w: 1}
-  BaseRot: {x: 0, y: 0, z: 0, w: 1}
-  RecoilRotSetter: {x: 0, y: 0, z: 0, w: 1}
-  RecoilRotSet: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
-  RecoilRot: {x: 0, y: 0, z: 0, w: 0}
-  RecoilRotation: {x: 0, y: 0, z: 0, w: 0}
-  animTime: 0
-  UpTime: 0
-  DownTime: 0
-  Timer: 0
 --- !u!114 &80304792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14160,6 +14145,14 @@ MonoBehaviour:
   magSize: 3
   reserveAmmo: 12
   AdsZoomScale: 0
+  RecoilX: 0
+  AimRecoilX: 0
+  RecoilY: 0
+  AimRecoilY: 0
+  RecoilZ: 0
+  AimRecoilZ: 0
+  snappiness: 0
+  returnSpeed: 0
 --- !u!1001 &451887926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14784,6 +14777,14 @@ MonoBehaviour:
   magSize: 1
   reserveAmmo: 3
   AdsZoomScale: 0
+  RecoilX: 0
+  AimRecoilX: 0
+  RecoilY: 0
+  AimRecoilY: 0
+  RecoilZ: 0
+  AimRecoilZ: 0
+  snappiness: 0
+  returnSpeed: 0
 --- !u!1001 &549239610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15347,6 +15348,14 @@ MonoBehaviour:
   magSize: 2
   reserveAmmo: 12
   AdsZoomScale: 0
+  RecoilX: 0
+  AimRecoilX: 0
+  RecoilY: 0
+  AimRecoilY: 0
+  RecoilZ: 0
+  AimRecoilZ: 0
+  snappiness: 0
+  returnSpeed: 0
 --- !u!1 &624740606
 GameObject:
   m_ObjectHideFlags: 0
@@ -27882,11 +27891,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  currentRotation: {x: 0, y: 0, z: 0}
-  targetRotation: {x: 0, y: 0, z: 0}
-  RecoilX: -0.24
-  RecoilY: 0.36
+  RecoilX: -0.35
+  AimRecoilX: -0.25
+  RecoilY: 0.5
+  AimRecoilY: 0.2
   RecoilZ: 0.1
+  AimRecoilZ: 0
   snappiness: 6
   returnSpeed: 2
 --- !u!1 &983612064 stripped
@@ -36279,21 +36289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351c2ca60b4f4824786944d1c969aea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VirtualCamera: {fileID: 0}
-  player: {fileID: 1180305564}
-  _canShoot: 0
-  ResetAim: 0
-  offset: {x: 0, y: 0, z: 0.5}
-  NoRot: {x: 0, y: 0, z: 0, w: 1}
-  BaseRot: {x: 0, y: 0, z: 0, w: 1}
-  RecoilRotSetter: {x: 0, y: 0, z: 0, w: 1}
-  RecoilRotSet: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
-  RecoilRot: {x: 0, y: 0, z: 0, w: 0}
-  RecoilRotation: {x: 0, y: 0, z: 0, w: 0}
-  animTime: 0
-  UpTime: 0
-  DownTime: 0
-  Timer: 0
 --- !u!114 &1489350259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37961,6 +37956,14 @@ MonoBehaviour:
   magSize: 5
   reserveAmmo: 15
   AdsZoomScale: 0
+  RecoilX: 22.1
+  AimRecoilX: 17.7
+  RecoilY: 19
+  AimRecoilY: 2
+  RecoilZ: 1.34
+  AimRecoilZ: 0.05
+  snappiness: 6
+  returnSpeed: 2
 --- !u!1 &1643397397
 GameObject:
   m_ObjectHideFlags: 0
@@ -43010,6 +43013,14 @@ MonoBehaviour:
   magSize: 15
   reserveAmmo: 70
   AdsZoomScale: 0
+  RecoilX: 0.35
+  AimRecoilX: 0.25
+  RecoilY: 0.5
+  AimRecoilY: 0.2
+  RecoilZ: 0.1
+  AimRecoilZ: 0
+  snappiness: 6
+  returnSpeed: 2
 --- !u!1001 &700443930232356341
 PrefabInstance:
   m_ObjectHideFlags: 0

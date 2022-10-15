@@ -19,6 +19,7 @@ public class Recoil : MonoBehaviour
 
     public float RecoilFOV,BaseFOV, RecoilFOVSet, RecoilFOVSetter;
 
+    private bool _IsAds = false;
     Camera Camera;
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class Recoil : MonoBehaviour
         PlayerInput.Shoot += StartShot;
         WeaponSwap.BroadCastWeaponRecoilData += SetAnimProperties;
         WeaponInfo.maginfo += getIfMagHasAmmo;
+        PlayerInput.ADS += SetISADS;
         Weight = 1.25f;
         SetAnimProperties(new Vector4(1.0f, 1.0f, 1.0f, Weight));
 
@@ -42,9 +44,9 @@ public class Recoil : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   private void SetISADS(bool foo)
     {
-        
+        _IsAds = foo;
     }
     private void getIfMagHasAmmo(bool var)
     {
@@ -71,10 +73,12 @@ public class Recoil : MonoBehaviour
     }
     private void StartShot()
     {
-        if (_CanShoot==true&& HasAmmo==true)
-        StartCoroutine(DoRecoil());
-
-        _CanShoot = false;      
+        if (_CanShoot==true&& HasAmmo == true&&_IsAds==false)
+        {
+            StartCoroutine(DoRecoil());
+            _CanShoot = false;
+        }
+           
     }
     private IEnumerator DoRecoil()
     {

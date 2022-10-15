@@ -5,22 +5,39 @@ using UnityEngine;
 public class NewRecoil : MonoBehaviour
 {
     public GameObject Player;
-    [SerializeField] private Vector3 currentRotation;
-    [SerializeField] private Vector3 targetRotation;
+    private Vector3 currentRotation;
+    private Vector3 targetRotation;
+    private bool _isAiming = false;
 
-    [SerializeField]private float RecoilX;
-    [SerializeField]private float RecoilY;
-    [SerializeField]private float RecoilZ;
+    [SerializeField]private float RecoilX, AimRecoilX;
+    [SerializeField]private float RecoilY, AimRecoilY;
+    [SerializeField]private float RecoilZ, AimRecoilZ;
 
     [SerializeField] private float snappiness;
     [SerializeField] private float returnSpeed;
     private float AimCorrection=0,baseAim=0,num=0;
     private bool RecoilStartPossible = true;
     // Start is called before the first frame update
+    private void SetAdsRecoil(Vector3 vec)
+    {
+       AimRecoilX = -vec.x;
+       AimRecoilY = vec.y;
+       AimRecoilZ = vec.z;
+    }
+    private void SetHipRecoil(Vector3 vec)
+    {
+        RecoilX = -vec.x;
+        RecoilY = vec.y;
+        RecoilZ = vec.z;
+    }
     void Start()
     {
         PlayerInput.Shoot += RecoilStart;
         PlayerInput.Chamber += setRecoilPossible;
+        PlayerInput.ADS += SetIsAiming;
+        WeaponSwap.BroadCastADSRecoil += SetAdsRecoil;
+        WeaponSwap.BroadCastHipRecoil += SetHipRecoil;
+        WeaponSwap.BroadcastSnap += SetSnap;
         Player = GameObject.Find("Player");
     }
     private void setRecoilPossible()
@@ -28,6 +45,18 @@ public class NewRecoil : MonoBehaviour
         RecoilStartPossible = true;
     }
     // Update is called once per frame
+
+    private void SetIsAiming(bool foo)
+    {
+        _isAiming = foo;
+        //Debug.Log("Isaiming" + _isAiming);
+    }
+
+    private void SetSnap(Vector2 vec)
+    {
+        snappiness = vec.x ;
+        returnSpeed = vec.y;
+    }
     void Update()
     {
         targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, returnSpeed * Time.deltaTime);
@@ -64,6 +93,10 @@ public class NewRecoil : MonoBehaviour
                 num = num - 360.0f;
             AimCorrection = baseAim - num;
         }
+        if (_isAiming==false)
         targetRotation += new Vector3(RecoilX, Random.Range(-RecoilY, RecoilY), Random.Range(-RecoilZ, RecoilZ));
+
+        if(_isAiming == true)
+        targetRotation += new Vector3(AimRecoilX, Random.Range(-AimRecoilY, AimRecoilY), Random.Range(-AimRecoilZ, AimRecoilZ));
     }
 }
