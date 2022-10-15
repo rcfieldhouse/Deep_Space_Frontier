@@ -44,7 +44,7 @@ public class NewRecoil : MonoBehaviour
        
         Player.GetComponent<PlayerInput>().MouseInput.y += -AimCorrection * returnSpeed* Time.deltaTime;
         AimCorrection = Mathf.Lerp(AimCorrection, 0.0f, returnSpeed * Time.deltaTime);
-        Debug.Log(baseAim);
+       // Debug.Log(baseAim);
        // Debug.Log("AimCorrection "+AimCorrection + " Current Rotation "+targetRotation.x+" Mouse y " + GameObject.Find("CameraManager").GetComponent<Transform>().rotation.eulerAngles.x);
     }
 

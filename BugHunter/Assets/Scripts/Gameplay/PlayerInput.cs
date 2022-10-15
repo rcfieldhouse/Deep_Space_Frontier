@@ -5,7 +5,7 @@ using System;
 public class PlayerInput : MonoBehaviour
 {
     //actions that the player may perform
-    public static Action JumpAction, DodgeRoll, Shoot, Chamber,Reload;
+    public static Action JumpAction, DodgeRoll, Shoot, Chamber,Reload, PickupItem;
   
     public static Action<bool>Crouching,ADS;
     public static Action<Quaternion> Look, UseAbility;
@@ -110,9 +110,10 @@ public class PlayerInput : MonoBehaviour
             UseAbility.Invoke(Direction);
 
         if (Input.GetKeyDown(KeyCode.R))
-            Reload.Invoke(); 
+            Reload.Invoke();
 
-
+        if (Input.GetKeyDown(KeyCode.E))
+            PickupItem.Invoke();
         //shoot 
         //chamber is for full auto
         if (Input.GetButtonDown("Fire1"))
