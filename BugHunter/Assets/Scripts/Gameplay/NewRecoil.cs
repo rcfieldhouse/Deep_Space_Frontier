@@ -15,14 +15,18 @@ public class NewRecoil : MonoBehaviour
     [SerializeField] private float snappiness;
     [SerializeField] private float returnSpeed;
     private float AimCorrection=0,baseAim=0,num=0;
-
+    private bool RecoilStartPossible = true;
     // Start is called before the first frame update
     void Start()
     {
         PlayerInput.Shoot += RecoilStart;
+        PlayerInput.Chamber += setRecoilPossible;
         Player = GameObject.Find("Player");
     }
-
+    private void setRecoilPossible()
+    {
+        RecoilStartPossible = true;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -34,22 +38,24 @@ public class NewRecoil : MonoBehaviour
             AimCorrection = 0;
             targetRotation = Vector3.zero;
             currentRotation = Vector3.zero;
+            baseAim = 0;
+            RecoilStartPossible = true;
         }
-
+       
         Player.GetComponent<PlayerInput>().MouseInput.y += -AimCorrection * returnSpeed* Time.deltaTime;
         AimCorrection = Mathf.Lerp(AimCorrection, 0.0f, returnSpeed * Time.deltaTime);
-        Debug.Log("AimCorrection "+AimCorrection + " Current Rotation "+targetRotation.x+" Mouse y " + GameObject.Find("CameraManager").GetComponent<Transform>().rotation.eulerAngles.x);
+        Debug.Log(baseAim);
+       // Debug.Log("AimCorrection "+AimCorrection + " Current Rotation "+targetRotation.x+" Mouse y " + GameObject.Find("CameraManager").GetComponent<Transform>().rotation.eulerAngles.x);
     }
 
     public void RecoilStart()
     {
-        if (targetRotation == Vector3.zero)
+        if (RecoilStartPossible==true)
         {
-    
-            baseAim = GameObject.Find("CameraManager"). GetComponent<Transform>().rotation.eulerAngles.x;
+            RecoilStartPossible = false;
+                    baseAim = GameObject.Find("CameraManager"). GetComponent<Transform>().rotation.eulerAngles.x;
             if (baseAim > 90)
                 baseAim = baseAim - 360.0f;
-            Debug.Log(baseAim);
         }
         if (targetRotation != Vector3.zero)
         {
