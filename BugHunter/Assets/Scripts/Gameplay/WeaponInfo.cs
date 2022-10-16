@@ -7,10 +7,16 @@ public class WeaponInfo : MonoBehaviour
     //this script has data for weapons and is used to change data within classes that need the data from the weapons
     [Range(0, 1)][SerializeField] private float RecoilRotIntensity, RecoilOffsetIntensity,Weight;
     [Range(0,3)][SerializeField] private float RecoilTimer;
+
     [SerializeField] private int ammoInMag, maxAmmo, magSize = 1, reserveAmmo = 1;
     [Range(0, 5)][SerializeField] private float AdsZoomScale=0;
     public static Action<bool> maginfo;
 
+   [Range(0,50)][SerializeField] private float RecoilX, AimRecoilX;
+   [Range(0,25)][SerializeField] private float RecoilY, AimRecoilY;
+   [Range(0,10)][SerializeField] private float RecoilZ, AimRecoilZ;
+   [Range(0,10)][SerializeField] private float snappiness;
+   [Range(0,5)][SerializeField] private float returnSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +39,24 @@ public class WeaponInfo : MonoBehaviour
     {
         return new Vector4(RecoilRotIntensity, RecoilOffsetIntensity, RecoilTimer, Weight);
        
+    }
+    //0 for hipfire 1 for ads
+    public Vector3 GetCameraRecoilInfo(int num)
+    {
+        if (num == 0)
+        {
+            return new Vector3(RecoilX, RecoilY, RecoilZ);
+        }
+        if (num == 1)
+        {
+            return new Vector3(AimRecoilX, AimRecoilY, AimRecoilZ);
+        }
+        return Vector3.zero;
+
+    }
+    public Vector2 GetSnap()
+    {
+        return new Vector2(snappiness, returnSpeed);
     }
     public float GetADSZoom()
     {
