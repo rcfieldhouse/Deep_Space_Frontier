@@ -11,20 +11,20 @@ public class GroundAi : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     [SerializeField] private HealthSystem Health;
-    [SerializeField] private  WaitForSeconds lungeWait =new WaitForSeconds(1.5f);
-    [SerializeField] private WaitForSeconds lungeDuration = new WaitForSeconds(1.5f);
-    [SerializeField] private WaitForSeconds SwingWait = new WaitForSeconds(1.0f);
 
+    [SerializeField] private WaitForSeconds lungeWait =new WaitForSeconds(0.5f);
+    [SerializeField] private WaitForSeconds lungeDuration = new WaitForSeconds(1.5f);
+    [SerializeField] private WaitForSeconds SwingDuration = new WaitForSeconds(0.75f);
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-
+    HealthSystem health;
     //Attacking
     //damage is defined as either lunge damage or swing damage depending on the attack invoked
     public int lungeDamage=-10,SwingDamage,Damage;
-    public bool alreadyAttacked=false;
-
+    public bool alreadyAttacked=false,alreadyLunged=false;
+    private bool PlayerInAttackBox=false,DamageDealt= false;
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange,_isAttacking=false;
@@ -36,7 +36,7 @@ public class GroundAi : MonoBehaviour
         Health = GetComponent<HealthSystem>();
         Rigidbody = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player").transform;
-
+         health = player.GetComponent<HealthSystem>();
         if (agent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
     }
@@ -55,16 +55,30 @@ public class GroundAi : MonoBehaviour
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
         if (gameObject.GetComponent<NavMeshAgent>().enabled == true)
         {
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInAttackRange && playerInSightRange) AttackPlayer();
+            if (!playerInAttackRange) SetLunged();
         }
-    
+
+
+
+
+        if (health != null && _isAttacking == true && DamageDealt == false)
+        {
+            // Call the damage function of that script, passing in our gunDamage variable
+            health.ModifyHealth(Damage);
+            DamageDealt = true;
+        }
         //Debug.Log (Quaternion.Euler(agent.velocity));
     }
-
+    private void SetLunged()
+    {
+        alreadyLunged = false;
+    }
     private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
@@ -108,7 +122,10 @@ public class GroundAi : MonoBehaviour
             Rigidbody.isKinematic = true;
             agent.SetDestination(transform.position);
             transform.LookAt(player);
-            StartCoroutine(LungeAttack());
+            if (alreadyLunged == false) StartCoroutine(LungeAttack());
+
+            if (alreadyLunged == true&& alreadyAttacked == false) StartCoroutine(SwingAttack());
+
             alreadyAttacked = true;
         }
 
@@ -122,6 +139,8 @@ public class GroundAi : MonoBehaviour
 
     private IEnumerator LungeAttack()
     {
+        alreadyAttacked = true;
+        alreadyLunged = true;
         agent.SetDestination(transform.position);
         transform.LookAt(player);
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
@@ -138,11 +157,17 @@ public class GroundAi : MonoBehaviour
 
     private IEnumerator SwingAttack()
     {
-        yield return null;
+        _isAttacking = true;
+        Damage = SwingDamage;
+        transform.LookAt(player);
+        Debug.Log("they do be swinging");
+        yield return SwingDuration;
+        ResetAttack();
     }
 
     private void ResetAttack()
     {
+        DamageDealt = false;
         Damage = 0;
         _isAttacking=false;
       // Debug.Log("reset");
@@ -161,18 +186,29 @@ public class GroundAi : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            PlayerInAttackBox = false;
+        }
+    }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player"&&_isAttacking==true)
+        if (other.tag == "Player")
         {
-            HealthSystem health = other.GetComponent<HealthSystem>();
-
-            // If there was a health script attached
-            if (health != null)
-            {
-                // Call the damage function of that script, passing in our gunDamage variable
-                health.ModifyHealth(Damage);
-            }
+            PlayerInAttackBox = true;
         }
+        // if (other.tag == "Player"&&_isAttacking==true)
+        // {
+        //     HealthSystem health = other.GetComponent<HealthSystem>();
+        //
+        //     // If there was a health script attached
+        //     if (health != null)
+        //     {
+        //         // Call the damage function of that script, passing in our gunDamage variable
+        //         health.ModifyHealth(Damage);
+        //     }
+        // }
     }
 }
