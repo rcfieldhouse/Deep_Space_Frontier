@@ -89,11 +89,15 @@ MonoBehaviour:
   Health: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 1
+  lungeDamage: -10
+  SwingDamage: 0
+  Damage: 0
+  alreadyAttacked: 0
   sightRange: 10
   attackRange: 2.5
   playerInSightRange: 0
   playerInAttackRange: 0
+  _isAttacking: 0
 --- !u!195 &881555581414844017
 NavMeshAgent:
   m_ObjectHideFlags: 0
