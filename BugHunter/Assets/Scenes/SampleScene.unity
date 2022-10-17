@@ -14187,6 +14187,7 @@ MonoBehaviour:
   magSize: 3
   reserveAmmo: 12
   AdsZoomScale: 0
+  ReloadTimer: 0
   RecoilX: 0
   AimRecoilX: 0
   RecoilY: 0
@@ -14825,6 +14826,7 @@ MonoBehaviour:
   magSize: 1
   reserveAmmo: 3
   AdsZoomScale: 0
+  ReloadTimer: 0
   RecoilX: 0
   AimRecoilX: 0
   RecoilY: 0
@@ -15451,6 +15453,7 @@ MonoBehaviour:
   magSize: 2
   reserveAmmo: 12
   AdsZoomScale: 0
+  ReloadTimer: 0
   RecoilX: 0
   AimRecoilX: 0
   RecoilY: 0
@@ -22981,6 +22984,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 937487325}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &951469667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 70513814473718759, guid: 66f547ea0ee232c4a8f0bd37399e9484,
+    type: 3}
+  m_PrefabInstance: {fileID: 1121756356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &951469673
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951469667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.72, y: 0.76, z: 0.61}
+  m_Center: {x: 0, y: 0.06, z: 0.89}
 --- !u!1001 &973808353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29232,6 +29254,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 881555581414844018, guid: 66f547ea0ee232c4a8f0bd37399e9484,
+        type: 3}
+      propertyPath: lungeDamage
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66f547ea0ee232c4a8f0bd37399e9484, type: 3}
 --- !u!4 &1137614072 stripped
@@ -29638,6 +29665,7 @@ GameObject:
   - component: {fileID: 1180305571}
   - component: {fileID: 1180305572}
   - component: {fileID: 1180305573}
+  - component: {fileID: 1180305574}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -29795,8 +29823,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dd5ce274bb6b642940a95690e2b70e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Path: 
-  fn: 
+--- !u!114 &1180305574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180305564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0bb0dd8316f3d4782fba483477d661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1190049876
 GameObject:
   m_ObjectHideFlags: 0
@@ -38270,6 +38309,7 @@ MonoBehaviour:
   magSize: 5
   reserveAmmo: 15
   AdsZoomScale: 0
+  ReloadTimer: 0
   RecoilX: 22.1
   AimRecoilX: 17.7
   RecoilY: 19
@@ -43383,6 +43423,7 @@ MonoBehaviour:
   magSize: 15
   reserveAmmo: 70
   AdsZoomScale: 0
+  ReloadTimer: 0
   RecoilX: 0.35
   AimRecoilX: 0.25
   RecoilY: 0.5
