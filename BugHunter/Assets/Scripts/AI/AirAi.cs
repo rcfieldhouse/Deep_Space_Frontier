@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
-public class GroundAi : MonoBehaviour
+public class AirAi : MonoBehaviour
 {
+    // Start is called before the first frame update
+
+
     private NavMeshAgent agent;
 
 
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     [SerializeField] private HealthSystem Health;
-    [SerializeField] private  WaitForSeconds lungeWait =new WaitForSeconds(1.5f);
-    [SerializeField] private WaitForSeconds SwingWait = new WaitForSeconds(1.0f);
 
     //Patroling
     public Vector3 walkPoint;
@@ -20,19 +20,17 @@ public class GroundAi : MonoBehaviour
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks=2;
-    bool alreadyAttacked=false;
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
 
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    private Rigidbody Rigidbody;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         Health = GetComponent<HealthSystem>();
-        Rigidbody = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player").transform;
 
         if (agent.isOnNavMesh == false)
@@ -45,7 +43,6 @@ public class GroundAi : MonoBehaviour
     private void OnDisable()
     {
         Health.OnObjectDeath -= HandleObjectDeath;
-        ScoreManager.instance.sChange(10); 
     }
 
     private void Update()
@@ -91,44 +88,31 @@ public class GroundAi : MonoBehaviour
 
     private void ChasePlayer()
     {
-
         agent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
-        if (alreadyAttacked == false)
-        {
-            //Make sure enemy doesn't move
-            Rigidbody.isKinematic = true;
-            agent.SetDestination(transform.position);
-            transform.LookAt(player);
-            StartCoroutine(LungeAttack());
-        }
-
-
-        if (alreadyAttacked==true)
-        {
-            alreadyAttacked = true;
-            //Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-    }
-
-    private IEnumerator LungeAttack()
-    {
+        //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
+
         transform.LookAt(player);
-        yield return null;
-    }
 
-    private IEnumerator SwingAttack()
-    {
-        yield return null;
-    }
+        if (!alreadyAttacked)
+        {
 
+            ///Attack code here
+            //  Rigidbody rb = Instantiate(projectile, projectilePos.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //  rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //  rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            ///End of attack code
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
     private void ResetAttack()
     {
-        Debug.Log("reset");
         alreadyAttacked = false;
     }
 

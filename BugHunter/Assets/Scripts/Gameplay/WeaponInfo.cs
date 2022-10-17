@@ -11,7 +11,7 @@ public class WeaponInfo : MonoBehaviour
     [SerializeField] private int ammoInMag, maxAmmo, magSize = 1, reserveAmmo = 1;
     [Range(0, 5)][SerializeField] private float AdsZoomScale=0;
     public static Action<bool> maginfo;
-
+   [Range(0, 10)] [SerializeField] private float ReloadTimer;
    [Range(0,50)][SerializeField] private float RecoilX, AimRecoilX;
    [Range(0,25)][SerializeField] private float RecoilY, AimRecoilY;
    [Range(0,10)][SerializeField] private float RecoilZ, AimRecoilZ;

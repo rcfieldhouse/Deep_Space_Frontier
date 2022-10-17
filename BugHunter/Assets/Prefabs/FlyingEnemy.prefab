@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 1506078787981806342}
   - component: {fileID: 1399515372489041882}
   - component: {fileID: 1399515372489041883}
-  - component: {fileID: 1399515372489041880}
+  - component: {fileID: 2116622581478664853}
   - component: {fileID: 1399515372489041881}
   - component: {fileID: 1399515372489041884}
   m_Layer: 0
@@ -513,7 +513,7 @@ CapsuleCollider:
   m_Height: 11.89
   m_Direction: 1
   m_Center: {x: 0.16, y: 11.9, z: 0.6}
---- !u!114 &1399515372489041880
+--- !u!114 &2116622581478664853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2282614730924773820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21f6c6dbb17b96f4cb35f192e9a1c755, type: 3}
+  m_Script: {fileID: 11500000, guid: a560b65d0482a8145b187107d533c6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
@@ -532,12 +532,12 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  health: 0
+  Health: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 1
-  sightRange: 8.01
-  attackRange: 3.39
+  sightRange: 10
+  attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!195 &1399515372489041881
