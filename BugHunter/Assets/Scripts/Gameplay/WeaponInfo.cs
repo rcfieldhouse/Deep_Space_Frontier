@@ -100,4 +100,8 @@ public class WeaponInfo : MonoBehaviour
         }
 
     }
+    public void SetMaxBullets()
+    {
+        reserveAmmo = maxAmmo;
+    }
 }
