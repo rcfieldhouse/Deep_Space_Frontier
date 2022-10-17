@@ -29,11 +29,10 @@ public class ShootableObject : MonoBehaviour
     public void HandleObjectDeath(GameObject context)
     {
         //Possibly don't need to check for this breakable tag :3
-        if (context.tag == "Breakable")
-        {
+
             Debug.Log("Handle Object Death called from " + context.name);
             //create our broken object and reparent it
-            GameObject newObject = Instantiate(brokenPrefab, brokenPrefab.transform.position, brokenPrefab.transform.rotation);
+            GameObject newObject = Instantiate(brokenPrefab,transform.position, transform.rotation);
             newObject.transform.parent = context.transform.parent;
             
 
@@ -51,6 +50,5 @@ public class ShootableObject : MonoBehaviour
             //TODO: Object pooling
             Destroy(context);
 
-        }
     }
 }
