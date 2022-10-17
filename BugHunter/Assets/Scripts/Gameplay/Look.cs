@@ -21,6 +21,6 @@ public class Look : MonoBehaviour
     private void Aim(Quaternion quaternion)
     {
         gameObject.transform.localRotation = quaternion;
-        gameObject.transform.position = Player.transform.position - (transform.localRotation * Vector3.up) + (transform.localRotation * offset);
+        gameObject.transform.position = Player.transform.position - (transform.localRotation * Vector3.up*1.75f) + (transform.localRotation * offset);
     }
 }
