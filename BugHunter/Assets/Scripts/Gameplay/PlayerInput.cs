@@ -10,6 +10,8 @@ public class PlayerInput : MonoBehaviour
     public static Action<bool>Crouching,ADS;
     public static Action<Quaternion> Look, UseAbility;
     public static Action<Vector2,float> Move;
+    public static Action SavePlayer;
+    public static PlayerInput instance;
 
     //these are for weapon swapping,
     //swapping weapon is a placeholder until class selection is introduced
@@ -78,7 +80,9 @@ public class PlayerInput : MonoBehaviour
        if (Input.GetKeyUp(KeyCode.LeftShift))
             SpeedMod = 1.0f;
 
-
+        //SaveGamePlugin
+        if (Input.GetKeyDown(KeyCode.P))
+            SavePlayer.Invoke();
 
 
         //cursed crouch controls
