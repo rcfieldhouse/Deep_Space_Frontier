@@ -46,13 +46,16 @@ public class GroundAi : MonoBehaviour
     }
     private void OnDisable()
     {
+       
         Health.OnObjectDeath -= HandleObjectDeath;
         ScoreManager.instance.sChange(10); 
     }
 
     private void Update()
     {
+        // LootSpawner.instance.Sprayoot(transform);
         //Check for sight and attack range
+       
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -176,7 +179,9 @@ public class GroundAi : MonoBehaviour
 
     public void HandleObjectDeath(GameObject context)
     {
+        LootSpawner.instance.Sprayoot(transform);
         //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
+       
         Destroy(gameObject);
     }
     private void OnDrawGizmosSelected()

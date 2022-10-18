@@ -90,8 +90,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
             LoadPlayer.Invoke();
 
-        if (Input.GetKeyDown(KeyCode.B))
-            spawnLoot.Invoke();
+     
 
         //cursed crouch controls
         if (Input.GetButtonDown("Crouch"))

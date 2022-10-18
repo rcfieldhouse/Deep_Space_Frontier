@@ -4,28 +4,33 @@ using UnityEngine;
 
 public class LootSpawner : MonoBehaviour
 {
+    public static LootSpawner instance;
     public GameObject prefab,gem;
     public Transform Transform;
     // Start is called before the first frame update
     void Start()
     {
-        PlayerInput.spawnLoot += Sprayoot;
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
     }
-    void Sprayoot()
+
+   public void Sprayoot(Transform transform)
     {
 
         var loot = LootFactory.CreateLoot(LootType.Health);
-        Create(loot);
+        Create(loot,transform);
     }
-    void Create(LFInterface foo)
+    void Create(LFInterface foo, Transform transform)
     {
-        gem=Instantiate(prefab, Transform.position, Quaternion.identity);
+        gem=Instantiate(prefab, transform.position, Quaternion.identity);
         foo.Create(gem);
     }
 }
