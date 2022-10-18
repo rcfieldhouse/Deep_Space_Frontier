@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     public static Action<Vector2,float> Move;
     public static Action SavePlayer;
     public static Action LoadPlayer;
+    public static Action spawnLoot;
     public static PlayerInput instance;
 
     //these are for weapon swapping,
@@ -89,6 +90,8 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
             LoadPlayer.Invoke();
 
+        if (Input.GetKeyDown(KeyCode.B))
+            spawnLoot.Invoke();
 
         //cursed crouch controls
         if (Input.GetButtonDown("Crouch"))

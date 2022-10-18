@@ -4,21 +4,21 @@ using UnityEngine;
 
 internal class HealthLoot : LFInterface
 {
-    public void Create()
+    public void Create(GameObject obj)
     {
-        Debug.Log("Health");
+       obj.AddComponent<PickupItems>();
     }
 }
 internal class AmmoLoot : LFInterface
 {
-    public void Create()
+    public void Create(GameObject obj)
     {
         Debug.Log("Amo");
     }
 }
 internal class UpgradeLoot : LFInterface
 {
-    public void Create()
+    public void Create(GameObject obj)
     {
         Debug.Log("Upgrade");
     }

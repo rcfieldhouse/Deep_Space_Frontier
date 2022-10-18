@@ -7,5 +7,5 @@ using UnityEngine;
 
 internal interface LFInterface
 {
-    void Create();
+    void Create(GameObject obj);
 }
