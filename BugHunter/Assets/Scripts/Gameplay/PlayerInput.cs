@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour
     public static Action<Quaternion> Look, UseAbility;
     public static Action<Vector2,float> Move;
     public static Action SavePlayer;
+    public static Action LoadPlayer;
     public static PlayerInput instance;
 
     //these are for weapon swapping,
@@ -83,6 +84,10 @@ public class PlayerInput : MonoBehaviour
         //SaveGamePlugin
         if (Input.GetKeyDown(KeyCode.P))
             SavePlayer.Invoke();
+
+        //LoadGamePlugin
+        if (Input.GetKeyDown(KeyCode.L))
+            LoadPlayer.Invoke();
 
 
         //cursed crouch controls
