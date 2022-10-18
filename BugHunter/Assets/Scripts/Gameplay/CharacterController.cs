@@ -50,6 +50,11 @@ public class CharacterController : MonoBehaviour
         StartCoroutine(RollTime());
    
     }
+    private void SwitchLadderCam()
+    { 
+        disableCams(true);
+        CameraDodge.SetActive(true);
+    }
     private IEnumerator RollTime()
     {
         yield return RollTimer;

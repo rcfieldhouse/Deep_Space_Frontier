@@ -15,7 +15,7 @@ public class Look : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      //  WeaponHolder.transform.rotation = Quaternion.Euler(transform.eulerAngles.x, WeaponHolder.transform.rotation.eulerAngles.y, transform.eulerAngles.z);
+        //WeaponHolder.transform.rotation = Quaternion.Euler(transform.eulerAngles.x, WeaponHolder.transform.rotation.eulerAngles.y, transform.eulerAngles.z);
         //WeaponHolder.transform.position = Player.transform.position + WeaponHolder.transform.rotation*Vector3.up;
     }
     private void Aim(Quaternion quaternion)
