@@ -28,22 +28,19 @@ public class SavePlugin2 : MonoBehaviour
     private static extern void EndWriting();
 
     [DllImport("Plugin")]
-    private static extern void ReadPlayerFilePos();
+    private static extern float LoadFromFile(int j, string fileName);
 
     [DllImport("Plugin")]
-    private static extern void StartReading(string fileName);
-
-    [DllImport("Plugin")]
-    private static extern void EndReading();
+    private static extern int GetLines(string fileName);
 
     public GameObject player;
     string m_Path;
     string fn;
     string fn2;
-    string fn3;
     string infoString;
     Vector3 LoadedPlayerPos;
     Vector3 LoadedPlayerPos2;
+    Vector3 LoadedPlayerPos3;
     int lineIndex;
 
     // Start is called before the first frame update
@@ -51,13 +48,15 @@ public class SavePlugin2 : MonoBehaviour
     {
         m_Path = Application.dataPath;
         fn = m_Path + "/save.txt";
-        fn2 = Application.streamingAssetsPath + "/PluginSaveFile/" + "save2" + ".txt";
-        fn3 = "/save.txt";
+
+        fn2 = Application.dataPath + "/save.txt";
         Debug.Log(fn);
+        Debug.Log(fn2);
         lineIndex = 0;
         PlayerInput.SavePlayer += SaveItems;
         // PlayerInput.LoadPlayer += ReadItems;
-        PlayerInput.LoadPlayer += LoadRequest;
+        //PlayerInput.LoadPlayer += LoadRequest;
+        PlayerInput.LoadPlayer += LoadItems;
 
 
     }
@@ -77,18 +76,7 @@ public class SavePlugin2 : MonoBehaviour
         EndWriting();
     }
 
-    void ReadItems()
-    {
-        StartReading(fn3);
-
-        //LoadedPlayerPos = ReadPlayerFilePos();
-        ReadPlayerFilePos();
-         Debug.Log("PlayerPos is " + LoadedPlayerPos);
-        //Debug.Log("Grab Player Pos");
-
-        EndReading();
-    }
-
+    // File Loading using C#
     void LoadRequest()
     {
         Debug.Log("Load Request Initiated");
@@ -104,5 +92,20 @@ public class SavePlugin2 : MonoBehaviour
         string[] lines = File.ReadAllLines(fn);
 
         return lines[Index];
+    }
+
+    //File Loading using DLL
+    void LoadItems()
+    {
+        int numLines = GetLines(fn2);
+        int maxItems = numLines / 3;
+        int infoSet = 0;
+
+        // Read Player Position
+        LoadedPlayerPos3.x = LoadFromFile(0, fn);
+        LoadedPlayerPos3.y = LoadFromFile(1, fn);
+        LoadedPlayerPos3.z = LoadFromFile(2, fn);
+        Debug.Log(LoadedPlayerPos3);
+        player.transform.position = LoadedPlayerPos3;
     }
 }
