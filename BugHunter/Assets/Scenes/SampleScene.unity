@@ -13760,6 +13760,7 @@ GameObject:
   - component: {fileID: 414052984}
   - component: {fileID: 414052985}
   - component: {fileID: 414052986}
+  - component: {fileID: 414052987}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -13842,6 +13843,18 @@ MonoBehaviour:
   - {fileID: 433161467}
   - {fileID: 545545300}
   - {fileID: 618022418}
+--- !u!114 &414052987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414052981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc103d4ad492fcb47b42bd07e2d6c1af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &414820782
 GameObject:
   m_ObjectHideFlags: 0
@@ -14207,7 +14220,6 @@ MonoBehaviour:
   magSize: 3
   reserveAmmo: 12
   AdsZoomScale: 0
-  ReloadTimer: 0
   RecoilX: 0
   AimRecoilX: 0
   RecoilY: 0
@@ -14846,7 +14858,6 @@ MonoBehaviour:
   magSize: 1
   reserveAmmo: 3
   AdsZoomScale: 0
-  ReloadTimer: 0
   RecoilX: 0
   AimRecoilX: 0
   RecoilY: 0
@@ -15473,7 +15484,6 @@ MonoBehaviour:
   magSize: 2
   reserveAmmo: 12
   AdsZoomScale: 0
-  ReloadTimer: 0
   RecoilX: 0
   AimRecoilX: 0
   RecoilY: 0
@@ -38327,7 +38337,6 @@ MonoBehaviour:
   magSize: 5
   reserveAmmo: 15
   AdsZoomScale: 0
-  ReloadTimer: 0
   RecoilX: 22.1
   AimRecoilX: 17.7
   RecoilY: 19
@@ -43441,7 +43450,6 @@ MonoBehaviour:
   magSize: 15
   reserveAmmo: 70
   AdsZoomScale: 0
-  ReloadTimer: 0
   RecoilX: 0.35
   AimRecoilX: 0.25
   RecoilY: 0.5

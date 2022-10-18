@@ -171,6 +171,7 @@ public class PlayerInput : MonoBehaviour
 
         Look.Invoke(Direction);
         Move.Invoke(KeyboardInput,SpeedMod);
+
     }
     // UI buttons call this when they want to enable mouse lock
     // Currently used by "Exit_Inventory" Button
