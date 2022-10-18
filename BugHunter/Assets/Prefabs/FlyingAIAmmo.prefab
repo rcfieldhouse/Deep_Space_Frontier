@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5002719639447156173}
   - component: {fileID: 1266388913976607878}
   - component: {fileID: 549278895470467877}
+  - component: {fileID: -5430148998865654850}
   m_Layer: 0
   m_Name: FlyingAIAmmo
   m_TagString: Untagged
@@ -93,8 +94,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567887008950069029}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -114,3 +115,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5430148998865654850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567887008950069029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823664f46ce91d24bb07858bca5fe882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 25
