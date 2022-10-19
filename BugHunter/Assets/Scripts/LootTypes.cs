@@ -6,20 +6,23 @@ internal class HealthLoot : LFInterface
 {
     public void Create(GameObject obj)
     {
-       obj.AddComponent<PickupItems>();
+       obj.AddComponent<HealthPickup>();
+       obj.GetComponent<Renderer>().materials[0].color = Color.red;
     }
 }
 internal class AmmoLoot : LFInterface
 {
     public void Create(GameObject obj)
     {
-        Debug.Log("Amo");
+        obj.AddComponent<AmmoPickUp>();
+        obj.GetComponent<Renderer>().materials[0].color = Color.yellow;
     }
 }
 internal class UpgradeLoot : LFInterface
 {
     public void Create(GameObject obj)
     {
-        Debug.Log("Upgrade");
+        obj.AddComponent<MaterialPickup>();
+        obj.GetComponent<Renderer>().materials[0].color = Color.green;
     }
 }
