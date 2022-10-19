@@ -37,10 +37,11 @@ public class RaycastGun : MonoBehaviour
 
     void Shoot()
     {
-        StatisticTracker.instance.ShotsFired();//this doesnt work 
+        
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
         if ( Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy == true)
         {
+            StatisticTracker.instance.ShotsFired();
             info.SetBulletCount();
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;
@@ -77,6 +78,7 @@ public class RaycastGun : MonoBehaviour
                 {
                     // Call the damage function of that script, passing in our gunDamage variable
                     health.ModifyHealth(gunDamage);
+                    StatisticTracker.instance.ShotsHit();
                 }
 
                 // Check if the object we hit has a rigidbody attached
@@ -92,9 +94,10 @@ public class RaycastGun : MonoBehaviour
                 laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
                    
             }
-            
+            StatisticTracker.instance.Accuracy();
         }
-       
+        
+
     }
 
   
