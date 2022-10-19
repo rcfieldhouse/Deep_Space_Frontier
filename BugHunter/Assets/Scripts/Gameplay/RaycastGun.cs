@@ -54,7 +54,8 @@ public class RaycastGun : MonoBehaviour
             // Set the start position for our visual effect for our laser to the position of gunEnd
             laserLine.SetPosition(0, gunEnd.position);
 
-           
+            
+
             StartCoroutine(ShotEffect());
             // Check if our raycast has hit anything
             //for basic guns
@@ -67,7 +68,8 @@ public class RaycastGun : MonoBehaviour
                 Debug.Log(hit.collider.gameObject.name);
                 // Get a reference to a health script attached to the collider we hit
                 HealthSystem health = hit.collider.gameObject.GetComponent<HealthSystem>();
-               
+
+                StatisticTracker.instance.ShotsFired();
 
                 // If there was a health script attached
                 if (health != null)
@@ -89,7 +91,9 @@ public class RaycastGun : MonoBehaviour
                 laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
                    
             }
+            
         }
+       
     }
 
   
