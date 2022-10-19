@@ -70,7 +70,7 @@ public class GroundAi : MonoBehaviour
 
 
 
-        if (health != null && _isAttacking == true && DamageDealt == false)
+        if (health != null && _isAttacking == true && DamageDealt == false&&PlayerInAttackBox==true)
         {
             // Call the damage function of that script, passing in our gunDamage variable
             health.ModifyHealth(Damage);
@@ -163,7 +163,7 @@ public class GroundAi : MonoBehaviour
         _isAttacking = true;
         Damage = SwingDamage;
         transform.LookAt(player);
-        Debug.Log("they do be swinging");
+      //  Debug.Log("they do be swinging");
         yield return SwingDuration;
         ResetAttack();
     }
