@@ -32,6 +32,7 @@ public class LootSpawner : MonoBehaviour
              loot = LootFactory.CreateLoot(LootType.Health);
         else if (num>66.7f)
              loot = LootFactory.CreateLoot(LootType.UpgradeMats);
+
         Create(loot,transform);
     }
     void Create(LFInterface foo, Transform transform)
