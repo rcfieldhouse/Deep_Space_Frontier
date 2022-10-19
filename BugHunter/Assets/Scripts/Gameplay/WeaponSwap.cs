@@ -7,7 +7,7 @@ public class WeaponSwap : MonoBehaviour
     public static Action<Vector4> BroadCastWeaponRecoilData;
     // Start is called before the first frame update
     //Match each recticle with The Coresponding Weapon
-    public GameObject[] WeaponArray;
+    public List<GameObject> WeaponArray;
     public GameObject[] RecticleArray;
 
     public static Action<Vector3> BroadCastHipRecoil;
@@ -18,7 +18,7 @@ public class WeaponSwap : MonoBehaviour
     private int WeaponChoice = 0;
     void Start()
     {
-        for (int i = 0; i < WeaponArray.Length; i++)
+        for (int i = 0; i < WeaponArray.Count; i++)
         {
             RecticleArray[i].SetActive(false);
             WeaponArray[i].SetActive(false);
@@ -45,7 +45,7 @@ public class WeaponSwap : MonoBehaviour
 
     private void SetWeapon(int choice)
     {
-        for (int i = 0; i < WeaponArray.Length; i++)
+        for (int i = 0; i < WeaponArray.Count; i++)
         {
             RecticleArray[i].SetActive(false);
             WeaponArray[i].SetActive(false);
@@ -57,7 +57,7 @@ public class WeaponSwap : MonoBehaviour
         //broadcast data to classes that need it 
         BroadcastADSZoom.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetADSZoom());
         BroadCastWeaponRecoilData.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetRecoilInfo());
-        BroadcastWeaponListData.Invoke(WeaponChoice, WeaponArray.Length-1);
+        BroadcastWeaponListData.Invoke(WeaponChoice, WeaponArray.Count - 1);
         BroadCastHipRecoil.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCameraRecoilInfo(0));
         BroadCastADSRecoil.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCameraRecoilInfo(1));
         BroadcastSnap.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetSnap());
@@ -66,7 +66,7 @@ public class WeaponSwap : MonoBehaviour
     {
        // if (WeaponArray[num])
        // {
-            for (int i = 0; i < WeaponArray.Length; i++)
+            for (int i = 0; i < WeaponArray.Count; i++)
             {
                 RecticleArray[i].SetActive(false);
                 WeaponArray[i].SetActive(false);
@@ -79,15 +79,15 @@ public class WeaponSwap : MonoBehaviour
             WeaponArray[0].SetActive(true);
             WeaponChoice = 0;
         }
-            else if (num > WeaponArray.Length-1)
+            else if (num > WeaponArray.Count - 1)
         {
           
-            RecticleArray[WeaponArray.Length-1].SetActive(true);
-            WeaponArray[WeaponArray.Length-1].SetActive(true);
-            WeaponChoice = WeaponArray.Length-1;
+            RecticleArray[WeaponArray.Count - 1].SetActive(true);
+            WeaponArray[WeaponArray.Count - 1].SetActive(true);
+            WeaponChoice = WeaponArray.Count - 1;
 
         }
-            else if (num >= 0 && num <= WeaponArray.Length)
+            else if (num >= 0 && num <= WeaponArray.Count)
         {
             RecticleArray[num].SetActive(true);
             WeaponArray[num].SetActive(true);
