@@ -61,7 +61,7 @@ public class SavePlugin2 : MonoBehaviour
 
     }
 
-    void SaveItems()
+   public void SaveItems()
     {
         Debug.Log("Save Request Initiated");
         StartWriting(fn);
@@ -95,7 +95,7 @@ public class SavePlugin2 : MonoBehaviour
     }
 
     //File Loading using DLL
-    void LoadItems()
+   public void LoadItems()
     {
         int numLines = GetLines(fn2);
         int maxItems = numLines / 3;

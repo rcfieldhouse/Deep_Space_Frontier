@@ -27,9 +27,10 @@ public class UIManager : MonoBehaviour
         GameplayUI.enabled = false;
         PauseMenuUI.enabled = true;
         WeaponHolder.SetActive(false);
-        
+        Cursor.lockState = CursorLockMode.None;
+
         //Time.timeScale = 0;
-   }
+    }
     public void ResumeGame()
     {
         Debug.Log("ResumePressed");
@@ -37,5 +38,6 @@ public class UIManager : MonoBehaviour
         GameplayUI.enabled = true;
         PauseMenuUI.enabled = false;
         WeaponHolder.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
