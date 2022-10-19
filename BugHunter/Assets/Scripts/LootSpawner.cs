@@ -22,7 +22,7 @@ public class LootSpawner : MonoBehaviour
        
     }
 
-   public void Sprayoot(Transform transform)
+   public void SprayLoot(Transform transform)
     {
 
         var loot = LootFactory.CreateLoot(LootType.Health);

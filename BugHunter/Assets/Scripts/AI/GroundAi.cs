@@ -179,7 +179,7 @@ public class GroundAi : MonoBehaviour
 
     public void HandleObjectDeath(GameObject context)
     {
-        LootSpawner.instance.Sprayoot(transform);
+        LootSpawner.instance.SprayLoot(transform);
         //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
        
         Destroy(gameObject);
