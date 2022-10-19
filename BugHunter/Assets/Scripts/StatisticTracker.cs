@@ -5,14 +5,14 @@ using UnityEngine;
 public class StatisticTracker : MonoBehaviour
 {
     public static StatisticTracker instance;
-    float accuracy = 100;
+    //float accuracy = 100;
     int total_shots = 0;
-    int total_hits = 0;
+    //int total_hits = 0;
     
     // Start is called before the first frame update
     void Awake()
     {
-        if (instance == null)
+        if (!instance)
         {
             instance = this;
         }

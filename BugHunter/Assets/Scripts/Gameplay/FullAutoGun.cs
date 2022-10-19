@@ -99,6 +99,7 @@ public class FullAutoGun : MonoBehaviour
                 laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
 
             }
+            
         }
     }
     // Update is called once per frame
@@ -106,7 +107,7 @@ public class FullAutoGun : MonoBehaviour
     {
         if (_IsShooting == true)
         {
-            PlayerInput.Shoot.Invoke(); ;
+            PlayerInput.Shoot.Invoke(); ;          
         }
           
     }
