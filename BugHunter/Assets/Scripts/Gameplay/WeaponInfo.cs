@@ -31,6 +31,10 @@ public class WeaponInfo : MonoBehaviour
         }
        
     }
+    public void OnDisable()
+    {
+        StopCoroutine(SetBulletCount(true));
+    }
     public bool hasAmmo()
     {
         return ammoInMag > 0;
@@ -67,6 +71,7 @@ public class WeaponInfo : MonoBehaviour
         // Invoke(SetBulletCount, ReloadTimer);
       //  Invoke(nameof(SetBulletCount(true)), 1);
         //Setting to true reloads
+        if(gameObject.activeInHierarchy==true)
         StartCoroutine( SetBulletCount(true));
     }
     // Update is called once per frame
