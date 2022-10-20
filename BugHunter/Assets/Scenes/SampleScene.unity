@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21108171, g: 0.05813721, b: 0.036018983, a: 1}
+  m_IndirectSpecularColor: {r: 0.21108195, g: 0.05813718, b: 0.03601958, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14124,6 +14124,7 @@ GameObject:
   - component: {fileID: 414052986}
   - component: {fileID: 414052987}
   - component: {fileID: 414052988}
+  - component: {fileID: 414052989}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -14232,6 +14233,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ba89e0f0e482f045911f9655ab99629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &414052989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414052981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db0fb2b7f72f7449bd3fe22d5ee14a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &414820782
@@ -30341,6 +30354,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dead27ba2c022fe4ebf214a011334a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _CommandProcessor: {fileID: 414052989}
+  Cam: {fileID: 1885606630}
+  teleporterPrefab: {fileID: 4573155571063890499, guid: 67820e0fde4b8a543ba77f2c5bf7ba32,
+    type: 3}
+  turretPrefab: {fileID: 2014373730134805986, guid: 048d661989739d345a60c53dde5b73d8,
+    type: 3}
   SpeedMod: 1
   controller: {fileID: 1180305570}
   Sensitivity: 0.604

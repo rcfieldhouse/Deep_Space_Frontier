@@ -3,7 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 public class PlayerInput : MonoBehaviour
+
+
 {
+    //For the Teleport Command Pattern
+    public CommandProcessor _CommandProcessor;
+    public Camera Cam;
+    [SerializeField]
+    private GameObject teleporterPrefab;
+    [SerializeField]
+    private GameObject turretPrefab;
+    private GameObject turretInstance;
+
     //actions that the player may perform
     public static Action JumpAction, DodgeRoll, Shoot, Chamber,Reload, PickupItem;
   
@@ -41,13 +52,17 @@ public class PlayerInput : MonoBehaviour
     //damn you dante, make ur own file 
     void Start()
     {
-
+        
         // Commented temporarily unitl inventory system is implemented
         Cursor.lockState= CursorLockMode.Locked;
 
         WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }
- 
+    private void Awake()
+    {
+        turretInstance = Instantiate(turretPrefab);
+    }
+
     private void SetWeaponActive(int num,int length)
     {
         WeaponActive = num;
@@ -98,6 +113,32 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
             GetTime.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Vector3 rayOrigin = Cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+            Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+            GameObject myTeleporter;
+
+            //Hardcoding 25 as the range
+            if (Physics.Raycast(ray, out hitInfo, 25))
+            {
+                myTeleporter = Instantiate(teleporterPrefab);             
+                myTeleporter.transform.position = hitInfo.point;
+                myTeleporter.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+
+                MoveCommand moveCommand = new MoveCommand(turretInstance, hitInfo.point);
+
+
+                _CommandProcessor.ExecuteCommand(moveCommand);
+            }                
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            _CommandProcessor.Undo();
+        }
+            
 
 
 
