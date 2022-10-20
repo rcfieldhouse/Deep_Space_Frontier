@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
     public static Action SavePlayer;
     public static Action LoadPlayer;
     public static Action PausePlugin;
+    public static Action GetTime;
     public static Action spawnLoot;
     public static PlayerInput instance;
 
@@ -94,6 +95,9 @@ public class PlayerInput : MonoBehaviour
         //Pause Menu For Plugin
         if (Input.GetKeyDown(KeyCode.Escape))
             PausePlugin.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.T))
+            GetTime.Invoke();
 
 
 
