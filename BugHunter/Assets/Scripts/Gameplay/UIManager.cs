@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
     }
     public void ResumeGame()
     {
-        Debug.Log("ResumePressed");
+      //  Debug.Log("ResumePressed");
         InventoryUI.enabled = true;
         GameplayUI.enabled = true;
         PauseMenuUI.enabled = false;

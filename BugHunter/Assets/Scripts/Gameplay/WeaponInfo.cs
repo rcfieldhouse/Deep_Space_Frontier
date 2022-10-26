@@ -92,7 +92,7 @@ public class WeaponInfo : MonoBehaviour
     public IEnumerator SetBulletCount(bool var)
     {
         yield return ReloadTimer;
-        Debug.Log("reload");
+        //Debug.Log("reload");
         if (var)
         {
             if (reserveAmmo > magSize - ammoInMag)
