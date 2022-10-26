@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public Rigidbody Rigidbody;
-    public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager;
+    public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
  
     [SerializeField] private LayerMask m_WhatIsGround;
 
@@ -57,9 +57,11 @@ public class CharacterController : MonoBehaviour
     }
     private IEnumerator RollTime()
     {
+        WeaponCamera.SetActive(false);
         yield return RollTimer;
         disableCams(false);
-  
+        WeaponCamera.SetActive(true);
+
     }
 
     private void SwitchCamCrouch(bool var)
