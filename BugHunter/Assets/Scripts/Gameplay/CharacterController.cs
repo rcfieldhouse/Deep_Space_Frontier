@@ -6,13 +6,14 @@ public class CharacterController : MonoBehaviour
 {
     public Rigidbody Rigidbody;
     public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
- 
+    private bool SuspendMovement = false;
+    private Vector3 RollVector = Vector3.forward;
     [SerializeField] private LayerMask m_WhatIsGround;
 
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
     [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;
 
-    private WaitForSeconds RollTimer = new WaitForSeconds(1.0f);
+    public WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
 
     [SerializeField] private Vector3 mover,JumpForce;
      private bool m_Grounded = true;
@@ -21,11 +22,10 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         Rigidbody = GetComponent<Rigidbody>();
-        PlayerInput.DodgeRoll += SwitchDodgeCam;
+    
         PlayerInput.DodgeRoll += Dodge;
         PlayerInput.Crouching += SwitchCamCrouch;
         PlayerInput.JumpAction += Jump;
-      //  PlayerInput.Look += Aim;
         PlayerInput.Move += Move;
         //this line sets default cam to main
         disableCams(false);
@@ -63,6 +63,17 @@ public class CharacterController : MonoBehaviour
         WeaponCamera.SetActive(true);
 
     }
+    private IEnumerator DoTheRoll()
+    {
+        RollVector = Rigidbody.velocity.normalized;
+        if (RollVector == Vector3.zero)
+            RollVector = Vector3.forward;
+
+        yield return new WaitForEndOfFrame();
+        SuspendMovement = true;
+        yield return RollTimer;
+        SuspendMovement = false; 
+    }
 
     private void SwitchCamCrouch(bool var)
     {
@@ -74,21 +85,27 @@ public class CharacterController : MonoBehaviour
         Rigidbody.velocity += JumpForce;
     }
 
-    private void Aim(Quaternion quaternion)
-    {
-        Rigidbody.gameObject.transform.localRotation = quaternion;
-    }
+    
     private void Move(Vector2 move, float SpeedMod)
     {
-        SpeedMod *= 5;
-        mover = transform.right * move.x + transform.forward * move.y;
-        Rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, Rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
+        move = move.normalized;
+        if (SuspendMovement == false)
+        {
+            SpeedMod *= 4f;
+            mover = transform.right * move.x + transform.forward * move.y;
+            Rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, Rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
+        }      
+        else
+        {
+            Rigidbody.velocity = RollVector * 12;
+        }
         Rigidbody.angularVelocity = Vector3.zero;
     }
     
     private void Dodge()
     {
-
+        StartCoroutine(DoTheRoll());
+        SwitchDodgeCam();
     }
     // Update is called once per frame
     void Update()

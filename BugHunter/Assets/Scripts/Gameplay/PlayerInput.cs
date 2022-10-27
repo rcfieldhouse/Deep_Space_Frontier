@@ -17,16 +17,14 @@ public class PlayerInput : MonoBehaviour
 
     //actions that the player may perform
     public static Action JumpAction, DodgeRoll, Shoot, Chamber,Reload, PickupItem;
-  
     public static Action<bool>Crouching,ADS;
     public static Action<Quaternion> Look, UseAbility;
     public static Action<Vector2,float> Move;
-    public static Action SavePlayer;
-    public static Action LoadPlayer;
-    public static Action PausePlugin;
-    public static Action GetTime;
-    public static Action spawnLoot;
-    public static PlayerInput instance;
+
+    //pause menu actions
+    public static Action SavePlayer, LoadPlayer, PausePlugin, GetTime;
+
+
 
     //these are for weapon swapping,
     //swapping weapon is a placeholder until class selection is introduced
@@ -94,7 +92,7 @@ public class PlayerInput : MonoBehaviour
 
         //sprint
        if (Input.GetKeyDown(KeyCode.LeftShift)) 
-            SpeedMod = 2.0f;
+            SpeedMod = 1.75f;
 
        if (Input.GetKeyUp(KeyCode.LeftShift))
             SpeedMod = 1.0f;
