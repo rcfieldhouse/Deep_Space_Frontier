@@ -65,13 +65,15 @@ public class CharacterController : MonoBehaviour
     }
     private IEnumerator DoTheRoll()
     {
-        RollVector = Rigidbody.velocity.normalized;
-        if (RollVector == Vector3.zero)
-            RollVector = Vector3.forward;
+        RollVector =  Rigidbody.velocity.normalized;
+        if (RollVector == Vector3.zero || Rigidbody.velocity.magnitude < 0.1)
+            RollVector = WeaponCamera.transform.rotation * Vector3.forward;
 
         yield return new WaitForEndOfFrame();
+        GetComponent<HealthSystem>().SetInvulnerable(true);
         SuspendMovement = true;
         yield return RollTimer;
+        GetComponent<HealthSystem>().SetInvulnerable(false);
         SuspendMovement = false; 
     }
 
