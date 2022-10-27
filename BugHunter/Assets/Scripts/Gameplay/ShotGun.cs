@@ -44,13 +44,24 @@ public class ShotGun : MonoBehaviour
         //  }
         //  }
     }
+    private void Update()
+    {
+        if (Time.time < nextFire && gameObject.activeInHierarchy == true)
+        {
+            Debug.Log("boobs");
+            GetComponent<WeaponInfo>().SetCanShoot(false);
+        }
+        else GetComponent<WeaponInfo>().SetCanShoot(true);
 
+    }
     void Shoot()
     {
-    
+      
+           
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
         if ( Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy == true)
         {
+            GetComponent<WeaponInfo>().SetCanShoot(true);
             info.SetBulletCount();
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;
@@ -156,7 +167,9 @@ public class ShotGun : MonoBehaviour
 
 
                 }
+           
         }
+        
     }
 
    // public bool CanShoot()

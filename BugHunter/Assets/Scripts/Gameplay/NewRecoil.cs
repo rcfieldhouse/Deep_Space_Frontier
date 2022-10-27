@@ -17,7 +17,7 @@ public class NewRecoil : MonoBehaviour
     [SerializeField] private float returnSpeed;
     private float AimCorrection=0,baseAim=0,num=0;
     private bool RecoilStartPossible = true;
-   private bool HasAmmo = true;
+   private bool HasAmmo = true,_CanShoot=true;
     // Start is called before the first frame update
     private void SetAdsRecoil(Vector3 vec)
     {
@@ -38,10 +38,15 @@ public class NewRecoil : MonoBehaviour
         PlayerInput.ADS += SetIsAiming;
 
         WeaponInfo.maginfo += getIfMagHasAmmo;
+        WeaponInfo.CanShoot += CanShoot;
         WeaponSwap.BroadCastADSRecoil += SetAdsRecoil;
         WeaponSwap.BroadCastHipRecoil += SetHipRecoil;
         WeaponSwap.BroadcastSnap += SetSnap;
         Player = GameObject.Find("Player");
+    }
+    private void CanShoot(bool var)
+    {
+        _CanShoot = var;
     }
     private void getIfMagHasAmmo(bool var)
     {
@@ -86,7 +91,7 @@ public class NewRecoil : MonoBehaviour
 
     public void RecoilStart()
     {
-        if (HasAmmo == true) { 
+        if (HasAmmo == true&& _CanShoot==true) { 
         if (RecoilStartPossible==true)
         {
             RecoilStartPossible = false;

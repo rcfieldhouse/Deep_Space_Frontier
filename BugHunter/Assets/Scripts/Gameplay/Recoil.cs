@@ -36,6 +36,7 @@ public class Recoil : MonoBehaviour
         PlayerInput.Shoot += StartShot;
         WeaponSwap.BroadCastWeaponRecoilData += SetAnimProperties;
         WeaponInfo.maginfo += getIfMagHasAmmo;
+        WeaponInfo.CanShoot += SetCanShoot;
         PlayerInput.ADS += SetISADS;
         Weight = 1.25f;
         SetAnimProperties(new Vector4(1.0f, 1.0f, 1.0f, Weight));
@@ -70,6 +71,10 @@ public class Recoil : MonoBehaviour
         animTime = vec.z - 0.07f;
         UpTime = vec.w * animTime;
         DownTime = animTime - UpTime;
+    }
+    private void SetCanShoot(bool var)
+    {
+        _CanShoot=var;
     }
     private void StartShot()
     {
@@ -109,7 +114,7 @@ public class Recoil : MonoBehaviour
             yield return null;
         }
 
-        _CanShoot = true;
+    
 
        // yield return bar;
      
