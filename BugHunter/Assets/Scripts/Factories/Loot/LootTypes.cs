@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 internal class HealthLoot : LFInterface
-{
+{ 
     public void Create(GameObject obj)
     {
        obj.AddComponent<HealthPickup>();

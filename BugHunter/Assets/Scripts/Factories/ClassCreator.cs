@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class ClassCreator : MonoBehaviour
 {
-    public ClassType foo;
-    public enum ClassType
-    {
-        Assault, Engineer, Sniper
-    }
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +12,8 @@ public class ClassCreator : MonoBehaviour
     }
 
     // Update is called once per frame
-   
+    public void CreateClass(GameObject Player)
+    {
+        ClassInterface ClassCreator = ClassFactory.SpawnClass(ClassType.Assault);          
+    }
 }

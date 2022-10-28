@@ -2,17 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClassFactory : MonoBehaviour
+internal enum ClassType
 {
-    // Start is called before the first frame update
-    void Start()
+    Assault, Engineer, Sniper
+}
+internal class ClassFactory
+{
+    public static ClassInterface SpawnClass(ClassType ClassType)
     {
-        
+        ClassInterface Loot;
+        switch (ClassType)
+        {
+            case ClassType.Assault:
+                Loot = new Assault();
+                break;
+            case ClassType.Engineer:
+                Loot = new Engineer();
+                break;
+            case ClassType.Sniper:
+                Loot = new Sniper();
+                break;
+
+            default:
+                Loot = new Assault();
+                break;
+        }
+        return Loot;
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
