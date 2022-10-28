@@ -11,9 +11,11 @@ public class GrenadeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GrenadeThrow = Grenade.GetComponent<GrenadeThrow>();
+        GrenadeThrow = GetComponentInChildren<GrenadeThrow>();
+        Grenade = GrenadeThrow.gameObject;
         PlayerInput.Grenade += BeginThrow;
         Transform = GrenadeThrow.GetStartPos();
+        Grenade.SetActive(false);
     }
     public void BeginThrow(Quaternion quaternion)
     {

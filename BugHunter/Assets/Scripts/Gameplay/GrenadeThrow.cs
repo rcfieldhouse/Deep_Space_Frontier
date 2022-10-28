@@ -30,7 +30,6 @@ public class GrenadeThrow : MonoBehaviour
         CapsuleCollider = GetComponent<CapsuleCollider>();
         sphereCollider = GetComponent<SphereCollider>();
         Rigidbody.isKinematic = true;
-        Rigidbody.gameObject.SetActive(false);
         GrenadeRenderer = GetComponent<MeshRenderer>();
     }
 

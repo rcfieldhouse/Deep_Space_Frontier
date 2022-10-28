@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21111907, g: 0.058149654, b: 0.03602633, a: 1}
+  m_IndirectSpecularColor: {r: 0.21108171, g: 0.05813721, b: 0.036018983, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8663,12 +8663,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 884127266}
+    m_TransformParent: {fileID: 1180305568}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
@@ -8688,7 +8688,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -0.52001953
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
@@ -8698,7 +8698,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4
+      value: 0.4000244
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e3657c2be8e9142b79535b609f4825,
         type: 3}
@@ -8771,7 +8771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e292ce974c96ebb4d9c17721375ccc93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 884127265}
+  player: {fileID: 1180305564}
   GrenadeDamage: 100
   GrenadeVFX: {fileID: 895795652320744108, guid: 9841ad20b01b35e41b5c77fc79f55a50,
     type: 3}
@@ -18104,7 +18104,6 @@ Transform:
   - {fileID: 433161459}
   - {fileID: 545545298}
   - {fileID: 618022409}
-  - {fileID: 368870031}
   m_Father: {fileID: 1885606631}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30059,9 +30058,7 @@ GameObject:
   - component: {fileID: 1180305570}
   - component: {fileID: 1180305571}
   - component: {fileID: 1180305572}
-  - component: {fileID: 1180305574}
   - component: {fileID: 1180305576}
-  - component: {fileID: 1180305575}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -30132,6 +30129,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1527400318}
+  - {fileID: 368870031}
   m_Father: {fileID: 1146387209}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30215,34 +30213,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: -0.000015258789, y: 0, z: 0.000061035156}
---- !u!114 &1180305574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180305564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a0bb0dd8316f3d4782fba483477d661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
---- !u!114 &1180305575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180305564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3cfbb50e920ecc458fec113b7b5c6dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Grenade: {fileID: 368870032}
-  GrenadeThrow: {fileID: 368870033}
-  numGrenades: 3
 --- !u!114 &1180305576
 MonoBehaviour:
   m_ObjectHideFlags: 0
