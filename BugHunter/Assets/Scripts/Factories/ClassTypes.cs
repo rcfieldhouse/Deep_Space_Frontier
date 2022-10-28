@@ -8,7 +8,7 @@ using UnityEngine;
 {
         public void CreateClass(GameObject obj)
         {
-        obj.AddComponent<HealthSystem>();
+        obj.AddComponent<HealthSystem>().SetMaxHealth(100);
         obj.AddComponent<GrenadeManager>();
         obj.AddComponent<Dodge>();
         }
@@ -17,13 +17,15 @@ using UnityEngine;
     {
         public void CreateClass(GameObject obj)
         {
-            
-        }
+        obj.AddComponent<GrenadeManager>();
+        obj.AddComponent<HealthSystem>().SetMaxHealth(200);
+        obj.AddComponent<TurretAbility>();
+         }
     }
     internal class Sniper : ClassInterface
 {
         public void CreateClass(GameObject obj)
         {
-          
-        }
+        obj.AddComponent<HealthSystem>().SetMaxHealth(50);
+    }
     }
