@@ -27,5 +27,7 @@ using UnityEngine;
         public void CreateClass(GameObject obj)
         {
         obj.AddComponent<HealthSystem>().SetMaxHealth(50);
-    }
+        obj.AddComponent<GrenadeManager>();
+        obj.AddComponent<SpecialBulletSelect>();
+        }
     }

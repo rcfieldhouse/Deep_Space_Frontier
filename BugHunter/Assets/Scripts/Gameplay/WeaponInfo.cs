@@ -36,11 +36,10 @@ public class WeaponInfo : MonoBehaviour
     public void Update()
     {
         if (gameObject.activeInHierarchy == true)
-        { 
+        {
             maginfo.Invoke(hasAmmo());
             CanShoot.Invoke(GetCanShoot());
         }
-        Debug.Log(GetCanShoot());
     }
     public void OnDisable()
     {

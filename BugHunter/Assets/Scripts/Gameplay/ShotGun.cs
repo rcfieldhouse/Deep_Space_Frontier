@@ -48,7 +48,6 @@ public class ShotGun : MonoBehaviour
     {
         if (Time.time < nextFire && gameObject.activeInHierarchy == true)
         {
-            Debug.Log("boobs");
             GetComponent<WeaponInfo>().SetCanShoot(false);
         }
         else GetComponent<WeaponInfo>().SetCanShoot(true);

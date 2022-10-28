@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-public class RaycastGun : MonoBehaviour
+public class SniperShot : MonoBehaviour
 {
 
     public int gunDamage = -25;                                            // Set the number of hitpoints that this gun will take away from shot objects with a health script
@@ -17,9 +17,9 @@ public class RaycastGun : MonoBehaviour
     private LineRenderer laserLine;
   // Reference to the LineRenderer component which will display our laserline
     private ParticleSystem muzzleFlash;
-    private float nextFire;                                                // Float to store the time the player will be allowed to fire again, after firing
-    private Vector3 AimSpread = new Vector3(0.0f, 0.0f,0.0f);                                                                
+    private float nextFire;                                                // Float to store the time the player will be allowed to fire again, after firing                                                        
     public WeaponInfo info;
+
 
     void Start()
     {
@@ -37,8 +37,7 @@ public class RaycastGun : MonoBehaviour
     private void Update()
     {
         if (Time.time < nextFire && gameObject.activeInHierarchy == true)
-        {
-            Debug.Log("boobs");
+        { 
             GetComponent<WeaponInfo>().SetCanShoot(false);
         }
         else GetComponent<WeaponInfo>().SetCanShoot(true);
