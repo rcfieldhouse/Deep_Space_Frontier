@@ -8,7 +8,8 @@ using UnityEngine;
 {
         public void CreateClass(GameObject obj)
         {
-         
+        obj.AddComponent<HealthSystem>();
+        obj.AddComponent<GrenadeManager>();
         }
     }
     internal class Engineer : ClassInterface
