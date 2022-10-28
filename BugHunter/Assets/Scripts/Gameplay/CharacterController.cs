@@ -7,7 +7,6 @@ public class CharacterController : MonoBehaviour
     public Rigidbody Rigidbody;
     public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
     private bool SuspendMovement = false;
-    private Vector3 RollVector = Vector3.forward;
     [SerializeField] private LayerMask m_WhatIsGround;
 
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
@@ -21,9 +20,8 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody = GetComponent<Rigidbody>();
-    
-        PlayerInput.UseAbility += Dodge;
+        Rigidbody = GetComponent<Rigidbody>();   
+       // PlayerInput.UseAbility += Dodge;
         PlayerInput.Crouching += SwitchCamCrouch;
         PlayerInput.JumpAction += Jump;
         PlayerInput.Move += Move;
@@ -31,7 +29,10 @@ public class CharacterController : MonoBehaviour
         disableCams(false);
         
     }
-
+    public GameObject[] GetCameras()
+    {//this is for dodge roll fam
+        return new GameObject[5] { CameraMain, CameraCrouch, CameraDodge, CameraManager, WeaponCamera };
+    }
     //functions for delegates 
     //happy programmer noises ;)
 
@@ -43,39 +44,18 @@ public class CharacterController : MonoBehaviour
         CameraMain.SetActive(!var);
     }
   
-    private void SwitchDodgeCam()
-    {
-        disableCams(true);
-        CameraDodge.SetActive(true);
-        StartCoroutine(RollTime());
-   
-    }
+  
     private void SwitchLadderCam()
     { 
         disableCams(true);
         CameraDodge.SetActive(true);
     }
-    private IEnumerator RollTime()
+ 
+    public void SetSuspendMovement(bool foo)
     {
-        WeaponCamera.SetActive(false);
-        yield return RollTimer;
-        disableCams(false);
-        WeaponCamera.SetActive(true);
-
+        SuspendMovement = foo;
     }
-    private IEnumerator DoTheRoll()
-    {
-        RollVector =  Rigidbody.velocity.normalized;
-        if (RollVector == Vector3.zero || Rigidbody.velocity.magnitude < 0.1)
-            RollVector = WeaponCamera.transform.rotation * Vector3.forward;
 
-        yield return new WaitForEndOfFrame();
-        GetComponent<HealthSystem>().SetInvulnerable(true);
-        SuspendMovement = true;
-        yield return RollTimer;
-        GetComponent<HealthSystem>().SetInvulnerable(false);
-        SuspendMovement = false; 
-    }
 
     private void SwitchCamCrouch(bool var)
     {
@@ -97,18 +77,14 @@ public class CharacterController : MonoBehaviour
             mover = transform.right * move.x + transform.forward * move.y;
             Rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, Rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
         }      
-        else
-        {
-            Rigidbody.velocity = RollVector * 12;
-        }
+       else
+       {
+           Rigidbody.velocity = GetComponent<Dodge>().GetRollVector() * 12;
+       }
         Rigidbody.angularVelocity = Vector3.zero;
     }
     
-    private void Dodge()
-    {
-        StartCoroutine(DoTheRoll());
-        SwitchDodgeCam();
-    }
+  
     // Update is called once per frame
     void Update()
     {

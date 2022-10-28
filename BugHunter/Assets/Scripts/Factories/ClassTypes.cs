@@ -10,6 +10,7 @@ using UnityEngine;
         {
         obj.AddComponent<HealthSystem>();
         obj.AddComponent<GrenadeManager>();
+        obj.AddComponent<Dodge>();
         }
     }
     internal class Engineer : ClassInterface
