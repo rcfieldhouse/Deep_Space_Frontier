@@ -17,7 +17,9 @@ using UnityEngine;
     {
         public void CreateClass(GameObject obj)
         {
+        obj.AddComponent<GrenadeManager>();
         obj.AddComponent<HealthSystem>().SetMaxHealth(200);
+        obj.AddComponent<TurretAbility>();
          }
     }
     internal class Sniper : ClassInterface
