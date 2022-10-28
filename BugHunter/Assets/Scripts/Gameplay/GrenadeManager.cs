@@ -12,7 +12,7 @@ public class GrenadeManager : MonoBehaviour
     void Start()
     {
         GrenadeThrow = Grenade.GetComponent<GrenadeThrow>();
-        PlayerInput.UseAbility += BeginThrow;
+        PlayerInput.Grenade += BeginThrow;
         Transform = GrenadeThrow.GetStartPos();
     }
     public void BeginThrow(Quaternion quaternion)

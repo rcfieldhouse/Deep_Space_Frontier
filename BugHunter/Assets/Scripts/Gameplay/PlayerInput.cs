@@ -16,9 +16,9 @@ public class PlayerInput : MonoBehaviour
     private GameObject turretInstance;
 
     //actions that the player may perform
-    public static Action JumpAction, DodgeRoll, Shoot, Chamber,Reload, PickupItem;
+    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, PickupItem;
     public static Action<bool>Crouching,ADS;
-    public static Action<Quaternion> Look, UseAbility;
+    public static Action<Quaternion> Look, Grenade;
     public static Action<Vector2,float> Move;
 
     //pause menu actions
@@ -158,7 +158,7 @@ public class PlayerInput : MonoBehaviour
 
         //dodge mechanic
         if (Input.GetKeyDown(KeyCode.C))
-            DodgeRoll.Invoke();
+            UseAbility.Invoke();
        // else if (Input.GetKeyUp(KeyCode.C))
        //     DodgeRoll.Invoke(false);
 
@@ -166,7 +166,7 @@ public class PlayerInput : MonoBehaviour
 
         //ability
         if (Input.GetKeyDown(KeyCode.Q))
-            UseAbility.Invoke(Direction);
+            Grenade.Invoke(Direction);
 
         if (Input.GetKeyDown(KeyCode.R))
             Reload.Invoke();

@@ -23,7 +23,7 @@ public class CharacterController : MonoBehaviour
     {
         Rigidbody = GetComponent<Rigidbody>();
     
-        PlayerInput.DodgeRoll += Dodge;
+        PlayerInput.UseAbility += Dodge;
         PlayerInput.Crouching += SwitchCamCrouch;
         PlayerInput.JumpAction += Jump;
         PlayerInput.Move += Move;
