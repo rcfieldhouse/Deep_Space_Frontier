@@ -42,7 +42,7 @@ public class NewRecoil : MonoBehaviour
         WeaponSwap.BroadCastADSRecoil += SetAdsRecoil;
         WeaponSwap.BroadCastHipRecoil += SetHipRecoil;
         WeaponSwap.BroadcastSnap += SetSnap;
-        Player = GameObject.Find("Player");
+        Player = GameObject.Find("MixamoCharacter");
     }
     private void CanShoot(bool var)
     {
