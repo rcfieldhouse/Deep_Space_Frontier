@@ -8,7 +8,7 @@ public class GrenadeThrow : MonoBehaviour
     public GameObject player;
     private Rigidbody Rigidbody;
     private bool _isReady = true;
-    private CapsuleCollider CapsuleCollider;
+  
     private SphereCollider sphereCollider;
     private WaitForSeconds GrenadeFuse = new WaitForSeconds(2.0f);
     private WaitForSeconds BoomTimer = new WaitForSeconds(0.25f);
@@ -27,7 +27,7 @@ public class GrenadeThrow : MonoBehaviour
         //_startValues.position = new Vector3(-0.5f, -0.03f, 0.4f);
        // _startValues.transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
         Rigidbody = GetComponent<Rigidbody>();
-        CapsuleCollider = GetComponent<CapsuleCollider>();
+
         sphereCollider = GetComponent<SphereCollider>();
         Rigidbody.isKinematic = true;
         GrenadeRenderer = GetComponent<MeshRenderer>();
@@ -51,7 +51,9 @@ public class GrenadeThrow : MonoBehaviour
         Rigidbody.isKinematic = false;
         Rigidbody.transform.parent = null;
         Rigidbody.velocity=ThrowVector;
-        
+            sphereCollider.radius = 0.02f;
+            sphereCollider.enabled = true;
+            sphereCollider.isTrigger = false;
             yield return GrenadeFuse;
           
             StartCoroutine(TingGoBoom());
@@ -63,13 +65,16 @@ public class GrenadeThrow : MonoBehaviour
         GrenadeRenderer.enabled = false;
         Rigidbody.isKinematic = true;
         sphereCollider.enabled = true;
-        
+        sphereCollider.isTrigger = true;
+        sphereCollider.radius = 0.25f;
+
         //Grenade VFX Trigger
         SpawnGrenadeVFX();
         yield return BoomTimer;
         _isReady = false;
-
-
+        sphereCollider.isTrigger = false;
+        sphereCollider.enabled = false;
+        sphereCollider.radius = 0.02f;
         StartCoroutine(ResetNade());
        
     }
@@ -79,17 +84,16 @@ public class GrenadeThrow : MonoBehaviour
 
         //dunno why but transform isnt writable
         Rigidbody.gameObject.transform.SetParent(player.transform);
-        Rigidbody.gameObject.transform.localPosition = new Vector3(-0.5f, 1.03f, 0.4f);
+        Rigidbody.gameObject.transform.localPosition = new Vector3(-0.5f, 2.2f, 1.3f);
         Rigidbody.gameObject.transform.localRotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
-        Rigidbody.gameObject.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
         Rigidbody.isKinematic = true;
-        sphereCollider.enabled = false;
+        sphereCollider.enabled = false;   
         Rigidbody.gameObject.GetComponent<MeshRenderer>().enabled = false;
 
         
         yield return GrenadeResetTimer;
         _isReady = true;
-        Rigidbody.gameObject.transform.localPosition = new Vector3(-0.5f, -0.03f, 0.4f);
+        Rigidbody.gameObject.transform.localPosition = new Vector3(-0.5f, 2.2f, 1.3f);
         Rigidbody.gameObject.GetComponent<MeshRenderer>().enabled = true;
         Rigidbody.gameObject.SetActive(false);
      
