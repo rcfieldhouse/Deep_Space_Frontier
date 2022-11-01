@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour
 
     public WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
 
-    [SerializeField] private Vector3 mover,JumpForce;
+    [SerializeField] private Vector3 mover,JumpForce = new Vector3 (0.0f,25.0f,0.0f);
      private bool m_Grounded = true;
     [SerializeField] private CapsuleCollider coll;
     // Start is called before the first frame update
@@ -25,6 +25,7 @@ public class CharacterController : MonoBehaviour
         PlayerInput.Crouching += SwitchCamCrouch;
         PlayerInput.JumpAction += Jump;
         PlayerInput.Move += Move;
+        coll = GetComponent<CapsuleCollider>();
         //this line sets default cam to main
         disableCams(false);
         
