@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretAbility : MonoBehaviour
+public class TeleportAbility : MonoBehaviour
 {
     public CommandProcessor _CommandProcessor;
     public Camera Cam;
+    private GameObject TeleportInstance;
 
-    [SerializeField]
-    private GameObject teleporterPrefab;
-    private GameObject turretPrefab;
-    private GameObject turretInstance;
+    [SerializeField] private GameObject teleporterPrefab;
+    //private GameObject turretPrefab;
+    [SerializeField] private GameObject TeleportOrb;
     // Start is called before the first frame update
     void Start()
     {
-
+    
     }
 
     // Update is called once per frame
@@ -22,7 +22,20 @@ public class TurretAbility : MonoBehaviour
     {
         
     }
-    public void PlaceTurret()
+    private void Awake()
+    {
+        _CommandProcessor = GameObject.Find("GameManager").GetComponent<CommandProcessor>();
+        Cam = GameObject.Find("MainCamera").GetComponent<Camera>();
+        teleporterPrefab = GameObject.Find("Teleporter");
+        TeleportOrb = GameObject.Find("ProximtyMine");
+
+        PlayerInput.UseAbility += PlaceTeleport;
+        PlayerInput.Undo += Undo;
+
+
+        TeleportInstance = Instantiate(TeleportOrb);
+    }
+    public void PlaceTeleport()
     {
         Vector3 rayOrigin = Cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
@@ -36,10 +49,13 @@ public class TurretAbility : MonoBehaviour
             myTeleporter.transform.position = hitInfo.point;
             myTeleporter.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
 
-            MoveCommand moveCommand = new MoveCommand(turretInstance, hitInfo.point);
+            MoveCommand moveCommand = new MoveCommand(TeleportInstance, hitInfo.point);
 
 
             _CommandProcessor.ExecuteCommand(moveCommand);
         }
+    }
+    public void Undo() { 
+            _CommandProcessor.Undo();
     }
 }

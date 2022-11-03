@@ -7,16 +7,9 @@ public class PlayerInput : MonoBehaviour
 
 {
     //For the Teleport Command Pattern
-    public CommandProcessor _CommandProcessor;
-    public Camera Cam;
-    [SerializeField]
-    private GameObject teleporterPrefab;
-    [SerializeField]
-    private GameObject turretPrefab;
-    private GameObject turretInstance;
 
     //actions that the player may perform
-    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, PickupItem;
+    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, PickupItem,Undo;
     public static Action<bool>Crouching,ADS;
     public static Action<Quaternion> Look, Grenade;
     public static Action<Vector2,float> Move;
@@ -56,10 +49,7 @@ public class PlayerInput : MonoBehaviour
 
         WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }
-    private void Awake()
-    {
-        turretInstance = Instantiate(turretPrefab);
-    }
+ 
 
     private void SetWeaponActive(int num,int length)
     {
@@ -113,29 +103,8 @@ public class PlayerInput : MonoBehaviour
             GetTime.Invoke();
 
         if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Vector3 rayOrigin = Cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-            Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitInfo;
-            GameObject myTeleporter;
-
-            //Hardcoding 25 as the range
-            if (Physics.Raycast(ray, out hitInfo, 25))
-            {
-                myTeleporter = Instantiate(teleporterPrefab);             
-                myTeleporter.transform.position = hitInfo.point;
-                myTeleporter.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-
-                MoveCommand moveCommand = new MoveCommand(turretInstance, hitInfo.point);
-
-
-                _CommandProcessor.ExecuteCommand(moveCommand);
-            }                
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            _CommandProcessor.Undo();
-        }
+            Undo.Invoke();
+     
             
 
 

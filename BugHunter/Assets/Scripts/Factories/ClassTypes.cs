@@ -19,7 +19,7 @@ using UnityEngine;
         {
         obj.AddComponent<GrenadeManager>();
         obj.AddComponent<HealthSystem>().SetMaxHealth(200);
-        obj.AddComponent<TurretAbility>();
+        obj.AddComponent<TeleportAbility>();
          }
     }
     internal class Sniper : ClassInterface
