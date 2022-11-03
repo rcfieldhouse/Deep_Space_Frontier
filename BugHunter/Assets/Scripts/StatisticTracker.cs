@@ -31,7 +31,7 @@ public class StatisticTracker : MonoBehaviour
     public void Accuracy()
     {
         accuracy = (total_hits / total_shots * 100);
-        Debug.Log("Sniper accuracy: " + accuracy + "%");
+        //Debug.Log("Sniper accuracy: " + accuracy + "%");
         //Debug.Log(total_hits);
     }
    

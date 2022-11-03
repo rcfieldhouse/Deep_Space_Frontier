@@ -19,7 +19,7 @@ public class SniperShot : MonoBehaviour
     private ParticleSystem muzzleFlash;
     private float nextFire;                                                // Float to store the time the player will be allowed to fire again, after firing                                                        
     public WeaponInfo info;
-
+    public SpecialBulletSelect CurrentBullet;
 
     void Start()
     {
@@ -31,7 +31,7 @@ public class SniperShot : MonoBehaviour
 
         // Get and store a reference to our AudioSource component
         gunAudio = GetComponent<AudioClip>();
-
+        CurrentBullet = GameObject.Find("MixamoCharacter").GetComponent<SpecialBulletSelect>();
         PlayerInput.Shoot += Shoot;
     }
     private void Update()
@@ -46,7 +46,7 @@ public class SniperShot : MonoBehaviour
     void Shoot()
     {
 
-
+        
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
         if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy == true)
         {
@@ -87,6 +87,9 @@ public class SniperShot : MonoBehaviour
                 // If there was a health script attached
                 if (health != null)
                 {
+                    if (hit.collider.gameObject.tag == "Enemy")   CurrentBullet.CallShotEffect(hit.collider.gameObject);
+
+
                     // Call the damage function of that script, passing in our gunDamage variable
                     health.ModifyHealth(gunDamage);
                     StatisticTracker.instance.ShotsHit();

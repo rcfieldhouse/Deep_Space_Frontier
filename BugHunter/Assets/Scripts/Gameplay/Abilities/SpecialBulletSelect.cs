@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-internal interface SniperBullet
+public interface SniperBullet
 {
-   void ShotEffect();
+    void WriteName();
+   void ShotEffect(GameObject obj);
 }
-internal enum BulletType
+public enum BulletType
 {
     Standard, Cryogenic, Incendiary, Electric
 }
@@ -13,35 +14,53 @@ internal enum BulletType
 //shot Effects
 internal class Standard : SniperBullet
 {
-    public void ShotEffect()
+    public void WriteName()
     {
         Debug.Log("Standard");
+    }
+    public void ShotEffect(GameObject obj)
+    {
+        //maybe i can do something like does more damage to parts 
+        obj.AddComponent<StandardEffect>();
     }
 }
 internal class Cryogenic : SniperBullet
 {
-    public void ShotEffect()
+    public void WriteName()
     {
-
+        Debug.Log("Cryogenic");
+    }
+    public void ShotEffect(GameObject obj)
+    {
+        obj.AddComponent<CryogenicEffect>();
     }
 }
 internal class Incendiary : SniperBullet
 {
-    public void ShotEffect()
+    public void WriteName()
     {
-
+        Debug.Log("Incendiary");
+    }
+    public void ShotEffect(GameObject obj)
+    {
+        obj.AddComponent<IncendiaryEffect>();
     }
 }
-internal class Electric : SniperBullet
+internal class Explosive : SniperBullet
 {
-    public void ShotEffect()
+    public void WriteName()
     {
-
+        Debug.Log("Explosive");
+    }
+    public void ShotEffect(GameObject obj)
+    {
+        obj.AddComponent<ExplosiveEffect>();
     }
 }
 
-internal class SpecialBulletSelect : MonoBehaviour
+public class SpecialBulletSelect : MonoBehaviour
 {
+    SniperBullet Bullet;
     [SerializeField] private BulletType BulletSelection=BulletType.Standard;
     public SniperBullet SelectBullet(BulletType bulletType)
     {
@@ -58,7 +77,7 @@ internal class SpecialBulletSelect : MonoBehaviour
                 bullet = new Incendiary();
                 break;
             case BulletType.Electric:
-                bullet = new Electric();
+                bullet = new Explosive();
                 break;
 
             default:
@@ -72,13 +91,28 @@ internal class SpecialBulletSelect : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        SniperBullet Bullet = SelectBullet(BulletSelection);
-        Bullet.ShotEffect();
+         Bullet = SelectBullet(BulletSelection);
+        PlayerInput.UseAbility += ChangeBulletType;
+        Bullet.WriteName();
     }
     // Update is called once per frame
     void Update()
     {
+      
+    }
+    public void CallShotEffect(GameObject Object)
+    {
+        Bullet.ShotEffect(Object);
         
+    }
+    public void ChangeBulletType()
+    {
+        BulletSelection += 1;
+        if (BulletSelection > BulletType.Electric) BulletSelection = BulletType.Standard;
+         Bullet = SelectBullet(BulletSelection);
+
+        Bullet.WriteName();
+
     }
 }
 
