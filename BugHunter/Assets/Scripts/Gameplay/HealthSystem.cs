@@ -13,6 +13,9 @@ public class HealthSystem : MonoBehaviour
 
     private void OnEnable()
     {
+        if (gameObject.tag == "Player")
+            gameObject.AddComponent<LoseCondition>();
+        
         currentHealth = maxHealth;
     }
     public void SetInvulnerable(bool foo)
