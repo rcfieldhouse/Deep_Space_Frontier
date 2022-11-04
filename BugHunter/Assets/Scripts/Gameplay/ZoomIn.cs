@@ -1,25 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 public class ZoomIn : MonoBehaviour
 {
     public Animator animator;
-    [SerializeField] private bool isScoped = false,isSwitchingGuns;
+    [SerializeField] private bool isScoped = false;
+    [SerializeField]  private VolumeProfile volumeProfile;
+    private DepthOfField _DepthOfField;
 
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-       
-        if (Input.GetButtonDown("Fire2"))
+        PlayerInput.ADS += HandleAim;
+        DepthOfField dof;
+        if (volumeProfile.TryGet(out dof)) { _DepthOfField = dof; }
+    }
+
+    public void HandleAim(bool isAiming)
+    {
+        if (isAiming)
         {
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);
+            _DepthOfField.active = true;
         }
-        else if(Input.GetButtonUp("Fire2"))
+        else
         {
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);
+            _DepthOfField.active = false;
         }
+
     }
 }
