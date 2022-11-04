@@ -97,7 +97,7 @@ public class PlayerInput : MonoBehaviour
 
         //Pause Menu For Plugin
         if (Input.GetKeyDown(KeyCode.Escape))
-            PausePlugin.Invoke();
+            //PausePlugin.Invoke();
 
         if (Input.GetKeyDown(KeyCode.T))
             GetTime.Invoke();
