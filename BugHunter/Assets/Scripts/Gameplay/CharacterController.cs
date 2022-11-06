@@ -74,7 +74,8 @@ public class CharacterController : MonoBehaviour
         move = move.normalized;
         if (SuspendMovement == false)
         {
-            SpeedMod *= 4f;
+            // was 4.0f
+            SpeedMod *= 20f;
             mover = transform.right * move.x + transform.forward * move.y;
             Rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, Rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
         }      
