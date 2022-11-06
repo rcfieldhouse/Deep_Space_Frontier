@@ -11,8 +11,9 @@ public class WeaponInfo : MonoBehaviour
     [SerializeField] private int ammoInMag, maxAmmo, magSize = 1, reserveAmmo = 1;
     [Range(0, 5)][SerializeField] private float AdsZoomScale=0;
     public static Action<bool> maginfo,CanShoot;
-   [Range(0, 10)] [SerializeField] private WaitForSeconds ReloadTimer= new WaitForSeconds(1.0f);
-   [Range(0,50)][SerializeField] private float RecoilX, AimRecoilX;
+   [Range(0, 10)] [SerializeField] public WaitForSeconds ReloadTimer= new WaitForSeconds(1.0f);
+    [Range(0, 10)] public float _reloadTimer = 1.0f; 
+    [Range(0,50)][SerializeField] private float RecoilX, AimRecoilX;
    [Range(0,25)][SerializeField] private float RecoilY, AimRecoilY;
    [Range(0,10)][SerializeField] private float RecoilZ, AimRecoilZ;
    [Range(0,10)][SerializeField] private float snappiness;
@@ -22,6 +23,7 @@ public class WeaponInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ReloadTimer = new WaitForSeconds(_reloadTimer);
         PlayerInput.Reload += Reload;
         ammoInMag = magSize;
     }
