@@ -30,7 +30,7 @@ public class SniperShot : MonoBehaviour
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
         // Get and store a reference to our AudioSource component
-  
+
        
         PlayerInput.Shoot += Shoot;
     }
