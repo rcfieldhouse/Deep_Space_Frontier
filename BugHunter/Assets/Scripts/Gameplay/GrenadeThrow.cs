@@ -66,7 +66,7 @@ public class GrenadeThrow : MonoBehaviour
         Rigidbody.isKinematic = true;
         sphereCollider.enabled = true;
         sphereCollider.isTrigger = true;
-        sphereCollider.radius = 0.25f;
+        sphereCollider.radius = 0.77f;
 
         //Grenade VFX Trigger
         SpawnGrenadeVFX();
@@ -110,7 +110,7 @@ public class GrenadeThrow : MonoBehaviour
         if (GrenadeVFX != null)
         {
             grenadeSpawnPos.x = gameObject.transform.position.x;
-            grenadeSpawnPos.y = gameObject.transform.position.y + 1.15f;
+            grenadeSpawnPos.y = gameObject.transform.position.y + 3.15f;
             grenadeSpawnPos.z = gameObject.transform.position.z;
 
             Instantiate(GrenadeVFX, grenadeSpawnPos, Quaternion.identity);
