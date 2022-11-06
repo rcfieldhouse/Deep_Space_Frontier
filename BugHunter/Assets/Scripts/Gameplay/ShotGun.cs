@@ -14,7 +14,7 @@ public class ShotGun : MonoBehaviour
     [SerializeField]
     public Camera fpsCam;                                                // Holds a reference to the first person camera
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);    // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
-    private AudioClip gunAudio;                                        // Reference to the audio source which will play our shooting sound effect
+                                     // Reference to the audio source which will play our shooting sound effect
     private LineRenderer laserLine;
     // Reference to the LineRenderer component which will display our laserline
     private ParticleSystem muzzleFlash;
@@ -31,7 +31,7 @@ public class ShotGun : MonoBehaviour
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
         // Get and store a reference to our AudioSource component
-        gunAudio = GetComponent<AudioClip>();
+      
 
         PlayerInput.Shoot += Shoot;
         // Get and store a reference to our Camera by searching this GameObject and its parents
@@ -184,7 +184,7 @@ public class ShotGun : MonoBehaviour
 
         //play Shooting Effect
         muzzleFlash.Play();
-        GetComponent<AudioSource>().Play();
+
         // Turn on our line renderer
         laserLine.enabled = true;
 

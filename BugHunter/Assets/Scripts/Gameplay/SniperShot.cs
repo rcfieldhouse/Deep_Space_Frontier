@@ -13,14 +13,14 @@ public class SniperShot : MonoBehaviour
     [SerializeField]
     public Camera fpsCam;                                                // Holds a reference to the first person camera
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);    // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
-    private AudioClip gunAudio;                                        // Reference to the audio source which will play our shooting sound effect
+                                  // Reference to the audio source which will play our shooting sound effect
     private LineRenderer laserLine;
   // Reference to the LineRenderer component which will display our laserline
     private ParticleSystem muzzleFlash;
     private float nextFire;                                                // Float to store the time the player will be allowed to fire again, after firing                                                        
     public WeaponInfo info;
     public SpecialBulletSelect CurrentBullet;
-
+    public bool _IsSniper = false;
     void Start()
     {
         info = GetComponentInParent<WeaponInfo>();
@@ -30,12 +30,13 @@ public class SniperShot : MonoBehaviour
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
         // Get and store a reference to our AudioSource component
-        gunAudio = GetComponent<AudioClip>();
-        CurrentBullet = GameObject.Find("MixamoCharacter").GetComponent<SpecialBulletSelect>();
+  
+       
         PlayerInput.Shoot += Shoot;
     }
     private void Update()
     {
+      
         if (Time.time < nextFire && gameObject.activeInHierarchy == true)
         { 
             GetComponent<WeaponInfo>().SetCanShoot(false);
@@ -43,6 +44,12 @@ public class SniperShot : MonoBehaviour
         else GetComponent<WeaponInfo>().SetCanShoot(true);
 
     }
+    private void OnEnable()
+    {
+        if(_IsSniper==true)
+        CurrentBullet = GameObject.Find("MixamoCharacter").GetComponent<SpecialBulletSelect>();
+    }
+
     void Shoot()
     {
 
@@ -87,7 +94,7 @@ public class SniperShot : MonoBehaviour
                 // If there was a health script attached
                 if (health != null)
                 {
-                    if (hit.collider.gameObject.tag == "Enemy")   CurrentBullet.CallShotEffect(hit.collider.gameObject);
+                    if (hit.collider.gameObject.tag == "Enemy" && _IsSniper == true)   CurrentBullet.CallShotEffect(hit.collider.gameObject);
 
 
                     // Call the damage function of that script, passing in our gunDamage variable
@@ -118,11 +125,11 @@ public class SniperShot : MonoBehaviour
     private IEnumerator ShotEffect()
     {
         // Play the shooting sound effect
-        //SoundManager.instance.PlaySound(gunAudio);
+   
 
         //play Shooting Effect
         muzzleFlash.Play();
-        GetComponent<AudioSource>().Play();
+      
         // Turn on our line renderer
         laserLine.enabled = true;
 

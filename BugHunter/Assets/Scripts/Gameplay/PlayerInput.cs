@@ -182,7 +182,7 @@ public class PlayerInput : MonoBehaviour
         //change with scroll wheel
         if (MouseScroll > 0 &&WeaponActive>0)
             SwappingWeapon.Invoke(WeaponActive - 1);
-        else if (MouseScroll < 0&&WeaponActive<WeaponListLength)
+        else if (MouseScroll < 0 && WeaponActive<WeaponListLength)
             SwappingWeapon.Invoke(WeaponActive + 1);
 
 

@@ -48,7 +48,7 @@ public class GroundAi : MonoBehaviour
     {
        
         Health.OnObjectDeath -= HandleObjectDeath;
-        ScoreManager.instance.sChange(10); 
+        //ScoreManager.instance.sChange(10); 
     }
 
     private void Update()

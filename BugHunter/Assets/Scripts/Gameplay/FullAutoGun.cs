@@ -14,7 +14,7 @@ public class FullAutoGun : MonoBehaviour
     [SerializeField]
     public Camera fpsCam;                                                // Holds a reference to the first person camera
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);    // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
-    private AudioClip gunAudio;                                        // Reference to the audio source which will play our shooting sound effect
+                                  
     private LineRenderer laserLine;
     // Reference to the LineRenderer component which will display our laserline
     private ParticleSystem muzzleFlash;
@@ -27,7 +27,7 @@ public class FullAutoGun : MonoBehaviour
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
         // Get and store a reference to our AudioSource component
-        gunAudio = GetComponent<AudioClip>();
+       
 
 
         //observers
@@ -119,7 +119,7 @@ public class FullAutoGun : MonoBehaviour
 
         //play Shooting Effect
         muzzleFlash.Play();
-        GetComponent<AudioSource>().Play();
+
         // Turn on our line renderer
         laserLine.enabled = true;
 

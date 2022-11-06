@@ -50,14 +50,13 @@ public class WeaponSwap : MonoBehaviour
             RecticleArray[i].SetActive(false);
             WeaponArray[i].SetActive(false);
         }
-        RecticleArray[choice].SetActive(true);
-        WeaponArray[choice].SetActive(true);
-        WeaponChoice = choice;
+        SetWeaponChoice(choice);
+         WeaponChoice = choice;
 
         //broadcast data to classes that need it 
         BroadcastADSZoom.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetADSZoom());
         BroadCastWeaponRecoilData.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetRecoilInfo());
-        BroadcastWeaponListData.Invoke(WeaponChoice, WeaponArray.Count - 1);
+        BroadcastWeaponListData.Invoke(WeaponChoice, WeaponArray.Count-1);
         BroadCastHipRecoil.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCameraRecoilInfo(0));
         BroadCastADSRecoil.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCameraRecoilInfo(1));
         BroadcastSnap.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetSnap());
