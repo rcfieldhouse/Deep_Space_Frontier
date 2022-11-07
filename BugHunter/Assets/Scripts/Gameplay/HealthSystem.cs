@@ -53,7 +53,7 @@ public class HealthSystem : MonoBehaviour
             if (currentHealth <= 0.0f)
             {
                 //Broadcast that the object has died
-                Destroy(gameObject);
+             //   Destroy(gameObject);
                 OnObjectDeath?.Invoke(transform.gameObject);
               
             //gameObject.SetActive(false);

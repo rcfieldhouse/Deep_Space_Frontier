@@ -6,7 +6,6 @@ public class Epickup : MonoBehaviour
 {
     // this script is attached to collectable items and adds an item to the list when colliding with the player
     [SerializeField] private LayerMask whatIsPlayer;
-    public Item Item;
     [SerializeField] private float PickupRange;
 
     public void Start()
@@ -18,7 +17,7 @@ public class Epickup : MonoBehaviour
     {
       if(Physics.CheckSphere(transform.position, PickupRange, whatIsPlayer)==true)
         {
-            InventoryManager.Instance.Add(Item);
+            GameObject.Find("MixamoCharacter").GetComponent<GrenadeManager>().SetHasFruit(true);
             Destroy(gameObject);
         }
       

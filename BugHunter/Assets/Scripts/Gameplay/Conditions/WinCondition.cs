@@ -20,7 +20,7 @@ public class WinCondition : MonoBehaviour
     {
         SceneManager.LoadScene("WinScreen",LoadSceneMode.Single);
        // SceneManager.UnloadScene("SampleScene");
-        Debug.Log("Sweet");
+     
     }
     public void OnDestroy()
     {
