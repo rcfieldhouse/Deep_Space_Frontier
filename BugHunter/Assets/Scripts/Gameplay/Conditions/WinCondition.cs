@@ -22,7 +22,8 @@ public class WinCondition : MonoBehaviour
        // SceneManager.UnloadScene("SampleScene");
      
     }
-    public void OnDestroy()
+  
+    public void OnDisable()
     {
         WinConditionMet();
     }
