@@ -8,12 +8,15 @@ public class GrenadeManager : MonoBehaviour
     public GameObject Grenade;
     public GrenadeThrow GrenadeThrow; 
     [SerializeField] private int numGrenades=3;
+    [SerializeField] private bool HasFruit=false; 
     // Start is called before the first frame update
     void Start()
     {
         GrenadeThrow = GetComponentInChildren<GrenadeThrow>();
         Grenade = GrenadeThrow.gameObject;
-        PlayerInput.Grenade += BeginThrow;
+
+        PlayerInput.Throw += BeginThrow;
+        PlayerInput.TabThrowable += ChooseThrowable;
         Transform = GrenadeThrow.GetStartPos();
         Grenade.SetActive(false);
     }
@@ -36,8 +39,12 @@ public class GrenadeManager : MonoBehaviour
     {
         numGrenades += num;
     }
-  
-  
-  
- 
+    public void ChooseThrowable()
+    {
+
+    }
+    public void SetHasFruit(bool foo)
+    {
+        HasFruit = foo;
+    }
 }

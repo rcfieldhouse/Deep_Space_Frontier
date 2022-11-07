@@ -9,9 +9,9 @@ public class PlayerInput : MonoBehaviour
     //For the Teleport Command Pattern
 
     //actions that the player may perform
-    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, PickupItem,Undo;
+    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, PickupItem,Undo,TabThrowable;
     public static Action<bool>Crouching,ADS;
-    public static Action<Quaternion> Look, Grenade;
+    public static Action<Quaternion> Look, Throw;
     public static Action<Vector2,float> Move;
 
     //pause menu actions
@@ -104,9 +104,9 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
             Undo.Invoke();
-     
-            
 
+        if (Input.GetKeyDown(KeyCode.G))
+            TabThrowable.Invoke();
 
 
         //cursed crouch controls
@@ -135,7 +135,7 @@ public class PlayerInput : MonoBehaviour
 
         //ability
         if (Input.GetKeyDown(KeyCode.Q))
-            Grenade.Invoke(Direction);
+            Throw.Invoke(Direction);
 
         if (Input.GetKeyDown(KeyCode.R))
             Reload.Invoke();
