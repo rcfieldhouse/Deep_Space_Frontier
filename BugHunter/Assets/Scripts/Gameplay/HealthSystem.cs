@@ -50,10 +50,12 @@ public class HealthSystem : MonoBehaviour
             OnHealthPercentChanged(currentHealthPercent);
 
             //Check if health has fallen below zero
-            if (currentHealth <= 0)
+            if (currentHealth <= 0.0f)
             {
-            //Broadcast that the object has died
-            OnObjectDeath?.Invoke(transform.gameObject);
+                //Broadcast that the object has died
+                Destroy(gameObject);
+                OnObjectDeath?.Invoke(transform.gameObject);
+              
             //gameObject.SetActive(false);
             }
         }

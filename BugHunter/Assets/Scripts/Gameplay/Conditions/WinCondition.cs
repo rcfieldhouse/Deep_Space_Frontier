@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinCondition : MonoBehaviour
 {
@@ -14,5 +15,15 @@ public class WinCondition : MonoBehaviour
     void Update()
     {
         
+    }
+    public void WinConditionMet()
+    {
+        SceneManager.LoadScene("WinScreen",LoadSceneMode.Single);
+       // SceneManager.UnloadScene("SampleScene");
+        Debug.Log("Sweet");
+    }
+    public void OnDestroy()
+    {
+        WinConditionMet();
     }
 }
