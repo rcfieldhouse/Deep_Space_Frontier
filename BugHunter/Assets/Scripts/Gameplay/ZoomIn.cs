@@ -9,10 +9,12 @@ public class ZoomIn : MonoBehaviour
     [SerializeField] private bool isScoped = false;
     [SerializeField]  private VolumeProfile volumeProfile;
     private DepthOfField _DepthOfField;
+    private int choice=0;
 
 
     private void Start()
     {
+        WeaponSwap.BroadcastChoice += SetWeapon;
         PlayerInput.ADS += HandleAim;
         DepthOfField dof;
         if (volumeProfile.TryGet(out dof)) { _DepthOfField = dof; }
@@ -20,7 +22,7 @@ public class ZoomIn : MonoBehaviour
 
     public void HandleAim(bool isAiming)
     {
-        if (isAiming)
+        if (isAiming&&choice==2)
         {
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);
@@ -33,5 +35,10 @@ public class ZoomIn : MonoBehaviour
             _DepthOfField.active = false;
         }
 
+    }
+    private void SetWeapon(int foo)
+    {
+        //foo is the index in the array DANTE
+        choice = foo;
     }
 }
