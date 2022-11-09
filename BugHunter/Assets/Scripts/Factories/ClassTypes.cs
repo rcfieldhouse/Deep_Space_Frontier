@@ -11,8 +11,10 @@ using UnityEngine;
         obj.AddComponent<HealthSystem>().SetMaxHealth(100);
         obj.AddComponent<GrenadeManager>();
         obj.AddComponent<Dodge>();
+        obj.AddComponent<GunSelect>().SelectGun(obj,5,4);
         GameObject.Find("SniperIcon").SetActive(false);
         GameObject.Find("EngineerIcon").SetActive(false);
+       
         //   obj.GetComponent<WeaponSwap>();
     }
     }
@@ -23,6 +25,7 @@ using UnityEngine;
         obj.AddComponent<GrenadeManager>();
         obj.AddComponent<HealthSystem>().SetMaxHealth(200);
         obj.AddComponent<TeleportAbility>();
+        obj.AddComponent<GunSelect>().SelectGun(obj, 3, 6);
         GameObject.Find("SniperIcon").SetActive(false);   
         GameObject.Find("AssaultIcon").SetActive(false);
     }
@@ -34,6 +37,7 @@ using UnityEngine;
         obj.AddComponent<HealthSystem>().SetMaxHealth(50);
         obj.AddComponent<GrenadeManager>();
         obj.AddComponent<SpecialBulletSelect>();
+        obj.AddComponent<GunSelect>().SelectGun(obj, 2, 0);
         GameObject.Find("EngineerIcon").SetActive(false);
         GameObject.Find("AssaultIcon").SetActive(false);
     }

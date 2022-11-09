@@ -15,7 +15,7 @@ public class GunIconUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
     private void ChooseIcon(int foo)
     {
