@@ -172,12 +172,7 @@ public class PlayerInput : MonoBehaviour
             SwappingWeapon.Invoke(0);
         if (Input.GetKeyDown(KeyCode.Alpha2))
             SwappingWeapon.Invoke(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            SwappingWeapon.Invoke(2);
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-            SwappingWeapon.Invoke(3);
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-            SwappingWeapon.Invoke(4);
+       
 
         //change with scroll wheel
         if (MouseScroll > 0 &&WeaponActive>0)
