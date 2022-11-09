@@ -8,7 +8,7 @@ public class WeaponSwap : MonoBehaviour
     // Start is called before the first frame update
     //Match each recticle with The Coresponding Weapon
     public List<GameObject> WeaponArray;
-    public GameObject[] RecticleArray;
+    public List<GameObject> RecticleArray;
 
     public static Action<Vector3> BroadCastHipRecoil;
     public static Action<Vector3> BroadCastADSRecoil;
