@@ -7,13 +7,19 @@ public class HealthBarUI : MonoBehaviour
 {
     [SerializeField]
     private Image HealthBar;
+    [SerializeField]
+    private GameObject HealthComponentOverride;
 
     [SerializeField]
     private float updateSpeedSeconds = 0.5f;
 
     private void Awake()
     {
-        GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
+        if(HealthComponentOverride!=null)
+            HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
+        
+        else
+            GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
     }
 
     private void HandleHealthChanged(float pct)

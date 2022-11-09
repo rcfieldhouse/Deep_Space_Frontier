@@ -19247,7 +19247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &433161459
 Transform:
   m_ObjectHideFlags: 0
@@ -23060,6 +23060,7 @@ GameObject:
   - component: {fileID: 834110952}
   - component: {fileID: 834110954}
   - component: {fileID: 834110953}
+  - component: {fileID: 834110955}
   m_Layer: 5
   m_Name: HealthUI
   m_TagString: Untagged
@@ -23085,7 +23086,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 175, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &834110953
 MonoBehaviour:
@@ -23125,6 +23126,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834110951}
   m_CullTransparentMesh: 1
+--- !u!114 &834110955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834110951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbfc1a7470858046aba6ac7dd845ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthBar: {fileID: 834110953}
+  HealthComponentOverride: {fileID: 919132148878241901}
+  updateSpeedSeconds: 0.5
 --- !u!4 &846601727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6821405764984329676, guid: 9db50bfceedab7944b70a838722c230c,
@@ -23482,6 +23498,7 @@ GameObject:
   - component: {fileID: 884127267}
   - component: {fileID: 884127268}
   - component: {fileID: 884127269}
+  - component: {fileID: 884127270}
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -23574,6 +23591,18 @@ MonoBehaviour:
   - {fileID: 2052281630}
   - {fileID: 2137655666}
   - {fileID: 2137655666}
+--- !u!114 &884127270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884127265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aef64e50b0a86c438c85308f2155272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &895523525
 GameObject:
   m_ObjectHideFlags: 0
@@ -28688,8 +28717,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.72, y: 0.76, z: 0.61}
-  m_Center: {x: 0, y: 0.06, z: 0.89}
+  m_Size: {x: 0.3, y: 0.36, z: 0.48}
+  m_Center: {x: 0, y: 0.17, z: 0.41}
 --- !u!1001 &973808353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47837,7 +47866,7 @@ GameObject:
   - component: {fileID: 1539079308}
   - component: {fileID: 1539079309}
   m_Layer: 0
-  m_Name: Cameras/Weapons (I hate this)
+  m_Name: CameraManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47930,6 +47959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 2113381113}
+  HealthComponentOverride: {fileID: 0}
   updateSpeedSeconds: 0.5
 --- !u!114 &1546133612
 MonoBehaviour:
@@ -51421,7 +51451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885606627}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2.33, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -54989,7 +55019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &919132148320914881
 GameObject:
   m_ObjectHideFlags: 0
@@ -55064,6 +55094,7 @@ GameObject:
   - component: {fileID: 5660732095485889374}
   - component: {fileID: 5660732095485889375}
   - component: {fileID: 5660732095485889377}
+  - component: {fileID: 5660732095485889379}
   m_Layer: 7
   m_Name: MixamoCharacter
   m_TagString: Player
@@ -55112,7 +55143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &945279661523150522
 Transform:
   m_ObjectHideFlags: 0
@@ -57959,6 +57990,19 @@ CapsuleCollider:
   m_Height: 3.45
   m_Direction: 1
   m_Center: {x: 0, y: 1.77, z: 0.02}
+--- !u!114 &5660732095485889379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148878241901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0bb0dd8316f3d4782fba483477d661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 500
 --- !u!4 &5665672303480455291
 Transform:
   m_ObjectHideFlags: 0

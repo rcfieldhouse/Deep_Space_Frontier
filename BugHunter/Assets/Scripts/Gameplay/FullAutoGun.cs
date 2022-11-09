@@ -80,11 +80,19 @@ public class FullAutoGun : MonoBehaviour
                 HealthSystem health = hit.collider.GetComponent<HealthSystem>();
 
                 // If there was a health script attached
-                if (health != null)
+                if (health != null && hit.collider.isTrigger)
+                {   
+                    // Double Damage for Crits
+                    health.ModifyHealth(gunDamage*2);
+                }
+                else if (health != null)
                 {
                     // Call the damage function of that script, passing in our gunDamage variable
                     health.ModifyHealth(gunDamage);
                 }
+                    
+
+
 
                 // Check if the object we hit has a rigidbody attached
                 if (hit.rigidbody != null)
