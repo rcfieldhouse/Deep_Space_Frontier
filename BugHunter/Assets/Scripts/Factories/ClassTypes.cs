@@ -11,8 +11,10 @@ using UnityEngine;
         obj.AddComponent<HealthSystem>().SetMaxHealth(100);
         obj.AddComponent<GrenadeManager>();
         obj.AddComponent<Dodge>();
+        obj.AddComponent<GunSelect>().SelectGun(obj,1,5);
         GameObject.Find("SniperIcon").SetActive(false);
         GameObject.Find("EngineerIcon").SetActive(false);
+       
         //   obj.GetComponent<WeaponSwap>();
     }
     }
