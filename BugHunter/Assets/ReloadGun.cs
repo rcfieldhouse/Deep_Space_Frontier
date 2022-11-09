@@ -20,7 +20,6 @@ public class ReloadGun : MonoBehaviour
         gunAnimator = gunHolder.WeaponArray[gunHolder.GetWeaponNum()].GetComponent<Animator>();
         if (gunAnimator != null)
         {
-            // play Bounce but start at a quarter of the way though
             gunAnimator.Play("Base Layer.Reload", 0, 0);
             Debug.Log("doot");
         }

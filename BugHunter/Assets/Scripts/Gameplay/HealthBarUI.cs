@@ -44,7 +44,9 @@ public class HealthBarUI : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.LookAt(Camera.main.transform);
-        transform.Rotate(0, 180, 0);
+        //this is for in-world UI rotation
+
+        //transform.LookAt(Camera.main.transform);
+        //transform.Rotate(0, 180, 0);
     }
 }
