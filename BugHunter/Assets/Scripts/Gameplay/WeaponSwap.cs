@@ -15,6 +15,7 @@ public class WeaponSwap : MonoBehaviour
     public static Action<int,int> BroadcastWeaponListData;
     public static Action<float> BroadcastADSZoom;
     public static Action<Vector2> BroadcastSnap;
+    public static Action<int> BroadcastChoice;
     private int WeaponChoice = 0;
     void Start()
     {
@@ -60,6 +61,7 @@ public class WeaponSwap : MonoBehaviour
         BroadCastHipRecoil.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCameraRecoilInfo(0));
         BroadCastADSRecoil.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCameraRecoilInfo(1));
         BroadcastSnap.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetSnap());
+        BroadcastChoice.Invoke(WeaponChoice);
     }
     public void SetWeaponChoice(int num)
     {
