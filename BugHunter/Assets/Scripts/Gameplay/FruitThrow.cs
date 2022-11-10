@@ -11,16 +11,13 @@ public class FruitThrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody = GetComponent<Rigidbody>(); 
+          Rigidbody = GetComponent<Rigidbody>(); 
           player = GameObject.Find("MixamoCharacter");
         
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     public void ThrowFruit(Vector3 ThrowVector)
     {
         Rigidbody.isKinematic = false;

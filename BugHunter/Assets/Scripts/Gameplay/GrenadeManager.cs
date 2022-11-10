@@ -38,7 +38,7 @@ public class GrenadeManager : MonoBehaviour
         if (HasFruit)
         {
             Fruit.SetActive(true);
-            FruitThrow.ThrowFruit(quaternion * (Vector3.forward * 15 + Vector3.up * 5));
+            FruitThrow.ThrowFruit(quaternion * (Vector3.forward * 25 + Vector3.up * 5));
             HasFruit = false;
         }
     }

@@ -13,7 +13,8 @@ public class Epickup : MonoBehaviour
     {
         PlayerInput.PickupItem += Pickup;
         Prompt = GameObject.Find("PickupPrompt");
-        Prompt.SetActive(false);
+        StartCoroutine(AAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH());
+       // Prompt.SetActive(false);
     }
     // adds the item to the inventory list then destroys it's self
     void Pickup()
@@ -22,7 +23,7 @@ public class Epickup : MonoBehaviour
         {
             GameObject.Find("MixamoCharacter").GetComponent<GrenadeManager>().SetHasFruit(true);
             Prompt.SetActive(false);
-            Destroy(gameObject);
+            this.gameObject.SetActive(false);
         }
       
     }
@@ -40,6 +41,11 @@ public class Epickup : MonoBehaviour
     }
     public void OnTriggerExit(Collider other)
     {
+        Prompt.SetActive(false);
+    }
+    private IEnumerator AAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH()
+    {
+        yield return new WaitForEndOfFrame();
         Prompt.SetActive(false);
     }
 }
