@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Epickup : MonoBehaviour
 {
+    private GameObject Prompt;
     // this script is attached to collectable items and adds an item to the list when colliding with the player
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private float PickupRange;
@@ -11,6 +12,8 @@ public class Epickup : MonoBehaviour
     public void Start()
     {
         PlayerInput.PickupItem += Pickup;
+        Prompt = GameObject.Find("PickupPrompt");
+        Prompt.SetActive(false);
     }
     // adds the item to the inventory list then destroys it's self
     void Pickup()
@@ -18,6 +21,7 @@ public class Epickup : MonoBehaviour
       if(Physics.CheckSphere(transform.position, PickupRange, whatIsPlayer)==true)
         {
             GameObject.Find("MixamoCharacter").GetComponent<GrenadeManager>().SetHasFruit(true);
+            Prompt.SetActive(false);
             Destroy(gameObject);
         }
       
@@ -29,5 +33,13 @@ public class Epickup : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, PickupRange);
 
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        Prompt.SetActive(true);
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        Prompt.SetActive(false);
     }
 }
