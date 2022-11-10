@@ -12,7 +12,7 @@ public class GroundAi : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     [SerializeField] private HealthSystem Health;
 
-    [SerializeField] private WaitForSeconds lungeWait =new WaitForSeconds(0.5f);
+    [SerializeField] private WaitForSeconds lungeWait =new WaitForSeconds(0.25f);
     [SerializeField] private WaitForSeconds lungeDuration = new WaitForSeconds(1.5f);
     [SerializeField] private WaitForSeconds SwingDuration = new WaitForSeconds(0.75f);
     //Patroling
@@ -65,6 +65,7 @@ public class GroundAi : MonoBehaviour
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInAttackRange && playerInSightRange) AttackPlayer();
             if (!playerInAttackRange) SetLunged();
+         
         }
 
 
@@ -152,7 +153,7 @@ public class GroundAi : MonoBehaviour
         Rigidbody.isKinematic = false;
         _isAttacking = true;
         Damage = lungeDamage;
-        Rigidbody.velocity = Vector3.Normalize(player.transform.position-gameObject.transform.position) * 10.0f+Vector3.up*2.0f;
+        Rigidbody.velocity = Vector3.Normalize(player.transform.position-gameObject.transform.position) * 15.0f+Vector3.up*6.0f;
         yield return lungeDuration;
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
         ResetAttack();
