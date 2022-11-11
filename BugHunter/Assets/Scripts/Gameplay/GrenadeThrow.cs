@@ -105,7 +105,7 @@ public class GrenadeThrow : MonoBehaviour
         other.gameObject.GetComponentInParent<HealthSystem>().ModifyHealth(-GrenadeDamage); ;
        
     }
-    // function for spawning the greande VFX on it's current position
+    // function for spawning the grenade VFX on it's current position
     public void SpawnGrenadeVFX()
     {
         if (GrenadeVFX != null)

@@ -12,11 +12,6 @@ public class GunIconUI : MonoBehaviour
         WeaponSwap.BroadcastChoice += ChooseIcon;    
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
     private void ChooseIcon(int foo)
     {
         choice = foo;
