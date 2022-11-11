@@ -22,7 +22,7 @@ public class ZoomIn : MonoBehaviour
 
     public void HandleAim(bool isAiming)
     {
-        if (isAiming && choice == 0&& GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().WeaponArray[0].name == "Sniper")
+        if (isAiming && choice == 0 && GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().WeaponArray[0].name == "Sniper")
         {
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);
