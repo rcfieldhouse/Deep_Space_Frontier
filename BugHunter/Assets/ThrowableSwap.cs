@@ -5,6 +5,7 @@ using UnityEngine;
 public class ThrowableSwap : MonoBehaviour
 {
     public List<Transform> Icons;
+    private int Selection = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +19,13 @@ public class ThrowableSwap : MonoBehaviour
     
     private void ChooseIcon()
     {
-        //if (Grenade.isAvailable)
-        //{
-        //
-        //}
+        Selection++;
+        if (Selection > 1)
+            Selection = 0;
+        for (int i=0; i < Icons.Count; i++)
+        {
+            Icons[i].gameObject.SetActive(false);
+        }
+        Icons[Selection].gameObject.SetActive(true);
     }
 }

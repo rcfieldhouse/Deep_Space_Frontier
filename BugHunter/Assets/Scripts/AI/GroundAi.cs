@@ -20,6 +20,8 @@ public class GroundAi : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
     HealthSystem health;
+    private float dist=0; 
+    private Vector3 Pos = Vector3.zero;
     //Attacking
     //damage is defined as either lunge damage or swing damage depending on the attack invoked
     public int lungeDamage=-10,SwingDamage,Damage;
@@ -43,6 +45,7 @@ public class GroundAi : MonoBehaviour
     private void OnEnable()
     {
         Health.OnObjectDeath += HandleObjectDeath;
+        StartCoroutine(PlsWork());
     }
     private void OnDisable()
     {
@@ -69,7 +72,10 @@ public class GroundAi : MonoBehaviour
         }
 
 
-
+        if (agent.velocity.magnitude > 10.0f)
+        {
+            Debug.Log("dsfsdfsdf");
+        }
 
         if (health != null && _isAttacking == true && DamageDealt == false&&PlayerInAttackBox==true)
         {
@@ -79,27 +85,44 @@ public class GroundAi : MonoBehaviour
         }
         //Debug.Log (Quaternion.Euler(agent.velocity));
     }
+    private IEnumerator PlsWork()
+    {
+        dist = agent.remainingDistance;
+        Pos = gameObject.transform.position;
+        yield return new WaitForSeconds(2.0f);
+        if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f||dist<=agent.remainingDistance)
+        {
+           // Debug.Log("its working on "+ gameObject.name);
+            walkPointSet = false;
+        }
+        StartCoroutine(PlsWork());
+    }
     private void SetLunged()
     {
         alreadyLunged = false;
     }
     private void Patroling()
     {
-        if (!walkPointSet) SearchWalkPoint();
+        if (!walkPointSet) { SearchWalkPoint();
+           
+        }
+
 
         if (walkPointSet)
         {
+            
             transform.LookAt(walkPoint);
             agent.SetDestination(walkPoint);
+            
         }
-
+   
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //Walkpoint reached
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
-    }
+    } 
     private void SearchWalkPoint()
     {
         //Calculate random point in range
@@ -107,9 +130,13 @@ public class GroundAi : MonoBehaviour
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+    
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround)==true)
+        {
             walkPointSet = true;
+        }
+        else SearchWalkPoint();
+           
     }
 
     private void ChasePlayer()
