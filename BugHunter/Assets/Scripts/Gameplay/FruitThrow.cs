@@ -13,7 +13,7 @@ public class FruitThrow : MonoBehaviour
     {
           Rigidbody = GetComponent<Rigidbody>(); 
           player = GameObject.Find("MixamoCharacter");
-        
+            
     }
 
     // Update is called once per frame
@@ -31,12 +31,12 @@ public class FruitThrow : MonoBehaviour
             collision.gameObject.SetActive(false);
             ResetFruit();
         }
-     
+    
     }
     public void ResetFruit()
     {
         Rigidbody.gameObject.transform.SetParent(player.transform);
-        gameObject.transform.localPosition = new Vector3(0.0f, 2.0f, 1.0f);
+        gameObject.transform.localPosition = new Vector3(0.0f, 2.5f, 1.5f);
         gameObject.SetActive(false);
     }
 }

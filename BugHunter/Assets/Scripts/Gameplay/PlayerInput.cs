@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour
     //For the Teleport Command Pattern
 
     //actions that the player may perform
-    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, PickupItem,Undo,TabThrowable;
+    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, PickupItem,Undo,TabThrowable,WeNeedToCookJesse;
     public static Action<bool>Crouching,ADS;
     public static Action<Quaternion> Look, Throw;
     public static Action<Vector2,float> Move;
@@ -128,13 +128,16 @@ public class PlayerInput : MonoBehaviour
         //dodge mechanic
         if (Input.GetKeyDown(KeyCode.C))
             UseAbility.Invoke();
-       // else if (Input.GetKeyUp(KeyCode.C))
-       //     DodgeRoll.Invoke(false);
+        // else if (Input.GetKeyUp(KeyCode.C))
+        //     DodgeRoll.Invoke(false);
 
 
 
         //ability
         if (Input.GetKeyDown(KeyCode.Q))
+            WeNeedToCookJesse.Invoke();
+
+        if (Input.GetKeyUp(KeyCode.Q))
             Throw.Invoke(Direction);
 
         if (Input.GetKeyDown(KeyCode.R))

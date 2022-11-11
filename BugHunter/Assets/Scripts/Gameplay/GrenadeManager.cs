@@ -21,10 +21,19 @@ public class GrenadeManager : MonoBehaviour
         Grenade = GrenadeThrow.gameObject;
 
         PlayerInput.Throw += BeginThrow;
+        PlayerInput.WeNeedToCookJesse += CookNade;
         PlayerInput.TabThrowable += ChooseThrowable;
         Transform = GrenadeThrow.GetStartPos();
         Grenade.SetActive(false);
         Fruit.SetActive(false);
+    }
+    public void CookNade() 
+    {
+
+        if (ThrowSelect == 0)
+            Grenade.SetActive(true);
+        else if (ThrowSelect == 1)
+            Fruit.SetActive(true);
     }
     public void BeginThrow(Quaternion quaternion)
     {
