@@ -8,6 +8,8 @@ public class GrenadeManager : MonoBehaviour
     public GameObject Grenade,Fruit;
     public GrenadeThrow GrenadeThrow;
     public FruitThrow FruitThrow;
+
+    private PreviewThrow PreviewThrow;
     public Vector3 ThrowForce = (Vector3.forward * 25 + Vector3.up * 5);
     [SerializeField] private int numGrenades=3;
     [SerializeField] private bool HasFruit=false;
@@ -17,6 +19,7 @@ public class GrenadeManager : MonoBehaviour
     {
         GrenadeThrow = GetComponentInChildren<GrenadeThrow>();
         FruitThrow = GetComponentInChildren<FruitThrow>();
+        PreviewThrow = GetComponent<PreviewThrow>();
 
         Fruit = FruitThrow.gameObject;
         Grenade = GrenadeThrow.gameObject;
@@ -24,6 +27,7 @@ public class GrenadeManager : MonoBehaviour
         PlayerInput.Throw += BeginThrow;
         PlayerInput.WeNeedToCookJesse += CookNade;
         PlayerInput.TabThrowable += ChooseThrowable;
+
         Transform = GrenadeThrow.GetStartPos();
         Grenade.SetActive(false);
         Fruit.SetActive(false);
@@ -31,17 +35,33 @@ public class GrenadeManager : MonoBehaviour
     public void CookNade() 
     {
 
-        if (ThrowSelect == 0)
+        if (ThrowSelect == 0 && numGrenades > 0)
+        {
+            PreviewThrow.CookNade();
             Grenade.SetActive(true);
-        else if (ThrowSelect == 1)
+        }
+           
+        else if (ThrowSelect == 1&& HasFruit == true)
+        {
+            PreviewThrow.CookNade();
             Fruit.SetActive(true);
+        }
+           
     }
     public void BeginThrow(Quaternion quaternion)
     {
         if (ThrowSelect == 0)
+        {
             BeginThrowGrenade(quaternion);
+            PreviewThrow.Release();
+        }
+          
         else if (ThrowSelect == 1)
+        {
             BeginThrowFruit(quaternion);
+            PreviewThrow.Release();
+        }
+           
     }
     public void BeginThrowFruit(Quaternion quaternion)
     {

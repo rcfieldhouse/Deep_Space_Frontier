@@ -8,7 +8,7 @@ public class PreviewThrow : MonoBehaviour
     private Quaternion Direction;
     public LineRenderer PreviewLine;
     private Vector3 LaunchPoint;
-    public Vector3 ThrowForce = (Vector3.forward * 25 + Vector3.up * 5);
+    private Vector3 ThrowForce = (Vector3.forward * 25 + Vector3.up * 5);
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +17,7 @@ public class PreviewThrow : MonoBehaviour
         PreviewLine.positionCount = 10;
         PreviewLine.startWidth = 0.15f;
         PreviewLine.endWidth = 0.15f;
-      
-        PlayerInput.WeNeedToCookJesse += CookNade;
-        PlayerInput.Throw += Release;
+ 
     }
 
     // Update is called once per frame
@@ -37,12 +35,12 @@ public class PreviewThrow : MonoBehaviour
           
         }
     }
-    private void CookNade()
+    public void CookNade()
     { 
         _IsCooking = true;
         PreviewLine.enabled = true;
     }
-    private void Release(Quaternion quaternion)
+    public void Release()
     {
         _IsCooking = false;
         PreviewLine.enabled = false;
