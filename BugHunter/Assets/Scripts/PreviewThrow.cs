@@ -17,7 +17,7 @@ public class PreviewThrow : MonoBehaviour
         PreviewLine.positionCount = 10;
         PreviewLine.startWidth = 0.15f;
         PreviewLine.endWidth = 0.15f;
-        PreviewLine.material = GameObject.Find("AAAHHH").GetComponent<Material>();
+      
         PlayerInput.WeNeedToCookJesse += CookNade;
         PlayerInput.Throw += Release;
     }
