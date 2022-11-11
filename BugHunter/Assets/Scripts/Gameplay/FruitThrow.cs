@@ -13,7 +13,7 @@ public class FruitThrow : MonoBehaviour
     {
           Rigidbody = GetComponent<Rigidbody>(); 
           player = GameObject.Find("MixamoCharacter");
-            
+        Rigidbody.isKinematic = true; 
     }
 
     // Update is called once per frame
@@ -37,6 +37,7 @@ public class FruitThrow : MonoBehaviour
     {
         Rigidbody.gameObject.transform.SetParent(player.transform);
         gameObject.transform.localPosition = new Vector3(0.0f, 2.5f, 1.5f);
+        Rigidbody.isKinematic = true;
         gameObject.SetActive(false);
     }
 }

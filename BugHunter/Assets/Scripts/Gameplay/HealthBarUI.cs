@@ -15,11 +15,7 @@ public class HealthBarUI : MonoBehaviour
 
     private void Awake()
     {
-        if(HealthComponentOverride!=null)
-            HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
-        
-        else
-            GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
+        StartCoroutine(wait());
     }
 
     private void HandleHealthChanged(float pct)
@@ -42,11 +38,13 @@ public class HealthBarUI : MonoBehaviour
         HealthBar.fillAmount = pct;
     }
     // Update is called once per frame
-    void LateUpdate()
+private IEnumerator wait()
     {
-        //this is for in-world UI rotation
+        yield return new WaitForEndOfFrame();
+        if (HealthComponentOverride != null)
+            HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
 
-        //transform.LookAt(Camera.main.transform);
-        //transform.Rotate(0, 180, 0);
+        else
+            GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
     }
 }

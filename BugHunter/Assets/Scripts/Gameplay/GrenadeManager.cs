@@ -8,6 +8,7 @@ public class GrenadeManager : MonoBehaviour
     public GameObject Grenade,Fruit;
     public GrenadeThrow GrenadeThrow;
     public FruitThrow FruitThrow;
+    public Vector3 ThrowForce = (Vector3.forward * 25 + Vector3.up * 5);
     [SerializeField] private int numGrenades=3;
     [SerializeField] private bool HasFruit=false;
     public int ThrowSelect = 0;
@@ -47,7 +48,7 @@ public class GrenadeManager : MonoBehaviour
         if (HasFruit)
         {
             Fruit.SetActive(true);
-            FruitThrow.ThrowFruit(quaternion * (Vector3.forward * 25 + Vector3.up * 5));
+            FruitThrow.ThrowFruit(quaternion * ThrowForce);
             HasFruit = false;
         }
     }
@@ -56,7 +57,7 @@ public class GrenadeManager : MonoBehaviour
       if (numGrenades > 0 && GrenadeThrow.GetIsReady()==true)
         {
             Grenade.SetActive(true);
-            StartCoroutine(GrenadeThrow.ThowGrenade(quaternion * (Vector3.forward * 15 + Vector3.up * 5)));
+            StartCoroutine(GrenadeThrow.ThowGrenade(quaternion * ThrowForce));
             numGrenades--;
         }
        
