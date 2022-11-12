@@ -20,5 +20,13 @@ public class QuestObjective : MonoBehaviour
     {
         QuestManager.instance.QuestCompleted(ThisQuestStep);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        
+    }
 
 }
