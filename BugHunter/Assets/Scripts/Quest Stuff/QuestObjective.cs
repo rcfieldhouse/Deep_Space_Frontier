@@ -18,7 +18,7 @@ public class QuestObjective : MonoBehaviour
     }
     private void OnDisable()
     {
-        QuestManager.instance.UpdateQuest(ThisQuestStep);
+        QuestManager.instance.QuestCompleted(ThisQuestStep);
     }
 
 }

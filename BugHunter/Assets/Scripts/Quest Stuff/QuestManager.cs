@@ -10,7 +10,8 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance;
     public List<string> Quests;
-    private int QuestNum = 0;
+    public List<QuestStep> QuestProgression;
+    private int QuestNum = 0,CurrentQuestNum=0;
  
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,14 @@ public class QuestManager : MonoBehaviour
     {
         
     }
+    public void QuestCompleted(QuestStep QuestSelect)
+    {
+        if (QuestSelect == QuestProgression[CurrentQuestNum])
+        {
+            CurrentQuestNum++;
+            UpdateQuest(QuestProgression[CurrentQuestNum]);
+        }
+    }
     public void UpdateQuest(QuestStep QuestSelect)
     {
        switch (QuestSelect)
@@ -46,7 +55,7 @@ public class QuestManager : MonoBehaviour
         }
         //display + 1 so that you store ur current completed quest step but you also show your next one
 
-        GetComponentInChildren<TextMeshProUGUI>().text = "Quest: " + Quests[QuestNum+1];
+        GetComponentInChildren<TextMeshProUGUI>().text = "Quest: " + Quests[QuestNum];
     }
 
   //  GetComponentInChildren<TextMeshProUGUI>().text="Quest: "+ Quests[0];
