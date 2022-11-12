@@ -64,7 +64,9 @@ MonoBehaviour:
   Damage: 0
   alreadyAttacked: 0
   alreadyLunged: 0
-  sightRange: 10
+  PlayerInAttackBox: 0
+  DamageDealt: 0
+  sightRange: 30
   attackRange: 3.03
   playerInSightRange: 0
   playerInAttackRange: 0
@@ -82,7 +84,7 @@ NavMeshAgent:
   m_Speed: 6
   m_Acceleration: 15
   avoidancePriority: 50
-  m_AngularSpeed: 30
+  m_AngularSpeed: 360
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
