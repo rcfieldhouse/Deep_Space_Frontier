@@ -21,7 +21,7 @@ public class Epickup : MonoBehaviour
     {
       if(Physics.CheckSphere(transform.position, PickupRange, whatIsPlayer)==true)
         {
-            GameObject.Find("MixamoCharacter").GetComponent<GrenadeManager>().SetHasFruit(true);
+            GameObject.Find("MixamoCharacter").GetComponent<GrenadeManager>().SetHasFruit(true,gameObject.transform);
             Prompt.SetActive(false);
             this.gameObject.SetActive(false);
         }
@@ -45,6 +45,8 @@ public class Epickup : MonoBehaviour
     }
     private IEnumerator AAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH()
     {
+        //timing it so it works 
+
         yield return new WaitForEndOfFrame();
         Prompt.SetActive(false);
     }

@@ -5,8 +5,15 @@ using UnityEngine;
 public class LootHolder : MonoBehaviour
 {
     public static LootHolder instance;
-    [SerializeField] int MyStuff = 0;
-
+    [SerializeField] List<int> MyStuff;
+    //List the types of loot here
+    //
+    //
+    //
+    //
+    //
+    //
+    //
     // Start is called before the first frame update
     private void Start()
     {
@@ -14,9 +21,13 @@ public class LootHolder : MonoBehaviour
         {
             instance = this;
         }
+        for (int i = 0; i < 6; i++)
+        {
+            MyStuff.Add(0);
+        }
     }
-    public void GainLoot()
+    public void GainLoot(int LootType)
     {
-        MyStuff++;
+        MyStuff[LootType]++;
     }
 }

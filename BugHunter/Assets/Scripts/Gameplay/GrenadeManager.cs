@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrenadeManager : MonoBehaviour
 {
-    private Transform Transform;
+    public Transform StartingTransform;
     public GameObject Grenade,Fruit;
     public GrenadeThrow GrenadeThrow;
     public FruitThrow FruitThrow;
@@ -28,7 +28,7 @@ public class GrenadeManager : MonoBehaviour
         PlayerInput.WeNeedToCookJesse += CookNade;
         PlayerInput.TabThrowable += ChooseThrowable;
 
-        Transform = GrenadeThrow.GetStartPos();
+     
         Grenade.SetActive(false);
         Fruit.SetActive(false);
     }
@@ -72,7 +72,7 @@ public class GrenadeManager : MonoBehaviour
         if (HasFruit)
         {
             Fruit.SetActive(true);
-            FruitThrow.ThrowFruit(quaternion * ThrowForce);
+            FruitThrow.ThrowFruit(quaternion * ThrowForce,StartingTransform);
             HasFruit = false;
         }
     }
@@ -105,8 +105,16 @@ public class GrenadeManager : MonoBehaviour
     {
         return HasFruit;
     }
-    public void SetHasFruit(bool foo)
+    public Transform GetFruitStart()
     {
+        return StartingTransform;
+    }
+    public void SetHasFruit(bool foo,Transform transform)
+    {
+        if (foo == true)
+        {
+            StartingTransform = transform;
+        }
         HasFruit = foo;
     }
 }

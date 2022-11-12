@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FruitThrow : MonoBehaviour
 {
+    private Transform Transform;
     public GameObject player;
     private Rigidbody Rigidbody;
     [SerializeField]
@@ -11,18 +12,20 @@ public class FruitThrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-          Rigidbody = GetComponent<Rigidbody>(); 
-          player = GameObject.Find("MixamoCharacter");
+        Rigidbody = GetComponent<Rigidbody>(); 
+        player = GameObject.Find("MixamoCharacter");
         Rigidbody.isKinematic = true; 
     }
 
     // Update is called once per frame
 
-    public void ThrowFruit(Vector3 ThrowVector)
+    public void ThrowFruit(Vector3 ThrowVector,Transform transform)
     {
+        Transform = transform;
         Rigidbody.isKinematic = false;
         Rigidbody.transform.parent = null;
         Rigidbody.velocity = ThrowVector;
+        StartCoroutine(ResetOriginalFruit());
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -33,8 +36,15 @@ public class FruitThrow : MonoBehaviour
         }
     
     }
+    private IEnumerator ResetOriginalFruit()
+    {
+        yield return new WaitForSeconds(7.5f);
+        ResetFruit();
+        Transform.gameObject.SetActive(true);
+    }
     public void ResetFruit()
     {
+        StopCoroutine(ResetOriginalFruit());
         Rigidbody.gameObject.transform.SetParent(player.transform);
         gameObject.transform.localPosition = new Vector3(0.0f, 2.5f, 1.5f);
         Rigidbody.isKinematic = true;
