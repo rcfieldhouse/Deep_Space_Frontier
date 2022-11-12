@@ -26,21 +26,27 @@ public class GroundAi : MonoBehaviour
     //damage is defined as either lunge damage or swing damage depending on the attack invoked
     public int lungeDamage=-10,SwingDamage,Damage;
     public bool alreadyAttacked=false,alreadyLunged=false;
-    private bool PlayerInAttackBox=false,DamageDealt= false;
+    public bool PlayerInAttackBox=false,DamageDealt= false;
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange,_isAttacking=false;
 
-    private Rigidbody Rigidbody;
+  
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         Health = GetComponent<HealthSystem>();
-        Rigidbody = GetComponent<Rigidbody>();
-        player = GameObject.FindWithTag("Player").transform;
-         health = player.GetComponent<HealthSystem>();
+
+        StartCoroutine(AddHealthData());
+        
         if (agent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
+    }
+    private IEnumerator AddHealthData()
+    {
+        yield return new WaitForEndOfFrame();
+        player = GameObject.FindWithTag("Player").transform;
+        health = player.GetComponent<HealthSystem>();
     }
     private void OnEnable()
     {
@@ -71,11 +77,11 @@ public class GroundAi : MonoBehaviour
          
         }
 
-
-        if (agent.velocity.magnitude > 10.0f)
-        {
-            Debug.Log("dsfsdfsdf");
-        }
+       // Debug.Log(agent.velocity.magnitude);
+       //if (agent.velocity.magnitude > 7.5f)
+       //{
+       //    walkPointSet = false;
+       //}
 
         if (health != null && _isAttacking == true && DamageDealt == false&&PlayerInAttackBox==true)
         {
@@ -87,15 +93,22 @@ public class GroundAi : MonoBehaviour
     }
     private IEnumerator PlsWork()
     {
-        dist = agent.remainingDistance;
-        Pos = gameObject.transform.position;
-        yield return new WaitForSeconds(2.0f);
-        if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f||dist<=agent.remainingDistance)
+        if (agent.isOnNavMesh)
         {
-           // Debug.Log("its working on "+ gameObject.name);
-            walkPointSet = false;
+            dist = agent.remainingDistance;
+            Pos = gameObject.transform.position;
+        }
+        yield return new WaitForSeconds(1.0f);
+        if (agent.isOnNavMesh)
+        {
+            if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f || dist <= agent.remainingDistance)
+            {
+
+                walkPointSet = false;
+            }
         }
         StartCoroutine(PlsWork());
+        
     }
     private void SetLunged()
     {
@@ -128,14 +141,17 @@ public class GroundAi : MonoBehaviour
         //Calculate random point in range
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-    
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround)==true)
+        if (Mathf.Abs(randomX) > 1 && Mathf.Abs(randomZ) > 1)
         {
-            walkPointSet = true;
+            walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+            if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) == true)
+            {
+                walkPointSet = true;
+            }
+            else SearchWalkPoint();
         }
-        else SearchWalkPoint();
+ 
            
     }
 
@@ -149,11 +165,13 @@ public class GroundAi : MonoBehaviour
     {
         if (alreadyAttacked == false)
         {
+            Rigidbody Rigidbody = gameObject.AddComponent<Rigidbody>();
             //Make sure enemy doesn't move
             Rigidbody.isKinematic = true;
             agent.SetDestination(transform.position);
+          
             transform.LookAt(player);
-            if (alreadyLunged == false) StartCoroutine(LungeAttack());
+            if (alreadyLunged == false) StartCoroutine(LungeAttack(Rigidbody));
 
             if (alreadyLunged == true&& alreadyAttacked == false) StartCoroutine(SwingAttack());
 
@@ -168,7 +186,7 @@ public class GroundAi : MonoBehaviour
         }
     }
 
-    private IEnumerator LungeAttack()
+    private IEnumerator LungeAttack(Rigidbody Rigidbody)
     {
         alreadyAttacked = true;
         alreadyLunged = true;
@@ -198,6 +216,11 @@ public class GroundAi : MonoBehaviour
 
     private void ResetAttack()
     {
+        if (gameObject.GetComponent<Rigidbody>() != null)
+        {
+            Destroy(gameObject.GetComponent<Rigidbody>());
+        }
+        agent.enabled = true;
         DamageDealt = false;
         Damage = 0;
         _isAttacking=false;

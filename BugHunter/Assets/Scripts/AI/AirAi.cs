@@ -13,7 +13,8 @@ public class AirAi : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     [SerializeField] private HealthSystem Health;
-
+    private float dist = 0;
+    private Vector3 Pos = Vector3.zero;
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -38,6 +39,7 @@ public class AirAi : MonoBehaviour
     }
     private void OnEnable()
     {
+        StartCoroutine(PlsWork());
         Health.OnObjectDeath += HandleObjectDeath;
     }
     private void OnDisable()
@@ -94,6 +96,25 @@ public class AirAi : MonoBehaviour
         agent.SetDestination(player.position);
     }
 
+    private IEnumerator PlsWork()
+    {
+        if (agent.isOnNavMesh)
+        {
+            dist = agent.remainingDistance;
+            Pos = gameObject.transform.position;
+        }
+        yield return new WaitForSeconds(1.0f);
+        if (agent.isOnNavMesh)
+        {
+            if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f || dist <= agent.remainingDistance)
+            {
+
+                walkPointSet = false;
+            }
+        }
+        StartCoroutine(PlsWork());
+
+    }
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
