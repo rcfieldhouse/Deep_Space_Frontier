@@ -8,6 +8,10 @@ public enum QuestStep
 }
 public class QuestManager : MonoBehaviour
 {
+    //quest num is for rendering right string on the UI 
+    //CurrentQuestNum is for the manager to know what quest the player is on 
+    //Quest Progression is what kinda quest it is (see enum above for quest types)
+    //Quests is the list of strings for UI
     public static QuestManager instance;
     public List<string> Quests;
     public List<QuestStep> QuestProgression;
