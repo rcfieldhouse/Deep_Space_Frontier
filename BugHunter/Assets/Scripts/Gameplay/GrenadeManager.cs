@@ -63,6 +63,10 @@ public class GrenadeManager : MonoBehaviour
         }
            
     }
+    public int GetNumNades()
+    {
+        return numGrenades;
+    }
     public void BeginThrowFruit(Quaternion quaternion)
     {
         if (HasFruit)
@@ -96,6 +100,10 @@ public class GrenadeManager : MonoBehaviour
         ThrowSelect++;
         if (ThrowSelect > 1)
             ThrowSelect = 0;
+    }
+    public bool GetHasFruit()
+    {
+        return HasFruit;
     }
     public void SetHasFruit(bool foo)
     {
