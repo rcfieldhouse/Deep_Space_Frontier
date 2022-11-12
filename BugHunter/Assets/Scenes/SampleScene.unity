@@ -10422,6 +10422,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6910437418365823273, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71d5246dd754d7e4d8f579558282c0f2, type: 3}
 --- !u!1 &43276820
@@ -62141,6 +62146,8 @@ MonoBehaviour:
   Damage: 0
   alreadyAttacked: 0
   alreadyLunged: 0
+  PlayerInAttackBox: 0
+  DamageDealt: 0
   sightRange: 10
   attackRange: 2.5
   playerInSightRange: 0
@@ -63877,7 +63884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb2e3c056f37cf4781a0b07eb00aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassSelect: 2
+  ClassSelect: 0
 --- !u!114 &5660732095485889375
 MonoBehaviour:
   m_ObjectHideFlags: 0
