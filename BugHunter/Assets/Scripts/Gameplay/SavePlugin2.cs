@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SavePlugin2 : MonoBehaviour
 {
     [DllImport("Plugin")]
-    private static extern void SaveToFile(int id, float x, float y, float z, float Health);
+    private static extern void SaveToFile(int id, float x, float y, float z, float Health, float Accuracy, int CurrentQuest, int GrenadeAmount);
 
     [DllImport("Plugin")]
     private static extern void StartWriting(string fileName);
@@ -43,6 +43,9 @@ public class SavePlugin2 : MonoBehaviour
     int Min;
     int Sec;
     float PlayerSavedHealth;
+    float PlayerAccuracy;
+    float PlayerCurrentQuest;
+    float PlayerGrenadeAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -64,18 +67,13 @@ public class SavePlugin2 : MonoBehaviour
     {
         Debug.Log("Save Request Initiated");
         StartWriting(fn);
-        //foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
-        //{
-        //    /*if(obj.name.Contains("Player"))
-        //    {
-        //        SaveToFile(1, obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);
-        //    }*/
-        //    
-        //    SaveToFile(1, obj.transform.position.x, obj.transform.position.y, obj.transform.position.z, player.GetComponent<HealthSystem>().GetHealth());
-        //}
-        SaveToFile(1, player.transform.position.x, player.transform.position.y, player.transform.position.z, player.GetComponent<HealthSystem>().GetHealth());
+
+        // Save to File ID & Player X, Y, Z position & PlayerHealth & Player Accuracy & Current Objective & Current Grenade Amount
+        SaveToFile(1, player.transform.position.x, player.transform.position.y, player.transform.position.z, player.GetComponent<HealthSystem>().GetHealth(),
+            StatisticTracker.instance.GetAccuracy(), QuestManager.instance.GetCurrentQuestNum(), GrenadeManager.instance.GetNumNades());
 
         EndWriting();
+
         //Update the last savepoint text
         GetTime();
     }
@@ -90,14 +88,33 @@ public class SavePlugin2 : MonoBehaviour
         LoadedPlayerPos3.x = LoadFromFile(0, fn);
         LoadedPlayerPos3.y = LoadFromFile(1, fn);
         LoadedPlayerPos3.z = LoadFromFile(2, fn);
+        // Read Player Saved Stats
         PlayerSavedHealth = LoadFromFile(3, fn);
+        PlayerAccuracy = LoadFromFile(4, fn);
+        PlayerCurrentQuest = LoadFromFile(5, fn);
+        PlayerGrenadeAmount = LoadFromFile(6, fn);
+
 
         //convert from float to int
         int PSavedHealth_I = (int)PlayerSavedHealth;
+        int PCurrentQuest_I = (int)PlayerCurrentQuest;
+        int PGrenadeAmount_I = (int)PlayerGrenadeAmount;
 
+
+        // Used Loaded Stats to Reset Player
         Debug.Log("Health Loaded to: " + PSavedHealth_I);
+        Debug.Log("Accuracy Was: " + PlayerAccuracy);
+
+        // set position
         player.transform.position = LoadedPlayerPos3;
+        // set health
         player.GetComponent<HealthSystem>().SetHealth(PSavedHealth_I);
+        // set quest
+        QuestManager.instance.UpdateQuest(QuestManager.instance.QuestProgression[PCurrentQuest_I]);
+        QuestObjective.instance.ResetPosition();
+        // set grenade amount
+        GrenadeManager.instance.SetGrenades(PGrenadeAmount_I);
+        ThrowableSwap.instance.DisplayNum(0);
    }
 
     // uses DeviceTime DLL

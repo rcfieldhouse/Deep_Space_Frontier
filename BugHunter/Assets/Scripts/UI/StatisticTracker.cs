@@ -34,5 +34,12 @@ public class StatisticTracker : MonoBehaviour
         //Debug.Log("Sniper accuracy: " + accuracy + "%");
         //Debug.Log(total_hits);
     }
+
+    public float GetAccuracy()
+    {
+        return accuracy;
+    }
+
+
    
 }

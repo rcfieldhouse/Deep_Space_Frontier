@@ -62,5 +62,10 @@ public class QuestManager : MonoBehaviour
         GetComponentInChildren<TextMeshProUGUI>().text = "Quest: " + Quests[QuestNum];
     }
 
+    public int GetCurrentQuestNum()
+    {
+        return CurrentQuestNum;
+    }
+
   //  GetComponentInChildren<TextMeshProUGUI>().text="Quest: "+ Quests[0];
 }

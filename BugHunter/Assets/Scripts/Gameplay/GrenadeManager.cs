@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GrenadeManager : MonoBehaviour
 {
+    public static GrenadeManager instance;
     public Transform StartingTransform;
     public GameObject Grenade,Fruit;
     public GrenadeThrow GrenadeThrow;
@@ -15,8 +16,14 @@ public class GrenadeManager : MonoBehaviour
     [SerializeField] private bool HasFruit=false;
     public int ThrowSelect = 0;
     // Start is called before the first frame update
+
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         GrenadeThrow = GetComponentInChildren<GrenadeThrow>();
         FruitThrow = GetComponentInChildren<FruitThrow>();
         PreviewThrow = GetComponent<PreviewThrow>();
@@ -94,6 +101,10 @@ public class GrenadeManager : MonoBehaviour
    public void GainGrenades(int num)
     {
         numGrenades += num;
+    }
+    public void SetGrenades(int num)
+    {
+        numGrenades = num;
     }
     public void ChooseThrowable()
     {
