@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public Canvas GameplayUI;
     public Canvas PauseMenuUI;
-    public Canvas InventoryUI;
+   // public Canvas InventoryUI;
     public GameObject WeaponHolder;
     // Start is called before the first frame update
     void Start()
@@ -23,10 +23,10 @@ public class UIManager : MonoBehaviour
    void PauseMenuEnabled()
    {
         //disable gamepaly UI and enable Pause Menu UI when escape is pressed
-        InventoryUI.enabled = false;
+       // InventoryUI.enabled = false;
         GameplayUI.enabled = false;
         PauseMenuUI.enabled = true;
-        WeaponHolder.SetActive(false);
+       // WeaponHolder.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
 
         //Time.timeScale = 0;
@@ -34,10 +34,10 @@ public class UIManager : MonoBehaviour
     public void ResumeGame()
     {
       //  Debug.Log("ResumePressed");
-        InventoryUI.enabled = true;
+       // InventoryUI.enabled = true;
         GameplayUI.enabled = true;
         PauseMenuUI.enabled = false;
-        WeaponHolder.SetActive(true);
+       // WeaponHolder.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
     }
 }

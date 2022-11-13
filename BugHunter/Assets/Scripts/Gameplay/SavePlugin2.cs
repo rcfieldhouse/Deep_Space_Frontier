@@ -64,15 +64,17 @@ public class SavePlugin2 : MonoBehaviour
     {
         Debug.Log("Save Request Initiated");
         StartWriting(fn);
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            /*if(obj.name.Contains("Player"))
-            {
-                SaveToFile(1, obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);
-            }*/
-            
-            SaveToFile(1, obj.transform.position.x, obj.transform.position.y, obj.transform.position.z, player.GetComponent<HealthSystem>().GetHealth());
-        }
+        //foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
+        //{
+        //    /*if(obj.name.Contains("Player"))
+        //    {
+        //        SaveToFile(1, obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);
+        //    }*/
+        //    
+        //    SaveToFile(1, obj.transform.position.x, obj.transform.position.y, obj.transform.position.z, player.GetComponent<HealthSystem>().GetHealth());
+        //}
+        SaveToFile(1, player.transform.position.x, player.transform.position.y, player.transform.position.z, player.GetComponent<HealthSystem>().GetHealth());
+
         EndWriting();
         //Update the last savepoint text
         GetTime();
