@@ -18,6 +18,7 @@ public class LoseCondition : MonoBehaviour
             //Lose Condition
             //revamp later
             Debug.Log("Skill Issue tbh");
+            SavePlugin2.instance.LoadItems();
         }
     }
 }

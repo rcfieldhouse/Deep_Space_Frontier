@@ -31,6 +31,7 @@ public class SavePlugin2 : MonoBehaviour
     [DllImport("DeviceTime")]
     private static extern int GenerateSec();
 
+    public static SavePlugin2 instance;
     public GameObject player;
     public Text LastSaveTxt;
     string m_Path;
@@ -50,6 +51,11 @@ public class SavePlugin2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         m_Path = Application.dataPath;
         fn = m_Path + "/save.txt";
         fn2 = Application.dataPath + "/save.txt";
@@ -60,7 +66,7 @@ public class SavePlugin2 : MonoBehaviour
         // optional Keyboard inputs for saving loading & Updating Time
         PlayerInput.SavePlayer += SaveItems;
         PlayerInput.LoadPlayer += LoadItems;
-        PlayerInput.GetTime += GetTime; 
+        PlayerInput.GetTime += GetTime;
     }
 
    public void SaveItems()

@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour
     public Rigidbody Rigidbody;
     public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
     private bool SuspendMovement = false;
+    bool MovedOnce = false;
     [SerializeField] private LayerMask m_WhatIsGround;
 
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
@@ -71,6 +72,10 @@ public class CharacterController : MonoBehaviour
     
     private void Move(Vector2 move, float SpeedMod)
     {
+        if(MovedOnce == false)
+        {
+            SavePlugin2.instance.SaveItems();
+        }
         move = move.normalized;
         if (SuspendMovement == false)
         {
@@ -84,6 +89,8 @@ public class CharacterController : MonoBehaviour
            Rigidbody.velocity = GetComponent<Dodge>().GetRollVector() * 12;
        }
         Rigidbody.angularVelocity = Vector3.zero;
+
+        MovedOnce = true;
     }
     
   
