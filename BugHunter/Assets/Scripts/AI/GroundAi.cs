@@ -12,9 +12,12 @@ public class GroundAi : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     [SerializeField] private HealthSystem Health;
 
-    [SerializeField] private WaitForSeconds lungeWait =new WaitForSeconds(0.25f);
-    [SerializeField] private WaitForSeconds lungeDuration = new WaitForSeconds(1.5f);
-    [SerializeField] private WaitForSeconds SwingDuration = new WaitForSeconds(0.75f);
+    [SerializeField] private WaitForSeconds lungeWait     ;
+    [SerializeField] private WaitForSeconds lungeDuration ;
+    [SerializeField] private WaitForSeconds SwingDuration ;
+  //[SerializeField] private WaitForSeconds lungeWait = new WaitForSeconds(0.25f);
+  //[SerializeField] private WaitForSeconds lungeDuration = new WaitForSeconds(1.5f);
+  //[SerializeField] private WaitForSeconds SwingDuration = new WaitForSeconds(0.75f);
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -47,6 +50,12 @@ public class GroundAi : MonoBehaviour
         yield return new WaitForEndOfFrame();
         player = GameObject.FindWithTag("Player").transform;
         health = player.GetComponent<HealthSystem>();
+    }
+    public void SetTimes(WaitForSeconds LW, WaitForSeconds LD, WaitForSeconds SD)
+    {
+        lungeWait = LW;
+        lungeDuration = LD;
+        SwingDuration =SD;
     }
     private void OnEnable()
     {

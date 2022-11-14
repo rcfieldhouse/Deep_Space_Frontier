@@ -22,7 +22,7 @@ public class HealthSystem : MonoBehaviour
     {
         Invulnerable = foo;
     }
-    public float GetHealth()
+    public int GetHealth()
     {
         return currentHealth;
     }
@@ -37,6 +37,7 @@ public class HealthSystem : MonoBehaviour
     public void SetMaxHealth(int foo)
     {
         maxHealth = foo;
+        currentHealth = foo;
     }
     public void ModifyHealth(int amount)
     {
