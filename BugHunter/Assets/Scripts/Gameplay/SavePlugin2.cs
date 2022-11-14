@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SavePlugin2 : MonoBehaviour
 {
     [DllImport("Plugin")]
-    private static extern void SaveToFile(int id, float x, float y, float z, float Health, float Accuracy, int CurrentQuest, int GrenadeAmount);
+    private static extern void SaveToFile(int id, float x, float y, float z, float Health, float Accuracy, float MagAmmo, float ReserveAmmo, int GrenadeAmount);
 
     [DllImport("Plugin")]
     private static extern void StartWriting(string fileName);
@@ -47,10 +47,16 @@ public class SavePlugin2 : MonoBehaviour
     float PlayerAccuracy;
     float PlayerCurrentQuest;
     float PlayerGrenadeAmount;
+    float PlayerMagAmmo;
+    float PlayerReserveAmmo;
+    public GameObject rifle;
+    WeaponInfo weaponInfo;
 
     // Start is called before the first frame update
     void Start()
     {
+        weaponInfo = rifle.GetComponent<WeaponInfo>();
+        
         if (instance == null)
         {
             instance = this;
@@ -76,7 +82,7 @@ public class SavePlugin2 : MonoBehaviour
 
         // Save to File ID & Player X, Y, Z position & PlayerHealth & Player Accuracy & Current Objective & Current Grenade Amount
         SaveToFile(1, player.transform.position.x, player.transform.position.y, player.transform.position.z, player.GetComponent<HealthSystem>().GetHealth(),
-            StatisticTracker.instance.GetAccuracy(), QuestManager.instance.GetCurrentQuestNum(), GrenadeManager.instance.GetNumNades());
+            StatisticTracker.instance.GetAccuracy(), weaponInfo.GetMag(), weaponInfo.GetReserveAmmo(), GrenadeManager.instance.GetNumNades());
 
         EndWriting();
 
@@ -97,14 +103,17 @@ public class SavePlugin2 : MonoBehaviour
         // Read Player Saved Stats
         PlayerSavedHealth = LoadFromFile(3, fn);
         PlayerAccuracy = LoadFromFile(4, fn);
-        PlayerCurrentQuest = LoadFromFile(5, fn);
-        PlayerGrenadeAmount = LoadFromFile(6, fn);
+        PlayerMagAmmo = LoadFromFile(5, fn);
+        PlayerReserveAmmo = LoadFromFile(6, fn);
+        PlayerGrenadeAmount = LoadFromFile(7, fn);
 
 
         //convert from float to int
         int PSavedHealth_I = (int)PlayerSavedHealth;
         int PCurrentQuest_I = (int)PlayerCurrentQuest;
         int PGrenadeAmount_I = (int)PlayerGrenadeAmount;
+        int PMagAmmo_I = (int)PlayerMagAmmo;
+        int PReserveAmmo = (int)PlayerReserveAmmo;
 
 
         // Used Loaded Stats to Reset Player
@@ -115,13 +124,17 @@ public class SavePlugin2 : MonoBehaviour
         player.transform.position = LoadedPlayerPos3;
         // set health
         player.GetComponent<HealthSystem>().SetHealth(PSavedHealth_I);
-        // set quest
-        QuestManager.instance.UpdateQuest(QuestManager.instance.QuestProgression[PCurrentQuest_I]);
-        QuestObjective.instance.ResetPosition();
         // set grenade amount
         GrenadeManager.instance.SetGrenades(PGrenadeAmount_I);
         ThrowableSwap.instance.DisplayNum(0);
-   }
+        // Set Ammo/Mag
+        weaponInfo.SetMag(PMagAmmo_I);
+        weaponInfo.SetReserveAmmo(PReserveAmmo);
+
+        // set quest
+        // QuestManager.instance.UpdateQuest(QuestManager.instance.QuestProgression[PCurrentQuest_I]);
+        //QuestObjective.instance.ResetPosition();
+    }
 
     // uses DeviceTime DLL
     public void GetTime()

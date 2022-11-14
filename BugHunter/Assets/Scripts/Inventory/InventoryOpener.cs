@@ -25,7 +25,7 @@ public class InventoryOpener : MonoBehaviour
                 inventoryUI.SetActive(true);
                 RemovalToggle.isOn = false;
                 Cursor.lockState = CursorLockMode.None;
-                iManager.ListItems();
+               // iManager.ListItems();
             }
         }
     }

@@ -72,10 +72,10 @@ public class CharacterController : MonoBehaviour
     
     private void Move(Vector2 move, float SpeedMod)
     {
-        if(MovedOnce == false)
-        {
-            SavePlugin2.instance.SaveItems();
-        }
+       // if(MovedOnce == false)
+       // {
+      //      SavePlugin2.instance.SaveItems();
+      //  }
         move = move.normalized;
         if (SuspendMovement == false)
         {

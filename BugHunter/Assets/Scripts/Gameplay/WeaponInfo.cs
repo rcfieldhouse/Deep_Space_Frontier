@@ -101,6 +101,15 @@ public class WeaponInfo : MonoBehaviour
     {
         return reserveAmmo;
     }
+    public void SetMag(int Amount)
+    {
+        ammoInMag = Amount;
+    }
+    public void SetReserveAmmo(int Amount)
+    {
+        reserveAmmo = Amount;
+    }
+
     public IEnumerator SetBulletCount(bool var)
     {
         yield return ReloadTimer;
