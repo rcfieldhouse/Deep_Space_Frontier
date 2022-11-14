@@ -46,7 +46,11 @@ public class AirAi : MonoBehaviour
     {
         Health.OnObjectDeath -= HandleObjectDeath;
     }
-
+    public void SetInitialDestination(Vector3 vec)
+    {
+        walkPointSet = true;
+        walkPoint = vec;
+    }
     private void Update()
     {
         //Check for sight and attack range
@@ -76,7 +80,7 @@ public class AirAi : MonoBehaviour
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < 2f)
             walkPointSet = false;
     }
     private void SearchWalkPoint()
@@ -103,10 +107,10 @@ public class AirAi : MonoBehaviour
             dist = agent.remainingDistance;
             Pos = gameObject.transform.position;
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         if (agent.isOnNavMesh)
         {
-            if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f || dist <= agent.remainingDistance)
+            if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f)
             {
 
                 walkPointSet = false;

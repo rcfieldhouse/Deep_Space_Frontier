@@ -22,7 +22,7 @@ public class GroundAi : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-    HealthSystem health;
+    public HealthSystem health;
     private float dist=0; 
     private Vector3 Pos = Vector3.zero;
     //Attacking
@@ -39,7 +39,8 @@ public class GroundAi : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         Health = GetComponent<HealthSystem>();
-
+        player = GameObject.FindWithTag("Player").transform;
+        health = player.GetComponent<HealthSystem>();
         StartCoroutine(AddHealthData());
         
         if (agent.isOnNavMesh == false)
@@ -49,6 +50,7 @@ public class GroundAi : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         player = GameObject.FindWithTag("Player").transform;
+
         health = player.GetComponent<HealthSystem>();
     }
     public void SetTimes(WaitForSeconds LW, WaitForSeconds LD, WaitForSeconds SD)
@@ -73,7 +75,7 @@ public class GroundAi : MonoBehaviour
     {
         // LootSpawner.instance.Sprayoot(transform);
         //Check for sight and attack range
-       
+       // Debug.Log(agent.destination.ToString());
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -100,6 +102,12 @@ public class GroundAi : MonoBehaviour
         }
         //Debug.Log (Quaternion.Euler(agent.velocity));
     }
+
+    public void SetInitialDestination(Vector3 vec)
+    {
+        walkPointSet = true;
+        walkPoint = vec;
+    }
     private IEnumerator PlsWork()
     {
         if (agent.isOnNavMesh)
@@ -107,10 +115,10 @@ public class GroundAi : MonoBehaviour
             dist = agent.remainingDistance;
             Pos = gameObject.transform.position;
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         if (agent.isOnNavMesh)
         {
-            if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f || dist <= agent.remainingDistance)
+            if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f) 
             {
 
                 walkPointSet = false;
@@ -125,7 +133,8 @@ public class GroundAi : MonoBehaviour
     }
     private void Patroling()
     {
-        if (!walkPointSet) { SearchWalkPoint();
+        if (!walkPointSet) { 
+            SearchWalkPoint();
            
         }
 
@@ -137,13 +146,15 @@ public class GroundAi : MonoBehaviour
             agent.SetDestination(walkPoint);
             
         }
-   
-
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < 2f)
+        {
             walkPointSet = false;
+            SearchWalkPoint();
+        }
+           
     } 
     private void SearchWalkPoint()
     {

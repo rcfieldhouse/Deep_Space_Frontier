@@ -7,7 +7,11 @@ public enum EnemyType
 }
 public class Spawner : MonoBehaviour
 {
-    public EnemyType EnemySelection;
+    public List<EnemyType> EnemySelection;
+    public List<int> NumEnemies;
+    public Transform StartDestination;
+
+
     public List<GameObject> prefab;
     [Range(0, 30)] public float SpawnTimer=0.0f;
 
@@ -21,7 +25,14 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         SpawnTime = new WaitForSeconds(SpawnTimer);
-        SelectEnemy(EnemySelection);
+        for (int i =0; i<EnemySelection.Count; i++)
+        {
+            SelectEnemy(EnemySelection[i]);
+        }
+       if (gameObject.transform.GetChild(0) != null)
+        {
+            StartDestination = gameObject.transform.GetChild(0);
+        }
     }
 
     // Update is called once per frame
@@ -52,24 +63,42 @@ public class Spawner : MonoBehaviour
     }
     private IEnumerator HoundSpawn()
     {
+        if (NumEnemies[0] > 0) { 
         //this is the not flyweight way
         // yield return new WaitForSeconds(5.0f);
      
         //this is the flyweight way
         yield return SpawnTime;
-       Instantiate(prefab[0], this.gameObject.transform).GetComponent<GroundAi>().SetTimes(lungeWait, lungeDuration, SwingDuration);
 
+       
+           GameObject Hound = GameObject.Instantiate(prefab[0], this.gameObject.transform);
+           Hound.GetComponent<GroundAi>().SetTimes(lungeWait, lungeDuration, SwingDuration);
+           if (StartDestination != null) Hound.GetComponent<GroundAi>().SetInitialDestination(StartDestination.position);
+        
+        //go to next spawn
+        NumEnemies[0]--;
         StartCoroutine(HoundSpawn());
+        }
     }
     private IEnumerator DreadBomberSpawn()
     {
-        //this is the not flyweight way
-        // yield return new WaitForSeconds(5.0f);
 
-        //this is the flyweight way
-        yield return SpawnTime;
-        Instantiate(prefab[1], this.gameObject.transform);
+        if (NumEnemies[1] > 0)
+        {
 
-        StartCoroutine(DreadBomberSpawn());
+            //this is the flyweight way
+            yield return SpawnTime;
+
+
+            GameObject Enemy = GameObject.Instantiate(prefab[1], this.gameObject.transform);
+            if (StartDestination != null)
+            { 
+                Enemy.GetComponent<AirAi>().SetInitialDestination(StartDestination.position);
+            }
+            //go to next spawn
+            NumEnemies[1]--;
+            StartCoroutine(DreadBomberSpawn());
+        }
     }
+    
 }

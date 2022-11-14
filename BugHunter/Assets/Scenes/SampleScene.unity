@@ -56580,6 +56580,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709086488}
   m_CullTransparentMesh: 1
+--- !u!1 &1710298661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710298662}
+  m_Layer: 0
+  m_Name: StartPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1710298662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710298661}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.96, y: -1.022, z: 33.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1769862179}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1711930856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57166,11 +57197,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547b27c82907f2e4b9c16405163ded1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemySelection: 0
+  EnemySelection: 0000000001000000
+  NumEnemies: 0100000001000000
+  StartDestination: {fileID: 0}
   prefab:
   - {fileID: 5991942451307951295, guid: 71d5246dd754d7e4d8f579558282c0f2, type: 3}
   - {fileID: 6973053912886817346, guid: 176cfedba0e10ea40a0982457fe4e4e6, type: 3}
-  SpawnTimer: 5.2
+  SpawnTimer: 4.2
 --- !u!4 &1769862179
 Transform:
   m_ObjectHideFlags: 0
@@ -57182,7 +57215,8 @@ Transform:
   m_LocalPosition: {x: 891.61, y: 5.03, z: 907.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1710298662}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63166,6 +63200,7 @@ MonoBehaviour:
   Health: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
+  health: {fileID: 0}
   lungeDamage: -10
   SwingDamage: -5
   Damage: 0
