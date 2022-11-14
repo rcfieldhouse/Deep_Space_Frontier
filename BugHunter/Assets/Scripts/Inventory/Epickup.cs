@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Epickup : MonoBehaviour
 {
-    public static Epickup instance;
     private GameObject Prompt;
     // this script is attached to collectable items and adds an item to the list when colliding with the player
     [SerializeField] private LayerMask whatIsPlayer;
@@ -12,10 +11,6 @@ public class Epickup : MonoBehaviour
 
     public void Start()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
         PlayerInput.PickupItem += Pickup;
         Prompt = GameObject.Find("PickupPrompt");
         StartCoroutine(AAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH());

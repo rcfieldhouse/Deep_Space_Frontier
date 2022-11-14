@@ -27,6 +27,7 @@ public class QuestManager : MonoBehaviour
         Quests.Add("Pickup Fruit");
         Quests.Add("Destroy Barrier");
         Quests.Add("Kill The Enemies");
+
         GetComponentInChildren<TextMeshProUGUI>().text = "Quest: " + Quests[0];
     }
 
@@ -46,7 +47,7 @@ public class QuestManager : MonoBehaviour
     public void UpdateQuest(QuestStep QuestSelect)
     {
        switch (QuestSelect)
-        {
+       {
             case QuestStep.GetFruit:
                 QuestNum = 0; 
                 break;
@@ -56,7 +57,7 @@ public class QuestManager : MonoBehaviour
             case QuestStep.KillEnemies:
                 QuestNum = 2;
                 break;
-        }
+       }
         //display + 1 so that you store ur current completed quest step but you also show your next one
 
         GetComponentInChildren<TextMeshProUGUI>().text = "Quest: " + Quests[QuestNum];
