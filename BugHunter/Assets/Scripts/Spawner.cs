@@ -5,8 +5,13 @@ public enum EnemyType
 {
    Hound, DreadBomber, Golem, Worm, WalmartTorterra
 }
+public enum SpawnCondition
+{
+    TriggerEnter, ApplicationStart
+}
 public class Spawner : MonoBehaviour
 {
+    public SpawnCondition SpawnCondition;
     public List<EnemyType> EnemySelection;
     public List<int> NumEnemies;
     public Transform StartDestination;
@@ -24,17 +29,36 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnTime = new WaitForSeconds(SpawnTimer);
-        for (int i =0; i<EnemySelection.Count; i++)
+        if (SpawnCondition == SpawnCondition.ApplicationStart)
         {
-            SelectEnemy(EnemySelection[i]);
+            SpawnTime = new WaitForSeconds(SpawnTimer);
+            for (int i = 0; i < EnemySelection.Count; i++)
+            {
+                SelectEnemy(EnemySelection[i]);
+            }
+            if (gameObject.transform.GetChild(0) != null)
+            {
+                StartDestination = gameObject.transform.GetChild(0);
+            }
         }
-       if (gameObject.transform.GetChild(0) != null)
-        {
-            StartDestination = gameObject.transform.GetChild(0);
-        }
+        
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (SpawnCondition == SpawnCondition.TriggerEnter)
+        {
+            SpawnTime = new WaitForSeconds(SpawnTimer);
+            for (int i = 0; i < EnemySelection.Count; i++)
+            {
+                SelectEnemy(EnemySelection[i]);
+            }
+            if (gameObject.transform.GetChild(0) != null)
+            {
+                StartDestination = gameObject.transform.GetChild(0);
+            }
+        }
 
+    }
     // Update is called once per frame
     void Update()
     {
