@@ -8,7 +8,7 @@ public class Dodge : MonoBehaviour
    
     private CharacterController characterController;
     private GameObject[] Cameras;
-    private Vector3 RollVector = Vector3.forward;
+    private Vector3 RollVector = Vector3.zero;
     [Range(0, 1)] public  WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
     // Start is called before the first frame update
     void Start()
@@ -57,6 +57,7 @@ public class Dodge : MonoBehaviour
         yield return RollTimer;
         GetComponent<HealthSystem>().SetInvulnerable(false);
         characterController.SetSuspendMovement(false);
+        RollVector = Vector3.zero;
     }
     public Vector3 GetRollVector()
     {

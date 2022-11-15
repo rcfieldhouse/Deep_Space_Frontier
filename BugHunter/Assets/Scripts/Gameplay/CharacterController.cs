@@ -7,10 +7,11 @@ public class CharacterController : MonoBehaviour
     public Rigidbody Rigidbody;
     public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
     private bool SuspendMovement = false;
-    bool MovedOnce = false;
+    bool _IsOnLadder = false;
     [SerializeField] private LayerMask m_WhatIsGround;
 
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
+    [Range(0, 1)] [SerializeField] public float m_LadderSpeed = 0.5f;
     [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;
 
     public WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
@@ -31,6 +32,18 @@ public class CharacterController : MonoBehaviour
         disableCams(false);
         
     }
+    public void SetIfOnLadder(bool var)
+    {
+       
+        SuspendMovement = var;
+        _IsOnLadder = var;
+        SwitchLadderCam(var);
+        Rigidbody.velocity = Vector3.zero;
+    }
+    public bool GetIfOnLadder()
+    {
+        return _IsOnLadder;
+    }
     public GameObject[] GetCameras()
     {//this is for dodge roll fam
         return new GameObject[5] { CameraMain, CameraCrouch, CameraDodge, CameraManager, WeaponCamera };
@@ -47,10 +60,10 @@ public class CharacterController : MonoBehaviour
     }
   
   
-    private void SwitchLadderCam()
+    private void SwitchLadderCam(bool var)
     { 
-        disableCams(true);
-        CameraDodge.SetActive(true);
+        disableCams(var);
+        CameraDodge.SetActive(var);
     }
  
     public void SetSuspendMovement(bool foo)
@@ -76,21 +89,28 @@ public class CharacterController : MonoBehaviour
        // {
       //      SavePlugin2.instance.SaveItems();
       //  }
+
         move = move.normalized;
         if (SuspendMovement == false)
         {
             // was 4.0f
-            SpeedMod *= 20f;
+            SpeedMod *= 20.0f;
             mover = transform.right * move.x + transform.forward * move.y;
             Rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, Rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
         }      
-       else
+       else if (GetComponent<Dodge>().GetRollVector()!=Vector3.zero)
        {
            Rigidbody.velocity = GetComponent<Dodge>().GetRollVector() * 12;
        }
+        else if (_IsOnLadder == true)
+        {
+            SpeedMod *= 10.0f;
+            // Rigidbody.velocity = Vector3.zero;
+            Rigidbody.velocity = new Vector3(0.0f, SpeedMod*move.y/m_LadderSpeed, 0.0f);
+        }
         Rigidbody.angularVelocity = Vector3.zero;
 
-        MovedOnce = true;
+       
     }
     
   

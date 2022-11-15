@@ -11,7 +11,7 @@ public class Epickup : MonoBehaviour
 
     public void Start()
     {
-        PlayerInput.PickupItem += Pickup;
+        PlayerInput.Interact += Pickup;
         Prompt = GameObject.Find("PickupPrompt");
         StartCoroutine(AAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH());
        // Prompt.SetActive(false);
