@@ -8,7 +8,8 @@ public class SniperShot : MonoBehaviour
     public int gunDamage = -25;                                            // Set the number of hitpoints that this gun will take away from shot objects with a health script
     public float fireRate = 0.25f;                                        // Number in seconds which controls how often the player can fire
     public float weaponRange = 50f;                                        // Distance in Unity units over which the player can fire
-    public float hitForce = 100f;                                        // Amount of force which will be added to objects with a rigidbody shot by the player
+    public float hitForce = 100f;
+    [Range(0, 3)] public float CritMultiplier = 1.0f;                                                                  // Amount of force which will be added to objects with a rigidbody shot by the player
     public Transform gunEnd;                                            // Holds a reference to the gun end object, marking the muzzle location of the gun
     [SerializeField]
     public Camera fpsCam;                                                // Holds a reference to the first person camera
@@ -21,6 +22,7 @@ public class SniperShot : MonoBehaviour
     public WeaponInfo info;
     public SpecialBulletSelect CurrentBullet;
     public bool _IsSniper = false;
+    public GameObject HitMarker;
     void Start()
     {
         info = GetComponentInParent<WeaponInfo>();
@@ -89,19 +91,27 @@ public class SniperShot : MonoBehaviour
                 HealthSystem health = hit.collider.gameObject.GetComponent<HealthSystem>();
 
 
-               
 
                 // If there was a health script attached
-                if (health != null)
+           
+                if (health != null && hit.collider.isTrigger)
                 {
-                    if (hit.collider.gameObject.tag == "Enemy" && _IsSniper == true)   CurrentBullet.CallShotEffect(hit.collider.gameObject);
-
-
-                    // Call the damage function of that script, passing in our gunDamage variable
-                    health.ModifyHealth(gunDamage);
+                    if (hit.collider.gameObject.tag == "Enemy" && _IsSniper == true) CurrentBullet.CallShotEffect(hit.collider.gameObject);
                     StatisticTracker.instance.ShotsHit();
+                    StartCoroutine(HitMarkerEffect(1));
+                    // Double Damage for Crits
+                    health.ModifyHealth((int)(gunDamage * CritMultiplier));
                 }
 
+                else if (health != null)
+                {
+                    if (hit.collider.gameObject.tag == "Enemy" && _IsSniper == true) CurrentBullet.CallShotEffect(hit.collider.gameObject);
+                    StatisticTracker.instance.ShotsHit();
+                    StartCoroutine(HitMarkerEffect(0));
+                    // Call the damage function of that script, passing in our gunDamage variable
+                    health.ModifyHealth(gunDamage);
+                }
+             
                 // Check if the object we hit has a rigidbody attached
                 if (hit.rigidbody != null)
                 {
@@ -120,7 +130,13 @@ public class SniperShot : MonoBehaviour
         
 
     }
-
+    private IEnumerator HitMarkerEffect(int HitType)
+    {
+        //Hit type 0 is normal Hit Type 1 is Crit
+        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(true);
+        yield return shotDuration;
+        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(false);
+    }
   
     private IEnumerator ShotEffect()
     {

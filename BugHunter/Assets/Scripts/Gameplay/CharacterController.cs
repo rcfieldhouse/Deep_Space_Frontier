@@ -97,8 +97,13 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
-        gameObject.transform.rotation = Quaternion.Euler(0.0f, CameraManager.transform.eulerAngles.y, 0.0f);
+        if (Input.GetKeyDown(KeyCode.Period))
+        {
+            Rigidbody.position = new Vector3(170.0f, 1.0f, 420.0f);
+        }
+
+
+            gameObject.transform.rotation = Quaternion.Euler(0.0f, CameraManager.transform.eulerAngles.y, 0.0f);
      //  gameObject.transform.rotation = CameraManager.transform.rotation;
 
 

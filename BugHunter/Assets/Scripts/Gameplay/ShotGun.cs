@@ -92,6 +92,7 @@ public class ShotGun : MonoBehaviour
 
             if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
             {
+                StartCoroutine(HitMarkerEffect(0));
                 // Set the end position for our laser line 
                 laserLine.SetPosition(1, hit.point);
 
@@ -141,9 +142,10 @@ public class ShotGun : MonoBehaviour
 
                         // If there was a health script attached
                         if (health != null)
-                        {
-                            // Call the damage function of that script, passing in our gunDamage variable
-                            health.ModifyHealth(gunDamage);
+                    {
+                        StartCoroutine(HitMarkerEffect(0));
+                        // Call the damage function of that script, passing in our gunDamage variable
+                        health.ModifyHealth(gunDamage);
                         }
 
                         // Check if the object we hit has a rigidbody attached
@@ -170,13 +172,19 @@ public class ShotGun : MonoBehaviour
         }
         
     }
-
-   // public bool CanShoot()
-   // {
-   //    if (Time.time > nextFire)
-   //         return true;
-   //      else return false;
-   // }
+    private IEnumerator HitMarkerEffect(int HitType)
+    {
+        //Hit type 0 is normal Hit Type 1 is Crit
+        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(true);
+        yield return shotDuration;
+        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(false);
+    }
+    // public bool CanShoot()
+    // {
+    //    if (Time.time > nextFire)
+    //         return true;
+    //      else return false;
+    // }
     private IEnumerator ShotEffect()
     {
         // Play the shooting sound effect

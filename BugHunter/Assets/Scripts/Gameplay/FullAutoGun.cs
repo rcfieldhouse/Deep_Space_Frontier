@@ -14,7 +14,7 @@ public class FullAutoGun : MonoBehaviour
     [SerializeField]
     public Camera fpsCam;                                                // Holds a reference to the first person camera
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);    // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
-                                  
+    [Range(0, 3)] public float CritMultiplier = 1.0f;
     private LineRenderer laserLine;
     // Reference to the LineRenderer component which will display our laserline
     private ParticleSystem muzzleFlash;
@@ -81,12 +81,14 @@ public class FullAutoGun : MonoBehaviour
 
                 // If there was a health script attached
                 if (health != null && hit.collider.isTrigger)
-                {   
+                {
+                    StartCoroutine(HitMarkerEffect(1));
                     // Double Damage for Crits
-                    health.ModifyHealth(gunDamage*2);
+                    health.ModifyHealth((int)(gunDamage * CritMultiplier));
                 }
                 else if (health != null)
                 {
+                    StartCoroutine(HitMarkerEffect(0));
                     // Call the damage function of that script, passing in our gunDamage variable
                     health.ModifyHealth(gunDamage);
                 }
@@ -119,7 +121,13 @@ public class FullAutoGun : MonoBehaviour
         }
           
     }
-
+    private IEnumerator HitMarkerEffect(int HitType)
+    {
+        //Hit type 0 is normal Hit Type 1 is Crit
+        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(true);
+        yield return shotDuration;
+        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(false);
+    }
     private IEnumerator ShotEffect()
     {
         // Play the shooting sound effect
