@@ -100,8 +100,14 @@ public class ShotGun : MonoBehaviour
                 // Get a reference to a health script attached to the collider we hit
                 HealthSystem health = hit.collider.GetComponent<HealthSystem>();
 
+                if (hit.collider.isTrigger && health != null)
+                {
+                    //can be swapped to adaptable crit modifier
+                    health.ModifyHealth(gunDamage*2);
+                }
+
                 // If there was a health script attached
-                if (health != null)
+                else if (health != null)
                 {
                     // Call the damage function of that script, passing in our gunDamage variable
                     health.ModifyHealth(gunDamage);
@@ -139,6 +145,7 @@ public class ShotGun : MonoBehaviour
 
                         // Get a reference to a health script attached to the collider we hit
                         HealthSystem health = hit.collider.GetComponent<HealthSystem>();
+                        
 
                         // If there was a health script attached
                         if (health != null)
