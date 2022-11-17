@@ -6,6 +6,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+    private void Start()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+   
     //TODO: will need to refactor this at some point.
     [Header("Loading Screen")]
     public GameObject loadingScreen;
@@ -61,6 +70,7 @@ public class GameManager : MonoBehaviour
             loadingBarFill.fillAmount = progressValue;
             yield return null;
         }
+      
     }
 
 

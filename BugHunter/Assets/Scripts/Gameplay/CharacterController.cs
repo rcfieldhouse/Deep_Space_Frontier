@@ -32,6 +32,12 @@ public class CharacterController : MonoBehaviour
         disableCams(false);
         
     }
+    private void Awake()
+    {
+        Debug.Log("worked");
+        disableCams(false);
+        CameraMain.SetActive(true);
+    }
     public void SetIfOnLadder(bool var)
     {
        
@@ -51,7 +57,7 @@ public class CharacterController : MonoBehaviour
     //functions for delegates 
     //happy programmer noises ;)
 
-    private void disableCams(bool var)
+    public void disableCams(bool var)
     {   //set all cameras to false, if called by a function that is setting that camera to false
         //set default cam to main
         CameraCrouch.SetActive(false);

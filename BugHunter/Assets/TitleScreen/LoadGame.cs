@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoadGame : MonoBehaviour
 {
+    [SerializeField] ClassType ClassSelect;
     // Start is called before the first frame update
     public void LoadDeepSpaceFrontier()
     {
-        SceneManager.LoadScene("SampleScene",LoadSceneMode.Single);
+        GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().SetClass(ClassSelect);
+        GameManager.instance.SceneChange("SampleScene");
+        //SceneManager.LoadScene("SampleScene",LoadSceneMode.Single);
     }
 }
