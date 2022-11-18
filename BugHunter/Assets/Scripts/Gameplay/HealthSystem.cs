@@ -6,7 +6,7 @@ public class HealthSystem : MonoBehaviour
 
 
     [SerializeField] private int maxHealth = 500;
-    private int currentHealth;
+    public int currentHealth;
     private bool Invulnerable = false;
     public event Action<float> OnHealthPercentChanged = delegate { };
     public event Action<GameObject> OnObjectDeath = delegate { };
@@ -45,6 +45,7 @@ public class HealthSystem : MonoBehaviour
                currentHealth += amount;
         
             if (currentHealth > maxHealth) currentHealth = maxHealth;
+
             Debug.Log("Current health is " + currentHealth);
 
             float currentHealthPercent = (float)currentHealth / (float)maxHealth;

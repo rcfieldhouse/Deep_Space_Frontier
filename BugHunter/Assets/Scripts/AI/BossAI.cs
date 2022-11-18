@@ -8,8 +8,9 @@ public class BossAI : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     public float FrontAttackRange, BackAttackRange, SeekRange;
     public Vector3 FrontAttackPos, BackAttackPos;
-   public bool PlayerInFrontAttackRange, PlayerInBackAttackRange, PlayerInSeekRange;
-    public Transform target;
+    [Range(0,-50)] public int FrontAttackDamage, BackAttackDamage, AOEAttackDamage;
+    public bool PlayerInFrontAttackRange, PlayerInBackAttackRange, PlayerInSeekRange;
+    public GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,28 +24,37 @@ public class BossAI : MonoBehaviour
         PlayerInBackAttackRange = Physics.CheckSphere(transform.position + transform.rotation * BackAttackPos, BackAttackRange, whatIsPlayer);
         PlayerInSeekRange = Physics.CheckSphere(transform.position , SeekRange, whatIsPlayer);
 
-        SetAnim();
+        PlayerDetection();
         //transform.LookAt(target);
     }
-    private void SetAnim()
+    private void PlayerDetection()
     {
+        //depending on the state, do things
         SetAnimsFalse();
         if (PlayerInFrontAttackRange && PlayerInBackAttackRange)
         {
             animator.SetBool("TailH",true);
+            StartCoroutine(DoDamage(AOEAttackDamage));
         }
         else if (PlayerInFrontAttackRange)
         {
             animator.SetBool("FrontAttack", true);
+            StartCoroutine(DoDamage(FrontAttackDamage));
         }
         else if (PlayerInBackAttackRange)
         {
             animator.SetBool("TailV", true);
+         StartCoroutine(DoDamage(BackAttackDamage));
         }
         else if (PlayerInSeekRange)
         {
             animator.SetBool("Walk", true);
         }
+    }
+    private IEnumerator DoDamage(int Damage)
+    {
+        yield return new WaitForSeconds(0.75f);
+        if (PlayerInFrontAttackRange || PlayerInBackAttackRange) Player.GetComponent<HealthSystem>().ModifyHealth(Damage);
     }
     private void SetAnimsFalse()
     {
