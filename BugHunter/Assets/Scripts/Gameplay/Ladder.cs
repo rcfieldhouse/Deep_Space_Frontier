@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour
 {
-    private GameObject Prompt,Player;
+    public GameObject Prompt,Player;
     private bool _IsInTrigger = false;
     private void Start()
     {

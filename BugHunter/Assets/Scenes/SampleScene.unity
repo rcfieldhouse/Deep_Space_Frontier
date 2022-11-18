@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 136559627}
-  m_IndirectSpecularColor: {r: 0.13856609, g: 0.04852879, b: 0.20566985, a: 1}
+  m_IndirectSpecularColor: {r: 0.13856666, g: 0.04852905, b: 0.20567, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21538,6 +21538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948fb4175865cf543b92b517d7a45359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Prompt: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!65 &452809399
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22510,10 +22512,13 @@ MonoBehaviour:
   SeekRange: 100
   FrontAttackPos: {x: -30, y: 5, z: 0}
   BackAttackPos: {x: 40, y: 3, z: 0}
+  FrontAttackDamage: -20
+  BackAttackDamage: -35
+  AOEAttackDamage: -30
   PlayerInFrontAttackRange: 0
   PlayerInBackAttackRange: 0
   PlayerInSeekRange: 0
-  target: {fileID: 543450652801968855}
+  Player: {fileID: 919132148878241901}
 --- !u!1001 &505722072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24013,6 +24018,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 596298795}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &597696547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7409516500621744759, guid: 330fac81f1335d94fbf65db387dca486,
+    type: 3}
+  m_PrefabInstance: {fileID: 498021719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &597696549
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597696547}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.002
+  m_Height: 0.006
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.002, z: 0.0002}
 --- !u!1001 &598265770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27585,6 +27610,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948fb4175865cf543b92b517d7a45359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Prompt: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1001 &872481448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38574,10 +38601,13 @@ MonoBehaviour:
   SeekRange: 0
   FrontAttackPos: {x: 0, y: 0, z: 0}
   BackAttackPos: {x: 0, y: 0, z: 0}
+  FrontAttackDamage: 0
+  BackAttackDamage: 0
+  AOEAttackDamage: 0
   PlayerInFrontAttackRange: 0
   PlayerInBackAttackRange: 0
   PlayerInSeekRange: 0
-  target: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!54 &983612073
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38633,6 +38663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 500
+  currentHealth: 0
 --- !u!114 &983612077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65052,6 +65083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
+  currentHealth: 0
 --- !u!195 &881555580293087925
 NavMeshAgent:
   m_ObjectHideFlags: 0
