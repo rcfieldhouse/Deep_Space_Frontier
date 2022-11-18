@@ -16,6 +16,11 @@ public class Back : MonoBehaviour
         for (int i = 0; i < transform.parent.childCount; i++)
         {
 
+            transform.parent.GetChild(i).gameObject.SetActive(false);
+        }
+        for (int i = 0; i < transform.parent.childCount; i++)
+        {
+
             transform.parent.GetChild(i).gameObject.SetActive(true);
         }
     } 
