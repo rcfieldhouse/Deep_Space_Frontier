@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ladder : MonoBehaviour
 {
     public GameObject Prompt,Player;
-    private bool _IsInTrigger = false;
+    public bool _IsInTrigger = false;
     private void Start()
     {
         PlayerInput.Interact += UseLadder;
@@ -16,6 +16,14 @@ public class Ladder : MonoBehaviour
     {
         Prompt.SetActive(true);
       
+        if (other.tag == "Player")
+        {
+            _IsInTrigger = true;
+            Player = other.gameObject;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
         if (other.tag == "Player")
         {
             _IsInTrigger = true;
@@ -34,6 +42,7 @@ public class Ladder : MonoBehaviour
     }
     private void UseLadder()
     {
+     if (Player)
         if (Player.GetComponent<CharacterController>().GetIfOnLadder() == true)
         {
             //get off the ladder function
@@ -44,7 +53,7 @@ public class Ladder : MonoBehaviour
         }
         if (_IsInTrigger == true)
         {
-            Prompt.SetActive(false) ;
+            Prompt.SetActive(false);
             Player.GetComponent<CharacterController>().SetIfOnLadder(true);
         }
     }
