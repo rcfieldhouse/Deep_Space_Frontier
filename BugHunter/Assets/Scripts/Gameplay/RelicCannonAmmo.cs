@@ -4,30 +4,38 @@ using UnityEngine;
 
 public class RelicCannonAmmo : MonoBehaviour
 {
-    private WaitForSeconds BoomTimer = new WaitForSeconds(0.5f);
+    private WaitForSeconds Delay = new WaitForSeconds(0.5f);
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
+        StartCoroutine(Enlarge());
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag=="Enemy")
-        collision.gameObject.GetComponentInParent<HealthSystem>().ModifyHealth(-100); 
-
-        StartCoroutine(DestroyThis());
-    }
-    private IEnumerator DestroyThis()
-    {
-        gameObject.transform.localScale = new Vector3(10.0f, 6.0f, 10.0f);
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        yield return BoomTimer;
+   
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            StartCoroutine(ShowLine(other.gameObject.transform));
+            other.gameObject.GetComponent<HealthSystem>().ModifyHealth(-100);
+        }
+    }
+    private IEnumerator Enlarge()
+    {
+        yield return Delay;
+        gameObject.GetComponent<SphereCollider>().isTrigger = true;
+        gameObject.GetComponent<SphereCollider>().radius = 8.0f;
+    }
+    private IEnumerator ShowLine(Transform Target)
+    {
+        LineRenderer Line = gameObject.AddComponent<LineRenderer>();
+        Line.enabled = true;
+        Line.SetPosition(0, transform.position);
+        Line.SetPosition(1, Target.position);
+        yield return new WaitForSeconds(0.1f);
+        Destroy(Line);
     }
 }
