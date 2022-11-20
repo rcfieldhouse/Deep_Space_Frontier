@@ -19,18 +19,21 @@ public class MurderMittens : MonoBehaviour
     }
     public void SetAttack(bool var, int Damage)
     {
-        if (var==true)
-        gameObject.GetComponent<CapsuleCollider>().radius = StartRadius* 3.0f;
+        if (var == true) gameObject.GetComponent<CapsuleCollider>().radius = StartRadius * 3.0f;
+      
+     
 
-        if (var == false)
-            gameObject.GetComponent<CapsuleCollider>().radius = StartRadius;
+        if (var == false) gameObject.GetComponent<CapsuleCollider>().radius = StartRadius;
+     
 
+        gameObject.GetComponent<CapsuleCollider>().isTrigger = var;
         _IsAttacking = var;
         _Damage = Damage;
     }
-    private void OnCollisionEnter(Collision collision)
+  
+    private void OnTriggerEnter(Collider other)
     {
-        if (_IsAttacking == true&&collision.gameObject.tag=="Player")
+        if (_IsAttacking == true&& other.gameObject.tag=="Player")
         {
             Player.GetComponent<HealthSystem>().ModifyHealth(_Damage);
             Debug.Log("Hit");

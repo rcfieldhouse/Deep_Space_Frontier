@@ -46,6 +46,22 @@ public class SniperShot : MonoBehaviour
         else GetComponent<WeaponInfo>().SetCanShoot(true);
 
     }
+    private HealthSystem FindBossHealth(GameObject obj)
+    {
+        // Debug.Log(obj.name);
+        if (obj.tag == "Boss")
+        {
+            Debug.Log("we found the boss " + obj.name);
+            return obj.GetComponent<HealthSystem>();
+        }
+        else
+        {
+            return FindBossHealth(obj.transform.parent.gameObject);
+
+        }
+        //error prevention
+
+    }
     private void OnEnable()
     {
         if(_IsSniper==true)
@@ -86,14 +102,26 @@ public class SniperShot : MonoBehaviour
                 // Set the end position for our laser line 
                 laserLine.SetPosition(1, hit.point);
 
-               // Debug.Log(hit.collider.gameObject.name);
+                // Debug.Log(hit.collider.gameObject.name);
                 // Get a reference to a health script attached to the collider we hit
-                HealthSystem health = hit.collider.gameObject.GetComponent<HealthSystem>();
+                HealthSystem health;
+                // Get a reference to a health script attached to the collider we hit
+                if (hit.collider.tag == "BossColliderHolder")
+                {
+                    health = FindBossHealth(hit.collider.gameObject);
+
+                }
+                else
+                {
+                    health = hit.collider.GetComponent<HealthSystem>();
+                }
+
+
 
 
 
                 // If there was a health script attached
-           
+
                 if (health != null && hit.collider.isTrigger)
                 {
                     if (hit.collider.gameObject.tag == "Enemy" && _IsSniper == true) CurrentBullet.CallShotEffect(hit.collider.gameObject);

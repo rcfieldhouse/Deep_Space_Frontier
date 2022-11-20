@@ -8,6 +8,7 @@ public class RelicCannonAmmo : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        StartCoroutine(KillShot());
         StartCoroutine(Enlarge());
     }
     private void OnCollisionEnter(Collision collision)
@@ -22,6 +23,11 @@ public class RelicCannonAmmo : MonoBehaviour
             StartCoroutine(ShowLine(other.gameObject.transform));
             other.gameObject.GetComponent<HealthSystem>().ModifyHealth(-100);
         }
+    }
+    private IEnumerator KillShot()
+    {
+        yield return new WaitForSeconds(15.0f);
+        Destroy(gameObject);
     }
     private IEnumerator Enlarge()
     {

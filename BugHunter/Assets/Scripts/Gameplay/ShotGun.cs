@@ -53,6 +53,22 @@ public class ShotGun : MonoBehaviour
         else GetComponent<WeaponInfo>().SetCanShoot(true);
 
     }
+    private HealthSystem FindBossHealth(GameObject obj)
+    {
+        // Debug.Log(obj.name);
+        if (obj.tag == "Boss")
+        {
+            Debug.Log("we found the boss " + obj.name);
+            return obj.GetComponent<HealthSystem>();
+        }
+        else
+        {
+            return FindBossHealth(obj.transform.parent.gameObject);
+
+        }
+        //error prevention
+
+    }
     void Shoot()
     {
       
@@ -98,7 +114,19 @@ public class ShotGun : MonoBehaviour
 
 
                 // Get a reference to a health script attached to the collider we hit
-                HealthSystem health = hit.collider.GetComponent<HealthSystem>();
+                HealthSystem health;
+                // Get a reference to a health script attached to the collider we hit
+                if (hit.collider.tag == "BossColliderHolder")
+                {
+                    health = FindBossHealth(hit.collider.gameObject);
+
+                }
+                else
+                {
+                    health = hit.collider.GetComponent<HealthSystem>();
+                }
+
+
 
                 if (hit.collider.isTrigger && health != null)
                 {
@@ -139,16 +167,28 @@ public class ShotGun : MonoBehaviour
 
                     if (Physics.Raycast(rayOrigin, fpsCam.transform.forward * weaponRange + AimSpread, out hit, weaponRange))
                     {
-                        // Set the end position for our laser line 
-                        // laserLine.SetPosition(1, hit.point);
+                    // Set the end position for our laser line 
+                    // laserLine.SetPosition(1, hit.point);
 
 
-                        // Get a reference to a health script attached to the collider we hit
-                        HealthSystem health = hit.collider.GetComponent<HealthSystem>();
-                        
+                    // Get a reference to a health script attached to the collider we hit
+                    HealthSystem health;
+                    // Get a reference to a health script attached to the collider we hit
+                    if (hit.collider.tag == "BossColliderHolder")
+                    {
+                        health = FindBossHealth(hit.collider.gameObject);
 
-                        // If there was a health script attached
-                        if (health != null)
+                    }
+                    else
+                    {
+                        health = hit.collider.GetComponent<HealthSystem>();
+                    }
+
+
+
+
+                    // If there was a health script attached
+                    if (health != null)
                     {
                         StartCoroutine(HitMarkerEffect(0));
                         // Call the damage function of that script, passing in our gunDamage variable
