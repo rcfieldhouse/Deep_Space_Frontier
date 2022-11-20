@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using TMPro;
+public class ButtonHover : MonoBehaviour
+{
+
+
+    public void ChangeOnHover()
+    {
+      //  GetComponentInChildren<TextMeshPro>().
+        Debug.Log("hover");
+    }
+    public void ChangeOnLeave()
+    {
+        Debug.Log("hover");
+    }
+}

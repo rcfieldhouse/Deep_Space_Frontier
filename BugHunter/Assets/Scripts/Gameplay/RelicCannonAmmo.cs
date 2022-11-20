@@ -12,8 +12,7 @@ public class RelicCannonAmmo : MonoBehaviour
         StartCoroutine(Enlarge());
     }
     private void OnCollisionEnter(Collision collision)
-    {
-   
+    { 
         Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)
@@ -35,6 +34,8 @@ public class RelicCannonAmmo : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().isTrigger = true;
         gameObject.GetComponent<SphereCollider>().radius = 8.0f;
     }
+
+
     private IEnumerator ShowLine(Transform Target)
     {
         LineRenderer Line = gameObject.AddComponent<LineRenderer>();
