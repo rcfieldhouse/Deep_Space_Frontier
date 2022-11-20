@@ -44,6 +44,22 @@ public class FullAutoGun : MonoBehaviour
     {
         _IsShooting = false;
     }
+    private HealthSystem FindBossHealth(GameObject obj)
+    {
+       // Debug.Log(obj.name);
+        if (obj.tag == "Boss")
+        {
+            Debug.Log("we found the boss "+ obj.name);
+            return obj.GetComponent<HealthSystem>();
+        }
+        else
+        {
+            return FindBossHealth(obj.transform.parent.gameObject);
+           
+        }
+        //error prevention
+  
+    }
     private void Shoot()
     {
         if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy==true)
@@ -75,19 +91,29 @@ public class FullAutoGun : MonoBehaviour
                 // Set the end position for our laser line 
                 laserLine.SetPosition(1, hit.point);
 
-
+                HealthSystem health;
                 // Get a reference to a health script attached to the collider we hit
-                HealthSystem health = hit.collider.GetComponent<HealthSystem>();
+                if (hit.collider.tag == "BossColliderHolder")
+                {
+                    health = FindBossHealth(hit.collider.gameObject);
+            
+                }
+                else {
+                    health = hit.collider.GetComponent<HealthSystem>();
+                }
+
+               
 
                 // If there was a health script attached
                 if (health != null && hit.collider.isTrigger)
-                {
+                {                 
                     StartCoroutine(HitMarkerEffect(1));
                     // Double Damage for Crits
                     health.ModifyHealth((int)(gunDamage * CritMultiplier));
                 }
                 else if (health != null)
                 {
+                    Debug.Log("we hit "+health.gameObject.name);
                     StartCoroutine(HitMarkerEffect(0));
                     // Call the damage function of that script, passing in our gunDamage variable
                     health.ModifyHealth(gunDamage);

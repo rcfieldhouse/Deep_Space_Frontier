@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossAI : MonoBehaviour
 {
     private Animator animator;
+    public List<GameObject> AttackColliders; 
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     public float FrontAttackRange, BackAttackRange, SeekRange;
     public Vector3 FrontAttackPos, BackAttackPos;
@@ -14,6 +15,10 @@ public class BossAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i=0; i<AttackColliders.Count; i++)
+        {
+            AttackColliders[i].GetComponent<MurderMittens>().SetPlayer(Player);
+        }
        animator= GetComponent<Animator>();   
     }
 
@@ -53,9 +58,18 @@ public class BossAI : MonoBehaviour
     }
     private IEnumerator DoDamage(int Damage)
     {
-        yield return new WaitForSeconds(0.75f);
-        if (PlayerInFrontAttackRange || PlayerInBackAttackRange) Player.GetComponent<HealthSystem>().ModifyHealth(Damage);
+        for (int i = 0; i < AttackColliders.Count; i++)
+        {
+            AttackColliders[i].GetComponent<MurderMittens>().SetAttack(true, Damage);
+        }
+        yield return new WaitForSeconds(2.0f);
+
+        for (int i = 0; i < AttackColliders.Count; i++)
+        {
+            AttackColliders[i].GetComponent<MurderMittens>().SetAttack(false, 0);
+        }
     }
+  
     private void SetAnimsFalse()
     {
         animator.SetBool("FrontAttack", false);
