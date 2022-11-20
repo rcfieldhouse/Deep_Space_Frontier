@@ -29,6 +29,7 @@ public class Options : MonoBehaviour
         }
         transform.parent.GetComponentInChildren<TitleScreen>().gameObject.SetActive(false);
         gameObject.GetComponent<Image>().enabled = false;
+        transform.parent.GetComponentInChildren<QuitGame>().gameObject.SetActive(false);
         Icons[0].gameObject.SetActive(false);
     }
 }

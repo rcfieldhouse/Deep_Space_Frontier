@@ -31,8 +31,10 @@ public class TitleScreen : MonoBehaviour
         {
              Icons[i].gameObject.SetActive(true);
         }
+
         transform.parent.GetComponentInChildren<Options>().gameObject.SetActive(false);
         gameObject.GetComponent<Image>().enabled = false;
+        transform.parent.GetComponentInChildren<QuitGame>().gameObject.SetActive(false);
         Icons[0].gameObject.SetActive(false);
     }
 }
