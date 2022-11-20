@@ -104,10 +104,12 @@ public class CharacterController : MonoBehaviour
             mover = transform.right * move.x + transform.forward * move.y;
             Rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, Rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
         }      
-       else if (GetComponent<Dodge>().GetRollVector()!=Vector3.zero)
+       else if (gameObject.GetComponent<Dodge>()!=null  )
        {
-           Rigidbody.velocity = GetComponent<Dodge>().GetRollVector() * 12;
-       }
+            if (GetComponent<Dodge>().GetRollVector() != Vector3.zero) { 
+                Rigidbody.velocity = GetComponent<Dodge>().GetRollVector() * 12;
+            }
+        }
         else if (_IsOnLadder == true)
         {
             SpeedMod *= 10.0f;
