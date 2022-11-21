@@ -109,7 +109,10 @@ public class WeaponInfo : MonoBehaviour
     {
         reserveAmmo = Amount;
     }
-
+    public int GetMaxBullets()
+    {
+        return maxAmmo;
+    }
     public IEnumerator SetBulletCount(bool var)
     {
         yield return ReloadTimer;

@@ -95,7 +95,7 @@ public class WeaponSwap : MonoBehaviour
             WeaponChoice = num;
         }
          
-        //}
+      
        
     }
 }

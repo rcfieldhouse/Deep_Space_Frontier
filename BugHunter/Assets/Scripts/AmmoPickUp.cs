@@ -8,8 +8,10 @@ public class AmmoPickUp : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("yahoo");
-            AmmoManager.instance.setAmmoCount();
+            WeaponInfo info = GameObject.Find("WeaponHolder").GetComponentInChildren<WeaponInfo>();
+            if (info.GetMaxBullets() / 33 > 1) info.SetReserveAmmo(info.GetMaxBullets() / 33);
+            else info.SetReserveAmmo(info.GetReserveAmmo() + 1);
+
             Destroy(gameObject);
         }
     }
