@@ -108,6 +108,10 @@ public class WeaponInfo : MonoBehaviour
     public void SetReserveAmmo(int Amount)
     {
         reserveAmmo = Amount;
+        if (reserveAmmo > maxAmmo)
+        {
+            reserveAmmo = maxAmmo;
+        }
     }
     public int GetMaxBullets()
     {

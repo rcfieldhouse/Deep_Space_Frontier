@@ -26,6 +26,10 @@ public class HealthSystem : MonoBehaviour
     {
         return currentHealth;
     }
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
     public void SetHealth(int health)
     {
         currentHealth = health;

@@ -8,7 +8,8 @@ public class HealthPickup : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<HealthSystem>().ModifyHealth(25);
+            int percent =  collision.gameObject.GetComponent<HealthSystem>().GetMaxHealth()/4;
+            collision.gameObject.GetComponent<HealthSystem>().ModifyHealth(percent);
             Destroy(gameObject);
         }
     }

@@ -39,10 +39,12 @@ public class RelicCannonAmmo : MonoBehaviour
     private IEnumerator ShowLine(Transform Target)
     {
         LineRenderer Line = gameObject.AddComponent<LineRenderer>();
+        Line.startWidth = 0.1f;
+        Line.endWidth = 0.1f;
         Line.enabled = true;
         Line.SetPosition(0, transform.position);
         Line.SetPosition(1, Target.position);
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.075f);
         Destroy(Line);
     }
 }
