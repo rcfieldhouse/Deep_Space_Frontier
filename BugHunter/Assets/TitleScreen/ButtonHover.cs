@@ -4,27 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using TMPro;
-
-
-
 public class ButtonHover : MonoBehaviour
 {
-    public TextMeshProUGUI text;
 
-    public void start()
-    {
-        //text = GetComponentInChildren<TextMeshProUGUI>();
-    }
 
     public void ChangeOnHover()
     {
-        text.fontSharedMaterial.EnableKeyword("GLOW_ON");
-        text.fontSharedMaterial.SetFloat("_GlowPower", 80f);
+      //  GetComponentInChildren<TextMeshPro>().
+        Debug.Log("hover");
     }
     public void ChangeOnLeave()
     {
-        text.material.DisableKeyword("GLOW_INNER");
-        text.fontSharedMaterial.SetFloat("_GlowPower", 80f);
+        Debug.Log("hover");
     }
 }
-
