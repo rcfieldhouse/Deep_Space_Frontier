@@ -5,11 +5,12 @@ using UnityEngine;
 public class Dodge : MonoBehaviour
 {
     //use this to pass in the data
-   
+    private bool _CanRoll = true; 
     private CharacterController characterController;
     private GameObject[] Cameras;
     private Vector3 RollVector = Vector3.zero;
     [Range(0, 1)] public  WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
+    [Range(0, 1)] public WaitForSeconds RollCoolDownTime = new WaitForSeconds(5f);
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +22,11 @@ public class Dodge : MonoBehaviour
     }
     private void UseDodge()
     {
-        StartCoroutine(DoTheRoll());
-        SwitchDodgeCam();
+        if (_CanRoll == true)
+        {
+            StartCoroutine(DoTheRoll());
+            SwitchDodgeCam();
+        }
     }
     private void disableCams(bool var)
     {   //set all cameras to false, if called by a function that is setting that camera to false
@@ -47,17 +51,26 @@ public class Dodge : MonoBehaviour
     }
     private IEnumerator DoTheRoll()
     {
-        RollVector = GetComponent<Rigidbody>().velocity.normalized;
-        if (RollVector == Vector3.zero || GetComponent<Rigidbody>().velocity.magnitude < 0.1)
-            RollVector = Cameras[4].transform.rotation * Vector3.forward;
+       
+            RollVector = GetComponent<Rigidbody>().velocity.normalized;
+            if (RollVector == Vector3.zero || GetComponent<Rigidbody>().velocity.magnitude < 0.1)
+                RollVector = Cameras[4].transform.rotation * Vector3.forward;
 
-        yield return new WaitForEndOfFrame();
-        GetComponent<HealthSystem>().SetInvulnerable(true);
-        characterController.SetSuspendMovement(true) ;
-        yield return RollTimer;
-        GetComponent<HealthSystem>().SetInvulnerable(false);
-        characterController.SetSuspendMovement(false);
-        RollVector = Vector3.zero;
+            yield return new WaitForEndOfFrame();
+            GetComponent<HealthSystem>().SetInvulnerable(true);
+            characterController.SetSuspendMovement(true);
+            yield return RollTimer;
+            GetComponent<HealthSystem>().SetInvulnerable(false);
+            characterController.SetSuspendMovement(false);
+            RollVector = Vector3.zero;
+            StartCoroutine(StartRollCooldown());
+        
+    }
+    private IEnumerator StartRollCooldown()
+    {
+        _CanRoll = false;
+        yield return RollCoolDownTime;
+        _CanRoll = true;
     }
     public Vector3 GetRollVector()
     {

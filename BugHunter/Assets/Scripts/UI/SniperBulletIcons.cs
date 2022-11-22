@@ -17,10 +17,7 @@ public class SniperBulletIcons : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     void SelectBullet(int foo)
     {
         for (int i = 0; i < transform.childCount; i++)
