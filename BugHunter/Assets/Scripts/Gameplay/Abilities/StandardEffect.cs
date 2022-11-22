@@ -5,14 +5,9 @@ using UnityEngine;
 public class StandardEffect : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //prolly just do damage 
+        //maybe armour piercing
     }
 }

@@ -59,6 +59,7 @@ MonoBehaviour:
   Health: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 15
+  health: {fileID: 0}
   lungeDamage: -10
   SwingDamage: -5
   Damage: 0
@@ -106,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
+  currentHealth: 0
 --- !u!65 &7075202811191136870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -218,6 +220,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyHound
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f7d3ab52de1a6804398fea168ac4a7dc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d3ab52de1a6804398fea168ac4a7dc, type: 3}
