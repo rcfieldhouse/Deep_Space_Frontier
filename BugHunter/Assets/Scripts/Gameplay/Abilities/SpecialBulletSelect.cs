@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 public interface SniperBullet
 {
-    void WriteName();
+ 
    void ShotEffect(GameObject obj);
 }
 public enum BulletType
@@ -14,10 +15,7 @@ public enum BulletType
 //shot Effects
 internal class Standard : SniperBullet
 {
-    public void WriteName()
-    {
-        Debug.Log("Standard");
-    }
+
     public void ShotEffect(GameObject obj)
     {
         //maybe i can do something like does more damage to parts 
@@ -26,10 +24,7 @@ internal class Standard : SniperBullet
 }
 internal class Cryogenic : SniperBullet
 {
-    public void WriteName()
-    {
-        Debug.Log("Cryogenic");
-    }
+
     public void ShotEffect(GameObject obj)
     {
         obj.AddComponent<CryogenicEffect>();
@@ -37,21 +32,15 @@ internal class Cryogenic : SniperBullet
 }
 internal class Incendiary : SniperBullet
 {
-    public void WriteName()
-    {
-        Debug.Log("Incendiary");
-    }
+
     public void ShotEffect(GameObject obj)
     {
         obj.AddComponent<IncendiaryEffect>();
     }
 }
-internal class Explosive : SniperBullet
+internal class Electric : SniperBullet
 {
-    public void WriteName()
-    {
-        Debug.Log("Explosive");
-    }
+
     public void ShotEffect(GameObject obj)
     {
         obj.AddComponent<ExplosiveEffect>();
@@ -60,6 +49,7 @@ internal class Explosive : SniperBullet
 
 public class SpecialBulletSelect : MonoBehaviour
 {
+    public static Action<int> NewBulletSelected;
     SniperBullet Bullet;
     [SerializeField] private BulletType BulletSelection=BulletType.Standard;
     public SniperBullet SelectBullet(BulletType bulletType)
@@ -77,7 +67,7 @@ public class SpecialBulletSelect : MonoBehaviour
                 bullet = new Incendiary();
                 break;
             case BulletType.Electric:
-                bullet = new Explosive();
+                bullet = new Electric();
                 break;
 
             default:
@@ -93,13 +83,10 @@ public class SpecialBulletSelect : MonoBehaviour
     {
          Bullet = SelectBullet(BulletSelection);
         PlayerInput.UseAbility += ChangeBulletType;
-        Bullet.WriteName();
+        NewBulletSelected.Invoke((int)BulletSelection);
     }
     // Update is called once per frame
-    void Update()
-    {
-      
-    }
+
     public void CallShotEffect(GameObject Object)
     {
         Bullet.ShotEffect(Object);
@@ -107,11 +94,12 @@ public class SpecialBulletSelect : MonoBehaviour
     }
     public void ChangeBulletType()
     {
+      
         BulletSelection += 1;
         if (BulletSelection > BulletType.Electric) BulletSelection = BulletType.Standard;
          Bullet = SelectBullet(BulletSelection);
 
-        Bullet.WriteName();
+        NewBulletSelected.Invoke((int)BulletSelection);
 
     }
 }
