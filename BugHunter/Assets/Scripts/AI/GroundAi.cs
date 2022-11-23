@@ -18,6 +18,7 @@ public class GroundAi : MonoBehaviour
  
     //Patroling
     public Vector3 walkPoint;
+    public Vector3 SpawnPoint;
     bool walkPointSet;
     public float walkPointRange;
     public HealthSystem health;
@@ -35,6 +36,9 @@ public class GroundAi : MonoBehaviour
   
     private void Awake()
     {
+         if (SpawnPoint == Vector3.zero||SpawnPoint==null) SpawnPoint = gameObject.transform.position;
+
+
         if (lungeWait == null)
         {
             lungeWait = new WaitForSeconds(0.25f);
@@ -50,6 +54,11 @@ public class GroundAi : MonoBehaviour
         
         if (agent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
+    }
+    public void SetInitialPosition (Vector3 vector3)
+    {
+  
+        SpawnPoint = vector3;
     }
     private IEnumerator AddHealthData()
     {
@@ -127,6 +136,11 @@ public class GroundAi : MonoBehaviour
             {
 
                 walkPointSet = false;
+            }
+            if ((Mathf.Abs(gameObject.transform.position.x- SpawnPoint.x)>60.0f)|| (Mathf.Abs(gameObject.transform.position.y - SpawnPoint.y) > 60.0f))
+            {
+                agent.SetDestination(SpawnPoint);
+              //  Debug.Log(gameObject.name + " is too far" + " current: " + gameObject.transform.position+ " Spawn "+SpawnPoint);
             }
         }
         StartCoroutine(PlsWork());
