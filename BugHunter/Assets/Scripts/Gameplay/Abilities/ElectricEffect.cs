@@ -61,7 +61,6 @@ public class ElectricEffect : MonoBehaviour
     }
     private IEnumerator ShowLine(Transform Target)
     {
-        Debug.Log("line ");
         LineRenderer Line = gameObject.AddComponent<LineRenderer>();
         Line.enabled = true;
         Line.startWidth = 0.5f;
