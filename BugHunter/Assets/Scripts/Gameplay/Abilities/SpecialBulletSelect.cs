@@ -43,7 +43,7 @@ internal class Electric : SniperBullet
 
     public void ShotEffect(GameObject obj)
     {
-        obj.AddComponent<ExplosiveEffect>();
+        obj.AddComponent<ElectricEffect>();
     }
 }
 

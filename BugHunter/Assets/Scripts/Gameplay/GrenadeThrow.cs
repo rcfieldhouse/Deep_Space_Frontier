@@ -7,7 +7,7 @@ public class GrenadeThrow : MonoBehaviour
 {
     public GameObject player;
     private Rigidbody Rigidbody;
-    private bool _isReady = true;
+    private bool _isReady = true,_isExploding=false;
   
     private SphereCollider sphereCollider;
     private WaitForSeconds GrenadeFuse = new WaitForSeconds(2.0f);
@@ -68,16 +68,21 @@ public class GrenadeThrow : MonoBehaviour
         sphereCollider.enabled = true;
         sphereCollider.isTrigger = true;
         sphereCollider.radius = 0.77f;
-
+        _isExploding = true;
         //Grenade VFX Trigger
         SpawnGrenadeVFX();
         yield return BoomTimer;
+        _isExploding = false;
         _isReady = false;
         sphereCollider.isTrigger = false;
         sphereCollider.enabled = false;
         sphereCollider.radius = 0.02f;
         StartCoroutine(ResetNade());
        
+    }
+    public bool GetIsExploding()
+    {
+        return _isExploding;
     }
     public IEnumerator ResetNade()
     {
