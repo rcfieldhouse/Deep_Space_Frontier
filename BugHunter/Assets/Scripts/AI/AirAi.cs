@@ -19,7 +19,7 @@ public class AirAi : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-
+    public Vector3 SpawnPoint;
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
@@ -30,12 +30,18 @@ public class AirAi : MonoBehaviour
 
     private void Awake()
     {
+        if (SpawnPoint == Vector3.zero || SpawnPoint == null) SpawnPoint = gameObject.transform.position;
         agent = GetComponent<NavMeshAgent>();
         Health = GetComponent<HealthSystem>();
         player = GameObject.FindWithTag("Player").transform;
 
         if (agent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
+    }
+    public void SetInitialPosition(Vector3 vector3)
+    {
+      
+        SpawnPoint = vector3;
     }
     private void OnEnable()
     {
@@ -114,6 +120,11 @@ public class AirAi : MonoBehaviour
             {
 
                 walkPointSet = false;
+            }
+            if ((Mathf.Abs(gameObject.transform.position.x - SpawnPoint.x) > 60.0f) || (Mathf.Abs(gameObject.transform.position.y - SpawnPoint.y) > 60.0f))
+            {
+                agent.SetDestination(SpawnPoint);
+           
             }
         }
         StartCoroutine(PlsWork());

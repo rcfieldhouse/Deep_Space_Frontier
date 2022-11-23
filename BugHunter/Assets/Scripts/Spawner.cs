@@ -60,10 +60,7 @@ public class Spawner : MonoBehaviour
 
     }
     // Update is called once per frame
-    void Update()
-    {
-       
-    }
+
     public void SelectEnemy(EnemyType TypeEnemy)
     {
         switch (TypeEnemy)
@@ -95,10 +92,19 @@ public class Spawner : MonoBehaviour
         yield return SpawnTime;
 
        
-           GameObject Hound = GameObject.Instantiate(prefab[0], this.gameObject.transform);
+           GameObject Hound = GameObject.Instantiate(prefab[0], gameObject.transform);
+      
            Hound.GetComponent<GroundAi>().SetTimes(lungeWait, lungeDuration, SwingDuration);
-           if (StartDestination != null) Hound.GetComponent<GroundAi>().SetInitialDestination(StartDestination.position);
-        
+            if (StartDestination != null)
+            {
+             
+                Hound.GetComponent<GroundAi>().SetInitialDestination(StartDestination.position);
+                if (StartDestination.position != Vector3.zero)
+                {
+                    Hound.GetComponent<GroundAi>().SetInitialPosition(StartDestination.position);
+                }
+            }
+         
         //go to next spawn
         NumEnemies[0]--;
         StartCoroutine(HoundSpawn());
@@ -114,10 +120,14 @@ public class Spawner : MonoBehaviour
             yield return SpawnTime;
 
 
-            GameObject Enemy = GameObject.Instantiate(prefab[1], this.gameObject.transform);
+            GameObject Enemy = GameObject.Instantiate(prefab[1], gameObject.transform);
             if (StartDestination != null)
             { 
                 Enemy.GetComponent<AirAi>().SetInitialDestination(StartDestination.position);
+                if (StartDestination.position != Vector3.zero)
+                {
+                    Enemy.GetComponent<AirAi>().SetInitialPosition(StartDestination.position);
+                }
             }
             //go to next spawn
             NumEnemies[1]--;
