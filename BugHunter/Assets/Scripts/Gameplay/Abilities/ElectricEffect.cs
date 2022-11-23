@@ -17,9 +17,8 @@ public class ElectricEffect : MonoBehaviour
         if (other.tag == "Enemy" && other.GetComponent<ElectricEffect>()==null&&_TargetFound==false && other.GetComponent<BeenElectrified>() == null)
         {
             _TargetFound = true;
-            StartCoroutine(ShowLine(other.transform));
-            Debug.Log(gameObject.name+" transferring to "+ other.gameObject.name);
-            other.gameObject.AddComponent<ElectricEffect>(); 
+            StartCoroutine(ShowLine(other.transform));         
+            StartCoroutine(NewTarget(other));
 
         }
     }
@@ -30,11 +29,14 @@ public class ElectricEffect : MonoBehaviour
         {
             _TargetFound = true;
             StartCoroutine(ShowLine(other.transform));
-            Debug.Log(gameObject.name + " transferring to " + other.gameObject.name);
             other.gameObject.AddComponent<ElectricEffect>();
         }
     }
-
+    private IEnumerator NewTarget(Collider collider)
+    {
+        yield return new WaitForSeconds(0.25f);
+        collider.gameObject.AddComponent<ElectricEffect>();
+    }
     // Update is called once per frame
     private IEnumerator ArcShot()
     {
@@ -52,7 +54,7 @@ public class ElectricEffect : MonoBehaviour
         coll.isTrigger = true;
      
         yield return new WaitForSeconds(1f);
-        gameObject.GetComponent<HealthSystem>().ModifyHealth(-25);
+        gameObject.GetComponent<HealthSystem>().ModifyHealth(-15);
         Destroy(rigidbody);
         Destroy(coll);
         Destroy(this);
