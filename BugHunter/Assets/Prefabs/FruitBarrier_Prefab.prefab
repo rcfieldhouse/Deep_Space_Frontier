@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 126682338553104794}
   - component: {fileID: 2131737388339129881}
   - component: {fileID: 2424525728497678854}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4506116972111474075}
   - component: {fileID: 3250047256736808754}
   - component: {fileID: 2209562227139793468}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 3722178162252467032}
   - component: {fileID: 1682362459460078717}
   - component: {fileID: 1090273068208985003}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 678712964831204427}
   - component: {fileID: 86448414620015273}
   - component: {fileID: 2940713673662683614}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 3543926115353316075}
   - component: {fileID: 3602270774933347784}
   - component: {fileID: 460272136890068737}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,9 +430,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8179540502132357271}
   - component: {fileID: 1098955462}
-  m_Layer: 0
+  - component: {fileID: -6001265495371944652}
+  m_Layer: 10
   m_Name: FruitBarrier_Prefab
-  m_TagString: Untagged
+  m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -446,7 +447,7 @@ Transform:
   m_GameObject: {fileID: 8847391920418497069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 888.0227, y: 0.000027656555, z: 889.22955}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2.56065, y: 2.56065, z: 2.56065}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5040150503782736882}
@@ -471,6 +472,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4, y: 12.97, z: 30.94}
   m_Center: {x: 0.03, y: 5.45, z: 0}
+--- !u!114 &-6001265495371944652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8847391920418497069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b34f4833f218df45aae2ce4f267a7eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThisQuestStep: 0
 --- !u!1 &9044717128140959000
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +496,7 @@ GameObject:
   - component: {fileID: 5040150503782736882}
   - component: {fileID: 4327791829935494508}
   - component: {fileID: 5262854559951800755}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
