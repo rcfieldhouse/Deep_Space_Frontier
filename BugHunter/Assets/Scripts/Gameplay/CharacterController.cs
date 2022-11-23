@@ -110,8 +110,9 @@ public class CharacterController : MonoBehaviour
                 Rigidbody.velocity = GetComponent<Dodge>().GetRollVector() * 12;
             }
         }
-        else if (_IsOnLadder == true)
+        if (_IsOnLadder == true)
         {
+
             SpeedMod *= 10.0f;
             // Rigidbody.velocity = Vector3.zero;
             Rigidbody.velocity = new Vector3(0.0f, SpeedMod*move.y/m_LadderSpeed, 0.0f);
