@@ -1487,6 +1487,7 @@ MonoBehaviour:
   Health: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 15
+  SpawnPoint: {x: 0, y: 0, z: 0}
   timeBetweenAttacks: 1
   sightRange: 30
   attackRange: 4.3
@@ -1502,7 +1503,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 3.98
-  m_Speed: 3
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 180
@@ -1526,7 +1527,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0bb0dd8316f3d4782fba483477d661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 75
+  maxHealth: 250
+  currentHealth: 0
 --- !u!114 &3890791742481677069
 MonoBehaviour:
   m_ObjectHideFlags: 0

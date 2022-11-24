@@ -20,7 +20,7 @@ public class RelicCannonAmmo : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             StartCoroutine(ShowLine(other.gameObject.transform));
-            other.gameObject.GetComponent<HealthSystem>().ModifyHealth(-100);
+            other.gameObject.GetComponent<HealthSystem>().ModifyHealth(-25);
         }
     }
     private IEnumerator KillShot()
