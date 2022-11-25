@@ -16,7 +16,6 @@ public class Supply : MonoBehaviour
             SpawnPoints.Add(transform.GetChild(i).gameObject);
         }
         GetComponent<Rigidbody>().isKinematic = true;
-        Drop();
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -46,7 +45,12 @@ public class Supply : MonoBehaviour
              }
         }
     }
-   public void Drop()
+    private void OnTriggerEnter(Collider other)
+    {
+        Drop();
+
+    }
+    public void Drop()
     {
         GetComponent<Rigidbody>().isKinematic = false;
     }
