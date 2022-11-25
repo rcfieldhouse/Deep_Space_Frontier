@@ -7,7 +7,7 @@ public class StandardEffect : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        gameObject.GetComponent<HealthSystem>().ModifyHealth(-115);
+        gameObject.GetComponent<HealthSystem>().ModifyHealth(-125);
         Destroy(this);
         //prolly just do damage 
         //maybe armour piercing
