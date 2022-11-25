@@ -25,7 +25,6 @@ public class AssaultIcons : MonoBehaviour
 
         while (fillTime < RechargeTime)
         {
-            Debug.Log(fillTime+" "+ RechargeTime);
             fillTime+=Time.deltaTime;
             ClassAbility.fillAmount = Mathf.Lerp(0.0f,1.0f,fillTime/RechargeTime);
             yield return null;
