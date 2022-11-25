@@ -39,7 +39,7 @@ public class Supply : MonoBehaviour
              {
             for (int j=0; j < SpawnPoints.Count; j++)
             {
-                Debug.Log("Spawned loot " + j + " at " + LootDrops);
+                Debug.Log("Spawned loot " + i+ " at " + j);
                 Instantiate(LootDrops[i], SpawnPoints[j].transform);
             }
              }
