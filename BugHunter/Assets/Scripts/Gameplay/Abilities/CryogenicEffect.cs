@@ -15,7 +15,7 @@ public class CryogenicEffect : MonoBehaviour
     private void Awake()
     {
         BaseMat = GetComponentInChildren<MeshRenderer>().material;
-
+        gameObject.GetComponent<HealthSystem>().ModifyHealth(-50);
         //called when attached to de enemy 
         StartCoroutine(FreezeDeBoi());
     }

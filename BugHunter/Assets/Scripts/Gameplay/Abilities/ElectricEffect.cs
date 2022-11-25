@@ -54,7 +54,7 @@ public class ElectricEffect : MonoBehaviour
         coll.isTrigger = true;
      
         yield return new WaitForSeconds(1f);
-        gameObject.GetComponent<HealthSystem>().ModifyHealth(-15);
+        gameObject.GetComponent<HealthSystem>().ModifyHealth(-80);
         Destroy(rigidbody);
         Destroy(coll);
         Destroy(this);
