@@ -126,7 +126,7 @@ public class SavePlugin2 : MonoBehaviour
         player.GetComponent<HealthSystem>().SetHealth(PSavedHealth_I);
         // set grenade amount
         GrenadeManager.instance.SetGrenades(PGrenadeAmount_I);
-        ThrowableSwap.instance.DisplayNum(0);
+       
         // Set Ammo/Mag
         weaponInfo.SetMag(PMagAmmo_I);
         weaponInfo.SetReserveAmmo(PReserveAmmo);

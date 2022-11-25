@@ -4,18 +4,14 @@ using UnityEngine;
 using TMPro;
 public class ThrowableSwap : MonoBehaviour
 {
-    public static ThrowableSwap instance;
+
     public List<Transform> Icons;
     private int Selection = 0;
     private GrenadeManager GrenadeManager;
     // Start is called before the first frame update
     void Start()
     {
-
-        if (instance == null)
-        {
-            instance = this;
-        }
+        PlayerInput.Interact += BeginRender;
         PlayerInput.TabThrowable += ChooseIcon;
         PlayerInput.Throw += StartTheRender;
         for (int i = 0; i<transform.childCount-1;i++)
@@ -38,6 +34,10 @@ public class ThrowableSwap : MonoBehaviour
             Selection = 0;
         DisplayInfo();
             }
+    void BeginRender()
+    {
+        StartTheRender(gameObject.transform.rotation);
+    }
     private void StartTheRender(Quaternion quaternion)
     {
         StartCoroutine(WaitToRender());
@@ -47,7 +47,7 @@ public class ThrowableSwap : MonoBehaviour
         yield return new WaitForEndOfFrame();
         DisplayInfo();
     }
-    private void DisplayInfo()
+    public void DisplayInfo()
     {
         for (int i = 0; i < Icons.Count; i++)
         {
@@ -56,6 +56,7 @@ public class ThrowableSwap : MonoBehaviour
         Icons[Selection].gameObject.SetActive(true);
         DisplayNum(Selection);
     }
+ 
     public void DisplayNum(int foo)
     {
    

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RelicCannon : MonoBehaviour
 {
+    [Range(0, -100)] public int Damage=0;
     public GameObject bulletOfDoom;
     public Transform bulletEmitter;
     [SerializeField] float shotStrength=20;
@@ -32,6 +33,7 @@ public class RelicCannon : MonoBehaviour
             isReady = false;
             info.SetBulletCount();       
             Rigidbody rigidbody = Instantiate(bulletOfDoom, bulletEmitter.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rigidbody.gameObject.GetComponent<RelicCannonAmmo>().SetDamage(Damage);
             rigidbody.velocity=(transform.forward * shotStrength);
         }
        
