@@ -1,29 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Dodge : MonoBehaviour
 {
+    public static Action<float> Dodged;
     //use this to pass in the data
     private bool _CanRoll = true; 
     private CharacterController characterController;
     private GameObject[] Cameras;
     private Vector3 RollVector = Vector3.zero;
     [Range(0, 1)] public  WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
-    [Range(0, 1)] public WaitForSeconds RollCoolDownTime = new WaitForSeconds(5f);
+    private float Cooldown = 5f;
+    [Range(0, 1)] public WaitForSeconds RollCoolDownTime ;
     // Start is called before the first frame update
     void Start()
     {
+        RollCoolDownTime = new WaitForSeconds(Cooldown);
         // public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
         //these r the instances of the cameras
         characterController = GetComponent<CharacterController>();
         Cameras = characterController.GetCameras();
         PlayerInput.UseAbility += UseDodge;
+        Dodged.Invoke(0.1f);
     }
     private void UseDodge()
     {
         if (_CanRoll == true)
         {
+            Dodged.Invoke(Cooldown);
             StartCoroutine(DoTheRoll());
             SwitchDodgeCam();
         }
