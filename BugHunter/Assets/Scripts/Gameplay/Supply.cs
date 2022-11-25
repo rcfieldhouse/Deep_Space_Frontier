@@ -20,6 +20,7 @@ public class Supply : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        GetComponent<Rigidbody>().isKinematic = true;
         if (Deployed == false)
         {
             DeployLoot();
