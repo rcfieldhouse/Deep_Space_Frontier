@@ -15,7 +15,7 @@ public class TurretAbility : MonoBehaviour
         PlayerInput.UseAbility += PlaceTurret;
         PlayerInput.Undo += ClearTurrets;
 
-        TurretPrefab = GameObject.Find("Turret");
+        TurretPrefab = Resources.Load<GameObject>("Turret");
         Cam = GameObject.Find("MainCamera").GetComponent<Camera>();
     }
     public void PlaceTurret()
