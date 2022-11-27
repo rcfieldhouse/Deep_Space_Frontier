@@ -13,7 +13,7 @@ public class CharacterController : MonoBehaviour
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
     [Range(0, 1)] [SerializeField] public float m_LadderSpeed = 0.5f;
     [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;
-
+  
     public WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
 
     [SerializeField] private Vector3 mover,JumpForce = new Vector3 (0.0f,25.0f,0.0f);
@@ -126,9 +126,10 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //dev hack
         if (Input.GetKeyDown(KeyCode.Period))
         {
-            Rigidbody.position = new Vector3(170.0f, 1.0f, 420.0f);
+            Rigidbody.position = new Vector3(170.0f, 25.0f, 420.0f);
         }
 
 

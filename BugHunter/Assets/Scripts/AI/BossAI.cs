@@ -6,9 +6,15 @@ public class BossAI : MonoBehaviour
 {
     private Animator animator;
     public List<GameObject> AttackColliders; 
+
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
+    [Range(0, 10)] [SerializeField] private float SpeedSlider = .5f;
+
     public float FrontAttackRange, BackAttackRange, SeekRange;
     public Vector3 FrontAttackPos, BackAttackPos;
+
+    private Vector3 WalkVec;
+
     [Range(0,-50)] public int FrontAttackDamage, BackAttackDamage, AOEAttackDamage;
     public bool PlayerInFrontAttackRange, PlayerInBackAttackRange, PlayerInSeekRange;
     public GameObject Player;
@@ -53,8 +59,18 @@ public class BossAI : MonoBehaviour
         }
         else if (PlayerInSeekRange)
         {
+            Seek();
             animator.SetBool("Walk", true);
         }
+    }
+    private void Seek()
+    {
+        WalkVec=(Player.transform.position-transform.position ).normalized;
+        Debug.Log(transform.eulerAngles - WalkVec);
+        transform.position += 7.5f*WalkVec * Time.deltaTime;
+        //  transform.LookAt(Vector3.Lerp(transform.rotation.eulerAngles,Player.transform.position,1));
+        transform.LookAt(Player.transform.position);
+        transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
     }
     private IEnumerator DoDamage(int Damage)
     {
