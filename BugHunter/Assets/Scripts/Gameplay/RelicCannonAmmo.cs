@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RelicCannonAmmo : MonoBehaviour
 {
+    private int Damage = 0;
     private WaitForSeconds Delay = new WaitForSeconds(0.5f);
     // Start is called before the first frame update
     private void Awake()
@@ -15,12 +16,21 @@ public class RelicCannonAmmo : MonoBehaviour
     { 
         Destroy(gameObject);
     }
+    public void SetDamage(int num)
+    {
+        Damage = num;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
             StartCoroutine(ShowLine(other.gameObject.transform));
-            other.gameObject.GetComponent<HealthSystem>().ModifyHealth(-100);
+            if (other.gameObject.GetComponent<CannonHit>() == null)
+            {
+                other.gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
+                other.gameObject.AddComponent<CannonHit>();
+            }
+
         }
     }
     private IEnumerator KillShot()

@@ -12,16 +12,7 @@ public class TeleportAbility : MonoBehaviour
     //private GameObject turretPrefab;
     [SerializeField] private GameObject TeleportOrb;
     // Start is called before the first frame update
-    void Start()
-    {
-    
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void Awake()
     {
         _CommandProcessor = GameObject.Find("GameManager").GetComponent<CommandProcessor>();

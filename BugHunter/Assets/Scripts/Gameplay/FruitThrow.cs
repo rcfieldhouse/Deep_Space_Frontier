@@ -7,6 +7,8 @@ public class FruitThrow : MonoBehaviour
     private Transform Transform;
     public GameObject player;
     private Rigidbody Rigidbody;
+
+    [Range(0.0f,30.0f)] public float DecayTime=0.0f;
     [SerializeField]
     private LayerMask whatIsBarrier;
     // Start is called before the first frame update
@@ -31,7 +33,8 @@ public class FruitThrow : MonoBehaviour
     {
         if (collision.gameObject.tag == "Barrier")
         {
-            collision.gameObject.SetActive(false);
+            collision.gameObject.AddComponent<Decay>().SetDecayTime(DecayTime);
+            //collision.gameObject.SetActive(false);
             ResetFruit();
         }
     

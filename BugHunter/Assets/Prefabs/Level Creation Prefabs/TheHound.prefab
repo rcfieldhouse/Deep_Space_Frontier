@@ -58,6 +58,7 @@ MonoBehaviour:
     m_Bits: 128
   Health: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
+  SpawnPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 15
   health: {fileID: 0}
   lungeDamage: -10
@@ -82,7 +83,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 3
-  m_Speed: 6
+  m_Speed: 11
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 360
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0bb0dd8316f3d4782fba483477d661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 100
   currentHealth: 0
 --- !u!65 &7075202811191136870
 BoxCollider:

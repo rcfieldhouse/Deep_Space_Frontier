@@ -11,7 +11,7 @@ public class BeenElectrified : MonoBehaviour
     }
     private IEnumerator Kill()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(2.0f);
         Destroy(this);
     }
 }

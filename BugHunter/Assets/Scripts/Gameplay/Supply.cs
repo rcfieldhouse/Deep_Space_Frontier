@@ -16,10 +16,10 @@ public class Supply : MonoBehaviour
             SpawnPoints.Add(transform.GetChild(i).gameObject);
         }
         GetComponent<Rigidbody>().isKinematic = true;
-        Drop();
     }
     private void OnCollisionEnter(Collision collision)
     {
+        GetComponent<Rigidbody>().isKinematic = true;
         if (Deployed == false)
         {
             DeployLoot();
@@ -39,13 +39,18 @@ public class Supply : MonoBehaviour
              {
             for (int j=0; j < SpawnPoints.Count; j++)
             {
-                Debug.Log("Spawned loot " + j + " at " + LootDrops);
+                Debug.Log("Spawned loot " + i+ " at " + j);
                 Instantiate(LootDrops[i], SpawnPoints[j].transform);
             }
              }
         }
     }
-   public void Drop()
+    private void OnTriggerEnter(Collider other)
+    {
+        Drop();
+
+    }
+    public void Drop()
     {
         GetComponent<Rigidbody>().isKinematic = false;
     }
