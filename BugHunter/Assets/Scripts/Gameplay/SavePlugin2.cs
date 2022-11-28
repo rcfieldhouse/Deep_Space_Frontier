@@ -51,11 +51,13 @@ public class SavePlugin2 : MonoBehaviour
     float PlayerReserveAmmo;
     public GameObject rifle;
     WeaponInfo weaponInfo;
+    ThrowableSwap ThrowSwapobj;
 
     // Start is called before the first frame update
     void Start()
     {
         weaponInfo = rifle.GetComponent<WeaponInfo>();
+        ThrowSwapobj = GetComponent<ThrowableSwap>();
         
         if (instance == null)
         {
@@ -126,6 +128,8 @@ public class SavePlugin2 : MonoBehaviour
         player.GetComponent<HealthSystem>().SetHealth(PSavedHealth_I);
         // set grenade amount
         GrenadeManager.instance.SetGrenades(PGrenadeAmount_I);
+        ThrowSwapobj.DisplayNum(0);
+
        
         // Set Ammo/Mag
         weaponInfo.SetMag(PMagAmmo_I);

@@ -19,6 +19,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Vector3 mover,JumpForce = new Vector3 (0.0f,25.0f,0.0f);
      private bool m_Grounded = true;
     [SerializeField] private CapsuleCollider coll;
+    //Used for initial save when player starts the game
+    private bool MovedOnce = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,10 +93,14 @@ public class CharacterController : MonoBehaviour
     
     private void Move(Vector2 move, float SpeedMod)
     {
-       // if(MovedOnce == false)
-       // {
-      //      SavePlugin2.instance.SaveItems();
-      //  }
+        //Perform an initial save when he player moves once
+        // unfortunetly can't use Start() functions bc some Start() functions
+        // are called before others which produces null references when saving
+        if(MovedOnce == false)
+        {
+            SavePlugin2.instance.SaveItems();
+            MovedOnce = true;
+        }
 
         move = move.normalized;
         if (SuspendMovement == false)
