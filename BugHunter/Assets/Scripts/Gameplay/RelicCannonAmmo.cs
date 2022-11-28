@@ -6,9 +6,11 @@ public class RelicCannonAmmo : MonoBehaviour
 {
     private int Damage = 0;
     private WaitForSeconds Delay = new WaitForSeconds(0.5f);
+    Material ArcMaterial;
     // Start is called before the first frame update
     private void Awake()
     {
+        ArcMaterial = Resources.Load<Material>("GrenadeExplosion");
         StartCoroutine(KillShot());
         StartCoroutine(Enlarge());
     }
@@ -54,6 +56,9 @@ public class RelicCannonAmmo : MonoBehaviour
         Line.enabled = true;
         Line.SetPosition(0, transform.position);
         Line.SetPosition(1, Target.position);
+        Line.startColor = Color.cyan;
+        Line.endColor = Color.blue;
+        Line.material = ArcMaterial;
         yield return new WaitForSeconds(0.075f);
         Destroy(Line);
     }
