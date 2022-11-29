@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 136559627}
-  m_IndirectSpecularColor: {r: 0.13856666, g: 0.04852905, b: 0.20567, a: 1}
+  m_IndirectSpecularColor: {r: 0.13856609, g: 0.04852879, b: 0.20566985, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22500,6 +22500,7 @@ MonoBehaviour:
   player: {fileID: 919132148878241901}
   LastSaveTxt: {fileID: 616769893}
   rifle: {fileID: 919132148393418703}
+  ThrowableUI: {fileID: 1707173817}
 --- !u!114 &414052986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22918,7 +22919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDamage: 0
   fireRate: 1
-  weaponRange: 500
+  weaponRange: 2000
   hitForce: 200
   CritMultiplier: 1
   gunEnd: {fileID: 23677597}
@@ -28210,6 +28211,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7491965940112980204, guid: e5b6d636c9c37dc4a9e6291bfa8e078a,
     type: 3}
   m_PrefabInstance: {fileID: 678927716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &690085404 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7723559750007634213, guid: 139f3d64b4d74c041aa5ee76cb8b2431,
+    type: 3}
+  m_PrefabInstance: {fileID: 274110270}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &694575981
 GameObject:
@@ -42385,6 +42392,80 @@ MonoBehaviour:
   AimRecoilZ: 0
   snappiness: 6
   returnSpeed: 2
+--- !u!1001 &980337577
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 690085404}
+    m_Modifications:
+    - target: {fileID: 5991942451307951295, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_Name
+      value: TheHound
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 385.01337
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 412.2226
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.71227515
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70190036
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 89.159
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910437418365823274, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: walkPointRange
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71d5246dd754d7e4d8f579558282c0f2, type: 3}
 --- !u!114 &983612068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43890,9 +43971,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDamage: -50
   fireRate: 0.75
-  weaponRange: 75
+  weaponRange: 80
   hitForce: 150
-  CritMultiplier: 1
+  CritMultiplier: 2
   gunEnd: {fileID: 8905103}
   fpsCam: {fileID: 1885606630}
   info: {fileID: 0}
@@ -61560,7 +61641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDamage: -18
   fireRate: 0.15
-  weaponRange: 65
+  weaponRange: 80
   hitForce: 50
   gunEnd: {fileID: 1472001270}
   info: {fileID: 0}
@@ -69065,6 +69146,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858591641}
   m_CullTransparentMesh: 1
+--- !u!1001 &1880214157
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 690085404}
+    m_Modifications:
+    - target: {fileID: 5991942451307951295, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_Name
+      value: TheHound (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 380.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 418.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9986862
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.051243696
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 5.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371598711972916741, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910437418365823274, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
+      propertyPath: walkPointRange
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71d5246dd754d7e4d8f579558282c0f2, type: 3}
 --- !u!1 &1885606627
 GameObject:
   m_ObjectHideFlags: 0
@@ -73906,7 +74061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDamage: -15
   fireRate: 0.15
-  weaponRange: 50
+  weaponRange: 80
   hitForce: 50
   gunEnd: {fileID: 1447598670}
   info: {fileID: 0}
@@ -76569,7 +76724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb2e3c056f37cf4781a0b07eb00aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassSelection: 1
+  ClassSelection: 2
 --- !u!114 &5660732095485889375
 MonoBehaviour:
   m_ObjectHideFlags: 0

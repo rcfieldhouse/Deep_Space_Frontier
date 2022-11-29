@@ -36,20 +36,19 @@ public class SavePlugin2 : MonoBehaviour
     public Text LastSaveTxt;
     string m_Path;
     string fn;
-    string fn2;
-    string infoString;
+
     Vector3 LoadedPlayerPos3;
-    int lineIndex;
     int Hour;
     int Min;
     int Sec;
     float PlayerSavedHealth;
     float PlayerAccuracy;
-    float PlayerCurrentQuest;
     float PlayerGrenadeAmount;
     float PlayerMagAmmo;
     float PlayerReserveAmmo;
+
     public GameObject rifle;
+    public GameObject ThrowableUI;
     WeaponInfo weaponInfo;
     ThrowableSwap ThrowSwapobj;
 
@@ -57,20 +56,17 @@ public class SavePlugin2 : MonoBehaviour
     void Start()
     {
         weaponInfo = rifle.GetComponent<WeaponInfo>();
-        ThrowSwapobj = GetComponent<ThrowableSwap>();
+        ThrowSwapobj = ThrowableUI.GetComponent<ThrowableSwap>();
         
         if (instance == null)
         {
             instance = this;
         }
-
+        //file save path
         m_Path = Application.dataPath;
         fn = m_Path + "/save.txt";
-        fn2 = Application.dataPath + "/save.txt";
-
         Debug.Log(fn);
-        //Debug.Log(fn2);
-        lineIndex = 0;
+
         // optional Keyboard inputs for saving loading & Updating Time
         PlayerInput.SavePlayer += SaveItems;
         PlayerInput.LoadPlayer += LoadItems;
@@ -79,13 +75,14 @@ public class SavePlugin2 : MonoBehaviour
 
    public void SaveItems()
     {
+        // Open The File
         Debug.Log("Save Request Initiated");
         StartWriting(fn);
 
-        // Save to File ID & Player X, Y, Z position & PlayerHealth & Player Accuracy & Current Objective & Current Grenade Amount
+        // Save to File ID & Player X, Y, Z position & PlayerHealth & Player Accuracy & Magazine Ammo & Max/reserve Ammo & Current Grenade Amount
         SaveToFile(1, player.transform.position.x, player.transform.position.y, player.transform.position.z, player.GetComponent<HealthSystem>().GetHealth(),
             StatisticTracker.instance.GetAccuracy(), weaponInfo.GetMag(), weaponInfo.GetReserveAmmo(), GrenadeManager.instance.GetNumNades());
-
+        // Close the File
         EndWriting();
 
         //Update the last savepoint text
@@ -95,9 +92,6 @@ public class SavePlugin2 : MonoBehaviour
     //File Loading using DLL
    public void LoadItems()
    {
-        int numLines = GetLines(fn2);
-        int maxItems = numLines / 4;
-
         // Read Player Position
         LoadedPlayerPos3.x = LoadFromFile(0, fn);
         LoadedPlayerPos3.y = LoadFromFile(1, fn);
@@ -110,15 +104,14 @@ public class SavePlugin2 : MonoBehaviour
         PlayerGrenadeAmount = LoadFromFile(7, fn);
 
 
-        //convert from float to int
+        //convert from float to int for those that need it
         int PSavedHealth_I = (int)PlayerSavedHealth;
-        int PCurrentQuest_I = (int)PlayerCurrentQuest;
         int PGrenadeAmount_I = (int)PlayerGrenadeAmount;
         int PMagAmmo_I = (int)PlayerMagAmmo;
         int PReserveAmmo = (int)PlayerReserveAmmo;
 
 
-        // Used Loaded Stats to Reset Player
+        // Use Loaded Stats to Reset Player
         Debug.Log("Health Loaded to: " + PSavedHealth_I);
         Debug.Log("Accuracy Was: " + PlayerAccuracy);
 
@@ -134,11 +127,7 @@ public class SavePlugin2 : MonoBehaviour
         // Set Ammo/Mag
         weaponInfo.SetMag(PMagAmmo_I);
         weaponInfo.SetReserveAmmo(PReserveAmmo);
-
-        // set quest
-        // QuestManager.instance.UpdateQuest(QuestManager.instance.QuestProgression[PCurrentQuest_I]);
-        //QuestObjective.instance.ResetPosition();
-    }
+   }
 
     // uses DeviceTime DLL
     public void GetTime()
