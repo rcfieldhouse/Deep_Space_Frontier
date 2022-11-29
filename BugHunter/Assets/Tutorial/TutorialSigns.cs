@@ -21,7 +21,7 @@ public class TutorialSigns : MonoBehaviour
     public void SetStep(TutorialStep step)
     {
         Tutorials[(int)step].SetActive(true);
-
+        GameManager.instance.StopTime();
     }
 
 
@@ -33,9 +33,10 @@ public class TutorialSigns : MonoBehaviour
              if (Tutorials[i].activeInHierarchy == true) 
              StartCoroutine(wait());
 
+
             Tutorials[i].SetActive(false);
         }
-
+        GameManager.instance.ResumeTime();
     }
     private IEnumerator wait(){
 
