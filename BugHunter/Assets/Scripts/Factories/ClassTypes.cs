@@ -17,7 +17,7 @@ using UnityEngine;
         GameObject.Find("EngineerIcon").SetActive(false);
        
         //   obj.GetComponent<WeaponSwap>();
-    }
+        }
     }
     internal class Engineer : ClassInterface
     {
@@ -30,7 +30,7 @@ using UnityEngine;
         obj.AddComponent<GunSelect>().SelectGun(obj, 3, 6);
         GameObject.Find("SniperIcon").SetActive(false);   
         GameObject.Find("AssaultIcon").SetActive(false);
-    }
+        }
     }
     internal class Sniper : ClassInterface
     {
@@ -43,5 +43,5 @@ using UnityEngine;
         obj.AddComponent<GunSelect>().SelectGun(obj, 2, 0);
         GameObject.Find("EngineerIcon").SetActive(false);
         GameObject.Find("AssaultIcon").SetActive(false);
-    }
+        }
     }

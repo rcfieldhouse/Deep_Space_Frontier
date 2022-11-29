@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    LineRenderer Line;
+    [Range(0, -50)] public int Damage;
+    [Range(0, 1)] public float ShootTime;
+    public bool _CanShoot = true;
     public GameObject Target=null;
+    public Transform BulletEmitter;
+
+    private WaitForSeconds shootDelay;
     // Start is called before the first frame update
     private float AngleDifferenceX = 0;
     private float AngleDifferenceZ = 0;
     // Start is called before the first frame update
     private void Awake()
     {
-          SetTarget(transform.GetChild(transform.childCount-1).gameObject);
+        SetTarget(transform.GetChild(transform.childCount-1).gameObject);
+        shootDelay = new WaitForSeconds(ShootTime);
+
+        Line = gameObject.AddComponent<LineRenderer>();
+        Line.startWidth = 0.25f;
+        Line.endWidth = 0.25f;
     }
     public void SetTarget(GameObject target)
     {
@@ -21,20 +33,68 @@ public class Turret : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Target=other.gameObject;
+            _CanShoot = true;
+            Target =other.gameObject;
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
+            _CanShoot = true;
             Target = other.gameObject;
         }
     }
-    private void Update()
+    private void OnTriggerExit(Collider other)
     {
-        transform.GetChild(0).gameObject.transform.LookAt(Target.transform);
+        if (other.gameObject.tag == "Enemy")
+        {
+            Target = null;
+        }
+        }
+    public void Shoot()
+    {
+        RaycastHit hit;
 
+        if (Physics.Raycast(BulletEmitter.position, transform.GetChild(0).forward, out hit, 20.0f))
+        {
+            if (isActiveAndEnabled  == true)
+            {
+                StartCoroutine(ShotEffect());
+                if (hit.collider.tag == "Enemy")
+                {
+                    Line.SetPosition(1, hit.point);
+                    hit.collider.gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
+                }
+
+            }
+
+        }
+    }
+
+
+private IEnumerator ShotEffect()
+{
+        _CanShoot = false;
+        Line.SetPosition(0, BulletEmitter.position);
+        Line.SetPosition(1, BulletEmitter.position + transform.GetChild(0).forward * 20.0f);
+        // Turn on our line renderer
+        Line.enabled = true;
+
+   
+    yield return shootDelay;
+
+        _CanShoot = true;
+        // Deactivate our line renderer after waiting
+        Line.enabled = false;
+}
+private void Update()
+    {
+        if (Target != null)
+        {
+            transform.GetChild(0).gameObject.transform.LookAt(Target.transform);
+            Shoot();
+        }
         AngleDifferenceX = transform.GetChild(0).gameObject.transform.localEulerAngles.y;
         AngleDifferenceZ = transform.GetChild(0).gameObject.transform.localEulerAngles.y;
         if (AngleDifferenceX > 180.0f) AngleDifferenceX = Mathf.Abs(360.0f - AngleDifferenceX);
