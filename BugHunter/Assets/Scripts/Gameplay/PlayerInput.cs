@@ -108,7 +108,11 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
             TabThrowable.Invoke();
 
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            GameManager.instance.ResumeTime();
 
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            GameManager.instance.StopTime();
         //cursed crouch controls
         if (Input.GetButtonDown("Crouch"))
             Crouching.Invoke(true);      

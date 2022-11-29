@@ -29,7 +29,19 @@ public class GameManager : MonoBehaviour
         Time.timeScale = timeSlowStrength;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
-
+    public void StopTime()
+    {
+        Debug.Log(Time.timeScale + " " + Time.fixedDeltaTime);
+        //oho jotaro
+        //idk how to spell it i dont watch that trash anime
+        Time.timeScale = 0.0f;
+         Time.fixedDeltaTime = Time.timeScale * 0.02f;
+    }
+    public void ResumeTime()
+    {
+        Time.timeScale = 1.0f;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+    }
     public void Update()
     {
         Time.timeScale += (1f / timeSlowStrength) * Time.deltaTime;
