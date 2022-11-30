@@ -12,6 +12,25 @@ public class FMODPlayer : MonoBehaviour
     private static FMOD.Studio.Bus MusicBus;
 
     [SerializeField]
+    private FMODUnity.EventReference uiDragEvent;
+
+    [SerializeField]
+    private FMODUnity.EventReference uiDropEvent;
+
+    [SerializeField]
+    private FMODUnity.EventReference uiHoverEvent;
+
+    [SerializeField]
+
+    private FMODUnity.EventReference uiPauseEvent;
+
+    [SerializeField]
+    private FMODUnity.EventReference uiUnpauseEvent;
+
+    [SerializeField]
+    private FMODUnity.EventReference uiUseEvent;
+
+    [SerializeField]
     [Range(-80f, 10f)]
     private float MasterVolume;
 
@@ -67,12 +86,60 @@ public class FMODPlayer : MonoBehaviour
 
     void StopAllPlayerEvents()
     {
-
         MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     private void OnDestroy()
     {
         Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+
+    public void PlayUIDragEvent()
+    {
+        if (uiDragEvent.IsNull)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(uiDragEvent);
+        }
+    }
+
+    public void PlayUIDropEvent()
+    {
+        if (uiDropEvent.IsNull)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(uiDropEvent);
+        }
+    }
+
+    public void PlayUIHoverEvent()
+    {
+        if (uiHoverEvent.IsNull)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(uiHoverEvent);
+        }
+    }
+
+    public void PlayUIPauseEvent()
+    {
+        if (uiPauseEvent.IsNull)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(uiPauseEvent);
+        }
+    }
+
+    public void PlayUIUnpauseEvent()
+    {
+        if (uiUnpauseEvent.IsNull)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(uiUnpauseEvent);
+        }
+    }
+
+    public void PlayUIUseEvent()
+    {
+        if (uiUseEvent.IsNull)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(uiUseEvent);
+        }
     }
 }
