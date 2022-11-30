@@ -19,13 +19,17 @@ public class WeaponInfo : MonoBehaviour
    [Range(0,10)][SerializeField] private float snappiness;
    [Range(0,5)][SerializeField] private float returnSpeed;
 
-    private bool _CanShoot = true,_CanReload=false;
+    private bool _CanShoot = true, _CanReload = false, _isReloading = false;
     // Start is called before the first frame update
     void Start()
     {
         ReloadTimer = new WaitForSeconds(_reloadTimer);
         PlayerInput.Reload += Reload;
         ammoInMag = magSize;
+    }
+    public bool GetIsReloading()
+    {
+        return _isReloading;
     }
     public void SetCanShoot(bool foo)
     {
@@ -37,6 +41,8 @@ public class WeaponInfo : MonoBehaviour
     }
     public void Update()
     {
+        if (ammoInMag <= 0) _CanShoot = false;
+
         if (ammoInMag == magSize)
             _CanReload = false;
         else _CanReload = true;
@@ -91,7 +97,7 @@ public class WeaponInfo : MonoBehaviour
         //Setting to true reloads
         if (_CanReload == true)
         {
-
+            _CanShoot = false;
             if (gameObject.activeInHierarchy == true)
                 StartCoroutine(SetBulletCount(true));
 
@@ -135,7 +141,8 @@ public class WeaponInfo : MonoBehaviour
     }
     public IEnumerator SetBulletCount(bool var)
     {
-        _CanReload = false;
+        _isReloading = true;
+           _CanReload = false;
         _CanShoot = false;
         yield return ReloadTimer;
         //Debug.Log("reload");
@@ -153,6 +160,7 @@ public class WeaponInfo : MonoBehaviour
             }
 
         }
+        _isReloading = false;
         _CanShoot = true;
 
     }

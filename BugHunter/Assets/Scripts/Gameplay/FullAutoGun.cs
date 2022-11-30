@@ -19,17 +19,18 @@ public class FullAutoGun : MonoBehaviour
     // Reference to the LineRenderer component which will display our laserline
     private ParticleSystem muzzleFlash;
     private float nextFire;
+    private bool _CanShoot = true;
     // Start is called before the first frame update
     void Start()
     {
-        info = GetComponentInParent<WeaponInfo>();
+        info = GetComponent<WeaponInfo>();
         laserLine = GetComponent<LineRenderer>();
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
 
         // Get and store a reference to our AudioSource component
-       
 
 
+        
         //observers
         PlayerInput.Shoot += Shoot;
         PlayerInput.Shoot += SetShootingTrue;
@@ -37,8 +38,9 @@ public class FullAutoGun : MonoBehaviour
     }
     private void SetShootingTrue()
     {
+        if (gameObject.GetComponent<WeaponInfo>().GetCanShoot() == true) _IsShooting = true;
         // 2 functions so i dont need to pass data to all functs
-        _IsShooting = true;
+
     }
     private void SetShootingFalse()
     {
@@ -62,7 +64,7 @@ public class FullAutoGun : MonoBehaviour
     }
     private void Shoot()
     {
-        if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy==true)
+        if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy==true&& gameObject.GetComponent<WeaponInfo>().GetCanShoot() == true)
         {
             info.SetBulletCount();
             // Update the time when our player can fire next
@@ -143,6 +145,7 @@ public class FullAutoGun : MonoBehaviour
     {
         if (_IsShooting == true)
         {
+            if (gameObject.GetComponent<WeaponInfo>().GetCanShoot() == false) _IsShooting = false;
             PlayerInput.Shoot.Invoke(); ;          
         }
           

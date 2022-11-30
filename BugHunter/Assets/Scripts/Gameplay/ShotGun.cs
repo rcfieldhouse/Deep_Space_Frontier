@@ -24,7 +24,7 @@ public class ShotGun : MonoBehaviour
     public WeaponInfo info;
     void Start()
     {
-        info = GetComponentInParent<WeaponInfo>();
+        info = GetComponent<WeaponInfo>();
         // Get and store a reference to our LineRenderer component
         laserLine = GetComponent<LineRenderer>();
 
@@ -46,11 +46,12 @@ public class ShotGun : MonoBehaviour
     }
     private void Update()
     {
+ 
         if (Time.time < nextFire && gameObject.activeInHierarchy == true)
         {
             GetComponent<WeaponInfo>().SetCanShoot(false);
         }
-        else GetComponent<WeaponInfo>().SetCanShoot(true);
+        else if (Time.time > nextFire && gameObject.activeInHierarchy == true&&info.hasAmmo()==true&&info.GetIsReloading()==false)info.SetCanShoot(true);
 
     }
     private HealthSystem FindBossHealth(GameObject obj)
@@ -71,12 +72,12 @@ public class ShotGun : MonoBehaviour
     }
     void Shoot()
     {
-      
-           
+
+       
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
-        if ( Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy == true)
+        if ( Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy == true && info.GetCanShoot() == true)
         {
-            GetComponent<WeaponInfo>().SetCanShoot(true);
+            info.SetCanShoot(false);
             info.SetBulletCount();
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;

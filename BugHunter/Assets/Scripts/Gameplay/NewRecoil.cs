@@ -39,6 +39,7 @@ public class NewRecoil : MonoBehaviour
 
         WeaponInfo.maginfo += getIfMagHasAmmo;
         WeaponInfo.CanShoot += CanShoot;
+
         WeaponSwap.BroadCastADSRecoil += SetAdsRecoil;
         WeaponSwap.BroadCastHipRecoil += SetHipRecoil;
         WeaponSwap.BroadcastSnap += SetSnap;
