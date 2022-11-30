@@ -27,7 +27,7 @@ using UnityEngine;
         obj.AddComponent<HealthSystem>().SetMaxHealth(200);
         obj.AddComponent<TurretAbility>();
         obj.AddComponent<PreviewThrow>();
-        obj.AddComponent<GunSelect>().SelectGun(obj, 3, 6);
+        obj.AddComponent<GunSelect>().SelectGun(obj, 1, 6);
         GameObject.Find("SniperIcon").SetActive(false);   
         GameObject.Find("AssaultIcon").SetActive(false);
         }
