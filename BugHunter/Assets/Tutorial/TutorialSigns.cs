@@ -17,7 +17,6 @@ public class TutorialSigns : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     public void SetStep(TutorialStep step)
     {
         Tutorials[(int)step].SetActive(true);
