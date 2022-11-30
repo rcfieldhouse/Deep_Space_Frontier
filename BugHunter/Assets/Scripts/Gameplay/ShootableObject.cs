@@ -30,15 +30,20 @@ public class ShootableObject : MonoBehaviour
     {
         //Possibly don't need to check for this breakable tag :3
 
-            Debug.Log("Handle Object Death called from " + context.name);
-            //create our broken object and reparent it
-            GameObject newObject = Instantiate(brokenPrefab,transform.position, transform.rotation);
-            newObject.transform.parent = context.transform.parent;
-            
+        Debug.Log("Handle Object Death called from " + context.name);
+        //create our broken object and reparent it
+        GameObject newObject = Instantiate(brokenPrefab,transform.position, transform.rotation);
+        newObject.transform.parent = context.transform.parent;
+        LootSpawner.instance.SprayLoot(context.transform);
+        LootSpawner.instance.SprayLoot(transform);
+        LootSpawner.instance.SprayLoot(transform);
+        LootSpawner.instance.SprayLoot(transform);
+        LootSpawner.instance.SprayLoot(transform);
+        LootSpawner.instance.SprayLoot(transform);
 
-            
-            //iterate through children and apply a force
-            foreach (Rigidbody rb in newObject.GetComponentsInChildren<Rigidbody>())
+
+        //iterate through children and apply a force
+        foreach (Rigidbody rb in newObject.GetComponentsInChildren<Rigidbody>())
             {
                 //This would normally explode radially, but because the newObject and the context are not in the same position
                 //it favors 1 direction

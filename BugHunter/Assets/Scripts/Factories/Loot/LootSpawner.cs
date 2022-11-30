@@ -9,6 +9,8 @@ public class LootSpawner : MonoBehaviour
     public List<GameObject> Prefabs;
     public Transform Transform;
     private float num;
+    public float spawnForce = 20;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +44,15 @@ public class LootSpawner : MonoBehaviour
     }
     void Create(LFInterface foo, Transform transform,int num)
     {
+        Rigidbody rb = transform.GetComponent<Rigidbody>();
+        
         Drop=Instantiate(Prefabs[num], transform.position, Quaternion.identity);
         foo.Create(Drop);
+
+        //apply force on spawn if has rigidbody
+        if (rb == null)
+            return;
+        Vector3 force = (rb.transform.position - this.transform.position).normalized * spawnForce;
+        rb.AddForce(force);
     }
 }
