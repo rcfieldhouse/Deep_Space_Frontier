@@ -46,6 +46,7 @@ public class WeaponSwap : MonoBehaviour
 
     private void SetWeapon(int choice)
     {
+        if (WeaponArray[WeaponChoice].gameObject.GetComponent<WeaponInfo>().GetIsReloading() == false) { 
         for (int i = 0; i < WeaponArray.Count; i++)
         {
             RecticleArray[i].SetActive(false);
@@ -62,40 +63,44 @@ public class WeaponSwap : MonoBehaviour
         BroadCastADSRecoil.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCameraRecoilInfo(1));
         BroadcastSnap.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetSnap());
         BroadcastChoice.Invoke(WeaponChoice);
+        }
     }
     public void SetWeaponChoice(int num)
     {
-       // if (WeaponArray[num])
-       // {
+        // if (WeaponArray[num])
+        // {
+        if (WeaponArray[WeaponChoice].gameObject.GetComponent<WeaponInfo>().GetIsReloading() == false)
+        {
             for (int i = 0; i < WeaponArray.Count; i++)
             {
                 RecticleArray[i].SetActive(false);
                 WeaponArray[i].SetActive(false);
             }
-       // Debug.Log(WeaponArray.Length);
+            // Debug.Log(WeaponArray.Length);
 
-        if (num < 0)
-        {
-            RecticleArray[0].SetActive(true);
-            WeaponArray[0].SetActive(true);
-            WeaponChoice = 0;
-        }
+            if (num < 0)
+            {
+                RecticleArray[0].SetActive(true);
+                WeaponArray[0].SetActive(true);
+                WeaponChoice = 0;
+            }
             else if (num > WeaponArray.Count - 1)
-        {
-          
-            RecticleArray[WeaponArray.Count - 1].SetActive(true);
-            WeaponArray[WeaponArray.Count - 1].SetActive(true);
-            WeaponChoice = WeaponArray.Count - 1;
+            {
+
+                RecticleArray[WeaponArray.Count - 1].SetActive(true);
+                WeaponArray[WeaponArray.Count - 1].SetActive(true);
+                WeaponChoice = WeaponArray.Count - 1;
+
+            }
+            else if (num >= 0 && num <= WeaponArray.Count)
+            {
+                RecticleArray[num].SetActive(true);
+                WeaponArray[num].SetActive(true);
+                WeaponChoice = num;
+            }
+
+
 
         }
-            else if (num >= 0 && num <= WeaponArray.Count)
-        {
-            RecticleArray[num].SetActive(true);
-            WeaponArray[num].SetActive(true);
-            WeaponChoice = num;
-        }
-         
-      
-       
     }
 }
