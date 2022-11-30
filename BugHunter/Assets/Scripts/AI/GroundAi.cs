@@ -76,7 +76,7 @@ public class GroundAi : MonoBehaviour
     private void OnEnable()
     {
         Health.OnObjectDeath += HandleObjectDeath;
-        StartCoroutine(PlsWork());
+        StartCoroutine(PatrolCorrection());
     }
     private void OnDisable()
     {
@@ -122,7 +122,7 @@ public class GroundAi : MonoBehaviour
         walkPointSet = true;
         walkPoint = vec;
     }
-    private IEnumerator PlsWork()
+    private IEnumerator PatrolCorrection()
     {
         if (agent.isOnNavMesh)
         {
@@ -143,7 +143,7 @@ public class GroundAi : MonoBehaviour
               //  Debug.Log(gameObject.name + " is too far" + " current: " + gameObject.transform.position+ " Spawn "+SpawnPoint);
             }
         }
-        StartCoroutine(PlsWork());
+        StartCoroutine(PatrolCorrection());
         
     }
     private void SetLunged()
