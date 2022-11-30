@@ -19,7 +19,7 @@ public class WeaponInfo : MonoBehaviour
    [Range(0,10)][SerializeField] private float snappiness;
    [Range(0,5)][SerializeField] private float returnSpeed;
 
-    private bool _CanShoot = true;
+    private bool _CanShoot = true,_CanReload=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +37,10 @@ public class WeaponInfo : MonoBehaviour
     }
     public void Update()
     {
+        if (ammoInMag == magSize)
+            _CanReload = false;
+        else _CanReload = true;
+
         if (gameObject.activeInHierarchy == true)
         {
             maginfo.Invoke(hasAmmo());
@@ -80,11 +84,19 @@ public class WeaponInfo : MonoBehaviour
     }
     public void Reload()
     {
+      
+      
         // Invoke(SetBulletCount, ReloadTimer);
       //  Invoke(nameof(SetBulletCount(true)), 1);
         //Setting to true reloads
-        if(gameObject.activeInHierarchy==true)
-        StartCoroutine( SetBulletCount(true));
+        if (_CanReload == true)
+        {
+
+            if (gameObject.activeInHierarchy == true)
+                StartCoroutine(SetBulletCount(true));
+
+        }
+       
     }
     // Update is called once per frame
     //alter mag to subtract a bullet or fill it full on reload 
@@ -100,6 +112,10 @@ public class WeaponInfo : MonoBehaviour
     public int GetReserveAmmo()
     {
         return reserveAmmo;
+    }
+    public bool GetCanReload()
+    {
+        return _CanReload;
     }
     public void SetMag(int Amount)
     {
@@ -119,6 +135,8 @@ public class WeaponInfo : MonoBehaviour
     }
     public IEnumerator SetBulletCount(bool var)
     {
+        _CanReload = false;
+        _CanShoot = false;
         yield return ReloadTimer;
         //Debug.Log("reload");
         if (var)
@@ -135,6 +153,7 @@ public class WeaponInfo : MonoBehaviour
             }
 
         }
+        _CanShoot = true;
 
     }
     public void SetMaxBullets()

@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     }
     public void StopTime()
     {
-        Debug.Log(Time.timeScale + " " + Time.fixedDeltaTime);
+      
         //oho jotaro
         //idk how to spell it i dont watch that trash anime
         Time.timeScale = 0.0f;

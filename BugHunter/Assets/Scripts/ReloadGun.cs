@@ -18,10 +18,16 @@ public class ReloadGun : MonoBehaviour
     {
         //this is gross 
         gunAnimator = gunHolder.WeaponArray[gunHolder.GetWeaponNum()].GetComponent<Animator>();
-        if (gunAnimator != null)
+        if (gunAnimator != null&&gunAnimator.gameObject.GetComponent<WeaponInfo>().GetCanReload()==true)
         {
-            gunAnimator.Play("Base Layer.Reload", 0, 0);
-            Debug.Log("doot");
+            gunAnimator.SetBool("Reload", true);
+            //gunAnimator.Play("Reload", 0, 0);
+            StartCoroutine(Wait());
         }
+    }
+    private IEnumerator Wait()
+    {
+        yield return new WaitForEndOfFrame();
+        gunAnimator.SetBool("Reload", false);
     }
 }
