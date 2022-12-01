@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RelicCannon : MonoBehaviour
 {
-    [Range(0, -250)] public int Damage=0;
+    [Range(0, -500)] public int Damage=0;
     public GameObject bulletOfDoom;
     public Transform bulletEmitter;
     [SerializeField] float shotStrength=20;
