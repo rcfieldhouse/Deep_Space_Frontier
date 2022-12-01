@@ -47,7 +47,10 @@ public class Supply : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Drop();
+        if (other.tag == "Player")
+        {
+            Drop();
+        }
 
     }
     public void Drop()
