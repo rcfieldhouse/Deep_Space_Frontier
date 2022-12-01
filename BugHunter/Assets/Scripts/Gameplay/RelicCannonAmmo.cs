@@ -11,6 +11,7 @@ public class RelicCannonAmmo : MonoBehaviour
     private void Awake()
     {
         ArcMaterial = Resources.Load<Material>("GrenadeExplosion");
+        transform.parent = null;
         StartCoroutine(KillShot());
         StartCoroutine(Enlarge());
     }

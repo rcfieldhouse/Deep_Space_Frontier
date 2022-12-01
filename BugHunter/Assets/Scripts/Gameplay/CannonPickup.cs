@@ -35,11 +35,17 @@ public class CannonPickup : MonoBehaviour
 
              GameObject.Find("GunIcons").GetComponent<GunIconUI>().Icons.Add(icon);
 
-            // GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().RecticleArray.Add(reticle);
-      
 
+            reticle = GameObject.Find("Crosshairs").transform.GetChild(5).gameObject;
+            GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().RecticleArray.Add(reticle);
+
+            GameObject.Find("Ammo Counter").GetComponent<AmmoChangeUI>().magazineSize.Add(RelicCannonInstance.GetComponent<WeaponInfo>());
             Prompt.SetActive(false);
-            Destroy(this.gameObject);
+
+            RelicCannonInstance.transform.localPosition = new Vector3(0.3f, -0.25f, 0.667f);
+            RelicCannonInstance.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+            RelicCannonInstance.SetActive(false);
+           this.gameObject.SetActive(false);
         }
     }
     public void OnTriggerEnter(Collider other)
