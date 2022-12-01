@@ -34,6 +34,7 @@ public class ElectricEffect : MonoBehaviour
     }
     private IEnumerator NewTarget(Collider collider)
     {
+        // how long to move to each enemy
         yield return new WaitForSeconds(0.25f);
         collider.gameObject.AddComponent<ElectricEffect>();
     }
@@ -50,10 +51,12 @@ public class ElectricEffect : MonoBehaviour
         }
 
         SphereCollider coll= gameObject.AddComponent<SphereCollider>();
+        // enemy arc to radius
         coll.radius = 15.0f;
         coll.isTrigger = true;
      
         yield return new WaitForSeconds(1f);
+        // how much damage electric bullet does
         gameObject.GetComponent<HealthSystem>().ModifyHealth(-80);
         Destroy(rigidbody);
         Destroy(coll);

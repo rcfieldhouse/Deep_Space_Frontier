@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8625487887785100163}
   - component: {fileID: -4668672512460355558}
   - component: {fileID: 6546798222467356305}
+  - component: {fileID: 2051893976}
+  - component: {fileID: 2051893981}
   m_Layer: 0
   m_Name: ExplosiveFruit
   m_TagString: Untagged
@@ -27,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7832639329279287894}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 878.12823, y: 5.6, z: 887.40216}
-  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_LocalScale: {x: 0.47234997, y: 0.47235015, z: 0.47235015}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &5789118666642388809
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -113,5 +115,31 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.06
   m_Center: {x: -0.000095306896, y: 0.00009432247, z: 0.0094301505}
+--- !u!114 &2051893976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7832639329279287894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b34f4833f218df45aae2ce4f267a7eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThisQuestStep: 0
+--- !u!114 &2051893981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7832639329279287894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf632a954e27d947abf062cb9f936bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutorialStep: 1
