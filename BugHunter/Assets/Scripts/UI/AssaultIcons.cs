@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class AssaultIcons : MonoBehaviour
 {
     [SerializeField]
@@ -10,6 +11,7 @@ public class AssaultIcons : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        ClassAbility.fillAmount = 1.0f;
         transform.GetChild(0).gameObject.SetActive(false);
         Dodge.Dodged+=UseDodge;
     }

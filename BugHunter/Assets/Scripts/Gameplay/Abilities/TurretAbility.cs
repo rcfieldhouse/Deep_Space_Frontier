@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class TurretAbility : MonoBehaviour
 {
+    public static Action<float> UsedTurret;
+    public static Action ClearedTurret;
     public List<GameObject> Turrets;
     private GameObject TurretPrefab;
     public Camera Cam;
- 
     // Start is called before the first frame update
     private void Awake()
     {
         Turrets = new List<GameObject>();
+        UsedTurret.Invoke(Turrets.Count);
         PlayerInput.UseAbility += PlaceTurret;
         PlayerInput.Undo += ClearTurrets;
 
@@ -26,12 +28,13 @@ public class TurretAbility : MonoBehaviour
         RaycastHit hitInfo;
        
         if (Physics.Raycast(ray, out hitInfo, 25)&&Turrets.Count<2)
-        {        
+        {     
             //&& Turrets.Count<3
             Turret = Instantiate(TurretPrefab);
             Turret.transform.position = hitInfo.point+new Vector3(0.0f,3.0f,0.0f);
             Turret.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
             Turrets.Add(Turret);
+            UsedTurret.Invoke(Turrets.Count);
         }
     }
     public void ClearTurrets()
@@ -40,6 +43,7 @@ public class TurretAbility : MonoBehaviour
         {
             Destroy(Turrets[i]);
         }
+        ClearedTurret.Invoke();
         Turrets.Clear();
     }
 }

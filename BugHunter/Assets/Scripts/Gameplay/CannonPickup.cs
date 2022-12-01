@@ -5,7 +5,7 @@ using UnityEngine;
 public class CannonPickup : MonoBehaviour
 {
     private GameObject Prompt,icon,reticle;
-    public GameObject RelicCannon,RelicCannonInstance,Player;
+    private GameObject RelicCannon,RelicCannonInstance,Player;
     private bool _InRange = false;
     // Start is called before the first frame update
     void Awake()
