@@ -25,7 +25,7 @@ public class GunSelect : MonoBehaviour
         {
             if (i != Choice1 && i != Choice2)
             {
-                Destroy(GameObject.Find("GunIcons").GetComponent<GunIconUI>().Icons[i].gameObject);
+               GameObject.Find("GunIcons").GetComponent<GunIconUI>().Icons[i].gameObject.SetActive(false);
                 Destroy(GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().WeaponArray[i].gameObject);
                 GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().RecticleArray[i].gameObject.SetActive(false);
             }      
