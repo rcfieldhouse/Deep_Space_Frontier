@@ -24,6 +24,7 @@ public class GroundAi : MonoBehaviour
     public HealthSystem health;
     private float dist=0; 
     private Vector3 Pos = Vector3.zero;
+    public Vector2 LungeForce = new Vector2(15.0f, 6.0f);
     //Attacking
     //damage is defined as either lunge damage or swing damage depending on the attack invoked
     public int lungeDamage=-10,SwingDamage,Damage;
@@ -237,7 +238,7 @@ public class GroundAi : MonoBehaviour
         Rigidbody.isKinematic = false;
         _isAttacking = true;
         Damage = lungeDamage;
-        Rigidbody.velocity = Vector3.Normalize(player.transform.position-gameObject.transform.position) * 15.0f+Vector3.up*6.0f;
+        Rigidbody.velocity = Vector3.Normalize(player.transform.position-gameObject.transform.position) * LungeForce.x + Vector3.up * LungeForce.y;
         yield return lungeDuration;
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
         ResetAttack();
