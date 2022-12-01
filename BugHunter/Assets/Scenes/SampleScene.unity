@@ -27650,6 +27650,7 @@ MonoBehaviour:
   - {fileID: 1873918526317527613, guid: 8ff98f17433dbe744808f6e230cb73cb, type: 3}
   - {fileID: 6188316193510723446, guid: acac2ad2d808dd14eb2dcfa868b3db87, type: 3}
   Transform: {fileID: 0}
+  spawnForce: 20
 --- !u!114 &414052988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28037,7 +28038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDamage: 0
   fireRate: 1
-  weaponRange: 2000
+  weaponRange: 1000
   hitForce: 200
   CritMultiplier: 1
   gunEnd: {fileID: 23677597}
@@ -54234,6 +54235,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e33051ca54493f468fd57dc0b42aa2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiDragEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  uiDropEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  uiHoverEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  uiPauseEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  uiUnpauseEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  uiUseEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   MasterVolume: 0
   SoundFXVolume: 0
   DialogueVolume: 0
@@ -68263,9 +68306,9 @@ MonoBehaviour:
   reserveAmmo: 150
   AdsZoomScale: 0
   _reloadTimer: 1
-  RecoilX: 0.15
+  RecoilX: 0.2
   AimRecoilX: 0.075
-  RecoilY: 0.5
+  RecoilY: 0.1
   AimRecoilY: 0.2
   RecoilZ: 0.1
   AimRecoilZ: 0
@@ -71342,7 +71385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44a5407755568a40927797b6ebd66ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunDamage: -7
+  gunDamage: -14
   fireRate: 1
   weaponRange: 25
   hitForce: 100
@@ -71367,9 +71410,9 @@ MonoBehaviour:
   Weight: 0.15
   RecoilTimer: 1
   ammoInMag: 0
-  maxAmmo: 25
-  magSize: 5
-  reserveAmmo: 15
+  maxAmmo: 32
+  magSize: 8
+  reserveAmmo: 32
   AdsZoomScale: 0
   _reloadTimer: 1
   RecoilX: 22.1
@@ -76397,6 +76440,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6910437418365823274, guid: 71d5246dd754d7e4d8f579558282c0f2,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910437418365823274, guid: 71d5246dd754d7e4d8f579558282c0f2,
+        type: 3}
       propertyPath: walkPointRange
       value: 10
       objectReference: {fileID: 0}
@@ -76508,7 +76556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885606627}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2.33, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -84044,7 +84092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb2e3c056f37cf4781a0b07eb00aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassSelection: 1
+  ClassSelection: 2
 --- !u!114 &5660732095485889375
 MonoBehaviour:
   m_ObjectHideFlags: 0
