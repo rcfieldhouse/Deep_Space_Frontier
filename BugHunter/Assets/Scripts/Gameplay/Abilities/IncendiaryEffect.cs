@@ -22,6 +22,7 @@ public class IncendiaryEffect : MonoBehaviour
             Timer += Time.deltaTime;
             if (Timer > BurnTick)
             {
+                // damage per burn tick
                 gameObject.GetComponent<HealthSystem>().ModifyHealth(-8);
                 BurnTick += BurnTicker;
             }
