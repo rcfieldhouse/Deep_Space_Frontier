@@ -82,7 +82,7 @@ public class PlayerInput : MonoBehaviour
 
         //sprint
        if (Input.GetKeyDown(KeyCode.LeftShift)) 
-            SpeedMod = 1.35f;
+            SpeedMod = 1.5f;
 
        if (Input.GetKeyUp(KeyCode.LeftShift))
             SpeedMod = 1.0f;
