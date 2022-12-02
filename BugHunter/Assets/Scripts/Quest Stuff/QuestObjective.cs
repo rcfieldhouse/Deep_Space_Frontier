@@ -12,11 +12,6 @@ public class QuestObjective : MonoBehaviour
         startPos = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnDisable()
     {
         QuestManager.instance.QuestCompleted(ThisQuestStep);

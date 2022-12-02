@@ -7,6 +7,10 @@ public class GroundAi : MonoBehaviour
 {
     private NavMeshAgent agent;
 
+    public MeshRenderer MeshReg;
+    private Material[] materials;
+    public float dissolveRate = 0.0125f;
+    public float refreshRate = 0.02f;
 
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
@@ -55,6 +59,9 @@ public class GroundAi : MonoBehaviour
         
         if (agent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
+
+        if (MeshReg != null)
+            materials = MeshReg.materials;
     }
     public void SetInitialPosition (Vector3 vector3)
     {
@@ -270,13 +277,32 @@ public class GroundAi : MonoBehaviour
 
     public void HandleObjectDeath(GameObject context)
     {
-        LootSpawner.instance.SprayLoot(transform);
-       // LootSpawner.instance.SprayLoot(transform);
-       // LootSpawner.instance.SprayLoot(transform);
-        //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
-
-        Destroy(gameObject);
+        StartCoroutine(DissolveCo());   
     }
+    IEnumerator DissolveCo()
+    {
+        GetComponent<NavMeshAgent>().enabled = false;
+        if (materials.Length > 0)
+        {
+            float counter = 0;
+            while (materials[0].GetFloat("_DissolveAmount") < 1)
+            {
+                counter += dissolveRate;
+                for (int i = 0; i < materials.Length; i++)
+                {
+                    materials[i].SetFloat("_DissolveAmount", counter);
+                }
+                yield return new WaitForSeconds(refreshRate);
+            }
+            LootSpawner.instance.SprayLoot(transform);
+            // LootSpawner.instance.SprayLoot(transform);
+            // LootSpawner.instance.SprayLoot(transform);
+            //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
+
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
