@@ -41,7 +41,7 @@ public class ElectricEffect : MonoBehaviour
     // Update is called once per frame
     private IEnumerator ArcShot()
     {
-        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.yellow;
+        //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.yellow;
         Rigidbody rigidbody;
         if (gameObject.GetComponent<Rigidbody>() == false)
         {
@@ -59,7 +59,7 @@ public class ElectricEffect : MonoBehaviour
         yield return new WaitForSeconds(1f);
         // how much damage electric bullet does
         gameObject.GetComponent<HealthSystem>().ModifyHealth(-80);
-        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
+        //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
         Destroy(rigidbody);
         Destroy(coll);
         Destroy(this);

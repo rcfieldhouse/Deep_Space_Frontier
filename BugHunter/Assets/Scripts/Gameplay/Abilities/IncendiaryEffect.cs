@@ -16,7 +16,7 @@ public class IncendiaryEffect : MonoBehaviour
 
     private IEnumerator BurnDeBoi()
     {
-        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
+        //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
          float Timer=0; 
         while (Timer < BurnTimer)
         {
@@ -29,7 +29,7 @@ public class IncendiaryEffect : MonoBehaviour
             }
             yield return null;
         }
-        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
+        //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
         Destroy(this);
         yield return null;
     }

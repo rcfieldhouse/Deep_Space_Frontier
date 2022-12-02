@@ -147,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6086162005074708582}
   - component: {fileID: 7194992488857864131}
-  - component: {fileID: 5306485225522154217}
+  - component: {fileID: 2333381563053811019}
   m_Layer: 11
   m_Name: EnemyHound (1)
   m_TagString: Enemy
@@ -178,8 +178,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6862840099336704732}
   m_Mesh: {fileID: 3574709535254678125, guid: f7d3ab52de1a6804398fea168ac4a7dc, type: 3}
---- !u!137 &5306485225522154217
-SkinnedMeshRenderer:
+--- !u!23 &2333381563053811019
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -193,7 +193,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -219,18 +219,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 3574709535254678125, guid: f7d3ab52de1a6804398fea168ac4a7dc, type: 3}
-  m_Bones: []
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 0}
-  m_AABB:
-    m_Center: {x: 0.03632757, y: 0.25440332, z: -0.18723966}
-    m_Extent: {x: 0.33927795, y: 0.8452748, z: 0.51005816}
-  m_DirtyAABB: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &2163460569616075162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -332,8 +321,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2163460569616075162}
   m_PrefabAsset: {fileID: 0}
---- !u!137 &6059239640835821190
-SkinnedMeshRenderer:
+--- !u!23 &6146408280963356414
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -347,7 +336,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -373,18 +362,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 3574709535254678125, guid: f7d3ab52de1a6804398fea168ac4a7dc, type: 3}
-  m_Bones: []
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 0}
-  m_AABB:
-    m_Center: {x: 0.03632757, y: 0.25440332, z: -0.18723966}
-    m_Extent: {x: 0.33927795, y: 0.8452748, z: 0.51005816}
-  m_DirtyAABB: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &1841020695698124401 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f7d3ab52de1a6804398fea168ac4a7dc,
