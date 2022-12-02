@@ -30238,6 +30238,7 @@ MonoBehaviour:
   - {fileID: 1783755564}
   - {fileID: 2075313683}
   - {fileID: 945821586}
+  - {fileID: 597696547}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -30248,9 +30249,9 @@ MonoBehaviour:
   FrontAttackRange: 20
   BackAttackRange: 20
   SeekRange: 160
-  FrontAttackPos: {x: -40, y: 5, z: 0}
+  FrontAttackPos: {x: -30, y: 5, z: 0}
   BackAttackPos: {x: 40, y: 3, z: 0}
-  FrontAttackDamage: 0
+  FrontAttackDamage: -50
   BackAttackDamage: 0
   AOEAttackDamage: 0
   PlayerInFrontAttackRange: 0
@@ -32163,6 +32164,18 @@ CapsuleCollider:
   m_Height: 0.007
   m_Direction: 1
   m_Center: {x: 0, y: 0.002, z: 0.0002}
+--- !u!114 &597696551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597696547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2cc9858e3dbd14fa29e511c62ca37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &598201198
 PrefabInstance:
   m_ObjectHideFlags: 0

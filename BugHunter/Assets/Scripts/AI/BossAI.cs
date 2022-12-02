@@ -84,6 +84,7 @@ public class BossAI : MonoBehaviour
         {
             AttackColliders[i].GetComponent<MurderMittens>().SetAttack(false, 0);
         }
+        StopCoroutine(DoDamage(0));
     }
   
     private void SetAnimsFalse()
