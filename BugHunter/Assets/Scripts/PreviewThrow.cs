@@ -13,7 +13,7 @@ public class PreviewThrow : MonoBehaviour
     void Start()
     {
    
-        PreviewLine = gameObject.AddComponent<LineRenderer>();
+        PreviewLine = gameObject.GetComponent<LineRenderer>();
         PreviewLine.positionCount = 10;
         PreviewLine.startWidth = 0.15f;
         PreviewLine.endWidth = 0.15f;
