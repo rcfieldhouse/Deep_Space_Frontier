@@ -107,6 +107,6 @@ private void Update()
         }
         //z 0.125
         
-        transform.GetChild(0).gameObject.transform.localPosition = new Vector3((1 - (AngleDifferenceX / 180.0f)) * -0.25f, 0.0f, 0.125f * (AngleDifferenceZ / 90.0f));
+        transform.GetChild(0).gameObject.transform.localPosition = new Vector3((1 - (AngleDifferenceX / 180.0f)) * -0.25f, -0.0f, 0.125f * (AngleDifferenceZ / 90.0f));
     }
 }
