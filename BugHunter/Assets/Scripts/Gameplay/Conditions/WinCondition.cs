@@ -21,9 +21,7 @@ public class WinCondition : MonoBehaviour
     }
     public void WinConditionMet()
     {
-        SceneManager.LoadScene("WinScreen",LoadSceneMode.Single);
-       // SceneManager.UnloadScene("SampleScene");
-     
+        GameManager.instance.SceneChange("WinScreen");    
     }
   
     public void OnDisable()
