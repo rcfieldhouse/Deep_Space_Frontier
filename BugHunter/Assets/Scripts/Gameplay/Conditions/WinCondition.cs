@@ -14,7 +14,10 @@ public class WinCondition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GetComponent<HealthSystem>().GetHealth() <= 0)
+        {
+            WinConditionMet();
+        }
     }
     public void WinConditionMet()
     {
