@@ -26,7 +26,7 @@ public class GrenadeManager : MonoBehaviour
 
         GrenadeThrow = GetComponentInChildren<GrenadeThrow>();
         FruitThrow = GetComponentInChildren<FruitThrow>();
-        PreviewThrow = GetComponent<PreviewThrow>();
+        PreviewThrow = gameObject.AddComponent<PreviewThrow>();
 
         Fruit = FruitThrow.gameObject;
         Grenade = GrenadeThrow.gameObject;
