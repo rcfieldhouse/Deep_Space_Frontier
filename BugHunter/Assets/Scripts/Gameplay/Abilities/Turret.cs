@@ -58,7 +58,7 @@ public class Turret : MonoBehaviour
 
         if (Physics.Raycast(BulletEmitter.position, transform.GetChild(0).forward, out hit, 20.0f))
         {
-            if (isActiveAndEnabled  == true)
+            if (isActiveAndEnabled  == true&&_CanShoot==true)
             {
                 StartCoroutine(ShotEffect());
                 if (hit.collider.tag == "Enemy")
