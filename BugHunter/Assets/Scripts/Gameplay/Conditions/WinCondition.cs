@@ -24,8 +24,4 @@ public class WinCondition : MonoBehaviour
         GameManager.instance.SceneChange("WinScreen");    
     }
   
-    public void OnDisable()
-    {
-        WinConditionMet();
-    }
 }
