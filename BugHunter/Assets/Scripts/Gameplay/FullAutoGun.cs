@@ -115,7 +115,7 @@ public class FullAutoGun : MonoBehaviour
                 }
                 else if (health != null)
                 {
-                    Debug.Log("we hit "+health.gameObject.name);
+            
                     StartCoroutine(HitMarkerEffect(0));
                     // Call the damage function of that script, passing in our gunDamage variable
                     health.ModifyHealth(gunDamage);

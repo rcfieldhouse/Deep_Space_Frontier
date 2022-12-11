@@ -43,9 +43,12 @@ public class PlayerInput : MonoBehaviour
     public GameObject userInterface;
     // Start is called before the first frame update
     //damn you dante, make ur own file 
-    void Start()
+    void Awake()
     {
-        
+    if (Look == null)
+        {
+         
+        }
         // Commented temporarily unitl inventory system is implemented
         Cursor.lockState= CursorLockMode.Locked;
 
@@ -196,10 +199,12 @@ public class PlayerInput : MonoBehaviour
             SwappingWeapon.Invoke(WeaponActive + 1);
 
 
-
-
-        Look.Invoke(Direction);
-        Move.Invoke(KeyboardInput,SpeedMod);
+        if (Look != null && Direction != null)
+        {
+            Look.Invoke(Direction);
+            Move.Invoke(KeyboardInput, SpeedMod);
+        }
+      
 
     }
     // UI buttons call this when they want to enable mouse lock
