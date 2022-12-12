@@ -52,6 +52,24 @@ public class LootSpawner : MonoBehaviour
         //apply force on spawn if has rigidbody
         if (rb == null)
             return;
+
+        Vector3 force = (rb.transform.position - this.transform.position).normalized * spawnForce;
+        rb.AddForce(force);
+    }
+
+
+   public void DropMaterials(Transform transform, int LootType)
+    {
+        Drop = Instantiate(Prefabs[2], transform.position, Quaternion.identity);
+        MaterialPickup newMat = new MaterialPickup(LootType);
+      
+        Drop.AddComponent<MaterialPickup>();
+        Drop.GetComponent<MaterialPickup>().SetType(LootType);
+        //for making it schmoov
+        Rigidbody rb = transform.GetComponent<Rigidbody>();
+        if (rb == null)
+            return;
+
         Vector3 force = (rb.transform.position - this.transform.position).normalized * spawnForce;
         rb.AddForce(force);
     }

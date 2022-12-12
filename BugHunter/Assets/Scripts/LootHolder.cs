@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+public enum MaterialTypes
+{
+    //this will be where the List of ints is used
+    //each int will correspond a material type
+   zero,one,two,three,four,five
+}
 public class LootHolder : MonoBehaviour
 {
     public static LootHolder instance;
