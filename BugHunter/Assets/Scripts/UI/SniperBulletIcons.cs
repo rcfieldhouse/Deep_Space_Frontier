@@ -15,7 +15,11 @@ public class SniperBulletIcons : MonoBehaviour
             Icons[i].SetActive(false);
         }
     }
+    private void OnDestroy()
+    {
 
+        SpecialBulletSelect.NewBulletSelected -= SelectBullet;
+    }
     // Update is called once per frame
     void Update()
     {

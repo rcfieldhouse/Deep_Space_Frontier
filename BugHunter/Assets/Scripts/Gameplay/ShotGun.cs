@@ -22,7 +22,7 @@ public class ShotGun : MonoBehaviour
     private Vector3 AimSpread = new Vector3(0.0f, 0.0f, 0.0f);
     [SerializeField] private float maxShotGunSpread = 5.0f;
     public WeaponInfo info;
-    void Start()
+    void Awake()
     {
         info = GetComponent<WeaponInfo>();
         // Get and store a reference to our LineRenderer component
@@ -43,6 +43,10 @@ public class ShotGun : MonoBehaviour
         //      ShotgunLines[i] = gameObject.GetComponent<LineRenderer>();
         //  }
         //  }
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Shoot -= Shoot;
     }
     private void Update()
     {

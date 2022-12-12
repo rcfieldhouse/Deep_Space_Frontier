@@ -22,7 +22,7 @@ public class Recoil : MonoBehaviour
     private bool _IsAds = false;
     Camera Camera;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     { 
    //basic position data
         BaseFOV = 60.0f;
@@ -43,9 +43,17 @@ public class Recoil : MonoBehaviour
 
         Camera = GetComponent<Camera>();
     }
-
+    private void OnDestroy()
+    {
+     
+         PlayerInput.Shoot -= StartShot;
+        WeaponSwap.BroadCastWeaponRecoilData -= SetAnimProperties;
+        WeaponInfo.maginfo -= getIfMagHasAmmo;
+        WeaponInfo.CanShoot -= SetCanShoot;
+        PlayerInput.ADS -= SetISADS;
+    }
     // Update is called once per frame
-   private void SetISADS(bool foo)
+    private void SetISADS(bool foo)
     {
         _IsAds = foo;
     }

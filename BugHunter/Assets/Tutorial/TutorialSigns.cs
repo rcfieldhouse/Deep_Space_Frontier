@@ -16,6 +16,10 @@ public class TutorialSigns : MonoBehaviour
             Tutorials.Add(transform.GetChild(i).gameObject);
         }
     }
+    private void OnDestroy()
+    {
+        PlayerInput.PausePlugin -= DisableSigns;
+    }
 
     public void SetStep(TutorialStep step)
     {

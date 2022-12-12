@@ -12,14 +12,18 @@ public class ZoomIn : MonoBehaviour
     private int choice=0;
 
 
-    private void Start()
+    private void Awake()
     {
         WeaponSwap.BroadcastChoice += SetWeapon;
         PlayerInput.ADS += HandleAim;
         DepthOfField dof;
         if (volumeProfile.TryGet(out dof)) { _DepthOfField = dof; }
     }
-
+    private void OnDestroy()
+    {
+        WeaponSwap.BroadcastChoice -= SetWeapon;
+        PlayerInput.ADS -= HandleAim;
+    }
     public void HandleAim(bool isAiming)
     {
         if (isAiming && choice == 0 && GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().WeaponArray[0].name == "Sniper")

@@ -9,7 +9,7 @@ public class ThrowableSwap : MonoBehaviour
     private int Selection = 0;
     private GrenadeManager GrenadeManager;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         PlayerInput.Interact += BeginRender;
         PlayerInput.TabThrowable += ChooseIcon;
@@ -20,6 +20,12 @@ public class ThrowableSwap : MonoBehaviour
         }
         StartCoroutine(FindDeBoi());
       
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Interact -= BeginRender;
+        PlayerInput.TabThrowable -= ChooseIcon;
+        PlayerInput.Throw -= StartTheRender;
     }
     private IEnumerator FindDeBoi()
     {

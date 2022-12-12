@@ -4,12 +4,13 @@ using UnityEngine;
 using System;
 public class WeaponSwap : MonoBehaviour
 {
-    public static Action<Vector4> BroadCastWeaponRecoilData;
+    
     // Start is called before the first frame update
     //Match each recticle with The Coresponding Weapon
     public List<GameObject> WeaponArray;
     public List<GameObject> RecticleArray;
 
+    public static Action<Vector4> BroadCastWeaponRecoilData;
     public static Action<Vector3> BroadCastHipRecoil;
     public static Action<Vector3> BroadCastADSRecoil;
     public static Action<int,int> BroadcastWeaponListData;
@@ -17,7 +18,7 @@ public class WeaponSwap : MonoBehaviour
     public static Action<Vector2> BroadcastSnap;
     public static Action<int> BroadcastChoice;
     private int WeaponChoice = 0;
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < WeaponArray.Count; i++)
         {
@@ -31,7 +32,10 @@ public class WeaponSwap : MonoBehaviour
         PlayerInput.SwappingWeapon += SetWeapon;
         StartCoroutine(StartingWeapon());
     }
-
+    private void OnDestroy()
+    {
+        PlayerInput.SwappingWeapon -= SetWeapon;
+    }
     // Update is called once per frame
     private IEnumerator StartingWeapon()
     {

@@ -51,12 +51,12 @@ public class FMODPlayer : MonoBehaviour
     public FMODUnity.EventReference PlayerStateEvent;
 
 
-    void Start()
+    void Awake()
     {
 
         if (_instance == null)
         {
-            _instance = new FMODPlayer();
+            _instance = this;
         }
 
         //Attach sound @ runtime                                

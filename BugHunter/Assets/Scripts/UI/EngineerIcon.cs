@@ -15,6 +15,11 @@ public class EngineerIcon : MonoBehaviour
         TurretAbility.ClearedTurret += ClearTurrets;
         TurretAbility.UsedTurret += UseTurret;
     }
+    private void OnDestroy()
+    {
+        TurretAbility.ClearedTurret -= ClearTurrets;
+        TurretAbility.UsedTurret -= UseTurret;
+    }
     public void UseTurret(float num)
     {
         TurretNum.text =(2 - (int)num).ToString();

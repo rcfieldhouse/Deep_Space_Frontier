@@ -12,12 +12,15 @@ public class RelicCannon : MonoBehaviour
     [SerializeField] private bool isReady = true;
     public WeaponInfo info;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         info = GetComponentInParent<WeaponInfo>();
         PlayerInput.Shoot += Shoot;
     }
-
+    private void OnDestroy()
+    {
+        PlayerInput.Shoot -= Shoot;
+    }
     // Update is called once per frame
 
     private void Shoot()

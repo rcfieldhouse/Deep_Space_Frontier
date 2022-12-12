@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
    
 
     public static GameManager instance;
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
         {
@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator SceneChangeAsync(string sceneName)
     {
-        //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
         loadingScreen.SetActive(true);

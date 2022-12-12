@@ -26,6 +26,11 @@ public class TeleportAbility : MonoBehaviour
 
         TeleportInstance = Instantiate(TeleportOrb);
     }
+    private void OnDestroy()
+    {
+        PlayerInput.UseAbility -= PlaceTeleport;
+        PlayerInput.Undo -= Undo;
+    }
     public void PlaceTeleport()
     {
         Vector3 rayOrigin = Cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));

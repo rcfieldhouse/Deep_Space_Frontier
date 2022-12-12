@@ -8,18 +8,16 @@ public class FeedbackFX : MonoBehaviour
     public List<GameObject> ScreenEffects;
     private float PercentHealth = 1.0f;
     private int _MaxHealth = 1;
-    void Start()
+    void Awake()
     {
 
         for (int i = 0; i <= 2; i++)
         {
             ScreenEffects.Add(gameObject.transform.parent.GetChild(1).GetChild(3).GetChild(i).gameObject);
         }
-    }
-    private void Awake()
-    {
         StartCoroutine(wait());
     }
+ 
     private IEnumerator wait()
     {
         yield return new WaitForEndOfFrame();

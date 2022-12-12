@@ -45,17 +45,17 @@ public class PlayerInput : MonoBehaviour
     //damn you dante, make ur own file 
     void Awake()
     {
-    if (Look == null)
-        {
-         
-        }
+
         // Commented temporarily unitl inventory system is implemented
         Cursor.lockState= CursorLockMode.Locked;
 
         WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }
- 
 
+    private void OnDestroy()
+    {
+        WeaponSwap.BroadcastWeaponListData -= SetWeaponActive;
+    }
     private void SetWeaponActive(int num,int length)
     {
         WeaponActive = num;

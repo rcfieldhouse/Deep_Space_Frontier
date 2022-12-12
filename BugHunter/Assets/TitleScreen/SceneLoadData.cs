@@ -6,7 +6,7 @@ public class SceneLoadData : MonoBehaviour
 {
     ClassType ClassSelection;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
        
         DontDestroyOnLoad(gameObject);

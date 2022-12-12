@@ -9,7 +9,7 @@ public class MurderMittens : MonoBehaviour
     private int _Damage;
     private float StartRadius = 0;
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         StartRadius = gameObject.GetComponent<CapsuleCollider>().radius;
     }

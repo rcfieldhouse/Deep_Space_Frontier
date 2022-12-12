@@ -17,7 +17,7 @@ public class GrenadeManager : MonoBehaviour
     public int ThrowSelect = 0;
     // Start is called before the first frame update
 
-    void Start()
+    void Awake()
     {
         if (instance == null)
         {
@@ -38,6 +38,12 @@ public class GrenadeManager : MonoBehaviour
      
         Grenade.SetActive(false);
         Fruit.SetActive(false);
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Throw -= BeginThrow;
+        PlayerInput.WeNeedToCookJesse -= CookNade;
+        PlayerInput.TabThrowable -= ChooseThrowable;
     }
     public void CookNade() 
     {

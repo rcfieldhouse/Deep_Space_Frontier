@@ -8,7 +8,7 @@ public class Supply : MonoBehaviour
     public List<GameObject> SpawnPoints; 
     public List<GameObject> LootDrops; 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
       
         for (int i = 0; i<transform.childCount; i++)

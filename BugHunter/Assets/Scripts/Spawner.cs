@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
  
      private WaitForSeconds SpawnTime = new WaitForSeconds(1.0f);
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (SpawnCondition == SpawnCondition.ApplicationStart)
         {

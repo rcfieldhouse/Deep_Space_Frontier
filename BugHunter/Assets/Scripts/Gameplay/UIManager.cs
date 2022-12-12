@@ -9,15 +9,18 @@ public class UIManager : MonoBehaviour
    // public Canvas InventoryUI;
     public GameObject WeaponHolder;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         PlayerInput.PausePlugin += PauseMenuEnabled;
     }
-
+    private void OnDestroy()
+    {
+        PlayerInput.PausePlugin -= PauseMenuEnabled;
+    }
     // Update is called once per frame
-   
 
-   void PauseMenuEnabled()
+
+    void PauseMenuEnabled()
    {
         //disable gamepaly UI and enable Pause Menu UI when escape is pressed
        // InventoryUI.enabled = false;

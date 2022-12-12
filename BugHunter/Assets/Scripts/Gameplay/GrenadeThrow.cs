@@ -22,7 +22,7 @@ public class GrenadeThrow : MonoBehaviour
     private Vector3 grenadeSpawnPos;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //_startValues.position = new Vector3(-0.5f, -0.03f, 0.4f);
        // _startValues.transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);

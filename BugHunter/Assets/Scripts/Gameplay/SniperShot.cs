@@ -23,7 +23,7 @@ public class SniperShot : MonoBehaviour
     public SpecialBulletSelect CurrentBullet;
     public bool _IsSniper = false;
     public GameObject HitMarker;
-    void Start()
+    void Awake()
     {
         info = GetComponentInParent<WeaponInfo>();
         // Get and store a reference to our LineRenderer component
@@ -35,6 +35,10 @@ public class SniperShot : MonoBehaviour
 
        
         PlayerInput.Shoot += Shoot;
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Shoot -= Shoot;
     }
     private void Update()
     {

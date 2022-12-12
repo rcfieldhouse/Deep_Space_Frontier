@@ -21,11 +21,15 @@ public class WeaponInfo : MonoBehaviour
 
     private bool _CanShoot = true, _CanReload = false, _isReloading = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ReloadTimer = new WaitForSeconds(_reloadTimer);
         PlayerInput.Reload += Reload;
         ammoInMag = magSize;
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Reload -= Reload;
     }
     public bool GetIsReloading()
     {

@@ -12,7 +12,7 @@ public class FruitThrow : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsBarrier;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Rigidbody = GetComponent<Rigidbody>(); 
         player = GameObject.Find("MixamoCharacter");

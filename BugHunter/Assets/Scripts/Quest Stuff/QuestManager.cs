@@ -18,7 +18,7 @@ public class QuestManager : MonoBehaviour
     private int QuestNum = 0,CurrentQuestNum=0;
  
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (instance == null)
         {

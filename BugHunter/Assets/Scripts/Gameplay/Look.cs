@@ -24,4 +24,8 @@ public class Look : MonoBehaviour
         gameObject.transform.localRotation = quaternion;
         gameObject.transform.position = Player.transform.position - (transform.localRotation * Vector3.up*1.75f) + (transform.localRotation * offset);
     }
+    private void OnDestroy()
+    {
+        PlayerInput.Look -= Aim;
+    }
 }

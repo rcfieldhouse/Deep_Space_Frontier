@@ -31,7 +31,7 @@ public class NewRecoil : MonoBehaviour
         RecoilY = vec.y;
         RecoilZ = vec.z;
     }
-    void Start()
+    void Awake()
     {
         PlayerInput.Shoot += RecoilStart;
         PlayerInput.Chamber += setRecoilPossible;
@@ -44,6 +44,19 @@ public class NewRecoil : MonoBehaviour
         WeaponSwap.BroadCastHipRecoil += SetHipRecoil;
         WeaponSwap.BroadcastSnap += SetSnap;
         Player = GameObject.Find("MixamoCharacter");
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Shoot -= RecoilStart;
+        PlayerInput.Chamber -= setRecoilPossible;
+        PlayerInput.ADS -= SetIsAiming;
+
+        WeaponInfo.maginfo -= getIfMagHasAmmo;
+        WeaponInfo.CanShoot -= CanShoot;
+
+        WeaponSwap.BroadCastADSRecoil -= SetAdsRecoil;
+        WeaponSwap.BroadCastHipRecoil -= SetHipRecoil;
+        WeaponSwap.BroadcastSnap -= SetSnap;
     }
     private void CanShoot(bool var)
     {

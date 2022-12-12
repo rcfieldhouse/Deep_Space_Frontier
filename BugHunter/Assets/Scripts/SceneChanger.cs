@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;  
 public class SceneChanger : MonoBehaviour
 {
-    public void Start()
+    public void Awake()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;

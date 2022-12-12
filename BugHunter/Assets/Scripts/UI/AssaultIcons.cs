@@ -15,6 +15,10 @@ public class AssaultIcons : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
         Dodge.Dodged+=UseDodge;
     }
+    private void OnDestroy()
+    {
+        Dodge.Dodged -= UseDodge;
+    }
     void UseDodge(float foo)
     {
         transform.GetChild(0).gameObject.SetActive(true);

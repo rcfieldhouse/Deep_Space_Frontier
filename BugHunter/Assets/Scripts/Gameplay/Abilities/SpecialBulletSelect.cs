@@ -85,6 +85,10 @@ public class SpecialBulletSelect : MonoBehaviour
         PlayerInput.UseAbility += ChangeBulletType;
         NewBulletSelected.Invoke((int)BulletSelection);
     }
+    private void OnDestroy()
+    {
+        PlayerInput.UseAbility -= ChangeBulletType;
+    }
     // Update is called once per frame
 
     public void CallShotEffect(GameObject Object)

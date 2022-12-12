@@ -22,23 +22,30 @@ public class CharacterController : MonoBehaviour
     //Used for initial save when player starts the game
     private bool MovedOnce = false;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        Rigidbody = GetComponent<Rigidbody>();   
-       // PlayerInput.UseAbility += Dodge;
+        disableCams(false);
+        CameraMain.SetActive(true);
+    }
+    private void Awake()
+    {
+        Rigidbody = GetComponent<Rigidbody>();
+        // PlayerInput.UseAbility += Dodge;
         PlayerInput.Crouching += SwitchCamCrouch;
         PlayerInput.JumpAction += Jump;
         PlayerInput.Move += Move;
         coll = GetComponent<CapsuleCollider>();
         //this line sets default cam to main
-        disableCams(false);
-        
-    }
-    private void Awake()
-    {
-        Debug.Log("worked");
+ 
         disableCams(false);
         CameraMain.SetActive(true);
+
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Crouching -= SwitchCamCrouch;
+        PlayerInput.JumpAction -= Jump;
+        PlayerInput.Move -= Move;
     }
     public void SetIfOnLadder(bool var)
     {
@@ -54,11 +61,18 @@ public class CharacterController : MonoBehaviour
     }
     public GameObject[] GetCameras()
     {//this is for dodge roll fam
+        EnableCams();
         return new GameObject[5] { CameraMain, CameraCrouch, CameraDodge, CameraManager, WeaponCamera };
     }
     //functions for delegates 
     //happy programmer noises ;)
-
+    public void EnableCams()
+    {
+        CameraCrouch.SetActive(true);
+        CameraDodge.SetActive(true);
+        CameraMain.SetActive(true);
+        WeaponCamera.SetActive(true);
+    }
     public void disableCams(bool var)
     {   //set all cameras to false, if called by a function that is setting that camera to false
         //set default cam to main
@@ -151,4 +165,5 @@ public class CharacterController : MonoBehaviour
         m_Grounded = Physics.Raycast(coll.bounds.center - Vector3.down / 10, Vector3.down,2.4f, m_WhatIsGround);
         return Physics.Raycast(coll.bounds.center - Vector3.down / 10, Vector3.down, 2.4f, m_WhatIsGround);
     }
+ 
 }

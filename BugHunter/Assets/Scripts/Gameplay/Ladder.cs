@@ -6,10 +6,14 @@ public class Ladder : MonoBehaviour
 {
     public GameObject Prompt,Player;
     public bool _IsInTrigger = false;
-    private void Start()
+    private void Awake()
     {
         PlayerInput.Interact += UseLadder;
         Prompt = GameObject.Find("PickupPrompt");
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Interact -= UseLadder;
     }
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)

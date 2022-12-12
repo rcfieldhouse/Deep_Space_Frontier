@@ -21,7 +21,7 @@ public class FullAutoGun : MonoBehaviour
     private float nextFire;
     private bool _CanShoot = true;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         info = GetComponent<WeaponInfo>();
         laserLine = GetComponent<LineRenderer>();
@@ -35,6 +35,12 @@ public class FullAutoGun : MonoBehaviour
         PlayerInput.Shoot += Shoot;
         PlayerInput.Shoot += SetShootingTrue;
         PlayerInput.Chamber += SetShootingFalse;
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Shoot -= Shoot;
+        PlayerInput.Shoot -= SetShootingTrue;
+        PlayerInput.Chamber -= SetShootingFalse;
     }
     private void SetShootingTrue()
     {

@@ -8,12 +8,17 @@ public class ReloadGun : MonoBehaviour
     private float currentGun;
     private WeaponSwap gunHolder;
     private Animator gunAnimator;
-    void Start()
+
+    
+    void OnEnable()
     {
         PlayerInput.Reload += Reload;
         gunHolder = GetComponent<WeaponSwap>();
     }
-
+    private void OnDestroy()
+    {
+        PlayerInput.Reload -= Reload;
+    }
     public void Reload()
     {
         //this is gross 

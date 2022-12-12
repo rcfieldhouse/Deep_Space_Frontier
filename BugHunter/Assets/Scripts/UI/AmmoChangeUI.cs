@@ -12,7 +12,7 @@ public class AmmoChangeUI : MonoBehaviour
     public WeaponSwap currentWeapon;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ammoCount = GetComponent<TextMeshProUGUI>();
         

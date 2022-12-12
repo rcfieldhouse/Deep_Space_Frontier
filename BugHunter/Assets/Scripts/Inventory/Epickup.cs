@@ -9,12 +9,21 @@ public class Epickup : MonoBehaviour
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private float PickupRange;
 
-    public void Start()
+    public void OnEnable()
     {
         PlayerInput.Interact += Pickup;
         Prompt = GameObject.Find("PickupPrompt");
         StartCoroutine(AAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH());
        // Prompt.SetActive(false);
+    }
+    private void OnDisable()
+    {
+        PlayerInput.Interact -= Pickup;
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Interact -= Pickup;
+
     }
     // adds the item to the inventory list then destroys it's self
     void Pickup()

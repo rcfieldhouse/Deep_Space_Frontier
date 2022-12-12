@@ -10,7 +10,7 @@ public class PreviewThrow : MonoBehaviour
     private Vector3 LaunchPoint;
     private Vector3 ThrowForce = (Vector3.forward * 25 + Vector3.up * 5);
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
    
         PreviewLine = gameObject.GetComponent<LineRenderer>();

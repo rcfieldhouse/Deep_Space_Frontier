@@ -8,7 +8,7 @@ public enum TutorialStep
 }
 public class TutorialObjective : MonoBehaviour
 {
-    private bool TutorialShown = false;
+    private bool TutorialShown = false,DisabledByPlayer=false;
     public TutorialStep TutorialStep;
 
     // Start is called before the first frame update
@@ -19,12 +19,18 @@ public class TutorialObjective : MonoBehaviour
         {
             TutorialSigns.instance.SetStep(TutorialStep);
             TutorialShown = true;
+            DisabledByPlayer = true;
         }
     }
-
+    
+    private void OnDestroy()
+    {
+        DisabledByPlayer = false;
+        TutorialShown = true;
+    }
     private void OnDisable()
     {
-        if (TutorialShown == false)
+        if (TutorialShown == false&& DisabledByPlayer==true)
         TutorialSigns.instance.SetStep(TutorialStep);
 
         TutorialShown = true;

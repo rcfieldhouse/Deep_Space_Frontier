@@ -8,13 +8,13 @@ public class Dodge : MonoBehaviour
     //use this to pass in the data
     private bool _CanRoll = true; 
     private CharacterController characterController;
-    private GameObject[] Cameras;
+    public GameObject[] Cameras;
     private Vector3 RollVector = Vector3.zero;
     [Range(0, 1)] public  WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
     private float Cooldown = 5f;
     [Range(0, 1)] public WaitForSeconds RollCoolDownTime ;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         RollCoolDownTime = new WaitForSeconds(Cooldown);
         // public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
@@ -22,7 +22,12 @@ public class Dodge : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cameras = characterController.GetCameras();
         PlayerInput.UseAbility += UseDodge;
-        Dodged.Invoke(0.1f);
+        disableCams(false);
+    }
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+        PlayerInput.UseAbility -= UseDodge;
     }
     private void UseDodge()
     {
