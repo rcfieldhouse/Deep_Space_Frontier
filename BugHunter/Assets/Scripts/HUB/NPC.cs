@@ -54,7 +54,9 @@ public class Merchant : NPC
 }
 public class Healer : NPC
 {
-    //merchant can be used to sell parts for currency
+    //healer can be used to heal urself obvi
+    //possible max health increase idk
+
     public override void VendorUI()
     {
      
@@ -67,7 +69,7 @@ public class Healer : NPC
 }
 public class Blacksmith : NPC
 {
-    //merchant can be used to sell parts for currency
+    //Blacksmith will be used to upgrade Weapons and craft new ones 
     public override void VendorUI()
     {
        
@@ -80,7 +82,8 @@ public class Blacksmith : NPC
 }
 public class Scribe : NPC
 {
-    //merchant can be used to sell parts for currency
+    //Scribe will let you unlock new areas and missions
+    //possibly upgrade ur class abilities?
     public override void VendorUI()
     {
         //waluigi
