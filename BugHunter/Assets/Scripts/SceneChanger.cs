@@ -12,10 +12,12 @@ public class SceneChanger : MonoBehaviour
 
     public void TitleScreenLoad()
     {
-        Debug.Log("doot");
         GameManager.instance.SceneChange("TitleScreen");
     }
-
+    public void HubLoad()
+    {
+        GameManager.instance.SceneChange("Hub");
+    }
     public void QuitGame()
     {
         Application.Quit();

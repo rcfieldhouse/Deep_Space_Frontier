@@ -10,11 +10,11 @@ public class QuitGame : MonoBehaviour
     {
 
         #if UNITY_EDITOR
-
+        Application.Quit();
         return;
 
         #endif
-        Application.Quit();
+       
     }
 
 }

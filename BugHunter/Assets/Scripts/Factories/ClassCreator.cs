@@ -6,7 +6,7 @@ public class ClassCreator : MonoBehaviour
 {
     [SerializeField] ClassType ClassSelection;
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         if (GameObject.Find("SceneLoadData") != null)
         {

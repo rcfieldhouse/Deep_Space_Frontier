@@ -18,7 +18,7 @@ public class SceneLoadData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name== "SampleScene")
+        if(SceneManager.GetActiveScene().name== "SampleScene"|| SceneManager.GetActiveScene().name == "Hub")
         {
             MainSceneLoaded();
         }

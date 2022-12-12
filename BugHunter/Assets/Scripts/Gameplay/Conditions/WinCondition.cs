@@ -21,9 +21,9 @@ public class WinCondition : MonoBehaviour
     public void WinConditionMet()
     {
         StopAllCoroutines();
-
-        SceneManager.LoadSceneAsync("Hub");
-     //   GameManager.instance.SceneChange("Hub");    
+   
+       // SceneManager.LoadSceneAsync("Hub");
+     GameManager.instance.SceneChange("WinScreen");    
     }
   
 }
