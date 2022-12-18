@@ -148,6 +148,7 @@ public class WeaponInfo : MonoBehaviour
         _isReloading = true;
            _CanReload = false;
         _CanShoot = false;
+        gameObject.GetComponentInParent<ReloadGun>().SetIsReloading(true);
         yield return ReloadTimer;
         //Debug.Log("reload");
         if (var)
@@ -164,8 +165,12 @@ public class WeaponInfo : MonoBehaviour
             }
 
         }
-        _isReloading = false;
+      
         _CanShoot = true;
+
+        yield return new WaitForSeconds(0.5f);
+        gameObject.GetComponentInParent<ReloadGun>().SetIsReloading(false);
+        _isReloading = false;
 
     }
     public void SetMaxBullets()

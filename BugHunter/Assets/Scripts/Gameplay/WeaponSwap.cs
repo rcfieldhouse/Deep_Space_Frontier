@@ -17,6 +17,8 @@ public class WeaponSwap : MonoBehaviour
     public static Action<float> BroadcastADSZoom;
     public static Action<Vector2> BroadcastSnap;
     public static Action<int> BroadcastChoice;
+
+    public ReloadGun reloadGun; 
     private int WeaponChoice = 0;
     void Awake()
     {
@@ -29,6 +31,7 @@ public class WeaponSwap : MonoBehaviour
         RecticleArray[WeaponChoice].SetActive(true);
         WeaponArray[WeaponChoice].SetActive(true);
 
+        reloadGun = GetComponent<ReloadGun>();
         PlayerInput.SwappingWeapon += SetWeapon;
         StartCoroutine(StartingWeapon());
     }
@@ -50,7 +53,7 @@ public class WeaponSwap : MonoBehaviour
 
     private void SetWeapon(int choice)
     {
-        if (WeaponArray[WeaponChoice].gameObject.GetComponent<WeaponInfo>().GetIsReloading() == false) { 
+        if   (reloadGun.GetIsReloading()== false) { 
         for (int i = 0; i < WeaponArray.Count; i++)
         {
             RecticleArray[i].SetActive(false);
