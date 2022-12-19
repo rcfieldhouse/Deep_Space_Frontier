@@ -17,10 +17,7 @@ public class ReloadGun : MonoBehaviour
     {
         Reloading = var;
     }
-    private void Update()
-    {
-        Debug.Log(Reloading);
-    }
+
     void OnEnable()
     {
         PlayerInput.Reload += Reload;

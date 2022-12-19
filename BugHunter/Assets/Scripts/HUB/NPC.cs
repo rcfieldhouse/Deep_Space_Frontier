@@ -6,7 +6,7 @@ public abstract class NPC : MonoBehaviour
 {
     //using abstract class so that all vendors can derrive from this
     //also doing all of the like behaviours in the abstract so that they do not to be written twice
-    private GameObject Prompt;
+    private GameObject Prompt,Player;
     public bool UI_Active;
     private void Awake()
     {
@@ -17,12 +17,24 @@ public abstract class NPC : MonoBehaviour
     // Start is called before the first frame update
     public abstract void VendorUI();
     public abstract void VendorAction();
+    public void ToggleAimOnPlayer(bool var)
+    {
+        if(Player!=null)
+        Player.transform.GetComponentInChildren<Look>().SetIsPaused(var);
+
+        if(var==true) Cursor.lockState = CursorLockMode.None;
+        else if (var==false) Cursor.lockState = CursorLockMode.Locked;
+
+    }
     public abstract string Name { get; }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+          
+            Player = other.transform.parent.gameObject;
+            Debug.Log(Player.name);
             Prompt.SetActive(true);
         }
     }
@@ -30,6 +42,7 @@ public abstract class NPC : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Player = null;
             Prompt.SetActive(false);
         }
     }
@@ -44,7 +57,8 @@ public class Merchant : NPC
     public override void VendorUI()
     {
         UI_Active = !UI_Active;
-        Debug.Log(UI_Active);
+        ToggleAimOnPlayer(UI_Active);
+      
     }
     public override void VendorAction()
     {
@@ -59,7 +73,8 @@ public class Healer : NPC
 
     public override void VendorUI()
     {
-     
+      UI_Active = !UI_Active;
+        ToggleAimOnPlayer(UI_Active);
     }
     public override void VendorAction()
     {
