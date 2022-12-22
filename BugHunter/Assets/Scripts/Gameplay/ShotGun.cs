@@ -55,7 +55,8 @@ public class ShotGun : MonoBehaviour
         {
             GetComponent<WeaponInfo>().SetCanShoot(false);
         }
-        else if (Time.time > nextFire && gameObject.activeInHierarchy == true&&info.hasAmmo()==true&&info.GetIsReloading()==false)info.SetCanShoot(true);
+        else if (info.GetIsReloading() == true) info.SetCanShoot(false);
+        else if (Time.time > nextFire && gameObject.activeInHierarchy == true&&info.hasAmmo()==true&&info.GetIsReloading()==false&&info.GetCanShoot()==false)info.SetCanShoot(true);
 
     }
     private HealthSystem FindBossHealth(GameObject obj)

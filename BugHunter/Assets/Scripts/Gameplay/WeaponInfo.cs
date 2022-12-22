@@ -35,8 +35,13 @@ public class WeaponInfo : MonoBehaviour
     {
         return _isReloading;
     }
+    public void SetIsReloading(bool var)
+    {
+        _isReloading = var;
+    }
     public void SetCanShoot(bool foo)
     {
+        
         _CanShoot = foo;
     }
     public bool GetCanShoot()
@@ -45,6 +50,7 @@ public class WeaponInfo : MonoBehaviour
     }
     public void Update()
     {
+        Debug.Log(_isReloading);
         if (ammoInMag <= 0) _CanShoot = false;
 
         if (ammoInMag == magSize)

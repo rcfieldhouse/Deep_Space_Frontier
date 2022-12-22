@@ -70,7 +70,7 @@ public class FullAutoGun : MonoBehaviour
     }
     private void Shoot()
     {
-        if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy==true&& gameObject.GetComponent<WeaponInfo>().GetCanShoot() == true)
+        if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy==true&& info.GetCanShoot() == true)
         {
             info.SetBulletCount();
             // Update the time when our player can fire next

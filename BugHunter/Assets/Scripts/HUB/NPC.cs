@@ -38,6 +38,8 @@ public abstract class NPC : MonoBehaviour
     {
         if (Player != null)
         {
+            Player.transform.GetComponentInChildren<WeaponInfo>().SetCanShoot(!var);
+            Player.transform.GetComponentInChildren<WeaponInfo>().SetIsReloading(var);
             Player.transform.GetComponentInChildren<Look>().SetIsPaused(var);
             if (var == true) Cursor.lockState = CursorLockMode.None;
             else if (var == false) Cursor.lockState = CursorLockMode.Locked;

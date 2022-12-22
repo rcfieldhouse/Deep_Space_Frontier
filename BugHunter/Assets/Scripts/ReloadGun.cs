@@ -14,7 +14,7 @@ public class ReloadGun : MonoBehaviour
         return Reloading;
     }
     public void SetIsReloading(bool var)
-    {
+    { 
         Reloading = var;
     }
 
@@ -33,8 +33,7 @@ public class ReloadGun : MonoBehaviour
         //this is gross 
         gunAnimator = gunHolder.WeaponArray[gunHolder.GetWeaponNum()].GetComponent<Animator>();
         if (gunAnimator != null && gunHolder.WeaponArray[gunHolder.GetWeaponNum()].GetComponent<WeaponInfo>().GetCanReload()==true)
-        {
-       
+        {        
             gunAnimator.SetBool("Reload", true);
             //gunAnimator.Play("Reload", 0, 0);
             StartCoroutine(Wait());
