@@ -50,7 +50,7 @@ public class WeaponInfo : MonoBehaviour
     }
     public void Update()
     {
-        Debug.Log(_isReloading);
+       
         if (ammoInMag <= 0) _CanShoot = false;
 
         if (ammoInMag == magSize)

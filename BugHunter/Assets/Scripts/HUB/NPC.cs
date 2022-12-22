@@ -13,9 +13,16 @@ public abstract class NPC : MonoBehaviour
     {
         UI_Active = false;
         Prompt = GameObject.Find("PickupPrompt");
-        PlayerInput.Interact += OpenVendor;
+        PlayerInput.Interact += ToggleVendor;
+        PlayerInput.PausePlugin += UnlockPlayerInputs;
+        PlayerInput.PausePlugin += CloseVendor;
     }
-
+    private void OnDestroy()
+    {
+        PlayerInput.Interact -= ToggleVendor;
+        PlayerInput.PausePlugin-= UnlockPlayerInputs;
+        PlayerInput.PausePlugin += CloseVendor;
+    }
     public GameObject GetPlayer()
     {
         return Player;
@@ -28,7 +35,9 @@ public abstract class NPC : MonoBehaviour
     public abstract void VendorUI();
     public abstract void VendorAction();
 
-    public abstract void OpenVendor();
+    public abstract void ToggleVendor();
+
+    public abstract void CloseVendor();
 
     public void ToggleVendorUI(bool var)
     {
@@ -37,15 +46,29 @@ public abstract class NPC : MonoBehaviour
     public void ToggleAimOnPlayer(bool var)
     {
         if (Player != null)
-        {
+        { 
             Player.transform.GetComponentInChildren<WeaponInfo>().SetCanShoot(!var);
             Player.transform.GetComponentInChildren<WeaponInfo>().SetIsReloading(var);
             Player.transform.GetComponentInChildren<Look>().SetIsPaused(var);
             if (var == true) Cursor.lockState = CursorLockMode.None;
             else if (var == false) Cursor.lockState = CursorLockMode.Locked;
         }
-        
-
+    }
+    public void UnlockPlayerInputs()
+    {
+        if (Player != null&&UI_Active==true)
+        {
+            //this is only so that esc is able to close the vendor for the sake of user integrity
+            Player.transform.GetComponentInChildren<WeaponInfo>().SetCanShoot(true);
+            Player.transform.GetComponentInChildren<WeaponInfo>().SetIsReloading(false);
+            Player.transform.GetComponentInChildren<Look>().SetIsPaused(false);
+            StartCoroutine(wait());                 
+        }
+    }
+    private IEnumerator wait()
+    {
+        yield return new WaitForEndOfFrame();
+        GameObject.Find("UI Manager").GetComponent<UIManager>().ResumeGame();
     }
     public abstract string Name { get; }
 
@@ -83,7 +106,7 @@ public class Merchant : NPC
         throw new System.NotImplementedException();
     }
 
-    public override void OpenVendor()
+    public override void ToggleVendor()
     {
         if (GetPlayer() != null)
         {
@@ -91,6 +114,15 @@ public class Merchant : NPC
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
+        }
+    }
+    public override void CloseVendor()
+    {
+        if (GetPlayer() != null)
+        {
+            GetPrompt().SetActive(false);
+            UI_Active = false;
+            ToggleVendorUI(false);
         }
     }
     public override string Name => "Merchant";
@@ -108,7 +140,7 @@ public class Healer : NPC
     {
         throw new System.NotImplementedException();
     }
-    public override void OpenVendor()
+    public override void ToggleVendor()
     {
         if (GetPlayer() != null)
         {
@@ -116,6 +148,15 @@ public class Healer : NPC
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
+        }
+    }
+    public override void CloseVendor()
+    {
+        if (GetPlayer() != null)
+        {
+            GetPrompt().SetActive(false);
+            UI_Active = false;
+            ToggleVendorUI(false);
         }
     }
     public override string Name => "Healer";
@@ -131,7 +172,7 @@ public class Blacksmith : NPC
     {
         throw new System.NotImplementedException();
     }
-    public override void OpenVendor()
+    public override void ToggleVendor()
     {
         if (GetPlayer() != null)
         {
@@ -139,6 +180,15 @@ public class Blacksmith : NPC
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
+        }
+    }
+    public override void CloseVendor()
+    {
+        if (GetPlayer() != null)
+        {
+            GetPrompt().SetActive(false);
+            UI_Active = false;
+            ToggleVendorUI(false);
         }
     }
     public override string Name => "BlackSmith";
@@ -155,7 +205,7 @@ public class Scribe : NPC
     {
         throw new System.NotImplementedException();
     }
-    public override void OpenVendor()
+    public override void ToggleVendor()
     {
         if (GetPlayer() != null)
         {
@@ -163,6 +213,15 @@ public class Scribe : NPC
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
+        }
+    }
+    public override void CloseVendor()
+    {
+        if (GetPlayer() != null)
+        {
+            GetPrompt().SetActive(false);
+            UI_Active = false;
+            ToggleVendorUI(false);
         }
     }
     public override string Name => "Scribe";

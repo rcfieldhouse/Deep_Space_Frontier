@@ -6,7 +6,6 @@ public class Look : MonoBehaviour
 {
     public GameObject Player;
     private Vector3 offset = new Vector3(-0.02f, 0.04f, 0.0f);
-    private bool _IsPaused=false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -30,6 +29,10 @@ public class Look : MonoBehaviour
     {
         gameObject.transform.localRotation = quaternion;
         gameObject.transform.position = Player.transform.position - (transform.localRotation * Vector3.up*1.75f) + (transform.localRotation * offset);
+    }
+    private void OnDisable()
+    {
+        PlayerInput.Look -= Aim;
     }
     private void OnDestroy()
     {

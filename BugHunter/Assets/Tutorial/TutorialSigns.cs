@@ -34,10 +34,8 @@ public class TutorialSigns : MonoBehaviour
     {
         for (int i = 0; i < Tutorials.Count; i++)
         {
-             if (Tutorials[i].activeInHierarchy == true) 
-             StartCoroutine(wait());
-
-
+            if (Tutorials[i].activeInHierarchy == true)
+                StartCoroutine(wait());
             Tutorials[i].SetActive(false);
         }
         GameManager.instance.ResumeTime();
