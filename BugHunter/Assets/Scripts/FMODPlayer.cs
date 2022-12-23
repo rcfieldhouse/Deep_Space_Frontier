@@ -12,23 +12,19 @@ public class FMODPlayer : MonoBehaviour
     private static FMOD.Studio.Bus MusicBus;
 
     [SerializeField]
-    private FMODUnity.EventReference uiDragEvent;
+    private FMODUnity.EventReference uiUpEvent;
 
     [SerializeField]
-    private FMODUnity.EventReference uiDropEvent;
+    private FMODUnity.EventReference uiDownEvent;
 
     [SerializeField]
-    private FMODUnity.EventReference uiHoverEvent;
+    private FMODUnity.EventReference uiSelectEvent;
 
     [SerializeField]
 
-    private FMODUnity.EventReference uiPauseEvent;
+    private FMODUnity.EventReference uiDeselectEvent;
 
-    [SerializeField]
-    private FMODUnity.EventReference uiUnpauseEvent;
 
-    [SerializeField]
-    private FMODUnity.EventReference uiUseEvent;
 
     [SerializeField]
     [Range(-80f, 10f)]
@@ -62,7 +58,7 @@ public class FMODPlayer : MonoBehaviour
         //Attach sound @ runtime                                
         //FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>(), GetComponent<Rigidbody>());
 
-        Music = FMODUnity.RuntimeManager.CreateInstance("event:/TestEvent");
+        //Music = FMODUnity.RuntimeManager.CreateInstance("event:/TestEvent");
         MasterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
         //SoundFXVolume = FMODUnity.RuntimeManager.GetBus("bus:/Sounds");
         //DialogueVolume = FMODUnity.RuntimeManager.GetBus("bus:/Dialogue");
@@ -95,51 +91,40 @@ public class FMODPlayer : MonoBehaviour
     }
 
 
-    public void PlayUIDragEvent()
+    public void PlayUIUpEvent()
     {
-        if (uiDragEvent.IsNull)
+        if (uiUpEvent.IsNull)
         {
-            FMODUnity.RuntimeManager.PlayOneShot(uiDragEvent);
+            FMODUnity.RuntimeManager.PlayOneShot(uiUpEvent);
         }
     }
 
-    public void PlayUIDropEvent()
+    public void PlayUIDownEvent()
     {
-        if (uiDropEvent.IsNull)
+        if (uiDownEvent.IsNull)
         {
-            FMODUnity.RuntimeManager.PlayOneShot(uiDropEvent);
+            FMODUnity.RuntimeManager.PlayOneShot(uiDownEvent);
         }
     }
 
-    public void PlayUIHoverEvent()
+    public void PlayUISelectEvent()
     {
-        if (uiHoverEvent.IsNull)
+        Debug.Log("Doot");
+        if (!uiSelectEvent.IsNull)
         {
-            FMODUnity.RuntimeManager.PlayOneShot(uiHoverEvent);
+            Debug.Log("Doot");
+            FMODUnity.RuntimeManager.PlayOneShot(uiSelectEvent);
         }
     }
 
-    public void PlayUIPauseEvent()
+    public void PlayUIDeselectEvent()
     {
-        if (uiPauseEvent.IsNull)
+        Debug.Log("Doot");
+        if (!uiDeselectEvent.IsNull)
         {
-            FMODUnity.RuntimeManager.PlayOneShot(uiPauseEvent);
+            Debug.Log("Doot");
+            FMODUnity.RuntimeManager.PlayOneShot(uiDeselectEvent);
         }
     }
 
-    public void PlayUIUnpauseEvent()
-    {
-        if (uiUnpauseEvent.IsNull)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(uiUnpauseEvent);
-        }
-    }
-
-    public void PlayUIUseEvent()
-    {
-        if (uiUseEvent.IsNull)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(uiUseEvent);
-        }
-    }
 }
