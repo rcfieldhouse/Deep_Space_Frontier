@@ -88,7 +88,6 @@ public class GroundAi : MonoBehaviour
     }
     private void OnDisable()
     {
-       
         Health.OnObjectDeath -= HandleObjectDeath;
         //ScoreManager.instance.sChange(10); 
     }
@@ -145,6 +144,8 @@ public class GroundAi : MonoBehaviour
 
                 walkPointSet = false;
             }
+            Vector3 whatever = new Vector3(1,2,3);
+           
             if ((Mathf.Abs(gameObject.transform.position.x- SpawnPoint.x)>60.0f)|| (Mathf.Abs(gameObject.transform.position.y - SpawnPoint.y) > 60.0f))
             {
                 agent.SetDestination(SpawnPoint);
@@ -237,20 +238,23 @@ public class GroundAi : MonoBehaviour
     {
         alreadyAttacked = true;
         alreadyLunged = true;
+
         agent.SetDestination(transform.position);
         transform.LookAt(player);
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
         yield return lungeWait;
+
         transform.LookAt(player);
         Rigidbody.isKinematic = false;
         _isAttacking = true;
         Damage = lungeDamage;
         Rigidbody.velocity = Vector3.Normalize(player.transform.position-gameObject.transform.position) * LungeForce.x + Vector3.up * LungeForce.y;
         yield return lungeDuration;
+
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
         ResetAttack();
     }
-
+    
     private IEnumerator SwingAttack()
     {
         _isAttacking = true;
@@ -277,6 +281,7 @@ public class GroundAi : MonoBehaviour
 
     public void HandleObjectDeath(GameObject context)
     {
+        
         StartCoroutine(DissolveCo());   
     }
     IEnumerator DissolveCo()
@@ -335,4 +340,5 @@ public class GroundAi : MonoBehaviour
         //     }
         // }
     }
+
 }

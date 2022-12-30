@@ -7,10 +7,10 @@ public class SceneLoadData : MonoBehaviour
     ClassType ClassSelection;
     // Start is called before the first frame update
     void Awake()
-    {
-       
+    {       
         DontDestroyOnLoad(gameObject);
     }
+
     public void SetClass(ClassType ClassSelect)
     {
         ClassSelection = ClassSelect;
@@ -18,12 +18,10 @@ public class SceneLoadData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name== "SampleScene"|| SceneManager.GetActiveScene().name == "Hub")
+        if(SceneManager.GetActiveScene().name == "SampleScene"|| SceneManager.GetActiveScene().name == "Hub")
         {
             MainSceneLoaded();
-        }
-
-        
+        }     
     }
     public ClassType GetClass()
     {
@@ -32,7 +30,6 @@ public class SceneLoadData : MonoBehaviour
     private void MainSceneLoaded()
     {
         GameObject.Find("MixamoCharacter").GetComponent<CharacterController>().disableCams(false);
-      
     }
     
 }

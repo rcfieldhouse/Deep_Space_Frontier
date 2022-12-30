@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.031131228, g: 0.009468952, b: 0.013015968, a: 1}
+  m_IndirectSpecularColor: {r: 0.031163083, g: 0.009459269, b: 0.013044128, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1215,7 +1215,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 151.50009}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 1920, y: 1024.167}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &559550972
@@ -2252,6 +2252,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1610780555}
+        m_TargetAssemblyTypeName: FMODPlayer, Assembly-CSharp
+        m_MethodName: PlayUISelectEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1155569834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2545,6 +2557,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1338185198}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
         m_MethodName: HubLoad
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1610780555}
+        m_TargetAssemblyTypeName: FMODPlayer, Assembly-CSharp
+        m_MethodName: PlayUISelectEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3240,6 +3264,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1610780555}
+        m_TargetAssemblyTypeName: FMODPlayer, Assembly-CSharp
+        m_MethodName: PlayUIDeselectEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1521274024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3366,6 +3402,108 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601349553}
   m_CullTransparentMesh: 1
+--- !u!1 &1610780554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1610780557}
+  - component: {fileID: 1610780556}
+  - component: {fileID: 1610780555}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1610780555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610780554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e33051ca54493f468fd57dc0b42aa2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiUpEvent:
+    Guid:
+      Data1: -830572132
+      Data2: 1209946300
+      Data3: 2026763398
+      Data4: -2002937724
+    Path: event:/UI/UI_Up
+  uiDownEvent:
+    Guid:
+      Data1: 196640133
+      Data2: 1255846252
+      Data3: -1231652714
+      Data4: 762858083
+    Path: event:/UI/UI_Down
+  uiSelectEvent:
+    Guid:
+      Data1: -809696761
+      Data2: 1295887775
+      Data3: 1678923421
+      Data4: -1627407258
+    Path: event:/UI/UI_Select
+  uiDeselectEvent:
+    Guid:
+      Data1: -1721545088
+      Data2: 1244599450
+      Data3: 885261751
+      Data4: -6725006
+    Path: event:/UI/UI_Cancel
+  MasterVolume: 0
+  SoundFXVolume: 0
+  DialogueVolume: 0
+  MusicVolume: 0
+  PlayerStateEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &1610780556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610780554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadEvent: 1
+  UnloadEvent: 2
+  Banks:
+  - Master
+  CollisionTag: 
+  PreloadSamples: 0
+--- !u!4 &1610780557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610780554}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1653911923
 GameObject:
   m_ObjectHideFlags: 0
@@ -3376,9 +3514,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1653911927}
   - component: {fileID: 1653911926}
-  - component: {fileID: 1653911925}
   - component: {fileID: 1653911924}
   - component: {fileID: 1653911928}
+  - component: {fileID: 1653911929}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -3419,14 +3557,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &1653911925
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653911923}
-  m_Enabled: 1
 --- !u!20 &1653911926
 Camera:
   m_ObjectHideFlags: 0
@@ -3498,6 +3628,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 2
+--- !u!114 &1653911929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653911923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1699926724
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,6 +4187,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1610780555}
+        m_TargetAssemblyTypeName: FMODPlayer, Assembly-CSharp
+        m_MethodName: PlayUISelectEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
