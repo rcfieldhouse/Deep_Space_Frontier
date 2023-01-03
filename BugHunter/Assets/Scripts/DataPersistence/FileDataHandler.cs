@@ -48,6 +48,7 @@ public class FileDataHandler
     public void Save (GameData data)
     {
         string fullPath = Path.Combine(dataDirPath, dataFileName);
+        Debug.Log("Saving Data from: " + fullPath);
         try
         {
             //Create directory file will be written if it doesn't exist already

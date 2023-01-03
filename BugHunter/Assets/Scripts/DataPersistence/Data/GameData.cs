@@ -16,13 +16,21 @@ public class GameData
     //only be storing the quantities of each resource.
     //public List<Loot> Inventory;
     public int[] itemQuantity;
+    public int weaponDamageMultiplier;
+    public int playerHealthMultiplier;
+    public int playerSpeedMultiplier;
+    public int playerLightMultiplier;
 
-    
+
 
     // Values found in this constructor represent initial values for a new save-state
     public GameData()
     {
         this.itemQuantity = new int[] { 0, 0, 0, 0, 0 };
+        this.weaponDamageMultiplier = 1;
+        this.playerHealthMultiplier = 1;
+        this.playerSpeedMultiplier = 1;
+        this.playerLightMultiplier = 1;
         this.deathCount = 0;
     }
 }

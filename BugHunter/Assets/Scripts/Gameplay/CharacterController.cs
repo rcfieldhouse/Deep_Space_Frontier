@@ -112,7 +112,7 @@ public class CharacterController : MonoBehaviour
         // are called before others which produces null references when saving
         if(MovedOnce == false)
         {
-            SavePlugin2.instance.SaveItems();
+            //SavePlugin2.instance.SaveItems();
             MovedOnce = true;
         }
 
