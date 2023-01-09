@@ -45,7 +45,9 @@ public class CannonPickup : MonoBehaviour
             RelicCannonInstance.transform.localPosition = new Vector3(0.3f, -0.25f, 0.667f);
             RelicCannonInstance.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
             RelicCannonInstance.SetActive(false);
-           this.gameObject.SetActive(false);
+            _InRange = false;
+            PlayerInput.Interact -= Pickup;
+            Destroy(this.gameObject);
         }
     }
     public void OnTriggerEnter(Collider other)
