@@ -21,7 +21,7 @@ public abstract class NPC : MonoBehaviour
     {
         PlayerInput.Interact -= ToggleVendor;
         PlayerInput.PausePlugin-= UnlockPlayerInputs;
-        PlayerInput.PausePlugin += CloseVendor;
+        PlayerInput.PausePlugin -= CloseVendor;
     }
     public GameObject GetPlayer()
     {
@@ -31,12 +31,10 @@ public abstract class NPC : MonoBehaviour
     {
         return Prompt;
     }
-    // Start is called before the first frame update
+
     public abstract void VendorUI();
     public abstract void VendorAction();
-
     public abstract void ToggleVendor();
-
     public abstract void CloseVendor();
 
     public void ToggleVendorUI(bool var)
