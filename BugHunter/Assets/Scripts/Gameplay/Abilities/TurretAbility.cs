@@ -40,19 +40,23 @@ public class TurretAbility : MonoBehaviour
         
         if (Physics.Raycast(ray, out hitInfo, 25)&&Turrets.Count<2)
         {
-
-           // if (hitInfo.transform.gameObject.tag == "Ground")
-                Debug.Log(transform.rotation);
-
-               // Debug.Log(Mathf.Abs(1.0f - transform.rotation.z));
             //&& Turrets.Count<3
+
             Turret = Instantiate(TurretPrefab);
-            Turret.transform.position = hitInfo.point+new Vector3(0.0f,3.0f,0.0f);
+            Turret.transform.position = hitInfo.point + new Vector3(0.0f, 3.0f, 0.0f);
             Turret.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-            Turrets.Add(Turret);
-            UsedTurret.Invoke(Turrets.Count);
+
+            if (hitInfo.transform.gameObject.tag == "Ground" && (Mathf.Abs(Turret.transform.rotation.x) < 0.15f && Mathf.Abs(Turret.transform.rotation.z) < 0.15f))
+            {
+                Turrets.Add(Turret);
+                UsedTurret.Invoke(Turrets.Count);
+            }
+            else
+                Destroy(Turret);
+
         }
     }
+   
     public void ClearTurrets()
     {
         for (int i = 0; i < Turrets.Count; i++)

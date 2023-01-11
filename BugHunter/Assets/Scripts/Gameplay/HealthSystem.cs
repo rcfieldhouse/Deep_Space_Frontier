@@ -45,7 +45,7 @@ public class HealthSystem : MonoBehaviour
     }
     public void ModifyHealth(int amount)
     {
-        if (Invulnerable == false) { 
+        if (Invulnerable == false&&currentHealth>0) { 
                currentHealth += amount;
         
             if (currentHealth > maxHealth) currentHealth = maxHealth;

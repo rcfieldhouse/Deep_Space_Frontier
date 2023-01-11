@@ -20,10 +20,11 @@ public class Turret : MonoBehaviour
     {
         SetTarget(transform.GetChild(transform.childCount-1).gameObject);
         shootDelay = new WaitForSeconds(ShootTime);
-
+        Target = null;
         Line = gameObject.AddComponent<LineRenderer>();
         Line.startWidth = 0.25f;
         Line.endWidth = 0.25f;
+        Line.enabled = false;
     }
     public void SetTarget(GameObject target)
     {
@@ -33,15 +34,13 @@ public class Turret : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            _CanShoot = true;
             Target =other.gameObject;
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
-        {
-            _CanShoot = true;
+        {  
             Target = other.gameObject;
         }
     }
@@ -65,6 +64,12 @@ public class Turret : MonoBehaviour
                 {
                     Line.SetPosition(1, hit.point);
                     hit.collider.gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
+                    if (hit.collider.gameObject.GetComponent<HealthSystem>().GetHealth() < 0)
+                    {
+                        hit.collider.gameObject.tag = "Dead";
+                        Target = null;
+                    }
+                       
                 }
 
             }
@@ -106,7 +111,8 @@ private void Update()
             AngleDifferenceZ = (90.0f * (AngleDifferenceZ / Mathf.Abs(AngleDifferenceZ))) - (AngleDifferenceZ - 90.0f * (AngleDifferenceZ / Mathf.Abs(AngleDifferenceZ)));
         }
         //z 0.125
-        
+      
+
         transform.GetChild(0).gameObject.transform.localPosition = new Vector3((1 - (AngleDifferenceX / 180.0f)) * -0.25f, -0.0f, 0.125f * (AngleDifferenceZ / 90.0f));
     }
 }
