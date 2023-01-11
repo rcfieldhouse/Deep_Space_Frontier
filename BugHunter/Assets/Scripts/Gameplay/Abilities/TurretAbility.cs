@@ -7,18 +7,24 @@ public class TurretAbility : MonoBehaviour
     public static Action<float> UsedTurret;
     public static Action ClearedTurret;
     public List<GameObject> Turrets;
-    private GameObject TurretPrefab;
+    public GameObject TurretPrefab;
     public Camera Cam;
     // Start is called before the first frame update
     private void Awake()
     {
         Turrets = new List<GameObject>();
-        UsedTurret.Invoke(Turrets.Count);
+ 
         PlayerInput.UseAbility += PlaceTurret;
         PlayerInput.Undo += ClearTurrets;
 
         TurretPrefab = Resources.Load<GameObject>("Turret");
         Cam = GameObject.Find("MainCamera").GetComponent<Camera>();
+        StartCoroutine(Wait());
+    }
+    private IEnumerator Wait()
+    {      
+        yield return new WaitForEndOfFrame();
+        UsedTurret.Invoke(Turrets.Count);
     }
     private void OnDestroy()
     {
@@ -31,9 +37,14 @@ public class TurretAbility : MonoBehaviour
         Vector3 rayOrigin = Cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-       
+        
         if (Physics.Raycast(ray, out hitInfo, 25)&&Turrets.Count<2)
-        {     
+        {
+
+           // if (hitInfo.transform.gameObject.tag == "Ground")
+                Debug.Log(transform.rotation);
+
+               // Debug.Log(Mathf.Abs(1.0f - transform.rotation.z));
             //&& Turrets.Count<3
             Turret = Instantiate(TurretPrefab);
             Turret.transform.position = hitInfo.point+new Vector3(0.0f,3.0f,0.0f);
