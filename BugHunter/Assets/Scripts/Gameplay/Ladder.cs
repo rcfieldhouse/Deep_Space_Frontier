@@ -18,7 +18,7 @@ public class Ladder : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        Prompt.SetActive(true);
+      
       
         if (other.tag == "Player")
         {
@@ -30,6 +30,7 @@ public class Ladder : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Prompt.SetActive(true);
             _IsInTrigger = true;
             Player = other.gameObject;
         }
@@ -43,11 +44,13 @@ public class Ladder : MonoBehaviour
             Player.GetComponent<CharacterController>().SetIfOnLadder(false);
             Player = null;
         }
+        Prompt.SetActive(false);
     }
     private void UseLadder()
     {
-     if (Player)
-        if (Player.GetComponent<CharacterController>().GetIfOnLadder() == true)
+     if (Player!=null)
+        {
+           if (Player.GetComponent<CharacterController>().GetIfOnLadder() == true)
         {
             //get off the ladder function
             _IsInTrigger = false;
@@ -59,6 +62,8 @@ public class Ladder : MonoBehaviour
         {
             Prompt.SetActive(false);
             Player.GetComponent<CharacterController>().SetIfOnLadder(true);
+        }
+            Prompt.SetActive(false);
         }
     }
 }

@@ -18,10 +18,12 @@ public class Epickup : MonoBehaviour
     }
     private void OnDisable()
     {
+        Prompt.SetActive(false);
         PlayerInput.Interact -= Pickup;
     }
     private void OnDestroy()
     {
+        Prompt.SetActive(false);
         PlayerInput.Interact -= Pickup;
 
     }
