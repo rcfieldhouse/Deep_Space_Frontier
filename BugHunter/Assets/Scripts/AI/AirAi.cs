@@ -157,6 +157,7 @@ public class AirAi : MonoBehaviour
     public void HandleObjectDeath(GameObject context)
     {
         //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
+        LootSpawner.instance.SprayLoot(transform);
         Destroy(gameObject);
     }
     private void OnDrawGizmosSelected()

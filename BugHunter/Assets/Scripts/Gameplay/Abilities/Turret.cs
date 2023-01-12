@@ -6,7 +6,7 @@ public class Turret : MonoBehaviour
 {
     LineRenderer Line;
     [Range(0, -50)] public int Damage;
-    [Range(0, 1)] public float ShootTime;
+    [Range(0, 5)] public float ShootTime;
     public bool _CanShoot = true;
     public GameObject Target=null;
     public Transform BulletEmitter;
@@ -64,7 +64,7 @@ public class Turret : MonoBehaviour
                 {
                     Line.SetPosition(1, hit.point);
                     hit.collider.gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
-                    if (hit.collider.gameObject.GetComponent<HealthSystem>().GetHealth() < 0)
+                    if (hit.collider.gameObject.GetComponent<HealthSystem>().GetHealth() <= 0)
                     {
                         hit.collider.gameObject.tag = "Dead";
                         Target = null;
@@ -85,9 +85,10 @@ private IEnumerator ShotEffect()
         Line.SetPosition(1, BulletEmitter.position + transform.GetChild(0).forward * 20.0f);
         // Turn on our line renderer
         Line.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        Line.enabled = false;
 
-   
-    yield return shootDelay;
+        yield return shootDelay;
 
         _CanShoot = true;
         // Deactivate our line renderer after waiting
@@ -97,7 +98,7 @@ private void Update()
     {
         if (Target != null)
         {
-            transform.GetChild(0).gameObject.transform.LookAt(Target.transform);
+            transform.GetChild(0).gameObject.transform.LookAt(Target.GetComponentInChildren<MeshRenderer>().transform);
             Shoot();
         }
         AngleDifferenceX = transform.GetChild(0).gameObject.transform.localEulerAngles.y;
