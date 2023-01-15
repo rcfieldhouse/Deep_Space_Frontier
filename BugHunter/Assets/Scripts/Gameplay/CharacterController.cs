@@ -6,7 +6,8 @@ public class CharacterController : MonoBehaviour
 {
     public Rigidbody Rigidbody;
     public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
-    private bool SuspendMovement = false;
+    private bool SuspendMovement = false, OnZipline=false;
+    private Transform StartPos, EndPos;
     bool _IsOnLadder = false;
     [SerializeField] private LayerMask m_WhatIsGround;
 
@@ -48,12 +49,23 @@ public class CharacterController : MonoBehaviour
         PlayerInput.Move -= Move;
     }
     public void SetIfOnLadder(bool var)
-    {
-       
+    {   
         SuspendMovement = var;
         _IsOnLadder = var;
         SwitchLadderCam(var);
         Rigidbody.velocity = Vector3.zero;
+    }
+    public void SetZiplinePoint(Transform Start, Transform End)
+    {
+        Debug.Log("Set");
+        OnZipline = true; 
+        StartPos = Start;
+        EndPos = End;
+    }
+    public void ExitZipLine()
+    {
+        Debug.Log("offladder");
+        OnZipline = false;
     }
     public bool GetIfOnLadder()
     {
@@ -136,6 +148,10 @@ public class CharacterController : MonoBehaviour
             SpeedMod *= 10.0f;
             // Rigidbody.velocity = Vector3.zero;
             Rigidbody.velocity = new Vector3(0.0f, SpeedMod*move.y/m_LadderSpeed, 0.0f);
+        }
+        if (OnZipline == true)
+        {
+            Rigidbody.velocity = SpeedMod*Vector3.Normalize( EndPos.position- StartPos.position);
         }
         Rigidbody.angularVelocity = Vector3.zero;
 

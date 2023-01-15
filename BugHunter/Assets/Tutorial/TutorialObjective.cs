@@ -20,6 +20,7 @@ public class TutorialObjective : MonoBehaviour
             TutorialSigns.instance.SetStep(TutorialStep);
             TutorialShown = true;
             DisabledByPlayer = true;
+            if (TutorialStep == 0) gameObject.SetActive(false);
         }
     }
     
@@ -30,9 +31,11 @@ public class TutorialObjective : MonoBehaviour
     }
     private void OnDisable()
     {
-        if (TutorialShown == false&& DisabledByPlayer==true)
-        TutorialSigns.instance.SetStep(TutorialStep);
-
+        if (TutorialShown == false&& DisabledByPlayer == true)
+        {
+            TutorialSigns.instance.SetStep(TutorialStep);
+           
+        }
         TutorialShown = true;
     }
 }

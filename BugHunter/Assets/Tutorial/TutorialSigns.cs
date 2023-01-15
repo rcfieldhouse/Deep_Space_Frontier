@@ -23,8 +23,8 @@ public class TutorialSigns : MonoBehaviour
 
     public void SetStep(TutorialStep step)
     {
-        if (Tutorials!=null)
-        Tutorials[(int)step].SetActive(true);
+        if (Tutorials != null)
+            Tutorials[(int)step].SetActive(true);
         GameManager.instance.StopTime();
     }
 

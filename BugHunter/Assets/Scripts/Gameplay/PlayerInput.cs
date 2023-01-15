@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour
     //For the Teleport Command Pattern
 
     //actions that the player may perform
-    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, Interact,Undo,TabThrowable, WeNeedToCookJesse;
+    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, Interact, InteractReleased ,Undo,TabThrowable, WeNeedToCookJesse;
     public static Action<bool>Crouching,ADS;
     public static Action<Quaternion> Look, Throw ;
     public static Action<Vector2,float> Move;
@@ -160,6 +160,9 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
             Interact.Invoke();
+
+        if (Input.GetKeyUp(KeyCode.E))
+            InteractReleased.Invoke();
         //shoot 
         //chamber is for full auto
         if (Input.GetButtonDown("Fire1"))
