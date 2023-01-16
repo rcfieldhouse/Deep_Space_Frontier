@@ -11,6 +11,7 @@ public class BossDamageMitigation : MonoBehaviour
     }
     private IEnumerator KillThis()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.25f);
+        Destroy(this);
     }
 }

@@ -23,6 +23,8 @@ public class SniperShot : MonoBehaviour
     public SpecialBulletSelect CurrentBullet;
     public bool _IsSniper = false;
     public GameObject HitMarker;
+
+    private GameObject Target;
     void Awake()
     {
         info = GetComponentInParent<WeaponInfo>();
@@ -110,26 +112,28 @@ public class SniperShot : MonoBehaviour
                 // Debug.Log(hit.collider.gameObject.name);
                 // Get a reference to a health script attached to the collider we hit
                 HealthSystem health;
+             
                 // Get a reference to a health script attached to the collider we hit
                 if (hit.collider.tag == "BossColliderHolder")
                 {
                     health = FindBossHealth(hit.collider.gameObject);
-
+                    Target = health.gameObject;
                 }
                 else
                 {
+                    Target = hit.collider.gameObject;
                     health = hit.collider.GetComponent<HealthSystem>();
                 }
 
 
-
+                Debug.Log(Target.name);
 
 
                 // If there was a health script attached
 
                 if (health != null && hit.collider.isTrigger)
                 {
-                    if (hit.collider.gameObject.tag == "Enemy" && _IsSniper == true) CurrentBullet.CallShotEffect(hit.collider.gameObject);
+                    if ((Target.tag == "Enemy"||Target.tag=="Boss" ) && _IsSniper == true) CurrentBullet.CallShotEffect(Target);
                     StatisticTracker.instance.ShotsHit();
                     StartCoroutine(HitMarkerEffect(1));
                     // Double Damage for Crits
@@ -138,7 +142,7 @@ public class SniperShot : MonoBehaviour
 
                 else if (health != null)
                 {
-                    if (hit.collider.gameObject.tag == "Enemy" && _IsSniper == true) CurrentBullet.CallShotEffect(hit.collider.gameObject);
+                    if ((Target.tag == "Enemy" || Target.tag == "Boss") && _IsSniper == true) CurrentBullet.CallShotEffect(Target);
                     StatisticTracker.instance.ShotsHit();
                     StartCoroutine(HitMarkerEffect(0));
                     // Call the damage function of that script, passing in our gunDamage variable

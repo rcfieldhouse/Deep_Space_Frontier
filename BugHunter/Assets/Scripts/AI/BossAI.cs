@@ -77,6 +77,7 @@ public class BossAI : MonoBehaviour
         for (int i = 0; i < AttackColliders.Count; i++)
         {
             AttackColliders[i].GetComponent<MurderMittens>().SetAttack(true, Damage);
+            Debug.Log("tried TO attack");
         }
         yield return new WaitForSeconds(2.0f);
 
