@@ -65,7 +65,6 @@ public class GroundAi : MonoBehaviour
     }
     public void SetInitialPosition (Vector3 vector3)
     {
-  
         SpawnPoint = vector3;
     }
     private IEnumerator AddHealthData()
@@ -280,8 +279,7 @@ public class GroundAi : MonoBehaviour
     }
 
     public void HandleObjectDeath(GameObject context)
-    {
-        
+    {       
         StartCoroutine(DissolveCo());   
     }
     IEnumerator DissolveCo()
