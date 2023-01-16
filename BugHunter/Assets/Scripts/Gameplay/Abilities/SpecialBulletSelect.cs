@@ -81,7 +81,8 @@ public class SpecialBulletSelect : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-         Bullet = SelectBullet(BulletSelection);
+        BulletSelection = BulletType.Standard;
+        Bullet = SelectBullet(BulletSelection);
         PlayerInput.UseAbility += ChangeBulletType;
         NewBulletSelected.Invoke((int)BulletSelection);
     }
