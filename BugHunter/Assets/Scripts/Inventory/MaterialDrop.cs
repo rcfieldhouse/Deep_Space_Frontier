@@ -8,30 +8,40 @@ public class MaterialDrop : MonoBehaviour
 
     [Range(0, 10)] public List<int> NumOfDrops;
 
+    HealthSystem Health;
     public bool RandomDrop = false;
-
-    // Start is called before the first frame update
-    private void OnCollisionEnter(Collision collision)
+    private void Awake()
     {
-        if (collision.gameObject.tag == "Player")
+        Health = GetComponent<HealthSystem>();
+        Health.OnObjectDeath += Kaboom;
+    }
+    private void OnDisable()
+    {
+        Health.OnObjectDeath -= Kaboom;
+    }
+    // Start is called before the first frame update
+    private void Kaboom(GameObject context)
+    {
+        if (context == this.gameObject)
         {
-            for (int i=0; i < NumOfDrops.Count; i++)
+            for (int i = 0; i < NumOfDrops.Count; i++)
             {
-                for (int j=0;j< NumOfDrops[i]; j++)
+                for (int j = 0; j < NumOfDrops[i]; j++)
 
                     if (RandomDrop == false)
                     {
                         LootSpawner.instance.DropMaterials(transform, (int)rarity);
                     }
-    
+
                     else if (RandomDrop == true)
-                    {                      
+                    {
                         LootSpawner.instance.DropMaterials(transform, Random.Range(0, 4));
                     }
-                        
+
             }
-           
+
             Destroy(gameObject);
+
         }
     }
 }
