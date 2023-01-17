@@ -83,7 +83,11 @@ public class SpecialBulletSelect : MonoBehaviour
     {
         BulletSelection = BulletType.Standard;
         Bullet = SelectBullet(BulletSelection);
-        PlayerInput.UseAbility += ChangeBulletType;
+        PlayerInput.UseAbility += ChangeBulletType;       
+        Invoke(nameof(BroadcastOnStart), 0.5f);
+    }
+    private void BroadcastOnStart()
+    {
         NewBulletSelected.Invoke((int)BulletSelection);
     }
     private void OnDestroy()

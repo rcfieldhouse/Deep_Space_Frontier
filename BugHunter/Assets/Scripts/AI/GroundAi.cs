@@ -197,9 +197,7 @@ public class GroundAi : MonoBehaviour
                 walkPointSet = true;
             }
             else SearchWalkPoint();
-        }
- 
-           
+        }         
     }
 
     private void ChasePlayer()
