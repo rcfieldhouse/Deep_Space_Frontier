@@ -54,15 +54,11 @@ public class LootSpawner : MonoBehaviour
         float z = Random.Range(-1.0f, 1.0f);
         if (rb != null)
         {
-            Debug.Log("accesses");
-            rb.transform.position += Vector3.up;
-           
+            rb.transform.position += Vector3.up;       
             Vector3 force = (Vector3.Normalize(new Vector3(x,y,z))+Vector3.up) * spawnForce;
             rb.velocity = force;
         }
         //apply force on spawn if has rigidbody
-        if (rb == null)
-            return;  
     }
 
 
