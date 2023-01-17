@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Beetle : MonoBehaviour
+public class Beetle : AI
 {
+    public override void AttackPlayer()
+    {
+        throw new System.NotImplementedException();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -11,8 +15,5 @@ public class Beetle : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

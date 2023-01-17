@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.AI;
 public enum AIType
 {
-   Tick, Beetle, Worm, ElizabethTheDead, Slime, Hound, DreadBomber
+   Tick, Beetle, Worm, TheQueenGlizzy, Slime, Hound, DreadBomber
 }
-public class AI : MonoBehaviour
-{
-    public AIType EnemyType;
-    private HealthSystem Health;
-    private NavMeshAgent NavAgent;
-    private MeshRenderer MeshRenderer;
-    private Material[] Materials;
-    private GameObject Target;
+public abstract class AI : MonoBehaviour
+{   
+    [HideInInspector] public HealthSystem Health;
+    [HideInInspector] public NavMeshAgent NavAgent;
+    [HideInInspector] public MeshRenderer MeshRenderer;
+    [HideInInspector] public Material[] Materials;
+    [HideInInspector] public GameObject Target;
+
     //DetectionStuff
     [Range(0, 50)] public float _SightRange = 10, _AttackRange = 2;
     public Vector3 SightRangeOffset, AttackAreaOffset;
@@ -31,36 +31,39 @@ public class AI : MonoBehaviour
     private bool WalkPointSet=false;
     [Range(0, 15)] public float WalkPointRange,WalkSpeed;
 
-    void Awake()
+    public void Awake()
     {
-    
-            Health = GetComponent<HealthSystem>();
-            NavAgent = GetComponent<NavMeshAgent>();
-            MeshRenderer = GetComponent<MeshRenderer>();
+        Health = GetComponent<HealthSystem>();
+        NavAgent = GetComponent<NavMeshAgent>();
+        MeshRenderer = GetComponent<MeshRenderer>();
 
+        Health.OnObjectDeath += HandleObjectDeath;
 
-            switch (EnemyType)
-            {
-                case AIType.Tick:
-                    gameObject.AddComponent<Tick>(); break;
-            }
-
-
-            Debug.Log("AI has been created");
-
-            Health.OnObjectDeath += HandleObjectDeath;
-
-            if (NavAgent.isOnNavMesh == false)
-                Debug.Log("NOOOOOO");
-            if (MeshRenderer != null)
-                Materials = MeshRenderer.materials;
+        if (NavAgent.isOnNavMesh == false)
+            Debug.Log("NOOOOOO");
+        if (MeshRenderer != null)
+            Materials = MeshRenderer.materials;
     }
-    private void OnDisable()
+    public void Update()
+    {
+        bool playerInSightRange = Physics.CheckSphere(transform.position, _SightRange, WhatIsPlayer);
+        bool playerInAttackRange = Physics.CheckSphere(transform.position, _AttackRange, WhatIsPlayer);
+        //these functions can be found in the navigation reigon
+        if (NavAgent.enabled == true)
+        {
+            if (!playerInSightRange && !playerInAttackRange) Patroling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInAttackRange && playerInSightRange) AttackPlayer();
+            //if (!playerInAttackRange) SetLunged();
+
+        }
+    }
+    public void OnDisable()
     {
         Health.OnObjectDeath -= HandleObjectDeath;
         //ScoreManager.instance.sChange(10); 
     }
-    private void OnDrawGizmosSelected()
+    public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + AttackAreaOffset, _AttackRange);
@@ -105,7 +108,8 @@ public class AI : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    public abstract void AttackPlayer();
+   
     #region Navigation 
     //init stuffs
     public void SetInitialPosition(Vector3 vector3)
@@ -118,7 +122,7 @@ public class AI : MonoBehaviour
         WalkPoint = vec;
     }
 
-    private void Patroling()
+    public void Patroling()
     {
         if (!WalkPointSet)
             SearchWalkPoint();
@@ -138,18 +142,15 @@ public class AI : MonoBehaviour
         }
 
     }
-    private void ChasePlayer()
+    public void ChasePlayer()
     {
         if(Target==null)
        Target = FindClosestPlayer();
         NavAgent.SetDestination(Target.transform.position);
     }
 
-    private void AttackPlayer()
-    {
-        //this will be different per AI thing
-    }
-    private void SearchWalkPoint()
+
+    public void SearchWalkPoint()
     {
         //Calculate random point in range
         float randomZ = Random.Range(-WalkPointRange, WalkPointRange);
@@ -182,18 +183,5 @@ public class AI : MonoBehaviour
         return foo;
     }
     // Update is called once per frame
-    void Update()
-    {
-       bool playerInSightRange = Physics.CheckSphere(transform.position, _SightRange, WhatIsPlayer);
-       bool playerInAttackRange = Physics.CheckSphere(transform.position, _AttackRange, WhatIsPlayer);
-        //these functions can be found in the navigation reigon
-        if (NavAgent.enabled == true)
-        {
-            if (!playerInSightRange && !playerInAttackRange) Patroling();
-            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-            if (playerInAttackRange && playerInSightRange) AttackPlayer();
-            //if (!playerInAttackRange) SetLunged();
 
-        }
-    }
 }
