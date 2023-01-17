@@ -19,7 +19,6 @@ public class FullAutoGun : MonoBehaviour
     // Reference to the LineRenderer component which will display our laserline
     private ParticleSystem muzzleFlash;
     private float nextFire;
-    private bool _CanShoot = true;
     // Start is called before the first frame update
     void Awake()
     {

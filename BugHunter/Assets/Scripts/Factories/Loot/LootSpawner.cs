@@ -44,17 +44,25 @@ public class LootSpawner : MonoBehaviour
     }
     void Create(LFInterface foo, Transform transform,int num)
     {
-        Rigidbody rb = transform.GetComponent<Rigidbody>();
+        
         
         Drop=Instantiate(Prefabs[num], transform.position, Quaternion.identity);
         foo.Create(Drop);
-
+        Rigidbody rb = Drop.GetComponent<Rigidbody>();
+        float x = Random.Range(-1.0f, 1.0f);
+        float y = Random.Range(0.0f, 1.0f);
+        float z = Random.Range(-1.0f, 1.0f);
+        if (rb != null)
+        {
+            Debug.Log("accesses");
+            rb.transform.position += Vector3.up;
+           
+            Vector3 force = (Vector3.Normalize(new Vector3(x,y,z))+Vector3.up) * spawnForce;
+            rb.velocity = force;
+        }
         //apply force on spawn if has rigidbody
         if (rb == null)
-            return;
-
-        Vector3 force = (rb.transform.position - this.transform.position).normalized * spawnForce;
-        rb.AddForce(force);
+            return;  
     }
 
 

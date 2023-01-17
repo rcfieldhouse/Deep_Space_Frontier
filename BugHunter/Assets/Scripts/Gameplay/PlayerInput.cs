@@ -35,7 +35,6 @@ public class PlayerInput : MonoBehaviour
     public Vector2 MouseInput;
     private Vector2 KeyboardInput;
     private bool UIToggle = true;
-    private bool GenshinToggle = true;
     public GameObject GenshinCam;
     private float MouseScroll=0.0f;
 

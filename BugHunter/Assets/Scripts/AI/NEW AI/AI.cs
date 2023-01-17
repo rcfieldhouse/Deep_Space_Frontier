@@ -24,7 +24,7 @@ public class AI : MonoBehaviour
 
     //Death Stuff
     [Range(0.0f, 0.25f)] public float dissolveRate = 0.0125f, refreshRate = 0.02f;
-
+    [Range(0, 8)] public int NumDrops = 0;
     //Navigation Stuff
     public LayerMask WhatIsGround,WhatIsPlayer;
     private Vector3 WalkPoint, SpawnPoint;
@@ -33,16 +33,27 @@ public class AI : MonoBehaviour
 
     void Awake()
     {
-        Health = GetComponent<HealthSystem>();
-        NavAgent = GetComponent<NavMeshAgent>();
-        MeshRenderer = GetComponent<MeshRenderer>();
+    
+            Health = GetComponent<HealthSystem>();
+            NavAgent = GetComponent<NavMeshAgent>();
+            MeshRenderer = GetComponent<MeshRenderer>();
 
-        Health.OnObjectDeath += HandleObjectDeath;
 
-        if (NavAgent.isOnNavMesh == false)
-            Debug.Log("NOOOOOO");
-        if (MeshRenderer != null)
-            Materials = MeshRenderer.materials;
+            switch (EnemyType)
+            {
+                case AIType.Tick:
+                    gameObject.AddComponent<Tick>(); break;
+            }
+
+
+            Debug.Log("AI has been created");
+
+            Health.OnObjectDeath += HandleObjectDeath;
+
+            if (NavAgent.isOnNavMesh == false)
+                Debug.Log("NOOOOOO");
+            if (MeshRenderer != null)
+                Materials = MeshRenderer.materials;
     }
     private void OnDisable()
     {
@@ -65,6 +76,9 @@ public class AI : MonoBehaviour
     }
     IEnumerator DissolveMeshEffect()
     {
+        GetComponent<BoxCollider>().enabled = false;
+        float DropRate = 1.0f / (float)NumDrops;
+        float DropIndexer = 0.0f;
         NavAgent.enabled = false;
         if (Materials.Length > 0)
         {
@@ -74,12 +88,17 @@ public class AI : MonoBehaviour
                 counter += dissolveRate;
                 for (int i = 0; i < Materials.Length; i++)
                 {
+                    DropIndexer += dissolveRate;
+                    if (DropIndexer > DropRate) { 
+                        LootSpawner.instance.SprayLoot(transform);
+                        DropIndexer -= DropRate;
+                    }
                     Materials[i].SetFloat("_DissolveAmount", counter);
                 }
                 yield return new WaitForSeconds(refreshRate);
             }
 
-            LootSpawner.instance.SprayLoot(transform);
+           
 
             //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
             //idea is to spray pieces as the object dissolves

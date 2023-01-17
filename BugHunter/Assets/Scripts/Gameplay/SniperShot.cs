@@ -125,10 +125,6 @@ public class SniperShot : MonoBehaviour
                     health = hit.collider.GetComponent<HealthSystem>();
                 }
 
-
-                Debug.Log(Target.name);
-
-
                 // If there was a health script attached
 
                 if (health != null && hit.collider.isTrigger)
