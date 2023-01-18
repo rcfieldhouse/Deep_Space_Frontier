@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class Beetle : AI
 {
-    public override void AttackPlayer()
+    public override void AttackPlayer(GameObject Target)
     {
-        throw new System.NotImplementedException();
+      
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+  
     // Update is called once per frame
    
 }

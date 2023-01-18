@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public enum AIType
-{
-   Tick, Beetle, Worm, TheQueenGlizzy, Slime, Hound, DreadBomber
-}
+
 public abstract class AI : MonoBehaviour
 {   
     [HideInInspector] public HealthSystem Health;
@@ -25,6 +22,7 @@ public abstract class AI : MonoBehaviour
     //Death Stuff
     [Range(0.0f, 0.25f)] public float dissolveRate = 0.0125f, refreshRate = 0.02f;
     [Range(0, 8)] public int NumDrops = 0;
+
     //Navigation Stuff
     public LayerMask WhatIsGround,WhatIsPlayer;
     private Vector3 WalkPoint, SpawnPoint;
@@ -38,7 +36,7 @@ public abstract class AI : MonoBehaviour
         MeshRenderer = GetComponent<MeshRenderer>();
 
         Health.OnObjectDeath += HandleObjectDeath;
-
+        Health.OnHealthPercentChanged += HandleObjectHit;
         if (NavAgent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
         if (MeshRenderer != null)
@@ -53,14 +51,14 @@ public abstract class AI : MonoBehaviour
         {
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-            if (playerInAttackRange && playerInSightRange) AttackPlayer();
+            if (playerInAttackRange && playerInSightRange) AttackPlayer(Target);
             //if (!playerInAttackRange) SetLunged();
-
         }
     }
     public void OnDisable()
     {
         Health.OnObjectDeath -= HandleObjectDeath;
+        Health.OnHealthPercentChanged -= HandleObjectHit;
         //ScoreManager.instance.sChange(10); 
     }
     public void OnDrawGizmosSelected()
@@ -71,6 +69,10 @@ public abstract class AI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + SightRangeOffset, _SightRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, WalkPointRange);
+    }
+    public void HandleObjectHit(float Hit)
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
     }
     public void HandleObjectDeath(GameObject context)
     {
@@ -108,7 +110,7 @@ public abstract class AI : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public abstract void AttackPlayer();
+    public abstract void AttackPlayer(GameObject Target);
    
     #region Navigation 
     //init stuffs

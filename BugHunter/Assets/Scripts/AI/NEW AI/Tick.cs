@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Tick : AI
 {
-    public override void AttackPlayer()
+    public override void AttackPlayer(GameObject Target)
     {
         Debug.Log("attacking Playerr");
     }
