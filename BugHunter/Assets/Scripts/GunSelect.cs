@@ -28,7 +28,9 @@ public class GunSelect : MonoBehaviour
                GameObject.Find("GunIcons").GetComponent<GunIconUI>().Icons[i].gameObject.SetActive(false);
                 Destroy(GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().WeaponArray[i].gameObject);
                 GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().RecticleArray[i].gameObject.SetActive(false);
-            }      
+            }
+           //if (GameObject.Find("Crosshairs").transform.GetChild(i))
+           //GameObject.Find("Crosshairs").transform.GetChild(i).gameObject.SetActive(false);
         }
 
 

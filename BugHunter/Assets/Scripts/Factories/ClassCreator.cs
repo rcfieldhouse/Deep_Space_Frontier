@@ -8,15 +8,18 @@ public class ClassCreator : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        GameObject.Find("PickupPrompt").SetActive(false);
+        //CreateAClass();
+       Invoke(nameof(CreateAClass), 0.05f);
+    }
+    public void CreateAClass()
+    {
         if (GameObject.Find("SceneLoadData") != null)
         {
             ClassSelection = GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().GetClass();
-          
         }
         CreateClass(gameObject);
-
     }
-  
     // Update is called once per frame
     public void CreateClass(GameObject Player)
     {

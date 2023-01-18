@@ -38,9 +38,9 @@ public class HealthBarUI : MonoBehaviour
         HealthBar.fillAmount = pct;
     }
     // Update is called once per frame
-private IEnumerator wait()
+    private IEnumerator wait()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.1f);
         if (HealthComponentOverride != null)
             HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
 

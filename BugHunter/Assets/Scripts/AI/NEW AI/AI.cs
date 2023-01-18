@@ -72,7 +72,9 @@ public abstract class AI : MonoBehaviour
     }
     public void HandleObjectHit(float Hit)
     {
-        transform.GetChild(0).gameObject.SetActive(true);
+        for (int i = 0; i < transform.childCount; i++)
+        if(transform.GetChild(i).gameObject.GetComponent<VFX_ID>()!=null)
+                transform.GetChild(i).gameObject.GetComponent<VFX_ID>().gameObject.SetActive(true);
     }
     public void HandleObjectDeath(GameObject context)
     {

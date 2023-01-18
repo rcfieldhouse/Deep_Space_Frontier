@@ -8,6 +8,7 @@ public class Tick : AI
     {
         Debug.Log("attacking Playerr");
     }
+    
     // Start is called before the first frame update
 
 

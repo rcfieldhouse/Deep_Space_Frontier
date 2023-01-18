@@ -24,10 +24,12 @@ public class WeaponSwap : MonoBehaviour
     {
         for (int i = 0; i < WeaponArray.Count; i++)
         {
+            RecticleArray[i] = GameObject.Find("Crosshairs").GetComponent<CrosshairsHolder>().Crosshairs[i];
             RecticleArray[i].SetActive(false);
             WeaponArray[i].SetActive(false);
-        }
 
+        }
+       
         RecticleArray[WeaponChoice].SetActive(true);
         WeaponArray[WeaponChoice].SetActive(true);
 

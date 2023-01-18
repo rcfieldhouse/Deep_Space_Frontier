@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
     private float MouseScroll=0.0f;
 
     public Vector3 Dir;
-    public GameObject userInterface;
+    public GameObject UserInterface;
     // Start is called before the first frame update
     //damn you dante, make ur own file 
     void Awake()
@@ -47,7 +47,7 @@ public class PlayerInput : MonoBehaviour
 
         // Commented temporarily unitl inventory system is implemented
         Cursor.lockState= CursorLockMode.Locked;
-
+        UserInterface = GameObject.Find("GUI");
         WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }
 
@@ -174,13 +174,13 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             UIToggle = !UIToggle;
-            userInterface.SetActive(UIToggle);
+            UserInterface.SetActive(UIToggle);
             ADS.Invoke(true);
         }
         else if (Input.GetButtonUp("Fire2"))
         {
             UIToggle = !UIToggle;
-            userInterface.SetActive(UIToggle);
+            UserInterface.SetActive(UIToggle);
             ADS.Invoke(false);
         }
 

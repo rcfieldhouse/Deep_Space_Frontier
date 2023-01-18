@@ -7,7 +7,7 @@ public class ThrowableSwap : MonoBehaviour
 
     public List<Transform> Icons;
     private int Selection = 0;
-    private GrenadeManager GrenadeManager;
+    [SerializeField] private GrenadeManager GrenadeManager;
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,7 +29,7 @@ public class ThrowableSwap : MonoBehaviour
     }
     private IEnumerator FindDeBoi()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.1f);
         GrenadeManager = GameObject.FindGameObjectWithTag("Player").GetComponent<GrenadeManager>();
         DisplayNum(Selection);
     }
