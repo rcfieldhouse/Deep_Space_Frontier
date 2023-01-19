@@ -51,6 +51,10 @@ public class GunSelect : MonoBehaviour
        GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().RecticleArray.Add(Reticle1);
        GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().RecticleArray.Add(Reticle2);
 
+        Gun1.SetActive(true);
+        Reticle1.SetActive(true);
+        Icon1.SetActive(true);
+        GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().SetWeapon(0);
         Destroy(this);
     }
 }

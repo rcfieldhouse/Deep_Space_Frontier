@@ -35,25 +35,19 @@ public class WeaponSwap : MonoBehaviour
 
         reloadGun = GetComponent<ReloadGun>();
         PlayerInput.SwappingWeapon += SetWeapon;
-        StartCoroutine(StartingWeapon());
     }
     private void OnDestroy()
     {
         PlayerInput.SwappingWeapon -= SetWeapon;
     }
     // Update is called once per frame
-    private IEnumerator StartingWeapon()
-    {
-        yield return new WaitForEndOfFrame();
-        SetWeapon(WeaponChoice);
-
-    }
+ 
     public int GetWeaponNum()
     {
         return WeaponChoice;
     }
 
-    private void SetWeapon(int choice)
+    public void SetWeapon(int choice)
     {
         if   (reloadGun.GetIsReloading()== false) { 
         for (int i = 0; i < WeaponArray.Count; i++)

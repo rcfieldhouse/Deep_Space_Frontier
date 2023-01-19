@@ -83,8 +83,6 @@ public class SniperShot : MonoBehaviour
         {
             info.SetCanShoot(false);
             GetComponent<WeaponInfo>().SetCanShoot(false);
-      
-            StatisticTracker.instance.ShotsFired();
             info.SetBulletCount();
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;
@@ -158,7 +156,7 @@ public class SniperShot : MonoBehaviour
                 laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
                    
             }
-            StatisticTracker.instance.Accuracy();
+           
         }
         
 
