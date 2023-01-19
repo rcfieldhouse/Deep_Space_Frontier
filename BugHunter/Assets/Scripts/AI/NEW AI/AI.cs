@@ -16,14 +16,15 @@ public abstract class AI : MonoBehaviour
     public Vector3 SightRangeOffset, AttackAreaOffset;
 
     //Attack Stuff
-    [Range(0, 50)] public int Attack_1_Damage, Attack_2_Damage;
+    [Range(0, -50)] public int Attack_1_Damage, Attack_2_Damage;
     [Range(0, 10)] public float Attack_1_Delay, Attack_2_Delay;
-
+    [HideInInspector] public bool CanAttack=true,HasAttacked=false;
     //Death Stuff
     [Range(0.0f, 0.25f)] public float dissolveRate = 0.0125f, refreshRate = 0.02f;
     [Range(0, 8)] public int NumDrops = 0;
 
     //Navigation Stuff
+    [Range(0, 10)] public float EvasionSlider=0;
     public LayerMask WhatIsGround,WhatIsPlayer;
     private Vector3 WalkPoint, SpawnPoint;
     private bool WalkPointSet=false;
@@ -31,7 +32,7 @@ public abstract class AI : MonoBehaviour
 
     public void Awake()
     {
-        Health = GetComponent<HealthSystem>();
+        Health = GetComponentInChildren<HealthSystem>();
         NavAgent = GetComponent<NavMeshAgent>();
         MeshRenderer = GetComponent<MeshRenderer>();
 
@@ -41,11 +42,14 @@ public abstract class AI : MonoBehaviour
             Debug.Log("NOOOOOO");
         if (MeshRenderer != null)
             Materials = MeshRenderer.materials;
+
+        NavAgent.speed = WalkSpeed;
     }
     public void Update()
     {
-        bool playerInSightRange = Physics.CheckSphere(transform.position, _SightRange, WhatIsPlayer);
-        bool playerInAttackRange = Physics.CheckSphere(transform.position, _AttackRange, WhatIsPlayer);
+       
+        bool playerInSightRange = Physics.CheckSphere(transform.position+ transform.rotation* SightRangeOffset, _SightRange, WhatIsPlayer);
+        bool playerInAttackRange = Physics.CheckSphere( transform.position + transform.rotation * AttackAreaOffset, _AttackRange, WhatIsPlayer);
         //these functions can be found in the navigation reigon
         if (NavAgent.enabled == true)
         {
@@ -64,9 +68,9 @@ public abstract class AI : MonoBehaviour
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + AttackAreaOffset, _AttackRange);
+        Gizmos.DrawWireSphere(transform.position +transform.rotation*AttackAreaOffset, _AttackRange);
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position + SightRangeOffset, _SightRange);
+        Gizmos.DrawWireSphere(transform.position + transform.rotation * SightRangeOffset, _SightRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, WalkPointRange);
     }
@@ -83,7 +87,8 @@ public abstract class AI : MonoBehaviour
     }
     IEnumerator DissolveMeshEffect()
     {
-        GetComponent<BoxCollider>().enabled = false;
+        GetComponentInChildren<BoxCollider>().enabled = false;
+      
         float DropRate = 1.0f / (float)NumDrops;
         float DropIndexer = 0.0f;
         NavAgent.enabled = false;
@@ -111,6 +116,10 @@ public abstract class AI : MonoBehaviour
             //idea is to spray pieces as the object dissolves
             Destroy(gameObject);
         }
+    }
+    public void ResetAttack()
+    {
+        CanAttack = true;
     }
     public abstract void AttackPlayer(GameObject Target);
    
@@ -156,6 +165,7 @@ public abstract class AI : MonoBehaviour
 
     public void SearchWalkPoint()
     {
+       
         //Calculate random point in range
         float randomZ = Random.Range(-WalkPointRange, WalkPointRange);
         float randomX = Random.Range(-WalkPointRange, WalkPointRange);

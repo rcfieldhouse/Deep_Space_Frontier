@@ -15,6 +15,7 @@ public class HealthBarUI : MonoBehaviour
 
     private void Awake()
     {
+        HealthComponentOverride = GameObject.Find("MixamoCharacter");
         StartCoroutine(wait());
     }
 
