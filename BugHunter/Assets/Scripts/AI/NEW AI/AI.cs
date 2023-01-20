@@ -27,7 +27,7 @@ public abstract class AI : MonoBehaviour
     //Dante, Before you ask, Serpentine is the thing i use to make the enemy go side to side
     private Vector3 StartEvasionLocation,DistanceTravelled = Vector3.zero;
     private float Serpentine = 0.0f;
-    [Range(0, 10)] public float EvasionIntensity=0, EvasionRecalculationTime=0;
+    [Range(0, 10)] public float EvasionIntensity=0, EvasionRecalculationPeriod=0;
     public LayerMask WhatIsGround,WhatIsPlayer;
     private Vector3 WalkPoint, SpawnPoint,Pos;
     private bool WalkPointSet=false;
@@ -55,7 +55,7 @@ public abstract class AI : MonoBehaviour
     {
        
         bool playerInSightRange = Physics.CheckSphere(transform.position+ transform.rotation* SightRangeOffset, _SightRange, WhatIsPlayer);
-        bool playerInAttackRange = Physics.CheckSphere( transform.position + transform.rotation * AttackAreaOffset, _AttackRange, WhatIsPlayer);
+        bool playerInAttackRange = Physics.CheckSphere(transform.position + transform.rotation * AttackAreaOffset, _AttackRange, WhatIsPlayer);
         //these functions can be found in the navigation reigon
         if (NavAgent.enabled == true)
         {
@@ -198,12 +198,12 @@ public abstract class AI : MonoBehaviour
         }
         DistanceTravelled = transform.position - StartEvasionLocation;
 
-         if (DistanceTravelled.magnitude > EvasionRecalculationTime)
+         if (DistanceTravelled.magnitude > EvasionRecalculationPeriod)
              WalkPointSet = false;
 
         WalkPoint = Vector3.Normalize(Target.transform.position - transform.position);
         WalkPoint *= WalkPointRange;
-        Debug.Log(DistanceTravelled.magnitude);
+        
         
         NavAgent.SetDestination(transform.position+ WalkPoint+ transform.rotation * new Vector3(Serpentine, 0.0f,0.0f));
     }
