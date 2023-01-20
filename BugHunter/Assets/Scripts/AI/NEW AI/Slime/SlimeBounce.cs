@@ -12,14 +12,18 @@ public class SlimeBounce : MonoBehaviour
     {
         
     }
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(GetComponent<CapsuleCollider>().bounds.center, GetComponent<CapsuleCollider>().bounds.center - new Vector3(0.0f, HeightSlime, 0.0f));
+    }
     // Update is called once per frame
     void Update()
     {
         //makes it not jump
        
 
-        if (Physics.Raycast(GetComponent<CapsuleCollider>().bounds.center - Vector3.down / 12, Vector3.down, HeightSlime, GetComponentInParent<Slime>().WhatIsGround) == true)
+        if (Physics.Raycast(GetComponent<CapsuleCollider>().bounds.center, Vector3.down, HeightSlime, GetComponentInParent<Slime>().WhatIsGround) == true)
             Jump();
 
         if (GetComponent<HealthSystem>().GetHealth() <= 0)

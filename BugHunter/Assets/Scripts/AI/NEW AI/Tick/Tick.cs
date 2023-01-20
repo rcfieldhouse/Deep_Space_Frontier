@@ -13,7 +13,7 @@ public class Tick : AI
             Target.AddComponent<Venom>().InitAttack(DamageTime,DamageInterval,Damage);
     }
     
-    // Start is called before the first frame update
+   
 
 
 }
