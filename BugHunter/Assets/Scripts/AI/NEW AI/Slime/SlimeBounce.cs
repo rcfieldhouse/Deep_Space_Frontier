@@ -19,7 +19,7 @@ public class SlimeBounce : MonoBehaviour
         //makes it not jump
        
 
-        if (Physics.Raycast(GetComponent<BoxCollider>().bounds.center - Vector3.down / 12, Vector3.down, HeightSlime, GetComponentInParent<Slime>().WhatIsGround) == true)
+        if (Physics.Raycast(GetComponent<CapsuleCollider>().bounds.center - Vector3.down / 12, Vector3.down, HeightSlime, GetComponentInParent<Slime>().WhatIsGround) == true)
             Jump();
 
         if (GetComponent<HealthSystem>().GetHealth() <= 0)

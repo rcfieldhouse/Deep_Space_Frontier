@@ -24,8 +24,10 @@ public abstract class AI : MonoBehaviour
     [Range(0, 8)] public int NumDrops = 0;
 
     //Navigation Stuff
-    private float DistanceTravelled = 0;
-    [Range(0, 10)] public float EvasionIntensity=0;
+    //Dante, Before you ask, Serpentine is the thing i use to make the enemy go side to side
+    private Vector3 StartEvasionLocation,DistanceTravelled = Vector3.zero;
+    private float Serpentine = 0.0f;
+    [Range(0, 10)] public float EvasionIntensity=0, EvasionRecalculationTime=0;
     public LayerMask WhatIsGround,WhatIsPlayer;
     private Vector3 WalkPoint, SpawnPoint,Pos;
     private bool WalkPointSet=false;
@@ -92,7 +94,7 @@ public abstract class AI : MonoBehaviour
     }
     IEnumerator DissolveMeshEffect()
     {
-        GetComponentInChildren<BoxCollider>().enabled = false;
+        //GetComponentInChildren<BoxCollider>().enabled = false;
       
         float DropRate = 1.0f / (float)NumDrops;
         float DropIndexer = 0.0f;
@@ -103,13 +105,14 @@ public abstract class AI : MonoBehaviour
             while (Materials[0].GetFloat("_DissolveAmount") < 1)
             {
                 counter += dissolveRate;
-                for (int i = 0; i < Materials.Length; i++)
+                DropIndexer += dissolveRate;
+                if (DropIndexer > DropRate)
                 {
-                    DropIndexer += dissolveRate;
-                    if (DropIndexer > DropRate) { 
-                        LootSpawner.instance.SprayLoot(transform);
-                        DropIndexer -= DropRate;
-                    }
+                    LootSpawner.instance.SprayLoot(transform);
+                    DropIndexer -= DropRate;
+                }
+                for (int i = 0; i < Materials.Length; i++)
+                {           
                     Materials[i].SetFloat("_DissolveAmount", counter);
                 }
                 yield return new WaitForSeconds(refreshRate);
@@ -186,13 +189,23 @@ public abstract class AI : MonoBehaviour
         if(Target==null)
        Target = FindClosestPlayer();
 
-        float random = Random.Range(-EvasionIntensity, EvasionIntensity);
 
+        if (WalkPointSet == false)
+        {
+            Serpentine = Random.Range(-EvasionIntensity, EvasionIntensity);
+            StartEvasionLocation = transform.position;
+            WalkPointSet = true;
+        }
+        DistanceTravelled = transform.position - StartEvasionLocation;
 
-        Vector3 Destination = Vector3.Normalize(Target.transform.position - transform.position);
-        Destination *= WalkPointRange;
-        Debug.Log(random);
-        NavAgent.SetDestination(transform.position+Destination);
+         if (DistanceTravelled.magnitude > EvasionRecalculationTime)
+             WalkPointSet = false;
+
+        WalkPoint = Vector3.Normalize(Target.transform.position - transform.position);
+        WalkPoint *= WalkPointRange;
+        Debug.Log(DistanceTravelled.magnitude);
+        
+        NavAgent.SetDestination(transform.position+ WalkPoint+ transform.rotation * new Vector3(Serpentine, 0.0f,0.0f));
     }
 
 
@@ -217,7 +230,6 @@ public abstract class AI : MonoBehaviour
     {
         if (NavAgent.isOnNavMesh)
         {
-            DistanceTravelled = NavAgent.remainingDistance;
              Pos = gameObject.transform.position;
         }
         yield return new WaitForSeconds(2.0f);
