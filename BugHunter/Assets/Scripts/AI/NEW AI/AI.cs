@@ -24,9 +24,10 @@ public abstract class AI : MonoBehaviour
     [Range(0, 8)] public int NumDrops = 0;
 
     //Navigation Stuff
-    [Range(0, 10)] public float EvasionSlider=0;
+    private float DistanceTravelled = 0;
+    [Range(0, 10)] public float EvasionIntensity=0;
     public LayerMask WhatIsGround,WhatIsPlayer;
-    private Vector3 WalkPoint, SpawnPoint;
+    private Vector3 WalkPoint, SpawnPoint,Pos;
     private bool WalkPointSet=false;
     [Range(0, 15)] public float WalkPointRange,WalkSpeed;
 
@@ -34,7 +35,7 @@ public abstract class AI : MonoBehaviour
     {
         Health = GetComponentInChildren<HealthSystem>();
         NavAgent = GetComponent<NavMeshAgent>();
-        MeshRenderer = GetComponent<MeshRenderer>();
+        MeshRenderer = GetComponentInChildren<MeshRenderer>();
 
         Health.OnObjectDeath += HandleObjectDeath;
         Health.OnHealthPercentChanged += HandleObjectHit;
@@ -44,6 +45,9 @@ public abstract class AI : MonoBehaviour
             Materials = MeshRenderer.materials;
 
         NavAgent.speed = WalkSpeed;
+        
+        //essentially makes them not dumb
+        StartCoroutine(PatrolCorrection());
     }
     public void Update()
     {
@@ -74,6 +78,7 @@ public abstract class AI : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, WalkPointRange);
     }
+    #region TakeDamage
     public void HandleObjectHit(float Hit)
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -117,12 +122,33 @@ public abstract class AI : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    #endregion TakeDamage
+
+    #region Attack
     public void ResetAttack()
     {
         CanAttack = true;
     }
+    private GameObject FindClosestPlayer()
+    {
+        GameObject[] AllPlayers = GameObject.FindGameObjectsWithTag("Player");
+        float SmallestDistance = 100000.0f;
+        GameObject foo = null;
+        foreach (GameObject Player in AllPlayers)
+        {
+            if (Mathf.Abs((Player.transform.position - transform.position).magnitude) < SmallestDistance)
+            {
+                SmallestDistance = Mathf.Abs((Player.transform.position - transform.position).magnitude);
+                foo = Player;
+            }
+        }
+        return foo;
+    }
+
     public abstract void AttackPlayer(GameObject Target);
-   
+    #endregion Attack
+
     #region Navigation 
     //init stuffs
     public void SetInitialPosition(Vector3 vector3)
@@ -159,7 +185,14 @@ public abstract class AI : MonoBehaviour
     {
         if(Target==null)
        Target = FindClosestPlayer();
-        NavAgent.SetDestination(Target.transform.position);
+
+        float random = Random.Range(-EvasionIntensity, EvasionIntensity);
+
+
+        Vector3 Destination = Vector3.Normalize(Target.transform.position - transform.position);
+        Destination *= WalkPointRange;
+        Debug.Log(random);
+        NavAgent.SetDestination(transform.position+Destination);
     }
 
 
@@ -180,22 +213,30 @@ public abstract class AI : MonoBehaviour
             else SearchWalkPoint();
         }
     }
-    #endregion Navigation
-    private GameObject FindClosestPlayer()
+    private IEnumerator PatrolCorrection()
     {
-        GameObject[] AllPlayers = GameObject.FindGameObjectsWithTag("Player");
-        float SmallestDistance=100000.0f;
-        GameObject foo=null;
-        foreach (GameObject Player in AllPlayers)
+        if (NavAgent.isOnNavMesh)
         {
-            if (Mathf.Abs((Player.transform.position - transform.position).magnitude) < SmallestDistance)
-            {
-                SmallestDistance = Mathf.Abs((Player.transform.position - transform.position).magnitude);
-                foo = Player;   
-            }             
+            DistanceTravelled = NavAgent.remainingDistance;
+             Pos = gameObject.transform.position;
         }
-        return foo;
+        yield return new WaitForSeconds(2.0f);
+        if (NavAgent.isOnNavMesh)
+        {
+            if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f)
+            {
+                WalkPointSet = false;
+            }
+            if ((Mathf.Abs(gameObject.transform.position.x - SpawnPoint.x) > 60.0f) || (Mathf.Abs(gameObject.transform.position.y - SpawnPoint.y) > 60.0f))
+            {
+                NavAgent.SetDestination(SpawnPoint);
+                //  Debug.Log(gameObject.name + " is too far" + " current: " + gameObject.transform.position+ " Spawn "+SpawnPoint);
+            }
+        }
+        StartCoroutine(PatrolCorrection());
     }
-    // Update is called once per frame
+    #endregion Navigation
+   
+
 
 }

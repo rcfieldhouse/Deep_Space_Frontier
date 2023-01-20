@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 136559627}
-  m_IndirectSpecularColor: {r: 0.13852993, g: 0.04849276, b: 0.20563625, a: 1}
+  m_IndirectSpecularColor: {r: 0.13845022, g: 0.048412427, b: 0.20555313, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -66942,13 +66942,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434232515571522178, guid: 0e8ef8910b5d02e4f892c16b76142fd6,
         type: 3}
+      propertyPath: EvasionSlider
+      value: 1.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 434232515571522178, guid: 0e8ef8910b5d02e4f892c16b76142fd6,
+        type: 3}
+      propertyPath: EvasionIntensity
+      value: 4.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 434232515571522178, guid: 0e8ef8910b5d02e4f892c16b76142fd6,
+        type: 3}
       propertyPath: AttackAreaOffset.z
       value: 1.92
       objectReference: {fileID: 0}
+    - target: {fileID: 439294468669379407, guid: 0e8ef8910b5d02e4f892c16b76142fd6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 880656c46e5d34d4ab48bbd16d728987, type: 2}
     - target: {fileID: 776833541696910627, guid: 0e8ef8910b5d02e4f892c16b76142fd6,
         type: 3}
       propertyPath: m_Name
       value: tick
+      objectReference: {fileID: 0}
+    - target: {fileID: 776833541696910627, guid: 0e8ef8910b5d02e4f892c16b76142fd6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e8ef8910b5d02e4f892c16b76142fd6, type: 3}
@@ -87192,7 +87212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &6568838323100073352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87338,7 +87358,7 @@ MonoBehaviour:
   dissolveRate: 0.0125
   refreshRate: 0.02
   NumDrops: 5
-  EvasionSlider: 0
+  EvasionIntensity: 0
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -87379,10 +87399,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5600474005194021763, guid: a01e9560a336ed24db23326024069546,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce98c6fdc6a99014bbe14206d13c3ede, type: 2}
     - target: {fileID: 7121683985207185908, guid: a01e9560a336ed24db23326024069546,
         type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121683985207185908, guid: a01e9560a336ed24db23326024069546,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7610693553494985550, guid: a01e9560a336ed24db23326024069546,
         type: 3}
