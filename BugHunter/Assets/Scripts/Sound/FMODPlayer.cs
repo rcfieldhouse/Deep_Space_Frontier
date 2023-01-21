@@ -46,7 +46,11 @@ public class FMODPlayer : MonoBehaviour
 
     public FMODUnity.EventReference PlayerStateEvent;
 
-
+    public void PlaySound(string path)
+    {
+        FMODUnity.EventReference a;
+        a.Path = path;
+    }
     void Awake()
     {
 

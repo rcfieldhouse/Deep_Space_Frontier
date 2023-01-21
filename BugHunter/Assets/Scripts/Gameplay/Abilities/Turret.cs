@@ -68,12 +68,9 @@ public class Turret : MonoBehaviour
                     {
                         hit.collider.gameObject.tag = "Dead";
                         Target = null;
-                    }
-                       
+                    }    
                 }
-
             }
-
         }
     }
 
