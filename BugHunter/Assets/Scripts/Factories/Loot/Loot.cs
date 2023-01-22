@@ -7,15 +7,11 @@ public class Loot : ScriptableObject
 {
     public enum Rarity
     {
-        CommonGrunt,    // 0
-        CommonZephyr,   // 1
-        CommonSlime,    // 2
-        RareGrunt,      // 3
-        RareZephyr,     // 4
-        RareSlime,      // 5
-        EpicGrunt,      // 6
-        EpicZephyr,     // 7
-        EpicSlime,      // 8
+        Common,     // 0
+        Uncommon,   // 1
+        Rare,       // 2
+        Epic,       // 3
+        Legendary   // 4
     }
 
     public int quantity;
