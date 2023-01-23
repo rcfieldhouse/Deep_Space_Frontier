@@ -18,7 +18,6 @@ public class AIAmmo : MonoBehaviour
         {
             // Debug.Log("orb has entered " + other.name);
             Destroy(gameObject);
-        }
-     
+        }     
     }
 }

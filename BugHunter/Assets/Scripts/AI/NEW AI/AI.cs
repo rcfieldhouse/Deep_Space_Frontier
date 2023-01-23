@@ -32,7 +32,7 @@ public abstract class AI : MonoBehaviour
     private Vector3 WalkPoint, SpawnPoint,Pos;
     private bool WalkPointSet=false;
     [Range(0, 15)] public float WalkPointRange,WalkSpeed;
-
+    #region MonoBehaviour
     public void Awake()
     {
         Health = GetComponentInChildren<HealthSystem>();
@@ -80,6 +80,9 @@ public abstract class AI : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, WalkPointRange);
     }
+
+    #endregion MonoBehaviour
+
     #region TakeDamage
     public void HandleObjectHit(float Hit)
     {
