@@ -11,15 +11,15 @@ public class LootHolder : MonoBehaviour, IDataPersistence
     {
         for (int i =0; i < 5; i++)
         {
-            Inventory.Add(new Loot(0));
+            Inventory.Add(Loot.CreateInstance<Loot>());
         }
 
         DontDestroyOnLoad(gameObject);
     }
 
-    public void GainLoot(int rarity)
+    public void GainLoot(int index)
     {
-        Inventory[rarity].quantity++;
+        Inventory[index].quantity++;
     }
 
     public void LoadData(GameData data)

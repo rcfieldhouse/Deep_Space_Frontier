@@ -11,6 +11,7 @@ public class FMODPlayer : MonoBehaviour
     private static FMOD.Studio.Bus DialogueBus;
     private static FMOD.Studio.Bus MusicBus;
 
+
     [SerializeField]
     private FMODUnity.EventReference uiUpEvent;
 
@@ -126,5 +127,8 @@ public class FMODPlayer : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot(uiDeselectEvent);
         }
     }
-
+    void PlayOneShot(string path)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(path);
+    }
 }
