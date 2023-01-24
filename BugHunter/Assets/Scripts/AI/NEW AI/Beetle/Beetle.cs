@@ -10,7 +10,16 @@ public class Beetle : AI
     {
         if (IsSecondaryAttack == true)
         {
-            NavAgent.SetDestination(Target.transform.position);
+            if (Mathf.Abs((transform.position - Target.transform.position).magnitude) < 4.0f)
+            {
+               SecondaryAttack(Target);
+            }
+            if (HasAttacked == false && CanAttack == true)
+            {
+                NavAgent.speed = WalkSpeed*1.5f;
+                NavAgent.SetDestination(Target.transform.position);
+            }
+              
         }
         else
         {
@@ -38,14 +47,16 @@ public class Beetle : AI
     {
         if (CanAttack == true && HasAttacked == false)
         {
-
+            NavAgent.SetDestination(transform.position+((transform.position- Target.transform.position).normalized * WalkPointRange));
+            Target.GetComponent<HealthSystem>().ModifyHealth(Attack_2_Damage);
             HasAttacked = true;
             CanAttack = false;
         }
         if (HasAttacked == true)
         {
+            NavAgent.speed = WalkSpeed;
             HasAttacked = false;
-            Invoke(nameof(ResetAttack), Attack_1_Delay);
+            Invoke(nameof(ResetAttack), Attack_2_Delay);
         }
     }
     // Start is called before the first frame update

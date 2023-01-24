@@ -82,7 +82,7 @@ public abstract class AI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + transform.rotation * SightRangeOffset, _SightRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, WalkPointRange);
-        Gizmos.color = Color.black;
+        Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position + transform.rotation * _Attack2AreaOffset, _Attack2_Range);
     }
 
