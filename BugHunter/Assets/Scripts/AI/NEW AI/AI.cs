@@ -38,7 +38,8 @@ public abstract class AI : MonoBehaviour
         Health = GetComponentInChildren<HealthSystem>();
         NavAgent = GetComponent<NavMeshAgent>();
         MeshRenderer = GetComponentInChildren<MeshRenderer>();
-
+        
+        
         Health.OnObjectDeath += HandleObjectDeath;
         Health.OnHealthPercentChanged += HandleObjectHit;
         if (NavAgent.isOnNavMesh == false)
