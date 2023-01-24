@@ -12,13 +12,13 @@ public abstract class AI : MonoBehaviour
     [HideInInspector] public GameObject Target;
 
     //DetectionStuff
-    [Range(0, 50)] public float _SightRange = 10, _AttackRange = 2;
-    public Vector3 SightRangeOffset, AttackAreaOffset;
+    [Range(0, 50)] public float _SightRange = 10, _AttackRange = 2,_Attack2_Range;
+    public Vector3 SightRangeOffset, AttackAreaOffset,_Attack2AreaOffset;
 
     //Attack Stuff
     [Range(0, -50)] public int Attack_1_Damage, Attack_2_Damage;
     [Range(0, 10)] public float Attack_1_Delay, Attack_2_Delay;
-    [HideInInspector] public bool CanAttack=true,HasAttacked=false;
+    [HideInInspector] public bool CanAttack=true,HasAttacked=false,IsSecondaryAttack=false;
     //Death Stuff
     [Range(0.0f, 0.25f)] public float dissolveRate = 0.0125f, refreshRate = 0.02f;
     [Range(0, 8)] public int NumDrops = 0;
@@ -56,12 +56,15 @@ public abstract class AI : MonoBehaviour
        
         bool playerInSightRange = Physics.CheckSphere(transform.position+ transform.rotation* SightRangeOffset, _SightRange, WhatIsPlayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position + transform.rotation * AttackAreaOffset, _AttackRange, WhatIsPlayer);
+        bool playerInAttackRange2 = Physics.CheckSphere(transform.position + transform.rotation * _Attack2AreaOffset, _Attack2_Range, WhatIsPlayer);
         //these functions can be found in the navigation reigon
         if (NavAgent.enabled == true)
         {
+            IsSecondaryAttack = playerInAttackRange2;   
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInAttackRange && playerInSightRange) AttackPlayer(Target);
+
             //if (!playerInAttackRange) SetLunged();
         }
     }
@@ -79,6 +82,8 @@ public abstract class AI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + transform.rotation * SightRangeOffset, _SightRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, WalkPointRange);
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position + transform.rotation * _Attack2AreaOffset, _Attack2_Range);
     }
 
     #endregion MonoBehaviour

@@ -67,7 +67,7 @@ public class BossAI : MonoBehaviour
     private void Seek()
     {
         WalkVec=(Player.transform.position-transform.position ).normalized;
-        transform.position += 7.5f*WalkVec * Time.deltaTime;
+        transform.position += SpeedSlider*WalkVec * Time.deltaTime;
         //  transform.LookAt(Vector3.Lerp(transform.rotation.eulerAngles,Player.transform.position,1));
         transform.LookAt(Player.transform.position);
         transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);

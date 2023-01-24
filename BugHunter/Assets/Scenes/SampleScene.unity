@@ -86837,12 +86837,12 @@ PrefabInstance:
     - target: {fileID: 8638225122692954746, guid: 36eb32775e017e74a834af66779d87da,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7499998
+      value: 2.3299997
       objectReference: {fileID: 0}
     - target: {fileID: 8638225122692954746, guid: 36eb32775e017e74a834af66779d87da,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36eb32775e017e74a834af66779d87da, type: 3}
@@ -87245,14 +87245,17 @@ MonoBehaviour:
   Target: {fileID: 0}
   _SightRange: 16.7
   _AttackRange: 2
+  _Attack2_Range: 0
   SightRangeOffset: {x: 0, y: 0, z: 0}
   AttackAreaOffset: {x: 0, y: 0, z: 0}
+  _Attack2AreaOffset: {x: 0, y: 0, z: 0}
   Attack_1_Damage: 0
   Attack_2_Damage: 0
   Attack_1_Delay: 0
   Attack_2_Delay: 0
   CanAttack: 0
   HasAttacked: 0
+  IsSecondaryAttack: 0
   dissolveRate: 0.0125
   refreshRate: 0.02
   NumDrops: 5
@@ -87362,7 +87365,12 @@ PrefabInstance:
     - target: {fileID: 8707042676991018520, guid: 391c85daa449601459460f8e416f9fc2,
         type: 3}
       propertyPath: Attack_1_Delay
-      value: 0.41
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8707042676991018520, guid: 391c85daa449601459460f8e416f9fc2,
+        type: 3}
+      propertyPath: _Attack2_Range
+      value: 5.1
       objectReference: {fileID: 0}
     - target: {fileID: 8707042676991018520, guid: 391c85daa449601459460f8e416f9fc2,
         type: 3}

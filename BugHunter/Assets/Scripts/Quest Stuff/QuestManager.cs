@@ -31,11 +31,8 @@ public class QuestManager : MonoBehaviour
         GetComponentInChildren<TextMeshProUGUI>().text = "Quest: " + Quests[0];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
+ 
     public void QuestCompleted(QuestStep QuestSelect)
     {
         if (QuestSelect == QuestProgression[CurrentQuestNum])
