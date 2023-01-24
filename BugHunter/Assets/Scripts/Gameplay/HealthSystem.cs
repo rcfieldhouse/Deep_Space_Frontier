@@ -43,9 +43,21 @@ public class HealthSystem : MonoBehaviour
         maxHealth = foo;
         currentHealth = foo;
     }
+
+    private int HandleDamageModifiers(int amount)
+    {
+        EquipmentManager equipment = transform.GetComponent<EquipmentManager>();
+
+        return equipment.ExecuteEquip(transform.gameObject, amount);
+        //Get a reference to the player's Specific Equipment Manager
+
+    }
+
     public void ModifyHealth(int amount)
     {
-        if (Invulnerable == false&&currentHealth>=0) { 
+        
+        if (Invulnerable == false&&currentHealth>=0) {
+            amount = HandleDamageModifiers(amount);
                currentHealth += amount;
         
             if (currentHealth > maxHealth) currentHealth = maxHealth;

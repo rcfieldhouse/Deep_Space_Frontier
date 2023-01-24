@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
-    FMODPlayer instance;
+    [SerializeField]
+    IEquip currentEquip;
 
-
-    public enum EquipType { Armor, Guns, Augments }
-
-    public class Equipment : Item
+    public void ChangeEquip(IEquip newEquip)
     {
-        public EquipType equipType;
-
-
-
-
+        if (currentEquip != null)
+        {
+            currentEquip.Exit(transform.gameObject);
+        }
+        currentEquip = newEquip;
+        currentEquip.Enter(transform.gameObject);
     }
 
+    public int ExecuteEquip(GameObject requester, int damageAmount)
+    {
+        if (currentEquip != null)
+        {
+            return currentEquip.Execute(requester, damageAmount);
+        }
+        else
+            return damageAmount;
+    }
 
-    public Equipment[] currentEquipment;
-    public delegate void OnEquipmentChangedCallback();
-    public OnEquipmentChangedCallback onEquipmentChangedCallback;
-
-};
+}

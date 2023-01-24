@@ -20,6 +20,7 @@ public class GameData
     public int playerHealthMultiplier;
     public int playerSpeedMultiplier;
     public int playerLightMultiplier;
+    public Vector3 playerWaypoint;
 
 
 
@@ -32,5 +33,6 @@ public class GameData
         this.playerSpeedMultiplier = 1;
         this.playerLightMultiplier = 1;
         this.deathCount = 0;
+        this.playerWaypoint = new Vector3(0, 0, 0);
     }
 }

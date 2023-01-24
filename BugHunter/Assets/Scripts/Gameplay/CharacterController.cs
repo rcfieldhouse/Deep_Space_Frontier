@@ -17,7 +17,7 @@ public class CharacterController : MonoBehaviour
   
     public WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
 
-    [SerializeField] private Vector3 mover,JumpForce = new Vector3 (0.0f,25.0f,0.0f);
+    [SerializeField] public Vector3 mover,JumpForce = new Vector3 (0.0f,25.0f,0.0f);
      private bool m_Grounded = true;
     [SerializeField] private CapsuleCollider coll;
     //Used for initial save when player starts the game
