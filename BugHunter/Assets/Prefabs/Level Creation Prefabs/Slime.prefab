@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 17289551890908546}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19354,14 +19354,17 @@ MonoBehaviour:
   Target: {fileID: 0}
   _SightRange: 10
   _AttackRange: 1
+  _Attack2_Range: 0
   SightRangeOffset: {x: 0, y: 0, z: 0}
   AttackAreaOffset: {x: 0, y: 0, z: 1.79}
+  _Attack2AreaOffset: {x: 0, y: 0, z: 0}
   Attack_1_Damage: -10
   Attack_2_Damage: 0
   Attack_1_Delay: 2
   Attack_2_Delay: 0
   CanAttack: 1
   HasAttacked: 0
+  IsSecondaryAttack: 0
   dissolveRate: 0.0125
   refreshRate: 0.02
   NumDrops: 3
