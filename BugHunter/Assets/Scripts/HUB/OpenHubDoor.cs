@@ -19,11 +19,20 @@ public class OpenHubDoor : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Something Entered trigger");
         if(other.tag == "Player")
         {
             animator.SetBool("isOpen", true);
             Debug.Log("Player entered Trigger Animation should play now");
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            animator.SetBool("isOpen", false);
+            Debug.Log("Player Exited Trigger");
+        }
+    }
+
 }
