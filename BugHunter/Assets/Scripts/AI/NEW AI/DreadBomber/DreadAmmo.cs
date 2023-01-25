@@ -17,7 +17,6 @@ public class DreadAmmo : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Debug.Log("da thing worked");
     }
     public void SetDamage(int dmg)
     {

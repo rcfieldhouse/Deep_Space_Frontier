@@ -57,7 +57,7 @@ public class HealthSystem : MonoBehaviour
     {
         
         if (Invulnerable == false&&currentHealth>=0) {
-            amount = HandleDamageModifiers(amount);
+          //  amount = HandleDamageModifiers(amount);
                currentHealth += amount;
         
             if (currentHealth > maxHealth) currentHealth = maxHealth;
