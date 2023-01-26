@@ -98,7 +98,11 @@ private void Update()
     {
         if (Target != null)
         {
+            if(Target.GetComponentInChildren<MeshRenderer>()!=null)
             transform.GetChild(0).gameObject.transform.LookAt(Target.GetComponentInChildren<MeshRenderer>().transform);
+           if(Target.GetComponentInChildren<SkinnedMeshRenderer>()!=null)
+                transform.GetChild(0).gameObject.transform.LookAt(Target.GetComponentInChildren<SkinnedMeshRenderer>().transform);
+
             Shoot();
         }
         AngleDifferenceX = transform.GetChild(0).gameObject.transform.localEulerAngles.y;

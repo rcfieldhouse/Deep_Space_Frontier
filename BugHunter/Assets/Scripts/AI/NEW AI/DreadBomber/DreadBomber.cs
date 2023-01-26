@@ -3,6 +3,7 @@ using UnityEngine;
 public class DreadBomber : AI
 {
     public GameObject Projectile,Orb;
+    private int NumDropped = 0;
     [Range(0, 20)] public float ProjectileSpeed = 10;
     // Start is called before the first frame update
     public override void AttackPlayer(GameObject Target)
@@ -10,13 +11,12 @@ public class DreadBomber : AI
         if (CanAttack == true && HasAttacked == false)
         {
             Transform MeshLocation = GetComponentInChildren<SkinnedMeshRenderer>().gameObject.transform;
-            if (IsSecondaryAttack)
+            if (IsSecondaryAttack&&NumDropped<3)
                 SecondaryAttack(MeshLocation);
             else
             {
                 transform.LookAt(Target.transform);
               
-
                 Rigidbody rb = Instantiate(Projectile, MeshLocation.position, Quaternion.identity).GetComponent<Rigidbody>();
                 rb.AddForce(Vector3.Normalize((Target.transform.position + Vector3.up * Target.GetComponent<CapsuleCollider>().height / 2) - (MeshLocation.position)) * ProjectileSpeed, ForceMode.Impulse);
                 rb.gameObject.GetComponent<DreadAmmo>().SetDamage(Attack_1_Damage);
@@ -34,12 +34,15 @@ public class DreadBomber : AI
     }
     public void SecondaryAttack(Transform MeshTransform)
     {
-        Debug.Log("Spawned");
+        NumDropped++;
         HasAttacked = true;
         CanAttack = false;
+
+        transform.LookAt(Target.transform);
+
         Rigidbody rb = Instantiate(Orb, MeshTransform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.useGravity = true;
-        rb.AddForce(transform.rotation * (Vector3.forward + Vector3.up)*3,ForceMode.Impulse);
+        rb.AddForce(transform.rotation * (Vector3.forward + Vector3.up)*6,ForceMode.Impulse);
      
     }
 }
