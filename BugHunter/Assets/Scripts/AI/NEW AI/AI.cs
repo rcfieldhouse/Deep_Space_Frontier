@@ -8,6 +8,7 @@ public abstract class AI : MonoBehaviour
     [HideInInspector] public HealthSystem Health;
     [HideInInspector] public NavMeshAgent NavAgent;
     [HideInInspector] public MeshRenderer MeshRenderer;
+    [HideInInspector] public SkinnedMeshRenderer SkinnedMeshRenderer;
     [HideInInspector] public Material[] Materials;
     [HideInInspector] public GameObject Target;
 
@@ -38,14 +39,16 @@ public abstract class AI : MonoBehaviour
         Health = GetComponentInChildren<HealthSystem>();
         NavAgent = GetComponent<NavMeshAgent>();
         MeshRenderer = GetComponentInChildren<MeshRenderer>();
-        
-        
+        SkinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         Health.OnObjectDeath += HandleObjectDeath;
         Health.OnHealthPercentChanged += HandleObjectHit;
+
         if (NavAgent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
         if (MeshRenderer != null)
             Materials = MeshRenderer.materials;
+        else if (SkinnedMeshRenderer != null)
+            Materials = SkinnedMeshRenderer.materials;
 
         NavAgent.speed = WalkSpeed;
         
