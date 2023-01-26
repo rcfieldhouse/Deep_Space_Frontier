@@ -42,7 +42,7 @@ public class DreadBomber : AI
 
         Rigidbody rb = Instantiate(Orb, MeshTransform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.useGravity = true;
-        rb.AddForce(transform.rotation * (Vector3.forward + Vector3.up)*6,ForceMode.Impulse);
+        rb.AddForce(transform.rotation * (Vector3.forward + Vector3.up)*9,ForceMode.Impulse);
      
     }
 }
