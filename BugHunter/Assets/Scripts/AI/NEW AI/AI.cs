@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class AI : MonoBehaviour
-{   
+{
+    [HideInInspector] public Animator AI_Animator;
     [HideInInspector] public HealthSystem Health;
     [HideInInspector] public NavMeshAgent NavAgent;
     [HideInInspector] public MeshRenderer MeshRenderer;
@@ -36,6 +37,7 @@ public abstract class AI : MonoBehaviour
     #region MonoBehaviour
     public void Awake()
     {
+        AI_Animator = GetComponentInChildren<Animator>();
         Health = GetComponentInChildren<HealthSystem>();
         NavAgent = GetComponent<NavMeshAgent>();
         MeshRenderer = GetComponentInChildren<MeshRenderer>();

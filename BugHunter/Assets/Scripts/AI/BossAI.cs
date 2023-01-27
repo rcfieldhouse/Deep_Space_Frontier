@@ -62,6 +62,7 @@ public class BossAI : MonoBehaviour
         {
             Seek();
             animator.SetBool("Walk", true);
+         
         }
     }
     private void Seek()

@@ -9,19 +9,30 @@ public class Slime : AI
     {
         if (CanAttack == true && HasAttacked == false)
         {
-            Target.GetComponent<HealthSystem>().ModifyHealth(Attack_1_Damage);
-            HasAttacked = true;
-            CanAttack = false;
+            if (GetComponentInChildren<SlimeBounce>().GetCanJump() == true)
+            {
+                GetComponentInChildren<SlimeBounce>().SetIsAttacking(true);
+                AI_Animator.SetBool("_IsAttacking", true);
+                Target.GetComponent<HealthSystem>().ModifyHealth(Attack_1_Damage);
+                HasAttacked = true;
+                CanAttack = false;
+            }
+      
         }
         if (HasAttacked==true)
         {
             HasAttacked=false;
             Invoke(nameof(ResetAttack), Attack_1_Delay);
+            Invoke(nameof(ResetAnim), Attack_1_Delay);
         }
       
     }
 
     // Start is called before the first frame update
-
+    public void ResetAnim()
+    {
+        AI_Animator.SetBool("_IsAttacking", false);
+        GetComponentInChildren<SlimeBounce>().SetIsAttacking(false);
+    }
 
 }

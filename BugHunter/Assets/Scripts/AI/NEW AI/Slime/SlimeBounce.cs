@@ -7,11 +7,9 @@ public class SlimeBounce : MonoBehaviour
     [Range(0, 25)] public float JumpHeight=15;
     [Range(0, 3)] public float HeightSlime = 2;
     bool Dead = false;
+    private bool Var = false,CanJump=true,_IsAttacking=false;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
@@ -20,9 +18,7 @@ public class SlimeBounce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //makes it not jump
-       
-
+        CanJump = Physics.Raycast(GetComponent<CapsuleCollider>().bounds.center, Vector3.down, HeightSlime, GetComponentInParent<Slime>().WhatIsGround);
         if (Physics.Raycast(GetComponent<CapsuleCollider>().bounds.center, Vector3.down, HeightSlime, GetComponentInParent<Slime>().WhatIsGround) == true)
             Jump();
 
@@ -30,9 +26,21 @@ public class SlimeBounce : MonoBehaviour
             Dead = true;
     }
     private void Jump()
-    {  // if(Jumped==true)
-        GetComponent<Rigidbody>().velocity = Vector3.up * JumpHeight;
-
-        if (Dead == true) GetComponent<Rigidbody>().isKinematic = true;
+    {
+        if (_IsAttacking == false)
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.up * JumpHeight;
+            Var = !Var;
+            GetComponentInParent<AI>().AI_Animator.SetBool("_IsMoving", Var);
+            if (Dead == true) GetComponent<Rigidbody>().isKinematic = true;
+        }    
+    }
+    public void SetIsAttacking(bool var)
+    {
+        _IsAttacking = var;
+    }
+    public bool GetCanJump()
+    {
+        return CanJump;
     }
 }
