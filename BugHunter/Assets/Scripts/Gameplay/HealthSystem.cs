@@ -9,6 +9,7 @@ public class HealthSystem : MonoBehaviour
     public int currentHealth;
     private bool Invulnerable = false;
     public event Action<float> OnHealthPercentChanged = delegate { };
+    public event Action<int> OnTakeDamage = delegate { };
     public event Action<GameObject> OnObjectDeath = delegate { };
 
     private void OnEnable()
@@ -66,7 +67,7 @@ public class HealthSystem : MonoBehaviour
 
             float currentHealthPercent = (float)currentHealth / (float)maxHealth;
             OnHealthPercentChanged(currentHealthPercent);
-
+            OnTakeDamage(amount);
             //Check if health has fallen below zero
             if (currentHealth <= 0.0f)
             {

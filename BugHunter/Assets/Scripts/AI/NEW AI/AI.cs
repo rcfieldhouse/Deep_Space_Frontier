@@ -21,10 +21,15 @@ public abstract class AI : MonoBehaviour
     [Range(0, -50)] public int Attack_1_Damage, Attack_2_Damage;
     [Range(0, 10)] public float Attack_1_Delay, Attack_2_Delay;
     [HideInInspector] public bool CanAttack=true,HasAttacked=false,IsSecondaryAttack=false;
-    //Death Stuff
+    
+    //Death and Damage Stuff
     [Range(0.0f, 0.25f)] public float dissolveRate = 0.0125f, refreshRate = 0.02f;
     [Range(0, 8)] public int NumDrops = 0;
-
+    [Range(0,100)] public int HitStunDamageRequirement = 0;
+    [Range(0, 5)] public float HitStunTimeRequirement = 0,HitStunTime=0;
+    private float DamageTakenTime=0;
+    private int DamageTaken = 0;
+    [HideInInspector] public bool _IsHitStunned = false;
     //Navigation Stuff
     //Dante, Before you ask, Serpentine is the thing i use to make the enemy go side to side
     private Vector3 StartEvasionLocation,DistanceTravelled = Vector3.zero;
@@ -44,7 +49,7 @@ public abstract class AI : MonoBehaviour
         SkinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         Health.OnObjectDeath += HandleObjectDeath;
         Health.OnHealthPercentChanged += HandleObjectHit;
-
+        Health.OnTakeDamage += StaggerMechanic;
         if (NavAgent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
         if (MeshRenderer != null)
@@ -59,18 +64,17 @@ public abstract class AI : MonoBehaviour
     }
     public void Update()
     {
-       
+        
         bool playerInSightRange = Physics.CheckSphere(transform.position+ transform.rotation* SightRangeOffset, _SightRange, WhatIsPlayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position + transform.rotation * AttackAreaOffset, _AttackRange, WhatIsPlayer);
         bool playerInAttackRange2 = Physics.CheckSphere(transform.position + transform.rotation * _Attack2AreaOffset, _Attack2_Range, WhatIsPlayer);
         //these functions can be found in the navigation reigon
-        if (NavAgent.enabled == true)
+        if (NavAgent.enabled == true && _IsHitStunned==false)
         {
             IsSecondaryAttack = playerInAttackRange2;   
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInAttackRange && playerInSightRange) AttackPlayer(Target);
-
             //if (!playerInAttackRange) SetLunged();
         }
     }
@@ -78,6 +82,7 @@ public abstract class AI : MonoBehaviour
     {
         Health.OnObjectDeath -= HandleObjectDeath;
         Health.OnHealthPercentChanged -= HandleObjectHit;
+        Health.OnTakeDamage -= StaggerMechanic;
         //ScoreManager.instance.sChange(10); 
     }
     public void OnDrawGizmosSelected()
@@ -98,13 +103,43 @@ public abstract class AI : MonoBehaviour
     public void HandleObjectHit(float Hit)
     {
         for (int i = 0; i < transform.childCount; i++)
-        if(transform.GetChild(i).gameObject.GetComponent<VFX_ID>()!=null)
+        {
+            if (transform.GetChild(i).gameObject.GetComponent<VFX_ID>() != null)
                 transform.GetChild(i).gameObject.GetComponent<VFX_ID>().gameObject.SetActive(true);
+        }       
+    }
+    public void StaggerMechanic(int Damage)
+    {
+        if((Time.time - DamageTakenTime) < HitStunTimeRequirement)
+        {       
+            DamageTaken -= Damage;
+            if (DamageTaken >= HitStunDamageRequirement&&_IsHitStunned==false)
+                Stagger();
+        }
+        else
+        {
+            DamageTakenTime = Time.time;
+            DamageTaken = 0;
+        }      
+    }
+    public void Stagger()
+    {
+        Debug.Log("stagger");
+        NavAgent.SetDestination(transform.position);
+        _IsHitStunned = true;
+        NavAgent.enabled = false;
+        Invoke(nameof(ResetStagger), HitStunTime);
+    }
+    private void ResetStagger()
+    {
+        DamageTaken = 0;
+        DamageTakenTime = 0;
+        NavAgent.enabled = true;
+        _IsHitStunned = false;
     }
     public void HandleObjectDeath(GameObject context)
     {
         StartCoroutine(DissolveMeshEffect());
-        Debug.Log("dissolving");
     }
     IEnumerator DissolveMeshEffect()
     {

@@ -27,7 +27,7 @@ public class SlimeBounce : MonoBehaviour
     }
     private void Jump()
     {
-        if (_IsAttacking == false)
+        if (_IsAttacking == false&&GetComponentInParent<Slime>()._IsHitStunned==false)
         {
             GetComponent<Rigidbody>().velocity = Vector3.up * JumpHeight;
             Var = !Var;
