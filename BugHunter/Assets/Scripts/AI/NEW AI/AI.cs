@@ -64,7 +64,6 @@ public abstract class AI : MonoBehaviour
     }
     public void Update()
     {
-        
         bool playerInSightRange = Physics.CheckSphere(transform.position+ transform.rotation* SightRangeOffset, _SightRange, WhatIsPlayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position + transform.rotation * AttackAreaOffset, _AttackRange, WhatIsPlayer);
         bool playerInAttackRange2 = Physics.CheckSphere(transform.position + transform.rotation * _Attack2AreaOffset, _Attack2_Range, WhatIsPlayer);
@@ -119,12 +118,12 @@ public abstract class AI : MonoBehaviour
         else
         {
             DamageTakenTime = Time.time;
-            DamageTaken = 0;
+            DamageTaken = -Damage;
+            StaggerMechanic(0);
         }      
     }
     public void Stagger()
     {
-        Debug.Log("stagger");
         NavAgent.SetDestination(transform.position);
         _IsHitStunned = true;
         NavAgent.enabled = false;
