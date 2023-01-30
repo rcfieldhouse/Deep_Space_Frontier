@@ -30,7 +30,8 @@ public class ThrowableSwap : MonoBehaviour
     private IEnumerator FindDeBoi()
     {
         yield return new WaitForSeconds(0.1f);
-        GrenadeManager = GameObject.FindGameObjectWithTag("Player").GetComponent<GrenadeManager>();
+        GrenadeManager = transform.parent.parent.gameObject.GetComponentInChildren<GrenadeManager>();
+      
         DisplayNum(Selection);
     }
     private void ChooseIcon()

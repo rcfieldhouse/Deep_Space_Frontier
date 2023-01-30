@@ -8,14 +8,13 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField]
     private Image HealthBar;
     [SerializeField]
-    private GameObject HealthComponentOverride;
+    public GameObject HealthComponentOverride;
 
     [SerializeField]
     private float updateSpeedSeconds = 0.5f;
 
     private void Awake()
     {
-        HealthComponentOverride = GameObject.Find("MixamoCharacter");
         StartCoroutine(wait());
     }
 

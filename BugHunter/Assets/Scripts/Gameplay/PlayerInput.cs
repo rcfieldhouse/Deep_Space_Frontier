@@ -47,7 +47,7 @@ public class PlayerInput : MonoBehaviour
 
         // Commented temporarily unitl inventory system is implemented
         Cursor.lockState= CursorLockMode.Locked;
-        UserInterface = GameObject.Find("GUI");
+        UserInterface = GetComponent<GUIHolder>().GUI;
         WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }
 

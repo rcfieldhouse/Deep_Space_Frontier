@@ -5,6 +5,7 @@ using UnityEngine;
 public class ClassCreator : MonoBehaviour
 {
     [SerializeField] ClassType ClassSelection;
+    public GameObject ClassIcons;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,8 +20,7 @@ public class ClassCreator : MonoBehaviour
             ClassSelection = GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().GetClass();
         }
         CreateClass(gameObject);
-        if (GameObject.Find("PickupPrompt")!=null)
-        GameObject.Find("PickupPrompt").SetActive(false);
+       GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
     }
     // Update is called once per frame
     public void CreateClass(GameObject Player)

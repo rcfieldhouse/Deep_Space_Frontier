@@ -10,7 +10,7 @@ public class ZoomIn : MonoBehaviour
     [SerializeField]  private VolumeProfile volumeProfile;
     private DepthOfField _DepthOfField;
     private int choice=0;
-
+  
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class ZoomIn : MonoBehaviour
     }
     public void HandleAim(bool isAiming)
     {
-        if (isAiming && choice == 0 && GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().WeaponArray[0].name == "Sniper")
+        if (isAiming && choice == 0 && GetComponent<WeaponSwap>().WeaponArray[0].name == "Sniper")
         {
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);

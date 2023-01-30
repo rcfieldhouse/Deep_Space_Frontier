@@ -4,23 +4,16 @@ using UnityEngine;
 
 public class CannonPickup : MonoBehaviour
 {
-    private GameObject Prompt,icon,reticle;
+    private GameObject icon,reticle;
     private GameObject RelicCannon,RelicCannonInstance,Player;
     private bool _InRange = false;
     // Start is called before the first frame update
     void Awake()
     {
-        Prompt = GameObject.Find("PickupPrompt");
-        PlayerInput.Interact += Pickup;
-        StartCoroutine(Wait());
-    }
-    private IEnumerator Wait()
-    {
-        //timing it so it works 
 
-        yield return new WaitForEndOfFrame();
-        Prompt.SetActive(false);
+        PlayerInput.Interact += Pickup;
     }
+
     private void Pickup()
     {
         if (_InRange==true)
@@ -40,7 +33,8 @@ public class CannonPickup : MonoBehaviour
             GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().RecticleArray.Add(reticle);
 
             GameObject.Find("Ammo Counter").GetComponent<AmmoChangeUI>().magazineSize.Add(RelicCannonInstance.GetComponent<WeaponInfo>());
-            Prompt.SetActive(false);
+
+            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
 
             RelicCannonInstance.transform.localPosition = new Vector3(0.3f, -0.25f, 0.667f);
             RelicCannonInstance.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
@@ -56,7 +50,8 @@ public class CannonPickup : MonoBehaviour
         {
             Player = other.gameObject;
             _InRange = true;
-            Prompt.SetActive(true);
+            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
+            
         }
       
     }
@@ -64,9 +59,10 @@ public class CannonPickup : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             Player = null;
             _InRange = false;
-            Prompt.SetActive(false);
+            
         }
     }
 }

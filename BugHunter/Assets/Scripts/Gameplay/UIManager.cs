@@ -11,8 +11,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        GameplayUI = GameObject.Find("GUI").GetComponent<Canvas>();
-        WeaponHolder = GameObject.Find("WeaponHolder");
+        GameplayUI = transform.parent.GetComponentInChildren<GUIHolder>().GUI.GetComponent<Canvas>();
+        PauseMenuUI = transform.parent.GetComponentInChildren<GUIHolder>().PauseUI.GetComponent<Canvas>();
         PlayerInput.PausePlugin += PauseMenuEnabled;
     }
     private void OnDestroy()

@@ -12,7 +12,7 @@ public abstract class NPC : MonoBehaviour
     private void Awake()
     {
         UI_Active = false;
-        Prompt = GameObject.Find("PickupPrompt");
+        
         PlayerInput.Interact += ToggleVendor;
         PlayerInput.PausePlugin += UnlockPlayerInputs;
         PlayerInput.PausePlugin += CloseVendor;
@@ -27,10 +27,7 @@ public abstract class NPC : MonoBehaviour
     {
         return Player;
     }
-    public GameObject GetPrompt()
-    {
-        return Prompt;
-    }
+  
 
     public abstract void VendorUI();
     public abstract void VendorAction();
@@ -66,7 +63,7 @@ public abstract class NPC : MonoBehaviour
     private IEnumerator wait()
     {
         yield return new WaitForEndOfFrame();
-        GameObject.Find("UI Manager").GetComponent<UIManager>().ResumeGame();
+        GetPlayer().transform.parent.GetComponentInChildren<UIManager>().ResumeGame();
     }
     public abstract string Name { get; }
 
@@ -108,7 +105,7 @@ public class Merchant : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPrompt().SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
@@ -118,7 +115,7 @@ public class Merchant : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPrompt().SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             UI_Active = false;
             ToggleVendorUI(false);
         }
@@ -142,7 +139,7 @@ public class Healer : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPrompt().SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
@@ -152,7 +149,7 @@ public class Healer : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPrompt().SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             UI_Active = false;
             ToggleVendorUI(false);
         }
@@ -174,7 +171,7 @@ public class Blacksmith : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPrompt().SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
@@ -184,7 +181,7 @@ public class Blacksmith : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPrompt().SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             UI_Active = false;
             ToggleVendorUI(false);
         }
@@ -207,7 +204,7 @@ public class Scribe : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPrompt().SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
@@ -217,7 +214,7 @@ public class Scribe : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPrompt().SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             UI_Active = false;
             ToggleVendorUI(false);
         }
