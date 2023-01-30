@@ -24,15 +24,16 @@ public class CannonPickup : MonoBehaviour
             RelicCannonInstance.transform.SetParent(Player.transform.parent.GetComponentInChildren<WeaponSwap>().gameObject.transform);
             Player.transform.parent.GetComponentInChildren<WeaponSwap>().WeaponArray.Add(RelicCannonInstance);
 
-             icon = GameObject.Find("GunIcons").transform.GetChild(3).gameObject;
+             icon = Player.GetComponent<GUIHolder>().GUI.GetComponentInChildren<GunIconUI>().transform.GetChild(3).gameObject;
 
-             GameObject.Find("GunIcons").GetComponent<GunIconUI>().Icons.Add(icon);
+            Player.GetComponent<GUIHolder>().GUI.GetComponentInChildren<GunIconUI>().Icons.Add(icon);
 
+           
+            reticle = Player.GetComponent<GUIHolder>().GUI.GetComponentInChildren<CrosshairsHolder>().transform.GetChild(5).gameObject;
+            Player.transform.parent.GetChild(1).GetComponentInChildren<WeaponSwap>().RecticleArray.Add(reticle);
+          
 
-            reticle = GameObject.Find("Crosshairs").transform.GetChild(5).gameObject;
-            GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().RecticleArray.Add(reticle);
-
-            GameObject.Find("Ammo Counter").GetComponent<AmmoChangeUI>().magazineSize.Add(RelicCannonInstance.GetComponent<WeaponInfo>());
+            Player.GetComponent<GUIHolder>().GUI.GetComponentInChildren<AmmoChangeUI>().magazineSize.Add(RelicCannonInstance.GetComponent<WeaponInfo>());
 
             Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
 

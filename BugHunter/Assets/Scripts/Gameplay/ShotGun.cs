@@ -22,8 +22,11 @@ public class ShotGun : MonoBehaviour
     private Vector3 AimSpread = new Vector3(0.0f, 0.0f, 0.0f);
     [SerializeField] private float maxShotGunSpread = 5.0f;
     public WeaponInfo info;
+    private GameObject HitMarkers;
     void Awake()
     {
+
+        HitMarkers = transform.parent.parent.parent.parent.GetComponentInChildren<GUIHolder>().HitMarkers;
         info = GetComponent<WeaponInfo>();
         // Get and store a reference to our LineRenderer component
         laserLine = GetComponent<LineRenderer>();
@@ -34,15 +37,7 @@ public class ShotGun : MonoBehaviour
       
 
         PlayerInput.Shoot += Shoot;
-        // Get and store a reference to our Camera by searching this GameObject and its parents
-        //fpsCam = GetComponentInParent<Camera>();
-        //  if (m_IsShotgun == true) { 
-        //  for (int i = 0; i < 7; i++)
-        //  {
-        //
-        //      ShotgunLines[i] = gameObject.GetComponent<LineRenderer>();
-        //  }
-        //  }
+
     }
     private void OnDestroy()
     {
@@ -192,9 +187,6 @@ public class ShotGun : MonoBehaviour
                         health = hit.collider.GetComponent<HealthSystem>();
                     }
 
-
-
-
                     // If there was a health script attached
                     if (health != null)
                     {
@@ -230,16 +222,11 @@ public class ShotGun : MonoBehaviour
     private IEnumerator HitMarkerEffect(int HitType)
     {
         //Hit type 0 is normal Hit Type 1 is Crit
-        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(true);
+        HitMarkers.transform.GetChild(HitType).gameObject.SetActive(true);
         yield return shotDuration;
-        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(false);
+        HitMarkers.transform.GetChild(HitType).gameObject.SetActive(false);
     }
-    // public bool CanShoot()
-    // {
-    //    if (Time.time > nextFire)
-    //         return true;
-    //      else return false;
-    // }
+
     private IEnumerator ShotEffect()
     {
        

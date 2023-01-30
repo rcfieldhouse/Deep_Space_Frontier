@@ -10,6 +10,7 @@ public class PreviewThrow : MonoBehaviour
     private Vector3 LaunchPoint;
     private Vector3 ThrowForce = (Vector3.forward * 25 + Vector3.up * 5);
     // Start is called before the first frame update
+    GameObject WeaponHolder, CameraManager;
     void Awake()
     {
    
@@ -23,8 +24,8 @@ public class PreviewThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Direction = GameObject.Find("WeaponHolder").transform.rotation;
-        LaunchPoint= (GameObject.Find("CameraManager").transform.position + Direction * new Vector3(0.0f, 1.75f, 0.0f)) - new Vector3(0.0f, 0.5f, 0.0f);
+        Direction = transform.parent.GetComponentInChildren<WeaponSwap>().transform.rotation;
+        LaunchPoint= (transform.parent.GetChild(1).position + Direction * new Vector3(0.0f, 1.75f, 0.0f)) - new Vector3(0.0f, 0.5f, 0.0f);
         if (_IsCooking == true)
         {
             PreviewLine.SetPosition(0, LaunchPoint);

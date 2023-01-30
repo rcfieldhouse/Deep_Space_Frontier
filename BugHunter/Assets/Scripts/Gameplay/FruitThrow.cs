@@ -14,8 +14,8 @@ public class FruitThrow : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Rigidbody = GetComponent<Rigidbody>(); 
-        player = GameObject.Find("MixamoCharacter");
+        Rigidbody = GetComponent<Rigidbody>();
+        player = transform.parent.gameObject;
         Rigidbody.isKinematic = true; 
     }
 

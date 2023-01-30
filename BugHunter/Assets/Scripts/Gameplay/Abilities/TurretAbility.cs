@@ -18,7 +18,7 @@ public class TurretAbility : MonoBehaviour
         PlayerInput.Undo += ClearTurrets;
 
         TurretPrefab = Resources.Load<GameObject>("Turret");
-        Cam = GameObject.Find("MainCamera").GetComponent<Camera>();
+        Cam = transform.parent.GetChild(1).GetChild(3).GetComponent<Camera>();
         StartCoroutine(Wait());
     }
     private IEnumerator Wait()

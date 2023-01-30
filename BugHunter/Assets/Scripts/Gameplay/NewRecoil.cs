@@ -43,7 +43,7 @@ public class NewRecoil : MonoBehaviour
         WeaponSwap.BroadCastADSRecoil += SetAdsRecoil;
         WeaponSwap.BroadCastHipRecoil += SetHipRecoil;
         WeaponSwap.BroadcastSnap += SetSnap;
-        Player = GameObject.Find("MixamoCharacter");
+        Player = transform.parent.parent.GetChild(0).gameObject; 
     }
     private void OnDestroy()
     {
@@ -99,8 +99,7 @@ public class NewRecoil : MonoBehaviour
        
         Player.GetComponent<PlayerInput>().MouseInput.y += -AimCorrection * returnSpeed* Time.deltaTime;
         AimCorrection = Mathf.Lerp(AimCorrection, 0.0f, returnSpeed * Time.deltaTime);
-       // Debug.Log(baseAim);
-       // Debug.Log("AimCorrection "+AimCorrection + " Current Rotation "+targetRotation.x+" Mouse y " + GameObject.Find("CameraManager").GetComponent<Transform>().rotation.eulerAngles.x);
+     
     }
 
     public void RecoilStart()
@@ -109,13 +108,13 @@ public class NewRecoil : MonoBehaviour
         if (RecoilStartPossible==true)
         {
             RecoilStartPossible = false;
-                    baseAim = GameObject.Find("CameraManager"). GetComponent<Transform>().rotation.eulerAngles.x;
+            baseAim = transform.parent.GetComponent<Transform>().rotation.eulerAngles.x;
             if (baseAim > 90)
                 baseAim = baseAim - 360.0f;
         }
         if (targetRotation != Vector3.zero)
         {
-            num = GameObject.Find("CameraManager").GetComponent<Transform>().rotation.eulerAngles.x;
+            num = transform.parent.GetComponent<Transform>().rotation.eulerAngles.x;
             if (num > 90)
                 num = num - 360.0f;
             AimCorrection = baseAim - num;

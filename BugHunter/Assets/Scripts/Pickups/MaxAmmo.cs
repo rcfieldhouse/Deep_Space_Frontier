@@ -8,7 +8,8 @@ public class MaxAmmo : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameObject obj = GameObject.Find("WeaponHolder");
+
+            GameObject obj = collision.transform.parent.GetChild(1).GetComponentInChildren<WeaponSwap>().gameObject;
             for (int i = 0; i < obj.transform.childCount; i++)
             {
                 obj.transform.GetChild(i).gameObject.GetComponent<WeaponInfo>().SetReserveAmmo(obj.transform.GetChild(i).gameObject.GetComponent<WeaponInfo>().GetMaxBullets());

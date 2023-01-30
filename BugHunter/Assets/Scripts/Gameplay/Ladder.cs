@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour
 {
-    public GameObject Prompt,Player;
+    public GameObject Player;
     public bool _IsInTrigger = false;
     private void Awake()
     {
         PlayerInput.Interact += UseLadder;
-        Prompt = GameObject.Find("PickupPrompt");
     }
     private void OnDestroy()
     {
@@ -28,9 +27,10 @@ public class Ladder : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Prompt.SetActive(true);
+            
             _IsInTrigger = true;
             Player = other.gameObject;
+            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -38,11 +38,11 @@ public class Ladder : MonoBehaviour
         if (other.tag == "Player")
         {
             _IsInTrigger = false;
-            Prompt.SetActive(false);
+            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             Player.GetComponent<CharacterController>().SetIfOnLadder(false);
             Player = null;
         }
-        Prompt.SetActive(false);
+       
     }
     private void UseLadder()
     {
@@ -52,16 +52,15 @@ public class Ladder : MonoBehaviour
         {
             //get off the ladder function
             _IsInTrigger = false;
-            Prompt.SetActive(false);
-            Player.GetComponent<CharacterController>().SetIfOnLadder(false);
+                Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+                Player.GetComponent<CharacterController>().SetIfOnLadder(false);
             Player = null;
         }
         if (_IsInTrigger == true)
         {
-            Prompt.SetActive(false);
-            Player.GetComponent<CharacterController>().SetIfOnLadder(true);
+                Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+                Player.GetComponent<CharacterController>().SetIfOnLadder(true);
         }
-            Prompt.SetActive(false);
         }
     }
 }

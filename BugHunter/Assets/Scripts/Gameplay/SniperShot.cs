@@ -22,11 +22,12 @@ public class SniperShot : MonoBehaviour
     public WeaponInfo info;
     public SpecialBulletSelect CurrentBullet;
     public bool _IsSniper = false;
-    public GameObject HitMarker;
+    private GameObject HitMarkers;
 
     private GameObject Target;
     void Awake()
     {
+        HitMarkers = transform.parent.parent.parent.parent.GetComponentInChildren<GUIHolder>().HitMarkers;
         info = GetComponentInParent<WeaponInfo>();
         // Get and store a reference to our LineRenderer component
         laserLine = GetComponent<LineRenderer>();
@@ -71,7 +72,7 @@ public class SniperShot : MonoBehaviour
     private void OnEnable()
     {
         if(_IsSniper==true)
-        CurrentBullet = GameObject.Find("MixamoCharacter").GetComponent<SpecialBulletSelect>();
+        CurrentBullet = transform.parent.parent.parent.parent.GetComponentInChildren<SpecialBulletSelect>();
     }
 
     void Shoot()
@@ -165,11 +166,11 @@ public class SniperShot : MonoBehaviour
     private IEnumerator HitMarkerEffect(int HitType)
     {
         //Hit type 0 is normal Hit Type 1 is Crit
-        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(true);
+        HitMarkers.transform.GetChild(HitType).gameObject.SetActive(true);
         yield return shotDuration;
-        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(false);
+        HitMarkers.transform.GetChild(HitType).gameObject.SetActive(false);
     }
-  
+
     private IEnumerator ShotEffect()
     {
         // Play the shooting sound effect

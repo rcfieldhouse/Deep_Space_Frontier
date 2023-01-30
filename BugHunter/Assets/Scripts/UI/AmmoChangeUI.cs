@@ -18,7 +18,7 @@ public class AmmoChangeUI : MonoBehaviour
         ammoCount = GetComponent<TextMeshProUGUI>();
         for (int i = 0; i < magazineSize.Count; i++)
         {
-            magazineSize[i] = GameObject.Find("WeaponHolder").GetComponent<WeaponSwap>().WeaponArray[i].GetComponent<WeaponInfo>();
+            magazineSize[i] = transform.parent.parent.GetComponentInChildren<WeaponSwap>().WeaponArray[i].GetComponent<WeaponInfo>();
         }
     }
     private void SelectWeapon(int choice)

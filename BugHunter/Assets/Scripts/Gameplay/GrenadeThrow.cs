@@ -28,7 +28,7 @@ public class GrenadeThrow : MonoBehaviour
        // _startValues.transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
         Rigidbody = GetComponent<Rigidbody>();
 
-        player = GameObject.Find("MixamoCharacter");
+        player = transform.parent.gameObject;
         sphereCollider = GetComponent<SphereCollider>();
         Rigidbody.isKinematic = true;
         GrenadeRenderer = GetComponent<MeshRenderer>();

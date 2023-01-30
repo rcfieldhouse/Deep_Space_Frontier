@@ -19,6 +19,7 @@ public class FullAutoGun : MonoBehaviour
     // Reference to the LineRenderer component which will display our laserline
     private ParticleSystem muzzleFlash;
     private float nextFire;
+    private GameObject HitMarkers;
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,8 +29,8 @@ public class FullAutoGun : MonoBehaviour
 
         // Get and store a reference to our AudioSource component
 
+        HitMarkers = transform.parent.parent.parent.parent.GetComponentInChildren<GUIHolder>().HitMarkers;
 
-        
         //observers
         PlayerInput.Shoot += Shoot;
         PlayerInput.Shoot += SetShootingTrue;
@@ -159,9 +160,9 @@ public class FullAutoGun : MonoBehaviour
     private IEnumerator HitMarkerEffect(int HitType)
     {
         //Hit type 0 is normal Hit Type 1 is Crit
-        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(true);
+        HitMarkers.transform.GetChild(HitType).gameObject.SetActive(true);
         yield return shotDuration;
-        GameObject.Find("Hitmarkers").transform.GetChild(HitType).gameObject.SetActive(false);
+        HitMarkers.transform.GetChild(HitType).gameObject.SetActive(false);
     }
     private IEnumerator ShotEffect()
     {
