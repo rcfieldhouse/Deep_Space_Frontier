@@ -77,8 +77,8 @@ public class ShotGun : MonoBehaviour
     }
     void Shoot()
     {
+        //play Dante.sound.ogg shotgun sound effect
 
-       
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
         if ( Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy == true && info.GetCanShoot() == true)
         {
@@ -114,7 +114,7 @@ public class ShotGun : MonoBehaviour
 
             if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
             {
-                StartCoroutine(HitMarkerEffect(0));
+            
                 // Set the end position for our laser line 
                 laserLine.SetPosition(1, hit.point);
 
@@ -136,6 +136,7 @@ public class ShotGun : MonoBehaviour
 
                 if (hit.collider.isTrigger && health != null)
                 {
+                    StartCoroutine(HitMarkerEffect(1));
                     //can be swapped to adaptable crit modifier
                     health.ModifyHealth(gunDamage*2);
                 }
@@ -143,6 +144,7 @@ public class ShotGun : MonoBehaviour
                 // If there was a health script attached
                 else if (health != null)
                 {
+                    StartCoroutine(HitMarkerEffect(0));
                     // Call the damage function of that script, passing in our gunDamage variable
                     health.ModifyHealth(gunDamage);
                 }
@@ -240,6 +242,7 @@ public class ShotGun : MonoBehaviour
     // }
     private IEnumerator ShotEffect()
     {
+       
         // Play the shooting sound effect
         //SoundManager.instance.PlaySound(gunAudio);
 

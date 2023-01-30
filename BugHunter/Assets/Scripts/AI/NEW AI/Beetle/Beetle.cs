@@ -25,6 +25,7 @@ public class Beetle : AI
         {
             if (CanAttack == true && HasAttacked == false)
             {
+                //play Dante.sound.ogg Zephry ranged attack
                 transform.LookAt(Target.transform);
                 Transform TheBug = GetComponentInChildren<MeshRenderer>().gameObject.transform;
                 Rigidbody rb = Instantiate(Projectile, TheBug.position, Quaternion.identity).GetComponent<Rigidbody>();
@@ -47,6 +48,7 @@ public class Beetle : AI
     {
         if (CanAttack == true && HasAttacked == false)
         {
+            //play Dante.sound.ogg zephyr melee attack
             NavAgent.SetDestination(transform.position+((transform.position- Target.transform.position).normalized * WalkPointRange));
             Target.GetComponent<HealthSystem>().ModifyHealth(Attack_2_Damage);
             HasAttacked = true;

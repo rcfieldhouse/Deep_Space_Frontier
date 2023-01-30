@@ -15,6 +15,7 @@ public class DreadBomber : AI
                 SecondaryAttack(MeshLocation);
             else
             {
+                //play Dante.sound.ogg dread bomber basic shoot attack
                 transform.LookAt(Target.transform);
               
                 Rigidbody rb = Instantiate(Projectile, MeshLocation.position, Quaternion.identity).GetComponent<Rigidbody>();
@@ -34,6 +35,7 @@ public class DreadBomber : AI
     }
     public void SecondaryAttack(Transform MeshTransform)
     {
+        //play Dante.sound.ogg slime spawn
         NumDropped++;
         HasAttacked = true;
         CanAttack = false;

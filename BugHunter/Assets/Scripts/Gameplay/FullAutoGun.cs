@@ -71,6 +71,7 @@ public class FullAutoGun : MonoBehaviour
     {
         if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy==true&& info.GetCanShoot() == true)
         {
+            //play Dante.sound.ogg full auto effect
             info.SetBulletCount();
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;

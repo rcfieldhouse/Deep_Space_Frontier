@@ -10,7 +10,7 @@ public class Slime : AI
         if (CanAttack == true && HasAttacked == false)
         {
             if (GetComponentInChildren<SlimeBounce>().GetCanJump() == true)
-            {
+            {     //play Dante.sound.ogg slime attack
                 GetComponentInChildren<SlimeBounce>().SetIsAttacking(true);
                 AI_Animator.SetBool("_IsAttacking", true);
                 Target.GetComponent<HealthSystem>().ModifyHealth(Attack_1_Damage);

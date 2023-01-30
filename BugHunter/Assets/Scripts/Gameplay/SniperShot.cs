@@ -81,6 +81,7 @@ public class SniperShot : MonoBehaviour
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
         if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy == true && info.GetIsReloading() == false)
         {
+            //play Dante.sound.ogg sniper effect
             info.SetCanShoot(false);
             GetComponent<WeaponInfo>().SetCanShoot(false);
             info.SetBulletCount();

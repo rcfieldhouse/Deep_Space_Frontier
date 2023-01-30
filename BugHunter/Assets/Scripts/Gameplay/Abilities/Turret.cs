@@ -54,7 +54,7 @@ public class Turret : MonoBehaviour
     public void Shoot()
     {
         RaycastHit hit;
-
+        //play Dante.sound.ogg turret effect
         if (Physics.Raycast(BulletEmitter.position, transform.GetChild(0).forward, out hit, 20.0f))
         {
             if (isActiveAndEnabled  == true&&_CanShoot==true)

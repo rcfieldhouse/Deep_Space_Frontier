@@ -214,6 +214,7 @@ public abstract class AI : MonoBehaviour
 
     public void Patroling()
     {
+        //play Dante.sound.ogg AI idle
         if (!WalkPointSet)
             SearchWalkPoint();
 

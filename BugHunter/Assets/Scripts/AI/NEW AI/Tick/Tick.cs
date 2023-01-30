@@ -8,6 +8,7 @@ public class Tick : AI
     [Range(0,-10)]public int Damage = -5;  
     public override void AttackPlayer(GameObject Target)
     {
+        //play Dante.sound.ogg tick attack
         Debug.Log("Attack"+Target.name);
         if (Target.GetComponent<Venom>() == null)
             Target.AddComponent<Venom>().InitAttack(DamageTime,DamageInterval,Damage);
