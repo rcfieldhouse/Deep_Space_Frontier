@@ -8,7 +8,6 @@ public class RelicCannon : MonoBehaviour
     public GameObject bulletOfDoom;
     public Transform bulletEmitter;
     [SerializeField] float shotStrength=20;
-    [SerializeField] private bool isReady = true;
     public WeaponInfo info;
     // Start is called before the first frame update
     void Awake()

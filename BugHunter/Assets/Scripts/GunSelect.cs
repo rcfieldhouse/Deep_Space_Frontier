@@ -37,8 +37,7 @@ public class GunSelect : MonoBehaviour
                 Destroy(weaponSwap.WeaponArray[i].gameObject);
                 weaponSwap.RecticleArray[i].gameObject.SetActive(false);
             }
-           //if (GameObject.Find("Crosshairs").transform.GetChild(i))
-           //GameObject.Find("Crosshairs").transform.GetChild(i).gameObject.SetActive(false);
+          
         }
 
 

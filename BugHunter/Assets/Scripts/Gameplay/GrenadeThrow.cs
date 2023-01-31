@@ -14,7 +14,6 @@ public class GrenadeThrow : MonoBehaviour
     private WaitForSeconds BoomTimer = new WaitForSeconds(0.25f);
     private WaitForSeconds GrenadeResetTimer = new WaitForSeconds(5.0f);
     [SerializeField] int GrenadeDamage = 100;
-     private Transform _startValues;
     //Grenade VFX Variables
     public GameObject GrenadeVFX;
     //private GameObject EffectToSpawn;
@@ -35,10 +34,7 @@ public class GrenadeThrow : MonoBehaviour
     }
 
 
-    public Transform GetStartPos()
-    {
-        return _startValues;
-    }
+ 
     public bool GetIsReady()
     {
         return _isReady;

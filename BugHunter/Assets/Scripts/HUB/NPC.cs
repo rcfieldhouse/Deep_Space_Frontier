@@ -6,7 +6,7 @@ public abstract class NPC : MonoBehaviour
 {
     //using abstract class so that all vendors can derrive from this
     //also doing all of the like behaviours in the abstract so that they do not to be written twice
-    private GameObject Prompt,Player;
+    private GameObject Player;
     public bool UI_Active;
     public static Action<String,bool> SelectUI; 
     private void Awake()
@@ -73,15 +73,16 @@ public abstract class NPC : MonoBehaviour
         {
             Debug.Log(Name);
             Player = other.transform.parent.gameObject;
-            Prompt.SetActive(true);
+            Player.GetComponent<GUIHolder>().GUI.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
+            Player.GetComponent<GUIHolder>().GUI.SetActive(false);
             Player = null;
-            Prompt.SetActive(false);
+            
         }
     }
 }

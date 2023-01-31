@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class Slime : AI
 {
+  
     // Start is called before the first frame update
     public override void AttackPlayer(GameObject Target)
     {
+        GetComponentInChildren<SlimeBounce>().SetIsAttacking(true);
+        NavAgent.SetDestination(transform.position);
         if (CanAttack == true && HasAttacked == false)
         {
             if (GetComponentInChildren<SlimeBounce>().GetCanJump() == true)
             {     //play Dante.sound.ogg slime attack
-                GetComponentInChildren<SlimeBounce>().SetIsAttacking(true);
+              
+               
                 AI_Animator.SetBool("_IsAttacking", true);
                 Target.GetComponent<HealthSystem>().ModifyHealth(Attack_1_Damage);
                 HasAttacked = true;
                 CanAttack = false;
-            }
-      
+            }      
         }
         if (HasAttacked==true)
         {

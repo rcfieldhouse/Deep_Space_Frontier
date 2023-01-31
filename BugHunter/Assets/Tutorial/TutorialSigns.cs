@@ -43,6 +43,6 @@ public class TutorialSigns : MonoBehaviour
     private IEnumerator wait(){
 
         yield return new WaitForEndOfFrame();
-           GameObject.Find("UI Manager").GetComponent<UIManager>().ResumeGame();
+         transform.parent.parent.GetComponentInChildren<UIManager>().ResumeGame();
     }
 }
