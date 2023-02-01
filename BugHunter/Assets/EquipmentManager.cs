@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
-    [SerializeField]
-    public IEquip currentEquip;
+    
+    private Equipment currentEquip;
 
-   
+    SlimeArmor slime_armor = new SlimeArmor();
+    BomberArmor jump_Armor = new BomberArmor();
+    TorterraArmor torterra_Armor = new TorterraArmor();
+    WormArmor worm_Armor = new WormArmor();
 
-    private void Awake()
+    public bool ValidateEquip(Equipment equip)
     {
-        SlimeArmor armor = new SlimeArmor();
-        ChangeEquip(armor);
+        return equip.isEquippable;
     }
 
-    public void ChangeEquip(IEquip newEquip)
+    private void Awake()
+    {   
+        //temporary for testing
+        ChangeEquip(currentEquip);
+    }
+
+    public void ChangeEquip(Equipment newEquip)
     {
         Debug.Log("I have equipped");
+
+        if(ValidateEquip(newEquip))
         if (currentEquip != null)
         {
             currentEquip.Exit(transform.gameObject);

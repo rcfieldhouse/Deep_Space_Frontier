@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IEquip
 {
+
     //Called Upon Equip
     public void Enter(GameObject requester);
 
@@ -20,6 +21,7 @@ public enum EquipType { ARMOR, GUNS, AUGMENTS }
 public class Equipment : Item, IEquip
 {
     public EquipType equipType;
+    public bool isEquippable = true;
 
     virtual public void Enter(GameObject requester)
     {
@@ -73,7 +75,7 @@ public class SlimeArmor : Equipment
     }
 }
 
-public class JumpArmor : Equipment
+public class BomberArmor : Equipment
 {
     public EquipType Equip = EquipType.ARMOR;
 
@@ -96,5 +98,39 @@ public class JumpArmor : Equipment
     {
         damageAmount -= 10;
             return base.Execute(requester, damageAmount);      
+    }
+}
+public class TorterraArmor : Equipment
+{
+    public EquipType Equip = EquipType.ARMOR;
+
+    public override void Enter(GameObject requester)
+    {
+
+    }
+    public override int Execute(GameObject requester, int damageAmount)
+    {       
+            return base.Execute(requester, damageAmount);
+    }
+    public override void Exit(GameObject requester)
+    {
+
+    }
+}
+public class WormArmor : Equipment
+{
+    public EquipType Equip = EquipType.ARMOR;
+
+    public override void Enter(GameObject requester)
+    {
+
+    }
+    public override int Execute(GameObject requester, int damageAmount)
+    {
+        return base.Execute(requester, damageAmount);
+    }
+    public override void Exit(GameObject requester)
+    {
+
     }
 }
