@@ -5,16 +5,18 @@ public class DreadBomber : AI
     public GameObject Projectile,Orb;
     private int NumDropped = 0;
     [Range(0, 20)] public float ProjectileSpeed = 10;
+    private bool AlternateAttacks = false;
     // Start is called before the first frame update
     public override void AttackPlayer(GameObject Target)
     {
         if (CanAttack == true && HasAttacked == false)
         {
             Transform MeshLocation = GetComponentInChildren<SkinnedMeshRenderer>().gameObject.transform;
-            if (IsSecondaryAttack&&NumDropped<3)
+            if (IsSecondaryAttack&&NumDropped<3&&AlternateAttacks==true)
                 SecondaryAttack(MeshLocation);
             else
             {
+                AlternateAttacks = true;
                 //play Dante.sound.ogg dread bomber basic shoot attack
                 transform.LookAt(Target.transform);
                 AI_Animator.SetBool("_IsAttacking", true);
@@ -36,6 +38,7 @@ public class DreadBomber : AI
     }
     public void SecondaryAttack(Transform MeshTransform)
     {
+        AlternateAttacks = false;
         //play Dante.sound.ogg slime spawn
         NumDropped++;
         HasAttacked = true;
