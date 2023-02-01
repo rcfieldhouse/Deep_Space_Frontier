@@ -49,16 +49,23 @@ public class HealthSystem : MonoBehaviour
     {
         EquipmentManager equipment = transform.GetComponent<EquipmentManager>();
 
-        return equipment.ExecuteEquip(transform.gameObject, amount);
+        return equipment.ExecuteEquip(gameObject, amount);
         //Get a reference to the player's Specific Equipment Manager
-
     }
 
+
+    /// <summary>
+    ///TODO: Rework summary of the ModifyHEalth
+    ///to take in the requester in all of its referenced functions
+    /// </summary>
+    /// <param name="amount"></param>
+    
     public void ModifyHealth(int amount)
     {
         
-        if (Invulnerable == false&&currentHealth>=0) {
-            //  amount = HandleDamageModifiers(amount);
+        if (Invulnerable == false && currentHealth>=0) {
+
+            amount = HandleDamageModifiers(amount);
             //play Dante.sound.ogg all things to do with health 
             //could in theroy just use a statement if being damaged or healed 
             currentHealth += amount;

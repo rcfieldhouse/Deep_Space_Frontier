@@ -4,13 +4,13 @@ using UnityEngine;
 
 public interface IEquip
 {
-    //CalledUpon Equip
+    //Called Upon Equip
     public void Enter(GameObject requester);
 
     //Called upon Damage Calculation
     public int Execute(GameObject requester, int damageAmount);
 
-    //CalledUpon Unequip
+    //Called Upon Unequip
     public void Exit(GameObject requester);
 
 }
@@ -45,19 +45,31 @@ public class Equipment : Item, IEquip
 public class SlimeArmor : Equipment
 {
     public EquipType Equip = EquipType.ARMOR;
+
+   public override void Enter(GameObject requester)
+    {
+
+    }
+
     public override int Execute(GameObject requester, int damageAmount)
     {
+        //Debug.Log("Damage is NOT being done");
+        //damageAmount = 0;
         //Decrease Damage From Slimes by 20%
+
         if (requester.GetComponent<Slime>() != null)
         {
-            damageAmount = (damageAmount / 100) * 20;
-            return damageAmount;
+            // damageAmount = (damageAmount / 100) * 80;
         }
         else
         {
             return base.Execute(requester, damageAmount);
         }
-            
+        return damageAmount;
+    }
+    public override void Exit(GameObject requester)
+    {
+       
     }
 }
 
