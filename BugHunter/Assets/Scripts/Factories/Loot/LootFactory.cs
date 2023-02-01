@@ -7,7 +7,7 @@ using UnityEngine;
 
 internal enum LootType
 {
-    Health, Ammo, UpgradeMats
+    Health, Ammo, Grenade
 }
 internal class LootFactory 
 {
@@ -21,7 +21,7 @@ internal class LootFactory
         case LootType.Ammo:
                 Loot = new AmmoLoot ();
                 break;
-        case LootType.UpgradeMats:
+        case LootType.Grenade:
                 Loot = new UpgradeLoot ();
                 break;
 

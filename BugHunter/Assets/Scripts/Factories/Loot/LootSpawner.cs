@@ -25,18 +25,18 @@ public class LootSpawner : MonoBehaviour
     {
         int x = 1;
         num = Random.Range(0.0f, 100.0f);
-        LFInterface loot= LootFactory.CreateLoot(LootType.Ammo); 
+        LFInterface loot= LootFactory.CreateLoot(LootType.Grenade); 
 
-        if (num < 33.3f)
+        if (num < 40.0f)
         {
             x = 0;
             loot = LootFactory.CreateLoot(LootType.Health);
         }
             
-        else if (num > 66.7f)
+        else if (num >60.0f)
         {
             x = 2;
-            loot = LootFactory.CreateLoot(LootType.UpgradeMats);
+            loot = LootFactory.CreateLoot(LootType.Ammo);
         }
             
 
@@ -47,6 +47,7 @@ public class LootSpawner : MonoBehaviour
         
         
         Drop=Instantiate(Prefabs[num], transform.position, Quaternion.identity);
+       
         foo.Create(Drop);
         Rigidbody rb = Drop.GetComponent<Rigidbody>();
         float x = Random.Range(-1.0f, 1.0f);

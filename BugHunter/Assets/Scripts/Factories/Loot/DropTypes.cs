@@ -21,7 +21,7 @@ internal class UpgradeLoot : LFInterface
 {
     public void Create(GameObject obj)
     {
-        obj.AddComponent<MaterialPickup>();
-        obj.GetComponent<Renderer>().materials[0].color = Color.green;
+      //obj.AddComponent<MaterialPickup>();
+      //obj.GetComponent<Renderer>().materials[0].color = Color.green;
     }
 }
