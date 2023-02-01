@@ -27,8 +27,8 @@ public class Epickup : MonoBehaviour
         {
 
            Player.GetComponent<GrenadeManager>().SetHasFruit(true,gameObject.transform);
-            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
-            this.gameObject.SetActive(false);
+           Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+           this.gameObject.SetActive(false);
         }    
     }
     public void ResetFruit()

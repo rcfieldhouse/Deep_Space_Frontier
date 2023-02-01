@@ -6,13 +6,15 @@ public abstract class NPC : MonoBehaviour
 {
     //using abstract class so that all vendors can derrive from this
     //also doing all of the like behaviours in the abstract so that they do not to be written twice
-    private GameObject Player;
+    public GameObject Player;
     public bool UI_Active;
     public static Action<String,bool> SelectUI; 
     private void Awake()
     {
         UI_Active = false;
-        
+
+        //temp solution until we have more players
+        Player = FindObjectOfType<PlayerInput>().gameObject;
         PlayerInput.Interact += ToggleVendor;
         PlayerInput.PausePlugin += UnlockPlayerInputs;
         PlayerInput.PausePlugin += CloseVendor;
@@ -72,16 +74,16 @@ public abstract class NPC : MonoBehaviour
         {
             Debug.Log(Name);
             Player = other.transform.parent.gameObject;
-            Player.GetComponent<GUIHolder>().GUI.SetActive(true);
+            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            Player.GetComponent<GUIHolder>().GUI.SetActive(false);
+            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             Player = null;
-            
+   
         }
     }
 }
@@ -94,7 +96,8 @@ public class Merchant : NPC
     //merchant can be used to sell parts for currency
     public override void VendorUI()
     {
-      
+        GameObject Shop = GameObject.Find("ShopUI");
+        Shop.SetActive(!Shop.activeSelf);
     }
     public override void VendorAction()
     {
@@ -105,7 +108,7 @@ public class Merchant : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().GUI.SetActive(false);
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
@@ -115,7 +118,7 @@ public class Merchant : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().GUI.SetActive(false);
             UI_Active = false;
             ToggleVendorUI(false);
         }
@@ -204,7 +207,7 @@ public class Scribe : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().GUI.SetActive(false);
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
@@ -214,7 +217,7 @@ public class Scribe : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPlayer().GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+            GetPlayer().GetComponent<GUIHolder>().GUI.SetActive(false);
             UI_Active = false;
             ToggleVendorUI(false);
         }

@@ -23,7 +23,6 @@ public class EquipmentManager : MonoBehaviour
         TorterraArmor torterra_Armor = new TorterraArmor();
         WormArmor worm_Armor = new WormArmor();
 
-
         currentEquip = slime_armor;
         ChangeEquip(currentEquip);
     }
@@ -47,7 +46,7 @@ public class EquipmentManager : MonoBehaviour
     public int ExecuteEquip(GameObject requester, int damageAmount)
     {
         if (currentEquip != null)
-        {           
+        {   
             return currentEquip.Execute(requester, damageAmount);
         }
             Debug.LogError("Current Equip was not found! Damage returned to default settings.");

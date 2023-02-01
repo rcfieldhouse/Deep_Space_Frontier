@@ -169,6 +169,18 @@ public class FullAutoGun : MonoBehaviour
     }
     private IEnumerator HitMarkerEffect(int HitType)
     {
+        if (HitType == 0)
+        {
+            lightBulletSound = FMODUnity.RuntimeManager.CreateInstance("event:/Projectiles/Gunshot_Light");
+            lightBulletSound.start();
+            lightBulletSound.release();
+        }
+        else if(HitType == 1)
+        {
+            lightBulletSound = FMODUnity.RuntimeManager.CreateInstance("event:/Projectiles/Gunshot_Light");
+            lightBulletSound.start();
+            lightBulletSound.release();
+        }
         //Hit type 0 is normal Hit Type 1 is Crit
         HitMarkers.transform.GetChild(HitType).gameObject.SetActive(true);
         yield return shotDuration;

@@ -7,11 +7,15 @@ public class HealthBarUI : MonoBehaviour
 {
     [SerializeField]
     private Image HealthBar;
+
     [SerializeField]
     public GameObject HealthComponentOverride;
 
     [SerializeField]
     private float updateSpeedSeconds = 0.5f;
+
+    [SerializeField]
+    private FMOD.Studio.EventInstance HealthChange;
 
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class HealthBarUI : MonoBehaviour
             yield return null;
         }
 
+        PlayHealthSound(pct);
         HealthBar.fillAmount = pct;
     }
     // Update is called once per frame
@@ -46,5 +51,12 @@ public class HealthBarUI : MonoBehaviour
 
         else
             GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
+    }
+
+    void PlayHealthSound(float healthPercent)
+    {
+        HealthChange = FMODUnity.RuntimeManager.CreateInstance("event:/Misc/HealthUp");
+        HealthChange.start();
+        HealthChange.release();
     }
 }

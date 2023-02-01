@@ -89,6 +89,7 @@ public class HealthSystem : MonoBehaviour
         {
             //play Dante.sound.ogg all things to do with health 
             //could in theory just use a statement if being damaged or healed 
+            Debug.Log("Damage is: " + amount + " PRE-mitigation, from ");
             currentHealth += amount;
 
             if (currentHealth > maxHealth) currentHealth = maxHealth;

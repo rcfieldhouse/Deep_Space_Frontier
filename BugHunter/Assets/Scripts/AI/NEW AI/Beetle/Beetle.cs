@@ -5,7 +5,10 @@ using UnityEngine;
 public class Beetle : AI
 {
     public GameObject Projectile;
-    [Range(0, 20)] public float ProjectileSpeed = 10; 
+    [Range(0, 20)] public float ProjectileSpeed = 10;
+    FMOD.Studio.EventInstance rangedSound;
+    FMOD.Studio.EventInstance meleeSound;
+
     public override void AttackPlayer(GameObject Target)
     {
         if (IsSecondaryAttack == true)
@@ -29,6 +32,11 @@ public class Beetle : AI
                
                 AI_Animator.SetBool("_IsAttacking", true);
                 //play Dante.sound.ogg Zephry ranged attack
+
+                rangedSound = FMODUnity.RuntimeManager.CreateInstance("event:/Creature/Zephyr");
+                rangedSound.start();
+                rangedSound.release();
+
                 transform.LookAt(Target.transform);
                 Transform TheBug = GetComponentInChildren<SkinnedMeshRenderer>().gameObject.transform;
                 Rigidbody rb = Instantiate(Projectile, TheBug.position, Quaternion.identity).GetComponent<Rigidbody>();
@@ -52,8 +60,13 @@ public class Beetle : AI
     {
         if (CanAttack == true && HasAttacked == false)
         {
-           
+
             //play Dante.sound.ogg zephyr melee attack
+
+            meleeSound = FMODUnity.RuntimeManager.CreateInstance("event:/Creature/Zephyr");
+            meleeSound.start();
+            meleeSound.release();
+
             NavAgent.SetDestination(transform.position+((transform.position- Target.transform.position).normalized * WalkPointRange));
             Target.GetComponent<HealthSystem>().ModifyHealth(gameObject, Attack_2_Damage);
             HasAttacked = true;
