@@ -8,6 +8,7 @@ public class AmmoPickUp : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("sf");
             WeaponInfo info = collision.transform.parent.GetComponentInChildren<WeaponInfo>();
             if (info.GetMaxBullets() *0.25 > 1) info.SetReserveAmmo(info.GetReserveAmmo ()+(int)(info.GetMaxBullets() * 0.25));
             else info.SetReserveAmmo(info.GetReserveAmmo() + 1);

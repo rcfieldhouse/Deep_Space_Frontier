@@ -38,7 +38,6 @@ public class LootSpawner : MonoBehaviour
             x = 2;
             loot = LootFactory.CreateLoot(LootType.Ammo);
         }
-            
 
         Create(loot,transform,x);
     }

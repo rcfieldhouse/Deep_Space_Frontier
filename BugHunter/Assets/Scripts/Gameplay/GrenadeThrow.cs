@@ -57,7 +57,6 @@ public class GrenadeThrow : MonoBehaviour
             sphereCollider.radius = 0.02f;
             sphereCollider.enabled = true;
             sphereCollider.isTrigger = false;
-            Debug.Log("wah");
             Invoke(nameof(TingGoBoom), GrenadeFuse);
 
         }
@@ -65,7 +64,6 @@ public class GrenadeThrow : MonoBehaviour
 
     public void TingGoBoom()
     {
-        Debug.Log("wah");
         transform.parent = null;
         GrenadeRenderer.enabled = false;
         Rigidbody.isKinematic = true;
