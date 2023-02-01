@@ -89,6 +89,7 @@ public class BomberArmor : Armor
     public override int Execute(GameObject requester, int damageAmount)
     {
         damageAmount -= 10;
+        Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
         return base.Execute(requester, damageAmount);
     }
 }
