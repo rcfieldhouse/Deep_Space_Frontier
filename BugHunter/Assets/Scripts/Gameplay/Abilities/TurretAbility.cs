@@ -19,11 +19,10 @@ public class TurretAbility : MonoBehaviour
 
         TurretPrefab = Resources.Load<GameObject>("Turret");
         Cam = transform.parent.GetChild(1).GetChild(3).GetComponent<Camera>();
-        StartCoroutine(Wait());
+        Invoke(nameof(Wait), 0.1f);
     }
-    private IEnumerator Wait()
+    private void Wait()
     {      
-        yield return new WaitForEndOfFrame();
         UsedTurret.Invoke(Turrets.Count);
     }
     private void OnDestroy()

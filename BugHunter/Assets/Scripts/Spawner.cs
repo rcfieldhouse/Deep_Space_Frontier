@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum EnemyType
 {
-   Hound, DreadBomber, Golem, Worm, WalmartTorterra
+   Hound, DreadBomber, Tick, Zephyr, Slime, 
 }
 public enum SpawnCondition
 {
@@ -66,60 +66,36 @@ public class Spawner : MonoBehaviour
         switch (TypeEnemy)
         {
             case EnemyType.Hound:
-                StartCoroutine(HoundSpawn());
+                Invoke(nameof(HoundSpawn), SpawnTimer);
                 break;
             case EnemyType.DreadBomber:
-                StartCoroutine(DreadBomberSpawn());
+                Invoke(nameof(DreadBomberSpawn), SpawnTimer);
                 break;
-            case EnemyType.Golem:
-                StartCoroutine(HoundSpawn());
-                break;
-            case EnemyType.Worm:
-                StartCoroutine(HoundSpawn());
-                break;
-            case EnemyType.WalmartTorterra:
-                StartCoroutine(HoundSpawn());
-                break;
+   
         }
     }
-    private IEnumerator HoundSpawn()
+    private void HoundSpawn()
     {
         if (NumEnemies[0] > 0) { 
-        //this is the not flyweight way
-        // yield return new WaitForSeconds(5.0f);
-     
-        //this is the flyweight way
-        yield return SpawnTime;
 
-       
-           GameObject Hound = GameObject.Instantiate(prefab[0], gameObject.transform);
-      
+           GameObject Hound = GameObject.Instantiate(prefab[0], gameObject.transform);   
            Hound.GetComponent<GroundAi>().SetTimes(lungeWait, lungeDuration, SwingDuration);
             if (StartDestination != null)
-            {
-             
+            {    
                 Hound.GetComponent<GroundAi>().SetInitialDestination(StartDestination.position);
                 if (StartDestination.position != Vector3.zero)
                 {
                     Hound.GetComponent<GroundAi>().SetInitialPosition(StartDestination.position);
                 }
-            }
-         
-        //go to next spawn
+            }       
         NumEnemies[0]--;
-        StartCoroutine(HoundSpawn());
+            Invoke(nameof(HoundSpawn), SpawnTimer);
         }
     }
-    private IEnumerator DreadBomberSpawn()
+    private void DreadBomberSpawn()
     {
-
         if (NumEnemies[1] > 0)
         {
-
-            //this is the flyweight way
-            yield return SpawnTime;
-
-
             GameObject Enemy = GameObject.Instantiate(prefab[1], gameObject.transform);
             if (StartDestination != null)
             { 
@@ -131,7 +107,7 @@ public class Spawner : MonoBehaviour
             }
             //go to next spawn
             NumEnemies[1]--;
-            StartCoroutine(DreadBomberSpawn());
+            Invoke(nameof(HoundSpawn), SpawnTimer);
         }
     }
     

@@ -9,15 +9,9 @@ public class GrenadePickup : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
-        {
-            //do the thing
+        {        
             collision.gameObject.GetComponent<GrenadeManager>().GainGrenades(numGrenades);
-
-            //shhh this is my little sneaky, the action is attached to the render thing 
-            //basically it updates the UI
-            //this was def not Ryan so go ask someone else
-
-            PlayerInput.Interact.Invoke();
+            collision.transform.parent.GetComponentInChildren<ThrowableSwap>().DisplayInfo();
             Destroy(gameObject);
         }
     }

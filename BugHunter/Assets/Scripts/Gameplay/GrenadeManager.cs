@@ -7,7 +7,6 @@ public class GrenadeManager : MonoBehaviour
     public static GrenadeManager instance;
     public Transform StartingTransform;
     public GameObject Grenade,Fruit;
-    public GrenadeThrow GrenadeThrow;
     public FruitThrow FruitThrow;
 
     private PreviewThrow PreviewThrow;
@@ -24,12 +23,12 @@ public class GrenadeManager : MonoBehaviour
             instance = this;
         }
 
-        GrenadeThrow = GetComponentInChildren<GrenadeThrow>();
+       
         FruitThrow = GetComponentInChildren<FruitThrow>();
         PreviewThrow = gameObject.AddComponent<PreviewThrow>();
 
         Fruit = FruitThrow.gameObject;
-        Grenade = GrenadeThrow.gameObject;
+        Grenade = Resources.Load<GameObject>("grenade");
 
         PlayerInput.Throw += BeginThrow;
         PlayerInput.WeNeedToCookJesse += CookNade;
@@ -47,7 +46,7 @@ public class GrenadeManager : MonoBehaviour
     }
     public void CookNade() 
     {
-
+       
         if (ThrowSelect == 0 && numGrenades > 0)
         {
             PreviewThrow.CookNade();
@@ -59,7 +58,7 @@ public class GrenadeManager : MonoBehaviour
             PreviewThrow.CookNade();
             Fruit.SetActive(true);
         }
-           
+        transform.parent.GetComponentInChildren<ThrowableSwap>().DisplayInfo();
     }
     public void BeginThrow(Quaternion quaternion)
     {
@@ -74,7 +73,7 @@ public class GrenadeManager : MonoBehaviour
             BeginThrowFruit(quaternion);
             PreviewThrow.Release();
         }
-           
+        transform.parent.GetComponentInChildren<ThrowableSwap>().DisplayInfo();
     }
     public int GetNumNades()
     {
@@ -91,10 +90,11 @@ public class GrenadeManager : MonoBehaviour
     }
     public void BeginThrowGrenade(Quaternion quaternion)
     {
-      if (numGrenades > 0 && GrenadeThrow.GetIsReady()==true)
+      if (numGrenades > 0)
         {
-            Grenade.SetActive(true);
-            StartCoroutine(GrenadeThrow.ThowGrenade(quaternion * ThrowForce));
+
+            GameObject nade = Instantiate(Grenade, transform.position +transform.rotation* new Vector3(0.0f, 2.5f, 1.5f),Quaternion.identity);
+            nade.GetComponent<GrenadeThrow>().ThowGrenade(quaternion * ThrowForce);
             numGrenades--;
         }
        

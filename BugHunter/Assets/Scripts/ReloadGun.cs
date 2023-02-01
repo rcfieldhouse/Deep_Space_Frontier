@@ -36,12 +36,11 @@ public class ReloadGun : MonoBehaviour
         {        
             gunAnimator.SetBool("Reload", true);
             //gunAnimator.Play("Reload", 0, 0);
-            StartCoroutine(Wait());
+            Invoke(nameof(Wait), 0.1f);
         }
     }
-    private IEnumerator Wait()
+    private void Wait()
     {
-        yield return new WaitForEndOfFrame();
         gunAnimator.SetBool("Reload", false);
     }
 }

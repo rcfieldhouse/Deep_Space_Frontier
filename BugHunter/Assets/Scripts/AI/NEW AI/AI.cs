@@ -140,8 +140,7 @@ public abstract class AI : MonoBehaviour
         _IsHitStunned = false;
     }
     public void HandleObjectDeath(GameObject context)
-    {
-        
+    {      
         StartCoroutine(DissolveMeshEffect());
     }
     IEnumerator DissolveMeshEffect()

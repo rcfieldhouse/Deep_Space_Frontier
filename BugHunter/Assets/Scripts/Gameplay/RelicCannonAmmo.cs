@@ -12,7 +12,7 @@ public class RelicCannonAmmo : MonoBehaviour
     {
         ArcMaterial = Resources.Load<Material>("GrenadeExplosion");
         transform.parent = null;
-        StartCoroutine(KillShot());
+        Invoke(nameof(KillShot), 15.0f);
         StartCoroutine(Enlarge());
     }
     private void OnCollisionEnter(Collision collision)
@@ -37,9 +37,8 @@ public class RelicCannonAmmo : MonoBehaviour
 
         }
     }
-    private IEnumerator KillShot()
+    private void KillShot()
     {
-        yield return new WaitForSeconds(15.0f);
         Destroy(gameObject);
     }
     private IEnumerator Enlarge()

@@ -58,7 +58,6 @@ public class LootSpawner : MonoBehaviour
             Vector3 force = (Vector3.Normalize(new Vector3(x,y,z))+Vector3.up) * spawnForce;
             rb.velocity = force;
         }
-        //apply force on spawn if has rigidbody
     }
 
 

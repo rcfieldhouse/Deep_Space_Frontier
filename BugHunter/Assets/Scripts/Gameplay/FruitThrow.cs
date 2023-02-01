@@ -27,7 +27,7 @@ public class FruitThrow : MonoBehaviour
         Rigidbody.isKinematic = false;
         Rigidbody.transform.parent = null;
         Rigidbody.velocity = ThrowVector;
-        StartCoroutine(ResetOriginalFruit());
+        Invoke(nameof(ResetOriginalFruit), 6.0f);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -39,15 +39,13 @@ public class FruitThrow : MonoBehaviour
         }
     
     }
-    private IEnumerator ResetOriginalFruit()
+    private void ResetOriginalFruit()
     {
-        yield return new WaitForSeconds(7.5f);
         ResetFruit();
         Transform.gameObject.SetActive(true);
     }
     public void ResetFruit()
     {
-        StopCoroutine(ResetOriginalFruit());
         Rigidbody.gameObject.transform.SetParent(player.transform);
         gameObject.transform.localPosition = new Vector3(0.0f, 2.5f, 1.5f);
         Rigidbody.isKinematic = true;

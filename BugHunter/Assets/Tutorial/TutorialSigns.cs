@@ -35,14 +35,13 @@ public class TutorialSigns : MonoBehaviour
         for (int i = 0; i < Tutorials.Count; i++)
         {
             if (Tutorials[i].activeInHierarchy == true)
-                StartCoroutine(wait());
+                Invoke(nameof(wait), 0.1f);
             Tutorials[i].SetActive(false);
         }
         GameManager.instance.ResumeTime();
     }
-    private IEnumerator wait(){
+    private void wait(){
 
-        yield return new WaitForEndOfFrame();
          transform.parent.parent.GetComponentInChildren<UIManager>().ResumeGame();
     }
 }

@@ -11,27 +11,23 @@ public class ThrowableSwap : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        PlayerInput.Interact += BeginRender;
-        PlayerInput.TabThrowable += ChooseIcon;
-        PlayerInput.Throw += StartTheRender;
+         PlayerInput.TabThrowable += ChooseIcon;
+
         for (int i = 0; i<transform.childCount-1;i++)
         {
             Icons.Add(transform.GetChild(i));
         }
-        StartCoroutine(FindDeBoi());
+        Invoke(nameof(FindDeBoi), 0.1f);
       
     }
     private void OnDestroy()
     {
-        PlayerInput.Interact -= BeginRender;
         PlayerInput.TabThrowable -= ChooseIcon;
-        PlayerInput.Throw -= StartTheRender;
+
     }
-    private IEnumerator FindDeBoi()
+    private void FindDeBoi()
     {
-        yield return new WaitForSeconds(0.1f);
-        GrenadeManager = transform.parent.parent.gameObject.GetComponentInChildren<GrenadeManager>();
-      
+        GrenadeManager = transform.parent.parent.gameObject.GetComponentInChildren<GrenadeManager>();     
         DisplayNum(Selection);
     }
     private void ChooseIcon()
@@ -39,19 +35,6 @@ public class ThrowableSwap : MonoBehaviour
         Selection++;
         if (Selection > 1)
             Selection = 0;
-        DisplayInfo();
-            }
-    void BeginRender()
-    {
-        StartTheRender(gameObject.transform.rotation);
-    }
-    private void StartTheRender(Quaternion quaternion)
-    {
-        StartCoroutine(WaitToRender());
-    }
-    private IEnumerator WaitToRender()
-    {
-        yield return new WaitForEndOfFrame();
         DisplayInfo();
     }
     public void DisplayInfo()
@@ -65,8 +48,7 @@ public class ThrowableSwap : MonoBehaviour
     }
  
     public void DisplayNum(int foo)
-    {
-   
+    {   
         if (foo == 0)
         {
           GetComponentInChildren<TextMeshProUGUI>().text=GrenadeManager.GetNumNades().ToString();

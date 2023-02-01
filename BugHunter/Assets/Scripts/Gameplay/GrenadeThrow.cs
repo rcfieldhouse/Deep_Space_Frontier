@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class GrenadeThrow : MonoBehaviour
 {
-    public GameObject player;
+
     private Rigidbody Rigidbody;
     private bool _isReady = true,_isExploding=false;
   
     private SphereCollider sphereCollider;
-    private WaitForSeconds GrenadeFuse = new WaitForSeconds(2.0f);
+    private float GrenadeFuse = 2.0f;
     private WaitForSeconds BoomTimer = new WaitForSeconds(0.25f);
     private WaitForSeconds GrenadeResetTimer = new WaitForSeconds(5.0f);
     [SerializeField] int GrenadeDamage = 100;
@@ -26,8 +26,6 @@ public class GrenadeThrow : MonoBehaviour
         //_startValues.position = new Vector3(-0.5f, -0.03f, 0.4f);
        // _startValues.transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
         Rigidbody = GetComponent<Rigidbody>();
-
-        player = transform.parent.gameObject;
         sphereCollider = GetComponent<SphereCollider>();
         Rigidbody.isKinematic = true;
         GrenadeRenderer = GetComponent<MeshRenderer>();
@@ -47,7 +45,7 @@ public class GrenadeThrow : MonoBehaviour
     {
         return _isReady;
     }
-    public IEnumerator ThowGrenade(Vector3 ThrowVector)
+    public void ThowGrenade(Vector3 ThrowVector)
     {
         
         if (_isReady == true){
@@ -59,14 +57,15 @@ public class GrenadeThrow : MonoBehaviour
             sphereCollider.radius = 0.02f;
             sphereCollider.enabled = true;
             sphereCollider.isTrigger = false;
-            yield return GrenadeFuse;
-          
-            StartCoroutine(TingGoBoom());
+            Debug.Log("wah");
+            Invoke(nameof(TingGoBoom), GrenadeFuse);
+
         }
     }
 
-    public IEnumerator TingGoBoom()
+    public void TingGoBoom()
     {
+        Debug.Log("wah");
         transform.parent = null;
         GrenadeRenderer.enabled = false;
         Rigidbody.isKinematic = true;
@@ -76,39 +75,17 @@ public class GrenadeThrow : MonoBehaviour
         _isExploding = true;
         //Grenade VFX Trigger
         SpawnGrenadeVFX();
-        yield return BoomTimer;
-        _isExploding = false;
-        _isReady = false;
-        sphereCollider.isTrigger = false;
-        sphereCollider.enabled = false;
-        sphereCollider.radius = 0.02f;
-        StartCoroutine(ResetNade());
-       
+        Invoke(nameof(KillIt), GrenadeFuse);  
+    }
+    private void KillIt()
+    {
+        Destroy(gameObject);
     }
     public bool GetIsExploding()
     {
         return _isExploding;
     }
-    public IEnumerator ResetNade()
-    {
-       
-
-        //dunno why but transform isnt writable
-        Rigidbody.gameObject.transform.SetParent(player.transform);
-        gameObject.transform.localPosition = new Vector3(0.0f, 2.5f, 1.5f);
-        Rigidbody.gameObject.transform.localRotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
-        Rigidbody.isKinematic = true;
-        sphereCollider.enabled = false;   
-        Rigidbody.gameObject.GetComponent<MeshRenderer>().enabled = false;
-
-        
-        yield return GrenadeResetTimer;
-        _isReady = true;
-        gameObject.transform.localPosition = new Vector3(0.0f, 2.5f, 1.5f);
-        Rigidbody.gameObject.GetComponent<MeshRenderer>().enabled = true;
-        Rigidbody.gameObject.SetActive(false);
-     
-    }
+   
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponent<HealthSystem>())

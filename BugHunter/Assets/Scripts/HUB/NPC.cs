@@ -57,12 +57,11 @@ public abstract class NPC : MonoBehaviour
             Player.transform.GetComponentInChildren<WeaponInfo>().SetCanShoot(true);
             Player.transform.GetComponentInChildren<WeaponInfo>().SetIsReloading(false);
             Player.transform.GetComponentInChildren<Look>().SetIsPaused(false);
-            StartCoroutine(wait());                 
+            Invoke(nameof(wait), 0.1f);             
         }
     }
-    private IEnumerator wait()
-    {
-        yield return new WaitForEndOfFrame();
+    private void wait()
+    {   
         GetPlayer().transform.parent.GetComponentInChildren<UIManager>().ResumeGame();
     }
     public abstract string Name { get; }
