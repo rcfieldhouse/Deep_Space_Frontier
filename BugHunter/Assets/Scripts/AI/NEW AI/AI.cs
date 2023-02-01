@@ -49,6 +49,7 @@ public abstract class AI : MonoBehaviour
         SkinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         Health.OnObjectDeath += HandleObjectDeath;
         Health.OnHealthPercentChanged += HandleObjectHit;
+        if(HitStunDamageRequirement!=0)
         Health.OnTakeDamage += StaggerMechanic;
         if (NavAgent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
@@ -124,6 +125,7 @@ public abstract class AI : MonoBehaviour
     }
     public void Stagger()
     {
+        AI_Animator.SetBool("_IsHurt", true);
         NavAgent.SetDestination(transform.position);
         _IsHitStunned = true;
         NavAgent.enabled = false;
@@ -131,6 +133,7 @@ public abstract class AI : MonoBehaviour
     }
     private void ResetStagger()
     {
+        AI_Animator.SetBool("_IsHurt", false);
         DamageTaken = 0;
         DamageTakenTime = 0;
         NavAgent.enabled = true;
@@ -138,12 +141,13 @@ public abstract class AI : MonoBehaviour
     }
     public void HandleObjectDeath(GameObject context)
     {
+        
         StartCoroutine(DissolveMeshEffect());
     }
     IEnumerator DissolveMeshEffect()
     {
         //GetComponentInChildren<BoxCollider>().enabled = false;
-      
+        AI_Animator.SetBool("_IsDead", true);
         float DropRate = 1.0f / (float)NumDrops;
         float DropIndexer = 0.0f;
         NavAgent.enabled = false;

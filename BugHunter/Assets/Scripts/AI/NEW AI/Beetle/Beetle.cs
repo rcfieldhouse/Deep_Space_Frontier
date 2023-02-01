@@ -16,6 +16,7 @@ public class Beetle : AI
             }
             if (HasAttacked == false && CanAttack == true)
             {
+                AI_Animator.SetBool("_IsMoving", true);
                 NavAgent.speed = WalkSpeed*1.5f;
                 NavAgent.SetDestination(Target.transform.position);
             }
@@ -25,9 +26,11 @@ public class Beetle : AI
         {
             if (CanAttack == true && HasAttacked == false)
             {
+               
+                AI_Animator.SetBool("_IsAttacking", true);
                 //play Dante.sound.ogg Zephry ranged attack
                 transform.LookAt(Target.transform);
-                Transform TheBug = GetComponentInChildren<MeshRenderer>().gameObject.transform;
+                Transform TheBug = GetComponentInChildren<SkinnedMeshRenderer>().gameObject.transform;
                 Rigidbody rb = Instantiate(Projectile, TheBug.position, Quaternion.identity).GetComponent<Rigidbody>();
                 rb.AddForce(Vector3.Normalize(Target.transform.position - (TheBug.position)) * ProjectileSpeed, ForceMode.Impulse);
                 rb.gameObject.GetComponent<Thorn>().SetDamage(Attack_1_Damage);
@@ -38,6 +41,7 @@ public class Beetle : AI
             }
             if (HasAttacked == true)
             {
+                AI_Animator.SetBool("_IsAttacking", false);
                 HasAttacked = false;
                 Invoke(nameof(ResetAttack), Attack_1_Delay);
             }
@@ -48,6 +52,7 @@ public class Beetle : AI
     {
         if (CanAttack == true && HasAttacked == false)
         {
+           
             //play Dante.sound.ogg zephyr melee attack
             NavAgent.SetDestination(transform.position+((transform.position- Target.transform.position).normalized * WalkPointRange));
             Target.GetComponent<HealthSystem>().ModifyHealth(Attack_2_Damage);
@@ -56,13 +61,16 @@ public class Beetle : AI
         }
         if (HasAttacked == true)
         {
+            AI_Animator.SetBool("_IsMoving", false);
             NavAgent.speed = WalkSpeed;
             HasAttacked = false;
             Invoke(nameof(ResetAttack), Attack_2_Delay);
+        
         }
     }
+
     // Start is called before the first frame update
 
-  
+
 
 }

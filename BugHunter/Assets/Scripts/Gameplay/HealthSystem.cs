@@ -65,7 +65,7 @@ public class HealthSystem : MonoBehaviour
         
         if (Invulnerable == false && currentHealth>=0) {
 
-            amount = HandleDamageModifiers(amount);
+           // amount = HandleDamageModifiers(amount);
             //play Dante.sound.ogg all things to do with health 
             //could in theroy just use a statement if being damaged or healed 
             currentHealth += amount;
