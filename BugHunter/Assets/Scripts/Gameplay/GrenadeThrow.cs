@@ -33,8 +33,16 @@ public class GrenadeThrow : MonoBehaviour
         GrenadeRenderer = GetComponent<MeshRenderer>();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag != "Player")
+        {
+            Rigidbody.isKinematic = true;
+            transform.parent = collision.transform;
+        }
+           
+    }
 
- 
     public bool GetIsReady()
     {
         return _isReady;
@@ -59,6 +67,7 @@ public class GrenadeThrow : MonoBehaviour
 
     public IEnumerator TingGoBoom()
     {
+        transform.parent = null;
         GrenadeRenderer.enabled = false;
         Rigidbody.isKinematic = true;
         sphereCollider.enabled = true;

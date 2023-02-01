@@ -156,6 +156,7 @@ public abstract class AI : MonoBehaviour
             float counter = 0;
             while (Materials[0].GetFloat("_DissolveAmount") < 1)
             {
+                NavAgent.enabled = false;
                 counter += dissolveRate;
                 DropIndexer += dissolveRate;
                 if (DropIndexer > DropRate)

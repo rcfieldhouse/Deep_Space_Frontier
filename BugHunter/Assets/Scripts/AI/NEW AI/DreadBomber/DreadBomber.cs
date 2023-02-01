@@ -17,7 +17,7 @@ public class DreadBomber : AI
             {
                 //play Dante.sound.ogg dread bomber basic shoot attack
                 transform.LookAt(Target.transform);
-              
+                AI_Animator.SetBool("_IsAttacking", true);
                 Rigidbody rb = Instantiate(Projectile, MeshLocation.position, Quaternion.identity).GetComponent<Rigidbody>();
                 rb.AddForce(Vector3.Normalize((Target.transform.position + Vector3.up * Target.GetComponent<CapsuleCollider>().height / 2) - (MeshLocation.position)) * ProjectileSpeed, ForceMode.Impulse);
                 rb.gameObject.GetComponent<DreadAmmo>().SetDamage(Attack_1_Damage);
@@ -31,6 +31,7 @@ public class DreadBomber : AI
         {
             HasAttacked = false;
             Invoke(nameof(ResetAttack), Attack_1_Delay);
+            Invoke(nameof(ResetAttacks), 1);
         }
     }
     public void SecondaryAttack(Transform MeshTransform)
@@ -39,12 +40,17 @@ public class DreadBomber : AI
         NumDropped++;
         HasAttacked = true;
         CanAttack = false;
-
+        AI_Animator.SetBool("_IsSpawning", true);
         transform.LookAt(Target.transform);
 
-        Rigidbody rb = Instantiate(Orb, MeshTransform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        Rigidbody rb = Instantiate(Orb, MeshTransform.position-Vector3.up-Vector3.left, Quaternion.identity).GetComponent<Rigidbody>();
         rb.useGravity = true;
-        rb.AddForce(transform.rotation * (Vector3.forward + Vector3.up)*9,ForceMode.Impulse);
-     
+        rb.AddForce(transform.rotation * (Vector3.forward + Vector3.up)*5,ForceMode.Impulse);
+        Invoke(nameof(ResetAttacks), 1);
+    }
+    private void ResetAttacks()
+    {
+        AI_Animator.SetBool("_IsSpawning", false);
+        AI_Animator.SetBool("_IsAttacking", false);
     }
 }

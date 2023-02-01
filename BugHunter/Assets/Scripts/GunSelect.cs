@@ -15,10 +15,6 @@ public class GunSelect : MonoBehaviour
         GunIconUI gunIconUI = GetComponent<GUIHolder>().GUI.GetComponentInChildren<GunIconUI>();
         WeaponSwap weaponSwap = transform.parent.GetChild(1).GetComponentInChildren<WeaponSwap>();
 
-        Debug.Log(weaponSwap.gameObject.name);
-        Debug.Log(gunIconUI.gameObject.name);
-        Debug.Log(ammoChangeUI.gameObject.name);
-
         Gun1 = weaponSwap.WeaponArray[Choice1];
         Gun2 = weaponSwap.WeaponArray[Choice2];
         Reticle1 = weaponSwap.GetComponent<WeaponSwap>().RecticleArray[Choice1];
