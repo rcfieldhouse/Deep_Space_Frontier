@@ -16,6 +16,7 @@ public class Armor : Item, IEquip
 
     virtual public int Execute(GameObject requester, int damageAmount)
     {
+        Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
         return damageAmount;
     }
 

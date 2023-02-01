@@ -20,7 +20,11 @@ public class FullAutoGun : MonoBehaviour
     private ParticleSystem muzzleFlash;
     private float nextFire;
     private GameObject HitMarkers;
-    // Start is called before the first frame update
+
+    FMOD.Studio.EventInstance lightBulletSound;
+
+    
+
     void Awake()
     {
         info = GetComponent<WeaponInfo>();
@@ -35,6 +39,8 @@ public class FullAutoGun : MonoBehaviour
         PlayerInput.Shoot += Shoot;
         PlayerInput.Shoot += SetShootingTrue;
         PlayerInput.Chamber += SetShootingFalse;
+
+        
     }
     private void OnDestroy()
     {
@@ -73,6 +79,10 @@ public class FullAutoGun : MonoBehaviour
         if (Time.time > nextFire && info.GetMag() > 0 && gameObject.activeInHierarchy==true&& info.GetCanShoot() == true)
         {
             //play Dante.sound.ogg full auto effect
+            lightBulletSound = FMODUnity.RuntimeManager.CreateInstance("event:/Projectiles/Gunshot_Light");
+            lightBulletSound.start();
+            lightBulletSound.release();
+
             info.SetBulletCount();
             // Update the time when our player can fire next
             nextFire = Time.time + fireRate;

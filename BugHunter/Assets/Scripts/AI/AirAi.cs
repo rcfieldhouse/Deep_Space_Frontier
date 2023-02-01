@@ -23,6 +23,7 @@ public class AirAi : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public float attackVelocity=5;
 
     //States
     public float sightRange, attackRange;
@@ -142,7 +143,7 @@ public class AirAi : MonoBehaviour
 
          //Attack 
           Rigidbody rb = Instantiate(projectile, transform.position+Vector3.up*3+transform.rotation*Vector3.forward*2, Quaternion.identity).GetComponent<Rigidbody>();
-          rb.AddForce(Vector3.Normalize(player.transform.position-(transform.position + Vector3.up * 3)) * 10f, ForceMode.Impulse);
+          rb.AddForce(Vector3.Normalize(player.transform.position-(transform.position + Vector3.up * 3)) * attackVelocity, ForceMode.Force);
           
      
             alreadyAttacked = true;
