@@ -117,7 +117,7 @@ public class GroundAi : MonoBehaviour
         if (health != null && _isAttacking == true && DamageDealt == false&&PlayerInAttackBox==true)
         {
             // Call the damage function of that script, passing in our gunDamage variable
-            health.ModifyHealth(Damage);
+            health.ModifyHealth(transform.gameObject, Damage);
             DamageDealt = true;
         }
         //Debug.Log (Quaternion.Euler(agent.velocity));

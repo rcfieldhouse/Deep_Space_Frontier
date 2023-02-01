@@ -62,7 +62,7 @@ public class GruntAi : MonoBehaviour
   
          
             HealthSystem health =player.GetComponent<HealthSystem>();
-            health.ModifyHealth(-1);
+            health.ModifyHealth(gameObject,-1);
            // player.GetComponent<Rigidbody>().AddForce(Vector3.up*10);
         }
     }

@@ -36,7 +36,7 @@ public class MurderMittens : MonoBehaviour
         if (_IsAttacking == true&& other.gameObject.tag=="Player"&&other.gameObject.GetComponent<BossDamageMitigation>()==null)
         {
             other.gameObject.AddComponent<BossDamageMitigation>();
-            Player.GetComponent<HealthSystem>().ModifyHealth(_Damage);
+            Player.GetComponent<HealthSystem>().ModifyHealth(gameObject, _Damage);
             Debug.Log("Hit");
         }
     }

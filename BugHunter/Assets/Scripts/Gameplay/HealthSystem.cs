@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-
-
     [SerializeField] private int maxHealth = 500;
     public int currentHealth;
     private bool Invulnerable = false;
@@ -16,7 +14,7 @@ public class HealthSystem : MonoBehaviour
     {
         if (gameObject.tag == "Player")
             gameObject.AddComponent<LoseCondition>();
-        
+
         currentHealth = maxHealth;
     }
     public void SetInvulnerable(bool foo)
@@ -45,31 +43,27 @@ public class HealthSystem : MonoBehaviour
         currentHealth = foo;
     }
 
-    private int HandleDamageModifiers(int amount)
+    private int HandleDamageModifiers(GameObject requester, int amount)
     {
         EquipmentManager equipment = transform.GetComponent<EquipmentManager>();
 
-        return equipment.ExecuteEquip(gameObject, amount);
-        //Get a reference to the player's Specific Equipment Manager
+        Debug.Log("Damage is: " + amount + " PRE-mitigation, from " + requester.name);
+
+        return equipment.ExecuteEquip(requester, amount);
     }
 
-
-    /// <summary>
-    ///TODO: Rework summary of the ModifyHEalth
-    ///to take in the requester in all of its referenced functions
-    /// </summary>
-    /// <param name="amount"></param>
-    
-    public void ModifyHealth(int amount)
+    public void ModifyHealth(GameObject requester, int amount)
     {
-        
-        if (Invulnerable == false && currentHealth>=0) {
+        if (Invulnerable == false && currentHealth >= 0)
+        {
 
-           // amount = HandleDamageModifiers(amount);
+            if (requester != null)
+                amount = HandleDamageModifiers(requester, amount);
+
             //play Dante.sound.ogg all things to do with health 
-            //could in theroy just use a statement if being damaged or healed 
+            //could in theory just use a statement if being damaged or healed 
             currentHealth += amount;
-        
+
             if (currentHealth > maxHealth) currentHealth = maxHealth;
 
             Debug.Log("Current health is " + currentHealth);
@@ -81,10 +75,37 @@ public class HealthSystem : MonoBehaviour
             if (currentHealth <= 0.0f)
             {
                 //Broadcast that the object has died
-             //   Destroy(gameObject);
+                //   Destroy(gameObject);
                 OnObjectDeath?.Invoke(transform.gameObject);
-              
-            //gameObject.SetActive(false);
+
+                //gameObject.SetActive(false);
+            }
+        }
+    }
+    public void ModifyHealth(int amount)
+    {
+
+        if (Invulnerable == false && currentHealth >= 0)
+        {
+            //play Dante.sound.ogg all things to do with health 
+            //could in theory just use a statement if being damaged or healed 
+            currentHealth += amount;
+
+            if (currentHealth > maxHealth) currentHealth = maxHealth;
+
+            Debug.Log("Current health is " + currentHealth);
+
+            float currentHealthPercent = (float)currentHealth / (float)maxHealth;
+            OnHealthPercentChanged(currentHealthPercent);
+            OnTakeDamage(amount);
+            //Check if health has fallen below zero
+            if (currentHealth <= 0.0f)
+            {
+                //Broadcast that the object has died
+                //   Destroy(gameObject);
+                OnObjectDeath?.Invoke(transform.gameObject);
+
+                //gameObject.SetActive(false);
             }
         }
     }

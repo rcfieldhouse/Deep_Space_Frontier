@@ -55,7 +55,7 @@ public class Beetle : AI
            
             //play Dante.sound.ogg zephyr melee attack
             NavAgent.SetDestination(transform.position+((transform.position- Target.transform.position).normalized * WalkPointRange));
-            Target.GetComponent<HealthSystem>().ModifyHealth(Attack_2_Damage);
+            Target.GetComponent<HealthSystem>().ModifyHealth(gameObject, Attack_2_Damage);
             HasAttacked = true;
             CanAttack = false;
         }
