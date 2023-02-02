@@ -53,7 +53,7 @@ public class WeaponInfo : MonoBehaviour
        
         if (ammoInMag <= 0) _CanShoot = false;
 
-        if (ammoInMag == magSize)
+        if (ammoInMag == magSize||reserveAmmo==0)
             _CanReload = false;
         else _CanReload = true;
 
