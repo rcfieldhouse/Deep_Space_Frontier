@@ -20384,7 +20384,7 @@ GameObject:
   - component: {fileID: 3971938811333512449}
   - component: {fileID: 3971938811333512462}
   m_Layer: 0
-  m_Name: Tick
+  m_Name: tick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20454,9 +20454,9 @@ MonoBehaviour:
   SightRangeOffset: {x: 0, y: 0, z: 0}
   AttackAreaOffset: {x: 0, y: 0.38, z: 2}
   _Attack2AreaOffset: {x: 0, y: 0, z: 0}
-  Attack_1_Damage: 0
+  Attack_1_Damage: -10
   Attack_2_Damage: 0
-  Attack_1_Delay: 0
+  Attack_1_Delay: 1.01
   Attack_2_Delay: 0
   CanAttack: 0
   HasAttacked: 0
@@ -20478,9 +20478,9 @@ MonoBehaviour:
     m_Bits: 128
   WalkPointRange: 7.25
   WalkSpeed: 8.49
-  DamageTime: 5
-  DamageInterval: 0.25
-  Damage: -2
+  VenomDamageTime: 5
+  VenomDamageInterval: 0.25
+  VenomDamage: -4
 --- !u!1 &4428801412591366225
 GameObject:
   m_ObjectHideFlags: 0

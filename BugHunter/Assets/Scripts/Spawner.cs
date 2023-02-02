@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
     public List<EnemyType> EnemySelection;
     public List<int> NumEnemies;
     public Transform StartDestination;
-    private int[] NumSpawns;
+    public int[] NumSpawns;
 
     public List<GameObject> prefab;
     [Range(0, 30)] public float SpawnTimer=0.0f;
