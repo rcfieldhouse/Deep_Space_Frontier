@@ -20,6 +20,7 @@ public class GameData
     public int playerHealthMultiplier;
     public int playerSpeedMultiplier;
     public int playerLightMultiplier;
+    public int WeaponLevel;
     public Vector3 playerWaypoint;
 
 
@@ -27,6 +28,7 @@ public class GameData
     // Values found in this constructor represent initial values for a new save-state
     public GameData()
     {
+        this.WeaponLevel = 1;
         this.itemQuantity = new int[] { 0, 0, 0, 0, 0 };
         this.weaponDamageMultiplier = 1;
         this.playerHealthMultiplier = 1;

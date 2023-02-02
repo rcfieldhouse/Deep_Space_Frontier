@@ -8,23 +8,21 @@ public abstract class NPC : MonoBehaviour
     //also doing all of the like behaviours in the abstract so that they do not to be written twice
     public GameObject Player;
     public bool UI_Active;
-    public static Action<String,bool> SelectUI; 
+    public static Action<String,bool> SelectUI;
+
+    public GUIHolder gui;
+
     private void Awake()
     {
+        gui = GetPlayer().transform.parent.GetComponentInChildren<GUIHolder>();
         UI_Active = false;
 
+        PlayerInput player = GetPlayer().GetComponent<PlayerInput>();
         //temp solution until we have more players
-        Player = FindObjectOfType<PlayerInput>().gameObject;
-        PlayerInput.Interact += ToggleVendor;
-        PlayerInput.PausePlugin += UnlockPlayerInputs;
-        PlayerInput.PausePlugin += CloseVendor;
+        //Player = FindObjectOfType<PlayerInput>().gameObject;
+
     }
-    private void OnDestroy()
-    {
-        PlayerInput.Interact -= ToggleVendor;
-        PlayerInput.PausePlugin-= UnlockPlayerInputs;
-        PlayerInput.PausePlugin -= CloseVendor;
-    }
+
     public GameObject GetPlayer()
     {
         return Player;
@@ -44,9 +42,9 @@ public abstract class NPC : MonoBehaviour
     {
         if (Player != null)
         { 
-            Player.transform.GetComponentInChildren<WeaponInfo>().SetCanShoot(!var);
-            Player.transform.GetComponentInChildren<WeaponInfo>().SetIsReloading(var);
-            Player.transform.GetComponentInChildren<Look>().SetIsPaused(var);
+            Player.transform.parent.GetComponentInChildren<WeaponInfo>().SetCanShoot(!var);
+            Player.transform.parent.GetComponentInChildren<WeaponInfo>().SetIsReloading(var);
+            Player.transform.parent.GetComponentInChildren<Look>().SetIsPaused(var);
             if (var == true) Cursor.lockState = CursorLockMode.None;
             else if (var == false) Cursor.lockState = CursorLockMode.Locked;
         }
@@ -56,9 +54,9 @@ public abstract class NPC : MonoBehaviour
         if (Player != null&&UI_Active==true)
         {
             //this is only so that esc is able to close the vendor for the sake of user integrity
-            Player.transform.GetComponentInChildren<WeaponInfo>().SetCanShoot(true);
-            Player.transform.GetComponentInChildren<WeaponInfo>().SetIsReloading(false);
-            Player.transform.GetComponentInChildren<Look>().SetIsPaused(false);
+            Player.transform.parent.GetComponentInChildren<WeaponInfo>().SetCanShoot(true);
+            Player.transform.parent.GetComponentInChildren<WeaponInfo>().SetIsReloading(false);
+            Player.transform.parent.GetComponentInChildren<Look>().SetIsPaused(false);
             Invoke(nameof(wait), 0.1f);             
         }
     }
@@ -73,15 +71,15 @@ public abstract class NPC : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log(Name);
-            Player = other.transform.parent.gameObject;
-            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
+            Player = other.transform.gameObject;
+            Player.transform.parent.GetComponentInChildren<GUIHolder>().PickupPrompt.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+            Player.transform.parent.GetComponentInChildren<GUIHolder>().PickupPrompt.SetActive(false);
             Player = null;
    
         }
@@ -93,6 +91,18 @@ public abstract class NPC : MonoBehaviour
 
 public class Merchant : NPC
 {
+    private void Start()
+    {
+        PlayerInput.Interact += ToggleVendor;
+        PlayerInput.PausePlugin += UnlockPlayerInputs;
+        PlayerInput.PausePlugin += CloseVendor;
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Interact -= ToggleVendor;
+        PlayerInput.PausePlugin -= UnlockPlayerInputs;
+        PlayerInput.PausePlugin -= CloseVendor;
+    }
     //merchant can be used to sell parts for currency
     public override void VendorUI()
     {
@@ -108,7 +118,8 @@ public class Merchant : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPlayer().GetComponent<GUIHolder>().GUI.SetActive(false);
+            Debug.Log("I am Toggling the VendorUI");
+            gui.GUI.SetActive(false);
             UI_Active = !UI_Active;
             ToggleAimOnPlayer(UI_Active);
             ToggleVendorUI(UI_Active);
@@ -118,7 +129,7 @@ public class Merchant : NPC
     {
         if (GetPlayer() != null)
         {
-            GetPlayer().GetComponent<GUIHolder>().GUI.SetActive(false);
+            gui.GUI.SetActive(false);
             UI_Active = false;
             ToggleVendorUI(false);
         }

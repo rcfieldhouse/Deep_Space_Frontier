@@ -16,10 +16,10 @@ public class Epickup : MonoBehaviour
     {  
         PlayerInput.Interact -= Pickup;
     }
-    private void OnDestroy()
-    {
-        PlayerInput.Interact -= Pickup;
-    }
+    //private void OnDestroy()
+    //{
+    //    PlayerInput.Interact -= Pickup;
+    //}
     // adds the item to the inventory list then destroys it's self
     void Pickup()
     {
