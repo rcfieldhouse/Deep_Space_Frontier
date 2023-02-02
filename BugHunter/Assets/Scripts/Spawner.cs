@@ -15,26 +15,20 @@ public class Spawner : MonoBehaviour
     public List<EnemyType> EnemySelection;
     public List<int> NumEnemies;
     public Transform StartDestination;
-
+    private int[] NumSpawns;
 
     public List<GameObject> prefab;
     [Range(0, 30)] public float SpawnTimer=0.0f;
 
-   [SerializeField] private WaitForSeconds lungeWait = new WaitForSeconds(0.25f);
-    [SerializeField] private WaitForSeconds lungeDuration = new WaitForSeconds(1.5f);
-    [SerializeField] private WaitForSeconds SwingDuration = new WaitForSeconds(0.75f);
-
- 
-     private WaitForSeconds SpawnTime = new WaitForSeconds(1.0f);
     // Start is called before the first frame update
     void Awake()
     {
+       NumSpawns = new int[5] ;
         if (SpawnCondition == SpawnCondition.ApplicationStart)
         {
-            SpawnTime = new WaitForSeconds(SpawnTimer);
             for (int i = 0; i < EnemySelection.Count; i++)
             {
-                SelectEnemy(EnemySelection[i]);
+                SelectEnemy(EnemySelection[i],i);
             }
             if (gameObject.transform.GetChild(0) != null)
             {
@@ -47,10 +41,9 @@ public class Spawner : MonoBehaviour
     {
         if (SpawnCondition == SpawnCondition.TriggerEnter)
         {
-            SpawnTime = new WaitForSeconds(SpawnTimer);
             for (int i = 0; i < EnemySelection.Count; i++)
             {
-                SelectEnemy(EnemySelection[i]);
+                SelectEnemy(EnemySelection[i],i);
             }
             if (gameObject.transform.GetChild(0) != null)
             {
@@ -61,25 +54,39 @@ public class Spawner : MonoBehaviour
     }
     // Update is called once per frame
 
-    public void SelectEnemy(EnemyType TypeEnemy)
+    public void SelectEnemy(EnemyType TypeEnemy,int index)
     {
         switch (TypeEnemy)
         {
             case EnemyType.Hound:
+                NumSpawns[0] = NumEnemies[index];
                 Invoke(nameof(HoundSpawn), SpawnTimer);
                 break;
             case EnemyType.DreadBomber:
+                NumSpawns[1] = NumEnemies[index];
                 Invoke(nameof(DreadBomberSpawn), SpawnTimer);
                 break;
-   
+            case EnemyType.Tick:
+                NumSpawns[2] = NumEnemies[index];
+                Invoke(nameof(TickSpawn), SpawnTimer);
+                break;
+            case EnemyType.Zephyr:
+                NumSpawns[3] = NumEnemies[index];
+                Invoke(nameof(ZephyrSpawn), SpawnTimer);
+                break;
+            case EnemyType.Slime:
+                NumSpawns[4] = NumEnemies[index];
+                Invoke(nameof(SlimeSpawn), SpawnTimer);
+                break;
+
         }
     }
     private void HoundSpawn()
     {
-        if (NumEnemies[0] > 0) { 
+        if (NumSpawns[0] > 0) { 
 
            GameObject Hound = GameObject.Instantiate(prefab[0], gameObject.transform);   
-           Hound.GetComponent<GroundAi>().SetTimes(lungeWait, lungeDuration, SwingDuration);
+         //  Hound.GetComponent<GroundAi>().SetTimes(lungeWait, lungeDuration, SwingDuration);
             if (StartDestination != null)
             {    
                 Hound.GetComponent<GroundAi>().SetInitialDestination(StartDestination.position);
@@ -87,28 +94,82 @@ public class Spawner : MonoBehaviour
                 {
                     Hound.GetComponent<GroundAi>().SetInitialPosition(StartDestination.position);
                 }
-            }       
-        NumEnemies[0]--;
+            }
+            NumSpawns[0]--;
             Invoke(nameof(HoundSpawn), SpawnTimer);
         }
     }
     private void DreadBomberSpawn()
     {
-        if (NumEnemies[1] > 0)
+        if (NumSpawns[1] > 0)
         {
             GameObject Enemy = GameObject.Instantiate(prefab[1], gameObject.transform);
             if (StartDestination != null)
             { 
-                Enemy.GetComponent<AirAi>().SetInitialDestination(StartDestination.position);
+                Enemy.GetComponent<DreadBomber>().SetInitialDestination(StartDestination.position);
                 if (StartDestination.position != Vector3.zero)
                 {
-                    Enemy.GetComponent<AirAi>().SetInitialPosition(StartDestination.position);
+                    Enemy.GetComponent<DreadBomber>().SetInitialPosition(StartDestination.position);
                 }
             }
             //go to next spawn
-            NumEnemies[1]--;
-            Invoke(nameof(HoundSpawn), SpawnTimer);
+            NumSpawns[1]--;
+            Invoke(nameof(DreadBomberSpawn), SpawnTimer);
         }
     }
-    
+    private void TickSpawn()
+    {
+        if (NumSpawns[2] > 0)
+        {
+            GameObject Enemy = GameObject.Instantiate(prefab[2], gameObject.transform);
+            if (StartDestination != null)
+            {
+                Enemy.GetComponent<Tick>().SetInitialDestination(StartDestination.position);
+                if (StartDestination.position != Vector3.zero)
+                {
+                    Enemy.GetComponent<Tick>().SetInitialPosition(StartDestination.position);
+                }
+            }
+            //go to next spawn
+            NumSpawns[2]--;
+            Invoke(nameof(TickSpawn), SpawnTimer);
+        }
+    }
+    private void ZephyrSpawn()
+    {
+        if (NumSpawns[3] > 0)
+        {
+            GameObject Enemy = GameObject.Instantiate(prefab[3], gameObject.transform);
+            if (StartDestination != null)
+            {
+                Enemy.GetComponent<Beetle>().SetInitialDestination(StartDestination.position);
+                if (StartDestination.position != Vector3.zero)
+                {
+                    Enemy.GetComponent<Beetle>().SetInitialPosition(StartDestination.position);
+                }
+            }
+            //go to next spawn
+            NumSpawns[3]--;
+            Invoke(nameof(ZephyrSpawn), SpawnTimer);
+        }
+    }
+    private void SlimeSpawn()
+    {
+        if (NumSpawns[4] > 0)
+        {
+            GameObject Enemy = GameObject.Instantiate(prefab[4], gameObject.transform);
+            if (StartDestination != null)
+            {
+                Enemy.GetComponent<Slime>().SetInitialDestination(StartDestination.position);
+                if (StartDestination.position != Vector3.zero)
+                {
+                    Enemy.GetComponent<Slime>().SetInitialPosition(StartDestination.position);
+                }
+            }
+            //go to next spawn
+            NumSpawns[4]--;
+            Invoke(nameof(SlimeSpawn), SpawnTimer);
+        }
+    }
+
 }
