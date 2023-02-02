@@ -4,18 +4,29 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Tick : AI
 {
-    [Range(0,5)] public float DamageTime = 5.0f, DamageInterval = 0.25f;
-    [Range(0,-10)]public int Damage = -5;  
+    [Range(0,5)] public float VenomDamageTime = 5.0f, VenomDamageInterval = 0.25f;
+    [Range(0,-10)]public int VenomDamage = -5;
     public override void AttackPlayer(GameObject Target)
     {
-        transform.LookAt(Target.transform);
+    if (CanAttack == true && HasAttacked == false)
+    {
+            transform.LookAt(Target.transform);
         NavAgent.SetDestination(transform.position);
         //play Dante.sound.ogg tick attack
         AI_Animator.SetBool("_IsAttacking", true);
-        if (Target.GetComponent<Venom>() == null)
-            Target.AddComponent<Venom>().InitAttack(DamageTime,DamageInterval,Damage);
+        Target.GetComponent<HealthSystem>().ModifyHealth(gameObject, Attack_1_Damage);
+        HasAttacked = true;
+        CanAttack = false;
 
-        Invoke(nameof(ResetAnim), 1);
+        if (Target.GetComponent<Venom>() == null)
+            Target.AddComponent<Venom>().InitAttack(VenomDamageTime, VenomDamageInterval, VenomDamage);
+    }
+        if (HasAttacked == true)
+        {
+            HasAttacked = false;
+            Invoke(nameof(ResetAttack), Attack_1_Delay);
+            Invoke(nameof(ResetAnim), Attack_1_Delay);
+        }
     }
     private void ResetAnim()
     {
