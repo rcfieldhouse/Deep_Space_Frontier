@@ -103,7 +103,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520725861026610005}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 395.28235, y: -0.0000076293945, z: 530.2926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -55190,8 +55190,7 @@ GameObject:
   - component: {fileID: 4520725862237307039}
   - component: {fileID: 4520725862237307038}
   - component: {fileID: 4520725862237307037}
-  - component: {fileID: 4520725862237307036}
-  - component: {fileID: 4520725862237307011}
+  - component: {fileID: 130235973}
   m_Layer: 8
   m_Name: revolver
   m_TagString: Untagged
@@ -55367,7 +55366,7 @@ MonoBehaviour:
   AimRecoilZ: 0.76
   snappiness: 10
   returnSpeed: 3.62
---- !u!114 &4520725862237307036
+--- !u!114 &130235973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55376,33 +55375,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4520725862237307009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ad1757b01a19cc479466c25105c903a, type: 3}
+  m_Script: {fileID: 11500000, guid: faef705d6b4e04a47879e473eab66091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 75
-  fpsCam: {fileID: 4520725862257447237}
---- !u!114 &4520725862237307011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4520725862237307009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86b5ed1a3b3f21549bad9fda7c1eef01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunDamage: -50
-  fireRate: 0.75
-  weaponRange: 80
-  hitForce: 150
-  CritMultiplier: 2
-  gunEnd: {fileID: 4520725862057184645}
-  fpsCam: {fileID: 4520725862257447237}
-  info: {fileID: 4520725862237307037}
-  CurrentBullet: {fileID: 0}
-  _IsSniper: 0
+  Damage: -25
+  FireRate: 0.25
+  WeaponRange: 50
+  HitForce: 100
+  CritMultiplier: 1
+  Hipfire_Spread: {x: 0, y: 0}
+  ADS_Spread: {x: 0, y: 0}
+  info: {fileID: 0}
+  GunEnd: {fileID: 0}
+  LazerLine: {fileID: 0}
+  MuzzleFlash: {fileID: 0}
+  HitMarkers: {fileID: 0}
+  Camera: {fileID: 0}
+  NextFire: 0
 --- !u!1 &4520725862257447243
 GameObject:
   m_ObjectHideFlags: 0
@@ -84459,10 +84448,9 @@ GameObject:
   - component: {fileID: 4520725863101130641}
   - component: {fileID: 4520725863101130640}
   - component: {fileID: 4520725863101130647}
-  - component: {fileID: 4520725863101130646}
-  - component: {fileID: 4520725863101130645}
   - component: {fileID: 4520725863101130644}
   - component: {fileID: 4520725863101130651}
+  - component: {fileID: 882356058}
   m_Layer: 8
   m_Name: SnakeShotgun
   m_TagString: Untagged
@@ -84650,40 +84638,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &4520725863101130646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4520725863101130649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ad1757b01a19cc479466c25105c903a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponRange: 25
-  fpsCam: {fileID: 4520725862257447237}
---- !u!114 &4520725863101130645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4520725863101130649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44a5407755568a40927797b6ebd66ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunDamage: -14
-  fireRate: 1
-  weaponRange: 25
-  hitForce: 100
-  gunEnd: {fileID: 4520725861553510519}
-  fpsCam: {fileID: 4520725861820783880}
-  maxShotGunSpread: 2
-  info: {fileID: 4520725863101130644}
 --- !u!114 &4520725863101130644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84734,6 +84688,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &882356058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725863101130649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2d882369286e547b0d63047ae707b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: -25
+  FireRate: 0.25
+  WeaponRange: 50
+  HitForce: 100
+  CritMultiplier: 1
+  Hipfire_Spread: {x: 0, y: 0}
+  ADS_Spread: {x: 0, y: 0}
+  info: {fileID: 0}
+  GunEnd: {fileID: 0}
+  LazerLine: {fileID: 0}
+  MuzzleFlash: {fileID: 0}
+  HitMarkers: {fileID: 0}
+  Camera: {fileID: 0}
+  NextFire: 0
 --- !u!1 &4520725863129696828
 GameObject:
   m_ObjectHideFlags: 0

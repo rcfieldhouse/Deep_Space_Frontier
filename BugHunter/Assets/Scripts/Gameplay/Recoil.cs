@@ -46,7 +46,7 @@ public class Recoil : MonoBehaviour
     private void OnDestroy()
     {
      
-         PlayerInput.Shoot -= StartShot;
+        PlayerInput.Shoot -= StartShot;
         WeaponSwap.BroadCastWeaponRecoilData -= SetAnimProperties;
         WeaponInfo.maginfo -= getIfMagHasAmmo;
         WeaponInfo.CanShoot -= SetCanShoot;

@@ -6,7 +6,7 @@ public class WeaponInfo : MonoBehaviour
 {
     //this script has data for weapons and is used to change data within classes that need the data from the weapons
     [Range(0, 1)][SerializeField] private float RecoilRotIntensity, RecoilOffsetIntensity,Weight;
-    [Range(0,3)][SerializeField] private float RecoilTimer;
+    [HideInInspector] public float RecoilTimer;
 
     [SerializeField] private int ammoInMag, maxAmmo, magSize = 1, reserveAmmo = 1;
     [Range(0, 5)][SerializeField] private float AdsZoomScale=0;
@@ -24,8 +24,9 @@ public class WeaponInfo : MonoBehaviour
     void Awake()
     {
         ReloadTimer = new WaitForSeconds(_reloadTimer);
-        PlayerInput.Reload += Reload;
+        PlayerInput.Reload += Reload;       
         ammoInMag = magSize;
+        RecoilTimer = GetComponent<Gun>().FireRate;
     }
     private void OnDestroy()
     {

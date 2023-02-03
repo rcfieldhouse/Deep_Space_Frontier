@@ -10,13 +10,6 @@ public class RayViewer : MonoBehaviour
     private Camera fpsCam;                                // Holds a reference to the first person camera
 
 
-    void Start()
-    {
-        // Get and store a reference to our Camera by searching this GameObject and its parents
-        //fpsCam = GetComponentInParent<Camera>();
-    }
-
-
     void Update()
     {
         // Create a vector at the center of our camera's viewport

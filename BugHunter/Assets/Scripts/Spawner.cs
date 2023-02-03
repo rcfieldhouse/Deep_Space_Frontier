@@ -39,6 +39,9 @@ public class Spawner : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag != "Player")
+            return;
+
         if (SpawnCondition == SpawnCondition.TriggerEnter)
         {
             for (int i = 0; i < EnemySelection.Count; i++)
@@ -80,14 +83,15 @@ public class Spawner : MonoBehaviour
                 break;
 
         }
+        NumEnemies[index] = 0;
     }
     private void HoundSpawn()
     {
         if (NumSpawns[0] <= 0)
             return;
 
-        GameObject Hound = GameObject.Instantiate(prefab[0], gameObject.transform);   
-         //  Hound.GetComponent<GroundAi>().SetTimes(lungeWait, lungeDuration, SwingDuration);
+             GameObject Hound = GameObject.Instantiate(prefab[0], gameObject.transform);   
+            //  Hound.GetComponent<GroundAi>().SetTimes(lungeWait, lungeDuration, SwingDuration);
             if (StartDestination != null)
             {    
                 Hound.GetComponent<GroundAi>().SetInitialDestination(StartDestination.position);
@@ -151,6 +155,7 @@ public class Spawner : MonoBehaviour
     {
         if (NumSpawns[4] <= 0)
             return;
+
         GameObject Enemy = GameObject.Instantiate(prefab[4], gameObject.transform);
             if (StartDestination != null)
             {

@@ -10,6 +10,7 @@ public abstract class Gun : MonoBehaviour
     [Range(0, 100)] public float WeaponRange = 50f;
     [Range(0, 200)] public float HitForce = 100f;
     [Range(0, 3)] public float CritMultiplier = 1.0f;
+    public Vector2 Hipfire_Spread, ADS_Spread;
     [HideInInspector] public WeaponInfo info;
     [HideInInspector] public Transform GunEnd;
     [HideInInspector] public LineRenderer LazerLine;
@@ -17,7 +18,7 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector] public GameObject HitMarkers;
     [HideInInspector] public Camera Camera;
     [HideInInspector] public float NextFire;
-    private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);
+    private WaitForSeconds shotDuration = new WaitForSeconds(0.15f);
 
     public abstract void Shoot();
 

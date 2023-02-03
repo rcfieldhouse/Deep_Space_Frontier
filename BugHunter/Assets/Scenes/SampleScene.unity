@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 136559627}
-  m_IndirectSpecularColor: {r: 0.13856609, g: 0.04852879, b: 0.20566985, a: 1}
+  m_IndirectSpecularColor: {r: 0.13845022, g: 0.048412427, b: 0.20555313, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27014,6 +27014,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1016995897}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1023801599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4520725861187674679, guid: 3c53c9234287a8047b94ba05223d8526,
+    type: 3}
+  m_PrefabInstance: {fileID: 1879873363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1023801607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023801599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2d882369286e547b0d63047ae707b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: -25
+  FireRate: 0.25
+  WeaponRange: 50
+  HitForce: 100
+  CritMultiplier: 1
+  Hipfire_Spread: {x: 0, y: 0}
+  ADS_Spread: {x: 0, y: 0}
+  info: {fileID: 0}
+  GunEnd: {fileID: 0}
+  LazerLine: {fileID: 0}
+  MuzzleFlash: {fileID: 0}
+  HitMarkers: {fileID: 0}
+  Camera: {fileID: 0}
+  NextFire: 0
 --- !u!1001 &1025484212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35816,6 +35848,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1405032756}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1406535005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4520725862314434015, guid: 3c53c9234287a8047b94ba05223d8526,
+    type: 3}
+  m_PrefabInstance: {fileID: 1879873363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406535014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406535005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d72892e565e7794ca000c45c99f798d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: -25
+  FireRate: 0.25
+  WeaponRange: 50
+  HitForce: 100
+  CritMultiplier: 1
+  Hipfire_Spread: {x: 0, y: 0}
+  ADS_Spread: {x: 0, y: 0}
+  info: {fileID: 0}
+  GunEnd: {fileID: 0}
+  LazerLine: {fileID: 0}
+  MuzzleFlash: {fileID: 0}
+  HitMarkers: {fileID: 0}
+  Camera: {fileID: 0}
+  NextFire: 0
+  CurrentBullet: {fileID: 0}
 --- !u!1001 &1407109824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57545,6 +57610,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 882356058, guid: 3c53c9234287a8047b94ba05223d8526, type: 3}
+      propertyPath: FireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 882356058, guid: 3c53c9234287a8047b94ba05223d8526, type: 3}
+      propertyPath: Hipfire_Spread.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 882356058, guid: 3c53c9234287a8047b94ba05223d8526, type: 3}
+      propertyPath: Hipfire_Spread.y
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4520725861026610005, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
       propertyPath: m_Name
@@ -57618,9 +57695,11 @@ PrefabInstance:
     - target: {fileID: 4520725862882063764, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
       propertyPath: ClassSelection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4520725862314434004, guid: 3c53c9234287a8047b94ba05223d8526, type: 3}
+    - {fileID: 4520725861187674675, guid: 3c53c9234287a8047b94ba05223d8526, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3c53c9234287a8047b94ba05223d8526, type: 3}
 --- !u!1 &1885698246
 GameObject:
