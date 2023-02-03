@@ -53,6 +53,8 @@ public class WeaponInfo : MonoBehaviour
        
         if (ammoInMag <= 0) _CanShoot = false;
 
+        if(_isReloading==true) _CanShoot = false;
+
         if (ammoInMag == magSize||reserveAmmo==0)
             _CanReload = false;
         else _CanReload = true;
@@ -100,11 +102,7 @@ public class WeaponInfo : MonoBehaviour
     }
     public void Reload()
     {
-      
-      
-        // Invoke(SetBulletCount, ReloadTimer);
-      //  Invoke(nameof(SetBulletCount(true)), 1);
-        //Setting to true reloads
+
         if (_CanReload == true)
         {
             _CanShoot = false;

@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 public interface SniperBullet
 {
- 
    void ShotEffect(GameObject obj);
 }
 public enum BulletType
@@ -98,8 +97,8 @@ public class SpecialBulletSelect : MonoBehaviour
 
     public void CallShotEffect(GameObject Object)
     {
+        if(Object.tag!="Player")
         Bullet.ShotEffect(Object);
-        
     }
     public void ChangeBulletType()
     {
