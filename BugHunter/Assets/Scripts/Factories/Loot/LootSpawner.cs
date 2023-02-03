@@ -27,13 +27,13 @@ public class LootSpawner : MonoBehaviour
         num = Random.Range(0.0f, 100.0f);
         LFInterface loot= LootFactory.CreateLoot(LootType.Grenade); 
 
-        if (num < 40.0f)
+        if (num < 45.0f)
         {
             x = 0;
             loot = LootFactory.CreateLoot(LootType.Health);
         }
             
-        else if (num >60.0f)
+        else if (num >55.0f)
         {
             x = 2;
             loot = LootFactory.CreateLoot(LootType.Ammo);

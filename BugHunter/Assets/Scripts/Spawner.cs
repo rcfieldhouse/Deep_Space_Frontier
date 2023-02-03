@@ -83,93 +83,85 @@ public class Spawner : MonoBehaviour
     }
     private void HoundSpawn()
     {
-        if (NumSpawns[0] > 0) { 
+        if (NumSpawns[0] <= 0)
+            return;
 
-           GameObject Hound = GameObject.Instantiate(prefab[0], gameObject.transform);   
+        GameObject Hound = GameObject.Instantiate(prefab[0], gameObject.transform);   
          //  Hound.GetComponent<GroundAi>().SetTimes(lungeWait, lungeDuration, SwingDuration);
             if (StartDestination != null)
             {    
                 Hound.GetComponent<GroundAi>().SetInitialDestination(StartDestination.position);
                 if (StartDestination.position != Vector3.zero)
-                {
                     Hound.GetComponent<GroundAi>().SetInitialPosition(StartDestination.position);
-                }
             }
             NumSpawns[0]--;
             Invoke(nameof(HoundSpawn), SpawnTimer);
-        }
+        
     }
     private void DreadBomberSpawn()
     {
-        if (NumSpawns[1] > 0)
-        {
-            GameObject Enemy = GameObject.Instantiate(prefab[1], gameObject.transform);
+        if (NumSpawns[1] <= 0)
+            return;
+
+        GameObject Enemy = GameObject.Instantiate(prefab[1], gameObject.transform);
             if (StartDestination != null)
             { 
                 Enemy.GetComponent<DreadBomber>().SetInitialDestination(StartDestination.position);
                 if (StartDestination.position != Vector3.zero)
-                {
                     Enemy.GetComponent<DreadBomber>().SetInitialPosition(StartDestination.position);
-                }
             }
             //go to next spawn
             NumSpawns[1]--;
             Invoke(nameof(DreadBomberSpawn), SpawnTimer);
-        }
     }
     private void TickSpawn()
     {
-        if (NumSpawns[2] > 0)
-        {
-            GameObject Enemy = GameObject.Instantiate(prefab[2], gameObject.transform);
+        if (NumSpawns[2] <= 0)
+            return;
+
+        GameObject Enemy = GameObject.Instantiate(prefab[2], gameObject.transform);
             if (StartDestination != null)
             {
                 Enemy.GetComponent<Tick>().SetInitialDestination(StartDestination.position);
-                if (StartDestination.position != Vector3.zero)
-                {
-                    Enemy.GetComponent<Tick>().SetInitialPosition(StartDestination.position);
-                }
+                if (StartDestination.position != Vector3.zero)               
+                  Enemy.GetComponent<Tick>().SetInitialPosition(StartDestination.position);            
             }
             //go to next spawn
             NumSpawns[2]--;
-            Invoke(nameof(TickSpawn), SpawnTimer);
-        }
+            Invoke(nameof(TickSpawn), SpawnTimer);      
     }
     private void ZephyrSpawn()
     {
-        if (NumSpawns[3] > 0)
-        {
-            GameObject Enemy = GameObject.Instantiate(prefab[3], gameObject.transform);
+        if (NumSpawns[3] <= 0)
+            return;
+
+        GameObject Enemy = GameObject.Instantiate(prefab[3], gameObject.transform);
             if (StartDestination != null)
             {
                 Enemy.GetComponent<Beetle>().SetInitialDestination(StartDestination.position);
                 if (StartDestination.position != Vector3.zero)
-                {
-                    Enemy.GetComponent<Beetle>().SetInitialPosition(StartDestination.position);
-                }
+                  Enemy.GetComponent<Beetle>().SetInitialPosition(StartDestination.position);
+              
             }
             //go to next spawn
             NumSpawns[3]--;
-            Invoke(nameof(ZephyrSpawn), SpawnTimer);
-        }
+            Invoke(nameof(ZephyrSpawn), SpawnTimer);     
     }
     private void SlimeSpawn()
     {
-        if (NumSpawns[4] > 0)
-        {
-            GameObject Enemy = GameObject.Instantiate(prefab[4], gameObject.transform);
+        if (NumSpawns[4] <= 0)
+            return;
+        GameObject Enemy = GameObject.Instantiate(prefab[4], gameObject.transform);
             if (StartDestination != null)
             {
                 Enemy.GetComponent<Slime>().SetInitialDestination(StartDestination.position);
                 if (StartDestination.position != Vector3.zero)
-                {
                     Enemy.GetComponent<Slime>().SetInitialPosition(StartDestination.position);
-                }
+              
             }
             //go to next spawn
             NumSpawns[4]--;
             Invoke(nameof(SlimeSpawn), SpawnTimer);
-        }
     }
 
 }

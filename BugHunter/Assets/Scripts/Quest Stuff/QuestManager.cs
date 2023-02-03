@@ -56,7 +56,7 @@ public class QuestManager : MonoBehaviour
                 break;
        }
         //display + 1 so that you store ur current completed quest step but you also show your next one
-
+        if(GetComponentInChildren<TextMeshProUGUI>())
         GetComponentInChildren<TextMeshProUGUI>().text = "Quest: " + Quests[QuestNum];
     }
 
