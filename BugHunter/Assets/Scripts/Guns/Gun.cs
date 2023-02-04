@@ -7,7 +7,7 @@ public abstract class Gun : MonoBehaviour
     //variables that all guns will be using
     [Range(0, -50)]public int Damage = -25;
     [Range(0, 2)] public float FireRate = 0.25f;
-    [Range(0, 100)] public float WeaponRange = 50f;
+    [Range(0, 250)] public float WeaponRange = 50f;
     [Range(0, 200)] public float HitForce = 100f;
     [Range(0, 3)] public float CritMultiplier = 1.0f;
     public Vector2 Hipfire_Spread, ADS_Spread;
@@ -18,6 +18,7 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector] public GameObject HitMarkers;
     [HideInInspector] public Camera Camera;
     [HideInInspector] public float NextFire;
+    [HideInInspector] public bool _IsAiming=false;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.15f);
 
     public abstract void Shoot();
@@ -31,6 +32,17 @@ public abstract class Gun : MonoBehaviour
         Camera = transform.parent.GetComponentInParent<Camera>();
         GunEnd = MuzzleFlash.transform;
         PlayerInput.Shoot += Shoot;
+        PlayerInput.ADS += AIM;
+    }
+    private void OnDestroy()
+    {
+        PlayerInput.Shoot -= Shoot;
+        PlayerInput.ADS -= AIM;
+    }
+    public void AIM(bool aiming)
+    {
+        if (gameObject.activeInHierarchy == true)
+            _IsAiming = aiming;
     }
     private void Update()
     {

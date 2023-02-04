@@ -163,7 +163,7 @@ public class FullAutoGun : MonoBehaviour
         if (_IsShooting == true)
         {
             if (gameObject.GetComponent<WeaponInfo>().GetCanShoot() == false) _IsShooting = false;
-            PlayerInput.Shoot.Invoke(); ;          
+            PlayerInput.Shoot.Invoke();           
         }
           
     }

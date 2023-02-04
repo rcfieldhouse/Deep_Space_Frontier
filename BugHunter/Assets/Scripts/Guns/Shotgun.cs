@@ -7,7 +7,7 @@ public class Shotgun : Gun
     private Vector3 ShotgunSpread;
     public override void Shoot()
     {
-        if (info.GetCanShoot() == false)
+        if (info.GetCanShoot() == false|| gameObject.activeInHierarchy == false)
             return;
         for (int i = 2; i <= 15; i += 2)
         {
@@ -42,7 +42,6 @@ public class Shotgun : Gun
 
             if (Hit.rigidbody != null)
                 Hit.rigidbody.AddForce(-Hit.normal * HitForce);
-
         }
         else
             LazerLine.SetPosition(index, RayOrigin + (Camera.transform.forward * WeaponRange)+Spread);
