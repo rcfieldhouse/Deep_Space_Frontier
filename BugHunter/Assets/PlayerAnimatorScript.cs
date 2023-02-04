@@ -21,6 +21,12 @@ public class PlayerAnimatorScript : MonoBehaviour
         PlayerInput.Throw += ThrowGrenade;
         PlayerAnimator = GetComponent<Animator>();
     }
+    private void OnDestroy()
+    {
+        PlayerInput.Move -= Move;
+        PlayerInput.WeNeedToCookJesse -= CookNade;
+        PlayerInput.Throw -= ThrowGrenade;
+    }
     public void Dodge(bool var)
     {
         PlayerAnimator.SetBool("_IsDodging", var);
@@ -28,10 +34,12 @@ public class PlayerAnimatorScript : MonoBehaviour
     private void CookNade()
     {
         PlayerAnimator.SetBool("_CookGrenade", true);
+        PlayerAnimator.SetBool("_ThrowGrenade", false);
     }
     private void ThrowGrenade(Quaternion quaternion)
     {
         PlayerAnimator.SetBool("_ThrowGrenade", true);
+        PlayerAnimator.SetBool("_CookGrenade", false);
     }
     private void Move(Vector2 Dir, float Running)
     {
