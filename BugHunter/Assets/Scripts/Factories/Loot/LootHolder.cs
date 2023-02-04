@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
 public class LootHolder : MonoBehaviour, IDataPersistence
 {
-    [SerializeField] public List<Loot> Inventory = new List<Loot>{};
+    public List<Loot> Inventory = new List<Loot>{};
 
     void Awake()
     {
-        for (int i =0; i < 5; i++)
+        //TODO: Instantiate this in the lootholder with the player
+        for (int i =1; i < 10; i++)
         {
-            Inventory.Add(Loot.CreateInstance<Loot>());
+            //Inventory.Add(ScriptableObject.CreateInstance<Loot>());
+            Inventory.Add(new Loot(0,i));
         }
 
         DontDestroyOnLoad(gameObject);
@@ -19,7 +22,7 @@ public class LootHolder : MonoBehaviour, IDataPersistence
 
     public void GainLoot(int index)
     {
-        Inventory[index].quantity++;
+        Inventory[index].IncrementLoot(1);
     }
 
     public void LoadData(GameData data)
@@ -27,7 +30,7 @@ public class LootHolder : MonoBehaviour, IDataPersistence
         int i = 0;
         foreach (Loot loot in Inventory)
         {
-            loot.quantity = data.itemQuantity[i];
+            loot.SetQuantity(data.itemQuantity[i]);
             i++;
         }
     }
@@ -37,7 +40,7 @@ public class LootHolder : MonoBehaviour, IDataPersistence
         int i = 0;
         foreach(Loot loot in Inventory)
         {
-            data.itemQuantity[i] = loot.quantity;
+            data.itemQuantity[i] = loot.Quantity;
             i++;
         }
         

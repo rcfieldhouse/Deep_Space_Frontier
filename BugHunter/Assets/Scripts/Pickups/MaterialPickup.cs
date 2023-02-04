@@ -26,13 +26,13 @@ public class MaterialPickup : MonoBehaviour
                 Debug.Log("Player Inventory is null and cannot be detected!");
                 return;
             }
-            if (playerInventory.Inventory[LootIndex].quantity >= 99)
+            if (playerInventory.Inventory[LootIndex].Quantity >= 99)
             {
                 Debug.LogWarning("The player has too many materials and cannot pick this up!");
-                //Play sound
+                //Play sound.ogg
                 return;
             }
-            //Play sound
+            //Play sound.ogg
             playerInventory.GainLoot(LootIndex);
             Destroy(gameObject);
         }

@@ -31,7 +31,7 @@ public class Beetle : AI
             {
                
                 AI_Animator.SetBool("_IsAttacking", true);
-                //play Dante.sound.ogg Zephry ranged attack
+                //play Dante.sound.ogg Zephyr ranged attack
 
                 rangedSound = FMODUnity.RuntimeManager.CreateInstance("event:/Creature/Zephyr");
                 rangedSound.start();

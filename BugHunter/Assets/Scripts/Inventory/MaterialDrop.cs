@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MaterialDrop : MonoBehaviour
 {
-    public Loot.Rarity rarity = 0;
+    public int LootType = 0;
 
     [Range(0, 10)] public List<int> NumOfDrops;
 
@@ -30,7 +30,7 @@ public class MaterialDrop : MonoBehaviour
 
                     if (RandomDrop == false)
                     {
-                        LootSpawner.instance.DropMaterials(transform, (int)rarity);
+                        LootSpawner.instance.DropMaterials(transform, (int)LootType);
                     }
 
                     else if (RandomDrop == true)

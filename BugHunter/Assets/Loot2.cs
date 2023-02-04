@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[CreateAssetMenu(fileName = "New Loot", menuName = "Loot Item/Create New Item")]
+[CreateAssetMenu(fileName = "New Loot", menuName = "Loot Item/Create New Item")]
 [System.Serializable]
-public class Loot
+public class Loot2 : ScriptableObject
 {
     [SerializeField]
     private MonsterLoot lootType = MonsterLoot.None;
@@ -22,11 +22,10 @@ public class Loot
     public MonsterLoot Type => lootType;
 
 
-    public Loot(int amount, int type)
+    public Loot2(int amount)
     {
         this.lootName = "New Loot";
         this.quantity = amount;
-        this.lootType = (MonsterLoot)type;
     }
 
     public void IncrementLoot(int increment)
@@ -42,5 +41,3 @@ public class Loot
         quantity = newQuantity;
     }
 }
-
-
