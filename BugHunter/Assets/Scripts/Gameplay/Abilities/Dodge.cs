@@ -10,7 +10,7 @@ public class Dodge : MonoBehaviour
     private CharacterController characterController;
     public GameObject[] Cameras;
     private Vector3 RollVector = Vector3.zero;
-    [Range(0, 1)] public  WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
+    [Range(0, 1)] public  WaitForSeconds RollTimer = new WaitForSeconds(1.15f);
     private float Cooldown = 5f;
     [Range(0, 1)] public WaitForSeconds RollCoolDownTime ;
     // Start is called before the first frame update
@@ -33,6 +33,7 @@ public class Dodge : MonoBehaviour
     {
         if (_CanRoll == true)
         {
+            GetComponent<PlayerAnimatorScript>().Dodge(true);
             Dodged.Invoke(Cooldown);
             StartCoroutine(DoTheRoll());
             SwitchDodgeCam();
@@ -73,7 +74,8 @@ public class Dodge : MonoBehaviour
             GetComponent<HealthSystem>().SetInvulnerable(false);
             characterController.SetSuspendMovement(false);
             RollVector = Vector3.zero;
-            StartCoroutine(StartRollCooldown());
+        GetComponent<PlayerAnimatorScript>().Dodge(false);
+        StartCoroutine(StartRollCooldown());
         
     }
     private IEnumerator StartRollCooldown()

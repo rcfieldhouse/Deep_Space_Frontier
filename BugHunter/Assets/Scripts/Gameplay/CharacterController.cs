@@ -113,6 +113,7 @@ public class CharacterController : MonoBehaviour
     }
     private void Jump()
     {
+        GetComponent<PlayerAnimatorScript>().Jump();
         Rigidbody.velocity += JumpForce;
     }
 
@@ -157,11 +158,16 @@ public class CharacterController : MonoBehaviour
 
        
     }
-    
-  
+
+   
+    public bool isGrounded(float x)
+    {
+        return Physics.Raycast(coll.bounds.center - Vector3.down / 10, Vector3.down, x, m_WhatIsGround);
+    }
     // Update is called once per frame
     void Update()
     {
+        GetComponent<PlayerAnimatorScript>().Land(isGrounded(3));
         //dev hack
         if (Input.GetKeyDown(KeyCode.Period))
         {

@@ -74,8 +74,5 @@ public class AutomaticRifle : Gun
             info.SetCanShoot(false);
         else if (Time.time > NextFire && gameObject.activeInHierarchy == true && info.GetMag() > 0)
             info.SetCanShoot(true);
-        Debug.Log(_IsShooting);
-
-
     }
 }
