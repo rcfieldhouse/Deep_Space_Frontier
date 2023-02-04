@@ -5927,6 +5927,7 @@ GameObject:
   - component: {fileID: 4520725861187674674}
   - component: {fileID: 4520725861187674673}
   - component: {fileID: 1023801607}
+  - component: {fileID: 4335453888974752670}
   m_Layer: 8
   m_Name: Shorty
   m_TagString: Untagged
@@ -6165,6 +6166,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1023801607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725861187674679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2d882369286e547b0d63047ae707b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: -25
+  FireRate: 0.25
+  WeaponRange: 50
+  HitForce: 100
+  CritMultiplier: 1
+  Hipfire_Spread: {x: 0, y: 0}
+  ADS_Spread: {x: 0, y: 0}
+  info: {fileID: 0}
+  GunEnd: {fileID: 0}
+  LazerLine: {fileID: 0}
+  MuzzleFlash: {fileID: 0}
+  HitMarkers: {fileID: 0}
+  Camera: {fileID: 0}
+  NextFire: 0
+  _IsAiming: 0
+--- !u!114 &4335453888974752670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55630,6 +55658,7 @@ GameObject:
   - component: {fileID: 4520725862314434010}
   - component: {fileID: 4520725862314434009}
   - component: {fileID: 1406535014}
+  - component: {fileID: 3280662139596242029}
   m_Layer: 8
   m_Name: Sniper
   m_TagString: Untagged
@@ -55871,6 +55900,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1406535014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862314434015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d72892e565e7794ca000c45c99f798d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: -25
+  FireRate: 0.25
+  WeaponRange: 50
+  HitForce: 100
+  CritMultiplier: 1
+  Hipfire_Spread: {x: 0, y: 0}
+  ADS_Spread: {x: 0, y: 0}
+  info: {fileID: 0}
+  GunEnd: {fileID: 0}
+  LazerLine: {fileID: 0}
+  MuzzleFlash: {fileID: 0}
+  HitMarkers: {fileID: 0}
+  Camera: {fileID: 0}
+  NextFire: 0
+  _IsAiming: 0
+  CurrentBullet: {fileID: 0}
+--- !u!114 &3280662139596242029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
