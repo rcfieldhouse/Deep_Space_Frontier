@@ -25,16 +25,16 @@ public class ShopGUI : MonoBehaviour
     private LootHolder playerInventory;
 
     //Array of the shops Scriptable Objects
-    private ShopInventory[] shopInventory;
+    public ShopInventory[] shopInventory;
 
     //array for UI panels to coincide with the inventory
-    private GameObject[] shopPanelsGO;
+    public GameObject[] shopPanelsGO;
 
-    //TODO: store a shopPanel prefab from the UI
-    private ShopTemplate[] shopPanels;
+    //TODO: store a shopPanel prefab Scriptable Object from the UI
+    public ShopTemplate[] shopPanels;
 
     //array for UI panels to coincide with the inventory
-    private Button[] purchaseButtons;
+    public Button[] purchaseButtons;
 
     private void Start()
     {
@@ -42,7 +42,6 @@ public class ShopGUI : MonoBehaviour
             shopPanelsGO[i].SetActive(true);
         LoadShop();
         ValidatePurchasable();
-
     }
 
 
@@ -62,10 +61,35 @@ public class ShopGUI : MonoBehaviour
         }
     }
 
+    //TODO: Make it efficient and cleaner.
+    //Not digging the time complexity here, or the readability
     public void ValidatePurchasable()
     {
+        //for every shop item [i]...
+        for (int i = 0; i <shopInventory.Length; i++)
+        {
+            bool buttonWillBeEnabled = false;
 
+            //Check if player has enough of item [j] for shop item [i]
+            for(int j =0; j<playerInventory.Inventory.Count; j++)
+            {
+                buttonWillBeEnabled = true;
+                if (playerInventory.Inventory[j].Quantity < shopInventory[i].cost[j])
+                {
+                    Debug.LogError("Player has Insufficient Funds! " +
+                        "Disabling Button at position: " + i + 
+                        "Due to a lack of funds at position: " + j);
+                    buttonWillBeEnabled = false;                    
+                    break;
+                }
+
+                
+            }
+            if(buttonWillBeEnabled)
+            purchaseButtons[i].interactable = true;
+        }
     }
+
     //TODO: Verify that the values of i are correspondant with the Loot Variables
     public void PurchaseItem(int itemNumber)
     {
@@ -87,6 +111,13 @@ public class ShopGUI : MonoBehaviour
      
     }
 
+    //TODO: Link With Ryan's new Weapon Script
+    public void DisplayItemStats()
+    {
+
+    }
+
+
     /// <summary>
     /// Set's all of the players resources to 99 for testing.
     /// </summary>
@@ -96,6 +127,7 @@ public class ShopGUI : MonoBehaviour
         {
             loot.SetQuantity(99);
         }
+        LoadShop();
         ValidatePurchasable();
     }
 
