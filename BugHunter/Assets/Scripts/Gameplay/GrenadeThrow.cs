@@ -26,11 +26,18 @@ public class GrenadeThrow : MonoBehaviour
         //_startValues.position = new Vector3(-0.5f, -0.03f, 0.4f);
        // _startValues.transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
         Rigidbody = GetComponent<Rigidbody>();
+        if (Rigidbody == null) Invoke(nameof(KillThis), 0.5f);
+        else Rigidbody.isKinematic = true;
+
+
         sphereCollider = GetComponent<SphereCollider>();
-        Rigidbody.isKinematic = true;
+       
         GrenadeRenderer = GetComponent<MeshRenderer>();
     }
-
+    void KillThis()
+    {
+        Destroy(this);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player")
