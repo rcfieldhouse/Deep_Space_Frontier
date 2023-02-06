@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class QuestObjective : MonoBehaviour
 {
-    [SerializeField] QuestStep ThisQuestStep;
-    private Vector3 startPos;
-    // Start is called before the first frame update
-    void Start()
+    public int QuestStep = 0;
+    private void Awake()
     {
-        startPos = transform.position;
+        Invoke(nameof(Delay), 0.1f);   
     }
-
-    private void OnDisable()
+    void Delay()
     {
-        QuestManager.instance.QuestCompleted(ThisQuestStep);
-    }
-
-    public void ResetPosition()
-    {
-        gameObject.transform.position = startPos;
+        QuestManager.instance.quests[QuestStep] = gameObject;
     }
 
 }
