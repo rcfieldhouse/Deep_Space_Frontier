@@ -15,10 +15,11 @@ public class MarkerAnim : MonoBehaviour
     void Update()
     {
 
-        transform.position += Direction*Vector3.up / 10;
-        if (Mathf.Abs(transform.position.y - Parent.transform.position.y) > 2.0f)
+        transform.position += Direction*Vector3.up / 50;
+        if (Mathf.Abs(transform.position.y - Parent.transform.position.y) > 1.0f)
         {
             Direction *= -1;
         }
+        transform.Rotate(Vector3.forward * (120 * Time.deltaTime));
     }
 }

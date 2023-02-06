@@ -6,19 +6,27 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance;
     public int CurrentQuestStep=0;
-    public GameObject Marker;
+    public GameObject Marker,MarkerInstance;
     public List<GameObject> quests;
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
 
-    Instantiate(Marker);
-        Invoke(nameof(SetNewQuest), 0.5f);
+       MarkerInstance= Instantiate(Marker);
+        Invoke(nameof(SetInitQuest), 0.05f);
     }
-  void SetNewQuest()
+    public void SetNewQuest(int index)
     {
-        Marker.transform.position = (quests[CurrentQuestStep]).transform.position + Vector3.up * 3;
+        CurrentQuestStep = index+1;
+        float ExtraHeight = quests[CurrentQuestStep].GetComponent<MeshRenderer>().bounds.size.y;
+        MarkerInstance.transform.position = quests[CurrentQuestStep].transform.position + (Vector3.up * ExtraHeight) + Vector3.up;
     }
-    // Update is called once per frame
+    public void SetInitQuest()
+    {
+        float ExtraHeight = quests[0].GetComponent<MeshRenderer>().bounds.size.y;
+        MarkerInstance.transform.position = quests[0].transform.position + (Vector3.up * ExtraHeight) + Vector3.up;
+    }
+    
 }

@@ -80,7 +80,6 @@ public abstract class Gun : MonoBehaviour
     {
         int var = 0;
         if (HitType == true) var = 1;
-        Debug.Log(var);
         //0 = normal 1 = critical
         HitMarkers.transform.GetChild(var).gameObject.SetActive(true);
         yield return shotDuration;
