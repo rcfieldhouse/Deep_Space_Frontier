@@ -23,6 +23,7 @@ public class AssaultIcons : MonoBehaviour
     {
         transform.GetChild(0).gameObject.SetActive(true);
         ClassAbility.fillAmount = 0.0f;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Dodge_Roll");
         StartCoroutine(RechargeAbility(foo)); 
     }
     private IEnumerator RechargeAbility(float RechargeTime)

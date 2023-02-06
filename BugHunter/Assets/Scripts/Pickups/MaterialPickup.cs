@@ -29,10 +29,9 @@ public class MaterialPickup : MonoBehaviour
             if (playerInventory.Inventory[LootIndex].Quantity >= 99)
             {
                 Debug.LogWarning("The player has too many materials and cannot pick this up!");
-                //Play sound.ogg
                 return;
             }
-            //Play sound.ogg
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Pickups/Pickup_Resource");
             playerInventory.GainLoot(LootIndex);
             Destroy(gameObject);
         }

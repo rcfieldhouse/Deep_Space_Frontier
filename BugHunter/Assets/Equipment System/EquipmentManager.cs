@@ -35,6 +35,8 @@ public class EquipmentManager : MonoBehaviour
         if (!ValidateEquip(newEquip))
             DisplayCannotEquipError();
 
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/EquipItem");
+
         if (currentEquip != null)
         {
             currentEquip.Exit(transform.gameObject);
