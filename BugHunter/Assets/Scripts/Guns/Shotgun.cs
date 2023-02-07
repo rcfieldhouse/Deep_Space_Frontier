@@ -19,9 +19,13 @@ public class Shotgun : Gun
 
         for (int i = 1; i <= 15; i += 2)
         {
-            ShotgunSpread.x = Random.Range(-Hipfire_Spread.x, Hipfire_Spread.x);
-            ShotgunSpread.y = Random.Range(-Hipfire_Spread.y, Hipfire_Spread.y);
+            ShotgunSpread.x = Random.Range(-ShotSpread.x, ShotSpread.x);
+            ShotgunSpread.y = Random.Range(-ShotSpread.y, ShotSpread.y);
             ShotgunSpread.z = 0.0f;
+
+            if (_IsAiming == true)
+                ShotgunSpread *= (1-ADS_Accuracy);
+
             ShotgunShot(ShotgunSpread,i);
         }
     }
