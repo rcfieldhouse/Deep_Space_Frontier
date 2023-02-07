@@ -8,7 +8,7 @@ public class GrenadeBarrier : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        if (collision.gameObject.name == "grenade")
+        if (collision.gameObject.tag == "grenade")
         {
             nade = collision.gameObject;
             
