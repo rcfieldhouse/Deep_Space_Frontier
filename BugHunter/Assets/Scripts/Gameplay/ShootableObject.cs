@@ -49,6 +49,7 @@ public class ShootableObject : MonoBehaviour
                 //it favors 1 direction
                 Vector3 force = (rb.transform.position - context.transform.position).normalized * shatterForce;
                 rb.AddForce(force);
+            rb.gameObject.AddComponent<DissolveRock>();
 
                 //TODO: apply a coroutine to delete the pieces after some time expires
             }
