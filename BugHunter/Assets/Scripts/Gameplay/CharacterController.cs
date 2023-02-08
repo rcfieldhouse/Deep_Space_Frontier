@@ -113,6 +113,7 @@ public class CharacterController : MonoBehaviour
     }
     private void Jump()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Jump");
         GetComponent<PlayerAnimatorScript>().Jump();
         Rigidbody.velocity += JumpForce;
     }
@@ -123,11 +124,6 @@ public class CharacterController : MonoBehaviour
         //Perform an initial save when he player moves once
         // unfortunetly can't use Start() functions bc some Start() functions
         // are called before others which produces null references when saving
-        if(MovedOnce == false)
-        {
-            //SavePlugin2.instance.SaveItems();
-            MovedOnce = true;
-        }
 
         move = move.normalized;
         if (SuspendMovement == false)
@@ -139,24 +135,24 @@ public class CharacterController : MonoBehaviour
         }      
        else if (gameObject.GetComponent<Dodge>()!=null  )
        {
-            if (GetComponent<Dodge>().GetRollVector() != Vector3.zero) { 
+            if (GetComponent<Dodge>().GetRollVector() != Vector3.zero) {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Dodge_Roll");
                 Rigidbody.velocity = GetComponent<Dodge>().GetRollVector() * 12;
             }
         }
         if (_IsOnLadder == true)
         {
-
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Dodge_Roll");
             SpeedMod *= 10.0f;
             // Rigidbody.velocity = Vector3.zero;
             Rigidbody.velocity = new Vector3(0.0f, SpeedMod*move.y/m_LadderSpeed, 0.0f);
         }
         if (OnZipline == true)
         {
+            // Zipline.ogg
             Rigidbody.velocity = SpeedMod*Vector3.Normalize( EndPos.position- StartPos.position);
         }
-        Rigidbody.angularVelocity = Vector3.zero;
-
-       
+        Rigidbody.angularVelocity = Vector3.zero;      
     }
 
    
@@ -171,6 +167,9 @@ public class CharacterController : MonoBehaviour
         //dev hack
         if (Input.GetKeyDown(KeyCode.Period))
         {
+            #if UNITY_EDITOR
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Konami_Code");
+            #endif
             Rigidbody.position = new Vector3(170.0f, 25.0f, 420.0f);
         }
 
