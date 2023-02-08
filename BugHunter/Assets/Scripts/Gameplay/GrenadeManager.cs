@@ -6,9 +6,9 @@ public class GrenadeManager : MonoBehaviour
 {
     public static GrenadeManager instance;
     public Transform StartingTransform;
-    public GameObject Grenade,Fruit;
+    public GameObject Grenade,GrenadeGraphic,Fruit;
     public FruitThrow FruitThrow;
-
+    public Quaternion quat;
     private PreviewThrow PreviewThrow;
     public Vector3 ThrowForce = (Vector3.forward * 25 + Vector3.up * 5);
     [SerializeField] private int numGrenades=3;
@@ -29,7 +29,8 @@ public class GrenadeManager : MonoBehaviour
 
         Fruit = FruitThrow.gameObject;
         Grenade = Resources.Load<GameObject>("grenade");
-
+        GrenadeGraphic = GetComponentInChildren<GrenadeThrow>().gameObject;
+        GrenadeGraphic.SetActive(false);
         PlayerInput.Throw += BeginThrow;
         PlayerInput.WeNeedToCookJesse += CookNade;
         PlayerInput.TabThrowable += ChooseThrowable;
@@ -49,6 +50,7 @@ public class GrenadeManager : MonoBehaviour
        
         if (ThrowSelect == 0 && numGrenades > 0)
         {
+            GrenadeGraphic.SetActive(true);
             PreviewThrow.CookNade();
             Grenade.SetActive(true);
         }
@@ -92,12 +94,17 @@ public class GrenadeManager : MonoBehaviour
     {
       if (numGrenades > 0)
         {
-
-            GameObject nade = Instantiate(Grenade, transform.position +transform.rotation* new Vector3(0.0f, 2.5f, 1.5f),Quaternion.identity);
-            nade.GetComponent<GrenadeThrow>().ThowGrenade(quaternion * ThrowForce);
-            numGrenades--;
-        }
+            quat = quaternion;
+            Invoke(nameof(ThrowDelay),0.75f);
        
+        }     
+    }
+    public void ThrowDelay()
+    {
+        GrenadeGraphic.SetActive(false);
+        GameObject nade = Instantiate(Grenade, transform.position + transform.rotation * new Vector3(0.0f, 2.5f, 1.5f), Quaternion.identity);
+        nade.GetComponent<GrenadeThrow>().ThowGrenade(quat * ThrowForce);
+        numGrenades--;
     }
     // Update is called once per frame
     public void GainGrenades()
