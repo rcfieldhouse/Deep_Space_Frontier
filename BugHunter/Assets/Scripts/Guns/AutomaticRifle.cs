@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class UpgradeParameters : ScriptableObject
+{
+    //damage
+    //reload speed
+    //magazine size
+
+
+}
+
 public class AutomaticRifle : Gun
 {
     private bool _IsShooting = false;

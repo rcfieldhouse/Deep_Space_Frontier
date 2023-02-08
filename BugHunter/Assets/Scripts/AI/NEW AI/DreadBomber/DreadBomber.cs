@@ -18,6 +18,7 @@ public class DreadBomber : AI
             {
                 AlternateAttacks = true;
                 //play Dante.sound.ogg dread bomber basic shoot attack
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Bomber");
                 transform.LookAt(Target.transform);
                 AI_Animator.SetBool("_IsAttacking", true);
                 Rigidbody rb = Instantiate(Projectile, MeshLocation.position, Quaternion.identity).GetComponent<Rigidbody>();
@@ -40,6 +41,7 @@ public class DreadBomber : AI
     {
         AlternateAttacks = false;
         //play Dante.sound.ogg slime spawn
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Slime");
         NumDropped++;
         HasAttacked = true;
         CanAttack = false;

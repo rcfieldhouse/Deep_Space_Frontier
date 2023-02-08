@@ -88,6 +88,7 @@ public abstract class Gun : MonoBehaviour
     }
     public IEnumerator ShotEffect()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Projectiles/Gunshot_Light");
         MuzzleFlash.Play();
         LazerLine.enabled = true;
         LazerLine.SetPosition(0, GunEnd.position);

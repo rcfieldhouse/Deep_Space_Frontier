@@ -21,7 +21,6 @@ public class LootEditor : Editor
 
     public override void OnInspectorGUI()
     {
-
         serializedObject.UpdateIfRequiredOrScript();
 
         Loot2 data = (Loot2)target;

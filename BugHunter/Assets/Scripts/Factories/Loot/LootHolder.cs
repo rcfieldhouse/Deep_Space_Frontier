@@ -21,8 +21,13 @@ public class LootHolder : MonoBehaviour, IDataPersistence
     }
 
     public void GainLoot(int index)
-    {
+    {        
         Inventory[index].IncrementLoot(1);
+    }
+    public void GainLoot(int index, int amount)
+    {
+
+        Inventory[index].IncrementLoot(amount);
     }
 
     public void LoadData(GameData data)

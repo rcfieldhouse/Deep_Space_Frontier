@@ -29,14 +29,14 @@ public class LootDrawer : PropertyDrawer
         Rect foldOutBox = new Rect(position.min.x, position.min.y,
             position.size.x, EditorGUIUtility.singleLineHeight);
         property.isExpanded = EditorGUI.Foldout(foldOutBox, property.isExpanded,label);
+
         //Drawing here
         if (property.isExpanded)
         {
             DrawTypeProperty(position);
             DrawNameProperty(position);
             DrawQuantityProperty(position);
-            DrawSpriteProperty(position);
-            
+            DrawSpriteProperty(position);            
         }
 
         EditorGUI.EndProperty();

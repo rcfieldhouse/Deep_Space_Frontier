@@ -61,9 +61,12 @@ public class HealthSystem : MonoBehaviour
                 amount = HandleDamageModifiers(requester, amount);
 
             //play Dante.sound.ogg all things to do with health 
+
             //could in theory just use a statement if being damaged or healed 
             currentHealth += amount;
 
+            if (transform.tag == "Player" && amount > 0)
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Hurt");
             if (currentHealth > maxHealth) currentHealth = maxHealth;
 
             Debug.Log("Current health is " + currentHealth);
