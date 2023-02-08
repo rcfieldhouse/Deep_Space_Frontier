@@ -85,6 +85,7 @@ public class CharacterController : MonoBehaviour
         CameraMain.SetActive(true);
         WeaponCamera.SetActive(true);
     }
+
     public void disableCams(bool var)
     {   //set all cameras to false, if called by a function that is setting that camera to false
         //set default cam to main
@@ -167,17 +168,12 @@ public class CharacterController : MonoBehaviour
         //dev hack
         if (Input.GetKeyDown(KeyCode.Period))
         {
-            #if UNITY_EDITOR
+            //#if UNITY_EDITOR
             FMODUnity.RuntimeManager.PlayOneShot("event:/Konami_Code");
-            #endif
+            //#endif
             Rigidbody.position = new Vector3(170.0f, 25.0f, 420.0f);
         }
-
-
-            gameObject.transform.rotation = Quaternion.Euler(0.0f, CameraManager.transform.eulerAngles.y, 0.0f);
-     //  gameObject.transform.rotation = CameraManager.transform.rotation;
-
-
+        gameObject.transform.rotation = Quaternion.Euler(0.0f, CameraManager.transform.eulerAngles.y, 0.0f);
     }
 
 
