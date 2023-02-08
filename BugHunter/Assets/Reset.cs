@@ -8,6 +8,7 @@ public class Reset : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("_AnyStateTransitionPossible", true);
+        animator.gameObject.GetComponent<PlayerAnimatorScript>().RestoreWeights();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

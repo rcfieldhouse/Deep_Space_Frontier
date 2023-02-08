@@ -1,21 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Animations.Rigging;
 public class PlayerAnimatorScript : MonoBehaviour
 {
     public Animator PlayerAnimator;
     private int DirectionMovement,LastDir;
-    
+    public Rig LeftArm,RightArm,Neck;
+
     //Movement Direction
     //0 = N/A 
     //1 = Forwards
     //2 = Backwards
     //3 = Right
     //4 = Left
-
+    public void RestoreWeights()
+    {
+        LeftArm.weight = 1.0f;
+        Neck.weight = 1.0f;
+        RightArm.weight = 1.0f;
+    }
     private void Awake()
     {
+        
         PlayerInput.Move += Move;
         PlayerInput.WeNeedToCookJesse += CookNade;
         PlayerInput.Throw += ThrowGrenade;
@@ -29,17 +36,33 @@ public class PlayerAnimatorScript : MonoBehaviour
     }
     public void Dodge(bool var)
     {
+       
+        if (var == true)
+        {
+            LeftArm.weight = 0.0f;
+            Neck.weight = 0.0f;
+            RightArm.weight = 0.0f;
+        }
+        else RestoreWeights();
+
         PlayerAnimator.SetBool("_IsDodging", var);
     }
     private void CookNade()
     {
+        LeftArm.weight = 0;
+        Neck.weight = 0;
+        RightArm.weight = 0;
         PlayerAnimator.SetBool("_CookGrenade", true);
         PlayerAnimator.SetBool("_ThrowGrenade", false);
     }
     private void ThrowGrenade(Quaternion quaternion)
     {
+        LeftArm.weight = 0;
+        Neck.weight = 0;
+        RightArm.weight = 0;
         PlayerAnimator.SetBool("_ThrowGrenade", true);
         PlayerAnimator.SetBool("_CookGrenade", false);
+        Invoke(nameof(RestoreWeights), 1.0f);
     }
     private void Move(Vector2 Dir, float Running)
     {
