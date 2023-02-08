@@ -129,6 +129,7 @@ public class CharacterController : MonoBehaviour
         move = move.normalized;
         if (SuspendMovement == false)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Dodge_Roll");
             // was 4.0f
             SpeedMod *= 20.0f;
             mover = transform.right * move.x + transform.forward * move.y;
@@ -143,7 +144,7 @@ public class CharacterController : MonoBehaviour
         }
         if (_IsOnLadder == true)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Dodge_Roll");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Climb_Watchtower");
             SpeedMod *= 10.0f;
             // Rigidbody.velocity = Vector3.zero;
             Rigidbody.velocity = new Vector3(0.0f, SpeedMod*move.y/m_LadderSpeed, 0.0f);
