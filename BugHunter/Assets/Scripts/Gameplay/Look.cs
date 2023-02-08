@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Look : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject PlayerViewPoint;
     private Vector3 offset = new Vector3(-0.02f, 0.04f, 0.0f);
     // Start is called before the first frame update
     void Awake()
@@ -28,7 +28,8 @@ public class Look : MonoBehaviour
     private void Aim(Quaternion quaternion)
     {
         gameObject.transform.localRotation = quaternion;
-        gameObject.transform.position = Player.transform.position - (transform.localRotation * Vector3.up*1.75f) + (transform.localRotation * offset);
+        gameObject.transform.position = PlayerViewPoint.transform.position;
+       
     }
     private void OnDisable()
     {
