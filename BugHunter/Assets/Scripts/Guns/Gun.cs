@@ -10,7 +10,8 @@ public abstract class Gun : MonoBehaviour
     [Range(0, 250)] public float WeaponRange = 50f;
     [Range(0, 200)] public float HitForce = 100f;
     [Range(0, 3)] public float CritMultiplier = 1.0f;
-    public Vector2 Hipfire_Spread, ADS_Spread;
+    [Range(0, 1)] public float ADS_Accuracy;
+    public Vector2 ShotSpread;
     [HideInInspector] public WeaponInfo info;
     [HideInInspector] public Transform GunEnd;
     [HideInInspector] public LineRenderer LazerLine;
@@ -80,7 +81,6 @@ public abstract class Gun : MonoBehaviour
     {
         int var = 0;
         if (HitType == true) var = 1;
-        Debug.Log(var);
         //0 = normal 1 = critical
         HitMarkers.transform.GetChild(var).gameObject.SetActive(true);
         yield return shotDuration;

@@ -8,7 +8,7 @@ public class GrenadeBarrier : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        if (collision.gameObject.name == "grenade")
+        if (collision.gameObject.tag == "grenade")
         {
             nade = collision.gameObject;
             
@@ -19,7 +19,7 @@ public class GrenadeBarrier : MonoBehaviour
         if(nade)
         if (nade.GetComponent<GrenadeThrow>().GetIsExploding() == true)
         {
-            Destroy(gameObject);
+                GetComponent<HealthSystem>().ModifyHealth(-GetComponent<HealthSystem>().currentHealth);
         }
        
     }

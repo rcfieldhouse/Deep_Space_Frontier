@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 3100082739811453227}
   - component: {fileID: 2065585729681426062}
   - component: {fileID: 4273520287097025092}
-  - component: {fileID: -2350481676826919468}
   - component: {fileID: 7763759228793855632}
+  - component: {fileID: 834671035}
+  - component: {fileID: 834671033}
+  - component: {fileID: 834671034}
   m_Layer: 0
   m_Name: grenade_barrier
   m_TagString: Untagged
@@ -86,19 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &-2350481676826919468
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2327908554733278097}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.030085776, y: 0.024113728, z: 0.016280238}
-  m_Center: {x: 0.00041796066, y: -0.001965997, z: 0.00798336}
 --- !u!114 &7763759228793855632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +100,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34e0a8471d3f474b844f33acb75fad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &834671035
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327908554733278097}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4662215854552279117, guid: 142918759cbd2c14591ce1d3b4df45ac, type: 3}
+--- !u!114 &834671033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327908554733278097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0bb0dd8316f3d4782fba483477d661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100000000
+  currentHealth: 0
+--- !u!114 &834671034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327908554733278097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769b1894470198b48a5388b3ee9d1620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: {fileID: 834671033}
+  brokenPrefab: {fileID: 7443162894275084958, guid: 91e78c11a9fdfa84194dfdece0852bb6,
+    type: 3}
+  shatterForce: 1000
 --- !u!1 &4887264002322235192
 GameObject:
   m_ObjectHideFlags: 0

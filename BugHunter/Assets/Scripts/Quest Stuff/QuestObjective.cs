@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class QuestObjective : MonoBehaviour
 {
-    [SerializeField] QuestStep ThisQuestStep;
-    private Vector3 startPos;
-    // Start is called before the first frame update
-    void Start()
+    public int QuestStep = 0;
+    public HealthSystem Health;
+    private void Awake()
     {
-        startPos = transform.position;
+       
+        Invoke(nameof(Delay), 0.01f);
+        Health = GetComponent<HealthSystem>();
+        Health.OnObjectDeath += HandleObjectDeath;
     }
-
-    private void OnDisable()
+    void Delay()
     {
-        QuestManager.instance.QuestCompleted(ThisQuestStep);
+        QuestManager.instance.quests[QuestStep] = gameObject;
     }
-
-    public void ResetPosition()
+    public void HandleObjectDeath(GameObject context)
     {
-        gameObject.transform.position = startPos;
+        QuestManager.instance.SetNewQuest(QuestStep);
     }
-
 }
