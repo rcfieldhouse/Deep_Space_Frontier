@@ -26,6 +26,7 @@ public class Shop : MonoBehaviour
             Player = other.transform.gameObject;
             gui = Player.transform.parent.GetComponentInChildren<GUIHolder>();
             gui.PickupPrompt.SetActive(true);
+
         }
     }
     private void OnTriggerExit(Collider other)
