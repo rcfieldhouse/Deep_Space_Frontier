@@ -20,6 +20,7 @@ public class HealthBarUI : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(wait());
+        HealthBar.color = Color.cyan;
     }
 
     private void HandleHealthChanged(float pct)
@@ -36,9 +37,11 @@ public class HealthBarUI : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             HealthBar.fillAmount = Mathf.Lerp(preChangePercent, pct, elapsed / updateSpeedSeconds);
+          
             yield return null;
         }
-
+        Debug.Log(pct);
+        HealthBar.color = Color.Lerp(Color.red, Color.cyan, pct);
         PlayHealthSound(pct);
         HealthBar.fillAmount = pct;
     }

@@ -59,7 +59,7 @@ public abstract class AI : MonoBehaviour
             Materials = SkinnedMeshRenderer.materials;
 
         NavAgent.speed = WalkSpeed;
-        
+        CanAttack = true;   
         //essentially makes them not dumb
        // StartCoroutine(PatrolCorrection());
     }

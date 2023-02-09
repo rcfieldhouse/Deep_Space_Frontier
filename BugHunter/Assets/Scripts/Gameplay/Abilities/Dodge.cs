@@ -54,10 +54,12 @@ public class Dodge : MonoBehaviour
     }
     private IEnumerator RollTime()
     {
+        Cameras[3].SetActive(true);
         Cameras[4].SetActive(false);
         yield return RollTimer;
         disableCams(false);
         Cameras[4].SetActive(true);
+        Cameras[3].SetActive(false);
 
     }
     private IEnumerator DoTheRoll()

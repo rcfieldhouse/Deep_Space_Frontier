@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public Rigidbody Rigidbody;
-    public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
+    public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera,PlayerCamera;
     private bool SuspendMovement = false, OnZipline=false;
     private Transform StartPos, EndPos;
     bool _IsOnLadder = false;
@@ -74,7 +74,7 @@ public class CharacterController : MonoBehaviour
     public GameObject[] GetCameras()
     {//this is for dodge roll fam
         EnableCams();
-        return new GameObject[5] { CameraMain, CameraCrouch, CameraDodge, CameraManager, WeaponCamera };
+        return new GameObject[5] { CameraMain, CameraCrouch, CameraDodge, PlayerCamera, WeaponCamera };
     }
     //functions for delegates 
     //happy programmer noises ;)
