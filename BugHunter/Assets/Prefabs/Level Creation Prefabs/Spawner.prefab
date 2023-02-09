@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8650675690547895158}
   - component: {fileID: 8650675690547895159}
-  - component: {fileID: 8650675690547895153}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -50,6 +49,7 @@ MonoBehaviour:
   EnemySelection: 
   NumEnemies: 
   StartDestination: {fileID: 8650675690757831027}
+  NumSpawns: 
   prefab:
   - {fileID: 5991942451307951295, guid: 71d5246dd754d7e4d8f579558282c0f2, type: 3}
   - {fileID: 8305802020851899696, guid: 9f11386feb563f145850efd8393c7218, type: 3}
@@ -57,19 +57,6 @@ MonoBehaviour:
   - {fileID: 6287884213789087147, guid: 1b85e71bda898a143b942fa5f697609b, type: 3}
   - {fileID: 107484649466263841, guid: 148ef79e944ef8944935018f3c7dd206, type: 3}
   SpawnTimer: 4.2
---- !u!135 &8650675690547895153
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8650675690547895156}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 18.79
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8650675690757831024
 GameObject:
   m_ObjectHideFlags: 0
