@@ -17,25 +17,35 @@ public class Spawner : MonoBehaviour
     public Transform StartDestination;
     public int[] NumSpawns;
 
+    public Vector3 CenterSpawner, SizeSpawner;
+    public LayerMask WhatIsPlayer;
     public List<GameObject> prefab;
     [Range(0, 30)] public float SpawnTimer=0.0f;
 
     // Start is called before the first frame update
     void Awake()
     {
-       NumSpawns = new int[5] ;
+        NumSpawns = new int[5];
         if (SpawnCondition == SpawnCondition.ApplicationStart)
         {
             for (int i = 0; i < EnemySelection.Count; i++)
             {
-                SelectEnemy(EnemySelection[i],i);
+                SelectEnemy(EnemySelection[i], i);
             }
             if (gameObject.transform.GetChild(0) != null)
             {
                 StartDestination = gameObject.transform.GetChild(0);
             }
         }
-        
+
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(Vector3.zero+CenterSpawner, SizeSpawner);
+        Gizmos.DrawWireSphere(CenterSpawner, 20.0f);
+
     }
     private void OnTriggerEnter(Collider other)
     {

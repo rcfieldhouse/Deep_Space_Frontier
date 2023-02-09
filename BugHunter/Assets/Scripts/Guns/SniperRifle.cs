@@ -9,6 +9,7 @@ public class SniperRifle : Gun
     {
         CurrentBullet = transform.parent.parent.parent.parent.GetComponentInChildren<SpecialBulletSelect>();
     }
+    public LayerMask WhatIsEnemy;
     // Start is called before the first frame update
     public override void Shoot()
     {

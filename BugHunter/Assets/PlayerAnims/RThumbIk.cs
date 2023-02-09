@@ -8,7 +8,7 @@ public class RThumbIk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.parent.parent.GetComponentInChildren<RThumbID>())
+        if (transform.parent.parent.GetComponentInChildren<RThumbID>()==null)
             return;
 
         transform.position = transform.parent.parent.GetComponentInChildren<RThumbID>().transform.position;
