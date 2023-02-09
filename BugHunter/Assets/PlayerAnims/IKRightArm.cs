@@ -10,6 +10,8 @@ public class IKRightArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.parent.GetComponentInChildren<IKRightID>() == null)
+            return;
         transform.position = transform.parent.GetComponentInChildren<IKRightID>().transform.position;
         transform.rotation = transform.parent.GetComponentInChildren<IKRightID>().transform.rotation;
         transform.localScale = transform.parent.GetComponentInChildren<IKRightID>().transform.localScale;

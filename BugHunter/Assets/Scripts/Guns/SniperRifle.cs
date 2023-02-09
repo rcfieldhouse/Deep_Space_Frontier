@@ -28,6 +28,7 @@ public class SniperRifle : Gun
             if (Physics.Raycast(RayOrigin, Camera.transform.forward, out Hit, WeaponRange))
             {
                 //Damage
+                Debug.Log(Hit.collider.name);
                 LazerLine.SetPosition(1, Hit.point);
                 HealthSystem Health = FindHealth(Hit.collider);
                 DoDamage(Health, Hit.collider.isTrigger);
