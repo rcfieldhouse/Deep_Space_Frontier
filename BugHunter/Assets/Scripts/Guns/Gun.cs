@@ -45,7 +45,7 @@ public abstract class Gun : MonoBehaviour
         if (gameObject.activeInHierarchy == true)
             _IsAiming = aiming;
     }
-    private void Update()
+    public virtual void Update()
     {
         if (Time.time < NextFire && gameObject.activeInHierarchy == true)
             info.SetCanShoot(false);

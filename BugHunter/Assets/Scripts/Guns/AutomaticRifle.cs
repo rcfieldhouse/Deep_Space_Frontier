@@ -80,16 +80,11 @@ public class AutomaticRifle : Gun
                 LazerLine.SetPosition(1, RayOrigin + (Camera.transform.forward * WeaponRange) + Spread);
         }
     }
-    void Update()
+   public override void Update()
     {
-        if (_IsShooting == true)
-        {
-            PlayerInput.Shoot.Invoke();
-        }
+        base.Update();
 
-        if (Time.time < NextFire && gameObject.activeInHierarchy == true)
-            info.SetCanShoot(false);
-        else if (Time.time > NextFire && gameObject.activeInHierarchy == true && info.GetMag() > 0)
-            info.SetCanShoot(true);
+        if (_IsShooting == true)
+            PlayerInput.Shoot.Invoke();
     }
 }

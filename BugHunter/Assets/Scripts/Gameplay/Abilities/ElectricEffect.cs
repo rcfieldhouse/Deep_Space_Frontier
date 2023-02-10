@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class ElectricEffect : MonoBehaviour
 {
+    private int Damage;
+    private float radius;
+    private WaitForSeconds BoltTimer;
     bool _TargetFound = false;
     // Start is called before the first frame update
     void Awake()
     {
+       Invoke(nameof(Effect), 0.05f);
+    }
+    private void Effect()
+    {
         gameObject.AddComponent<BeenElectrified>();
         StartCoroutine(ArcShot());
+    }
+    public void SetValues(Vector3 vec)
+    {
+        Damage = (int)vec.x;
+        radius = vec.y;
+        BoltTimer = new WaitForSeconds(vec.z);
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -35,7 +49,7 @@ public class ElectricEffect : MonoBehaviour
     private IEnumerator NewTarget(Collider collider)
     {
         // how long to move to each enemy
-        yield return new WaitForSeconds(0.25f);
+        yield return BoltTimer;
         collider.gameObject.AddComponent<ElectricEffect>();
     }
     // Update is called once per frame
@@ -50,10 +64,10 @@ public class ElectricEffect : MonoBehaviour
         {
             rigidbody = gameObject.GetComponent<Rigidbody>();
         }
-
+        rigidbody.isKinematic = true;
         SphereCollider coll= gameObject.AddComponent<SphereCollider>();
         // enemy arc to radius
-        coll.radius = 15.0f;
+        coll.radius = radius;
         coll.isTrigger = true;
      
         yield return new WaitForSeconds(1f);
@@ -74,7 +88,7 @@ public class ElectricEffect : MonoBehaviour
         Line.endColor = Color.blue;
         Line.SetPosition(0, transform.position);
         Line.SetPosition(1, Target.position);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         Destroy(Line);
     }
     private void OnDestroy()

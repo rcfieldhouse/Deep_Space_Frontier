@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 public interface SniperBullet
 {
-   void ShotEffect(GameObject obj);
+   void ShotEffect(GameObject obj,Vector3[] vec);
 }
 public enum BulletType
 {
@@ -15,34 +15,31 @@ public enum BulletType
 internal class Standard : SniperBullet
 {
 
-    public void ShotEffect(GameObject obj)
+    public void ShotEffect(GameObject obj,Vector3[] vec)
     {
         //maybe i can do something like does more damage to parts 
-        obj.AddComponent<StandardEffect>();
+        obj.AddComponent<StandardEffect>().SetValues(vec[0]);
     }
 }
 internal class Cryogenic : SniperBullet
 {
-
-    public void ShotEffect(GameObject obj)
+    public void ShotEffect(GameObject obj, Vector3[] vec)
     {
-        obj.AddComponent<CryogenicEffect>();
+        obj.AddComponent<CryogenicEffect>().SetValues(vec[1]);
     }
 }
 internal class Incendiary : SniperBullet
 {
 
-    public void ShotEffect(GameObject obj)
+    public void ShotEffect(GameObject obj, Vector3[] vec)
     {
-        obj.AddComponent<IncendiaryEffect>();
+        obj.AddComponent<IncendiaryEffect>().SetValues(vec[2]);
     }
 }
 internal class Electric : SniperBullet
-{
-
-    public void ShotEffect(GameObject obj)
+{  public void ShotEffect(GameObject obj, Vector3[] vec)
     {
-        obj.AddComponent<ElectricEffect>();
+        obj.AddComponent<ElectricEffect>().SetValues(vec[3]);
     }
 }
 
@@ -51,6 +48,7 @@ public class SpecialBulletSelect : MonoBehaviour
     public static Action<int> NewBulletSelected;
     SniperBullet Bullet;
     [SerializeField] private BulletType BulletSelection=BulletType.Standard;
+  
     public SniperBullet SelectBullet(BulletType bulletType)
     {
         SniperBullet bullet;
@@ -76,7 +74,10 @@ public class SpecialBulletSelect : MonoBehaviour
         return bullet;
         
     }
-   
+   public BulletType GetBulletType()
+    {
+        return BulletSelection;
+    }
     // Start is called before the first frame update
     void Awake()
     {
@@ -95,10 +96,11 @@ public class SpecialBulletSelect : MonoBehaviour
     }
     // Update is called once per frame
 
-    public void CallShotEffect(GameObject Object)
+    public void CallShotEffect(GameObject Object,Vector3[] vec)
     {
-        if(Object.tag!="Player")
-        Bullet.ShotEffect(Object);
+       
+        if (Object.tag!="Player")
+        Bullet.ShotEffect(Object,vec);
     }
     public void ChangeBulletType()
     {

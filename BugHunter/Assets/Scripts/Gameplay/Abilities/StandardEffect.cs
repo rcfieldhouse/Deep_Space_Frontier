@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class StandardEffect : MonoBehaviour
 {
+    private int Damage;
+    
+    public void SetValues(Vector3 vec)
+    {
+        Damage = (int)vec.x;
+    }
     // Start is called before the first frame update
     private void Awake()
     {
-        gameObject.GetComponent<HealthSystem>().ModifyHealth(-125);
+        Invoke(nameof(Effect), 0.05f);
+    }
+    private void Effect()
+    {
+        gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
         Destroy(this);
-        //prolly just do damage 
-        //maybe armour piercing
     }
 }

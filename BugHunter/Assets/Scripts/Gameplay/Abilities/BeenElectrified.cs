@@ -7,11 +7,11 @@ public class BeenElectrified : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        StartCoroutine(Kill());
+        Invoke(nameof(Kill), 2.0f);
     }
-    private IEnumerator Kill()
+    private void Kill()
     {
-        yield return new WaitForSeconds(2.0f);
+    
         Destroy(this);
     }
 }

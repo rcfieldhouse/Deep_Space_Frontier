@@ -127,23 +127,23 @@ public class SniperShot : MonoBehaviour
 
                 // If there was a health script attached
 
-                if (health != null && hit.collider.isTrigger)
-                {
-                    if ((Target.tag == "Enemy"||Target.tag=="Boss" ) && _IsSniper == true) CurrentBullet.CallShotEffect(Target);
-                    StatisticTracker.instance.ShotsHit();
-                    StartCoroutine(HitMarkerEffect(1));
-                    // Double Damage for Crits
-                    health.ModifyHealth((int)(gunDamage * CritMultiplier));
-                }
-
-                else if (health != null)
-                {
-                    if ((Target.tag == "Enemy" || Target.tag == "Boss") && _IsSniper == true) CurrentBullet.CallShotEffect(Target);
-                    StatisticTracker.instance.ShotsHit();
-                    StartCoroutine(HitMarkerEffect(0));
-                    // Call the damage function of that script, passing in our gunDamage variable
-                    health.ModifyHealth(gunDamage);
-                }
+             // if (health != null && hit.collider.isTrigger)
+             // {
+             //     if ((Target.tag == "Enemy"||Target.tag=="Boss" ) && _IsSniper == true) CurrentBullet.CallShotEffect(Target);
+             //     StatisticTracker.instance.ShotsHit();
+             //     StartCoroutine(HitMarkerEffect(1));
+             //     // Double Damage for Crits
+             //     health.ModifyHealth((int)(gunDamage * CritMultiplier));
+             // }
+             //
+             // else if (health != null)
+             // {
+             //     if ((Target.tag == "Enemy" || Target.tag == "Boss") && _IsSniper == true) CurrentBullet.CallShotEffect(Target);
+             //     StatisticTracker.instance.ShotsHit();
+             //     StartCoroutine(HitMarkerEffect(0));
+             //     // Call the damage function of that script, passing in our gunDamage variable
+             //     health.ModifyHealth(gunDamage);
+             // }
              
                 // Check if the object we hit has a rigidbody attached
                 if (hit.rigidbody != null)
