@@ -59,9 +59,9 @@ public abstract class AI : MonoBehaviour
             Materials = SkinnedMeshRenderer.materials;
 
         NavAgent.speed = WalkSpeed;
-        CanAttack = true;   
+        CanAttack = true;
         //essentially makes them not dumb
-       // StartCoroutine(PatrolCorrection());
+        PatrolCorrection();
     }
     public void Update()
     {
@@ -279,27 +279,33 @@ public abstract class AI : MonoBehaviour
             else SearchWalkPoint();
         }
     }
-  // private IEnumerator PatrolCorrection()
-  // {
-  //     if (NavAgent.isOnNavMesh)
-  //     {
-  //          Pos = gameObject.transform.position;
-  //     }
-  //     yield return new WaitForSeconds(2.0f);
-  //     if (NavAgent.isOnNavMesh)
-  //     {
-  //         if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f)
-  //         {
-  //             WalkPointSet = false;
-  //         }
-  //         if ((Mathf.Abs(gameObject.transform.position.x - SpawnPoint.x) > 60.0f) || (Mathf.Abs(gameObject.transform.position.y - SpawnPoint.y) > 60.0f))
-  //         {
-  //             NavAgent.SetDestination(SpawnPoint);
-  //             //  Debug.Log(gameObject.name + " is too far" + " current: " + gameObject.transform.position+ " Spawn "+SpawnPoint);
-  //         }
-  //     }
-  //     StartCoroutine(PatrolCorrection());
-  // }
+   private void PatrolCorrection()
+   {
+       if (NavAgent.isOnNavMesh)
+            Pos = gameObject.transform.position;
+
+        Invoke(nameof(CheckIfStuck),2.0f);
+      // yield return new WaitForSeconds(2.0f);
+     
+     //  StartCoroutine(PatrolCorrection());
+   }
+
+    private void CheckIfStuck()
+    {
+        if (NavAgent.isOnNavMesh)
+        {
+            if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f)
+            {
+                WalkPointSet = false;
+            }
+            if ((Mathf.Abs(gameObject.transform.position.x - SpawnPoint.x) > 60.0f) || (Mathf.Abs(gameObject.transform.position.y - SpawnPoint.y) > 60.0f))
+            {
+                NavAgent.SetDestination(SpawnPoint);
+                //  Debug.Log(gameObject.name + " is too far" + " current: " + gameObject.transform.position+ " Spawn "+SpawnPoint);
+            }
+        }
+        PatrolCorrection();
+    }
     #endregion Navigation
    
 
