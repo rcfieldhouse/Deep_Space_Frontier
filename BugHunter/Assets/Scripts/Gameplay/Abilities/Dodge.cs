@@ -23,6 +23,7 @@ public class Dodge : MonoBehaviour
         Cameras = characterController.GetCameras();
         PlayerInput.UseAbility += UseDodge;
         disableCams(false);
+        transform.parent.GetComponentInChildren<AssaultIcons>().SetIcon();
     }
     private void OnDestroy()
     {
@@ -33,6 +34,7 @@ public class Dodge : MonoBehaviour
     {
         if (_CanRoll == true)
         {
+            StartCoroutine(StartRollCooldown());
             GetComponent<PlayerAnimatorScript>().Dodge(true);
             Dodged.Invoke(Cooldown);
             StartCoroutine(DoTheRoll());
@@ -77,7 +79,7 @@ public class Dodge : MonoBehaviour
             characterController.SetSuspendMovement(false);
             RollVector = Vector3.zero;
         GetComponent<PlayerAnimatorScript>().Dodge(false);
-        StartCoroutine(StartRollCooldown());
+       
         
     }
     private IEnumerator StartRollCooldown()
