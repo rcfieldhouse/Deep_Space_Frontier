@@ -5,7 +5,8 @@ using UnityEngine;
 public class LootSpawner : MonoBehaviour
 {
     public static LootSpawner instance;
-    public GameObject prefab,Drop;
+    public GameObject prefab;
+    private GameObject Drop;
     public List<GameObject> Prefabs;
     public Transform Transform;
     private float num;
@@ -68,6 +69,7 @@ public class LootSpawner : MonoBehaviour
       
         Drop.AddComponent<MaterialPickup>();
         Drop.GetComponent<MaterialPickup>().SetType(LootType);
+
         //for making it schmoov
         Rigidbody rb = transform.GetComponent<Rigidbody>();
         if (rb == null)

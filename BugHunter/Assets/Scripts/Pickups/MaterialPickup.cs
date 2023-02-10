@@ -14,7 +14,35 @@ public class MaterialPickup : MonoBehaviour
     public void SetType(int MatType)
     {
         LootIndex = MatType;
+        ChangeMaterial();
     }
+
+    public void ChangeMaterial()
+    {
+        switch (LootIndex)
+        {
+            case 1:
+            case 4: 
+            case 7:
+            case 10:
+                this.GetComponent<MeshRenderer>().material.color =  Color.white;
+                break;
+            case 2:
+            case 5:
+            case 8:
+            case 11:
+                this.GetComponent<MeshRenderer>().material.color = Color.green;
+                break;
+            case 3:
+            case 6:
+            case 9:
+            case 12:
+                this.GetComponent<MeshRenderer>().material.color = Color.blue;
+                break;
+        }
+    }
+
+
 
     public void OnCollisionEnter(Collision collision)
     {   

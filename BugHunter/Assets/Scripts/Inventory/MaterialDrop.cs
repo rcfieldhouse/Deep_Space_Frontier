@@ -4,12 +4,38 @@ using UnityEngine;
 
 public class MaterialDrop : MonoBehaviour
 {
+    enum EnemyType {
+        Slime = 0,
+        Tick = 3,
+        Zephyr = 6,
+        Bomber = 9
+    };
+    enum Rarity
+    {
+        Common = 1,
+        Uncommon = 2,
+        Rare = 3
+    };
+    [Header("For Single Drops")]
     public int LootType = 0;
 
-    [Range(0, 10)] public List<int> NumOfDrops;
+    [SerializeField] private EnemyType Enemy = EnemyType.Slime;
+    [Seperator()]
+    [SerializeField] private Rarity rarity = Rarity.Common;
+
+
+    [Header("For Random Drops")]
+    public bool RandomDrop = false;
+
+    [Range(0, 100)] public float CommonDrop;
+
+    [Range(0, 100)] public float UncommonDrop;
+
+    [Range(0, 100)] public float RareDrop;
+
 
     HealthSystem Health;
-    public bool RandomDrop = false;
+
     private void Awake()
     {
         Health = GetComponent<HealthSystem>();
@@ -24,24 +50,29 @@ public class MaterialDrop : MonoBehaviour
     {
         if (context == this.gameObject)
         {
-            for (int i = 0; i < NumOfDrops.Count; i++)
+            if (RandomDrop == false)
             {
-                for (int j = 0; j < NumOfDrops[i]; j++)
-
-                    if (RandomDrop == false)
-                    {
-                        LootSpawner.instance.DropMaterials(transform, (int)LootType);
-                    }
-
-                    else if (RandomDrop == true)
-                    {
-                        LootSpawner.instance.DropMaterials(transform, Random.Range(0, 4));
-                    }
-
+                LootSpawner.instance.DropMaterials(transform, (int)Enemy + (int)rarity);
             }
 
+            else if (RandomDrop == true)
+            {
+                DoRandomDrop();
+            }
             Destroy(gameObject);
-
         }
+    }
+
+    private void DoRandomDrop()
+    {
+        float RnG = Random.Range(0, 100);
+
+        if(RnG <= CommonDrop)
+            LootSpawner.instance.DropMaterials(transform, (int)Enemy + 1);
+        if (RnG <= UncommonDrop)
+            LootSpawner.instance.DropMaterials(transform, (int)Enemy + 2);
+        if (RnG <= RareDrop)
+            LootSpawner.instance.DropMaterials(transform, (int)Enemy + 3);
+
     }
 }
