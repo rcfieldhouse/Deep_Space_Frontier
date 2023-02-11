@@ -22,8 +22,10 @@ public class FMODPlayer : MonoBehaviour
     private FMODUnity.EventReference uiSelectEvent;
 
     [SerializeField]
-
     private FMODUnity.EventReference uiDeselectEvent;
+
+    [SerializeField]
+    private FMODUnity.EventReference music;
 
 
 
@@ -59,7 +61,7 @@ public class FMODPlayer : MonoBehaviour
         //Attach sound @ runtime                                
         //FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>(), GetComponent<Rigidbody>());
 
-        //Music = FMODUnity.RuntimeManager.CreateInstance("event:/TestEvent");
+        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Level1");
         MasterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
         //SoundFXVolume = FMODUnity.RuntimeManager.GetBus("bus:/Sounds");
         //DialogueVolume = FMODUnity.RuntimeManager.GetBus("bus:/Dialogue");

@@ -33,6 +33,9 @@ public class HealthBarUI : MonoBehaviour
         float preChangePercent = HealthBar.fillAmount;
         float elapsed = 0f;
 
+        if(preChangePercent<=pct)
+            PlayHealthSound(pct);
+
         while (elapsed<updateSpeedSeconds)
         {
             elapsed += Time.deltaTime;
@@ -42,7 +45,7 @@ public class HealthBarUI : MonoBehaviour
         }
         Debug.Log(pct);
         HealthBar.color = Color.Lerp(Color.red, Color.cyan, pct);
-        PlayHealthSound(pct);
+        
         HealthBar.fillAmount = pct;
     }
     // Update is called once per frame

@@ -34,6 +34,7 @@ public class Dodge : MonoBehaviour
     {
         if (_CanRoll == true)
         {
+            
             StartCoroutine(StartRollCooldown());
             GetComponent<PlayerAnimatorScript>().Dodge(true);
             Dodged.Invoke(Cooldown);
@@ -66,8 +67,8 @@ public class Dodge : MonoBehaviour
     }
     private IEnumerator DoTheRoll()
     {
-       
-            RollVector = GetComponent<Rigidbody>().velocity.normalized;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Dodge_Roll");
+        RollVector = GetComponent<Rigidbody>().velocity.normalized;
             if (RollVector == Vector3.zero || GetComponent<Rigidbody>().velocity.magnitude < 0.1)
                 RollVector = Cameras[4].transform.rotation * Vector3.forward;
 

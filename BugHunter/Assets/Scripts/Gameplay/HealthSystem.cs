@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -10,8 +12,15 @@ public class HealthSystem : MonoBehaviour
     public event Action<int> OnTakeDamage = delegate { };
     public event Action<GameObject> OnObjectDeath = delegate { };
 
+    [Header("Low Health Vignette")]
+    static public VolumeProfile volumeProfile;
+    UnityEngine.Rendering.Universal.Vignette vignette;
+    public float fadeInTime = 0.5f;
+
+
     private void OnEnable()
     {
+   
         if (gameObject.tag == "Player")
             gameObject.AddComponent<LoseCondition>();
 
@@ -65,13 +74,18 @@ public class HealthSystem : MonoBehaviour
             //could in theory just use a statement if being damaged or healed 
             currentHealth += amount;
 
-            if (transform.tag == "Player" && amount > 0)
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Hurt");
+                
             if (currentHealth > maxHealth) currentHealth = maxHealth;
 
             Debug.Log("Current health is " + currentHealth);
 
             float currentHealthPercent = (float)currentHealth / (float)maxHealth;
+
+            if (transform.tag == "Player" && amount > 0)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Hurt");
+            }
+
             OnHealthPercentChanged(currentHealthPercent);
             OnTakeDamage(amount);
             //Check if health has fallen below zero
@@ -85,6 +99,7 @@ public class HealthSystem : MonoBehaviour
             }
         }
     }
+
     public void ModifyHealth(int amount)
     {
 

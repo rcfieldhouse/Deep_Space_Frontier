@@ -11,7 +11,7 @@ public class LootHolder : MonoBehaviour, IDataPersistence
     void Awake()
     {
         //TODO: Instantiate this in the lootholder with the player
-        for (int i =1; i < 10; i++)
+        for (int i =0; i <= 11; i++)
         {
             //Inventory.Add(ScriptableObject.CreateInstance<Loot>());
             Inventory.Add(new Loot(0,i));
@@ -35,6 +35,7 @@ public class LootHolder : MonoBehaviour, IDataPersistence
         int i = 0;
         foreach (Loot loot in Inventory)
         {
+            Debug.Log(i);
             loot.SetQuantity(data.itemQuantity[i]);
             i++;
         }
@@ -45,6 +46,7 @@ public class LootHolder : MonoBehaviour, IDataPersistence
         int i = 0;
         foreach(Loot loot in Inventory)
         {
+            Debug.Log(i);
             data.itemQuantity[i] = loot.Quantity;
             i++;
         }
