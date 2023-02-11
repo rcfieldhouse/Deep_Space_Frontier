@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class CharacterController : MonoBehaviour
     public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera,PlayerCamera;
     private bool SuspendMovement = false, OnZipline=false;
     private Transform StartPos, EndPos;
+    public float FootStepTime = 0.5f;
     bool _IsOnLadder = false;
     [SerializeField] private LayerMask m_WhatIsGround;
 
@@ -129,16 +131,20 @@ public class CharacterController : MonoBehaviour
         move = move.normalized;
         if (SuspendMovement == false)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Dodge_Roll");
+            //This is cursed, do not move it.
+            if (move != Vector2.zero)
+                FootStepTimer(SpeedMod);
+
             // was 4.0f
             SpeedMod *= 20.0f;
             mover = transform.right * move.x + transform.forward * move.y;
+
             Rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, Rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);
         }      
        else if (gameObject.GetComponent<Dodge>()!=null  )
        {
             if (GetComponent<Dodge>().GetRollVector() != Vector3.zero) {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Dodge_Roll");
+                
                 Rigidbody.velocity = GetComponent<Dodge>().GetRollVector() * 12;
             }
         }
@@ -157,7 +163,16 @@ public class CharacterController : MonoBehaviour
         Rigidbody.angularVelocity = Vector3.zero;      
     }
 
-   
+    private void FootStepTimer(float speedMod)
+    {
+        if(FootStepTime >= 0.5)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Footsteps/Footsteps_Grass");
+            FootStepTime = 0;
+        }
+        FootStepTime += Time.deltaTime * UnityEngine.Random.Range(0.8f, 1.3f) * speedMod;
+    }
+
     public bool isGrounded(float x)
     {
         return Physics.Raycast(coll.bounds.center - Vector3.down / 10, Vector3.down, x, m_WhatIsGround);

@@ -21,22 +21,22 @@ public class MaterialPickup : MonoBehaviour
     {
         switch (LootIndex)
         {
+            case 0:
+            case 3: 
+            case 6:
+            case 9:
+                this.GetComponent<MeshRenderer>().material.color =  Color.white;
+                break;
             case 1:
-            case 4: 
+            case 4:
             case 7:
             case 10:
-                this.GetComponent<MeshRenderer>().material.color =  Color.white;
+                this.GetComponent<MeshRenderer>().material.color = Color.green;
                 break;
             case 2:
             case 5:
             case 8:
             case 11:
-                this.GetComponent<MeshRenderer>().material.color = Color.green;
-                break;
-            case 3:
-            case 6:
-            case 9:
-            case 12:
                 this.GetComponent<MeshRenderer>().material.color = Color.blue;
                 break;
         }

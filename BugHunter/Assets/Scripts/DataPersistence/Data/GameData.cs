@@ -29,7 +29,7 @@ public class GameData
     public GameData()
     {
         this.WeaponLevel = 1;
-        this.itemQuantity = new int[] { 0, 0, 0, 0, 0 };
+        this.itemQuantity = new int[] { 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0};
         this.weaponDamageMultiplier = 1;
         this.playerHealthMultiplier = 1;
         this.playerSpeedMultiplier = 1;
