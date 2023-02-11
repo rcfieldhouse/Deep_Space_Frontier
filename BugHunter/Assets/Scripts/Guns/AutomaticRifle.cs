@@ -82,9 +82,10 @@ public class AutomaticRifle : Gun
     }
    public override void Update()
     {
-        base.Update();
+        
 
         if (_IsShooting == true)
             PlayerInput.Shoot.Invoke();
+        base.Update();
     }
 }

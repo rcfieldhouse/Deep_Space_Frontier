@@ -80,7 +80,7 @@ public class GrenadeThrow : MonoBehaviour
         _isExploding = true;
         //Grenade VFX Trigger
         SpawnGrenadeVFX();
-        Invoke(nameof(KillIt), GrenadeFuse);  
+        Invoke(nameof(KillIt), 0.1f);  
     }
     private void KillIt()
     {

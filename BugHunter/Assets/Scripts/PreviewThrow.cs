@@ -13,19 +13,17 @@ public class PreviewThrow : MonoBehaviour
     GameObject WeaponHolder, CameraManager;
     void Awake()
     {
-   
         PreviewLine = gameObject.GetComponent<LineRenderer>();
         PreviewLine.positionCount = 10;
         PreviewLine.startWidth = 0.15f;
         PreviewLine.endWidth = 0.15f;
- 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Direction = transform.parent.GetComponentInChildren<WeaponSwap>().transform.rotation;
-        LaunchPoint= (transform.parent.GetChild(1).position + Direction * new Vector3(0.0f, 1.75f, 0.0f)) - new Vector3(0.0f, 0.5f, 0.0f);
+        Direction = GetComponentInChildren<WeaponSwap>().transform.rotation;
+        LaunchPoint =GetComponent<Look>().PlayerViewPoint.transform.position - Vector3.up/4;
         if (_IsCooking == true)
         {
             PreviewLine.SetPosition(0, LaunchPoint);
