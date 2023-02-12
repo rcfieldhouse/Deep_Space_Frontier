@@ -25,15 +25,16 @@ public class GrenadeManager : MonoBehaviour
         Grenade = Resources.Load<GameObject>("grenade");
         GrenadeGraphic = GetComponentInChildren<GrenadeThrow>().gameObject;
         GrenadeGraphic.SetActive(false);
-        PlayerCamera = transform.parent.GetComponentInChildren<FollowWeaponCam>().gameObject;
+        PlayerCamera = transform.parent.GetChild(1).GetComponentInChildren<FollowWeaponCam>().gameObject;
         WeaponCamera = transform.parent.GetComponentInChildren<Recoil>().gameObject;
         PlayerInput.Throw += BeginThrow;
         PlayerInput.WeNeedToCookJesse += CookNade;
         PlayerInput.TabThrowable += ChooseThrowable;
 
-        PlayerCamera.SetActive(false);
+      
         Grenade.SetActive(false);
         Fruit.SetActive(false);
+        PlayerCamera.SetActive(false);
     }
     private void OnDestroy()
     {
