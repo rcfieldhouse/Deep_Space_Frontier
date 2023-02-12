@@ -4,40 +4,37 @@ using UnityEngine;
 
 public class GrenadeManager : MonoBehaviour
 {
-    public static GrenadeManager instance;
     public Transform StartingTransform;
-    public GameObject Grenade,GrenadeGraphic,Fruit;
+    public GameObject Grenade,GrenadeGraphic,Fruit,WeaponCamera,PlayerCamera;
     public FruitThrow FruitThrow;
     public Quaternion quat;
     private PreviewThrow PreviewThrow;
     public Vector3 ThrowForce = (Vector3.forward * 25 + Vector3.up * 5);
     [SerializeField] private int numGrenades=3;
-    [SerializeField] private bool HasFruit=false;
+    [SerializeField] private bool HasFruit=false,_CanThrow=true;
     public int ThrowSelect = 0;
     // Start is called before the first frame update
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
 
-       
         FruitThrow = GetComponentInChildren<FruitThrow>();
-        PreviewThrow = gameObject.AddComponent<PreviewThrow>();
+        PreviewThrow = transform.parent.GetChild(1).gameObject.AddComponent<PreviewThrow>();
 
         Fruit = FruitThrow.gameObject;
         Grenade = Resources.Load<GameObject>("grenade");
         GrenadeGraphic = GetComponentInChildren<GrenadeThrow>().gameObject;
         GrenadeGraphic.SetActive(false);
+        PlayerCamera = transform.parent.GetChild(1).GetComponentInChildren<FollowWeaponCam>().gameObject;
+        WeaponCamera = transform.parent.GetComponentInChildren<Recoil>().gameObject;
         PlayerInput.Throw += BeginThrow;
         PlayerInput.WeNeedToCookJesse += CookNade;
         PlayerInput.TabThrowable += ChooseThrowable;
 
-     
+      
         Grenade.SetActive(false);
         Fruit.SetActive(false);
+        PlayerCamera.SetActive(false);
     }
     private void OnDestroy()
     {
@@ -47,7 +44,9 @@ public class GrenadeManager : MonoBehaviour
     }
     public void CookNade() 
     {
-       
+        if (_CanThrow == false)
+            return;
+
         if (ThrowSelect == 0 && numGrenades > 0)
         {
             GrenadeGraphic.SetActive(true);
@@ -60,11 +59,16 @@ public class GrenadeManager : MonoBehaviour
             PreviewThrow.CookNade();
             Fruit.SetActive(true);
         }
+        WeaponCamera.SetActive(false);
+        PlayerCamera.SetActive(true);
         transform.parent.GetComponentInChildren<ThrowableSwap>().DisplayInfo();
     }
     public void BeginThrow(Quaternion quaternion)
     {
-        if (ThrowSelect == 0)
+        if (_CanThrow == false)
+            return;
+
+        if (ThrowSelect == 0 && numGrenades > 0)
         {
             BeginThrowGrenade(quaternion);
             PreviewThrow.Release();
@@ -75,6 +79,7 @@ public class GrenadeManager : MonoBehaviour
             BeginThrowFruit(quaternion);
             PreviewThrow.Release();
         }
+        _CanThrow = false;
         transform.parent.GetComponentInChildren<ThrowableSwap>().DisplayInfo();
     }
     public int GetNumNades()
@@ -94,17 +99,28 @@ public class GrenadeManager : MonoBehaviour
     {
       if (numGrenades > 0)
         {
+            numGrenades--;
             quat = quaternion;
-            Invoke(nameof(ThrowDelay),0.75f);
+          
+            Invoke(nameof(ThrowDelay),0.65f);
        
         }     
     }
     public void ThrowDelay()
     {
+        PlayerCamera.SetActive(false);
         GrenadeGraphic.SetActive(false);
-        GameObject nade = Instantiate(Grenade, transform.position + transform.rotation * new Vector3(0.0f, 2.5f, 1.5f), Quaternion.identity);
+        GameObject nade = Instantiate(Grenade,WeaponCamera.transform.position - Vector3.up / 4, Quaternion.identity);
         nade.GetComponent<GrenadeThrow>().ThowGrenade(quat * ThrowForce);
-        numGrenades--;
+        Invoke(nameof(EnableCam),1.5f);
+    }
+    void EnableCam()
+    {
+        WeaponCamera.SetActive(true);
+        PlayerCamera.SetActive(false);
+
+        if(numGrenades>0)
+        _CanThrow = true;
     }
     // Update is called once per frame
     public void GainGrenades()
@@ -113,6 +129,10 @@ public class GrenadeManager : MonoBehaviour
     }
    public void GainGrenades(int num)
     {
+        _CanThrow = true;
+        if (numGrenades > 4)
+            return;
+
         numGrenades += num;
     }
     public void SetGrenades(int num)
