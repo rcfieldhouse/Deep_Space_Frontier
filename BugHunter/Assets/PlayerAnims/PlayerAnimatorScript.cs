@@ -22,7 +22,7 @@ public class PlayerAnimatorScript : MonoBehaviour
     }
     private void Awake()
     {
-        
+        PlayerInput.SwappingWeapon += SwapWeapon;
         PlayerInput.Move += Move;
         PlayerInput.WeNeedToCookJesse += CookNade;
         PlayerInput.Throw += ThrowGrenade;
@@ -33,10 +33,27 @@ public class PlayerAnimatorScript : MonoBehaviour
         PlayerInput.Move -= Move;
         PlayerInput.WeNeedToCookJesse -= CookNade;
         PlayerInput.Throw -= ThrowGrenade;
+        PlayerInput.SwappingWeapon -= SwapWeapon;
     }
-    public void Dodge(bool var)
+    private void SwapWeapon(int num)
     {
-       
+        //cases are 0,1,2 
+        //pistols are always on 1, primary is on 0 and relic cannon is on 3
+        Debug.Log(num);
+        if (num == 1)
+        {
+            PlayerAnimator.SetBool("_UsingPistol", true);
+            PlayerAnimator.SetBool("_UsingRifle", false);
+        }
+        else
+        {
+            PlayerAnimator.SetBool("_UsingPistol", false);
+            PlayerAnimator.SetBool("_UsingRifle", true);
+        }
+    }
+
+    public void Dodge(bool var)
+    {      
         if (var == true)
         {
             LeftArm.weight = 0.0f;
@@ -75,7 +92,7 @@ public class PlayerAnimatorScript : MonoBehaviour
         if (Dir == Vector2.up) DirectionMovement = 1;
         if (Dir == Vector2.down) DirectionMovement = 2;
 
-        if (LastDir != DirectionMovement) PlayerAnimator.SetBool("_ChangeWalk", true);
+        if (LastDir != DirectionMovement||Dir==Vector2.zero) PlayerAnimator.SetBool("_ChangeWalk", true);
         else PlayerAnimator.SetBool("_ChangeWalk", false);
 
         PlayerAnimator.SetFloat("MovementDirection", DirectionMovement);
@@ -92,9 +109,5 @@ public class PlayerAnimatorScript : MonoBehaviour
 
         if(var==true) PlayerAnimator.SetBool("_StartJump", false);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
