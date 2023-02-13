@@ -14,7 +14,7 @@ public abstract class AI : MonoBehaviour
     [HideInInspector] public GameObject Target;
 
     //DetectionStuff
-    [Range(0, 50)] public float _SightRange = 10, _AttackRange = 2,_Attack2_Range;
+    [Range(0,100)] public float _SightRange = 10, _AttackRange = 2,_Attack2_Range;
     public Vector3 SightRangeOffset, AttackAreaOffset,_Attack2AreaOffset;
 
     //Attack Stuff
@@ -63,7 +63,7 @@ public abstract class AI : MonoBehaviour
         //essentially makes them not dumb
         PatrolCorrection();
     }
-    public void Update()
+    public virtual void Update()
     {
         bool playerInSightRange = Physics.CheckSphere(transform.position+ transform.rotation* SightRangeOffset, _SightRange, WhatIsPlayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position + transform.rotation * AttackAreaOffset, _AttackRange, WhatIsPlayer);
@@ -185,7 +185,7 @@ public abstract class AI : MonoBehaviour
     {
         CanAttack = true;
     }
-    private GameObject FindClosestPlayer()
+    public GameObject FindClosestPlayer()
     {
         GameObject[] AllPlayers = GameObject.FindGameObjectsWithTag("Player");
         float SmallestDistance = 100000.0f;
@@ -216,8 +216,10 @@ public abstract class AI : MonoBehaviour
         WalkPoint = vec;
     }
 
-    public void Patroling()
+    public virtual void Patroling()
     {
+        if (Target == null)
+            Target = FindClosestPlayer();
         //play Dante.sound.ogg AI idle
         if (!WalkPointSet)
             SearchWalkPoint();
@@ -250,7 +252,7 @@ public abstract class AI : MonoBehaviour
             WalkPointSet = true;
         }
         DistanceTravelled = transform.position - StartEvasionLocation;
-
+        AI_Animator.SetBool("_IsMoving", true);
          if (DistanceTravelled.magnitude > EvasionRecalculationPeriod)
              WalkPointSet = false;
 
