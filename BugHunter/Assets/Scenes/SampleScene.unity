@@ -38612,41 +38612,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1477491010}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1479124301 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4826624825589009971, guid: f5b2a47b1fb2308459e650935133bede,
-    type: 3}
-  m_PrefabInstance: {fileID: 5637086598504521573}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1479124305
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479124301}
-  serializedVersion: 2
-  m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &1479124306
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479124301}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.31, y: 1.82, z: 2.37}
-  m_Center: {x: 0, y: 0.83, z: 0}
 --- !u!1001 &1484808520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59093,7 +59058,7 @@ PrefabInstance:
     - target: {fileID: 4520725862882063764, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
       propertyPath: ClassSelection
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4520725863129696829, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
@@ -70166,14 +70131,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 337750094, guid: f5b2a47b1fb2308459e650935133bede, type: 3}
-      propertyPath: Quaternion.w
-      value: 0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 337750094, guid: f5b2a47b1fb2308459e650935133bede, type: 3}
-      propertyPath: Quaternion.y
-      value: 0.70710677
-      objectReference: {fileID: 0}
     - target: {fileID: 4826624825589009971, guid: f5b2a47b1fb2308459e650935133bede,
         type: 3}
       propertyPath: m_Name
@@ -70236,18 +70193,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5637086599683347485, guid: f5b2a47b1fb2308459e650935133bede,
         type: 3}
-      propertyPath: Rigidbody
-      value: 
-      objectReference: {fileID: 1479124305}
-    - target: {fileID: 5637086599683347485, guid: f5b2a47b1fb2308459e650935133bede,
-        type: 3}
-      propertyPath: LaunchHeight
-      value: 30
+      propertyPath: Attack_2_Delay
+      value: 3.06
       objectReference: {fileID: 0}
     - target: {fileID: 5637086599683347485, guid: f5b2a47b1fb2308459e650935133bede,
         type: 3}
-      propertyPath: TimeBetweenJumps
-      value: 15
+      propertyPath: Attack_2_Damage
+      value: -50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5b2a47b1fb2308459e650935133bede, type: 3}
