@@ -51,6 +51,7 @@ public class RelicCannonAmmo : MonoBehaviour
 
     private IEnumerator ShowLine(Transform Target)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Projectiles/Relic_Cannon_Projectile");
         LineRenderer Line = gameObject.AddComponent<LineRenderer>();
         Line.startWidth = 0.1f;
         Line.endWidth = 0.1f;

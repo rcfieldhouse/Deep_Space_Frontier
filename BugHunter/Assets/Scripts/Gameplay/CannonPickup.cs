@@ -17,14 +17,15 @@ public class CannonPickup : MonoBehaviour
         {
             RelicCannon = Resources.Load<GameObject>("RelicCannon");
             RelicCannonInstance= Instantiate(RelicCannon);
-      
+            
             RelicCannonInstance.transform.SetParent(Player.transform.parent.GetComponentInChildren<WeaponSwap>().gameObject.transform);
             Player.transform.parent.GetComponentInChildren<WeaponSwap>().WeaponArray.Add(RelicCannonInstance);
 
-             icon = Player.GetComponent<GUIHolder>().GUI.GetComponentInChildren<GunIconUI>().transform.GetChild(3).gameObject;
+            icon = Player.GetComponent<GUIHolder>().GUI.GetComponentInChildren<GunIconUI>().transform.GetChild(3).gameObject;
 
             Player.GetComponent<GUIHolder>().GUI.GetComponentInChildren<GunIconUI>().Icons.Add(icon);
 
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Pickups/Pickup_Resource");
            
             reticle = Player.GetComponent<GUIHolder>().GUI.GetComponentInChildren<CrosshairsHolder>().transform.GetChild(5).gameObject;
             Player.transform.parent.GetChild(1).GetComponentInChildren<WeaponSwap>().RecticleArray.Add(reticle);

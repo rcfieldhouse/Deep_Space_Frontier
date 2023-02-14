@@ -140,7 +140,19 @@ public abstract class AI : MonoBehaviour
         _IsHitStunned = false;
     }
     public void HandleObjectDeath(GameObject context)
-    {      
+    {   
+        if (GetComponent<Tick>())
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Tick");
+        }
+        if (GetComponent<DreadBomber>())
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Bomber");
+        }
+        if (GetComponent<Slime>())
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Slime");
+        }
         StartCoroutine(DissolveMeshEffect());
     }
     IEnumerator DissolveMeshEffect()

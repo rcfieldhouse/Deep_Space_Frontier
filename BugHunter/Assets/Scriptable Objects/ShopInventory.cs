@@ -11,7 +11,7 @@ public class ShopInventory : ScriptableObject
     public string description;
 
     [Tooltip("Per-material cost of this item")]
-    public int[] cost = new int[9];
+    public int[] cost = new int[12];
 
     [Tooltip("Sprite to be displayed in shop")]
     public Texture2D sprite;

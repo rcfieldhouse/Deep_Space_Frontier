@@ -8,7 +8,6 @@ public class GrenadeThrow : MonoBehaviour
 
     private Rigidbody Rigidbody;
     private bool _isReady = true,_isExploding=false;
-  
     private SphereCollider sphereCollider;
     private float GrenadeFuse = 2.0f;
     private WaitForSeconds BoomTimer = new WaitForSeconds(0.25f);
@@ -57,10 +56,10 @@ public class GrenadeThrow : MonoBehaviour
         
         if (_isReady == true){
             _isReady = false;
-        Rigidbody.gameObject.SetActive(true);
-        Rigidbody.isKinematic = false;
-        Rigidbody.transform.parent = null;
-        Rigidbody.velocity=ThrowVector;
+            Rigidbody.gameObject.SetActive(true);
+            Rigidbody.isKinematic = false;
+            Rigidbody.transform.parent = null;
+            Rigidbody.velocity = ThrowVector;
             sphereCollider.radius = 0.02f;
             sphereCollider.enabled = true;
             sphereCollider.isTrigger = false;
@@ -78,6 +77,7 @@ public class GrenadeThrow : MonoBehaviour
         sphereCollider.isTrigger = true;
         sphereCollider.radius = 0.77f;
         _isExploding = true;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Projectiles/Grenade_Explosion");
         //Grenade VFX Trigger
         SpawnGrenadeVFX();
         Invoke(nameof(KillIt), 0.1f);  
@@ -94,7 +94,7 @@ public class GrenadeThrow : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponent<HealthSystem>())
-        other.gameObject.GetComponentInParent<HealthSystem>().ModifyHealth(-GrenadeDamage); ;
+        other.gameObject.GetComponentInParent<HealthSystem>().ModifyHealth(-GrenadeDamage);
        
     }
     // function for spawning the grenade VFX on it's current position

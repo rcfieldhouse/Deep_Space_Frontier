@@ -61,7 +61,7 @@ public class FMODPlayer : MonoBehaviour
         //Attach sound @ runtime                                
         //FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>(), GetComponent<Rigidbody>());
 
-        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Level1");
+        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Ambient/Ambience_Outdoor");
         MasterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
         //SoundFXVolume = FMODUnity.RuntimeManager.GetBus("bus:/Sounds");
         //DialogueVolume = FMODUnity.RuntimeManager.GetBus("bus:/Dialogue");

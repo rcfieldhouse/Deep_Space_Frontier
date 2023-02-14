@@ -32,6 +32,7 @@ public class RelicCannon : MonoBehaviour
         //this exists cause we cant pass an enum to a action of return type void
         if(gameObject.activeInHierarchy == true && info.GetMag() > 0)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Projectiles/Relic_Cannon_Ambient");
             info.SetBulletCount();
             Rigidbody rigidbody = Instantiate(bulletOfDoom, bulletEmitter.position, Quaternion.identity).GetComponent<Rigidbody>();
             rigidbody.gameObject.GetComponent<RelicCannonAmmo>().SetDamage(Damage);
