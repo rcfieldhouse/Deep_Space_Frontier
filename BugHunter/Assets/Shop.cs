@@ -9,17 +9,7 @@ public class Shop : MonoBehaviour
     public GUIHolder gui;
     private PlayerInput PlayerInput;
     // Start is called before the first frame update
-    void Start()
-    {
-        PlayerInput.Interact += ToggleShop;
-        
 
-    }
-    private void OnDisable()
-    {
-        PlayerInput.Interact -= ToggleShop;
-
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -27,7 +17,9 @@ public class Shop : MonoBehaviour
             Player = other.transform.gameObject;
             gui = Player.transform.parent.GetComponentInChildren<GUIHolder>();
             gui.PickupPrompt.SetActive(true);
+            ShopInterface = gui.CraftingMenu;
             PlayerInput = Player.GetComponent<PlayerInput>();
+            PlayerInput.Interact += ToggleShop;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -37,6 +29,8 @@ public class Shop : MonoBehaviour
             gui = Player.transform.parent.GetComponentInChildren<GUIHolder>();
             gui.PickupPrompt.SetActive(false);
             Player = null;
+            ShopInterface = null;
+            PlayerInput.Interact -= ToggleShop;
             PlayerInput = null;
         }
     }

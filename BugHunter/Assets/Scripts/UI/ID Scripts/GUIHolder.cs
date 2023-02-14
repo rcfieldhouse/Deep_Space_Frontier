@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class GUIHolder : MonoBehaviour 
 {
-    public GameObject GUI,PauseUI,HitMarkers,PickupPrompt;
+    public GameObject GUI,PauseUI,HitMarkers,PickupPrompt,CraftingMenu;
   
 }
