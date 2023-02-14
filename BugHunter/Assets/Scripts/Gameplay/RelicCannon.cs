@@ -9,15 +9,21 @@ public class RelicCannon : MonoBehaviour
     public Transform bulletEmitter;
     [SerializeField] float shotStrength=20;
     public WeaponInfo info;
+    public PlayerInput Player;
     // Start is called before the first frame update
     void Awake()
+    {      
+        info = GetComponent<WeaponInfo>();
+        Invoke(nameof(Wait), 0.1f);
+    }
+    void Wait()
     {
-        info = GetComponentInParent<WeaponInfo>();
-        PlayerInput.Shoot += Shoot;
+        Player = transform.parent.parent.parent.parent.GetChild(0).GetComponent<PlayerInput>();
+        Player.Shoot += Shoot;
     }
     private void OnDestroy()
     {
-        PlayerInput.Shoot -= Shoot;
+        Player.Shoot -= Shoot;
     }
     // Update is called once per frame
 

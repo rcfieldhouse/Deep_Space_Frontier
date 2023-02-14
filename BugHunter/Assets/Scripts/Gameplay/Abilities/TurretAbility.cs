@@ -9,13 +9,14 @@ public class TurretAbility : MonoBehaviour
     public List<GameObject> Turrets;
     public GameObject TurretPrefab;
     public Camera Cam;
+    private PlayerInput Player;
     // Start is called before the first frame update
     private void Awake()
     {
         Turrets = new List<GameObject>();
- 
-        PlayerInput.UseAbility += PlaceTurret;
-        PlayerInput.Undo += ClearTurrets;
+        Player = GetComponent<PlayerInput>();
+        Player.UseAbility += PlaceTurret;
+        Player.Undo += ClearTurrets;
 
         TurretPrefab = Resources.Load<GameObject>("Turret");
         Cam = transform.parent.GetChild(1).GetChild(3).GetComponent<Camera>();
@@ -27,8 +28,8 @@ public class TurretAbility : MonoBehaviour
     }
     private void OnDestroy()
     {
-        PlayerInput.UseAbility -= PlaceTurret;
-        PlayerInput.Undo -= ClearTurrets;
+        Player.UseAbility -= PlaceTurret;
+        Player.Undo -= ClearTurrets;
     }
     public void PlaceTurret()
     {

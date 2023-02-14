@@ -18,18 +18,26 @@ public class WeaponInfo : MonoBehaviour
    [Range(0,10)][SerializeField] private float RecoilZ, AimRecoilZ;
    [Range(0,10)][SerializeField] private float snappiness;
    [Range(0,5)][SerializeField] private float returnSpeed;
-
+    private PlayerInput PlayerInput;
     private bool _CanShoot = true, _CanReload = false, _isReloading = false;
     // Start is called before the first frame update
     void Awake()
-    {
-        ReloadTimer = new WaitForSeconds(_reloadTimer);
-        PlayerInput.Reload += Reload;       
+    {       
+        ReloadTimer = new WaitForSeconds(_reloadTimer);         
         ammoInMag = magSize;
+       
+        Invoke(nameof(Wait), 0.1f);
+        if(GetComponent<Gun>()!=null)
         RecoilTimer = GetComponent<Gun>().FireRate;
+    }
+    void Wait()
+    {
+        PlayerInput = transform.parent.parent.parent.parent.GetComponentInChildren<PlayerInput>();
+        PlayerInput.Reload += Reload;
     }
     private void OnDestroy()
     {
+        if(PlayerInput)
         PlayerInput.Reload -= Reload;
     }
     public bool GetIsReloading()

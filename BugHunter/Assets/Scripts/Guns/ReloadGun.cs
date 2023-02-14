@@ -9,6 +9,7 @@ public class ReloadGun : MonoBehaviour
     private WeaponSwap gunHolder;
     private Animator gunAnimator;
     private bool Reloading = false;
+    private PlayerInput PlayerInput;
     public bool GetIsReloading()
     {
         return Reloading;
@@ -18,8 +19,9 @@ public class ReloadGun : MonoBehaviour
         Reloading = var;
     }
 
-    void OnEnable()
+    void Awake()
     {
+        PlayerInput = transform.parent.parent.parent.GetChild(0).GetComponent<PlayerInput>();
         PlayerInput.Reload += Reload;
         gunHolder = GetComponent<WeaponSwap>();
     }

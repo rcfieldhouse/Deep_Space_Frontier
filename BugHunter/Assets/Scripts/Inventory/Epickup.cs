@@ -7,15 +7,9 @@ public class Epickup : MonoBehaviour
     // this script is attached to collectable items and adds an item to the list when colliding with the player
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private float PickupRange;
+    private PlayerInput PlayerInput;
     private GameObject Player;
-    public void OnEnable()
-    {
-        PlayerInput.Interact += Pickup;
-    }
-    private void OnDisable()
-    {  
-        PlayerInput.Interact -= Pickup;
-    }
+
     //private void OnDestroy()
     //{
     //    PlayerInput.Interact -= Pickup;
@@ -45,7 +39,9 @@ public class Epickup : MonoBehaviour
         if (other.tag == "Player")
         {
             Player = other.gameObject;
+            PlayerInput = Player.GetComponent<PlayerInput>();
             Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
+            PlayerInput.Interact += Pickup;
         }
     }
     public void OnTriggerExit(Collider other)
@@ -54,6 +50,8 @@ public class Epickup : MonoBehaviour
         {
             Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             Player = null;
+            PlayerInput.Interact -= Pickup;
+            PlayerInput = null;
         }
     }
 }

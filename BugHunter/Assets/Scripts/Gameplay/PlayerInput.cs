@@ -9,10 +9,11 @@ public class PlayerInput : MonoBehaviour
     //For the Teleport Command Pattern
 
     //actions that the player may perform
-    public static Action JumpAction, UseAbility, Shoot, Chamber,Reload, Interact, InteractReleased ,Undo,TabThrowable, WeNeedToCookJesse;
-    public static Action<bool>Crouching,ADS;
-    public static Action<Quaternion> Look, Throw ;
-    public static Action<Vector2,float> Move;
+    public event Action Interact, InteractReleased;
+    public event Action JumpAction, UseAbility, Shoot, Chamber,Reload,Undo,TabThrowable, WeNeedToCookJesse;
+    public event Action<bool>Crouching,ADS;
+    public event Action<Quaternion> Look, Throw ;
+    public event Action<Vector2,float> Move = delegate { };
 
     //pause menu actions
     public static Action SavePlayer, LoadPlayer, PausePlugin, GetTime;
@@ -22,8 +23,8 @@ public class PlayerInput : MonoBehaviour
     //these are for weapon swapping,
     //swapping weapon is a placeholder until class selection is introduced
 
-    public static Action SwapPrimary, SwapSecondary;
-    public static Action<int> SwappingWeapon;
+    public event Action SwapPrimary, SwapSecondary;
+    public event Action<int> SwappingWeapon = delegate { };
     private int WeaponActive = 0,WeaponListLength=5;
 
     //public static Action<bool,int>thing;
@@ -50,7 +51,11 @@ public class PlayerInput : MonoBehaviour
         UserInterface = GetComponent<GUIHolder>().GUI;
         WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }
-
+    public void AutomaticBandAid()
+    {
+        //had to use this so that i could invoke the full auto shoot 
+        Shoot.Invoke();
+    }
     private void OnDestroy()
     {
         WeaponSwap.BroadcastWeaponListData -= SetWeaponActive;

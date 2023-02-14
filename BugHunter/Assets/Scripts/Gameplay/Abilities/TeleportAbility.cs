@@ -12,24 +12,25 @@ public class TeleportAbility : MonoBehaviour
     //private GameObject turretPrefab;
     [SerializeField] private GameObject TeleportOrb;
     // Start is called before the first frame update
-
+    private PlayerInput Player;
     private void Awake()
     {
+        Player = GetComponent<PlayerInput>();
         _CommandProcessor = GameObject.Find("GameManager").GetComponent<CommandProcessor>();
         Cam = GameObject.Find("MainCamera").GetComponent<Camera>();
         teleporterPrefab = GameObject.Find("Teleporter");
         TeleportOrb = GameObject.Find("ProximtyMine");
 
-        PlayerInput.UseAbility += PlaceTeleport;
-        PlayerInput.Undo += Undo;
+        Player.UseAbility += PlaceTeleport;
+        Player.Undo += Undo;
 
 
         TeleportInstance = Instantiate(TeleportOrb);
     }
     private void OnDestroy()
     {
-        PlayerInput.UseAbility -= PlaceTeleport;
-        PlayerInput.Undo -= Undo;
+        Player.UseAbility -= PlaceTeleport;
+        Player.Undo -= Undo;
     }
     public void PlaceTeleport()
     {

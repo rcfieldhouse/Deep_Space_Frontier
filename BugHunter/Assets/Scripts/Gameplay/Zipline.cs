@@ -8,9 +8,11 @@ public class Zipline : MonoBehaviour
     private LineRenderer ZipLine;
     [Range(0, 5)] public float ButtonHoldTime = 1f;
     public Transform StartZipLine, EndZipLine;
+    private PlayerInput PlayerInput;
     // Start is called before the first frame update
     public void PlayerReadyToZipline(Transform StartPoint, bool _IsEntering)
     {
+        PlayerInput = Player.GetComponent<PlayerInput>();
         StartZipLine = StartPoint;
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -59,6 +61,7 @@ public class ZipPoint : MonoBehaviour
     private bool LinePlaced = false;
     private float elapsed = 0.0f;
     private bool StartTheHold = false, EndTheHold = false, holding = false;
+    private PlayerInput PlayerInput;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -67,6 +70,7 @@ public class ZipPoint : MonoBehaviour
           GetComponentInParent<Zipline>().Player = other.gameObject;
             if (LinePlaced == false)
             {
+                PlayerInput = other.gameObject.GetComponent<PlayerInput>();
                 PlayerInput.Interact += StartPlacement;
                 PlayerInput.InteractReleased += EndPlacement;
             }
@@ -88,6 +92,7 @@ public class ZipPoint : MonoBehaviour
                 holding=false;
                 PlayerInput.Interact -= StartPlacement;
                 PlayerInput.InteractReleased -= EndPlacement;
+                PlayerInput = null;
             }
             else if (LinePlaced == true)
             {

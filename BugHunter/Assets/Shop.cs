@@ -7,6 +7,7 @@ public class Shop : MonoBehaviour
     public GameObject ShopInterface;
     public GameObject Player;
     public GUIHolder gui;
+    private PlayerInput PlayerInput;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class Shop : MonoBehaviour
             Player = other.transform.gameObject;
             gui = Player.transform.parent.GetComponentInChildren<GUIHolder>();
             gui.PickupPrompt.SetActive(true);
-
+            PlayerInput = Player.GetComponent<PlayerInput>();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -36,7 +37,7 @@ public class Shop : MonoBehaviour
             gui = Player.transform.parent.GetComponentInChildren<GUIHolder>();
             gui.PickupPrompt.SetActive(false);
             Player = null;
-
+            PlayerInput = null;
         }
     }
 

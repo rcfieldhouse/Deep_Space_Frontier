@@ -5,15 +5,9 @@ using UnityEngine;
 public class Ladder : MonoBehaviour
 {
     public GameObject Player;
+    public PlayerInput PlayerInput;
     public bool _IsInTrigger = false;
-    private void Awake()
-    {
-        PlayerInput.Interact += UseLadder;
-    }
-    private void OnDestroy()
-    {
-        PlayerInput.Interact -= UseLadder;
-    }
+
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {    
@@ -21,15 +15,19 @@ public class Ladder : MonoBehaviour
         {
             _IsInTrigger = true;
             Player = other.gameObject;
+            PlayerInput = Player.GetComponent<PlayerInput>();
+            UseLadder();
+          
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
-        {
-            
+        {    
             _IsInTrigger = true;
             Player = other.gameObject;
+            PlayerInput = Player.GetComponent<PlayerInput>();
+            PlayerInput.Interact += UseLadder;
             Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
         }
     }
@@ -41,6 +39,8 @@ public class Ladder : MonoBehaviour
             Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             Player.GetComponent<CharacterController>().SetIfOnLadder(false);
             Player = null;
+            PlayerInput.Interact -= UseLadder;
+            PlayerInput = null;
         }
        
     }
@@ -48,6 +48,7 @@ public class Ladder : MonoBehaviour
     {
      if (Player!=null)
         {
+            Debug.Log("used");
            if (Player.GetComponent<CharacterController>().GetIfOnLadder() == true)
         {
             //get off the ladder function

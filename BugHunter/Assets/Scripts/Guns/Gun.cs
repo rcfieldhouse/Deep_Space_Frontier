@@ -21,24 +21,25 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector] public float NextFire;
     [HideInInspector] public bool _IsAiming=false;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.15f);
-
+    [HideInInspector] public PlayerInput Player;
     public abstract void Shoot();
 
     private void Awake()
     {
+        Player = transform.parent.parent.parent.parent.GetChild(0).GetComponent<PlayerInput>();
         HitMarkers = transform.parent.parent.parent.parent.GetComponentInChildren<GUIHolder>().HitMarkers;
         info = GetComponent<WeaponInfo>();
         LazerLine = GetComponent<LineRenderer>();
         MuzzleFlash = GetComponentInChildren<ParticleSystem>();
         Camera = transform.parent.GetComponentInParent<Camera>();
         GunEnd = MuzzleFlash.transform;
-        PlayerInput.Shoot += Shoot;
-        PlayerInput.ADS += AIM;
+        Player.Shoot += Shoot;
+        Player.ADS += AIM;
     }
     private void OnDestroy()
     {
-        PlayerInput.Shoot -= Shoot;
-        PlayerInput.ADS -= AIM;
+        Player.Shoot -= Shoot;
+        Player.ADS -= AIM;
     }
     public void AIM(bool aiming)
     {

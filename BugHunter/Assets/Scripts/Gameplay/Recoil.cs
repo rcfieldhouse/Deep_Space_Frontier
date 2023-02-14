@@ -21,9 +21,11 @@ public class Recoil : MonoBehaviour
 
     private bool _IsAds = false;
     Camera Camera;
+    private PlayerInput PlayerInput;
     // Start is called before the first frame update
     void Awake()
-    { 
+    {
+        PlayerInput = transform.parent.parent.parent.GetComponentInChildren<PlayerInput>();
    //basic position data
         BaseFOV = 60.0f;
         BaseRot = Quaternion.Euler(0.0f, 0f, 0);

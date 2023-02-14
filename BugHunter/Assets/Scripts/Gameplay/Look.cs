@@ -6,17 +6,19 @@ public class Look : MonoBehaviour
 {
     public GameObject PlayerViewPoint;
     private Vector3 offset = new Vector3(-0.02f, 0.04f, 0.0f);
+    private PlayerInput Player;
     // Start is called before the first frame update
     void Awake()
     {
-        PlayerInput.Look += Aim;
+        Player = transform.parent.GetChild(0).GetComponent<PlayerInput>();
+        Player.Look += Aim;
     }
     public void SetIsPaused(bool var)
     {
         if(var==true)
-        PlayerInput.Look -= Aim;
+            Player.Look -= Aim;
         else if (var==false)
-        PlayerInput.Look += Aim;
+            Player.Look += Aim;
     }
     // Update is called once per frame
     void Update()
@@ -33,10 +35,10 @@ public class Look : MonoBehaviour
     }
     private void OnDisable()
     {
-        PlayerInput.Look -= Aim;
+        Player.Look -= Aim;
     }
     private void OnDestroy()
     {
-        PlayerInput.Look -= Aim;
+        Player.Look -= Aim;
     }
 }

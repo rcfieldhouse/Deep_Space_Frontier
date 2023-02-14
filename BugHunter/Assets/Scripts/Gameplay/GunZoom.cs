@@ -7,8 +7,9 @@ public class GunZoom : MonoBehaviour
     private Camera Camera;
     private float BaseZoom, NewZoom = 20, iterator;
     private bool isADS = false;
+    public PlayerInput PlayerInput;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         PlayerInput.ADS += Zoom;
         WeaponSwap.BroadcastADSZoom += SetZoom;
@@ -17,7 +18,10 @@ public class GunZoom : MonoBehaviour
 
         BaseZoom = Camera.fieldOfView;
     }
-
+    private void OnDestroy()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {

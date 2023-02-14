@@ -10,7 +10,7 @@ public class ZoomIn : MonoBehaviour
     [SerializeField]  private VolumeProfile volumeProfile;
     private DepthOfField _DepthOfField;
     private int choice=0;
-  
+    public PlayerInput PlayerInput;
 
     private void Awake()
     {

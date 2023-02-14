@@ -17,11 +17,12 @@ public class WeaponSwap : MonoBehaviour
     public static Action<float> BroadcastADSZoom;
     public static Action<Vector2> BroadcastSnap;
     public static Action<int> BroadcastChoice;
-
+    private PlayerInput Player;
     public ReloadGun reloadGun; 
     private int WeaponChoice = 0;
     void Awake()
     {
+        Player = transform.parent.parent.parent.GetChild(0).GetComponent<PlayerInput>();
         for (int i = 0; i < WeaponArray.Count; i++)
         {
             RecticleArray[i].SetActive(false);
@@ -33,11 +34,11 @@ public class WeaponSwap : MonoBehaviour
         WeaponArray[WeaponChoice].SetActive(true);
 
         reloadGun = GetComponent<ReloadGun>();
-        PlayerInput.SwappingWeapon += SetWeapon;
+        Player.SwappingWeapon += SetWeapon;
     }
     private void OnDestroy()
     {
-        PlayerInput.SwappingWeapon -= SetWeapon;
+        Player.SwappingWeapon -= SetWeapon;
     }
     // Update is called once per frame
  

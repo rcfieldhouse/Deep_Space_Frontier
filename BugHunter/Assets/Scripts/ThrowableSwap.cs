@@ -8,10 +8,11 @@ public class ThrowableSwap : MonoBehaviour
     public List<Transform> Icons;
     private int Selection = 0;
     [SerializeField] private GrenadeManager GrenadeManager;
+    private PlayerInput Player;
     // Start is called before the first frame update
     void Awake()
     {
-         PlayerInput.TabThrowable += ChooseIcon;
+        
 
         for (int i = 0; i<transform.childCount-1;i++)
         {
@@ -22,12 +23,14 @@ public class ThrowableSwap : MonoBehaviour
     }
     private void OnDestroy()
     {
-        PlayerInput.TabThrowable -= ChooseIcon;
+        Player.TabThrowable -= ChooseIcon;
 
     }
     private void FindDeBoi()
     {
-        GrenadeManager = transform.parent.parent.gameObject.GetComponentInChildren<GrenadeManager>();     
+        GrenadeManager = transform.parent.parent.gameObject.GetComponentInChildren<GrenadeManager>();
+        Player = GrenadeManager.gameObject.GetComponent<PlayerInput>();
+        Player.TabThrowable += ChooseIcon;
         DisplayNum(Selection);
     }
     private void ChooseIcon()

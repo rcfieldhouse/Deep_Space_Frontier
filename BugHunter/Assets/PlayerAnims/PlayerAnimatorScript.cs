@@ -7,7 +7,7 @@ public class PlayerAnimatorScript : MonoBehaviour
     public Animator PlayerAnimator;
     private int DirectionMovement,LastDir;
     public Rig LeftArm,RightArm,Neck;
-
+    public PlayerInput Player;
     //Movement Direction
     //0 = N/A 
     //1 = Forwards
@@ -22,24 +22,24 @@ public class PlayerAnimatorScript : MonoBehaviour
     }
     private void Awake()
     {
-        PlayerInput.SwappingWeapon += SwapWeapon;
-        PlayerInput.Move += Move;
-        PlayerInput.WeNeedToCookJesse += CookNade;
-        PlayerInput.Throw += ThrowGrenade;
+        Player = GetComponent<PlayerInput>();
+        Player.SwappingWeapon += SwapWeapon;
+        Player.Move += Move;
+        Player.WeNeedToCookJesse += CookNade;
+        Player.Throw += ThrowGrenade;
         PlayerAnimator = GetComponent<Animator>();
     }
     private void OnDestroy()
     {
-        PlayerInput.Move -= Move;
-        PlayerInput.WeNeedToCookJesse -= CookNade;
-        PlayerInput.Throw -= ThrowGrenade;
-        PlayerInput.SwappingWeapon -= SwapWeapon;
+        Player.Move -= Move;
+        Player.WeNeedToCookJesse -= CookNade;
+        Player.Throw -= ThrowGrenade;
+        Player.SwappingWeapon -= SwapWeapon;
     }
     private void SwapWeapon(int num)
     {
         //cases are 0,1,2 
         //pistols are always on 1, primary is on 0 and relic cannon is on 3
-        Debug.Log(num);
         if (num == 1)
         {
             PlayerAnimator.SetBool("_UsingPistol", true);

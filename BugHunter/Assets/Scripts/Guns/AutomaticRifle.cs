@@ -17,23 +17,24 @@ public class AutomaticRifle : Gun
     // Start is called before the first frame update
     private void Awake()
     {
+        Player = transform.parent.parent.parent.parent.GetChild(0).GetComponent<PlayerInput>();
         HitMarkers = transform.parent.parent.parent.parent.GetComponentInChildren<GUIHolder>().HitMarkers;
         info = GetComponent<WeaponInfo>();
         LazerLine = GetComponent<LineRenderer>();
         MuzzleFlash = GetComponentInChildren<ParticleSystem>();
         Camera = transform.parent.GetComponentInParent<Camera>();
         GunEnd = MuzzleFlash.transform;
-        PlayerInput.Shoot += SetShootingTrue;
-        PlayerInput.Shoot += Shoot;
-        PlayerInput.ADS += AIM;
-        PlayerInput.Chamber += SetShootingFalse;
+        Player.Shoot += SetShootingTrue;
+        Player.Shoot += Shoot;
+        Player.ADS += AIM;
+        Player.Chamber += SetShootingFalse;
     }
     private void OnDestroy()
     {
-        PlayerInput.Shoot -= SetShootingTrue;
-        PlayerInput.Shoot -= Shoot;
-        PlayerInput.ADS -= AIM;
-        PlayerInput.Chamber -= SetShootingFalse;
+        Player.Shoot -= SetShootingTrue;
+        Player.Shoot -= Shoot;
+        Player.ADS -= AIM;
+        Player.Chamber -= SetShootingFalse;
     }
     private void SetShootingTrue()
     {
@@ -85,7 +86,7 @@ public class AutomaticRifle : Gun
         
 
         if (_IsShooting == true)
-            PlayerInput.Shoot.Invoke();
+            Player.AutomaticBandAid();
         base.Update();
     }
 }

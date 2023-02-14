@@ -45,6 +45,7 @@ internal class Electric : SniperBullet
 
 public class SpecialBulletSelect : MonoBehaviour
 {
+    private PlayerInput Player;
     public static Action<int> NewBulletSelected;
     SniperBullet Bullet;
     [SerializeField] private BulletType BulletSelection=BulletType.Standard;
@@ -81,9 +82,10 @@ public class SpecialBulletSelect : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Player = GetComponent<PlayerInput>();
         BulletSelection = BulletType.Standard;
         Bullet = SelectBullet(BulletSelection);
-        PlayerInput.UseAbility += ChangeBulletType;       
+        Player.UseAbility += ChangeBulletType;       
         Invoke(nameof(BroadcastOnStart), 0.5f);
     }
     private void BroadcastOnStart()
@@ -92,7 +94,7 @@ public class SpecialBulletSelect : MonoBehaviour
     }
     private void OnDestroy()
     {
-        PlayerInput.UseAbility -= ChangeBulletType;
+        Player.UseAbility -= ChangeBulletType;
     }
     // Update is called once per frame
 

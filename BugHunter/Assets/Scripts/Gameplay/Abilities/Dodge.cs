@@ -13,22 +13,24 @@ public class Dodge : MonoBehaviour
     [Range(0, 1)] public  WaitForSeconds RollTimer = new WaitForSeconds(1.15f);
     private float Cooldown = 5f;
     [Range(0, 1)] public WaitForSeconds RollCoolDownTime ;
+     public PlayerInput Player;
     // Start is called before the first frame update
     void Awake()
     {
+        Player = GetComponent<PlayerInput>();
         RollCoolDownTime = new WaitForSeconds(Cooldown);
         // public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
         //these r the instances of the cameras
         characterController = GetComponent<CharacterController>();
         Cameras = characterController.GetCameras();
-        PlayerInput.UseAbility += UseDodge;
+        Player.UseAbility += UseDodge;
         disableCams(false);
         transform.parent.GetComponentInChildren<AssaultIcons>().SetIcon();
     }
     private void OnDestroy()
     {
         StopAllCoroutines();
-        PlayerInput.UseAbility -= UseDodge;
+        Player.UseAbility -= UseDodge;
     }
     private void UseDodge()
     {

@@ -14,10 +14,10 @@ public class GrenadeManager : MonoBehaviour
     [SerializeField] private bool HasFruit=false,_CanThrow=true;
     public int ThrowSelect = 0;
     // Start is called before the first frame update
-
+    private PlayerInput Player;
     void Awake()
     {
-
+        Player = GetComponent<PlayerInput>();
         FruitThrow = GetComponentInChildren<FruitThrow>();
         PreviewThrow = transform.parent.GetChild(1).gameObject.AddComponent<PreviewThrow>();
 
@@ -27,9 +27,9 @@ public class GrenadeManager : MonoBehaviour
         GrenadeGraphic.SetActive(false);
         PlayerCamera = transform.parent.GetChild(1).GetComponentInChildren<FollowWeaponCam>().gameObject;
         WeaponCamera = transform.parent.GetComponentInChildren<Recoil>().gameObject;
-        PlayerInput.Throw += BeginThrow;
-        PlayerInput.WeNeedToCookJesse += CookNade;
-        PlayerInput.TabThrowable += ChooseThrowable;
+        Player.Throw += BeginThrow;
+        Player.WeNeedToCookJesse += CookNade;
+        Player.TabThrowable += ChooseThrowable;
 
       
         Grenade.SetActive(false);
@@ -38,9 +38,9 @@ public class GrenadeManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        PlayerInput.Throw -= BeginThrow;
-        PlayerInput.WeNeedToCookJesse -= CookNade;
-        PlayerInput.TabThrowable -= ChooseThrowable;
+        Player.Throw -= BeginThrow;
+        Player.WeNeedToCookJesse -= CookNade;
+        Player.TabThrowable -= ChooseThrowable;
     }
     public void CookNade() 
     {

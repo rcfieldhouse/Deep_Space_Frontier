@@ -7,12 +7,9 @@ public class CannonPickup : MonoBehaviour
     private GameObject icon,reticle;
     private GameObject RelicCannon,RelicCannonInstance,Player;
     private bool _InRange = false;
+    private PlayerInput PlayerInput;
     // Start is called before the first frame update
-    void Awake()
-    {
 
-        PlayerInput.Interact += Pickup;
-    }
 
     private void Pickup()
     {
@@ -52,7 +49,8 @@ public class CannonPickup : MonoBehaviour
             Player = other.gameObject;
             _InRange = true;
             Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
-            
+            PlayerInput = Player.GetComponent<PlayerInput>();
+            PlayerInput.Interact += Pickup;
         }
       
     }
@@ -63,7 +61,7 @@ public class CannonPickup : MonoBehaviour
             Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             Player = null;
             _InRange = false;
-            
+            PlayerInput = null;
         }
     }
 }

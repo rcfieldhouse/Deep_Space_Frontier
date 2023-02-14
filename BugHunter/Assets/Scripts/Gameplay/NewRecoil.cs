@@ -18,6 +18,7 @@ public class NewRecoil : MonoBehaviour
     private float AimCorrection=0,baseAim=0,num=0;
     private bool RecoilStartPossible = true;
    private bool HasAmmo = true,_CanShoot=true;
+    private PlayerInput PlayerInput;
     // Start is called before the first frame update
     private void SetAdsRecoil(Vector3 vec)
     {
@@ -33,6 +34,7 @@ public class NewRecoil : MonoBehaviour
     }
     void Awake()
     {
+        PlayerInput= transform.parent.parent.GetChild(0).GetComponent<PlayerInput>();
         PlayerInput.Shoot += RecoilStart;
         PlayerInput.Chamber += setRecoilPossible;
         PlayerInput.ADS += SetIsAiming;

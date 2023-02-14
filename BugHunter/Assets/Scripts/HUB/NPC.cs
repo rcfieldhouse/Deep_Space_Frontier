@@ -9,7 +9,7 @@ public abstract class NPC : MonoBehaviour
     public GameObject Player;
     public bool UI_Active;
     public static Action<String,bool> SelectUI;
-
+    public PlayerInput PlayerInput;
     public GUIHolder gui;
 
     private void Awake()
@@ -17,7 +17,7 @@ public abstract class NPC : MonoBehaviour
         gui = GetPlayer().transform.parent.GetComponentInChildren<GUIHolder>();
         UI_Active = false;
 
-        PlayerInput player = GetPlayer().GetComponent<PlayerInput>();
+       // PlayerInput player = GetPlayer().GetComponent<PlayerInput>();
         //temp solution until we have more players
         //Player = FindObjectOfType<PlayerInput>().gameObject;
 
@@ -72,6 +72,7 @@ public abstract class NPC : MonoBehaviour
         {
             Debug.Log(Name);
             Player = other.transform.gameObject;
+            PlayerInput = Player.GetComponent<PlayerInput>();
             Player.transform.parent.GetComponentInChildren<GUIHolder>().PickupPrompt.SetActive(true);
         }
     }
@@ -81,7 +82,7 @@ public abstract class NPC : MonoBehaviour
         {
             Player.transform.parent.GetComponentInChildren<GUIHolder>().PickupPrompt.SetActive(false);
             Player = null;
-   
+            PlayerInput = null;
         }
     }
 }

@@ -21,10 +21,8 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] public Vector3 mover,JumpForce = new Vector3 (0.0f,25.0f,0.0f);
      private bool m_Grounded = true;
-    [SerializeField] private CapsuleCollider coll;
-    //Used for initial save when player starts the game
-    private bool MovedOnce = false;
-    // Start is called before the first frame update
+    private PlayerInput Player;
+    private CapsuleCollider coll;
     private void Start()
     {
         disableCams(false);
@@ -32,11 +30,12 @@ public class CharacterController : MonoBehaviour
     }
     private void Awake()
     {
+        Player = GetComponent<PlayerInput>();
         Rigidbody = GetComponent<Rigidbody>();
         // PlayerInput.UseAbility += Dodge;
-        PlayerInput.Crouching += SwitchCamCrouch;
-        PlayerInput.JumpAction += Jump;
-        PlayerInput.Move += Move;
+        Player.Crouching += SwitchCamCrouch;
+        Player.JumpAction += Jump;
+        Player.Move += Move;
         coll = GetComponent<CapsuleCollider>();
         //this line sets default cam to main
  
@@ -46,9 +45,9 @@ public class CharacterController : MonoBehaviour
     }
     private void OnDestroy()
     {
-        PlayerInput.Crouching -= SwitchCamCrouch;
-        PlayerInput.JumpAction -= Jump;
-        PlayerInput.Move -= Move;
+        Player.Crouching -= SwitchCamCrouch;
+        Player.JumpAction -= Jump;
+        Player.Move -= Move;
     }
     public void SetIfOnLadder(bool var)
     {   
