@@ -17,7 +17,7 @@ public class Shop : MonoBehaviour
             Player = other.transform.gameObject;
             gui = Player.transform.parent.GetComponentInChildren<GUIHolder>();
             gui.PickupPrompt.SetActive(true);
-            ShopInterface = gui.CraftingMenu;
+            //ShopInterface = gui.CraftingMenu;
             PlayerInput = Player.GetComponent<PlayerInput>();
             PlayerInput.Interact += ToggleShop;
         }
