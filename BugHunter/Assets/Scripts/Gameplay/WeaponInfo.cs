@@ -46,7 +46,6 @@ public class WeaponInfo : MonoBehaviour
     }
     public void SetIsReloading(bool var)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Reload");
         _isReloading = var;
     }
     public void SetCanShoot(bool foo)
@@ -115,6 +114,7 @@ public class WeaponInfo : MonoBehaviour
 
         if (_CanReload == true)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Reload");
             _CanShoot = false;
             if (gameObject.activeInHierarchy == true)
                 StartCoroutine(SetBulletCount(true));

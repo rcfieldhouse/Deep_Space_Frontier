@@ -81,7 +81,7 @@ public class HealthSystem : MonoBehaviour
 
             float currentHealthPercent = (float)currentHealth / (float)maxHealth;
 
-            if (transform.tag == "Player" && amount > 0)
+            if (transform.tag == "Player" && amount < 0)
             {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Hurt");
             }

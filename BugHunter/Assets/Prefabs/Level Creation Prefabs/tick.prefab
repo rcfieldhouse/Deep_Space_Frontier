@@ -21345,10 +21345,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8519825942644860876}
-  - component: {fileID: 8588787140068044850}
   - component: {fileID: 8588787140068044849}
   - component: {fileID: 8588787140068044851}
   - component: {fileID: 2967979889507411243}
+  - component: {fileID: 6362067009884564660}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Enemy
@@ -21373,19 +21373,6 @@ Transform:
   m_Father: {fileID: 3971938811333512448}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &8588787140068044850
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7839877963121167961}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.73
-  m_Center: {x: 0, y: 2.82, z: -0.4}
 --- !u!95 &8588787140068044849
 Animator:
   serializedVersion: 4
@@ -21440,6 +21427,19 @@ MonoBehaviour:
   CommonDrop: 100
   UncommonDrop: 57
   RareDrop: 42.7
+--- !u!65 &6362067009884564660
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839877963121167961}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0631833, y: 3.5081444, z: 3.757337}
+  m_Center: {x: -0.28111076, y: 2.6485546, z: -0.13940579}
 --- !u!1 &8096075162712925630
 GameObject:
   m_ObjectHideFlags: 0
