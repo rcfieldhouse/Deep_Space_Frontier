@@ -38,6 +38,7 @@ public class PlayerAnimatorScript : MonoBehaviour
     }
     private void SwapWeapon(int num)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/WeaponSwap");
         //cases are 0,1,2 
         //pistols are always on 1, primary is on 0 and relic cannon is on 3
         if (num == 1)
@@ -74,6 +75,7 @@ public class PlayerAnimatorScript : MonoBehaviour
     }
     private void ThrowGrenade(Quaternion quaternion)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Projectiles/Grenade_Throw");
         LeftArm.weight = 0;
         Neck.weight = 0;
         RightArm.weight = 0;
@@ -101,6 +103,7 @@ public class PlayerAnimatorScript : MonoBehaviour
     }
     public void Jump()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Jump");
         PlayerAnimator.SetBool("_StartJump", true);
     }
     public void Land(bool var)

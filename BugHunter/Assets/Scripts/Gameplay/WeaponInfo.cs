@@ -46,6 +46,7 @@ public class WeaponInfo : MonoBehaviour
     }
     public void SetIsReloading(bool var)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Reload");
         _isReloading = var;
     }
     public void SetCanShoot(bool foo)

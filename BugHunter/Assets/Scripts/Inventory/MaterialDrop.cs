@@ -59,6 +59,7 @@ public class MaterialDrop : MonoBehaviour
             {
                 DoRandomDrop();
             }
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Pickups/Pickup_Resource");
             //checks if the script is attached to any ai 
            if(GetComponentInParent<AI>()==null)
             Destroy(gameObject);
