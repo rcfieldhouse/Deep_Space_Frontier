@@ -20399,7 +20399,7 @@ Transform:
   m_GameObject: {fileID: 4347374286788319162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.42468983, y: 0.42468983, z: 0.42468983}
+  m_LocalScale: {x: 0.4246899, y: 0.42468983, z: 0.4246899}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8519825942644860876}
@@ -20448,6 +20448,9 @@ MonoBehaviour:
   SkinnedMeshRenderer: {fileID: 0}
   Materials: []
   Target: {fileID: 0}
+  iceMaterial: {fileID: 2100000, guid: 7126be23d60327f4c9dad8eb821c6099, type: 2}
+  fireMaterial: {fileID: 0}
+  electricMaterial: {fileID: 0}
   _SightRange: 16.7
   _AttackRange: 1.2
   _Attack2_Range: 0
@@ -20478,9 +20481,9 @@ MonoBehaviour:
     m_Bits: 128
   WalkPointRange: 7.25
   WalkSpeed: 8.49
-  VenomDamageTime: 5
-  VenomDamageInterval: 0.25
-  VenomDamage: -4
+  VenomDamageTime: 4
+  VenomDamageInterval: 1
+  VenomDamage: -5
 --- !u!1 &4428801412591366225
 GameObject:
   m_ObjectHideFlags: 0

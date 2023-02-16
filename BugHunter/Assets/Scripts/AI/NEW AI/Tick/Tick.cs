@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Tick : AI
 {
+
     [Range(0,5)] public float VenomDamageTime = 5.0f, VenomDamageInterval = 0.25f;
     [Range(0,-10)]public int VenomDamage = -5;
     public override void AttackPlayer(GameObject Target)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class FMODPlayer : MonoBehaviour
 {
     public static FMODPlayer _instance;
+    private static FMOD.Studio.EventInstance Ambience;
     private static FMOD.Studio.EventInstance Music;
     private static FMOD.Studio.Bus MasterBus;
     private static FMOD.Studio.Bus SoundFXBus;
@@ -61,14 +62,20 @@ public class FMODPlayer : MonoBehaviour
         //Attach sound @ runtime                                
         //FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>(), GetComponent<Rigidbody>());
 
-        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Ambient/Ambience_Outdoor");
+        Ambience = FMODUnity.RuntimeManager.CreateInstance("event:/Ambient/Ambience_Outdoor");
+        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Level1");
+
         MasterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
         //SoundFXVolume = FMODUnity.RuntimeManager.GetBus("bus:/Sounds");
         //DialogueVolume = FMODUnity.RuntimeManager.GetBus("bus:/Dialogue");
         //MusicVolume = FMODUnity.RuntimeManager.GetBus("bus:/Music");
-        
+
+        Ambience.start();
+        Ambience.release();
+
         Music.start();
         Music.release();
+        Intensity(1);
     }
 
     private void Update()
@@ -77,11 +84,21 @@ public class FMODPlayer : MonoBehaviour
         MasterBus.setVolume(volume);
     }
 
-    //this will be for intensity levels
-    //public void Progress(float ProgressLevel)
-    //{
-    //    Music.setParameterByName("Progress", ProgressLevel);
-    //}
+    
+    public void Intensity(float ProgressLevel)
+    {
+        Music.setParameterByName("Intensity", ProgressLevel);
+    }
+
+    public void EnemyProximity(float ProximityLevel)
+    {
+
+    }
+
+    public void PlayerHealthPercent(float ProgressLevel)
+    {
+
+    }
 
     void StopAllPlayerEvents()
     {
@@ -128,9 +145,5 @@ public class FMODPlayer : MonoBehaviour
             Debug.Log("Doot");
             FMODUnity.RuntimeManager.PlayOneShot(uiDeselectEvent);
         }
-    }
-    void PlayOneShot(string path)
-    {
-        FMODUnity.RuntimeManager.PlayOneShot(path);
     }
 }

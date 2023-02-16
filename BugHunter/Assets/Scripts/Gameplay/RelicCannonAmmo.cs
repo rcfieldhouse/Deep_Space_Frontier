@@ -12,7 +12,7 @@ public class RelicCannonAmmo : MonoBehaviour
     {
         ArcMaterial = Resources.Load<Material>("GrenadeExplosion");
         transform.parent = null;
-        Invoke(nameof(KillShot), 15.0f);
+        Invoke(nameof(KillShot), 8.0f);
         StartCoroutine(Enlarge());
     }
     private void OnCollisionEnter(Collision collision)
@@ -45,7 +45,7 @@ public class RelicCannonAmmo : MonoBehaviour
     {
         yield return Delay;
         gameObject.GetComponent<SphereCollider>().isTrigger = true;
-        gameObject.GetComponent<SphereCollider>().radius = 8.0f;
+        gameObject.GetComponent<SphereCollider>().radius = 15.0f;
     }
 
 

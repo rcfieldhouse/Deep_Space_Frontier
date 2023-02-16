@@ -8,16 +8,20 @@ public class WeaponInfo : MonoBehaviour
     [Range(0, 1)][SerializeField] private float RecoilRotIntensity, RecoilOffsetIntensity,Weight;
     [HideInInspector] public float RecoilTimer;
 
+    [SerializeField]
+    FMODUnity.EventReference reloadSound;
+
+
     [SerializeField] private int ammoInMag, maxAmmo, magSize = 1, reserveAmmo = 1;
     [Range(0, 5)][SerializeField] private float AdsZoomScale=0;
     public static Action<bool> maginfo,CanShoot;
-   [Range(0, 10)] [SerializeField] public WaitForSeconds ReloadTimer= new WaitForSeconds(1.0f);
+    [Range(0, 10)] [SerializeField] public WaitForSeconds ReloadTimer= new WaitForSeconds(1.0f);
     [Range(0, 10)] public float _reloadTimer = 1.0f; 
     [Range(0,50)][SerializeField] private float RecoilX, AimRecoilX;
-   [Range(0,25)][SerializeField] private float RecoilY, AimRecoilY;
-   [Range(0,10)][SerializeField] private float RecoilZ, AimRecoilZ;
-   [Range(0,10)][SerializeField] private float snappiness;
-   [Range(0,5)][SerializeField] private float returnSpeed;
+    [Range(0,25)][SerializeField] private float RecoilY, AimRecoilY;
+    [Range(0,10)][SerializeField] private float RecoilZ, AimRecoilZ;
+    [Range(0,10)][SerializeField] private float snappiness;
+    [Range(0,5)][SerializeField] private float returnSpeed;
     private PlayerInput PlayerInput;
     private bool _CanShoot = true, _CanReload = false, _isReloading = false;
     // Start is called before the first frame update
@@ -114,7 +118,7 @@ public class WeaponInfo : MonoBehaviour
 
         if (_CanReload == true)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Reload");
+            FMODUnity.RuntimeManager.PlayOneShot(reloadSound);
             _CanShoot = false;
             if (gameObject.activeInHierarchy == true)
                 StartCoroutine(SetBulletCount(true));

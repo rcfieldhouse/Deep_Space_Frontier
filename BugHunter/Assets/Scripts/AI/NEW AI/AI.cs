@@ -13,23 +13,39 @@ public abstract class AI : MonoBehaviour
     [HideInInspector] public Material[] Materials;
     [HideInInspector] public GameObject Target;
 
+    [Header("Sniper Materials")]
+    public Material iceMaterial;
+    public Material fireMaterial;
+    public Material electricMaterial;
+
+
+    [Header("Detection Stuff")]
     //DetectionStuff
-    [Range(0,100)] public float _SightRange = 10, _AttackRange = 2,_Attack2_Range;
+    [Range(0, 100)] public float _SightRange = 10;
+    [Range(0, 100)] public float _AttackRange = 2,_Attack2_Range;
     public Vector3 SightRangeOffset, AttackAreaOffset,_Attack2AreaOffset;
 
+    [Header("Attack Stuff")]
+    [Seperator()]
     //Attack Stuff
     [Range(0, -50)] public int Attack_1_Damage, Attack_2_Damage;
     [Range(0, 10)] public float Attack_1_Delay, Attack_2_Delay;
     [HideInInspector] public bool CanAttack=true,HasAttacked=false,IsSecondaryAttack=false;
-    
+
+    [Header("Death and Damage Stuff")]
+
     //Death and Damage Stuff
-    [Range(0.0f, 0.25f)] public float dissolveRate = 0.0125f, refreshRate = 0.02f;
+    [Range(0.0f, 0.25f)] public float dissolveRate = 0.0125f;
+    [Range(0.0f, 0.25f)] public float refreshRate = 0.02f;
     [Range(0, 8)] public int NumDrops = 0;
     [Range(0,100)] public int HitStunDamageRequirement = 0;
     [Range(0, 5)] public float HitStunTimeRequirement = 0,HitStunTime=0;
     private float DamageTakenTime=0;
     private int DamageTaken = 0;
     [HideInInspector] public bool _IsHitStunned = false;
+
+    [Header("Navigation Stuff")]
+
     //Navigation Stuff
     //Dante, Before you ask, Serpentine is the thing i use to make the enemy go side to side
     private Vector3 StartEvasionLocation,DistanceTravelled = Vector3.zero;
@@ -39,6 +55,7 @@ public abstract class AI : MonoBehaviour
     private Vector3 WalkPoint, SpawnPoint,Pos;
     private bool WalkPointSet=false;
     [Range(0, 15)] public float WalkPointRange,WalkSpeed;
+
     #region MonoBehaviour
     public void Awake()
     {
@@ -144,15 +161,20 @@ public abstract class AI : MonoBehaviour
         if (GetComponent<Tick>())
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Tick");
+            GetComponentInChildren<BoxCollider>().enabled = false;
         }
         if (GetComponent<DreadBomber>())
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Bomber");
+            GetComponentInChildren<SphereCollider>().enabled = false;
         }
         if (GetComponent<Slime>())
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Slime");
+            GetComponentInChildren<SphereCollider>().enabled = false;
+
         }
+       
         StartCoroutine(DissolveMeshEffect());
     }
     IEnumerator DissolveMeshEffect()

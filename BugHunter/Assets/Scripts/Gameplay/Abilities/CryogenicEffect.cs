@@ -8,7 +8,19 @@ public class CryogenicEffect : MonoBehaviour
     private WaitForSeconds FreezeTime = new WaitForSeconds(3.0f);
     private int Damage;
     //private Vector4 FrozenColor = new Vector4(0f,0.5f,1f,1f);
-    
+    private AI ai;
+    private Material[] cachedMaterials;
+    private Renderer renderer;
+
+    private void Start()
+    {
+        ai = GetComponentInParent<AI>();
+        renderer = GetComponentInChildren<Renderer>();
+
+        cachedMaterials = renderer.materials;
+        
+    }
+
     public void SetValues(Vector3 vec)
     {
         Damage = (int)vec.x;
@@ -29,11 +41,21 @@ public class CryogenicEffect : MonoBehaviour
     }
     private IEnumerator FreezeDeBoi()
     {
-        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.blue;
-        GetComponent<NavMeshAgent>().enabled=false;
+        Debug.Log("DOOT");
+
+        var mats = new Material[renderer.materials.Length];
+        for (var j = 0; j < renderer.materials.Length; j++)
+        {
+            mats[j] = ai.iceMaterial;
+        }
+        renderer.materials = mats;
+
+        GetComponentInParent<NavMeshAgent>().enabled=false;
+        GetComponent<Animator>().enabled = false;
         yield return FreezeTime;
-        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
-        GetComponent<NavMeshAgent>().enabled =true;
+        renderer.materials = cachedMaterials;
+        GetComponentInParent<NavMeshAgent>().enabled =true;
+        GetComponent<Animator>().enabled = true;
 
         Destroy(this);
     }

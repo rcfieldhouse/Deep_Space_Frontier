@@ -24,6 +24,8 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector] public PlayerInput Player;
     public abstract void Shoot();
 
+    [SerializeField] FMODUnity.EventReference shootSound;
+
     private void Awake()
     {
         Player = transform.parent.parent.parent.parent.GetChild(0).GetComponent<PlayerInput>();
@@ -89,7 +91,7 @@ public abstract class Gun : MonoBehaviour
     }
     public IEnumerator ShotEffect()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Projectiles/Gunshot_Light");
+        FMODUnity.RuntimeManager.PlayOneShot(shootSound);
         MuzzleFlash.Play();
         LazerLine.enabled = true;
         LazerLine.SetPosition(0, GunEnd.position);
