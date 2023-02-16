@@ -15,6 +15,7 @@ public class Venom : MonoBehaviour
         Damage = damage;
         DamageTime = Time;
         DamageInterval = Interval;
+        gameObject.GetComponent<GUIHolder>().PoisonedSymbol.SetActive(true);
         StartCoroutine(BurnDeBoi());
     }
     // Update is called once per frame
@@ -34,6 +35,7 @@ public class Venom : MonoBehaviour
             }
             yield return null;
         }
+        gameObject.GetComponent<GUIHolder>().PoisonedSymbol.SetActive(false);
         //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
         Destroy(this);
         yield return null;
