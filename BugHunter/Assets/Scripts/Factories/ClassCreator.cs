@@ -28,4 +28,9 @@ public class ClassCreator : MonoBehaviour
         ClassInterface ClassCreator = ClassFactory.SpawnClass(ClassSelection);
         ClassCreator.CreateClass(Player);
     }
+
+    public ClassType GetClass()
+    {
+        return ClassSelection;
+    }
 }

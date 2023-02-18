@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public GameObject ShopInterface;
+    
     public GameObject Player;
     public GUIHolder gui;
     private PlayerInput PlayerInput;
@@ -39,8 +40,9 @@ public class Shop : MonoBehaviour
     {
         if (Player == null)
             return;
-
-        ShopInterface.SetActiveRecursively(!ShopInterface.activeInHierarchy);
+        // i only need the canvas to activate not everything attached to it for tab switching
+        //ShopInterface.SetActiveRecursively(!ShopInterface.activeInHierarchy);
+        ShopInterface.SetActive(true); 
 
         bool toggle = ShopInterface.activeInHierarchy;
 
