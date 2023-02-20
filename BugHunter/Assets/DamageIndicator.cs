@@ -43,7 +43,7 @@ public class DamageIndicator : MonoBehaviour
      Holder.transform.localPosition = Vector3.zero;
 
      Holder.GetComponent<DamageIDHolder>().transform.localPosition = Vector3.zero + offset*Vector3.up; 
-     text.GetComponent<TextMeshPro>().fontSize = 8 ;
+     text.GetComponent<TextMeshPro>().fontSize = 12 ;
      text.GetComponent<TextMeshPro>().alignment = TextAlignmentOptions.Center;
      text.GetComponent<TextMeshPro>().text = 0.ToString();
     }
