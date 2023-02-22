@@ -30,19 +30,22 @@ public class CraftingCanvasManager : MonoBehaviour
 
     public void CheckPlayerClass()
     {
+        Debug.Log("Class Type is " + Player.GetComponent<ClassCreator>().GetClass());
         if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Assault)
         {
+            //Debug.Log("Activate Assault UI");
             enableAssaultUI();
         }
         else if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Engineer)
         {
+           // Debug.Log("Activate Engineer UI");
             enableEngineerUI();
         }
         else if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Sniper)
         {
+            //Debug.Log("Activate Sniper UI");
             enableSniperUI();
         }
-        //Debug.Log("Class Type is " + Player.GetComponent<ClassCreator>().GetClass());
     }
 
     public void enableAssaultUI()
@@ -62,12 +65,12 @@ public class CraftingCanvasManager : MonoBehaviour
     public void enableEngineerUI()
     {
         // enable Engineer UI
-        EngineerWeaponUI.SetActive(false);
-        EngineerUpgradeUI.SetActive(false);
+        EngineerWeaponUI.SetActive(true);
+        EngineerUpgradeUI.SetActive(true);
 
         // Disable Assault & Sniper UI
-        AssaultWeaponUI.SetActive(true);
-        AssaultUpgradeUI.SetActive(true);
+        AssaultWeaponUI.SetActive(false);
+        AssaultUpgradeUI.SetActive(false);
 
         SniperWeaponUI.SetActive(false);
         SniperUpgradeUI.SetActive(false);
@@ -76,12 +79,12 @@ public class CraftingCanvasManager : MonoBehaviour
     public void enableSniperUI()
     {
         // enable Sniper UI
-        SniperWeaponUI.SetActive(false);
-        SniperUpgradeUI.SetActive(false);
+        SniperWeaponUI.SetActive(true);
+        SniperUpgradeUI.SetActive(true);
         
         // Disable Assault & Engineer UI
-        AssaultWeaponUI.SetActive(true);
-        AssaultUpgradeUI.SetActive(true);
+        AssaultWeaponUI.SetActive(false);
+        AssaultUpgradeUI.SetActive(false);
 
         EngineerWeaponUI.SetActive(false);
         EngineerUpgradeUI.SetActive(false);
