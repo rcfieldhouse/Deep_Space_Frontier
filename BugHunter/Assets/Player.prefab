@@ -8770,7 +8770,6 @@ GameObject:
   - component: {fileID: 4520725861187674674}
   - component: {fileID: 4520725861187674673}
   - component: {fileID: 1023801607}
-  - component: {fileID: 4335453888974752670}
   m_Layer: 8
   m_Name: Shorty
   m_TagString: Untagged
@@ -8976,6 +8975,13 @@ MonoBehaviour:
   RecoilOffsetIntensity: 1
   Weight: 0.12
   RecoilTimer: 0.25
+  reloadSound:
+    Guid:
+      Data1: -603237199
+      Data2: 1123580882
+      Data3: 2020643994
+      Data4: -1403992523
+    Path: event:/Player/Reload
   ammoInMag: 0
   maxAmmo: 40
   magSize: 2
@@ -9022,13 +9028,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d882369286e547b0d63047ae707b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: -25
+  Damage: -12
   FireRate: 0.25
-  WeaponRange: 50
+  WeaponRange: 25
   HitForce: 100
   CritMultiplier: 1
-  ADS_Accuracy: 0
-  ShotSpread: {x: 0, y: 0}
+  ADS_Accuracy: 0.57
+  ShotSpread: {x: 5, y: 5}
   info: {fileID: 0}
   GunEnd: {fileID: 0}
   LazerLine: {fileID: 0}
@@ -9038,34 +9044,13 @@ MonoBehaviour:
   NextFire: 0
   _IsAiming: 0
   Player: {fileID: 0}
---- !u!114 &4335453888974752670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4520725861187674679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c2d882369286e547b0d63047ae707b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: -25
-  FireRate: 0.25
-  WeaponRange: 50
-  HitForce: 100
-  CritMultiplier: 1
-  ADS_Accuracy: 0
-  ShotSpread: {x: 0, y: 0}
-  info: {fileID: 0}
-  GunEnd: {fileID: 0}
-  LazerLine: {fileID: 0}
-  MuzzleFlash: {fileID: 0}
-  HitMarkers: {fileID: 0}
-  Camera: {fileID: 0}
-  NextFire: 0
-  _IsAiming: 0
-  Player: {fileID: 0}
+  shootSound:
+    Guid:
+      Data1: 1889228510
+      Data2: 1296854016
+      Data3: 1674670743
+      Data4: -1850505580
+    Path: event:/Projectiles/Shotgun Mini
 --- !u!1 &4520725861189465313
 GameObject:
   m_ObjectHideFlags: 0
@@ -57124,6 +57109,13 @@ MonoBehaviour:
   RecoilOffsetIntensity: 0.7
   Weight: 0.522
   RecoilTimer: 1
+  reloadSound:
+    Guid:
+      Data1: 181881990
+      Data2: 1083243448
+      Data3: -1606912094
+      Data4: 853010680
+    Path: event:/Player/Relic_Reload
   ammoInMag: 0
   maxAmmo: 1
   magSize: 1
@@ -58218,6 +58210,13 @@ MonoBehaviour:
   RecoilOffsetIntensity: 0.562
   Weight: 0.014
   RecoilTimer: 0.44
+  reloadSound:
+    Guid:
+      Data1: -603237199
+      Data2: 1123580882
+      Data3: 2020643994
+      Data4: -1403992523
+    Path: event:/Player/Reload
   ammoInMag: 0
   maxAmmo: 80
   magSize: 6
@@ -58260,6 +58259,13 @@ MonoBehaviour:
   NextFire: 0
   _IsAiming: 0
   Player: {fileID: 0}
+  shootSound:
+    Guid:
+      Data1: -1884344032
+      Data2: 1159356236
+      Data3: -446135377
+      Data4: -1203506780
+    Path: event:/Projectiles/Gunshot_Heavy
 --- !u!1 &4520725862257447243
 GameObject:
   m_ObjectHideFlags: 0
@@ -58705,6 +58711,13 @@ MonoBehaviour:
   RecoilOffsetIntensity: 1
   Weight: 0.131
   RecoilTimer: 1.14
+  reloadSound:
+    Guid:
+      Data1: 1720450972
+      Data2: 1200923819
+      Data3: -603123323
+      Data4: -79781028
+    Path: event:/Player/Sniper_Reload
   ammoInMag: 0
   maxAmmo: 50
   magSize: 5
@@ -58767,6 +58780,13 @@ MonoBehaviour:
   NextFire: 0
   _IsAiming: 0
   Player: {fileID: 0}
+  shootSound:
+    Guid:
+      Data1: -1884344032
+      Data2: 1159356236
+      Data3: -446135377
+      Data4: -1203506780
+    Path: event:/Projectiles/Gunshot_Heavy
   SpecialBulletCapacity: 000000000a0000000a0000000a000000
 --- !u!114 &1060221690
 MonoBehaviour:
@@ -64704,18 +64724,25 @@ MonoBehaviour:
   RecoilOffsetIntensity: 0.063
   Weight: 0.058
   RecoilTimer: 0.1
+  reloadSound:
+    Guid:
+      Data1: -603237199
+      Data2: 1123580882
+      Data3: 2020643994
+      Data4: -1403992523
+    Path: event:/Player/Reload
   ammoInMag: 30
   maxAmmo: 250
   magSize: 30
   reserveAmmo: 150
   AdsZoomScale: 0
   _reloadTimer: 1
-  RecoilX: 4.8
-  AimRecoilX: 0.075
-  RecoilY: 0.18
-  AimRecoilY: 0.2
-  RecoilZ: 0.13
-  AimRecoilZ: 0
+  RecoilX: 8
+  AimRecoilX: 4
+  RecoilY: 3
+  AimRecoilY: 2
+  RecoilZ: 1.8
+  AimRecoilZ: 0.6
   snappiness: 6
   returnSpeed: 2
 --- !u!95 &4520725862436225209
@@ -64750,13 +64777,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a008420086a934483ea71fc25945a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: -25
+  Damage: -20
   FireRate: 0.1
   WeaponRange: 50
   HitForce: 100
   CritMultiplier: 1
   ADS_Accuracy: 0.924
-  ShotSpread: {x: 10, y: 10}
+  ShotSpread: {x: 6, y: 6}
   info: {fileID: 0}
   GunEnd: {fileID: 0}
   LazerLine: {fileID: 0}
@@ -64766,6 +64793,13 @@ MonoBehaviour:
   NextFire: 0
   _IsAiming: 0
   Player: {fileID: 0}
+  shootSound:
+    Guid:
+      Data1: -499764194
+      Data2: 1336934637
+      Data3: 1072082830
+      Data4: -1281505901
+    Path: event:/Projectiles/Assault Rifle
 --- !u!1 &4520725862443580557
 GameObject:
   m_ObjectHideFlags: 0
@@ -87025,7 +87059,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520725863066786569}
   m_LocalRotation: {x: 0.049368244, y: -0.0007042624, z: 0.000034809098, w: 0.99878037}
-  m_LocalPosition: {x: -0.00001, y: 0.00119, z: 0.00325}
+  m_LocalPosition: {x: -0.00001, y: 0.00112, z: 0.00399}
   m_LocalScale: {x: 0.010000003, y: 0.0100000035, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87205,6 +87239,13 @@ MonoBehaviour:
   RecoilOffsetIntensity: 0.039
   Weight: 0.034
   RecoilTimer: 0.1
+  reloadSound:
+    Guid:
+      Data1: -603237199
+      Data2: 1123580882
+      Data3: 2020643994
+      Data4: -1403992523
+    Path: event:/Player/Reload
   ammoInMag: 15
   maxAmmo: 200
   magSize: 15
@@ -87247,6 +87288,13 @@ MonoBehaviour:
   NextFire: 0
   _IsAiming: 0
   Player: {fileID: 0}
+  shootSound:
+    Guid:
+      Data1: 381612484
+      Data2: 1089188591
+      Data3: 1785043109
+      Data4: -1785939897
+    Path: event:/Projectiles/Gunshot_Light
 --- !u!1 &4520725863101130649
 GameObject:
   m_ObjectHideFlags: 0
@@ -87467,6 +87515,13 @@ MonoBehaviour:
   RecoilOffsetIntensity: 1
   Weight: 0.15
   RecoilTimer: 1
+  reloadSound:
+    Guid:
+      Data1: -603237199
+      Data2: 1123580882
+      Data3: 2020643994
+      Data4: -1403992523
+    Path: event:/Player/Reload
   ammoInMag: 0
   maxAmmo: 32
   magSize: 8
@@ -87529,6 +87584,13 @@ MonoBehaviour:
   NextFire: 0
   _IsAiming: 0
   Player: {fileID: 0}
+  shootSound:
+    Guid:
+      Data1: 632694102
+      Data2: 1130075633
+      Data3: 1008747946
+      Data4: 229317478
+    Path: event:/Projectiles/Shotgun
 --- !u!1 &4520725863129696828
 GameObject:
   m_ObjectHideFlags: 0

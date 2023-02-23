@@ -33,7 +33,7 @@ public abstract class AI : MonoBehaviour
     [HideInInspector] public bool CanAttack=true,HasAttacked=false,IsSecondaryAttack=false;
 
     [Header("Death and Damage Stuff")]
-
+    [Seperator()]
     //Death and Damage Stuff
     [Range(0.0f, 0.25f)] public float dissolveRate = 0.0125f;
     [Range(0.0f, 0.25f)] public float refreshRate = 0.02f;
@@ -45,7 +45,7 @@ public abstract class AI : MonoBehaviour
     [HideInInspector] public bool _IsHitStunned = false;
 
     [Header("Navigation Stuff")]
-
+    [Seperator()]
     //Navigation Stuff
     //Dante, Before you ask, Serpentine is the thing i use to make the enemy go side to side
     private Vector3 StartEvasionLocation,DistanceTravelled = Vector3.zero;
@@ -61,11 +61,11 @@ public abstract class AI : MonoBehaviour
     {
         AI_Animator = GetComponentInChildren<Animator>();
         Health = GetComponentInChildren<HealthSystem>();
-        NavAgent = GetComponent<NavMeshAgent>();
-        MeshRenderer = GetComponentInChildren<MeshRenderer>();
-        SkinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         Health.OnObjectDeath += HandleObjectDeath;
         Health.OnHealthPercentChanged += HandleObjectHit;
+        NavAgent = GetComponent<NavMeshAgent>();
+        MeshRenderer = GetComponentInChildren<MeshRenderer>();
+        SkinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();    
         if(HitStunDamageRequirement!=0)
         Health.OnTakeDamage += StaggerMechanic;
         if (NavAgent.isOnNavMesh == false)
@@ -157,7 +157,8 @@ public abstract class AI : MonoBehaviour
         _IsHitStunned = false;
     }
     public void HandleObjectDeath(GameObject context)
-    {   
+    {
+        StartCoroutine(DissolveMeshEffect());
         if (GetComponent<Tick>())
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Tick");
@@ -171,11 +172,11 @@ public abstract class AI : MonoBehaviour
         if (GetComponent<Slime>())
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Slime");
-            GetComponentInChildren<SphereCollider>().enabled = false;
+            GetComponentInChildren<CapsuleCollider>().enabled = false;
 
         }
        
-        StartCoroutine(DissolveMeshEffect());
+       
     }
     IEnumerator DissolveMeshEffect()
     {
@@ -295,6 +296,12 @@ public abstract class AI : MonoBehaviour
         
         
         NavAgent.SetDestination(transform.position+ WalkPoint+ transform.rotation * new Vector3(Serpentine, 0.0f,0.0f));
+
+        bool attackDirectly = Physics.CheckSphere(transform.position, WalkPointRange, WhatIsPlayer);
+
+        if (attackDirectly)
+            NavAgent.SetDestination(Target.transform.position);
+
     }
 
 
