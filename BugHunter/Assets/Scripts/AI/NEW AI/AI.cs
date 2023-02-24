@@ -274,7 +274,7 @@ public abstract class AI : MonoBehaviour
         }
 
     }
-    public void ChasePlayer()
+    public virtual void ChasePlayer()
     {
         if(Target==null)
        Target = FindClosestPlayer();
@@ -301,7 +301,7 @@ public abstract class AI : MonoBehaviour
 
         if (attackDirectly)
             NavAgent.SetDestination(Target.transform.position);
-
+        
     }
 
 

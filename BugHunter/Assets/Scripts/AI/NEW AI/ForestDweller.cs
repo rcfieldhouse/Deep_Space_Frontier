@@ -6,10 +6,11 @@ public class ForestDweller : AI
 {
 
    public Rigidbody Rigidbody;
-    private bool _CanJump = false,RoarPossible=false,HasFrontAttacked=false;
+    private bool _CanJump = false,RoarPossible=false,HasFrontAttacked=false,_CanRun=false;
 
     public override void AttackPlayer(GameObject Target)
     {
+        AI_Animator.SetBool("_IsMoving", false);
         if (CanAttack == true && HasAttacked == false)
         {
             if (HasFrontAttacked == true)
@@ -46,16 +47,35 @@ public class ForestDweller : AI
     public override void Patroling()
     {
         RoarPossible = true;
-       //NavAgent.enabled = false;
+        Debug.Log("apt");
+       NavAgent.enabled = false;
        //do nothing bc this man is a boss and he doesn't need to patrol
        //he is the one who knocks
     }
+    public override void ChasePlayer()
+    {
+        if (RoarPossible)
+            DoTheRoar();
+        if (_CanRun == false)
+            return;
 
+     
+      
+        base.ChasePlayer();
+       // transform.LookAt(Target.transform);
+    }
+    public override void Update()
+    {
+        NavAgent.enabled = true;
+        base.Update();
+     
+    }
     void DoTheRoar()
     {
         RoarPossible = false;   
         AI_Animator.SetBool("_Roar", true);
         Invoke(nameof(StopAnim), 1.0f);
+        Invoke(nameof(RoarComplete), 1.0f);
     }
     public void StopAnim()
     {
@@ -63,5 +83,9 @@ public class ForestDweller : AI
         AI_Animator.SetBool("_IsAttacking", false);
         AI_Animator.SetBool("_Roar", false);
         AI_Animator.SetBool("_IsMoving", false);
+    }
+    public void RoarComplete()
+    {
+        _CanRun = true;
     }
 }

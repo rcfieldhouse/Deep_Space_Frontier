@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class DWBI : MonoBehaviour
 {
-    public Quaternion Quaternion;
+    public Vector3 vector3;
+    Quaternion quat;
     private void Awake()
     {
-        transform.rotation = Quaternion;
+         quat = transform.rotation;
+    }
+    private void LateUpdate()
+    {
+      
+        transform.rotation = quat;
     }
 }

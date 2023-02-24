@@ -77,8 +77,8 @@ public abstract class Gun : MonoBehaviour
     public HealthSystem FindBossHealth(GameObject obj)
     {
         if (obj.tag == "Boss")
-            return obj.GetComponent<HealthSystem>();    
-        else 
+            return obj.transform.GetChild(0).GetComponent<HealthSystem>(); 
+        else
             return FindBossHealth(obj.transform.parent.gameObject);     
     }
     public IEnumerator HitMarkerEffect(bool HitType)
