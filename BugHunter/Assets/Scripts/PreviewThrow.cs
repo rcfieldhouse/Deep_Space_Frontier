@@ -24,6 +24,7 @@ public class PreviewThrow : MonoBehaviour
     {
         Direction = GetComponentInChildren<WeaponSwap>().transform.rotation;
         LaunchPoint =GetComponent<Look>().PlayerViewPoint.transform.position - Vector3.up/4;
+        LaunchPoint += 0.1f * (Direction * (ThrowForce + (0.1f * Physics.gravity)));
         if (_IsCooking == true)
         {
             PreviewLine.SetPosition(0, LaunchPoint);

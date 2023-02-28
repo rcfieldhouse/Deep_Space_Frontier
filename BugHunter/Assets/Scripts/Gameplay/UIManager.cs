@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public Canvas GameplayUI;
     public Canvas PauseMenuUI;
+    private bool toggle = true;
    // public Canvas InventoryUI;
     public GameObject WeaponHolder;
     // Start is called before the first frame update
@@ -25,21 +26,51 @@ public class UIManager : MonoBehaviour
     void PauseMenuEnabled()
    {
         //disable gamepaly UI and enable Pause Menu UI when escape is pressed
-       // InventoryUI.enabled = false;
-        GameplayUI.enabled = false;
-        PauseMenuUI.enabled = true;
+ 
+        GameplayUI.enabled = !toggle;
+        PauseMenuUI.enabled = toggle;
        // WeaponHolder.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
 
+        transform.parent.GetComponentInChildren<WeaponInfo>().SetPaused(toggle);
+        transform.parent.GetComponentInChildren<WeaponInfo>().SetIsReloading(toggle);
+        transform.parent.GetComponentInChildren<Look>().SetIsPaused(toggle);
+
+        toggle = !toggle;
+
+        if (GameplayUI.enabled == true)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            //this is only so that esc is able to close the vendor for the sake of user integrity
+         
+        }
+          
+    
         //Time.timeScale = 0;
     }
     public void ResumeGame()
     {
-      //  Debug.Log("ResumePressed");
-       // InventoryUI.enabled = true;
+        
+        //  Debug.Log("ResumePressed");
+        // InventoryUI.enabled = true;
         GameplayUI.enabled = true;
         PauseMenuUI.enabled = false;
        // WeaponHolder.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
+
+        transform.parent.GetComponentInChildren<WeaponInfo>().SetPaused(false);
+        transform.parent.GetComponentInChildren<WeaponInfo>().SetIsReloading(false);
+        transform.parent.GetComponentInChildren<Look>().SetIsPaused(false);
+        toggle = !toggle;
+    }
+    public void QuitGame()
+    {
+        Debug.LogWarning("tried to quit");
+        #if UNITY_STANDALONE
+                Application.Quit();
+        #endif
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 }

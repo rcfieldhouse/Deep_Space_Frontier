@@ -50,9 +50,9 @@ public abstract class Gun : MonoBehaviour
     }
     public virtual void Update()
     {
-        if (Time.time < NextFire && gameObject.activeInHierarchy == true)
+        if (Time.time < NextFire && gameObject.activeInHierarchy == true && info.IsPaused==false)
             info.SetCanShoot(false);
-        else if (Time.time > NextFire && gameObject.activeInHierarchy == true&&info.GetMag()>0)
+        else if (Time.time > NextFire && gameObject.activeInHierarchy == true&&info.GetMag()> 0 && info.IsPaused == false)
             info.SetCanShoot(true);
     }
     public void DoDamage(HealthSystem Health, bool _IsCrit)

@@ -93,6 +93,7 @@ public class GrenadeManager : MonoBehaviour
             Fruit.SetActive(true);
             FruitThrow.ThrowFruit(quaternion * ThrowForce,StartingTransform);
             HasFruit = false;
+              Invoke(nameof(EnableCam),0.65f);
         }
     }
     public void BeginThrowGrenade(Quaternion quaternion)
@@ -110,7 +111,8 @@ public class GrenadeManager : MonoBehaviour
     {
         PlayerCamera.SetActive(false);
         GrenadeGraphic.SetActive(false);
-        GameObject nade = Instantiate(Grenade,WeaponCamera.transform.position - Vector3.up / 4, Quaternion.identity);
+        GameObject nade = Instantiate(Grenade,transform.parent.GetChild(1).GetComponent<Look>().PlayerViewPoint.transform.position - Vector3.up / 4, Quaternion.identity);
+        nade.transform.position += 0.1f * (quat * (ThrowForce + (0.1f * Physics.gravity)));
         nade.GetComponent<GrenadeThrow>().ThowGrenade(quat * ThrowForce);
         Invoke(nameof(EnableCam),1.5f);
     }

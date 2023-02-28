@@ -128,6 +128,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
             GameManager.instance.StopTime();
+
         //cursed crouch controls
         if (Input.GetButtonDown("Crouch"))
             Crouching.Invoke(true);      

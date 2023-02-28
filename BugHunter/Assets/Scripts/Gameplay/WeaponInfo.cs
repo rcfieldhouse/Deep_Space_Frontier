@@ -22,8 +22,9 @@ public class WeaponInfo : MonoBehaviour
     [Range(0,10)][SerializeField] private float RecoilZ, AimRecoilZ;
     [Range(0,10)][SerializeField] private float snappiness;
     [Range(0,5)][SerializeField] private float returnSpeed;
+    [HideInInspector] public bool IsPaused=false;
     private PlayerInput PlayerInput;
-    private bool _CanShoot = true, _CanReload = false, _isReloading = false;
+    public bool _CanShoot = true, _CanReload = false, _isReloading = false;
     // Start is called before the first frame update
     void Awake()
     {       
@@ -77,6 +78,12 @@ public class WeaponInfo : MonoBehaviour
             maginfo.Invoke(hasAmmo());
             CanShoot.Invoke(GetCanShoot());
         }
+        if (IsPaused == true)
+            _CanShoot = false;
+    }
+    public void SetPaused(bool var)
+    {
+        IsPaused=var;
     }
     public void OnDisable()
     {

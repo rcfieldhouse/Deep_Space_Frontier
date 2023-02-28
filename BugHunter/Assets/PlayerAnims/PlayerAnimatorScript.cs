@@ -81,7 +81,7 @@ public class PlayerAnimatorScript : MonoBehaviour
         RightArm.weight = 0;
         PlayerAnimator.SetBool("_ThrowGrenade", true);
         PlayerAnimator.SetBool("_CookGrenade", false);
-        Invoke(nameof(RestoreWeights), 1.0f);
+        Invoke(nameof(RestoreWeights), 2.1f);
     }
     private void Move(Vector2 Dir, float Running)
     {
