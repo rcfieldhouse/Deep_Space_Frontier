@@ -9,6 +9,7 @@ public class DamageIndicator : MonoBehaviour
     GameObject obj,Holder,text;
     private void Awake()
     {
+        offset = 0;
         if (GetComponentInChildren<MeshRenderer>())
             offset =(GetComponentInChildren<MeshRenderer>().bounds.center.y + GetComponentInChildren<MeshRenderer>().bounds.extents.y);
 
@@ -62,7 +63,9 @@ public class DamageIndicator : MonoBehaviour
         {
             num += 0.01f;
             yield return new WaitForSeconds(0.01f);
+            if (text)
             text.GetComponent<TextMeshPro>().alpha = 1.0f - num;
+            if (Holder) 
             Holder.GetComponent<DamageIDHolder>().transform.localPosition = Vector3.zero + (offset + num) * Vector3.up;
         }
         Destroy(Holder);

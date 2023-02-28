@@ -163,10 +163,12 @@ public abstract class AI : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Tick");
             GetComponentInChildren<BoxCollider>().enabled = false;
+            GetComponentInChildren<SphereCollider>().enabled = false;
         }
         if (GetComponent<DreadBomber>())
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Bomber");
+            GetComponentInChildren<SphereCollider>().enabled = false;
             GetComponentInChildren<SphereCollider>().enabled = false;
         }
         if (GetComponent<Slime>())

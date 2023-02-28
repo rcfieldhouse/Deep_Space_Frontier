@@ -46,7 +46,6 @@ public class LootHolder : MonoBehaviour, IDataPersistence
         int i = 0;
         foreach(Loot loot in Inventory)
         {
-            Debug.Log(i);
             data.itemQuantity[i] = loot.Quantity;
             i++;
         }
