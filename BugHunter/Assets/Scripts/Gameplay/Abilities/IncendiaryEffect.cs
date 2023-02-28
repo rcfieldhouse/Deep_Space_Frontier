@@ -18,6 +18,7 @@ public class IncendiaryEffect : MonoBehaviour
     private void Awake()
     {
         Invoke(nameof(Effect), 0.05f);
+       
     }
     // Update is called once per frame
     private void Effect()
@@ -33,6 +34,11 @@ public class IncendiaryEffect : MonoBehaviour
             Timer += Time.deltaTime;
             if (Timer > BurnTick)
             {
+                if (GetComponent<DamageIndicator>())
+                {
+                    Transform transform = GetComponent<DamageIndicator>().DamageReceivedFrom;
+                    gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage);
+                }
                 // damage per burn tick
                 gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
                 BurnTick += BurnTicker;

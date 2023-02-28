@@ -34,6 +34,11 @@ public class CryogenicEffect : MonoBehaviour
     }
     private void Effect()
     {
+        if (GetComponent<DamageIndicator>())
+        {
+            Transform transform = GetComponent<DamageIndicator>().DamageReceivedFrom;
+            gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage);
+        }
         // how much damage a shot from cryo bullet will do
         gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
         //called when attached to de enemy 

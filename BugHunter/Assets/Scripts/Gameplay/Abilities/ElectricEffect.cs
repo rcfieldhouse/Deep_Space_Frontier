@@ -72,7 +72,12 @@ public class ElectricEffect : MonoBehaviour
      
         yield return new WaitForSeconds(1f);
         // how much damage electric bullet does
-        gameObject.GetComponent<HealthSystem>().ModifyHealth(-80);
+        if (GetComponent<DamageIndicator>())
+        {
+            Transform transform = GetComponent<DamageIndicator>().DamageReceivedFrom;
+            gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage);
+        }
+        gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
         //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
         Destroy(rigidbody);
         Destroy(coll);
@@ -80,6 +85,7 @@ public class ElectricEffect : MonoBehaviour
     }
     private IEnumerator ShowLine(Transform Target)
     {
+       
         LineRenderer Line = gameObject.AddComponent<LineRenderer>();
         Line.enabled = true;
         Line.startWidth = 0.5f;

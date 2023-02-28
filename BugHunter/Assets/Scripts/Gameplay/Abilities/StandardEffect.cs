@@ -17,6 +17,11 @@ public class StandardEffect : MonoBehaviour
     }
     private void Effect()
     {
+        if (GetComponent<DamageIndicator>())
+        {
+          Transform transform = GetComponent<DamageIndicator>().DamageReceivedFrom;
+            gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,Damage);
+        }  
         gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
         Destroy(this);
     }

@@ -99,8 +99,7 @@ public class SpecialBulletSelect : MonoBehaviour
     // Update is called once per frame
 
     public void CallShotEffect(GameObject Object,Vector3[] vec)
-    {
-       
+    {  
         if (Object.tag!="Player")
         Bullet.ShotEffect(Object,vec);
     }

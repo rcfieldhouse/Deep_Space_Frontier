@@ -47,7 +47,6 @@ public class ForestDweller : AI
     public override void Patroling()
     {
         RoarPossible = true;
-        Debug.Log("apt");
        NavAgent.enabled = false;
        //do nothing bc this man is a boss and he doesn't need to patrol
        //he is the one who knocks

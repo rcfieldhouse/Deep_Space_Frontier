@@ -5,6 +5,7 @@ using TMPro;
 public class DamageIndicator : MonoBehaviour
 {
     float num=0,offset;
+    public Transform DamageReceivedFrom;
     GameObject obj,Holder,text;
     private void Awake()
     {
@@ -49,6 +50,7 @@ public class DamageIndicator : MonoBehaviour
     }
     public void SetIndicator(Transform transform,int Damage)
     {
+        DamageReceivedFrom = transform;
         Holder.GetComponent<DamageIDHolder>().transform.LookAt(transform);
         Holder.GetComponent<DamageIDHolder>().transform.Rotate(Vector3.up, 180.0f);
         text.GetComponent<TextMeshPro>().text = (int.Parse(text.GetComponent<TextMeshPro>().text)+Damage).ToString();
