@@ -43,7 +43,6 @@ public class HealthBarUI : MonoBehaviour
           
             yield return null;
         }
-        Debug.Log(pct);
         HealthBar.color = Color.Lerp(Color.red, Color.cyan, pct);
         
         HealthBar.fillAmount = pct;

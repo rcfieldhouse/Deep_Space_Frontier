@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class ForestDweller : AI
 {
-
-   public Rigidbody Rigidbody;
-    private bool _CanJump = false,RoarPossible=false,HasFrontAttacked=false,_CanRun=false;
+    private bool RoarPossible=false,HasFrontAttacked=false,_CanRun=false,TertiaryAttack=false;
 
     public override void AttackPlayer(GameObject Target)
     {
         AI_Animator.SetBool("_IsMoving", false);
         if (CanAttack == true && HasAttacked == false)
         {
+            NavAgent.enabled = false;
+
             if (HasFrontAttacked == true)
-                IsSecondaryAttack = true;
+                TertiaryAttack = true;
+
             if (IsSecondaryAttack == true)
             {
                 SecondaryAttack(Target);
                 return;
             }
-               //play Dante.sound.ogg torterra attack
-                AI_Animator.SetBool("_IsAttacking", true);
+
+            if (TertiaryAttack == true)
+            {
+                ThirdAttack(Target);
+                return;
+            }
+            //play Dante.sound.ogg torterra attack
+            AI_Animator.SetBool("_IsAttacking", true);
                 Target.GetComponent<HealthSystem>().ModifyHealth(Attack_1_Damage);
                 HasAttacked = true;
                 CanAttack = false;
@@ -30,8 +37,8 @@ public class ForestDweller : AI
         if (HasAttacked == true)
         {
             HasAttacked = false;
-           Invoke(nameof(ResetAttack), Attack_1_Delay);
-            Invoke(nameof(StopAnim), 1.0f);
+            Invoke(nameof(ResetAttack), Attack_1_Delay);
+            Invoke(nameof(StopAnim), Attack_1_Delay);
         }
     }
     void SecondaryAttack(GameObject Target)
@@ -39,15 +46,29 @@ public class ForestDweller : AI
         AI_Animator.SetBool("_IsAttacking2", true);
         HasAttacked = true;
         CanAttack = false;
-        HasFrontAttacked = false;
         Target.GetComponent<HealthSystem>().ModifyHealth(Attack_2_Damage);
         Invoke(nameof(ResetAttack), Attack_2_Delay);
         Invoke(nameof(StopAnim), 1.0f);
     }
+    void ThirdAttack(GameObject Target)
+    {
+        AI_Animator.SetBool("_IsAttacking3", true);
+        HasAttacked = true;
+        CanAttack = false;
+        HasFrontAttacked = false;
+        TertiaryAttack = false;
+        Target.GetComponent<HealthSystem>().ModifyHealth(Attack_1_Damage);
+        Invoke(nameof(ResetAttack), Attack_1_Delay);
+        Invoke(nameof(StopAnim), Attack_1_Delay);
+    }
     public override void Patroling()
     {
         RoarPossible = true;
+<<<<<<< Updated upstream
        NavAgent.enabled = false;
+=======
+        NavAgent.enabled = false;
+>>>>>>> Stashed changes
        //do nothing bc this man is a boss and he doesn't need to patrol
        //he is the one who knocks
     }
@@ -58,16 +79,12 @@ public class ForestDweller : AI
         if (_CanRun == false)
             return;
 
-     
-      
         base.ChasePlayer();
-       // transform.LookAt(Target.transform);
     }
     public override void Update()
     {
         NavAgent.enabled = true;
-        base.Update();
-     
+        base.Update();  
     }
     void DoTheRoar()
     {
@@ -78,6 +95,7 @@ public class ForestDweller : AI
     }
     public void StopAnim()
     {
+        AI_Animator.SetBool("_IsAttacking3", false);
         AI_Animator.SetBool("_IsAttacking2", false);
         AI_Animator.SetBool("_IsAttacking", false);
         AI_Animator.SetBool("_Roar", false);
