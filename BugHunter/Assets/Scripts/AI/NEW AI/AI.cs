@@ -92,6 +92,7 @@ public abstract class AI : MonoBehaviour
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInAttackRange && playerInSightRange) AttackPlayer(Target);
+    
             //if (!playerInAttackRange) SetLunged();
         }
     }

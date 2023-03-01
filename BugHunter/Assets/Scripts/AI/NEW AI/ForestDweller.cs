@@ -64,16 +64,14 @@ public class ForestDweller : AI
     public override void Patroling()
     {
         RoarPossible = true;
-<<<<<<< Updated upstream
-       NavAgent.enabled = false;
-=======
         NavAgent.enabled = false;
->>>>>>> Stashed changes
+
        //do nothing bc this man is a boss and he doesn't need to patrol
        //he is the one who knocks
     }
     public override void ChasePlayer()
     {
+       
         if (RoarPossible)
             DoTheRoar();
         if (_CanRun == false)
@@ -84,7 +82,9 @@ public class ForestDweller : AI
     public override void Update()
     {
         NavAgent.enabled = true;
-        base.Update();  
+        base.Update();
+        bool playerInAttackRange2 = Physics.CheckSphere(transform.position + transform.rotation * _Attack2AreaOffset, _Attack2_Range, WhatIsPlayer);
+        if (playerInAttackRange2) AttackPlayer(Target);
     }
     void DoTheRoar()
     {
