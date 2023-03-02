@@ -63,7 +63,7 @@ public abstract class Gun : MonoBehaviour
         if (Health)
         {
             StartCoroutine(HitMarkerEffect(_IsCrit));
-            Health.gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,(int)(Damage*DamageX),false);
+            Health.gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,(int)(Damage*DamageX), _IsCrit);
             Health.ModifyHealth((int)(Damage * DamageX));
         }
     }

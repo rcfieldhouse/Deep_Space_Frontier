@@ -51,12 +51,16 @@ public class DamageIndicator : MonoBehaviour
     }
     public void SetIndicator(Transform transform,int Damage,bool _IsCrit)
     {
-        if (_IsCrit == true)
-            Debug.Log("true");
+     
+
         DamageReceivedFrom = transform;
         Holder.GetComponent<DamageIDHolder>().transform.LookAt(transform);
         Holder.GetComponent<DamageIDHolder>().transform.Rotate(Vector3.up, 180.0f);
         text.GetComponent<TextMeshPro>().text = (int.Parse(text.GetComponent<TextMeshPro>().text)+Damage).ToString();
+
+        if (_IsCrit == true)
+            text.GetComponent<TextMeshPro>().color = Color.red;
+        else text.GetComponent<TextMeshPro>().color = Color.white;
         StartCoroutine(FancySchmancyTextEffect());
     }
     public IEnumerator FancySchmancyTextEffect()
