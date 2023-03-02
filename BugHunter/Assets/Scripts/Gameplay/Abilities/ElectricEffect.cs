@@ -75,7 +75,7 @@ public class ElectricEffect : MonoBehaviour
         if (GetComponent<DamageIndicator>())
         {
             Transform transform = GetComponent<DamageIndicator>().DamageReceivedFrom;
-            gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage);
+            gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage,false);
         }
         gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
         //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;

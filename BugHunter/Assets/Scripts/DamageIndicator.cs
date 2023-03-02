@@ -49,8 +49,10 @@ public class DamageIndicator : MonoBehaviour
      text.GetComponent<TextMeshPro>().alignment = TextAlignmentOptions.Center;
      text.GetComponent<TextMeshPro>().text = 0.ToString();
     }
-    public void SetIndicator(Transform transform,int Damage)
+    public void SetIndicator(Transform transform,int Damage,bool _IsCrit)
     {
+        if (_IsCrit == true)
+            Debug.Log("true");
         DamageReceivedFrom = transform;
         Holder.GetComponent<DamageIDHolder>().transform.LookAt(transform);
         Holder.GetComponent<DamageIDHolder>().transform.Rotate(Vector3.up, 180.0f);

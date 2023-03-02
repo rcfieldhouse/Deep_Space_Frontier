@@ -26,7 +26,7 @@ public class SniperRifle : Gun
             if((int)CurrentBullet.GetBulletType() != 0)
             SpecialBulletCapacity[(int)CurrentBullet.GetBulletType()]--;
 
-            Debug.Log(SpecialBulletCapacity[(int)CurrentBullet.GetBulletType()]);
+           // Debug.Log(SpecialBulletCapacity[(int)CurrentBullet.GetBulletType()]);
             NextFire = Time.time + FireRate;
 
             //Bullet raycast
@@ -45,7 +45,7 @@ public class SniperRifle : Gun
                 if (Hit.rigidbody != null)
                     Hit.rigidbody.AddForce(-Hit.normal * HitForce);
                 if(Health)
-                CurrentBullet.CallShotEffect(Health.gameObject,BulletInfo.GetData());
+                CurrentBullet.CallShotEffect(Health.gameObject,BulletInfo.GetData(), Hit.collider.isTrigger);
               
             }
             else

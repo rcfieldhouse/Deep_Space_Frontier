@@ -10,14 +10,14 @@ public class CryogenicEffect : MonoBehaviour
     //private Vector4 FrozenColor = new Vector4(0f,0.5f,1f,1f);
     private AI ai;
     private Material[] cachedMaterials;
-    private Renderer renderer;
+    private Renderer Renderer;
 
     private void Start()
     {
         ai = GetComponentInParent<AI>();
-        renderer = GetComponentInChildren<Renderer>();
+        Renderer = GetComponentInChildren<Renderer>();
 
-        cachedMaterials = renderer.materials;
+        cachedMaterials = Renderer.materials;
         
     }
 
@@ -37,7 +37,7 @@ public class CryogenicEffect : MonoBehaviour
         if (GetComponent<DamageIndicator>())
         {
             Transform transform = GetComponent<DamageIndicator>().DamageReceivedFrom;
-            gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage);
+            gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage,false);
         }
         // how much damage a shot from cryo bullet will do
         gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
@@ -48,17 +48,17 @@ public class CryogenicEffect : MonoBehaviour
     {
         Debug.Log("DOOT");
 
-        var mats = new Material[renderer.materials.Length];
-        for (var j = 0; j < renderer.materials.Length; j++)
+        var mats = new Material[Renderer.materials.Length];
+        for (var j = 0; j < Renderer.materials.Length; j++)
         {
             mats[j] = ai.iceMaterial;
         }
-        renderer.materials = mats;
+        Renderer.materials = mats;
 
         GetComponentInParent<NavMeshAgent>().enabled=false;
         GetComponent<Animator>().enabled = false;
         yield return FreezeTime;
-        renderer.materials = cachedMaterials;
+        Renderer.materials = cachedMaterials;
         GetComponentInParent<NavMeshAgent>().enabled =true;
         GetComponent<Animator>().enabled = true;
 
