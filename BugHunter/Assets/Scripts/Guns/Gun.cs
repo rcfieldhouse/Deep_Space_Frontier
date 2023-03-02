@@ -59,10 +59,11 @@ public abstract class Gun : MonoBehaviour
     {    
         float DamageX = 1;
         if (_IsCrit) DamageX = CritMultiplier;
+
         if (Health)
         {
             StartCoroutine(HitMarkerEffect(_IsCrit));
-            Health.gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,(int)(Damage*DamageX));
+            Health.gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,(int)(Damage*DamageX),false);
             Health.ModifyHealth((int)(Damage * DamageX));
         }
     }

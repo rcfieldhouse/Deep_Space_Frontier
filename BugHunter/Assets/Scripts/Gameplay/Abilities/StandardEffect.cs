@@ -8,7 +8,15 @@ public class StandardEffect : MonoBehaviour
     
     public void SetValues(Vector3 vec)
     {
+        Debug.Log(vec.y);
+
         Damage = (int)vec.x;
+
+        if ((int)vec.y != 0)
+        {
+            float num = Damage * vec.y;
+            Damage = (int)num;
+        }         
     }
     // Start is called before the first frame update
     private void Awake()
@@ -20,7 +28,7 @@ public class StandardEffect : MonoBehaviour
         if (GetComponent<DamageIndicator>())
         {
           Transform transform = GetComponent<DamageIndicator>().DamageReceivedFrom;
-            gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,Damage);
+            gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,Damage,false);
         }  
         gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
         Destroy(this);

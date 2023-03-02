@@ -45,6 +45,7 @@ internal class Electric : SniperBullet
 
 public class SpecialBulletSelect : MonoBehaviour
 {
+    private float CritDMG =1.0f;
     private PlayerInput Player;
     public static Action<int> NewBulletSelected;
     SniperBullet Bullet;
@@ -83,14 +84,17 @@ public class SpecialBulletSelect : MonoBehaviour
     void Awake()
     {
         Player = GetComponent<PlayerInput>();
+       
         BulletSelection = BulletType.Standard;
         Bullet = SelectBullet(BulletSelection);
         Player.UseAbility += ChangeBulletType;       
         Invoke(nameof(BroadcastOnStart), 0.5f);
+      
     }
     private void BroadcastOnStart()
     {
         NewBulletSelected.Invoke((int)BulletSelection);
+        CritDMG = Player.transform.parent.GetComponentInChildren<SniperRifle>().CritMultiplier;
     }
     private void OnDestroy()
     {
@@ -98,8 +102,13 @@ public class SpecialBulletSelect : MonoBehaviour
     }
     // Update is called once per frame
 
-    public void CallShotEffect(GameObject Object,Vector3[] vec)
-    {  
+    public void CallShotEffect(GameObject Object,Vector3[] vec,bool _IsCrit)
+    {
+        Debug.Log(_IsCrit);
+        if (_IsCrit == true)
+            vec[0].y = CritDMG;
+        else if (_IsCrit==false) vec[0].y = 0.0f;
+
         if (Object.tag!="Player")
         Bullet.ShotEffect(Object,vec);
     }

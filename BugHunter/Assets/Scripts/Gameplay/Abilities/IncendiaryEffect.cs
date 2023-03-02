@@ -37,7 +37,7 @@ public class IncendiaryEffect : MonoBehaviour
                 if (GetComponent<DamageIndicator>())
                 {
                     Transform transform = GetComponent<DamageIndicator>().DamageReceivedFrom;
-                    gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage);
+                    gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage,false);
                 }
                 // damage per burn tick
                 gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
