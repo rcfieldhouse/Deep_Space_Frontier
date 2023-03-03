@@ -7,6 +7,7 @@ public class IncendiaryEffect : MonoBehaviour
     //Timer is total time, ticker is how often the subject takes damage, Tick is the iterator
     private float BurnTimer = 5.0f, BurnTicker=0.25f, BurnTick=0.0f;
     private int Damage = -8;
+    public GameObject VFX;
     // Start is called before the first frame update
 
     public void SetValues(Vector3 vec)
@@ -17,8 +18,7 @@ public class IncendiaryEffect : MonoBehaviour
     }
     private void Awake()
     {
-        Invoke(nameof(Effect), 0.05f);
-       
+        Invoke(nameof(Effect), 0.05f);     
     }
     // Update is called once per frame
     private void Effect()
@@ -27,6 +27,7 @@ public class IncendiaryEffect : MonoBehaviour
     }
     private IEnumerator BurnDeBoi()
     {
+
         //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
          float Timer=0; 
         while (Timer < BurnTimer)
