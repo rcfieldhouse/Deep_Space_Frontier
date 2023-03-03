@@ -44,9 +44,11 @@ public class Shop : MonoBehaviour
     {
         if (Player == null)
             return;
+        Debug.Log("Shop is Opened :(");
+
         // i only need the canvas to activate not everything attached to it for tab switching
         //ShopInterface.SetActiveRecursively(!ShopInterface.activeInHierarchy);
-        ShopInterface.SetActive(true); 
+        ShopInterface.SetActive(true);
 
         bool toggle = ShopInterface.activeInHierarchy;
 

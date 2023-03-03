@@ -15,7 +15,8 @@ public class CraftingCanvasManager : MonoBehaviour
     void Start()
     {
         //set the canvas to inactive once the game starts
-        gameObject.SetActive(false);
+        // can't put this on crafting canvas must be on an external object
+        //gameObject.SetActive(false);
 
         // set the scroll view tab to default active
         DefaultTab.SetActive(true);
