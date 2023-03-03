@@ -1779,9 +1779,9 @@ RectTransform:
   m_Father: {fileID: 1720787399}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 69.5286, y: -198.4498}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 116.1852, y: 55.8428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &67145911
@@ -1828,19 +1828,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 96201069}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1618325677}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 21300000, guid: d44def2a07de7a6478dbffa23b8abdb6,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1298971285}
+      - m_Target: {fileID: 162565794}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -1852,7 +1853,7 @@ MonoBehaviour:
           m_StringArgument: Allows for 2 extra grenades to be held
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1535977245}
+      - m_Target: {fileID: 2122416871}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -1865,7 +1866,7 @@ MonoBehaviour:
             Pouches
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1604808307}
+      - m_Target: {fileID: 34249220}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -2440,24 +2441,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91177368}
   m_CullTransparentMesh: 1
---- !u!1 &96201069 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1578661293929308553, guid: bd90b6eadd9c75e419e85e9b6a8d8864,
-    type: 3}
-  m_PrefabInstance: {fileID: 269723772}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &96201071 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1578661293929308567, guid: bd90b6eadd9c75e419e85e9b6a8d8864,
-    type: 3}
-  m_PrefabInstance: {fileID: 269723772}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96201069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &107947973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5989,7 +5972,7 @@ PrefabInstance:
     - target: {fileID: 1578661293595315631, guid: bd90b6eadd9c75e419e85e9b6a8d8864,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -8.189941
+      value: -8.190063
       objectReference: {fileID: 0}
     - target: {fileID: 1578661293595315631, guid: bd90b6eadd9c75e419e85e9b6a8d8864,
         type: 3}
@@ -6469,7 +6452,7 @@ PrefabInstance:
     - target: {fileID: 1578661295214755116, guid: bd90b6eadd9c75e419e85e9b6a8d8864,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1578661295294729979, guid: bd90b6eadd9c75e419e85e9b6a8d8864,
         type: 3}
@@ -13528,9 +13511,9 @@ RectTransform:
   m_Father: {fileID: 1991177789}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -847.5, y: -654.8015}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 164.229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &570022317
@@ -13757,9 +13740,9 @@ RectTransform:
   m_Father: {fileID: 1720787399}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 69.5286, y: -27.9214}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 116.1852, y: 55.8428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &575169889
@@ -13806,7 +13789,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 96201071}
+      - m_Target: {fileID: 1618325677}
         m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
         m_MethodName: set_sprite
         m_Mode: 2
@@ -13819,7 +13802,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1298971285}
+      - m_Target: {fileID: 162565794}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -13831,7 +13814,7 @@ MonoBehaviour:
           m_StringArgument: Reduces Damage by 5% & Increases Movement Speed by 5%
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1535977245}
+      - m_Target: {fileID: 2122416871}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -13844,7 +13827,7 @@ MonoBehaviour:
             some incoming damage
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1604808307}
+      - m_Target: {fileID: 34249220}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -17351,8 +17334,8 @@ RectTransform:
   m_Father: {fileID: 1863079443}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.4137894}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21168,7 +21151,7 @@ PrefabInstance:
     - target: {fileID: 2824333631488686287, guid: c3981440569241e4f85f4f5886e00795,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9669838
+      value: -1.8840141
       objectReference: {fileID: 0}
     - target: {fileID: 2824333631488686287, guid: c3981440569241e4f85f4f5886e00795,
         type: 3}
@@ -24470,9 +24453,9 @@ RectTransform:
   m_Father: {fileID: 1991177789}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -847.5, y: -102.1145}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 164.229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1021432022
@@ -24859,9 +24842,9 @@ RectTransform:
   m_Father: {fileID: 1720787399}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 69.5286, y: -84.7642}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 116.1852, y: 55.8428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1042490216
@@ -24908,7 +24891,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 96201071}
+      - m_Target: {fileID: 1618325677}
         m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
         m_MethodName: set_sprite
         m_Mode: 2
@@ -24921,7 +24904,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1298971285}
+      - m_Target: {fileID: 162565794}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -24933,7 +24916,7 @@ MonoBehaviour:
           m_StringArgument: Reduces Damage by 10%
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1535977245}
+      - m_Target: {fileID: 2122416871}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -24946,7 +24929,7 @@ MonoBehaviour:
             the impact of incoming damage
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1604808307}
+      - m_Target: {fileID: 34249220}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -30462,18 +30445,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296191232}
   m_CullTransparentMesh: 1
---- !u!114 &1298971285 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1578661294025748153, guid: bd90b6eadd9c75e419e85e9b6a8d8864,
-    type: 3}
-  m_PrefabInstance: {fileID: 269723772}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1303459213
 GameObject:
   m_ObjectHideFlags: 0
@@ -31446,9 +31417,9 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 20}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1366183207
 MonoBehaviour:
@@ -34238,7 +34209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1497698808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35145,18 +35116,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535598904}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1535977245 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1578661294657916800, guid: bd90b6eadd9c75e419e85e9b6a8d8864,
-    type: 3}
-  m_PrefabInstance: {fileID: 269723772}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1545985627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35605,9 +35564,9 @@ RectTransform:
   m_Father: {fileID: 1720787399}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 69.5286, y: -141.607}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 116.1852, y: 55.8428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1565744816
@@ -35654,7 +35613,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 96201071}
+      - m_Target: {fileID: 1618325677}
         m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
         m_MethodName: set_sprite
         m_Mode: 2
@@ -35667,7 +35626,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1298971285}
+      - m_Target: {fileID: 162565794}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -35679,7 +35638,7 @@ MonoBehaviour:
           m_StringArgument: Increases Movement Speed by 10%
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1535977245}
+      - m_Target: {fileID: 2122416871}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -35691,7 +35650,7 @@ MonoBehaviour:
           m_StringArgument: The Attachment of Zephyrs Wings Allow for Movement Speed
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1604808307}
+      - m_Target: {fileID: 34249220}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
         m_Mode: 5
@@ -39658,7 +39617,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 226.3712}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1720787400
 MonoBehaviour:
@@ -39907,9 +39866,9 @@ RectTransform:
   m_Father: {fileID: 1991177789}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -847.5, y: -470.5725}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 164.229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1735085238
@@ -44643,7 +44602,7 @@ PrefabInstance:
     - target: {fileID: 2824333631488686287, guid: c3981440569241e4f85f4f5886e00795,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9669838
+      value: -1.884
       objectReference: {fileID: 0}
     - target: {fileID: 2824333631488686287, guid: c3981440569241e4f85f4f5886e00795,
         type: 3}
@@ -47550,7 +47509,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 962.9357, y: 0}
-  m_SizeDelta: {x: -962.9357, y: 736.916}
+  m_SizeDelta: {x: -962.9357, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1991177790
 MonoBehaviour:
@@ -50673,9 +50632,9 @@ RectTransform:
   m_Father: {fileID: 1991177789}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -847.5, y: -286.3435}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 164.229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2115593429
@@ -51536,9 +51495,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2144300615
 MonoBehaviour:
@@ -52197,7 +52156,7 @@ PrefabInstance:
     - target: {fileID: 2824333631488686287, guid: c3981440569241e4f85f4f5886e00795,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9669838
+      value: -1.8840141
       objectReference: {fileID: 0}
     - target: {fileID: 2824333631488686287, guid: c3981440569241e4f85f4f5886e00795,
         type: 3}

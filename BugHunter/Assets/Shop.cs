@@ -29,8 +29,12 @@ public class Shop : MonoBehaviour
         {
             gui = Player.transform.parent.GetComponentInChildren<GUIHolder>();
             gui.PickupPrompt.SetActive(false);
+            // added this to disable the shop canvas
+            ShopInterface.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
             Player = null;
-            ShopInterface = null;
+            // commented this out since I couldn't re-open canvases in game because of it
+            //ShopInterface = null;
             PlayerInput.Interact -= ToggleShop;
             PlayerInput = null;
         }
