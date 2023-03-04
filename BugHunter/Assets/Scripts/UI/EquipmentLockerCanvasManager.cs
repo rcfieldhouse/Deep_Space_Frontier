@@ -8,6 +8,8 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
 
     // UI Parents for each class's primary and secondary weapons
     public GameObject AssaultWeaponUI, EngineerWeaponUI, SniperWeaponUI, ArmorDisplay, WeaponDisplay;
+    // UI Parents for each class Upgrades
+    public GameObject AssaultUpgrades, EngineerUpgrades, SniperUpgrades;
 
     // Start is called before the first frame update
     void Start()
@@ -27,17 +29,23 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
         if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Assault)
         {
             //Debug.Log("Activate Assault UI");
+            //Enable Assault UI and Assault Upgrades UI
             enableUI(AssaultWeaponUI, EngineerWeaponUI, SniperWeaponUI);
+            enableUI(AssaultUpgrades, EngineerUpgrades, SniperUpgrades);
         }
         else if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Engineer)
         {
             // Debug.Log("Activate Engineer UI");
+            //Enable Engineer UI and Engineer Upgrades UI
             enableUI(EngineerWeaponUI, AssaultWeaponUI, SniperWeaponUI);
+            enableUI(EngineerUpgrades, AssaultUpgrades, SniperUpgrades);
         }
         else if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Sniper)
         {
             //Debug.Log("Activate Sniper UI");
+            //Enable Sniper UI and Sniper Upgrades UI
             enableUI(SniperWeaponUI, AssaultWeaponUI, EngineerWeaponUI);
+            enableUI(SniperUpgrades, AssaultUpgrades, EngineerUpgrades);
         }
     }
 
