@@ -63,7 +63,7 @@ public class FMODPlayer : MonoBehaviour
         //FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>(), GetComponent<Rigidbody>());
 
         Ambience = FMODUnity.RuntimeManager.CreateInstance("event:/Ambient/Ambience_Outdoor");
-        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Level1");
+        //Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Level1");
 
         MasterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
         //SoundFXVolume = FMODUnity.RuntimeManager.GetBus("bus:/Sounds");

@@ -17,7 +17,7 @@ public class TurretAbility : MonoBehaviour
         Player = GetComponent<PlayerInput>();
         Player.UseAbility += PlaceTurret;
         Player.Undo += ClearTurrets;
-
+        
         TurretPrefab = Resources.Load<GameObject>("Turret");
         Cam = transform.parent.GetChild(1).GetChild(3).GetComponent<Camera>();
         Invoke(nameof(Wait), 0.1f);
@@ -41,7 +41,7 @@ public class TurretAbility : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, 25)&&Turrets.Count<2)
         {
             //&& Turrets.Count<3
-
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Turret_Place");
             Turret = Instantiate(TurretPrefab);
             Turret.transform.position = hitInfo.point + new Vector3(0.0f, 3.0f, 0.0f);
             Turret.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);

@@ -59,8 +59,16 @@ public class DamageIndicator : MonoBehaviour
         text.GetComponent<TextMeshPro>().text = (int.Parse(text.GetComponent<TextMeshPro>().text)+Damage).ToString();
 
         if (_IsCrit == true)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Enemy_Hurt Crit");
             text.GetComponent<TextMeshPro>().color = Color.red;
-        else text.GetComponent<TextMeshPro>().color = Color.white;
+        }
+
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Enemy_Hurt");
+            text.GetComponent<TextMeshPro>().color = Color.white;
+        }
         StartCoroutine(FancySchmancyTextEffect());
     }
     public IEnumerator FancySchmancyTextEffect()

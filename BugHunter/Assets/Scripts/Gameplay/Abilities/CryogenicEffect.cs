@@ -46,7 +46,6 @@ public class CryogenicEffect : MonoBehaviour
     }
     private IEnumerator FreezeDeBoi()
     {
-        Debug.Log("DOOT");
 
         var mats = new Material[Renderer.materials.Length];
         for (var j = 0; j < Renderer.materials.Length; j++)
@@ -54,10 +53,13 @@ public class CryogenicEffect : MonoBehaviour
             mats[j] = ai.iceMaterial;
         }
         Renderer.materials = mats;
-
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Sniper_Ice");
         GetComponentInParent<NavMeshAgent>().enabled=false;
         GetComponent<Animator>().enabled = false;
+
         yield return FreezeTime;
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Sniper_Ice_Release");
         Renderer.materials = cachedMaterials;
         GetComponentInParent<NavMeshAgent>().enabled =true;
         GetComponent<Animator>().enabled = true;

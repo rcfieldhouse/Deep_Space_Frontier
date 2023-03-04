@@ -23,13 +23,18 @@ public class CharacterController : MonoBehaviour
      private bool m_Grounded = true;
     private PlayerInput Player;
     private CapsuleCollider coll;
+
+    private HealthSystem Health;
+
     private void Start()
     {
         disableCams(false);
         CameraMain.SetActive(true);
+        Health.OnTakeDamage += HandleDamage;
     }
     private void Awake()
     {
+        
         Player = GetComponent<PlayerInput>();
         Rigidbody = GetComponent<Rigidbody>();
         // PlayerInput.UseAbility += Dodge;
@@ -43,11 +48,19 @@ public class CharacterController : MonoBehaviour
         CameraMain.SetActive(true);
 
     }
+
+    private void HandleDamage(int obj)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Hurt");
+    }
+
     private void OnDestroy()
     {
+        //Health.OnTakeDamage -= HandleDamage;
         Player.Crouching -= SwitchCamCrouch;
         Player.JumpAction -= Jump;
         Player.Move -= Move;
+        //Health.OnTakeDamage -= HandleDamage;
     }
     public void SetIfOnLadder(bool var)
     {   

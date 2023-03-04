@@ -5,26 +5,59 @@ using System;
 public class WeaponInfo : MonoBehaviour
 {
     //this script has data for weapons and is used to change data within classes that need the data from the weapons
-    [Range(0, 1)][SerializeField] private float RecoilRotIntensity, RecoilOffsetIntensity,Weight;
+    [Range(0, 1)] [SerializeField] [Tooltip("How fast the gun reaches the peak of it's recoil")]
+    private float RecoilRotIntensity;
+
+    [Range(0, 1)]
+    [SerializeField]
+    [Tooltip("How fast the gun reaches the peak of it's recoil")]
+    private float RecoilOffsetIntensity;
+
+    [Range(0, 1)]
+    [SerializeField]
+    [Tooltip("How fast the gun reaches the peak of it's recoil")]
+    private float Weight;
     [HideInInspector] public float RecoilTimer;
 
     [SerializeField]
     FMODUnity.EventReference reloadSound;
 
 
-    [SerializeField] private int ammoInMag, maxAmmo, magSize = 1, reserveAmmo = 1;
-    [Range(0, 5)][SerializeField] private float AdsZoomScale=0;
+    [SerializeField] [Tooltip("Ammo in the current clip")] 
+    private int ammoInMag;
+
+    [SerializeField] [Tooltip("Maximum Possible Ammo In a clip")] 
+    private int maxAmmo;
+
+    [SerializeField] [Tooltip("Ammo in the current Reserve")] 
+    private int magSize = 1;
+
+    [SerializeField] [Tooltip("Maximum Possible Ammo that can be in the reserve clip")] 
+    private int reserveAmmo = 1;
+
+    [Range(0, 5)] [SerializeField] [Tooltip("Camera FOV Zoom Amount When Aiming Down Sight")] 
+    private float AdsZoomScale=0;
     public static Action<bool> maginfo,CanShoot;
-    [Range(0, 10)] [SerializeField] public WaitForSeconds ReloadTimer= new WaitForSeconds(1.0f);
-    [Range(0, 10)] public float _reloadTimer = 1.0f; 
-    [Range(0,50)][SerializeField] private float RecoilX, AimRecoilX;
-    [Range(0,25)][SerializeField] private float RecoilY, AimRecoilY;
-    [Range(0,10)][SerializeField] private float RecoilZ, AimRecoilZ;
-    [Range(0,10)][SerializeField] private float snappiness;
-    [Range(0,5)][SerializeField] private float returnSpeed;
+
+    [Range(0, 10)] [SerializeField] [Tooltip("Amount of time to Reload Timer")] 
+    public WaitForSeconds ReloadTimer= new WaitForSeconds(1.0f);
+
+    [Range(0, 10)] [Tooltip("Amount of time to Reload Timer")] 
+    public float _reloadTimer = 1.0f; 
+
+    [Range(0,50)][SerializeField] [Tooltip("Per-Axis Recoil")] 
+    private float RecoilX, AimRecoilX;
+    [Range(0,25)][SerializeField] [Tooltip("Per-Axis Recoil")] 
+    private float RecoilY, AimRecoilY;
+    [Range(0,10)][SerializeField] [Tooltip("Per-Axis Recoil")] 
+    private float RecoilZ, AimRecoilZ;
+    [Range(0,10)][SerializeField] [Tooltip("How fast the gun reaches the peak of it's recoil")] 
+    private float snappiness;
+    [Range(0,5)][SerializeField] [Tooltip("How fast the gun centres itself after a shot")] 
+    private float returnSpeed;
     [HideInInspector] public bool IsPaused=false;
     private PlayerInput PlayerInput;
-    public bool _CanShoot = true, _CanReload = false, _isReloading = false;
+    public bool _CanShoot = true, _CanReload = false, _isReloading = false, tempTimer = true;
     // Start is called before the first frame update
     void Awake()
     {       
@@ -124,12 +157,12 @@ public class WeaponInfo : MonoBehaviour
     {
 
         if (_CanReload == true)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(reloadSound);
+        {          
             _CanShoot = false;
             if (gameObject.activeInHierarchy == true)
                 StartCoroutine(SetBulletCount(true));
 
+            
         }
        
     }
@@ -171,13 +204,24 @@ public class WeaponInfo : MonoBehaviour
     public IEnumerator SetBulletCount(bool var)
     {
         _isReloading = true;
-           _CanReload = false;
+        _CanReload = false;
         _CanShoot = false;
+        
+        
         gameObject.GetComponentInParent<ReloadGun>().SetIsReloading(true);
+
+        if (tempTimer)
+        {
+            tempTimer = false;
+            FMODUnity.RuntimeManager.PlayOneShot(reloadSound);
+        }
+           
+
         yield return ReloadTimer;
         //Debug.Log("reload");
         if (var)
         {
+
             if (reserveAmmo > magSize - ammoInMag)
             {
                 reserveAmmo -= magSize - ammoInMag;
@@ -193,7 +237,10 @@ public class WeaponInfo : MonoBehaviour
       
         _CanShoot = true;
 
+
+        
         yield return new WaitForSeconds(0.5f);
+        tempTimer = true;
         gameObject.GetComponentInParent<ReloadGun>().SetIsReloading(false);
         _isReloading = false;
 

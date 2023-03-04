@@ -10,6 +10,7 @@ public class Turret : MonoBehaviour
     public bool _CanShoot = true;
     public GameObject Target=null;
     public Transform BulletEmitter;
+    private Animator anim;
 
     private WaitForSeconds shootDelay;
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class Turret : MonoBehaviour
         Line.startWidth = 0.25f;
         Line.endWidth = 0.25f;
         Line.enabled = false;
+        anim = GetComponent<Animator>();
     }
     public void SetTarget(GameObject target)
     {
@@ -84,10 +86,14 @@ private IEnumerator ShotEffect()
         Line.SetPosition(0, BulletEmitter.position);
         Line.SetPosition(1, BulletEmitter.position + transform.GetChild(0).forward * 20.0f);
         // Turn on our line renderer
-        Line.enabled = true;
-        yield return new WaitForSeconds(0.2f);
-        Line.enabled = false;
 
+        Line.enabled = true;
+        anim.enabled = true;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Turret_Shoot");
+        yield return new WaitForSeconds(0.2f);
+
+        Line.enabled = false;
+        anim.enabled=false;
         yield return shootDelay;
 
         _CanShoot = true;

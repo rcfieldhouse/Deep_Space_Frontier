@@ -81,11 +81,6 @@ public class HealthSystem : MonoBehaviour
 
             float currentHealthPercent = (float)currentHealth / (float)maxHealth;
 
-            if (transform.tag == "Player" && amount < 0)
-            {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Hurt");
-            }
-
             OnHealthPercentChanged(currentHealthPercent);
             OnTakeDamage(amount);
             //Check if health has fallen below zero
@@ -94,6 +89,7 @@ public class HealthSystem : MonoBehaviour
                 //Broadcast that the object has died
                 //   Destroy(gameObject);
                 OnObjectDeath?.Invoke(transform.gameObject);
+
 
                 //gameObject.SetActive(false);
             }

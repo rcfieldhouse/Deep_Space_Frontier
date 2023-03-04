@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class DreadBomber : AI
 {
-    public GameObject Projectile,Orb;
+    public GameObject Projectile, Orb;
     private int NumDropped = 0;
-    [Range(0, 20)] public float ProjectileSpeed = 10;
+    [Range(0, 30)] public float ProjectileSpeed = 10;
     private bool AlternateAttacks = false;
     // Start is called before the first frame update
     public override void AttackPlayer(GameObject Target)
@@ -12,13 +12,13 @@ public class DreadBomber : AI
         if (CanAttack == true && HasAttacked == false)
         {
             Transform MeshLocation = GetComponentInChildren<SkinnedMeshRenderer>().gameObject.transform;
-            if (IsSecondaryAttack&&NumDropped<3&&AlternateAttacks==true)
+            if (IsSecondaryAttack&&NumDropped< 3 &&AlternateAttacks==true)
                 SecondaryAttack(MeshLocation);
             else
             {
                 AlternateAttacks = true;
                 //play Dante.sound.ogg dread bomber basic shoot attack
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Bomber");
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/BomberShoot");
                 transform.LookAt(Target.transform);
                 AI_Animator.SetBool("_IsAttacking", true);
                 Rigidbody rb = Instantiate(Projectile, MeshLocation.position, Quaternion.identity).GetComponent<Rigidbody>();
