@@ -19,7 +19,10 @@ public class LootHolder : MonoBehaviour, IDataPersistence
 
         DontDestroyOnLoad(gameObject);
     }
-
+    public Loot GetLootFromInventory(int index)
+    {
+        return Inventory[index];
+    }
     public void GainLoot(int index)
     {        
         Inventory[index].IncrementLoot(1);
