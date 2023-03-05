@@ -35,7 +35,7 @@ public class Loot
     }
     public void DecrementLoot(int decrement)
     {
-        quantity += decrement;
+        quantity -= decrement;
     }
     public void SetQuantity(int newQuantity)
     {

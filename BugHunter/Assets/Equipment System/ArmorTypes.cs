@@ -5,7 +5,7 @@ using UnityEngine;
 public class Armor : Item, IEquip
 {
     public EquipType equipType;
-    public bool isEquippable = true;
+    public bool isEquippable = false;
 
     virtual public void Enter(GameObject requester)
     {
@@ -61,6 +61,31 @@ public class SlimeArmor : Armor
 
     }
 }
+public class StandardArmor : Armor
+{
+    public EquipType Equip = EquipType.ARMOR;
+
+    public StandardArmor()
+    {
+        this.itemName = "StandardArmor";
+    }
+
+    public override void Enter(GameObject requester)
+    {
+
+    }
+
+    public override int Execute(GameObject requester, int damageAmount)
+    {
+
+            return base.Execute(requester, damageAmount);
+    }
+    public override void Exit(GameObject requester)
+    {
+
+    }
+}
+
 
 public class BomberArmor : Armor
 {
@@ -94,10 +119,10 @@ public class BomberArmor : Armor
     }
 }
 
-public class TorterraArmor : Armor
+public class TickArmor : Armor
 {
     public EquipType Equip = EquipType.ARMOR;
-    public TorterraArmor()
+    public TickArmor()
     {
         this.itemName = "Torterra Armor";
     }
@@ -116,10 +141,10 @@ public class TorterraArmor : Armor
     }
 }
 
-public class WormArmor : Armor
+public class ZephryArmor : Armor
 {
     public EquipType Equip = EquipType.ARMOR;
-    public WormArmor()
+    public ZephryArmor()
     {
         this.itemName = "Worm Armor";
     }

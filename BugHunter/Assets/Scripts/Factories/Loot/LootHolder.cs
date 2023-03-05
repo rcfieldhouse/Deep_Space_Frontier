@@ -11,7 +11,7 @@ public class LootHolder : MonoBehaviour, IDataPersistence
     void Awake()
     {
         //TODO: Instantiate this in the lootholder with the player
-        for (int i =0; i <= 11; i++)
+        for (int i =0; i <= 12; i++)
         {
             //Inventory.Add(ScriptableObject.CreateInstance<Loot>());
             Inventory.Add(new Loot(0,i));
@@ -23,6 +23,7 @@ public class LootHolder : MonoBehaviour, IDataPersistence
     {
         return Inventory[index].Quantity;
     }
+
     public void GainLoot(int index)
     {        
         Inventory[index].IncrementLoot(1);
@@ -32,7 +33,10 @@ public class LootHolder : MonoBehaviour, IDataPersistence
 
         Inventory[index].IncrementLoot(amount);
     }
-
+    public Loot GetInventory(int index)
+    {
+        return Inventory[index];
+    }
     public void LoadData(GameData data)
     {
         int i = 0;

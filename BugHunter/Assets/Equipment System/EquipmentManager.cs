@@ -9,6 +9,10 @@ using UnityEngine;
 public class EquipmentManager : MonoBehaviour
 {
     public Armor currentEquip;
+    public SlimeArmor slime_armor;
+    public BomberArmor BomberArmor;
+    public TickArmor TickArmor;
+    public ZephryArmor ZephryArmor;
 
     public bool ValidateEquip(Armor equip)
     {
@@ -18,18 +22,18 @@ public class EquipmentManager : MonoBehaviour
     private void Start()
     {
         //temporary for testing
-        SlimeArmor slime_armor = new SlimeArmor();
-        BomberArmor jump_Armor = new BomberArmor();
-        TorterraArmor torterra_Armor = new TorterraArmor();
-        WormArmor worm_Armor = new WormArmor();
+        slime_armor = new SlimeArmor();
+        BomberArmor = new BomberArmor();
+        TickArmor = new TickArmor();
+        ZephryArmor = new ZephryArmor();
 
-        currentEquip = slime_armor;
+        currentEquip = new StandardArmor();
         ChangeEquip(currentEquip);
     }
 
     public void ChangeEquip(Armor newEquip)
     {
-        Debug.Log("I have equipped "+ newEquip.itemName);
+        Debug.Log("I have equipped " + newEquip.itemName);
 
         //will need some UI for this, debug.logs for now though.
         if (!ValidateEquip(newEquip))
@@ -44,7 +48,6 @@ public class EquipmentManager : MonoBehaviour
         currentEquip = newEquip;
         currentEquip.Enter(transform.gameObject);
     }
-
     public int ExecuteEquip(GameObject requester, int damageAmount)
     {
         if (currentEquip != null)

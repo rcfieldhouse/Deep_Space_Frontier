@@ -20,10 +20,13 @@ public class SeperatorAttribute : PropertyAttribute
 
 public class ShopGUI : MonoBehaviour
 {
+    private int[] AmountOwned = new int[3];
+    private int[] AmountNeeded = new int[3];
+    private int WhichArmour=0;
     [Header("Player Inventory")]
     [SerializeField]
     private LootHolder playerInventory;
-
+    
     //Array of the shops Scriptable Objects
     public ShopInventory[] shopInventory;
 
@@ -35,34 +38,75 @@ public class ShopGUI : MonoBehaviour
 
     //array for UI panels to coincide with the inventory
     public Button[] purchaseButtons;
-
+    public EquipmentManager EquipmentManager;
+    public GameObject[] CostValues;
     private void Start()
     {
+
         for (int i = 0; i < shopInventory.Length; i++)
             shopPanelsGO[i].SetActive(true);
-        LoadShop();
+      //  LoadShop();
         ValidatePurchasable();
     }
+  
 
-
-    public void LoadShop()
+    public void LoadShop(int index)
     {
-        for(int i =0; i<shopInventory.Length; i++)
+        for (int i=0;i<3; i++)
         {
-            shopPanels[i].titleTxt.text = shopInventory[i].title;
-            shopPanels[i].descriptionTxt.text = shopInventory[i].description;
-
-            int j = 0;
-            foreach (Loot loot in playerInventory.Inventory)
-            {
-                shopPanels[i].costTxt[j].text = shopInventory[i].cost[j].ToString();
-            }
-            
+            AmountOwned[i] = playerInventory.GetLootFromInventory(3 * index + i + 1);
+            CostValues[i].GetComponent<TextMeshProUGUI>().text = playerInventory.GetLootFromInventory(3 * index + i+1).ToString();
+            CostValues[i].GetComponent<TextMeshProUGUI>().text += "/";
+            CostValues[i].GetComponent<TextMeshProUGUI>().text += shopInventory[index].cost[3 * index + i].ToString();
+            AmountNeeded[i] = shopInventory[index].cost[3 * index + i];
         }
+        WhichArmour = index;
+      // for(int i =0; i<shopInventory.Length; i++)
+      // {
+      //     shopPanels[i].titleTxt.text = shopInventory[i].title;
+      //     shopPanels[i].descriptionTxt.text = shopInventory[i].description;
+      //
+      //     int j = 0;
+      //     foreach (Loot loot in playerInventory.Inventory)
+      //     {
+      //         shopPanels[i].costTxt[j].text = shopInventory[i].cost[j].ToString();
+      //     }
+      //     
+      // }
     }
 
     //TODO: Make it efficient and cleaner.
     //Not digging the time complexity here, or the readability
+    public void Buy()
+    {
+        for (int i = 0; i < 3; i++)
+            if (AmountOwned[i] < AmountNeeded[i])
+                return;   
+        for (int i = 0; i < 3; i++)
+          playerInventory.GetInventory(3*WhichArmour+i+1).DecrementLoot(shopInventory[WhichArmour].cost[3 * WhichArmour + i]);
+
+        PurchaseArmour();
+        LoadShop(WhichArmour);
+    }
+    public void PurchaseArmour()
+    {
+        switch (WhichArmour)
+        {
+            case 0:
+                EquipmentManager.slime_armor.isEquippable=true;
+                break;
+            case 1:
+                EquipmentManager.TickArmor.isEquippable = true;
+                break;
+            case 2:
+                EquipmentManager.ZephryArmor.isEquippable = true;
+                break;
+            case 3:
+                EquipmentManager.BomberArmor.isEquippable = true;
+                break;
+        }
+            
+    }
     public void ValidatePurchasable()
     {
         //for every shop item [i]...
@@ -90,27 +134,6 @@ public class ShopGUI : MonoBehaviour
         }
     }
 
-    //TODO: Verify that the values of i are correspondant with the Loot Variables
-    public void PurchaseItem(int itemNumber)
-    {
-        int i = 0;
-        foreach (Loot loot in playerInventory.Inventory)
-        {
-            if(loot.Quantity >= shopInventory[itemNumber].cost[i])
-            {
-                loot.DecrementLoot(shopInventory[itemNumber].cost[i]);
-            }
-            else
-            {
-                Debug.LogError("Player has Insufficient Funds! " +
-                    "This should not be possible unless there is an error " +
-                    "with the ValidatePurchasable() function");
-            }
-            i++;
-        }
-     
-    }
-
     //TODO: Link With Ryan's new Weapon Script
     public void DisplayItemStats()
     {
@@ -127,7 +150,7 @@ public class ShopGUI : MonoBehaviour
         {
             loot.SetQuantity(99);
         }
-        LoadShop();
+        //LoadShop();
         ValidatePurchasable();
     }
 
