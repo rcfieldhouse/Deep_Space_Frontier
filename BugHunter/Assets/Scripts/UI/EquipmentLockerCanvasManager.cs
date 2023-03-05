@@ -5,7 +5,7 @@ using UnityEngine;
 public class EquipmentLockerCanvasManager : MonoBehaviour
 {
     public GameObject Player;
-
+    private int ChoiceArmour=0;
     // UI Parents for each class's primary and secondary weapons
     public GameObject AssaultWeaponUI, EngineerWeaponUI, SniperWeaponUI, ArmorDisplay, WeaponDisplay;
     // UI Parents for each class Upgrades
@@ -45,8 +45,32 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
             enableUI(SniperUpgrades, AssaultUpgrades, EngineerUpgrades);
         }
     }
-
-
+    public void EquipArmour()
+    {
+        switch (ChoiceArmour)
+        {
+            case 0:
+                if (Player.GetComponent<EquipmentManager>().slime_armor.isEquippable == true)
+                    Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().slime_armor);
+                break;
+            case 1:
+                if (Player.GetComponent<EquipmentManager>().TickArmor.isEquippable == true)
+                    Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().TickArmor);
+                break;
+            case 2:
+                if (Player.GetComponent<EquipmentManager>().ZephryArmor.isEquippable == true)
+                    Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().ZephryArmor);
+                break;
+            case 3:
+                if (Player.GetComponent<EquipmentManager>().BomberArmor.isEquippable == true)
+                    Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().BomberArmor);
+                break;
+        }
+    }
+    public void SetArmourChoice(int num)
+    {
+        ChoiceArmour = num;
+    }
     public void enableUI(GameObject enableUI, GameObject disableUI1, GameObject disableUI2)
     {
         // enable the target UI

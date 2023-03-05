@@ -28,6 +28,7 @@ public class EquipmentManager : MonoBehaviour
         ZephryArmor = new ZephryArmor();
 
         currentEquip = new StandardArmor();
+        currentEquip.isEquippable = true;
         ChangeEquip(currentEquip);
     }
 
