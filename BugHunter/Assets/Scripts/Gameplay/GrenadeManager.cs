@@ -84,6 +84,14 @@ public class GrenadeManager : MonoBehaviour
         _CanThrow = false;
         transform.parent.GetComponentInChildren<ThrowableSwap>().DisplayInfo();
     }
+    public bool GetCanThrow()
+    {
+        if (ThrowSelect == 0) return (numGrenades > 0);
+        else if (ThrowSelect == 1) return HasFruit;
+
+        return false;
+
+    }
     public int GetNumNades()
     {
         return numGrenades;
@@ -95,8 +103,9 @@ public class GrenadeManager : MonoBehaviour
             Fruit.SetActive(true);
             FruitThrow.ThrowFruit(quaternion * ThrowForce,StartingTransform);
             HasFruit = false;
-              Invoke(nameof(EnableCam),0.65f);
+              
         }
+        Invoke(nameof(EnableCam), 1.5f);
     }
     public void BeginThrowGrenade(Quaternion quaternion)
     {

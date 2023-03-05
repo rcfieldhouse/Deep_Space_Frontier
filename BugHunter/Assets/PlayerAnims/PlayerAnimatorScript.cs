@@ -67,6 +67,9 @@ public class PlayerAnimatorScript : MonoBehaviour
     }
     private void CookNade()
     {
+        if (Player.gameObject.GetComponent<GrenadeManager>().GetCanThrow() == false)
+            return;
+
         LeftArm.weight = 0;
         Neck.weight = 0;
         RightArm.weight = 0;
@@ -75,6 +78,7 @@ public class PlayerAnimatorScript : MonoBehaviour
     }
     private void ThrowGrenade(Quaternion quaternion)
     {
+    
         FMODUnity.RuntimeManager.PlayOneShot("event:/Projectiles/Grenade_Throw");
         LeftArm.weight = 0;
         Neck.weight = 0;

@@ -24,7 +24,11 @@ public class SlimeBounce : MonoBehaviour
 
         if (GetComponent<HealthSystem>().GetHealth() <= 0)
             Dead = true;
-    }
+
+        if (Dead == true)
+            transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        
+        }
     private void Jump()
     {
         if (_IsAttacking == false&&GetComponentInParent<Slime>()._IsHitStunned==false)
@@ -32,7 +36,11 @@ public class SlimeBounce : MonoBehaviour
             GetComponent<Rigidbody>().velocity = Vector3.up * JumpHeight;
             Var = !Var;
             GetComponentInParent<AI>().AI_Animator.SetBool("_IsMoving", Var);
-            if (Dead == true) GetComponent<Rigidbody>().isKinematic = true;
+            if (Dead == true)
+            {
+                transform.localPosition = new Vector3(0.0f,0.0f,0.0f);
+                GetComponent<Rigidbody>().isKinematic = true;
+            }
         }    
     }
     public void SetIsAttacking(bool var)
