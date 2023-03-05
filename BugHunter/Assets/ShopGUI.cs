@@ -23,6 +23,7 @@ public class ShopGUI : MonoBehaviour
     private int[] AmountOwned = new int[3];
     private int[] AmountNeeded = new int[3];
     private int[] IndexOfMats = new int[3];
+    public bool[] ArmourOwned = new bool[4];
     private int WhichArmour=0,WhichWeapon=0;
     private bool UpgradeArmour = true;
     [Header("Player Inventory")]
@@ -71,6 +72,13 @@ public class ShopGUI : MonoBehaviour
             CostValues[i].GetComponent<TextMeshProUGUI>().text += shopInventory[index].cost[3 * index + i].ToString();
             AmountNeeded[i] = shopInventory[index].cost[3 * index + i];
         }
+        if (ArmourOwned[index] == true)
+            for (int i = 0; i < 3; i++)
+            {
+                if (i % 2 == 0)
+                    CostValues[i].GetComponent<TextMeshProUGUI>().text = "";
+                else CostValues[i].GetComponent<TextMeshProUGUI>().text = "Crafted";
+            }
         WhichArmour = index;
       // for(int i =0; i<shopInventory.Length; i++)
       // {
@@ -226,15 +234,19 @@ public class ShopGUI : MonoBehaviour
         switch (WhichArmour)
         {
             case 0:
+                ArmourOwned[0] = true;
                 EquipmentManager.slime_armor.isEquippable=true;
                 break;
             case 1:
+                ArmourOwned[1] = true;
                 EquipmentManager.TickArmor.isEquippable = true;
                 break;
             case 2:
+                ArmourOwned[2] = true;
                 EquipmentManager.ZephryArmor.isEquippable = true;
                 break;
             case 3:
+                ArmourOwned[3] = true;
                 EquipmentManager.BomberArmor.isEquippable = true;
                 break;
         }
