@@ -32,7 +32,7 @@ public class DissolveManyObj : MonoBehaviour
             float counter = 0;
             while (Materials[0].GetFloat("_DissolveAmount") < 1)
             {
-                counter += 0.0125f;
+                counter += 0.0075f;
                 for (int i = 0; i < Materials.Count; i++)
                 {
                     Materials[i].SetFloat("_DissolveAmount", counter);
