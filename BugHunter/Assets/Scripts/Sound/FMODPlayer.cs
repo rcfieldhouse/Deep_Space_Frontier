@@ -111,39 +111,4 @@ public class FMODPlayer : MonoBehaviour
     }
 
 
-    public void PlayUIUpEvent()
-    {
-        if (uiUpEvent.IsNull)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(uiUpEvent);
-        }
-    }
-
-    public void PlayUIDownEvent()
-    {
-        if (uiDownEvent.IsNull)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(uiDownEvent);
-        }
-    }
-
-    public void PlayUISelectEvent()
-    {
-        Debug.Log("Doot");
-        if (!uiSelectEvent.IsNull)
-        {
-            Debug.Log("Doot");
-            FMODUnity.RuntimeManager.PlayOneShot(uiSelectEvent);
-        }
-    }
-
-    public void PlayUIDeselectEvent()
-    {
-        Debug.Log("Doot");
-        if (!uiDeselectEvent.IsNull)
-        {
-            Debug.Log("Doot");
-            FMODUnity.RuntimeManager.PlayOneShot(uiDeselectEvent);
-        }
-    }
 }

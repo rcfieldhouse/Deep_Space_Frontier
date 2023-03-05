@@ -218,7 +218,7 @@ public class WeaponInfo : MonoBehaviour
            
 
         yield return ReloadTimer;
-        //Debug.Log("reload");
+
         if (var)
         {
 

@@ -22,7 +22,7 @@ public class Turret : MonoBehaviour
         SetTarget(transform.GetChild(transform.childCount-1).gameObject);
         shootDelay = new WaitForSeconds(ShootTime);
         Target = null;
-        Line = gameObject.AddComponent<LineRenderer>();
+        Line = GetComponent<LineRenderer>();
         Line.startWidth = 0.25f;
         Line.endWidth = 0.25f;
         Line.enabled = false;

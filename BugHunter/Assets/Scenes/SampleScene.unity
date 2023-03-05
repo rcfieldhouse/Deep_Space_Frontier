@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.6992417, g: 0.3436276, b: 0.735849, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.006
+  m_FogDensity: 0.002
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.8574187, g: 0.60103375, b: 0.5211761, a: 1}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 136559627}
-  m_IndirectSpecularColor: {r: 0.13856609, g: 0.04852879, b: 0.20566985, a: 1}
+  m_IndirectSpecularColor: {r: 0.1383698, g: 0.048331045, b: 0.20546666, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7737,6 +7737,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3112987287445659878, guid: 9f11386feb563f145850efd8393c7218,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8305802020851899696, guid: 9f11386feb563f145850efd8393c7218,
         type: 3}
       propertyPath: m_Name
@@ -56916,6 +56921,25 @@ PrefabInstance:
       propertyPath: ShotSpread.y
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1170375013, guid: 3c53c9234287a8047b94ba05223d8526, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 317545867908926180, guid: 3c53c9234287a8047b94ba05223d8526,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330673785976113930, guid: 3c53c9234287a8047b94ba05223d8526,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133237032625439262, guid: 3c53c9234287a8047b94ba05223d8526,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4520725861016068215, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
       propertyPath: m_IsActive
@@ -65236,7 +65260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069997769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1000, y: 6.18, z: 1000}
+  m_LocalPosition: {x: 1000, y: 6.12, z: 1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

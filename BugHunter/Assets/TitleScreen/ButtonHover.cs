@@ -6,15 +6,11 @@ using UnityEngine.UIElements;
 using TMPro;
 public class ButtonHover : MonoBehaviour
 {
-
-
     public void ChangeOnHover()
     {
-      //  GetComponentInChildren<TextMeshPro>().
-        Debug.Log("hover");
     }
     public void ChangeOnLeave()
     {
-        Debug.Log("hover");
+
     }
 }

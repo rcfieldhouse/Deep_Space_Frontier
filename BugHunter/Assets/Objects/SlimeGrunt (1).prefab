@@ -46,12 +46,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add076e2590e9ca42becd056bda5c441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AI_Animator: {fileID: 0}
   Health: {fileID: 0}
   NavAgent: {fileID: 0}
   MeshRenderer: {fileID: 0}
   SkinnedMeshRenderer: {fileID: 0}
   Materials: []
   Target: {fileID: 0}
+  iceMaterial: {fileID: 2100000, guid: 4fbaeb132da1b8d48956df75d262aa68, type: 2}
+  fireMaterial: {fileID: 0}
+  electricMaterial: {fileID: 0}
   _SightRange: 10
   _AttackRange: 1
   _Attack2_Range: 0
@@ -68,6 +72,10 @@ MonoBehaviour:
   dissolveRate: 0.0125
   refreshRate: 0.02
   NumDrops: 3
+  HitStunDamageRequirement: 0
+  HitStunTimeRequirement: 0
+  HitStunTime: 0
+  _IsHitStunned: 0
   EvasionIntensity: 0
   EvasionRecalculationPeriod: 0
   WhatIsGround:
@@ -132,7 +140,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: ce98c6fdc6a99014bbe14206d13c3ede, type: 2}
   - {fileID: 2100000, guid: d94a49b39b1521b418fefde105fb0829, type: 2}
-  - {fileID: -7184819803674296287, guid: e33bcce0e21daf548ab2d3234c5eef78, type: 3}
+  - {fileID: 2100000, guid: a669cb7b7e773dc4ebf08f0cc988b234, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

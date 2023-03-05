@@ -71,14 +71,12 @@ public class CharacterController : MonoBehaviour
     }
     public void SetZiplinePoint(Transform Start, Transform End)
     {
-        Debug.Log("Set");
         OnZipline = true; 
         StartPos = Start;
         EndPos = End;
     }
     public void ExitZipLine()
     {
-        Debug.Log("offladder");
         OnZipline = false;
     }
     public bool GetIfOnLadder()

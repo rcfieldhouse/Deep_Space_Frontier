@@ -209,8 +209,6 @@ public abstract class AI : MonoBehaviour
             }
 
            
-
-            //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
             //idea is to spray pieces as the object dissolves
             Destroy(gameObject);
         }
@@ -347,7 +345,6 @@ public abstract class AI : MonoBehaviour
             if ((Mathf.Abs(gameObject.transform.position.x - SpawnPoint.x) > 60.0f) || (Mathf.Abs(gameObject.transform.position.y - SpawnPoint.y) > 60.0f))
             {
                 NavAgent.SetDestination(SpawnPoint);
-                //  Debug.Log(gameObject.name + " is too far" + " current: " + gameObject.transform.position+ " Spawn "+SpawnPoint);
             }
         }
         PatrolCorrection();

@@ -31,20 +31,16 @@ public class CraftingCanvasManager : MonoBehaviour
 
     public void CheckPlayerClass()
     {
-        Debug.Log("Class Type is " + Player.GetComponent<ClassCreator>().GetClass());
         if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Assault)
         {
-            //Debug.Log("Activate Assault UI");
             enableAssaultUI();
         }
         else if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Engineer)
         {
-           // Debug.Log("Activate Engineer UI");
             enableEngineerUI();
         }
         else if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Sniper)
         {
-            //Debug.Log("Activate Sniper UI");
             enableSniperUI();
         }
     }
