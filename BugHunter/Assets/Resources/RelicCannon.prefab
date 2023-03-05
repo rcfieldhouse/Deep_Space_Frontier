@@ -9905,8 +9905,8 @@ MonoBehaviour:
     type: 3}
   bulletEmitter: {fileID: 7380320551132385857}
   shotStrength: 10
-  isReady: 1
   info: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!114 &7380320551474435283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9923,6 +9923,13 @@ MonoBehaviour:
   RecoilOffsetIntensity: 0.214
   Weight: 0.522
   RecoilTimer: 1
+  reloadSound:
+    Guid:
+      Data1: 181881990
+      Data2: 1083243448
+      Data3: -1606912094
+      Data4: 853010680
+    Path: event:/Player/Relic_Reload
   ammoInMag: 0
   maxAmmo: 1
   magSize: 1
@@ -9937,6 +9944,11 @@ MonoBehaviour:
   AimRecoilZ: 2.04
   snappiness: 2.94
   returnSpeed: 4.1
+  IsPaused: 0
+  _CanShoot: 1
+  _CanReload: 0
+  _isReloading: 0
+  tempTimer: 1
 --- !u!95 &7686874501214963013
 Animator:
   serializedVersion: 4
