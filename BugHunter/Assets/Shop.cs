@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-   private GameObject ShopInterface;
-   private GameObject Player;
-   private GUIHolder gui;
+    private GameObject ShopInterface;
+    private GameObject Player;
+    private GUIHolder gui;
     private PlayerInput PlayerInput;
     public ShopType TypeOfShop;
     // Start is called before the first frame update
@@ -30,6 +30,7 @@ public class Shop : MonoBehaviour
                 ShopInterface = gui.LVLSelect;
             PlayerInput = Player.GetComponent<PlayerInput>();
             PlayerInput.Interact += ToggleShop;
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -47,6 +48,7 @@ public class Shop : MonoBehaviour
             //ShopInterface = null;
             PlayerInput.Interact -= ToggleShop;
             PlayerInput = null;
+            gui = null;
         }
     }
 
@@ -54,6 +56,7 @@ public class Shop : MonoBehaviour
     {
         if (Player == null)
             return;
+
         Debug.Log("Shop is Opened :(");
         bool toggle = !ShopInterface.activeInHierarchy;
         // i only need the canvas to activate not everything attached to it for tab switching

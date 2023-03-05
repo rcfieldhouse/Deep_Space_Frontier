@@ -47,10 +47,10 @@ public class ShopGUI : MonoBehaviour
     private void Start()
     {
 
-        for (int i = 0; i < shopInventory.Length; i++)
-            shopPanelsGO[i].SetActive(true);
+       //for (int i = 0; i < shopInventory.Length; i++)
+       //    shopPanelsGO[i].SetActive(true);
       //  LoadShop();
-        ValidatePurchasable();
+       // ValidatePurchasable();
     }
 
     public void TabUpgradeArmor()
@@ -170,10 +170,11 @@ public class ShopGUI : MonoBehaviour
             for (int i = 0; i < 3; i++)
                 playerInventory.GetInventory(IndexOfMats[i] + 1).DecrementLoot(WeaponUpgrades[WhichWeapon+Level].cost[IndexOfMats[i]]);
            
-            PurchaseWeaponUpgrade();
-            LoadWeapon(WhichWeapon);
+          
 
             EquipmentManager.transform.parent.GetComponentInChildren<WeaponSwap>().transform.GetChild(num).gameObject.SetActive(false);
+            PurchaseWeaponUpgrade();
+            LoadWeapon(WhichWeapon);
         }
     
     }
@@ -205,7 +206,7 @@ public class ShopGUI : MonoBehaviour
     }
     public void PurchaseWeaponUpgrade()
     {
-        int num = 0;
+        int num = 9;
         if (EquipmentManager.transform.parent.GetComponentInChildren<WeaponSwap>().transform.GetChild(0).gameObject.activeInHierarchy == false)
         {
             EquipmentManager.transform.parent.GetComponentInChildren<WeaponSwap>().transform.GetChild(0).gameObject.SetActive(true);
@@ -283,7 +284,7 @@ public class ShopGUI : MonoBehaviour
             loot.SetQuantity(99);
         }
         //LoadShop();
-        ValidatePurchasable();
+       // ValidatePurchasable();
     }
 
 
