@@ -24,6 +24,7 @@ public class IncendiaryEffect : MonoBehaviour
     private void Effect()
     {
         StartCoroutine(BurnDeBoi());
+        GetComponentInParent<AI>().transform.GetChild(2).GetComponent<FireID>().gameObject.SetActive(true);
     }
     private IEnumerator BurnDeBoi()
     {
@@ -47,6 +48,7 @@ public class IncendiaryEffect : MonoBehaviour
             }
             yield return null;
         }
+        GetComponentInChildren<FireID>().gameObject.SetActive(false);
         //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
         Destroy(this);
         yield return null;
