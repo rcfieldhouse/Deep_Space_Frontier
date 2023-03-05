@@ -54,7 +54,7 @@ public abstract class AI : MonoBehaviour
     public LayerMask WhatIsGround,WhatIsPlayer;
     private Vector3 WalkPoint, SpawnPoint,Pos;
     private bool WalkPointSet=false;
-    [Range(0, 15)] public float WalkPointRange,WalkSpeed;
+    [Range(0, 100)] public float WalkPointRange,WalkSpeed;
 
     #region MonoBehaviour
     public void Awake()
