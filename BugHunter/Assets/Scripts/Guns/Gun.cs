@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
 {
+    public int Level = 0;
     //variables that all guns will be using
     [Range(0, -50)]public int Damage = -25;
     [Range(0, 2)] public float FireRate = 0.25f;
@@ -25,7 +26,11 @@ public abstract class Gun : MonoBehaviour
     public abstract void Shoot();
 
     [SerializeField] FMODUnity.EventReference shootSound;
-
+    public void UpgradeWeapon()
+    {
+        if(Level<3)
+        Level++;
+    }
     private void Awake()
     {
         Player = transform.parent.parent.parent.parent.GetChild(0).GetComponent<PlayerInput>();

@@ -124,7 +124,7 @@ public class TickArmor : Armor
     public EquipType Equip = EquipType.ARMOR;
     public TickArmor()
     {
-        this.itemName = "Torterra Armor";
+        this.itemName = "Tick Armor";
     }
 
     public override void Enter(GameObject requester)
@@ -146,7 +146,7 @@ public class ZephryArmor : Armor
     public EquipType Equip = EquipType.ARMOR;
     public ZephryArmor()
     {
-        this.itemName = "Worm Armor";
+        this.itemName = "Zephyr Armor";
     }
 
     public override void Enter(GameObject requester)
