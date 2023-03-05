@@ -15,6 +15,8 @@ public class GrenadeManager : MonoBehaviour
     public int ThrowSelect = 0;
     // Start is called before the first frame update
     private PlayerInput Player;
+    public int maxGrenades = 4;
+
     void Awake()
     {
         Player = GetComponent<PlayerInput>();
@@ -132,7 +134,7 @@ public class GrenadeManager : MonoBehaviour
    public void GainGrenades(int num)
     {
         _CanThrow = true;
-        if (numGrenades > 4)
+        if (numGrenades > maxGrenades)
             return;
 
         numGrenades += num;

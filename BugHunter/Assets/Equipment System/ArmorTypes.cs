@@ -38,29 +38,24 @@ public class SlimeArmor : Armor
 
     public override void Enter(GameObject requester)
     {
-
+        base.Enter(requester);
     }
 
     public override int Execute(GameObject requester, int damageAmount)
     {
+        double temp = damageAmount;
+        temp *= 0.9;
+        damageAmount = (int)temp;
 
-        if (requester.GetComponent<Slime>() != null)
-        {
-            //Testing Functionality
-            damageAmount = 0;
-        }
-        else
-        {
-            return base.Execute(requester, damageAmount);
-        }
         Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
         return damageAmount;
     }
     public override void Exit(GameObject requester)
     {
-
+        base.Exit(requester);
     }
 }
+
 public class StandardArmor : Armor
 {
     public EquipType Equip = EquipType.ARMOR;
@@ -72,7 +67,7 @@ public class StandardArmor : Armor
 
     public override void Enter(GameObject requester)
     {
-
+        base.Enter(requester);
     }
 
     public override int Execute(GameObject requester, int damageAmount)
@@ -82,10 +77,9 @@ public class StandardArmor : Armor
     }
     public override void Exit(GameObject requester)
     {
-
+        base.Exit(requester);
     }
 }
-
 
 public class BomberArmor : Armor
 {
@@ -98,22 +92,22 @@ public class BomberArmor : Armor
 
     public override void Enter(GameObject requester)
     {
-        CharacterController playerControl = requester.GetComponent<CharacterController>();
-        playerControl.JumpForce += new Vector3(0, 10, 0);
+        GrenadeManager GrenadeHolder = requester.GetComponent<GrenadeManager>();
+
+        GrenadeHolder.maxGrenades +=1;
         base.Enter(requester);
     }
 
     public override void Exit(GameObject requester)
     {
-        CharacterController playerControl = requester.GetComponent<CharacterController>();
-        playerControl.JumpForce -= new Vector3(0, 10, 0);
+        GrenadeManager GrenadeHolder = requester.GetComponent<GrenadeManager>();
+        GrenadeHolder.maxGrenades -= 1;
         base.Exit(requester);
     }
 
     //flat damage reduction from all sources
     public override int Execute(GameObject requester, int damageAmount)
     {
-        damageAmount -= 10;
         Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
         return base.Execute(requester, damageAmount);
     }
@@ -129,10 +123,15 @@ public class TickArmor : Armor
 
     public override void Enter(GameObject requester)
     {
-
+        CharacterController playerControl = requester.GetComponent<CharacterController>();
+        //TODO: Make this work for playerSpeed
+       // playerControl.movespeed;
     }
     public override int Execute(GameObject requester, int damageAmount)
     {
+        double temp = damageAmount;
+        temp *= 0.95;
+        damageAmount = (int)temp;
         return base.Execute(requester, damageAmount);
     }
     public override void Exit(GameObject requester)
