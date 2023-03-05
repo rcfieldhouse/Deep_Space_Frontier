@@ -16,7 +16,7 @@ public class CharacterController : MonoBehaviour
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
     [Range(0, 1)] [SerializeField] public float m_LadderSpeed = 0.5f;
     [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;
-  
+    public event Action Jumped = delegate { };
     public WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
 
     [SerializeField] public Vector3 mover,JumpForce = new Vector3 (0.0f,25.0f,0.0f);
@@ -124,11 +124,17 @@ public class CharacterController : MonoBehaviour
         disableCams(var);
         CameraCrouch.SetActive(var);       
     }
-    private void Jump()
+    public void Jump()
+    {
+        if (isGrounded())
+            Joomp();
+    }
+    public void Joomp()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Jump");
         GetComponent<PlayerAnimatorScript>().Jump();
         Rigidbody.velocity += JumpForce;
+        if(isGrounded())Jumped.Invoke();
     }
 
     

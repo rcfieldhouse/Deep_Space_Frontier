@@ -9,6 +9,7 @@ public class Dodge : MonoBehaviour
     private bool _CanRoll = true; 
     private CharacterController characterController;
     public GameObject[] Cameras;
+    public bool _CanDoubleJump = false;
     private Vector3 RollVector = Vector3.zero;
     [Range(0, 1)] public  WaitForSeconds RollTimer = new WaitForSeconds(1.15f);
     private float Cooldown = 5f;
@@ -22,8 +23,11 @@ public class Dodge : MonoBehaviour
         // public GameObject CameraMain,CameraCrouch,CameraDodge, CameraManager,WeaponCamera;
         //these r the instances of the cameras
         characterController = GetComponent<CharacterController>();
+        characterController.Jumped += CanDoubleJump;
         Cameras = characterController.GetCameras();
         Player.UseAbility += UseDodge;
+
+        Player.JumpAction += UseDoubleJump;
         disableCams(false);
         transform.parent.GetComponentInChildren<AssaultIcons>().SetIcon();
     }
@@ -31,10 +35,32 @@ public class Dodge : MonoBehaviour
     {
         StopAllCoroutines();
         Player.UseAbility -= UseDodge;
+        characterController.Jumped -= CanDoubleJump;
+        Player.JumpAction -= UseDoubleJump;
+    }
+    private void Update()
+    {
+        if (characterController.isGrounded() == true)
+            _CanDoubleJump = false;
+    }
+    public void CanDoubleJump()
+    {
+        Invoke(nameof(SetCanDoubleJump), 0.25f);
+    }
+    public void SetCanDoubleJump()
+    {
+        _CanDoubleJump = true;
+    }
+    public void UseDoubleJump()
+    {
+      if (_CanDoubleJump == false)
+          return;
+        characterController.Joomp();
+        _CanDoubleJump = false;
     }
     private void UseDodge()
     {
-        if (_CanRoll == true)
+        if (_CanRoll == true&&characterController.isGrounded()==true)
         {
             
             StartCoroutine(StartRollCooldown());

@@ -48,7 +48,6 @@ public class Ladder : MonoBehaviour
     {
      if (Player!=null)
         {
-            Debug.Log("used");
            if (Player.GetComponent<CharacterController>().GetIfOnLadder() == true)
         {
             //get off the ladder function

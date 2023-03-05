@@ -84,7 +84,7 @@ public class PlayerInput : MonoBehaviour
         KeyboardInput.y = Input.GetAxisRaw("Vertical");
         //PlayerINput for controls
         //Turn this to GetButtonDown at some point
-        if (Input.GetKeyDown("space") && (controller.isGrounded() == true))
+        if (Input.GetKeyDown("space"))
             JumpAction.Invoke(); 
 
 
