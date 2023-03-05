@@ -5,7 +5,7 @@ using UnityEngine;
 public class CraftingCanvasManager : MonoBehaviour
 {
     public GameObject Player;
-    public GameObject DefaultTab, DefaultLeftTab;
+    public GameObject DefaultTab, DefaultLeftTab, CraftingButton;
 
     public GameObject AssaultWeaponUI, EngineerWeaponUI, SniperWeaponUI;
     public GameObject AssaultUpgradeUI, EngineerUpgradeUI, SniperUpgradeUI;
@@ -50,6 +50,7 @@ public class CraftingCanvasManager : MonoBehaviour
         // enable Assault UI
         AssaultWeaponUI.SetActive(true);
         AssaultUpgradeUI.SetActive(true);
+        CraftingButton.SetActive(false);
 
         // Disable Engineer & Sniper UI
         EngineerWeaponUI.SetActive(false);
@@ -64,6 +65,7 @@ public class CraftingCanvasManager : MonoBehaviour
         // enable Engineer UI
         EngineerWeaponUI.SetActive(true);
         EngineerUpgradeUI.SetActive(true);
+        CraftingButton.SetActive(false);
 
         // Disable Assault & Sniper UI
         AssaultWeaponUI.SetActive(false);
@@ -78,7 +80,8 @@ public class CraftingCanvasManager : MonoBehaviour
         // enable Sniper UI
         SniperWeaponUI.SetActive(true);
         SniperUpgradeUI.SetActive(true);
-        
+        CraftingButton.SetActive(false);
+
         // Disable Assault & Engineer UI
         AssaultWeaponUI.SetActive(false);
         AssaultUpgradeUI.SetActive(false);
