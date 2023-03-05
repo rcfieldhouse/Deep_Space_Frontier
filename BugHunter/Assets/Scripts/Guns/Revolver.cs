@@ -6,8 +6,8 @@ public class Revolver : Gun
 {
     public override void Shoot()
     {
-        if (info.GetCanShoot() == true)
-        {
+        if (info.GetCanShoot() == false || gameObject.activeInHierarchy == false || info._isReloading == true)
+            return;
             //Random Hipfire spray
             Vector3 Spread;
             Spread.x = Random.Range(-ShotSpread.x, ShotSpread.x);
@@ -42,6 +42,6 @@ public class Revolver : Gun
                 LazerLine.SetPosition(1, RayOrigin + (Camera.transform.forward * WeaponRange) + Spread);
         
 
-        }
+        
     }
 }

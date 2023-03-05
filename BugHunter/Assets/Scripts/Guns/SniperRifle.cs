@@ -17,8 +17,8 @@ public class SniperRifle : Gun
     // Start is called before the first frame update
     public override void Shoot()
     {
-        if (info.GetCanShoot() == true)
-        {
+        if (info.GetCanShoot() == false || gameObject.activeInHierarchy == false || info._isReloading == true)
+            return;
             //gun info
             info.SetCanShoot(false);
             info.SetBulletCount();
@@ -51,7 +51,7 @@ public class SniperRifle : Gun
             else
                 LazerLine.SetPosition(1, RayOrigin + (Camera.transform.forward * WeaponRange));
 
-        }
+        
     }
     public override void Update()
     {

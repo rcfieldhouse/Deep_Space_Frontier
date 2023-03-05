@@ -29,8 +29,9 @@ public class Shotgun : Gun
     }
     public override void Shoot()
     {
-        if (info.GetCanShoot() == false|| gameObject.activeInHierarchy == false)
+        if (info.GetCanShoot() == false|| gameObject.activeInHierarchy == false||info._isReloading==true)
             return;
+
         for (int i = 2; i <= 23; i += 2)
         {
             LazerLine.SetPosition(i, GunEnd.position);
