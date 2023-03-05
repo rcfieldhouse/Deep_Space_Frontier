@@ -70,7 +70,6 @@ public class AirAi : MonoBehaviour
             if (playerInAttackRange && playerInSightRange) AttackPlayer();
         }
        
-        //Debug.Log (Quaternion.Euler(agent.velocity));
     }
 
     private void Patroling()

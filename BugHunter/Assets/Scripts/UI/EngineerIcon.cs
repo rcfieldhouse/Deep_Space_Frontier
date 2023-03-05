@@ -29,7 +29,6 @@ public class EngineerIcon : MonoBehaviour
     }
     public void ClearTurrets()
     {
-        Debug.Log("cleared");
         TurretNum.text = (2).ToString();
     }
   

@@ -104,7 +104,6 @@ public class SpecialBulletSelect : MonoBehaviour
 
     public void CallShotEffect(GameObject Object,Vector3[] vec,bool _IsCrit)
     {
-        Debug.Log(_IsCrit);
         if (_IsCrit == true)        
             vec[0].y = CritDMG;
         

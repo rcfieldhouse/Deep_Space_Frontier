@@ -51,7 +51,7 @@ public class MaterialPickup : MonoBehaviour
             LootHolder playerInventory = collision.gameObject.GetComponent<LootHolder>();
             if (playerInventory == null)
             {
-                Debug.Log("Player Inventory is null and cannot be detected!");
+                Debug.LogWarning("Player Inventory is null and cannot be detected!");
                 return;
             }
             if (playerInventory.Inventory[LootIndex].Quantity >= 99)

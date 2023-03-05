@@ -130,7 +130,6 @@ public class ZipPoint : MonoBehaviour
                 EndTheHold = false;
             }
             elapsed += Time.deltaTime;         
-            Debug.Log(elapsed);
         }
         else if (elapsed > GetComponentInParent<Zipline>().ButtonHoldTime)
         {

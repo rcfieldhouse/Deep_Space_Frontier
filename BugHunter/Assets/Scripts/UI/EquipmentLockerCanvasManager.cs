@@ -28,21 +28,18 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
         Debug.Log("Class Type is " + Player.GetComponent<ClassCreator>().GetClass());
         if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Assault)
         {
-            //Debug.Log("Activate Assault UI");
             //Enable Assault UI and Assault Upgrades UI
             enableUI(AssaultWeaponUI, EngineerWeaponUI, SniperWeaponUI);
             enableUI(AssaultUpgrades, EngineerUpgrades, SniperUpgrades);
         }
         else if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Engineer)
         {
-            // Debug.Log("Activate Engineer UI");
             //Enable Engineer UI and Engineer Upgrades UI
             enableUI(EngineerWeaponUI, AssaultWeaponUI, SniperWeaponUI);
             enableUI(EngineerUpgrades, AssaultUpgrades, SniperUpgrades);
         }
         else if (Player.GetComponent<ClassCreator>().GetClass() == ClassType.Sniper)
         {
-            //Debug.Log("Activate Sniper UI");
             //Enable Sniper UI and Sniper Upgrades UI
             enableUI(SniperWeaponUI, AssaultWeaponUI, EngineerWeaponUI);
             enableUI(SniperUpgrades, AssaultUpgrades, EngineerUpgrades);

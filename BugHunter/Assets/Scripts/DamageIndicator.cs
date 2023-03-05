@@ -15,7 +15,6 @@ public class DamageIndicator : MonoBehaviour
 
         if (GetComponentInChildren<SkinnedMeshRenderer>())
         {
-          // Debug.Log(GetComponentInChildren<SkinnedMeshRenderer>().bounds.center.y + " + "+ GetComponentInChildren<SkinnedMeshRenderer>().bounds.extents.y);
 
             offset = (GetComponentInChildren<SkinnedMeshRenderer>().bounds.center.y + GetComponentInChildren<SkinnedMeshRenderer>().bounds.extents.y);
         }
@@ -24,8 +23,6 @@ public class DamageIndicator : MonoBehaviour
            offset /= transform.parent.localScale.y;
 
         offset /= 2;
-
-      //  Debug.Log(offset);
         if (gameObject.GetComponentInChildren<DamageIDHolder>() != null)
         {
             Holder = GetComponentInChildren<DamageIDHolder>().gameObject;

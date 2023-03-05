@@ -17,7 +17,6 @@ public class AIAmmo : MonoBehaviour
 
         if (other.tag != "Enemy")
         {
-            // Debug.Log("orb has entered " + other.name);
             Destroy(gameObject);
         }     
     }

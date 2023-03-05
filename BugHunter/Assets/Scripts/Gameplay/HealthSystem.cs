@@ -77,8 +77,6 @@ public class HealthSystem : MonoBehaviour
                 
             if (currentHealth > maxHealth) currentHealth = maxHealth;
 
-            Debug.Log("Current health is " + currentHealth);
-
             float currentHealthPercent = (float)currentHealth / (float)maxHealth;
 
             OnHealthPercentChanged(currentHealthPercent);
@@ -103,12 +101,10 @@ public class HealthSystem : MonoBehaviour
         {
             //play Dante.sound.ogg all things to do with health 
             //could in theory just use a statement if being damaged or healed 
-            Debug.Log("Damage is: " + amount + " PRE-mitigation, from ");
+            Debug.Log("Damage is: " + amount + " PRE-mitigation");
             currentHealth += amount;
 
             if (currentHealth > maxHealth) currentHealth = maxHealth;
-
-            Debug.Log("Current health is " + currentHealth);
 
             float currentHealthPercent = (float)currentHealth / (float)maxHealth;
             OnHealthPercentChanged(currentHealthPercent);
