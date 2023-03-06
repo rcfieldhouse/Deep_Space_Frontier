@@ -699,6 +699,87 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce1ed71d50f62d64f80e3f7dc268e7a6, type: 3}
+--- !u!1001 &386200364
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 510.64655
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.8925133
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 497.53925
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566000706512181112, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885474703324761444, guid: d07b7e441a144134f9ba7c08b754d291,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d07b7e441a144134f9ba7c08b754d291, type: 3}
+--- !u!114 &386200365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2984945371154711332, guid: d07b7e441a144134f9ba7c08b754d291,
+    type: 3}
+  m_PrefabInstance: {fileID: 386200364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6644d3bc60bb1c74cbd0a9e21d3bab17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &401641825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,7 +1956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.4999084}
+  m_AnchoredPosition: {x: 0, y: 1.4998779}
   m_SizeDelta: {x: 0, y: -319}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &887532037
@@ -2576,6 +2657,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 386200365}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SceneChange
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hub
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1338185196
@@ -3460,6 +3553,13 @@ MonoBehaviour:
       Data3: 885261751
       Data4: -6725006
     Path: event:/UI/UI_Cancel
+  music:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   MasterVolume: 0
   SoundFXVolume: 0
   DialogueVolume: 0
