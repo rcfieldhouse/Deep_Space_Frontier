@@ -53,7 +53,7 @@ public abstract class AI : MonoBehaviour
     [Range(0, 10)] public float EvasionIntensity=0, EvasionRecalculationPeriod=0;
     public LayerMask WhatIsGround,WhatIsPlayer;
     private Vector3 WalkPoint, SpawnPoint,Pos;
-    private bool WalkPointSet=false;
+    private bool WalkPointSet=false,_IsChasing=false;
     [Range(0, 100)] public float WalkPointRange,WalkSpeed;
 
     #region MonoBehaviour
@@ -254,6 +254,7 @@ public abstract class AI : MonoBehaviour
 
     public virtual void Patroling()
     {
+        _IsChasing = false;
         if (Target == null)
             Target = FindClosestPlayer();
         //play Dante.sound.ogg AI idle
@@ -277,30 +278,43 @@ public abstract class AI : MonoBehaviour
     }
     public virtual void ChasePlayer()
     {
-        if(Target==null)
+        _IsChasing = true;
+       // Debug.Log(NavAgent.remainingDistance+" "+WalkPointSet);
+
+        if (Target==null)
        Target = FindClosestPlayer();
 
 
         if (WalkPointSet == false)
         {
+         
             Serpentine = Random.Range(-EvasionIntensity, EvasionIntensity);
             StartEvasionLocation = transform.position;
             WalkPointSet = true;
+            Debug.Log("tried to set");
+            NavAgent.SetDestination(transform.position + WalkPoint + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
         }
         DistanceTravelled = transform.position - StartEvasionLocation;
         AI_Animator.SetBool("_IsMoving", true);
          if (DistanceTravelled.magnitude > EvasionRecalculationPeriod)
-             WalkPointSet = false;
+        {
+            WalkPointSet = false;
 
-        WalkPoint = Vector3.Normalize(Target.transform.position - transform.position);
-        WalkPoint *= WalkPointRange;
-        
-        
-        NavAgent.SetDestination(transform.position+ WalkPoint+ transform.rotation * new Vector3(Serpentine, 0.0f,0.0f));
+            WalkPoint = Vector3.Normalize(Target.transform.position - transform.position);
+            WalkPoint *= WalkPointRange;
+          
 
+        }
+        NavAgent.SetDestination(transform.position + WalkPoint + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
+
+
+        if (NavAgent.remainingDistance < 0.25f)
+            WalkPointSet = false;
+            
+   
         bool attackDirectly = Physics.CheckSphere(transform.position, WalkPointRange, WhatIsPlayer);
 
-        if (attackDirectly)
+        if (attackDirectly==true)
             NavAgent.SetDestination(Target.transform.position);
         
     }
@@ -328,7 +342,7 @@ public abstract class AI : MonoBehaviour
        if (NavAgent.isOnNavMesh)
             Pos = gameObject.transform.position;
 
-        Invoke(nameof(CheckIfStuck),0.5f);
+        Invoke(nameof(CheckIfStuck),2.0f);
       // yield return new WaitForSeconds(2.0f);
      
      //  StartCoroutine(PatrolCorrection());
@@ -336,15 +350,17 @@ public abstract class AI : MonoBehaviour
 
     private void CheckIfStuck()
     {
-        if (NavAgent.isOnNavMesh)
+        Debug.Log("checked");
+        if (NavAgent.isOnNavMesh&&_IsChasing==false)
         {
             if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f)
             {
+                Debug.Log("checked true");
                 WalkPointSet = false;
             }
             if ((Mathf.Abs(gameObject.transform.position.x - SpawnPoint.x) > 60.0f) || (Mathf.Abs(gameObject.transform.position.y - SpawnPoint.y) > 60.0f))
             {
-                NavAgent.SetDestination(SpawnPoint);
+             //   NavAgent.SetDestination(SpawnPoint);
             }
         }
         PatrolCorrection();
