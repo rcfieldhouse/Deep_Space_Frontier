@@ -381,8 +381,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9105362, g: 0.004405493, b: 0.9339623, a: 1}
-  m_Intensity: 1000
-  m_Range: 44.11
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 1574384541}
   - component: {fileID: 1574384542}
   - component: {fileID: 1574384543}
+  - component: {fileID: 757530167}
   m_Layer: 10
   m_Name: FruitBarrier_Prefab
   m_TagString: Barrier
@@ -569,7 +570,7 @@ Transform:
   m_GameObject: {fileID: 8847391920418497069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 888.0227, y: 0.000027656555, z: 889.22955}
-  m_LocalScale: {x: 0.008873447, y: 0.0066550863, z: 0.00887345}
+  m_LocalScale: {x: 0.0050000004, y: 0.0037500001, z: 0.0049999994}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5040150503782736882}
@@ -691,6 +692,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.72
   m_Center: {x: 2.35, y: 2.9, z: 4.67}
+--- !u!114 &757530167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8847391920418497069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf632a954e27d947abf062cb9f936bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutorialStep: 2
 --- !u!1 &9044717128140959000
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,8 +833,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9105362, g: 0.004405493, b: 0.9339623, a: 1}
-  m_Intensity: 1000
-  m_Range: 44.11
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -864,7 +878,7 @@ Light:
   m_BounceIntensity: 50
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.93e-43, y: 1.16e-43, z: 0, w: -2.259222}
+  m_BoundingSphereOverride: {x: 1.1443742e-28, y: 1.16e-43, z: 0, w: -2.259222}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

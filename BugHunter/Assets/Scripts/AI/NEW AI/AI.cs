@@ -328,7 +328,7 @@ public abstract class AI : MonoBehaviour
        if (NavAgent.isOnNavMesh)
             Pos = gameObject.transform.position;
 
-        Invoke(nameof(CheckIfStuck),2.0f);
+        Invoke(nameof(CheckIfStuck),0.5f);
       // yield return new WaitForSeconds(2.0f);
      
      //  StartCoroutine(PatrolCorrection());

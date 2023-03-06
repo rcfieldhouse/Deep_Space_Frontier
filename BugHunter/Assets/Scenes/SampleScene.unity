@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 136559627}
-  m_IndirectSpecularColor: {r: 0.13856609, g: 0.04852879, b: 0.20566985, a: 1}
+  m_IndirectSpecularColor: {r: 0.1383698, g: 0.048331045, b: 0.20546666, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -549,7 +549,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -848,7 +848,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2335,7 +2335,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2894,6 +2894,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: dcaf8634b810acd49a39a77ac7884e41,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcaf8634b810acd49a39a77ac7884e41, type: 3}
@@ -5469,7 +5474,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -5962,6 +5967,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
         type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
       propertyPath: m_BoundingSphereOverride.x
       value: 4.5904e-41
       objectReference: {fileID: 0}
@@ -6045,6 +6055,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FruitBarrier_Prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9047484739677098666, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2129582571, guid: 92cfc96f01b99d94d8c50e7f42920f17, type: 3}
     - {fileID: -6001265495371944652, guid: 92cfc96f01b99d94d8c50e7f42920f17, type: 3}
@@ -6120,9 +6135,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.49390244, b: 0, a: 1}
-  m_Intensity: 10000
-  m_Range: 300
-  m_SpotAngle: 30
+  m_Intensity: 1000
+  m_Range: 150
+  m_SpotAngle: 33.092873
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -6699,8 +6714,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
-  m_Intensity: 600
-  m_Range: 1000
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -6738,10 +6753,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -7285,7 +7300,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -7631,8 +7646,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
-  m_Intensity: 600
-  m_Range: 1000
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -7670,10 +7685,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -10255,7 +10270,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -10312,17 +10327,17 @@ LightingSettings:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   serializedVersion: 4
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_EnableBakedLightmaps: 1
-  m_EnableRealtimeLightmaps: 1
+  m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
   m_BounceScale: 1
   m_AlbedoBoost: 1
   m_IndirectOutputScale: 1
   m_UsingShadowmask: 1
   m_BakeBackend: 2
-  m_LightmapMaxSize: 1024
-  m_BakeResolution: 20
+  m_LightmapMaxSize: 512
+  m_BakeResolution: 1
   m_Padding: 2
   m_LightmapCompression: 0
   m_AO: 0
@@ -10692,7 +10707,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -11947,7 +11962,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -17945,7 +17960,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -18532,9 +18547,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.49390244, b: 0, a: 1}
-  m_Intensity: 10000
-  m_Range: 300
-  m_SpotAngle: 30
+  m_Intensity: 1000
+  m_Range: 150
+  m_SpotAngle: 33.092873
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -18648,7 +18663,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -20866,6 +20881,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 286544319}
     m_Modifications:
+    - target: {fileID: 917405448, guid: 1bbde3b1c6b632440a212ae883f71210, type: 3}
+      propertyPath: m_Intensity
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4804213480920340148, guid: 1bbde3b1c6b632440a212ae883f71210,
         type: 3}
       propertyPath: m_Name
@@ -21105,7 +21124,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -22139,9 +22158,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.49390244, b: 0, a: 1}
-  m_Intensity: 10000
-  m_Range: 300
-  m_SpotAngle: 30
+  m_Intensity: 1000
+  m_Range: 150
+  m_SpotAngle: 33.092873
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -24590,7 +24609,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -25844,7 +25863,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -26064,6 +26083,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: mushroom2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: dcaf8634b810acd49a39a77ac7884e41,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcaf8634b810acd49a39a77ac7884e41, type: 3}
 --- !u!4 &729952609 stripped
@@ -26085,6 +26109,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357460391}
     m_Modifications:
+    - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8179540502132357271, guid: 92cfc96f01b99d94d8c50e7f42920f17,
         type: 3}
       propertyPath: m_RootOrder
@@ -26149,6 +26178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FruitBarrier_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047484739677098666, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92cfc96f01b99d94d8c50e7f42920f17, type: 3}
@@ -26344,6 +26378,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
         type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
       propertyPath: m_BoundingSphereOverride.x
       value: 1.1443742e-28
       objectReference: {fileID: 0}
@@ -26426,6 +26465,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FruitBarrier_Prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047484739677098666, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6001265495371944652, guid: 92cfc96f01b99d94d8c50e7f42920f17, type: 3}
@@ -27279,8 +27323,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
-  m_Intensity: 600
-  m_Range: 1000
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -27318,10 +27362,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -28140,8 +28184,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
-  m_Intensity: 600
-  m_Range: 1000
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -28179,10 +28223,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -29026,7 +29070,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.4377358, b: 0.8453896, a: 1}
   m_Intensity: 100
-  m_Range: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -29231,7 +29275,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -30736,7 +30780,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -31056,6 +31100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: dcaf8634b810acd49a39a77ac7884e41,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcaf8634b810acd49a39a77ac7884e41, type: 3}
@@ -32331,7 +32380,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -32983,7 +33032,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 400
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -33188,7 +33237,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -33387,7 +33436,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.4377358, b: 0.8453896, a: 1}
   m_Intensity: 100
-  m_Range: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -34125,7 +34174,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 400
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -34452,6 +34501,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
         type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
       propertyPath: m_BoundingSphereOverride.w
       value: 2.6797442e+32
       objectReference: {fileID: 0}
@@ -34549,6 +34603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FruitBarrier_Prefab (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047484739677098666, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9047484739677098666, guid: 92cfc96f01b99d94d8c50e7f42920f17,
         type: 3}
@@ -36285,6 +36344,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357460391}
     m_Modifications:
+    - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8179540502132357271, guid: 92cfc96f01b99d94d8c50e7f42920f17,
         type: 3}
       propertyPath: m_RootOrder
@@ -36344,6 +36408,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FruitBarrier_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047484739677098666, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92cfc96f01b99d94d8c50e7f42920f17, type: 3}
@@ -37601,7 +37670,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.4377358, b: 0.8453896, a: 1}
   m_Intensity: 100
-  m_Range: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -37933,6 +38002,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 347825441}
     m_Modifications:
+    - target: {fileID: 219752362377361427, guid: 8930c3356b166244181b5f7b34bb792e,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6212344359390127087, guid: 8930c3356b166244181b5f7b34bb792e,
         type: 3}
       propertyPath: m_RootOrder
@@ -38936,7 +39010,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 400
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -41895,7 +41969,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.4377358, b: 0.8453896, a: 1}
   m_Intensity: 100
-  m_Range: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -43410,7 +43484,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.4377358, b: 0.8453896, a: 1}
   m_Intensity: 100
-  m_Range: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -44298,7 +44372,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.4377358, b: 0.8453896, a: 1}
   m_Intensity: 100
-  m_Range: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -45105,8 +45179,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
-  m_Intensity: 600
-  m_Range: 1000
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -45144,10 +45218,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -45493,7 +45567,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -45708,6 +45782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: dcaf8634b810acd49a39a77ac7884e41,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcaf8634b810acd49a39a77ac7884e41, type: 3}
@@ -46389,7 +46468,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -46510,7 +46589,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -47654,8 +47733,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
-  m_Intensity: 600
-  m_Range: 1000
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -47693,10 +47772,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -48026,8 +48105,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
-  m_Intensity: 400
-  m_Range: 1000
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -48065,10 +48144,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -55136,7 +55215,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -55789,7 +55868,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -56164,9 +56243,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.49390244, b: 0, a: 1}
-  m_Intensity: 10000
-  m_Range: 300
-  m_SpotAngle: 30
+  m_Intensity: 1000
+  m_Range: 150
+  m_SpotAngle: 33.092873
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -57190,7 +57269,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 400
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -57228,10 +57307,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -58476,7 +58555,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -58612,6 +58691,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357460391}
     m_Modifications:
+    - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8179540502132357271, guid: 92cfc96f01b99d94d8c50e7f42920f17,
         type: 3}
       propertyPath: m_RootOrder
@@ -58691,6 +58775,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FruitBarrier_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047484739677098666, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2129582571, guid: 92cfc96f01b99d94d8c50e7f42920f17, type: 3}
@@ -59282,7 +59371,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -60212,7 +60301,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -66857,8 +66946,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
-  m_Intensity: 600
-  m_Range: 1000
+  m_Intensity: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -66896,10 +66985,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -67316,7 +67405,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.4377358, b: 0.8453896, a: 1}
   m_Intensity: 100
-  m_Range: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -68288,7 +68377,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -68403,7 +68492,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 400
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -68441,10 +68530,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 300
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -71365,6 +71454,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357460391}
     m_Modifications:
+    - target: {fileID: 5844407134372996424, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8179540502132357271, guid: 92cfc96f01b99d94d8c50e7f42920f17,
         type: 3}
       propertyPath: m_RootOrder
@@ -71454,6 +71548,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047484739677098666, guid: 92cfc96f01b99d94d8c50e7f42920f17,
+        type: 3}
+      propertyPath: m_Range
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6001265495371944652, guid: 92cfc96f01b99d94d8c50e7f42920f17, type: 3}
@@ -77481,7 +77580,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -78112,7 +78211,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.4377358, b: 0.8453896, a: 1}
   m_Intensity: 100
-  m_Range: 100
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -78356,7 +78455,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -78509,7 +78608,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -79415,7 +79514,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 400
-  m_Range: 1000
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -79530,7 +79629,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.22435024, b: 0.86596507, a: 1}
   m_Intensity: 600
-  m_Range: 1000
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
