@@ -13,7 +13,7 @@ public class HealthPickup : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
-                
+            collision.gameObject.GetComponent<PlayerDamageIndicator>().HealthRegen.GetComponent<ParticleSystem>().Play();
             int percent =  collision.gameObject.GetComponent<HealthSystem>().GetMaxHealth()/4;
             collision.gameObject.GetComponent<HealthSystem>().ModifyHealth(null, percent);
             Destroy(gameObject);
@@ -28,7 +28,7 @@ public class HealthPickup : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
-
+            collision.gameObject.GetComponent<PlayerDamageIndicator>().HealthRegen.GetComponent<ParticleSystem>().Play();
             int percent = collision.gameObject.GetComponent<HealthSystem>().GetMaxHealth() / 4;
             collision.gameObject.GetComponent<HealthSystem>().ModifyHealth(null, percent);
             Destroy(gameObject);
