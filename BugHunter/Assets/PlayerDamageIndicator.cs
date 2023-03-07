@@ -49,8 +49,5 @@ public class PlayerDamageIndicator : MonoBehaviour
             Vignette = tmp;
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 }

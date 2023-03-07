@@ -37,6 +37,8 @@ public class WeaponInfo : MonoBehaviour
 
     [Range(0, 5)] [SerializeField] [Tooltip("Camera FOV Zoom Amount When Aiming Down Sight")] 
     private float AdsZoomScale=0;
+       [Range(0, 5)] [SerializeField] [Tooltip("how close weapon is to camera")] 
+    private float WeaponAdsZoomScale=0;
     public static Action<bool> maginfo,CanShoot;
 
     [Range(0, 10)] [SerializeField] [Tooltip("Amount of time to Reload Timer")] 
@@ -151,7 +153,7 @@ public class WeaponInfo : MonoBehaviour
     }
     public float GetADSZoom()
     {
-        return AdsZoomScale;
+        return WeaponAdsZoomScale;
     }
     public void Reload()
     {

@@ -20,7 +20,8 @@ public class GunZoom : MonoBehaviour
     }
     private void OnDestroy()
     {
-        
+        PlayerInput.ADS-= Zoom;
+        WeaponSwap.BroadcastADSZoom -= SetZoom;
     }
     // Update is called once per frame
     void Update()
@@ -39,7 +40,7 @@ public class GunZoom : MonoBehaviour
     }
     private void SetZoom(float num)
     {
-       NewZoom = (BaseZoom-30.0f)-num;
+       NewZoom = (BaseZoom-30.0f)-num*6;
     }
     private void Zoom(bool var)
     {

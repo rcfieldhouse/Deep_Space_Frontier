@@ -48342,6 +48342,7 @@ MonoBehaviour:
   magSize: 2
   reserveAmmo: 12
   AdsZoomScale: 0
+  WeaponAdsZoomScale: 0
   _reloadTimer: 1
   RecoilX: 21.8
   AimRecoilX: 14.3
@@ -90993,6 +90994,7 @@ GameObject:
   - component: {fileID: 4520725862008197721}
   - component: {fileID: 4520725862008197720}
   - component: {fileID: 4520725862008197727}
+  - component: {fileID: 372467072}
   m_Layer: 0
   m_Name: CameraMain
   m_TagString: Untagged
@@ -91075,6 +91077,19 @@ MonoBehaviour:
   AimRecoilZ: 0
   snappiness: 6
   returnSpeed: 2
+--- !u!114 &372467072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862008197726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754d7aa8ce4a9f54da45db8e819c4391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerInput: {fileID: 0}
 --- !u!1 &4520725862009280300
 GameObject:
   m_ObjectHideFlags: 0
@@ -96273,6 +96288,7 @@ MonoBehaviour:
   magSize: 1
   reserveAmmo: 1
   AdsZoomScale: 0
+  WeaponAdsZoomScale: 0
   _reloadTimer: 3
   RecoilX: 0
   AimRecoilX: 0
@@ -97385,6 +97401,7 @@ MonoBehaviour:
   magSize: 6
   reserveAmmo: 80
   AdsZoomScale: 0
+  WeaponAdsZoomScale: 0
   _reloadTimer: 1.4
   RecoilX: 34.4
   AimRecoilX: 19.6
@@ -97448,7 +97465,6 @@ GameObject:
   - component: {fileID: 4520725862257447233}
   - component: {fileID: 4520725862257447232}
   - component: {fileID: 4520725862257447239}
-  - component: {fileID: 4520725862257447238}
   - component: {fileID: 280035011}
   - component: {fileID: 280035010}
   m_Layer: 0
@@ -97640,19 +97656,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
---- !u!114 &4520725862257447238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4520725862257447243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754d7aa8ce4a9f54da45db8e819c4391, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerInput: {fileID: 4520725862882063771}
 --- !u!135 &280035011
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -97920,6 +97923,7 @@ MonoBehaviour:
   magSize: 5
   reserveAmmo: 50
   AdsZoomScale: 0
+  WeaponAdsZoomScale: 2.5
   _reloadTimer: 1
   RecoilX: 30.9
   AimRecoilX: 20.3
@@ -103942,6 +103946,7 @@ MonoBehaviour:
   magSize: 30
   reserveAmmo: 150
   AdsZoomScale: 0
+  WeaponAdsZoomScale: 0
   _reloadTimer: 1
   RecoilX: 5.3
   AimRecoilX: 2.9
@@ -119390,7 +119395,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4520725862638450592}
   isScoped: 0
-  volumeProfile: {fileID: 11400000, guid: 2d9013b8ea99c0c44939bc54ff46db30, type: 2}
+  volumeProfile: {fileID: 11400000, guid: a958641cf8095a34dbae0fd4bb623d91, type: 2}
+  _DepthOfField: {fileID: 0}
   PlayerInput: {fileID: 4520725862882063771}
 --- !u!114 &4520725862638450598
 MonoBehaviour:
@@ -125390,7 +125396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb2e3c056f37cf4781a0b07eb00aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassSelection: 0
+  ClassSelection: 2
   ClassIcons: {fileID: 4520725862391307834}
 --- !u!114 &4520725862882063771
 MonoBehaviour:
@@ -126389,6 +126395,7 @@ MonoBehaviour:
   magSize: 15
   reserveAmmo: 200
   AdsZoomScale: 0
+  WeaponAdsZoomScale: 0
   _reloadTimer: 1.5
   RecoilX: 0.3
   AimRecoilX: 0.25
@@ -126679,6 +126686,7 @@ MonoBehaviour:
   magSize: 8
   reserveAmmo: 32
   AdsZoomScale: 0
+  WeaponAdsZoomScale: 0
   _reloadTimer: 1
   RecoilX: 22.1
   AimRecoilX: 17.7

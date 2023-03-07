@@ -8,7 +8,7 @@ public class ZoomIn : MonoBehaviour
     public Animator animator;
     [SerializeField] private bool isScoped = false;
     [SerializeField]  private VolumeProfile volumeProfile;
-    private DepthOfField _DepthOfField;
+    public DepthOfField _DepthOfField;
     private int choice=0;
     public PlayerInput PlayerInput;
 
