@@ -90994,7 +90994,7 @@ GameObject:
   - component: {fileID: 4520725862008197721}
   - component: {fileID: 4520725862008197720}
   - component: {fileID: 4520725862008197727}
-  - component: {fileID: 372467072}
+  - component: {fileID: 1879732778}
   m_Layer: 0
   m_Name: CameraMain
   m_TagString: Untagged
@@ -91077,7 +91077,7 @@ MonoBehaviour:
   AimRecoilZ: 0
   snappiness: 6
   returnSpeed: 2
---- !u!114 &372467072
+--- !u!114 &1879732778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91086,10 +91086,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4520725862008197726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754d7aa8ce4a9f54da45db8e819c4391, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a1c5cbb902da8f4f9742690fe524af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerInput: {fileID: 0}
+  WeaponHolder: {fileID: 4520725862638450598}
+  PlayerInput: {fileID: 4520725862882063771}
 --- !u!1 &4520725862009280300
 GameObject:
   m_ObjectHideFlags: 0
@@ -126394,7 +126395,7 @@ MonoBehaviour:
   maxAmmo: 200
   magSize: 15
   reserveAmmo: 200
-  AdsZoomScale: 0
+  AdsZoomScale: 3.46
   WeaponAdsZoomScale: 0
   _reloadTimer: 1.5
   RecoilX: 0.3

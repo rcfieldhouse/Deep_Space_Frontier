@@ -155,6 +155,10 @@ public class WeaponInfo : MonoBehaviour
     {
         return WeaponAdsZoomScale;
     }
+    public float GetZoom()
+    {
+        return AdsZoomScale;
+    }
     public void Reload()
     {
 
