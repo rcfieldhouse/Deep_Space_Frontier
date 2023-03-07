@@ -73,9 +73,9 @@ public class FMODPlayer : MonoBehaviour
         Ambience.start();
         Ambience.release();
 
-        Music.start();
-        Music.release();
-        Intensity(1);
+        //Music.start();
+        //Music.release();
+        //Intensity(1);
     }
 
     private void Update()
@@ -100,10 +100,6 @@ public class FMODPlayer : MonoBehaviour
 
     }
 
-    void StopAllPlayerEvents()
-    {
-        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
-    }
 
     private void OnDestroy()
     {

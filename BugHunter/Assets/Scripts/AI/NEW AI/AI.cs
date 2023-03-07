@@ -185,27 +185,24 @@ public abstract class AI : MonoBehaviour
     }
     public void HandleObjectDeath(GameObject context)
     {
-        StartCoroutine(DissolveMeshEffect());
+        
         if (GetComponent<Tick>())
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Tick");
+        {           
             GetComponentInChildren<BoxCollider>().enabled = false;
             GetComponentInChildren<SphereCollider>().enabled = false;
         }
         if (GetComponent<DreadBomber>())
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Bomber");
             GetComponentInChildren<SphereCollider>().enabled = false;
             GetComponentInChildren<SphereCollider>().enabled = false;
         }
         if (GetComponent<Slime>())
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Slime");
             GetComponentInChildren<CapsuleCollider>().enabled = false;
-
         }
-       
-       
+        StartCoroutine(DissolveMeshEffect());
+
+
     }
     IEnumerator DissolveMeshEffect()
     {
