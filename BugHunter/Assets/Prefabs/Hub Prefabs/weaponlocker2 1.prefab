@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9186551426383020535}
   - component: {fileID: 5247525126691622482}
   - component: {fileID: 8013595907976395416}
+  - component: {fileID: 4791329666138550732}
   m_Layer: 0
   m_Name: weaponlocker2 1
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8374161435300420429}
-  m_LocalRotation: {x: 0.5336603, y: -0.46390373, z: -0.46390373, w: -0.5336603}
+  m_LocalRotation: {x: -0.5336603, y: 0.46390373, z: 0.46390373, w: 0.5336603}
   m_LocalPosition: {x: -40.296722, y: 44.968964, z: 109.66876}
   m_LocalScale: {x: 125, y: 125, z: 125}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 82}
 --- !u!33 &5247525126691622482
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4791329666138550732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374161435300420429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.010599949, z: 0.034826875}
+  m_Center: {x: 0.00000047690946, y: -0.0024244168, z: 0.017413437}

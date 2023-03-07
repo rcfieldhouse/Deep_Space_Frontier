@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2869020878949244051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -57.2, y: 47.563, z: 155.39}
-  m_LocalScale: {x: 0.99854285, y: 0.99854285, z: 0.99854285}
+  m_LocalScale: {x: 1.2481786, y: 1.2481786, z: 1.2481786}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2331305726996135684}
@@ -114,7 +114,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 55fd2a73299337140bf7a34b1f5444dc,
         type: 3}
       propertyPath: m_Name
-      value: Crate
+      value: CrateWithCollider
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55fd2a73299337140bf7a34b1f5444dc, type: 3}
@@ -124,6 +124,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2869020877336172783}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3103444791656998334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 55fd2a73299337140bf7a34b1f5444dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2869020877336172783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2287297296257722442
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103444791656998334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.023090962, y: 0.052911475, z: 0.04178654}
+  m_Center: {x: -7.525907e-10, y: -0.014910279, z: 0.010584578}
 --- !u!1001 &2869020878891473853
 PrefabInstance:
   m_ObjectHideFlags: 0
