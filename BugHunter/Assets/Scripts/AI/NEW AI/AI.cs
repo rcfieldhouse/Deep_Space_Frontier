@@ -18,6 +18,10 @@ public abstract class AI : MonoBehaviour
     public Material fireMaterial;
     public Material electricMaterial;
 
+    [Header("Hurt Material")]
+    public Material hurtMaterial;
+
+
 
     [Header("Detection Stuff")]
     //DetectionStuff
@@ -56,6 +60,9 @@ public abstract class AI : MonoBehaviour
     private bool WalkPointSet=false,_IsChasing=false;
     [Range(0, 100)] public float WalkPointRange,WalkSpeed;
 
+    private Material[] cachedMaterials;
+    private Renderer Renderer;
+
     #region MonoBehaviour
     public void Awake()
     {
@@ -65,8 +72,12 @@ public abstract class AI : MonoBehaviour
         Health.OnHealthPercentChanged += HandleObjectHit;
         NavAgent = GetComponent<NavMeshAgent>();
         MeshRenderer = GetComponentInChildren<MeshRenderer>();
-        SkinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();    
-        if(HitStunDamageRequirement!=0)
+        SkinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        Renderer = GetComponentInChildren<Renderer>();
+
+        cachedMaterials = Renderer.materials;
+
+        if (HitStunDamageRequirement!=0)
         Health.OnTakeDamage += StaggerMechanic;
         if (NavAgent.isOnNavMesh == false)
             Debug.Log("NOOOOOO");
@@ -124,8 +135,23 @@ public abstract class AI : MonoBehaviour
         {
             if (transform.GetChild(i).gameObject.GetComponent<VFX_ID>() != null)
                 transform.GetChild(i).gameObject.GetComponent<VFX_ID>().gameObject.SetActive(true);
-        }       
+        }
+
+        var mats = new Material[Renderer.materials.Length];
+        for (var j = 0; j < Renderer.materials.Length; j++)
+        {
+            mats[j] = hurtMaterial;
+        }
+        Renderer.materials = mats;
+        StartCoroutine(hurtTimer());
     }
+
+    IEnumerator hurtTimer()
+    {
+        yield return  new WaitForSeconds(0.2f);
+        Renderer.materials = cachedMaterials;
+    }
+
     public void StaggerMechanic(int Damage)
     {
         if((Time.time - DamageTakenTime) < HitStunTimeRequirement)

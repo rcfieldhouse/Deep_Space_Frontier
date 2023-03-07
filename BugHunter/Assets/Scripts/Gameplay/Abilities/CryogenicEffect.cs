@@ -54,8 +54,10 @@ public class CryogenicEffect : MonoBehaviour
         }
         Renderer.materials = mats;
         FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Sniper_Ice");
-        GetComponentInParent<NavMeshAgent>().enabled=false;
+        GetComponentInParent<NavMeshAgent>().enabled = false;
         GetComponent<Animator>().enabled = false;
+        if (gameObject.GetComponent<SlimeBounce>())
+            gameObject.GetComponent<SlimeBounce>().enabled = false;
 
         yield return FreezeTime;
 
@@ -63,6 +65,8 @@ public class CryogenicEffect : MonoBehaviour
         Renderer.materials = cachedMaterials;
         GetComponentInParent<NavMeshAgent>().enabled =true;
         GetComponent<Animator>().enabled = true;
+        if (gameObject.GetComponent<SlimeBounce>())
+            gameObject.GetComponent<SlimeBounce>().enabled = true;
 
         Destroy(this);
     }
