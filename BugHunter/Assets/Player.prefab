@@ -36528,7 +36528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -8.190247}
+  m_AnchoredPosition: {x: 0, y: -8.1901245}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1578661293926204164
@@ -42962,7 +42962,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0, g: 0.56719637, b: 1, a: 1}
+      minColor: {r: 1, g: 0, b: 0.913435, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -97449,6 +97449,8 @@ GameObject:
   - component: {fileID: 4520725862257447232}
   - component: {fileID: 4520725862257447239}
   - component: {fileID: 4520725862257447238}
+  - component: {fileID: 280035011}
+  - component: {fileID: 280035010}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -97463,8 +97465,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520725862257447243}
-  m_LocalRotation: {x: 0.18138552, y: -0, z: -0, w: 0.98341215}
-  m_LocalPosition: {x: 0, y: 5.17, z: -8.650014}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.00000023841858, z: 0.000010251999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -97651,6 +97653,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerInput: {fileID: 4520725862882063771}
+--- !u!135 &280035011
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862257447243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &280035010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862257447243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 0
+  priority: 1
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: a958641cf8095a34dbae0fd4bb623d91, type: 2}
 --- !u!1 &4520725862314434015
 GameObject:
   m_ObjectHideFlags: 0
@@ -97674,7 +97706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4520725862314434008
 Transform:
   m_ObjectHideFlags: 0
@@ -125266,6 +125298,7 @@ GameObject:
   - component: {fileID: 1879873365}
   - component: {fileID: 227781475}
   - component: {fileID: 2095233485}
+  - component: {fileID: 1896600962}
   m_Layer: 7
   m_Name: MixamoCharacter
   m_TagString: Player
@@ -125357,7 +125390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb2e3c056f37cf4781a0b07eb00aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassSelection: 2
+  ClassSelection: 0
   ClassIcons: {fileID: 4520725862391307834}
 --- !u!114 &4520725862882063771
 MonoBehaviour:
@@ -125501,6 +125534,20 @@ MonoBehaviour:
   BomberArmor: {fileID: 0}
   TickArmor: {fileID: 0}
   ZephryArmor: {fileID: 0}
+--- !u!114 &1896600962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862882063774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d684bdf023a18b9478663e8e84dc1ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Volume: {fileID: 280035010}
+  Vignette: {fileID: 0}
 --- !u!1 &4520725862886984377
 GameObject:
   m_ObjectHideFlags: 0

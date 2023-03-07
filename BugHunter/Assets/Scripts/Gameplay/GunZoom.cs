@@ -11,7 +11,7 @@ public class GunZoom : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        PlayerInput.ADS += Zoom;
+        PlayerInput.ADS += Zoom;    
         WeaponSwap.BroadcastADSZoom += SetZoom;
 
         Camera = GetComponent<Camera>();

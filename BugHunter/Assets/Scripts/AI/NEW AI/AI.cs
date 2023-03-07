@@ -350,12 +350,11 @@ public abstract class AI : MonoBehaviour
 
     private void CheckIfStuck()
     {
-        Debug.Log("checked");
+     
         if (NavAgent.isOnNavMesh&&_IsChasing==false)
         {
             if (Mathf.Abs(Pos.x - gameObject.transform.position.x) < 0.1f)
             {
-                Debug.Log("checked true");
                 WalkPointSet = false;
             }
             if ((Mathf.Abs(gameObject.transform.position.x - SpawnPoint.x) > 60.0f) || (Mathf.Abs(gameObject.transform.position.y - SpawnPoint.y) > 60.0f))

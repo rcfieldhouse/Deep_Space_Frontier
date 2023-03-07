@@ -37,6 +37,7 @@ public class Venom : MonoBehaviour
         }
         gameObject.GetComponent<GUIHolder>().PoisonedSymbol.SetActive(false);
         //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
+      
         Destroy(this);
         yield return null;
     }

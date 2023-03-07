@@ -8,7 +8,28 @@ public class HealthPickup : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            if (collision.gameObject.GetComponent<HealthSystem>().GetMaxHealth() == collision.gameObject.GetComponent<HealthSystem>().GetHealth())
+            {
+                Destroy(gameObject);
+                return;
+            }
+                
             int percent =  collision.gameObject.GetComponent<HealthSystem>().GetMaxHealth()/4;
+            collision.gameObject.GetComponent<HealthSystem>().ModifyHealth(null, percent);
+            Destroy(gameObject);
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (collision.gameObject.GetComponent<HealthSystem>().GetMaxHealth() == collision.gameObject.GetComponent<HealthSystem>().GetHealth())
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            int percent = collision.gameObject.GetComponent<HealthSystem>().GetMaxHealth() / 4;
             collision.gameObject.GetComponent<HealthSystem>().ModifyHealth(null, percent);
             Destroy(gameObject);
         }

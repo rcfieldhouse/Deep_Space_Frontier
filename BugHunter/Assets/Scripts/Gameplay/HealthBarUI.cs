@@ -20,12 +20,15 @@ public class HealthBarUI : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(wait());
-        HealthBar.color = Color.cyan;
+        HealthBar.color = Color.green;
     }
 
     private void HandleHealthChanged(float pct)
     {
-        StartCoroutine(ChangeToPercent(pct));
+        if (gameObject.activeInHierarchy == true)
+            StartCoroutine(ChangeToPercent(pct));
+        else
+            HealthBar.fillAmount = pct;
     }
 
     private IEnumerator ChangeToPercent(float pct)
@@ -43,7 +46,7 @@ public class HealthBarUI : MonoBehaviour
           
             yield return null;
         }
-        HealthBar.color = Color.Lerp(Color.red, Color.cyan, pct);
+        HealthBar.color = Color.Lerp(Color.red, Color.green, pct);
         
         HealthBar.fillAmount = pct;
     }
