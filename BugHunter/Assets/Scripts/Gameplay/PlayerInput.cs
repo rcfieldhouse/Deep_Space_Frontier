@@ -96,13 +96,10 @@ public class PlayerInput : MonoBehaviour
        if (Input.GetKeyUp(KeyCode.LeftShift))
             SpeedMod = 1.0f;
 
-        //SaveGamePlugin
+        //DEVHACK
         if (Input.GetKeyDown(KeyCode.P))
-            SavePlayer.Invoke();
+            GetComponent<HealthSystem>().SetInvulnerable(true);
 
-        //LoadGamePlugin
-        if (Input.GetKeyDown(KeyCode.L))
-            LoadPlayer.Invoke();
 
         //Pause Menu For Plugin
         if (Input.GetKeyDown(KeyCode.Escape))
