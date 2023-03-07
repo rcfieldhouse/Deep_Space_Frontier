@@ -46,6 +46,7 @@ public class AutomaticRifle : Gun
     }
     public override void Shoot()
     {
+        base.Shoot();
         if (info.GetCanShoot() == true && gameObject.activeInHierarchy == true)
         {
             //For hipfire spray

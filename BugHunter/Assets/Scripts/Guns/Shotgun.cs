@@ -29,6 +29,7 @@ public class Shotgun : Gun
     }
     public override void Shoot()
     {
+        base.Shoot();
         if (info.GetCanShoot() == false|| gameObject.activeInHierarchy == false||info._isReloading==true)
             return;
 

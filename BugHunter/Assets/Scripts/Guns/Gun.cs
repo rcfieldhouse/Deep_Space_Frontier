@@ -23,7 +23,15 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector] public bool _IsAiming=false;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.15f);
     [HideInInspector] public PlayerInput Player;
-    public abstract void Shoot();
+    public virtual void Shoot() 
+    {
+        if (info.GetCanReload() == true && info.GetMag() <= 0)
+        {
+            GetComponentInParent<ReloadGun>().Reload();
+            info.Reload();
+        }
+          
+    }
 
     [SerializeField] FMODUnity.EventReference shootSound;
     public void UpgradeWeapon()

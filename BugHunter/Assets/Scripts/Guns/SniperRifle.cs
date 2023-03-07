@@ -16,7 +16,7 @@ public class SniperRifle : Gun
    
     // Start is called before the first frame update
     public override void Shoot()
-    {
+    {base.Shoot();
         if (info.GetCanShoot() == false || gameObject.activeInHierarchy == false || info._isReloading == true)
             return;
             //gun info
