@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 public class PlayerDamageIndicator : MonoBehaviour
 {
+    public GameObject HealthRegen;
     public Volume Volume;
     private HealthSystem healthSystem;
     [HideInInspector] public Vignette Vignette;
@@ -21,12 +22,12 @@ public class PlayerDamageIndicator : MonoBehaviour
    
     void TakeDamage(int foo)
     {
+        if (foo >= 0)
+            return;
+
         if (Vignette == null)
             SetVignette();
 
-        Vignette.color.Override(Color.red);
-        if (foo >= 0)
-            Vignette.color.Override(Color.green);
 
         VignetteIntensity = 0.4f;
         StartCoroutine(VignetteEffect());
@@ -41,6 +42,13 @@ public class PlayerDamageIndicator : MonoBehaviour
         }
         Vignette.intensity.Override(0.0f);
         Debug.Log("finished effect");
+    }
+    public void SetEnvenomed(bool var)
+    {
+        if(var==false)
+        Vignette.color.Override(Color.red);
+       else if(var==true)
+        Vignette.color.Override(Color.green);
     }
     void SetVignette()
     {

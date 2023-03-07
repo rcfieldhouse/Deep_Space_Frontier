@@ -22,6 +22,8 @@ public class Venom : MonoBehaviour
 
     private IEnumerator BurnDeBoi()
     {
+      
+        GetComponent<PlayerDamageIndicator>().SetEnvenomed(true);
         //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
          float Time=0; 
         while (Time < DamageTime)
@@ -37,7 +39,7 @@ public class Venom : MonoBehaviour
         }
         gameObject.GetComponent<GUIHolder>().PoisonedSymbol.SetActive(false);
         //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
-      
+        GetComponent<PlayerDamageIndicator>().SetEnvenomed(false);
         Destroy(this);
         yield return null;
     }
