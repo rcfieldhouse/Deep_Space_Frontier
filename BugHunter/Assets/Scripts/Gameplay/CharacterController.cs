@@ -30,7 +30,7 @@ public class CharacterController : MonoBehaviour
     {
         disableCams(false);
         CameraMain.SetActive(true);
-        Health.OnTakeDamage += HandleDamage;
+     
     }
     private void Awake()
     {
@@ -47,8 +47,13 @@ public class CharacterController : MonoBehaviour
         disableCams(false);
         CameraMain.SetActive(true);
 
+        Invoke(nameof(GetHealthSys),0.5f);
     }
-
+        void GetHealthSys()
+    {
+        Health = GetComponent<HealthSystem>();
+        Health.OnTakeDamage += HandleDamage;
+    }
     private void HandleDamage(int obj)
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Hurt");

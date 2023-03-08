@@ -20,7 +20,7 @@ public class HealthBarUI : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(wait());
-        HealthBar.color = Color.green;
+        HealthBar.color = Color.cyan;
     }
 
     private void HandleHealthChanged(float pct)
@@ -46,7 +46,7 @@ public class HealthBarUI : MonoBehaviour
           
             yield return null;
         }
-        HealthBar.color = Color.Lerp(Color.red, Color.green, pct);
+        HealthBar.color = Color.Lerp(Color.red, Color.cyan, pct);
         
         HealthBar.fillAmount = pct;
     }
