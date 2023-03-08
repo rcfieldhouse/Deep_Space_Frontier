@@ -43,6 +43,8 @@ public class ShopGUI : MonoBehaviour
 
     //array for UI panels to coincide with the inventory
     public Button[] purchaseButtons;
+    public Button[] purchaseWeaponButtons;
+    public Image[] purchaseUpgradeParents;
     public EquipmentManager EquipmentManager;
     public GameObject[] CostValues;
     private void Start()
@@ -72,13 +74,20 @@ public class ShopGUI : MonoBehaviour
             CostValues[i].GetComponent<TextMeshProUGUI>().text += shopInventory[index].cost[3 * index + i].ToString();
             AmountNeeded[i] = shopInventory[index].cost[3 * index + i];
         }
+        // This is for checking if the player has a certain armor
         if (ArmourOwned[index] == true)
+        {
             for (int i = 0; i < 3; i++)
             {
                 if (i % 2 == 0)
                     CostValues[i].GetComponent<TextMeshProUGUI>().text = "";
                 else CostValues[i].GetComponent<TextMeshProUGUI>().text = "Crafted";
             }
+            //Refrence to Clicked button's Background Image Child
+            //Dim the background & Icon Image of the button
+            purchaseButtons[index].transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+            purchaseButtons[index].transform.GetChild(1).GetComponent<Image>().color = Color.gray;
+        }
         WhichArmour = index;
       // for(int i =0; i<shopInventory.Length; i++)
       // {
@@ -110,6 +119,7 @@ public class ShopGUI : MonoBehaviour
 
         WhichWeapon = index;
         int Value = -1;
+        // Level holds what gun upgrade level that they are at
         int Level = GetWeapon().GetComponent<Gun>().Level;
         for (int i = 0; i < 3; i++)
         {
@@ -131,18 +141,55 @@ public class ShopGUI : MonoBehaviour
                     break;
                 }
           
-            }
-
-           
+            }  
                     //  CostValues[i].GetComponent<TextMeshProUGUI>().text += shopInventory[index].cost[3 * index + i].ToString();
         }
+        // Level 1
+        if (Level == 1)
+        {
+            //Highlight Next Button
+            purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Image>().color = Color.green;
+            purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Button>().onClick.Invoke();
+            //Hide the Lock Symbol
+            purchaseUpgradeParents[index].transform.GetChild(1).GetChild(1).GetComponent<Image>().enabled = false;
+
+            // grey out previous buttons and make them uninteractible 
+            purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+            purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Button>().enabled = false;
+        }
+        // Level 2
+        if (Level == 2)
+        {
+            //Highlight Next Button
+            purchaseUpgradeParents[index].transform.GetChild(2).GetComponent<Button>().onClick.Invoke();
+            purchaseUpgradeParents[index].transform.GetChild(2).GetComponent<Image>().color = Color.green;
+            //Hide the Lock Symbol
+            purchaseUpgradeParents[index].transform.GetChild(2).GetChild(1).GetComponent<Image>().enabled = false;
+
+            // grey out previous buttons and make them uninteractible 
+            purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+            purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Image>().color = Color.gray;
+            purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Button>().enabled = false;
+        }
+        // Level 3
         if (Level == 3)
+         {
             for (int i = 0; i < 3; i++)
             {
                 if (i % 2 == 0)
                     CostValues[i].GetComponent<TextMeshProUGUI>().text = "";
                 else CostValues[i].GetComponent<TextMeshProUGUI>().text = "Max";
             }
+            //Gray out the background and Icon of the button after all 3 levels have been crafted
+            purchaseWeaponButtons[index].transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+            purchaseWeaponButtons[index].transform.GetChild(1).GetComponent<Image>().color = Color.gray;
+
+            //Gray out all 3 weapon upgrade since all have been crafted
+            purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+            purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Image>().color = Color.gray;
+            purchaseUpgradeParents[index].transform.GetChild(2).GetComponent<Image>().color = Color.gray;
+            purchaseUpgradeParents[index].transform.GetChild(2).GetComponent<Button>().enabled = false;
+        }
         EquipmentManager.transform.parent.GetComponentInChildren<WeaponSwap>().transform.GetChild(num).gameObject.SetActive(false);
 
     }
@@ -271,7 +318,6 @@ public class ShopGUI : MonoBehaviour
                     buttonWillBeEnabled = false;                    
                     break;
                 }
-
                 
             }
             if(buttonWillBeEnabled)
