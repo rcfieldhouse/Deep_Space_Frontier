@@ -124220,6 +124220,7 @@ MonoBehaviour:
   volumeProfile: {fileID: 11400000, guid: a958641cf8095a34dbae0fd4bb623d91, type: 2}
   _DepthOfField: {fileID: 0}
   PlayerInput: {fileID: 4520725862882063771}
+  SniperSensitivity: 0
 --- !u!114 &4520725862638450598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130218,7 +130219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb2e3c056f37cf4781a0b07eb00aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassSelection: 1
+  ClassSelection: 2
   ClassIcons: {fileID: 4520725862391307834}
 --- !u!114 &4520725862882063771
 MonoBehaviour:
@@ -130235,6 +130236,8 @@ MonoBehaviour:
   SpeedMod: 1
   controller: {fileID: 4520725862882063770}
   Sensitivity: 0.604
+  SniperSensitivityReduction: 0.25
+  ADSWSniper: 1
   MouseInput: {x: 0, y: 0}
   GenshinCam: {fileID: 0}
   Dir: {x: 0, y: 0, z: 0}

@@ -31,7 +31,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float SpeedMod = 1.0f;
     [SerializeField] private CharacterController controller;
     [Range(0, 1)] [SerializeField] private float Sensitivity = .5f;
-
+    [Range(0, 1)] [SerializeField] private float SniperSensitivityReduction = 1.0f;
+    [HideInInspector] public bool ADSWSniper = false;
     private Quaternion Direction;    
     public Vector2 MouseInput;
     private Vector2 KeyboardInput;
@@ -65,12 +66,24 @@ public class PlayerInput : MonoBehaviour
         WeaponActive = num;
         WeaponListLength = length;
     }
+    public void SetAimWSniper(bool var)
+    {
+        ADSWSniper = var;
+    }
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(ADSWSniper);
         //MouseInput for aim
+       
        MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; 
-       MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2; 
+       MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2;
+        if (ADSWSniper == true)
+        {
+            MouseInput.x -= (1.0f - SniperSensitivityReduction) * Input.GetAxis("Mouse X") * Sensitivity * 2;
+            MouseInput.y -= (1.0f - SniperSensitivityReduction) * Input.GetAxis("Mouse Y") * Sensitivity * 2;
+        }
+           
         if (Mathf.Abs(MouseInput.y) > 90) {
             MouseInput.y-= MouseInput.y-(90* (MouseInput.y / Mathf.Abs(MouseInput.y)));
         }

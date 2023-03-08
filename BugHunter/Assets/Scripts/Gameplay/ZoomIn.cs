@@ -11,7 +11,7 @@ public class ZoomIn : MonoBehaviour
     public DepthOfField _DepthOfField;
     private int choice=0;
     public PlayerInput PlayerInput;
-
+    public float SniperSensitivity;
     private void Awake()
     {
         WeaponSwap.BroadcastChoice += SetWeapon;
@@ -28,6 +28,7 @@ public class ZoomIn : MonoBehaviour
     {
         if (isAiming && choice == 0 && GetComponent<WeaponSwap>().WeaponArray[0].name == "Sniper")
         {
+          
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);
             _DepthOfField.active = true;
@@ -38,7 +39,9 @@ public class ZoomIn : MonoBehaviour
             animator.SetBool("isScoped", isScoped);
             _DepthOfField.active = false;
         }
-
+        if(GetComponent<WeaponSwap>().WeaponArray[0].name == "Sniper")
+            PlayerInput.SetAimWSniper(isAiming);
+        
     }
     private void SetWeapon(int foo)
     {
