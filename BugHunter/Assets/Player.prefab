@@ -48077,9 +48077,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SceneChange
+      - m_Target: {fileID: 1772650918}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -103301,8 +103301,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520725862257447243}
-  m_LocalRotation: {x: 0.18138552, y: -0, z: -0, w: 0.98341215}
-  m_LocalPosition: {x: 1051.58, y: -28.83, z: 822.35}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.00000023841858, z: 0.000010251999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -131232,6 +131232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dead27ba2c022fe4ebf214a011334a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDead: 0
   SpeedMod: 1
   controller: {fileID: 4520725862882063770}
   Sensitivity: 0.604
@@ -133725,21 +133726,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1772650918}
     - target: {fileID: 731703151284396743, guid: 9d5750d0a70619248848e8ca1de928c7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SceneChange
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 731703151284396743, guid: 9d5750d0a70619248848e8ca1de928c7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 731703152455137814, guid: 9d5750d0a70619248848e8ca1de928c7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1772650918}
     - target: {fileID: 731703152455137814, guid: 9d5750d0a70619248848e8ca1de928c7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SceneChange
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 731703152455137814, guid: 9d5750d0a70619248848e8ca1de928c7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d5750d0a70619248848e8ca1de928c7, type: 3}
@@ -133755,3 +133766,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1299556834}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1772650918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731703152267783468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a533ce4234fd1f4c883317f7dbab97a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
