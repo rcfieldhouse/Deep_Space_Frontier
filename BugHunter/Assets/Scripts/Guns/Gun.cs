@@ -77,7 +77,7 @@ public abstract class Gun : MonoBehaviour
         {
             StartCoroutine(HitMarkerEffect(_IsCrit));
             Health.gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,(int)(Damage*DamageX), _IsCrit);
-            Health.ModifyHealth((int)(Damage * DamageX));
+            Health.ModifyHealth(transform,(int)(Damage * DamageX));
         }
     }
     public HealthSystem FindHealth(Collider collider)

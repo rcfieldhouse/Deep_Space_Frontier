@@ -19,7 +19,7 @@ public class GrenadeBarrier : MonoBehaviour
         if(nade)
         if (nade.GetComponent<GrenadeThrow>().GetIsExploding() == true)
         {
-                GetComponent<HealthSystem>().ModifyHealth(-GetComponent<HealthSystem>().currentHealth);
+                GetComponent<HealthSystem>().ModifyHealth(nade.transform,-GetComponent<HealthSystem>().currentHealth);
         }
        
     }

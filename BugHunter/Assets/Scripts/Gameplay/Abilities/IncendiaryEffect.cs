@@ -43,7 +43,7 @@ public class IncendiaryEffect : MonoBehaviour
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Sniper_Fire");
                 }
                 // damage per burn tick
-                gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
+                gameObject.GetComponent<HealthSystem>().ModifyHealth(transform,Damage);
                 BurnTick += BurnTicker;
             }
             yield return null;

@@ -11,7 +11,7 @@ public class HealthSystem : MonoBehaviour
     public event Action<float> OnHealthPercentChanged = delegate { };
     public event Action<int> OnTakeDamage = delegate { };
     public event Action<GameObject> OnObjectDeath = delegate { };
-
+    public event Action<Transform> OnObjectDeathT = delegate { };
     [Header("Low Health Vignette")]
     static public VolumeProfile volumeProfile;
     UnityEngine.Rendering.Universal.Vignette vignette;
@@ -65,18 +65,33 @@ public class HealthSystem : MonoBehaviour
     {
         if (Invulnerable == false && currentHealth >= 0)
         {
-
+    
             if (requester != null)
                 amount = HandleDamageModifiers(requester, amount);
-
+    
             //play Dante.sound.ogg all things to do with health 
-
+    
             //could in theory just use a statement if being damaged or healed 
             currentHealth += amount;
-
+    
                 
             if (currentHealth > maxHealth) currentHealth = maxHealth;
-
+    
+            float currentHealthPercent = (float)currentHealth / (float)maxHealth;
+            OnHealthPercentChanged(currentHealthPercent);
+            OnTakeDamage(amount);
+            //Check if health has fallen below zero
+            if (currentHealth <= 0.0f)
+                OnObjectDeath?.Invoke(requester);
+            
+        }
+    }
+    public void ModifyHealth(Transform requester, int amount)
+    {
+        if (Invulnerable == false && currentHealth >= 0)
+        {
+            currentHealth += amount;
+            if (currentHealth > maxHealth) currentHealth = maxHealth;
             float currentHealthPercent = (float)currentHealth / (float)maxHealth;
 
             OnHealthPercentChanged(currentHealthPercent);
@@ -86,14 +101,13 @@ public class HealthSystem : MonoBehaviour
             {
                 //Broadcast that the object has died
                 //   Destroy(gameObject);
-                OnObjectDeath?.Invoke(transform.gameObject);
+                OnObjectDeathT?.Invoke(requester);
 
 
                 //gameObject.SetActive(false);
             }
         }
     }
-
     public void ModifyHealth(int amount)
     {
 

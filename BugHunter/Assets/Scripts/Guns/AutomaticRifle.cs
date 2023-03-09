@@ -47,7 +47,7 @@ public class AutomaticRifle : Gun
     public override void Shoot()
     {
         base.Shoot();
-        if (info.GetCanShoot() == true && gameObject.activeInHierarchy == true)
+        if (info.GetCanShoot() == true && gameObject.activeInHierarchy == true && info._isReloading == false)
         {
             //For hipfire spray
             Vector3 Spread;

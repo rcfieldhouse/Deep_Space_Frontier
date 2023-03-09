@@ -73,8 +73,6 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(ADSWSniper);
-        //MouseInput for aim
        
        MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; 
        MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2;

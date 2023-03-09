@@ -78,7 +78,7 @@ public class ElectricEffect : MonoBehaviour
             gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, Damage,false);
             FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Sniper_Electric");
         }
-        gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
+        gameObject.GetComponent<HealthSystem>().ModifyHealth(transform,Damage);
         //GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
         Destroy(rigidbody);
         Destroy(coll);

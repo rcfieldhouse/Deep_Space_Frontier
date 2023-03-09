@@ -68,7 +68,7 @@ public abstract class AI : MonoBehaviour
     {
         AI_Animator = GetComponentInChildren<Animator>();
         Health = GetComponentInChildren<HealthSystem>();
-        Health.OnObjectDeath += HandleObjectDeath;
+        Health.OnObjectDeathT += HandleObjectDeath;
         Health.OnHealthPercentChanged += HandleObjectHit;
         NavAgent = GetComponent<NavMeshAgent>();
         MeshRenderer = GetComponentInChildren<MeshRenderer>();
@@ -109,7 +109,8 @@ public abstract class AI : MonoBehaviour
     }
     public void OnDisable()
     {
-        Health.OnObjectDeath -= HandleObjectDeath;
+        Health.OnObjectDeathT -= HandleObjectDeath;
+
         Health.OnHealthPercentChanged -= HandleObjectHit;
         Health.OnTakeDamage -= StaggerMechanic;
         //ScoreManager.instance.sChange(10); 
@@ -183,7 +184,7 @@ public abstract class AI : MonoBehaviour
         NavAgent.enabled = true;
         _IsHitStunned = false;
     }
-    public void HandleObjectDeath(GameObject context)
+    public void HandleObjectDeath(Transform context)
     {
         
         if (GetComponent<Tick>())
