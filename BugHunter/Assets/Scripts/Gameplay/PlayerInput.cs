@@ -46,7 +46,7 @@ public class PlayerInput : MonoBehaviour
     //damn you dante, make ur own file 
     void Awake()
     {
-
+        ADSWSniper = false;
         // Commented temporarily unitl inventory system is implemented
         Cursor.lockState= CursorLockMode.Locked;
         UserInterface = GetComponent<GUIHolder>().GUI;
@@ -76,14 +76,16 @@ public class PlayerInput : MonoBehaviour
        
        MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; 
        MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2;
+        Debug.Log(ADSWSniper);
         if (ADSWSniper == true)
         {
+            Debug.Log("Called");
             MouseInput.x -= (1.0f - SniperSensitivityReduction) * Input.GetAxis("Mouse X") * Sensitivity * 2;
             MouseInput.y -= (1.0f - SniperSensitivityReduction) * Input.GetAxis("Mouse Y") * Sensitivity * 2;
         }
            
-        if (Mathf.Abs(MouseInput.y) > 90) {
-            MouseInput.y-= MouseInput.y-(90* (MouseInput.y / Mathf.Abs(MouseInput.y)));
+        if (Mathf.Abs(MouseInput.y) > 80) {
+            MouseInput.y-= MouseInput.y-(80* (MouseInput.y / Mathf.Abs(MouseInput.y)));
         }
 
        Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);

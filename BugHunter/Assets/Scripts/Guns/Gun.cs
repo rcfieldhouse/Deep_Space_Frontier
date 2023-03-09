@@ -25,7 +25,7 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector] public PlayerInput Player;
     public virtual void Shoot() 
     {
-        if (info.GetCanReload() == true && info.GetMag() <= 0)
+        if (info.GetCanReload() == true && info.GetMag() <= 0&&info._isReloading==false)
         {
             GetComponentInParent<ReloadGun>().Reload();
             info.Reload();

@@ -14,15 +14,13 @@ public class DamageIndicator : MonoBehaviour
             offset =(GetComponentInChildren<MeshRenderer>().bounds.center.y + GetComponentInChildren<MeshRenderer>().bounds.extents.y);
 
         if (GetComponentInChildren<SkinnedMeshRenderer>())
-        {
-
             offset = (GetComponentInChildren<SkinnedMeshRenderer>().bounds.center.y + GetComponentInChildren<SkinnedMeshRenderer>().bounds.extents.y);
-        }
-           
+              
        if (GetComponentInParent<AI>() != null)
            offset /= transform.parent.localScale.y;
 
         offset /= 2;
+
         if (gameObject.GetComponentInChildren<DamageIDHolder>() != null)
         {
             Holder = GetComponentInChildren<DamageIDHolder>().gameObject;
@@ -48,8 +46,6 @@ public class DamageIndicator : MonoBehaviour
     }
     public void SetIndicator(Transform transform,int Damage,bool _IsCrit)
     {
-     
-
         DamageReceivedFrom = transform;
         Holder.GetComponent<DamageIDHolder>().transform.LookAt(transform);
         Holder.GetComponent<DamageIDHolder>().transform.Rotate(Vector3.up, 180.0f);
@@ -81,6 +77,11 @@ public class DamageIndicator : MonoBehaviour
         }
         Destroy(Holder);
         Destroy(this);
+    }
+    private void Update()
+    {
+        Holder.GetComponent<DamageIDHolder>().transform.LookAt(DamageReceivedFrom);
+        Holder.GetComponent<DamageIDHolder>().transform.Rotate(Vector3.up, 180.0f);
     }
     public void RemoveThis()
     {

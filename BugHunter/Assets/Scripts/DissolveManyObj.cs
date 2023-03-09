@@ -18,10 +18,10 @@ public class DissolveManyObj : MonoBehaviour
             for (int j = 0; j < MeshRenderers[i].materials.Length; j++)
                 Materials.Add(MeshRenderers[i].materials[j]);
         }
-        Health.OnObjectDeath += Health_OnObjectDeath;
+        Health.OnObjectDeathT += Health_OnObjectDeath;
     }
 
-    private void Health_OnObjectDeath(GameObject obj)
+    private void Health_OnObjectDeath(Transform obj)
     {
         StartCoroutine(DissolveMeshEffect());
     }
