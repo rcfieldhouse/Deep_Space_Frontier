@@ -31,7 +31,7 @@ public class RelicCannonAmmo : MonoBehaviour
             if (other.gameObject.GetComponent<CannonHit>() == null)
             {
                 StartCoroutine(ShowLine(other.gameObject.transform));
-                other.gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
+                other.gameObject.GetComponent<HealthSystem>().ModifyHealth(transform,Damage);
                 other.gameObject.AddComponent<CannonHit>();
             }
 
