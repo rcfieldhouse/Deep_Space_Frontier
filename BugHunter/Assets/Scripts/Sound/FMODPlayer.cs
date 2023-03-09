@@ -73,9 +73,9 @@ public class FMODPlayer : MonoBehaviour
         Ambience.start();
         Ambience.release();
 
-        //Music.start();
-        //Music.release();
-        //Intensity(1);
+        Music.start();
+        Music.release();
+        Intensity(1);
     }
 
     private void Update()
