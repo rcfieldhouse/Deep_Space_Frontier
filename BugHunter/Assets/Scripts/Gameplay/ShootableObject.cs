@@ -12,6 +12,7 @@ public class ShootableObject : MonoBehaviour
     public bool UseAdditionalUpForce = false;
     public float shatterForce = 10f;
     private float[] randoms = { 0, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f };
+    bool Shattered = false;
     private void Awake()
     {
         Health = GetComponent<HealthSystem>();
@@ -28,6 +29,10 @@ public class ShootableObject : MonoBehaviour
     }
     public void HandleObjectDeath(Transform context)
     {
+        if (Shattered == true)
+            return;
+
+        Shattered = true;
         //Possibly don't need to check for this breakable tag :3
         foreach (BoxCollider box in gameObject.GetComponents<BoxCollider>())
         {
@@ -65,19 +70,6 @@ public class ShootableObject : MonoBehaviour
 
             rb.gameObject.AddComponent<DissolveRock>();
             index++;
-            //
-            //  //it favors 1 direction
-            //
-            //  float rand = Random.Range(0, 1);
-            //  Vector3 force = (rb.transform.position - context.transform.position).normalized * shatterForce;
-            //
-            //  if (UseAdditionalUpForce == true)
-            //      rb.velocity = Vector3.up * 100 * rand;
-            //
-            //  rb.AddForce(force);
-
-
-            //TODO: apply a coroutine to delete the pieces after some time expires
         }
         LootSpawner.instance.SprayLoot(context.transform);
         LootSpawner.instance.SprayLoot(transform);
