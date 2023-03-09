@@ -118,7 +118,8 @@ MonoBehaviour:
   Health: {fileID: 5031183280142916150}
   brokenPrefab: {fileID: 3277955636465677228, guid: 46fec53ca05c1c245854ed6572d8b788,
     type: 3}
-  shatterForce: 1000
+  UseAdditionalUpForce: 0
+  shatterForce: 750
 --- !u!114 &5031183280142916150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 0
+  fadeInTime: 0.5
 --- !u!1 &8810502174745318441
 GameObject:
   m_ObjectHideFlags: 0
