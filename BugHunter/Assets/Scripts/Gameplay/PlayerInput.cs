@@ -9,12 +9,12 @@ public class PlayerInput : MonoBehaviour
     //For the Teleport Command Pattern
 
     //actions that the player may perform
-    public event Action Interact, InteractReleased;
+    public event Action Interact, InteractReleased,Revive;
     public event Action JumpAction, UseAbility, Shoot, Chamber,Reload,Undo,TabThrowable, WeNeedToCookJesse;
     public event Action<bool>Crouching,ADS;
     public event Action<Quaternion> Look, Throw ;
     public event Action<Vector2,float> Move = delegate { };
-
+    public bool IsDead = false;
     //pause menu actions
     public static Action SavePlayer, LoadPlayer, PausePlugin, GetTime;
 
@@ -52,8 +52,14 @@ public class PlayerInput : MonoBehaviour
         UserInterface = GetComponent<GUIHolder>().GUI;
         WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }
+    public void SetIsDead(bool var)
+    {
+        IsDead = var;
+    }
     public void AutomaticBandAid()
     {
+        if (IsDead == true)
+            return;
         //had to use this so that i could invoke the full auto shoot 
         Shoot.Invoke();
     }
@@ -114,6 +120,8 @@ public class PlayerInput : MonoBehaviour
             GetComponent<HealthSystem>().SetInvulnerable(true);
 
 
+        if (Input.GetKeyDown(KeyCode.O))
+            Revive.Invoke();
         //Pause Menu For Plugin
         if (Input.GetKeyDown(KeyCode.Escape))
             PausePlugin.Invoke();
@@ -180,9 +188,9 @@ public class PlayerInput : MonoBehaviour
             InteractReleased.Invoke();
         //shoot 
         //chamber is for full auto
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1")&&IsDead==false)
             Shoot.Invoke();
-        else if (Input.GetButtonUp("Fire1"))
+        else if (Input.GetButtonUp("Fire1") && IsDead == false)
             Chamber.Invoke();
       
 
@@ -199,10 +207,6 @@ public class PlayerInput : MonoBehaviour
             UserInterface.SetActive(UIToggle);
             ADS.Invoke(false);
         }
-
-        //weapon swapping 
-        //trying to find a better way 
-
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
             SwappingWeapon.Invoke(0);

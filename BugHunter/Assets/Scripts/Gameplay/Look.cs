@@ -21,7 +21,7 @@ public class Look : MonoBehaviour
             Player.Look += Aim;
     }
     // Update is called once per frame
-
+ 
     private void Aim(Quaternion quaternion)
     {
         gameObject.transform.localRotation = quaternion;

@@ -76,6 +76,21 @@ public class PlayerAnimatorScript : MonoBehaviour
         PlayerAnimator.SetBool("_CookGrenade", true);
         PlayerAnimator.SetBool("_ThrowGrenade", false);
     }
+    public void Die()
+    {
+        Player.SetIsDead(true);
+        LeftArm.weight = 0;
+        Neck.weight = 0;
+        RightArm.weight = 0;
+        PlayerAnimator.SetBool("_IsDead", true);
+    }
+    public void Revive()
+    {
+        Player.SetIsDead(false);
+        RestoreWeights();
+        PlayerAnimator.SetBool("_IsDead", false);
+    }
+
     private void ThrowGrenade(Quaternion quaternion)
     {
     

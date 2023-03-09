@@ -112,7 +112,7 @@ public class CharacterController : MonoBehaviour
     }
   
   
-    private void SwitchLadderCam(bool var)
+    public void SwitchLadderCam(bool var)
     { 
         disableCams(var);
         CameraDodge.SetActive(var);
@@ -131,6 +131,9 @@ public class CharacterController : MonoBehaviour
     }
     public void Jump()
     {
+        if (SuspendMovement == true)
+            return;
+
         if (isGrounded())
             Joomp();
     }
