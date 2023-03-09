@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
+
+    public static TextMeshProUGUI textbox;
+
+    public static Queue<string> messages = new Queue<string>();
    
     //TODO: will need to refactor this at some point.
     [Header("Loading Screen")]
@@ -23,6 +21,26 @@ public class GameManager : MonoBehaviour
     [Header("Time Slow")]
     public float timeSlowStrength = 0.05f;
     public float timeSlowDuration = 1f;
+
+
+    private void Awake()
+    {
+        instance = this;
+        textbox = GameObject.Find("Messages").GetComponent<TextMeshProUGUI>();
+
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Update()
+    {
+        if (messages.Count > 0)
+        {
+            textbox.text += messages.Dequeue();
+
+        }
+        
+
+    }
 
     public void BulletTime()
     {
@@ -82,7 +100,21 @@ public class GameManager : MonoBehaviour
       
     }
 
+    internal float WrapEulerAngles(float rotation)
+    {
+        rotation %= 360;
+        if (rotation >= 180)
+            return -360;
+        return rotation;
+    }
+    public float UnwrapEulerAngles(float rotation)
+    {
+        if (rotation >= 0)
+            return rotation;
 
+        rotation = -rotation % 360;
+        return 360 - rotation;
+    }
     public void ScenePreLoad()
     {
 
