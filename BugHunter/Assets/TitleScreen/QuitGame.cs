@@ -5,16 +5,15 @@ using UnityEngine;
 public class QuitGame : MonoBehaviour
 {
     // Start is called before the first frame update
- 
-    public void Quit ()
+
+    public void QuitTheGame()
     {
-
-        #if UNITY_EDITOR
+        Debug.LogWarning("tried to quit");
+#if UNITY_STANDALONE
         Application.Quit();
-        return;
-
-        #endif
-       
+#endif
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
-
 }

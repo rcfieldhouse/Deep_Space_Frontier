@@ -82,7 +82,6 @@ public class PlayerInput : MonoBehaviour
        
        MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; 
        MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2;
-        Debug.Log(ADSWSniper);
         if (ADSWSniper == true)
         {
             Debug.Log("Called");
