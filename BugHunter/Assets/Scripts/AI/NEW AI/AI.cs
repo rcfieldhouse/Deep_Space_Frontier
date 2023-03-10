@@ -15,6 +15,7 @@ public abstract class AI : MonoBehaviour
 
     [Header("Sniper Materials")]
     public Material iceMaterial;
+
     public Material fireMaterial;
     public Material electricMaterial;
 

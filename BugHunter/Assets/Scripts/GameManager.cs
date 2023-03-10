@@ -7,6 +7,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public Dictionary<int, GameObject> playerList = new Dictionary<int, GameObject>();
+
     public static GameManager instance;
 
     public static TextMeshProUGUI textbox;
