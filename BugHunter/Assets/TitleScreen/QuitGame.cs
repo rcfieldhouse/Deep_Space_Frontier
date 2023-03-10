@@ -9,11 +9,11 @@ public class QuitGame : MonoBehaviour
     public void QuitTheGame()
     {
         Debug.LogWarning("tried to quit");
-#if UNITY_STANDALONE
+            #if UNITY_STANDALONE
         Application.Quit();
-#endif
-#if UNITY_EDITOR
+            #endif
+            #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#endif
+            #endif
     }
 }
