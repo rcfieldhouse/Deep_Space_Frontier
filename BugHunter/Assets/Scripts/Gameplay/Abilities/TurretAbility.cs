@@ -4,12 +4,14 @@ using UnityEngine;
 using System;
 public class TurretAbility : MonoBehaviour
 {
-    public static Action<float> UsedTurret;
+    public static Action<int> UsedTurret;
     public static Action ClearedTurret;
     public List<GameObject> Turrets;
     public GameObject TurretPrefab;
     public Camera Cam;
     private PlayerInput Player;
+    private int TurretCount = 2;
+    private float CurrentRegenTime=0;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,9 +24,20 @@ public class TurretAbility : MonoBehaviour
         Cam = transform.parent.GetChild(1).GetChild(3).GetComponent<Camera>();
         Invoke(nameof(Wait), 0.1f);
     }
+    private void Update()
+    {
+        if (TurretCount != 2)
+            CurrentRegenTime += Time.deltaTime;
+        if (CurrentRegenTime > 20 && TurretCount < 2)
+        {
+            CurrentRegenTime = 0;
+            TurretCount++;
+            UsedTurret.Invoke(TurretCount);
+        }    
+    }
     private void Wait()
     {      
-        UsedTurret.Invoke(Turrets.Count);
+        UsedTurret.Invoke(TurretCount);
     }
     private void OnDestroy()
     {
@@ -38,8 +51,9 @@ public class TurretAbility : MonoBehaviour
         Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         
-        if (Physics.Raycast(ray, out hitInfo, 25)&&Turrets.Count<2)
+        if (Physics.Raycast(ray, out hitInfo, 25)&&TurretCount>0)
         {
+            TurretCount--;
             //&& Turrets.Count<3
             FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Turret_Place");
             Turret = Instantiate(TurretPrefab);
@@ -49,7 +63,7 @@ public class TurretAbility : MonoBehaviour
             if (hitInfo.transform.gameObject.tag == "Ground" && (Mathf.Abs(Turret.transform.rotation.x) < 0.15f && Mathf.Abs(Turret.transform.rotation.z) < 0.15f))
             {
                 Turrets.Add(Turret);
-                UsedTurret.Invoke(Turrets.Count);
+                UsedTurret.Invoke(TurretCount);
             }
             else
                 Destroy(Turret);
@@ -61,9 +75,8 @@ public class TurretAbility : MonoBehaviour
     {
         for (int i = 0; i < Turrets.Count; i++)
         {
-            Destroy(Turrets[i]);
+           Turrets[i].GetComponent<HealthSystem>().ModifyHealth(transform, -Turrets[i].GetComponent<HealthSystem>().GetHealth());
         }
-        ClearedTurret.Invoke();
         Turrets.Clear();
     }
 }

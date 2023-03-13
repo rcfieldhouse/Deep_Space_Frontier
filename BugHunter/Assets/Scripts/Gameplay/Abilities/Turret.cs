@@ -6,12 +6,14 @@ public class Turret : MonoBehaviour
 {
     LineRenderer Line;
     [Range(0, -50)] public int Damage;
+    [Range(0, 100)] public int Mag;
     [Range(0, 5)] public float ShootTime;
+    private HealthSystem HealthSystem;
     public bool _CanShoot = true;
     public GameObject Target=null;
     public Transform BulletEmitter;
     private Animator anim;
-
+    
     private WaitForSeconds shootDelay;
     // Start is called before the first frame update
     private float AngleDifferenceX = 0;
@@ -19,6 +21,7 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        HealthSystem = GetComponent<HealthSystem>();
         SetTarget(transform.GetChild(transform.childCount-1).gameObject);
         shootDelay = new WaitForSeconds(ShootTime);
         Target = null;
@@ -27,6 +30,7 @@ public class Turret : MonoBehaviour
         Line.endWidth = 0.25f;
         Line.enabled = false;
         anim = GetComponent<Animator>();
+        Invoke(nameof(EndThis), 15.0f);
     }
     public void SetTarget(GameObject target)
     {
@@ -78,7 +82,10 @@ public class Turret : MonoBehaviour
 
         }
     }
-
+    void EndThis()
+    {
+        HealthSystem.ModifyHealth(transform,-HealthSystem.GetHealth());
+    }
 
 private IEnumerator ShotEffect()
 {
@@ -125,5 +132,7 @@ private void Update()
       
 
         transform.GetChild(0).gameObject.transform.localPosition = new Vector3((1 - (AngleDifferenceX / 180.0f)) * -0.25f, -0.0f, 0.125f * (AngleDifferenceZ / 90.0f));
+    
+    
     }
 }
