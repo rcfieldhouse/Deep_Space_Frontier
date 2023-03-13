@@ -277,6 +277,8 @@ GameObject:
   - component: {fileID: 9058851645855846593}
   - component: {fileID: 3108774724146596162}
   - component: {fileID: 3450858099230532506}
+  - component: {fileID: 4136775867128455068}
+  - component: {fileID: -4359819057829347633}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -315,6 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: -15
+  Mag: 0
   ShootTime: 0.25
   _CanShoot: 1
   Target: {fileID: 0}
@@ -467,6 +470,38 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &4136775867128455068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9058851645855846607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0bb0dd8316f3d4782fba483477d661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5000
+  currentHealth: 0
+  fadeInTime: 0.5
+--- !u!114 &-4359819057829347633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9058851645855846607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769b1894470198b48a5388b3ee9d1620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: {fileID: 4136775867128455068}
+  brokenPrefab: {fileID: 1296364066946952194, guid: 26b5e3fdeff83ac4fb82cfb2f449b8d1,
+    type: 3}
+  UseAdditionalUpForce: 1
+  shatterForce: 400
 --- !u!1 &9133923055780966662
 GameObject:
   m_ObjectHideFlags: 0

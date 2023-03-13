@@ -280,9 +280,9 @@ public abstract class AI : MonoBehaviour
     public virtual void Patroling()
     {
         _IsChasing = false;
-        if (Target == null)
-            Target = FindClosestPlayer();
-        //play Dante.sound.ogg AI idle
+        //if (Target == null)
+        //    Target = FindClosestPlayer();
+        ////play Dante.sound.ogg AI idle
         if (!WalkPointSet)
             SearchWalkPoint();
 
@@ -307,7 +307,7 @@ public abstract class AI : MonoBehaviour
        // Debug.Log(NavAgent.remainingDistance+" "+WalkPointSet);
 
         if (Target==null)
-       Target = FindClosestPlayer();
+          Target = FindClosestPlayer();
 
 
         if (WalkPointSet == false)

@@ -12,17 +12,16 @@ public class EngineerIcon : MonoBehaviour
         TurretNum = transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(false);
-        TurretAbility.ClearedTurret += ClearTurrets;
         TurretAbility.UsedTurret += UseTurret;
     }
     private void OnDestroy()
     {
-        TurretAbility.ClearedTurret -= ClearTurrets;
+       
         TurretAbility.UsedTurret -= UseTurret;
     }
-    public void UseTurret(float num)
+    public void UseTurret(int num)
     {
-        TurretNum.text =(2 - (int)num).ToString();
+        TurretNum.text =(num).ToString();
 
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(true);
