@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface INetworkable
+public interface INetwork
 {
     struct KeyValuePair<TKey, Tvalue>
     {
