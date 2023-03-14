@@ -28,9 +28,12 @@ public class HubShip : MonoBehaviour
         float var = timer / JourneyTimer;
         float var2 = timer+Time.deltaTime / JourneyTimer;
         Vector3 LookAtTransform = GetBezierPosition(var2);
-        transform.LookAt(LookAtTransform);
-        transform.Rotate(new Vector3(-90.0f, 90.0f, 0.0f));
-        transform.position = GetBezierPosition(var);
+        if (timer < JourneyTimer)
+        {
+            transform.LookAt(LookAtTransform);
+            transform.Rotate(new Vector3(-90.0f, -90.0f, 0.0f));
+            transform.position = GetBezierPosition(var);
+        }
       
     }
 
