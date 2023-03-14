@@ -6,11 +6,13 @@ public class LoseCondition : MonoBehaviour
 {
     private HealthSystem Health;
     private PlayerInput Player;
+    private bool LoosePossible;
     private void Awake()
     {
         Player = GetComponent<PlayerInput>();
         Health = GetComponent<HealthSystem>();
         Player.Revive += Revive;
+        Player.GiveUp += Loose;
         Health.OnObjectDeath += Die;
     }
     // Update is called once per frame
@@ -30,5 +32,9 @@ public class LoseCondition : MonoBehaviour
         GetComponent<CharacterController>().WeaponCamera.SetActive(true);
         GetComponent<CharacterController>().PlayerCamera.SetActive(false);
         GetComponent<CharacterController>().SetSuspendMovement(false);
+    }
+    void Loose()
+    {
+        GameManager.instance.SceneChange("Hub");
     }
 }

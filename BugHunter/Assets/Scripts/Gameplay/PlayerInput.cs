@@ -9,9 +9,9 @@ public class PlayerInput : MonoBehaviour
     //For the Teleport Command Pattern
 
     //actions that the player may perform
-    public event Action Interact, InteractReleased,Revive;
+    public event Action Interact, InteractReleased,Revive,GiveUp;
     public event Action JumpAction, UseAbility, Shoot, Chamber,Reload,Undo,TabThrowable, WeNeedToCookJesse;
-    public event Action<bool>Crouching,ADS;
+    public event Action<bool>Crouching,ADS,Sprinting;
     public event Action<Quaternion> Look, Throw ;
     public event Action<Vector2,float> Move = delegate { };
     public bool IsDead = false;
@@ -108,11 +108,19 @@ public class PlayerInput : MonoBehaviour
 
 
         //sprint
-       if (Input.GetKeyDown(KeyCode.LeftShift)) 
+       if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
             SpeedMod = 1.5f;
+            Sprinting.Invoke(true);
+        }
+          
 
        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
             SpeedMod = 1.0f;
+            Sprinting.Invoke(false);
+        }
+         
 
         //DEVHACK
         if (Input.GetKeyDown(KeyCode.P))
@@ -121,6 +129,9 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.O))
             Revive.Invoke();
+        if (Input.GetKeyDown(KeyCode.L))
+            GiveUp.Invoke();
+
         //Pause Menu For Plugin
         if (Input.GetKeyDown(KeyCode.Escape))
             PausePlugin.Invoke();
@@ -145,6 +156,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
             GameManager.instance.StopTime();
+
 
         //cursed crouch controls
         if (Input.GetButtonDown("Crouch"))

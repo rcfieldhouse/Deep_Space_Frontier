@@ -28,6 +28,7 @@ public class AutomaticRifle : Gun
         Player.Shoot += Shoot;
         Player.ADS += AIM;
         Player.Chamber += SetShootingFalse;
+        Player.Sprinting += SetIsSprinting;
     }
     private void OnDestroy()
     {
@@ -47,7 +48,7 @@ public class AutomaticRifle : Gun
     public override void Shoot()
     {
         base.Shoot();
-        if (info.GetCanShoot() == true && gameObject.activeInHierarchy == true && info._isReloading == false)
+        if (info.GetCanShoot() == true && gameObject.activeInHierarchy == true && info._isReloading == false&&_IsSprinting==false)
         {
             //For hipfire spray
             Vector3 Spread;
@@ -84,10 +85,9 @@ public class AutomaticRifle : Gun
     }
    public override void Update()
     {
-        
-
-        if (_IsShooting == true)
+        if (_IsShooting == true&&_IsSprinting==false)
             Player.AutomaticBandAid();
+
         base.Update();
     }
 }

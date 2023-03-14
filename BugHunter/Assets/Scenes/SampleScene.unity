@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 136559627}
-  m_IndirectSpecularColor: {r: 0.13856609, g: 0.04852879, b: 0.20566985, a: 1}
+  m_IndirectSpecularColor: {r: 0.13845022, g: 0.048412427, b: 0.20555313, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3266,6 +3266,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8212316299752716403, guid: 52dfb63bae015a44cb2212cd4db9847e,
     type: 3}
   m_PrefabInstance: {fileID: 98251833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &100951717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4520725861026610005, guid: 3c53c9234287a8047b94ba05223d8526,
+    type: 3}
+  m_PrefabInstance: {fileID: 1879873363}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &101808718
 PrefabInstance:
@@ -12081,7 +12087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &346083310
 Transform:
   m_ObjectHideFlags: 0
@@ -18672,7 +18678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6644d3bc60bb1c74cbd0a9e21d3bab17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 63849032}
+  loadingScreen: {fileID: 8030731062032716727, guid: ce1ed71d50f62d64f80e3f7dc268e7a6,
+    type: 3}
   loadingBarFill: {fileID: 1353190090}
   timeSlowStrength: 0.05
   timeSlowDuration: 1
@@ -38098,6 +38105,7 @@ GameObject:
   - component: {fileID: 1110745966}
   - component: {fileID: 1110745965}
   - component: {fileID: 1110745969}
+  - component: {fileID: 1110745970}
   m_Layer: 0
   m_Name: CinemachineBrain
   m_TagString: Untagged
@@ -38282,6 +38290,20 @@ PlayableDirector:
     - c620fa21724ca2d4191c6f1ee4061dad: {fileID: 2146028354}
     - 3eedfd856266dae4cb5afc505da6e913: {fileID: 0}
     - 220581729d5f89c4f80f12434080cb69: {fileID: 2146028354}
+--- !u!114 &1110745970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110745963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc876340f70a577468fdd33a1b1f18f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CutsceneCamera: {fileID: 1110745963}
+  Player: {fileID: 100951717}
 --- !u!1001 &1115656189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71080,6 +71102,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 731703152267783468, guid: 3c53c9234287a8047b94ba05223d8526,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1578661293926204167, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -71093,7 +71120,7 @@ PrefabInstance:
     - target: {fileID: 4520725861026610005, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4520725861026610006, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}

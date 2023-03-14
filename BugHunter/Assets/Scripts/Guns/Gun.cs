@@ -20,9 +20,10 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector] public GameObject HitMarkers;
     [HideInInspector] public Camera Camera;
     [HideInInspector] public float NextFire;
-    [HideInInspector] public bool _IsAiming=false;
+    [HideInInspector] public bool _IsAiming=false,_IsSprinting=false;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.15f);
     [HideInInspector] public PlayerInput Player;
+    
     public virtual void Shoot() 
     {
         if (info.GetCanReload() == true && info.GetMag() <= 0&&info._isReloading==false)
@@ -32,7 +33,10 @@ public abstract class Gun : MonoBehaviour
         }
           
     }
-
+    public void SetIsSprinting(bool var)
+    {
+        _IsSprinting = var;
+    }
     [SerializeField] FMODUnity.EventReference shootSound;
     public void UpgradeWeapon()
     {
@@ -48,6 +52,7 @@ public abstract class Gun : MonoBehaviour
         MuzzleFlash = GetComponentInChildren<ParticleSystem>();
         Camera = transform.parent.GetComponentInParent<Camera>();
         GunEnd = MuzzleFlash.transform;
+        Player.Sprinting += SetIsSprinting;
         Player.Shoot += Shoot;
         Player.ADS += AIM;
     }
@@ -63,7 +68,7 @@ public abstract class Gun : MonoBehaviour
     }
     public virtual void Update()
     {
-        if (Time.time < NextFire && gameObject.activeInHierarchy == true && info.IsPaused==false)
+        if ((Time.time < NextFire && gameObject.activeInHierarchy == true && info.IsPaused==false)||_IsSprinting==true)
             info.SetCanShoot(false);
         else if (Time.time > NextFire && gameObject.activeInHierarchy == true&&info.GetMag()> 0 && info.IsPaused == false)
             info.SetCanShoot(true);
