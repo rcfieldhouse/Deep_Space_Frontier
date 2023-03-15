@@ -15,6 +15,7 @@ public class QuestManager : MonoBehaviour
             instance = this;
 
        MarkerInstance= Instantiate(Marker);
+
         Invoke(nameof(SetInitQuest), 0.05f);
     }
     public void SetNewQuest(int index)

@@ -13,6 +13,7 @@ public class ShootableObject : MonoBehaviour
     public float shatterForce = 10f;
     private float[] randoms = { 0, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f };
     bool Shattered = false;
+    public bool _CanDropLoot = true;
     private void Awake()
     {
         Health = GetComponent<HealthSystem>();
@@ -71,12 +72,16 @@ public class ShootableObject : MonoBehaviour
             rb.gameObject.AddComponent<DissolveRock>();
             index++;
         }
-        LootSpawner.instance.SprayLoot(context.transform);
-        LootSpawner.instance.SprayLoot(transform);
-        LootSpawner.instance.SprayLoot(transform);
-        LootSpawner.instance.SprayLoot(transform);
-        LootSpawner.instance.SprayLoot(transform);
-        LootSpawner.instance.SprayLoot(transform);
+        if (_CanDropLoot == true)
+        {
+            LootSpawner.instance.SprayLoot(context.transform);
+            LootSpawner.instance.SprayLoot(transform);
+            LootSpawner.instance.SprayLoot(transform);
+            LootSpawner.instance.SprayLoot(transform);
+            LootSpawner.instance.SprayLoot(transform);
+            LootSpawner.instance.SprayLoot(transform);
+        }
+
 
         //TODO: Object pooling
         Destroy(gameObject);

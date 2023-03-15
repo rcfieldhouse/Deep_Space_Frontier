@@ -30,6 +30,7 @@ public abstract class Gun : MonoBehaviour
         {
             GetComponentInParent<ReloadGun>().Reload();
             info.Reload();
+            info._isReloading = true;
         }
           
     }
