@@ -11,7 +11,7 @@ public class DreadAmmo : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
+            other.gameObject.GetComponent<HealthSystem>().ModifyHealth(gameObject, Damage);
         }
         if (other.tag == "Player" || other.tag == "Ground")
         {

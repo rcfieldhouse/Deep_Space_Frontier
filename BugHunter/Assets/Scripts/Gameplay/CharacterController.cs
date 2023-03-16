@@ -16,6 +16,7 @@ public class CharacterController : MonoBehaviour
     [Range(0, 1)][SerializeField] public float m_CrouchSpeed = 0.5f;
     [Range(0, 1)] [SerializeField] public float m_LadderSpeed = 0.5f;
     [Range(0, 1)][SerializeField] private float SpeedSlider = .5f;
+    [HideInInspector] public float ArmourSpeedIncrease=1.0f;
     public event Action Jumped = delegate { };
     public WaitForSeconds RollTimer = new WaitForSeconds(0.75f);
 
@@ -162,7 +163,7 @@ public class CharacterController : MonoBehaviour
                 FootStepTimer(SpeedMod);
 
             // was 4.0f
-            SpeedMod *= 20.0f;
+            SpeedMod *= 20.0f*ArmourSpeedIncrease;
             mover = transform.right * move.x + transform.forward * move.y;
 
             Rigidbody.velocity = new Vector3(mover.x * SpeedSlider * SpeedMod, Rigidbody.velocity.y, mover.z * SpeedSlider * SpeedMod);

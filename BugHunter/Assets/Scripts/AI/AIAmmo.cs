@@ -11,7 +11,7 @@ public class AIAmmo : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Collision with player detected");
-            other.gameObject.GetComponent<HealthSystem>().ModifyHealth(-Damage);
+            other.gameObject.GetComponent<HealthSystem>().ModifyHealth(gameObject,-Damage);
         }
 
 

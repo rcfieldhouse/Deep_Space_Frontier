@@ -6,7 +6,6 @@ public class Armor : Item, IEquip
 {
     public EquipType equipType;
     public bool isEquippable = false;
-
     virtual public void Enter(GameObject requester)
     {
         //Change Player Skin
@@ -72,7 +71,7 @@ public class StandardArmor : Armor
 
     public override int Execute(GameObject requester, int damageAmount)
     {
-
+        Debug.Log("boohoo the standard armour does nothing");
             return base.Execute(requester, damageAmount);
     }
     public override void Exit(GameObject requester)
@@ -94,14 +93,14 @@ public class BomberArmor : Armor
     {
         GrenadeManager GrenadeHolder = requester.GetComponent<GrenadeManager>();
 
-        GrenadeHolder.maxGrenades +=1;
+        GrenadeHolder.maxGrenades +=2;
         base.Enter(requester);
     }
 
     public override void Exit(GameObject requester)
     {
         GrenadeManager GrenadeHolder = requester.GetComponent<GrenadeManager>();
-        GrenadeHolder.maxGrenades -= 1;
+        GrenadeHolder.maxGrenades -= 2;
         base.Exit(requester);
     }
 
@@ -124,6 +123,7 @@ public class TickArmor : Armor
     public override void Enter(GameObject requester)
     {
         CharacterController playerControl = requester.GetComponent<CharacterController>();
+        playerControl.ArmourSpeedIncrease = 1.05f;
         //TODO: Make this work for playerSpeed
        // playerControl.movespeed;
     }
@@ -136,7 +136,8 @@ public class TickArmor : Armor
     }
     public override void Exit(GameObject requester)
     {
-
+        CharacterController playerControl = requester.GetComponent<CharacterController>();
+        playerControl.ArmourSpeedIncrease = 1.0f;
     }
 }
 
@@ -150,7 +151,8 @@ public class ZephryArmor : Armor
 
     public override void Enter(GameObject requester)
     {
-
+        CharacterController playerControl = requester.GetComponent<CharacterController>();
+        playerControl.ArmourSpeedIncrease = 1.1f;
     }
     public override int Execute(GameObject requester, int damageAmount)
     {
@@ -158,6 +160,7 @@ public class ZephryArmor : Armor
     }
     public override void Exit(GameObject requester)
     {
-
+        CharacterController playerControl = requester.GetComponent<CharacterController>();
+        playerControl.ArmourSpeedIncrease = 1.0f;
     }
 }

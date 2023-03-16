@@ -32,7 +32,7 @@ public class Venom : MonoBehaviour
             if (Time > Tick)
             {
                 // damage per burn tick
-                gameObject.GetComponent<HealthSystem>().ModifyHealth(Damage);
+                gameObject.GetComponent<HealthSystem>().ModifyHealth(gameObject, Damage);
                 Tick += DamageInterval;
             }
             yield return null;

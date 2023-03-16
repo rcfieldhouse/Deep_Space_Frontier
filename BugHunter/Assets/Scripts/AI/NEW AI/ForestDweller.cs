@@ -29,7 +29,7 @@ public class ForestDweller : AI
             }
             //play Dante.sound.ogg torterra attack
             AI_Animator.SetBool("_IsAttacking", true);
-                Target.GetComponent<HealthSystem>().ModifyHealth(Attack_1_Damage);
+                Target.GetComponent<HealthSystem>().ModifyHealth(gameObject,Attack_1_Damage);
                 HasAttacked = true;
                 CanAttack = false;
             HasFrontAttacked = true;
@@ -46,7 +46,7 @@ public class ForestDweller : AI
         AI_Animator.SetBool("_IsAttacking2", true);
         HasAttacked = true;
         CanAttack = false;
-        Target.GetComponent<HealthSystem>().ModifyHealth(Attack_2_Damage);
+        Target.GetComponent<HealthSystem>().ModifyHealth(gameObject, Attack_2_Damage);
         Invoke(nameof(ResetAttack), Attack_2_Delay);
         Invoke(nameof(StopAnim), 1.0f);
     }
@@ -57,7 +57,7 @@ public class ForestDweller : AI
         CanAttack = false;
         HasFrontAttacked = false;
         TertiaryAttack = false;
-        Target.GetComponent<HealthSystem>().ModifyHealth(Attack_1_Damage);
+        Target.GetComponent<HealthSystem>().ModifyHealth(gameObject, Attack_1_Damage);
         Invoke(nameof(ResetAttack), Attack_1_Delay);
         Invoke(nameof(StopAnim), Attack_1_Delay);
     }

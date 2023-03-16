@@ -15,7 +15,7 @@ public class Tick : AI
         NavAgent.SetDestination(transform.position);
         //play Dante.sound.ogg tick attack
         AI_Animator.SetBool("_IsAttacking", true);
-        Target.GetComponent<HealthSystem>().ModifyHealth( Attack_1_Damage);
+        Target.GetComponent<HealthSystem>().ModifyHealth(gameObject, Attack_1_Damage);
         HasAttacked = true;
         CanAttack = false;
 

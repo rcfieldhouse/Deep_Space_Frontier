@@ -19,7 +19,7 @@ public class EquipmentManager : MonoBehaviour
         return equip.isEquippable;
     }
 
-    private void Start()
+    private void Awake()
     {
         //temporary for testing
         slime_armor = new SlimeArmor();
@@ -27,7 +27,8 @@ public class EquipmentManager : MonoBehaviour
         TickArmor = new TickArmor();
         ZephryArmor = new ZephryArmor();
 
-        currentEquip = new StandardArmor();
+
+        currentEquip = slime_armor;
         currentEquip.isEquippable = true;
         ChangeEquip(currentEquip);
     }
