@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class Revolver : Gun
 {
+    public override void WeaponUpgrades(int lvl)
+    {
+        switch (lvl) {
+            case 1:
+                GetComponent<WeaponInfo>().ReloadTimer =new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.9f);
+                    break;
+            case 2:
+                WeaponRange *= 1.15f;
+                GetComponent<WeaponInfo>().RecoilX *= 1.05f;
+                GetComponent<WeaponInfo>().AimRecoilX *= 1.05f;
+                    break;
+            case 3:
+                Damage =(int)(Damage* 1.05f);
+                    break;
+        }
+
+    }
     public override void Shoot()
     {
         base.Shoot();

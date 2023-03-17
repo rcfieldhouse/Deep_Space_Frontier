@@ -43,7 +43,10 @@ public abstract class Gun : MonoBehaviour
     {
         if(Level<3)
         Level++;
+        WeaponUpgrades(Level);
     }
+    public abstract void WeaponUpgrades(int lvl);
+    
     private void Awake()
     {
         Player = transform.parent.parent.parent.parent.GetChild(0).GetComponent<PlayerInput>();

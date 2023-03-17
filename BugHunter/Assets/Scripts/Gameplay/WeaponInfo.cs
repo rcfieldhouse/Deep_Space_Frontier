@@ -30,7 +30,7 @@ public class WeaponInfo : MonoBehaviour
     private int maxAmmo;
 
     [SerializeField] [Tooltip("Ammo in the current Reserve")] 
-    private int magSize = 1;
+    public int magSize = 1;
 
     [SerializeField] [Tooltip("Maximum Possible Ammo that can be in the reserve clip")] 
     private int reserveAmmo = 1;
@@ -48,11 +48,11 @@ public class WeaponInfo : MonoBehaviour
     public float _reloadTimer = 1.0f; 
 
     [Range(0,50)][SerializeField] [Tooltip("Per-Axis Recoil")] 
-    private float RecoilX, AimRecoilX;
+    public float RecoilX, AimRecoilX;
     [Range(0,25)][SerializeField] [Tooltip("Per-Axis Recoil")] 
-    private float RecoilY, AimRecoilY;
+    public float RecoilY, AimRecoilY;
     [Range(0,10)][SerializeField] [Tooltip("Per-Axis Recoil")] 
-    private float RecoilZ, AimRecoilZ;
+    public float RecoilZ, AimRecoilZ;
     [Range(0,10)][SerializeField] [Tooltip("How fast the gun reaches the peak of it's recoil")] 
     private float snappiness;
     [Range(0,5)][SerializeField] [Tooltip("How fast the gun centres itself after a shot")] 

@@ -2,17 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeParameters : ScriptableObject
-{
-    //damage
-    //reload speed
-    //magazine size
 
-
-}
 
 public class AutomaticRifle : Gun
 {
+    public bool _IsAssaultRifle = false, _IsAutoPistol = false;
+    public override void WeaponUpgrades(int lvl)
+    {
+        if (_IsAssaultRifle)
+            switch (lvl)
+            {
+                case 1:
+                    GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.9f);
+                    break;
+                case 2:
+                    GetComponent<WeaponInfo>().magSize += 10;
+                    break;
+                case 3:
+                    GetComponent<WeaponInfo>().RecoilX *= 0.9f;
+                    GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                    break;
+
+            }
+        else if (_IsAutoPistol)
+            switch (lvl)
+            {
+                case 1:
+                    GetComponent<WeaponInfo>().RecoilX *= 0.9f;
+                    GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                    break;
+                case 2:
+                    GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.9f);
+                    break;
+                case 3:
+                    CritMultiplier *= 1.1f;
+                    break;
+
+            }
+    }
     private bool _IsShooting = false;
     // Start is called before the first frame update
     private void Awake()

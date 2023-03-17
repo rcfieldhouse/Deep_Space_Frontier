@@ -4,6 +4,41 @@ using UnityEngine;
 
 public class Shotgun : Gun
 {
+    public bool _IsSnakeShotgun = false, _IsShortyShotgun = false;
+    public override void WeaponUpgrades(int lvl)
+    {
+        if (_IsSnakeShotgun)
+            switch (lvl)
+            {
+                case 1:
+                    GetComponent<WeaponInfo>().magSize += 4;
+                    break;
+                case 2:
+                    ShotSpread *= 0.95f;
+                    break;
+                case 3:
+                    GetComponent<WeaponInfo>().RecoilX *= 0.9f;
+                    GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                    break;
+
+            }
+        else if(_IsShortyShotgun)
+            switch (lvl)
+            {
+                case 1:
+                    GetComponent<WeaponInfo>().RecoilX *= 0.9f;
+                    GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                    break;
+                case 2:
+                    WeaponRange *= 1.15f;
+                    break;
+                case 3:
+                   
+                    break;
+
+            }
+
+    }
     private Vector3 ShotgunSpread;
     public static float RandomGaussian(float minValue = 0.0f, float maxValue = 1.0f)
     {
