@@ -32,9 +32,17 @@ public class WeaponInfo : MonoBehaviour
     [SerializeField] [Tooltip("Ammo in the current Reserve")] 
     public int magSize = 1;
 
+   
+
     [SerializeField] [Tooltip("Maximum Possible Ammo that can be in the reserve clip")] 
     private int reserveAmmo = 1;
+    [Range(0, 2)]
+    [Tooltip("Time taken to Aim Down Sights")]
+    public float ADSTime = 0;
 
+    [Range(0, 2)]
+    [Tooltip("Time taken to Aim Down Sights")]
+    public float EquipTime = 0;
     [Range(0, 5)] [SerializeField] [Tooltip("Camera FOV Zoom Amount When Aiming Down Sight")] 
     private float AdsZoomScale=0;
        [Range(0, 5)] [SerializeField] [Tooltip("how close weapon is to camera")] 
@@ -47,9 +55,9 @@ public class WeaponInfo : MonoBehaviour
     [Range(0, 10)] [Tooltip("Amount of time to Reload Timer")] 
     public float _reloadTimer = 1.0f; 
 
-    [Range(0,50)][SerializeField] [Tooltip("Per-Axis Recoil")] 
+    [Range(0,20)][SerializeField] [Tooltip("Per-Axis Recoil")] 
     public float RecoilX, AimRecoilX;
-    [Range(0,25)][SerializeField] [Tooltip("Per-Axis Recoil")] 
+    [Range(0,20)][SerializeField] [Tooltip("Per-Axis Recoil")] 
     public float RecoilY, AimRecoilY;
     [Range(0,10)][SerializeField] [Tooltip("Per-Axis Recoil")] 
     public float RecoilZ, AimRecoilZ;

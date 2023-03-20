@@ -20,7 +20,6 @@ public class BaseCameraFovThang : MonoBehaviour
     }
     private void ListenForNewZoom(float num)
     {
-        Debug.Log(num);
         FOVChange = (BaseZoom) - num * 6;
     }
     private void ChangeFOV(bool var)

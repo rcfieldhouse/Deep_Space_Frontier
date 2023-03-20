@@ -12302,7 +12302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 797766033}
   - component: {fileID: 797766034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: holosight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12318,7 +12318,7 @@ Transform:
   m_GameObject: {fileID: 797766032}
   m_LocalRotation: {x: 0.50000006, y: 0.49999997, z: 0.50000006, w: 0.49999997}
   m_LocalPosition: {x: 0.004035904, y: 0, z: 0.0022000005}
-  m_LocalScale: {x: 0.00015, y: 0.00015, z: 0.00015}
+  m_LocalScale: {x: 0.0001, y: 0.0001, z: 0.0001}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4520725861043651195}
@@ -43535,7 +43535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -8.189911}
+  m_AnchoredPosition: {x: 0, y: -8.189941}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1578661293926204164
@@ -55453,6 +55453,8 @@ MonoBehaviour:
   maxAmmo: 40
   magSize: 2
   reserveAmmo: 12
+  ADSTime: 0.18
+  EquipTime: 0.23
   AdsZoomScale: 1
   WeaponAdsZoomScale: 1
   _reloadTimer: 1
@@ -87173,6 +87175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754d7aa8ce4a9f54da45db8e819c4391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponHolder: {fileID: 4520725862638450603}
+  ADSTime: 0
   PlayerInput: {fileID: 4520725862882063771}
 --- !u!1 &4520725861832906790
 GameObject:
@@ -103403,6 +103407,8 @@ MonoBehaviour:
   maxAmmo: 1
   magSize: 1
   reserveAmmo: 1
+  ADSTime: 0
+  EquipTime: 0
   AdsZoomScale: 0
   WeaponAdsZoomScale: 0
   _reloadTimer: 3
@@ -104512,6 +104518,8 @@ MonoBehaviour:
   maxAmmo: 80
   magSize: 6
   reserveAmmo: 80
+  ADSTime: 0
+  EquipTime: 0
   AdsZoomScale: 2.09
   WeaponAdsZoomScale: 1.35
   _reloadTimer: 1.4
@@ -104594,8 +104602,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520725862257447243}
-  m_LocalRotation: {x: 0.18138552, y: -0, z: -0, w: 0.98341215}
-  m_LocalPosition: {x: 0, y: 5.17, z: -8.650014}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.00000023841858, z: 0.000010251999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -105037,6 +105045,8 @@ MonoBehaviour:
   maxAmmo: 50
   magSize: 5
   reserveAmmo: 50
+  ADSTime: 0
+  EquipTime: 0
   AdsZoomScale: 5
   WeaponAdsZoomScale: 2.5
   _reloadTimer: 1
@@ -111061,6 +111071,8 @@ MonoBehaviour:
   maxAmmo: 250
   magSize: 30
   reserveAmmo: 150
+  ADSTime: 0.2
+  EquipTime: 0.53
   AdsZoomScale: 2
   WeaponAdsZoomScale: 1.5
   _reloadTimer: 1
@@ -126488,7 +126500,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520725862638450603}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0b137c1ce9f2aea41a1b30167aa1b87b, type: 2}
   m_CullingMode: 0
@@ -126514,6 +126526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4520725862638450592}
   isScoped: 0
+  IsEquipping: 0
   volumeProfile: {fileID: 11400000, guid: a958641cf8095a34dbae0fd4bb623d91, type: 2}
   _DepthOfField: {fileID: 0}
   PlayerInput: {fileID: 4520725862882063771}
@@ -133519,6 +133532,8 @@ MonoBehaviour:
   maxAmmo: 250
   magSize: 15
   reserveAmmo: 200
+  ADSTime: 0
+  EquipTime: 0
   AdsZoomScale: 1.52
   WeaponAdsZoomScale: 0.5
   _reloadTimer: 1.5
@@ -133595,7 +133610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4520725863101130650
 Transform:
   m_ObjectHideFlags: 0
@@ -133813,6 +133828,8 @@ MonoBehaviour:
   maxAmmo: 32
   magSize: 8
   reserveAmmo: 32
+  ADSTime: 0
+  EquipTime: 0
   AdsZoomScale: 1.31
   WeaponAdsZoomScale: 1.68
   _reloadTimer: 1
