@@ -18611,7 +18611,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143184733}
   m_LocalRotation: {x: 0.0149915535, y: 0.003909171, z: -0.61240333, w: 0.7903937}
-  m_LocalPosition: {x: -0.01431, y: -0.00422, z: -0.00782}
+  m_LocalPosition: {x: -0.01524, y: -0.00371, z: -0.00788}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -37613,14 +37613,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037756375}
-  m_LocalRotation: {x: 0.018231291, y: 0.013977621, z: -0.0699829, w: 0.9972837}
-  m_LocalPosition: {x: -0.00013, y: 0.01032, z: 0.00382}
+  m_LocalRotation: {x: 0.047781736, y: 0.8263569, z: 0.10767975, w: 0.550687}
+  m_LocalPosition: {x: 0.00012, y: 0.00824, z: 0.00438}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1143184734}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 2.196, y: 1.452, z: -8}
+  m_LocalEulerAnglesHint: {x: -7.2, y: 111.916, z: 11.486}
 --- !u!114 &2037756377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55471,6 +55471,7 @@ MonoBehaviour:
   _CanReload: 0
   _isReloading: 0
   tempTimer: 1
+  _IsPrimaryWeapon: 0
 --- !u!95 &4520725861187674673
 Animator:
   serializedVersion: 4
@@ -103425,6 +103426,7 @@ MonoBehaviour:
   _CanReload: 0
   _isReloading: 0
   tempTimer: 1
+  _IsPrimaryWeapon: 0
 --- !u!95 &4520725862064343691
 Animator:
   serializedVersion: 4
@@ -104361,7 +104363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520725862237307009}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.3, y: -0.06, z: 0.695}
+  m_LocalPosition: {x: 0.3, y: -0.0525, z: 0.57}
   m_LocalScale: {x: 0.178, y: 0.178, z: 0.178}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -104518,8 +104520,8 @@ MonoBehaviour:
   maxAmmo: 80
   magSize: 6
   reserveAmmo: 80
-  ADSTime: 0
-  EquipTime: 0
+  ADSTime: 0.11
+  EquipTime: 0.13
   AdsZoomScale: 2.09
   WeaponAdsZoomScale: 1.35
   _reloadTimer: 1.4
@@ -104536,6 +104538,7 @@ MonoBehaviour:
   _CanReload: 0
   _isReloading: 0
   tempTimer: 1
+  _IsPrimaryWeapon: 0
 --- !u!114 &130235973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105045,8 +105048,8 @@ MonoBehaviour:
   maxAmmo: 50
   magSize: 5
   reserveAmmo: 50
-  ADSTime: 0
-  EquipTime: 0
+  ADSTime: 0.69
+  EquipTime: 1
   AdsZoomScale: 5
   WeaponAdsZoomScale: 2.5
   _reloadTimer: 1
@@ -105063,6 +105066,7 @@ MonoBehaviour:
   _CanReload: 0
   _isReloading: 0
   tempTimer: 1
+  _IsPrimaryWeapon: 1
 --- !u!95 &4520725862314434009
 Animator:
   serializedVersion: 4
@@ -111089,6 +111093,7 @@ MonoBehaviour:
   _CanReload: 0
   _isReloading: 0
   tempTimer: 1
+  _IsPrimaryWeapon: 1
 --- !u!95 &4520725862436225209
 Animator:
   serializedVersion: 4
@@ -133532,8 +133537,8 @@ MonoBehaviour:
   maxAmmo: 250
   magSize: 15
   reserveAmmo: 200
-  ADSTime: 0
-  EquipTime: 0
+  ADSTime: 0.24
+  EquipTime: 0.33
   AdsZoomScale: 1.52
   WeaponAdsZoomScale: 0.5
   _reloadTimer: 1.5
@@ -133550,6 +133555,7 @@ MonoBehaviour:
   _CanReload: 0
   _isReloading: 0
   tempTimer: 1
+  _IsPrimaryWeapon: 0
 --- !u!114 &1959664530313096326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133610,7 +133616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4520725863101130650
 Transform:
   m_ObjectHideFlags: 0
@@ -133828,8 +133834,8 @@ MonoBehaviour:
   maxAmmo: 32
   magSize: 8
   reserveAmmo: 32
-  ADSTime: 0
-  EquipTime: 0
+  ADSTime: 0.29
+  EquipTime: 0.47
   AdsZoomScale: 1.31
   WeaponAdsZoomScale: 1.68
   _reloadTimer: 1
@@ -133846,6 +133852,7 @@ MonoBehaviour:
   _CanReload: 0
   _isReloading: 0
   tempTimer: 1
+  _IsPrimaryWeapon: 1
 --- !u!95 &4520725863101130651
 Animator:
   serializedVersion: 4

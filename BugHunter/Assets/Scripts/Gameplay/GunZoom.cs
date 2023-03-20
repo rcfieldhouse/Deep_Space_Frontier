@@ -25,6 +25,7 @@ public class GunZoom : MonoBehaviour
     {
         PlayerInput.ADS-= Zoom;
         WeaponSwap.BroadcastADSZoom -= SetZoom;
+        WeaponSwap.BroadcastChoice -= SetChoice;
     }
     // Update is called once per frame
     void Update()

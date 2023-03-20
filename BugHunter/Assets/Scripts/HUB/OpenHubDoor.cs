@@ -22,7 +22,7 @@ public class OpenHubDoor : MonoBehaviour
         if(other.tag == "Player")
         {
             animator.SetBool("isOpen", true);
-            Debug.Log("Player entered Trigger Animation should play now");
+         //   Debug.Log("Player entered Trigger Animation should play now");
         }
     }
 
@@ -31,7 +31,7 @@ public class OpenHubDoor : MonoBehaviour
         if(other.tag == "Player")
         {
             animator.SetBool("isOpen", false);
-            Debug.Log("Player Exited Trigger");
+           // Debug.Log("Player Exited Trigger");
         }
     }
 

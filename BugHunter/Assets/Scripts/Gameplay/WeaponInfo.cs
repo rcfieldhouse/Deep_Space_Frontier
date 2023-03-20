@@ -68,6 +68,7 @@ public class WeaponInfo : MonoBehaviour
     [HideInInspector] public bool IsPaused=false;
     private PlayerInput PlayerInput;
     public bool _CanShoot = true, _CanReload = false, _isReloading = false, tempTimer = true;
+    public bool _IsPrimaryWeapon = false;
     // Start is called before the first frame update
     void Awake()
     {       
