@@ -10,7 +10,7 @@ public class ReloadGun : MonoBehaviour
     private Animator gunAnimator;
     private bool Reloading = false;
     private PlayerInput PlayerInput;
-
+    public LeftHandReloadAnim ShotgunHandReload; 
 
     public bool GetIsReloading()
     {
@@ -38,7 +38,10 @@ public class ReloadGun : MonoBehaviour
         gunAnimator = gunHolder.WeaponArray[gunHolder.GetWeaponNum()].GetComponent<Animator>();
         if (gunAnimator != null && gunHolder.WeaponArray[gunHolder.GetWeaponNum()].GetComponent<WeaponInfo>().GetCanReload()==true)
         {
-            
+            if (gunHolder.WeaponArray[gunHolder.GetWeaponNum()].GetComponent<Shotgun>() != null && gunHolder.WeaponArray[gunHolder.GetWeaponNum()].GetComponent<WeaponInfo>()._IsPrimaryWeapon == true)
+                ShotgunHandReload.SetIsReloading(true);
+
+
             gunAnimator.SetBool("Reload", true);
             //gunAnimator.Play("Reload", 0, 0);
             Invoke(nameof(Wait), 0.1f);
