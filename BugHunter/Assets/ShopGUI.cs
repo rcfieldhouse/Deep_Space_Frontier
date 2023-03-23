@@ -157,6 +157,7 @@ public class ShopGUI : MonoBehaviour
             // grey out previous buttons and make them uninteractible 
             purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Image>().color = Color.gray;
             purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Button>().enabled = false;
+            CraftButton.SetActive(false);
         }
         // Level 2
         if (Level == 2)
@@ -171,6 +172,7 @@ public class ShopGUI : MonoBehaviour
             purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Image>().color = Color.gray;
             purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Image>().color = Color.gray;
             purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Button>().enabled = false;
+            CraftButton.SetActive(false);
         }
         // Level 3
         if (Level == 3)
@@ -189,7 +191,9 @@ public class ShopGUI : MonoBehaviour
             purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Image>().color = Color.gray;
             purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Image>().color = Color.gray;
             purchaseUpgradeParents[index].transform.GetChild(2).GetComponent<Image>().color = Color.gray;
-            purchaseUpgradeParents[index].transform.GetChild(2).GetComponent<Button>().enabled = false;
+            //These both disable the crafting button
+            //purchaseUpgradeParents[index].transform.GetChild(2).GetComponent<Button>().enabled = false;
+            CraftButton.SetActive(false);
         }
         EquipmentManager.transform.parent.GetComponentInChildren<WeaponSwap>().transform.GetChild(num).gameObject.SetActive(false);
 
@@ -210,7 +214,6 @@ public class ShopGUI : MonoBehaviour
         }
         else if (UpgradeArmour == false)
         {
-            CraftButton.SetActive(true);
             int num = 9;
             if (EquipmentManager.transform.parent.GetComponentInChildren<WeaponSwap>().transform.GetChild(0).gameObject.activeInHierarchy == false)
             {
