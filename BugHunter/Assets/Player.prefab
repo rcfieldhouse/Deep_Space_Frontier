@@ -43839,6 +43839,7 @@ MonoBehaviour:
   - {fileID: 996499895}
   - {fileID: 2138844240}
   - {fileID: 1304489906}
+  CraftButton: {fileID: 0}
 --- !u!1 &1578661293934518828
 GameObject:
   m_ObjectHideFlags: 0
@@ -127285,6 +127286,8 @@ GameObject:
   - component: {fileID: 4520725862762447156}
   - component: {fileID: 4520725862762447163}
   - component: {fileID: 1070676188}
+  - component: {fileID: 1728999327}
+  - component: {fileID: 1728999328}
   m_Layer: 0
   m_Name: CameraManager
   m_TagString: Untagged
@@ -127423,6 +127426,34 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1728999327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862762447162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad1757b01a19cc479466c25105c903a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponRange: 250
+  fpsCam: {fileID: 4520725862257447237}
+--- !u!114 &1728999328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862762447162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6819128a241b62642804c9ec24681b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera: {fileID: 4520725862257447237}
+  PlayerInput: {fileID: 4520725862882063771}
 --- !u!1 &4520725862801071497
 GameObject:
   m_ObjectHideFlags: 0
@@ -132688,7 +132719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb2e3c056f37cf4781a0b07eb00aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassSelection: 2
+  ClassSelection: 0
   ClassIcons: {fileID: 4520725862391307834}
 --- !u!114 &4520725862882063771
 MonoBehaviour:
@@ -132707,7 +132738,9 @@ MonoBehaviour:
   controller: {fileID: 4520725862882063770}
   Sensitivity: 0.604
   SniperSensitivityReduction: 0.25
+  AimAssistStrength: 0.5
   ADSWSniper: 1
+  AimAssist: 0
   MouseInput: {x: 0, y: 0}
   Dir: {x: 0, y: 0, z: 0}
   UserInterface: {fileID: 0}

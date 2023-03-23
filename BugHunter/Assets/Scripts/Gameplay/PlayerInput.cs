@@ -32,7 +32,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [Range(0, 1)] [SerializeField] private float Sensitivity = .5f;
     [Range(0, 1)] [SerializeField] private float SniperSensitivityReduction = 1.0f;
-    [HideInInspector] public bool ADSWSniper = false;
+    [Range(0, 1)] [SerializeField] private float AimAssistStrength = 1.0f;
+    [HideInInspector] public bool ADSWSniper = false,AimAssist = false;
     private Quaternion Direction;    
     public Vector2 MouseInput;
     private Vector2 KeyboardInput;
@@ -84,11 +85,16 @@ public class PlayerInput : MonoBehaviour
        MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2;
         if (ADSWSniper == true)
         {
-            Debug.Log("Called");
             MouseInput.x -= (1.0f - SniperSensitivityReduction) * Input.GetAxis("Mouse X") * Sensitivity * 2;
             MouseInput.y -= (1.0f - SniperSensitivityReduction) * Input.GetAxis("Mouse Y") * Sensitivity * 2;
         }
-           
+        if (AimAssist == true)
+        {
+            Debug.Log("Called");
+            MouseInput.x -= (AimAssistStrength) * Input.GetAxis("Mouse X") * Sensitivity * 2;
+            MouseInput.y -= (AimAssistStrength) * Input.GetAxis("Mouse Y") * Sensitivity * 2;
+        }
+
         if (Mathf.Abs(MouseInput.y) > 80) {
             MouseInput.y-= MouseInput.y-(80* (MouseInput.y / Mathf.Abs(MouseInput.y)));
         }
