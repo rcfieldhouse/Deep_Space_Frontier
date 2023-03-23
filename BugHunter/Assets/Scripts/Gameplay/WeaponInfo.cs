@@ -49,7 +49,7 @@ public class WeaponInfo : MonoBehaviour
     private float WeaponAdsZoomScale=0;
     public static Action<bool> maginfo,CanShoot;
 
-    [Range(0, 10)] [SerializeField] [Tooltip("Amount of time to Reload Timer")] 
+    [Range(0, 10)] [HideInInspector] [Tooltip("Amount of time to Reload Timer")] 
     public WaitForSeconds ReloadTimer= new WaitForSeconds(1.0f);
 
     [Range(0, 10)] [Tooltip("Amount of time to Reload Timer")] 
@@ -69,6 +69,7 @@ public class WeaponInfo : MonoBehaviour
     private PlayerInput PlayerInput;
     public bool _CanShoot = true, _CanReload = false, _isReloading = false, tempTimer = true;
     public bool _IsPrimaryWeapon = false;
+    private bool CancelReload;
     // Start is called before the first frame update
     void Awake()
     {       
@@ -168,18 +169,50 @@ public class WeaponInfo : MonoBehaviour
     {
         return AdsZoomScale;
     }
+   
     public void Reload()
     {
+       if(GetComponent<Shotgun>() != null && _IsPrimaryWeapon == true){
 
-        if (_CanReload == true)
+            StartCoroutine(ReloadShotgun());
+        }
+       else if (_CanReload == true)
         {          
             _CanShoot = false;
             if (gameObject.activeInHierarchy == true)
-                StartCoroutine(SetBulletCount(true));
-
-            
+                StartCoroutine(SetBulletCount(true));    
         }
        
+    }
+    public IEnumerator ReloadShotgun()
+    {
+        _isReloading = true;
+        _CanReload = false;
+        _CanShoot = false;
+        gameObject.GetComponentInParent<ReloadGun>().SetIsReloading(true);
+        yield return ReloadTimer;
+
+            if (reserveAmmo > 1&& ammoInMag < magSize)
+            {
+                reserveAmmo -=1;
+                ammoInMag += 1;
+            }
+        _CanShoot = true;
+        if (ammoInMag < magSize)
+        {
+            StopAllCoroutines();
+            StartCoroutine(ReloadShotgun());           
+        }
+        else { 
+            GetComponentInChildren<LeftHandReloadAnim>().SetIsReloading(false); 
+            GetComponent<Animator>().SetBool("Reload", false);
+            GetComponent<Animator>().SetBool("DoneReloading", true);
+        }
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Animator>().SetBool("DoneReloading", false);
+        gameObject.GetComponentInParent<ReloadGun>().SetIsReloading(false);
+        _isReloading = false;
+
     }
     // Update is called once per frame
     //alter mag to subtract a bullet or fill it full on reload 

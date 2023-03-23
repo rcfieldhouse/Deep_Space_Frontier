@@ -6,7 +6,8 @@ public class LeftHandReloadAnim : MonoBehaviour
 {
     public GameObject Shell;
     public Transform LoadPos,CatchPos;
-    private Transform OriginalPos;
+    public Vector3 OriginalPos;
+    public Quaternion OriginalRot;
     private float Timer=0.5f, Journey=0.0f;
     private bool Reloading = false,ReloadToggle=true;
     public void SetIsReloading(bool var)
@@ -16,8 +17,10 @@ public class LeftHandReloadAnim : MonoBehaviour
     }
     private void Awake()
     {
-        OriginalPos = transform;
+        Timer = GetComponentInParent<WeaponInfo>()._reloadTimer/2.0f;
+        Invoke(nameof(GetHandPos), 0.0f);
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -40,15 +43,19 @@ public class LeftHandReloadAnim : MonoBehaviour
           
         if (Reloading==true)
         {
-           Debug.Log(Journey/Timer);
             transform.position = Vector3.Lerp(CatchPos.position, LoadPos.position, Journey / Timer);
             transform.rotation = Quaternion.Lerp(CatchPos.rotation, LoadPos.rotation, Journey / Timer);
         } 
         else
         {
-            transform.position = OriginalPos.position;
-            transform.rotation = OriginalPos.rotation;
+            transform.localPosition = OriginalPos;
+            transform.localRotation = OriginalRot;
             Shell.SetActive(false);
         }
+    }
+    void GetHandPos()
+    {
+        OriginalPos = transform.localPosition;
+        OriginalRot = transform.localRotation;
     }
 }
