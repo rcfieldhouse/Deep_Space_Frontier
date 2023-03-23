@@ -136,6 +136,11 @@ public class ZoomIn : MonoBehaviour
             TransitionPeriodTime += Time.deltaTime * 2;
             return;
         }
+        else
+        {
+            transform.localRotation = Quaternion.identity;
+              transform.localPosition = Vector3.zero;
+        }
 
         if (ADSTime == 0.0f||IsEquipping) return;
         if (isScoped)
