@@ -47,6 +47,7 @@ public class ShopGUI : MonoBehaviour
     public Image[] purchaseUpgradeParents;
     public EquipmentManager EquipmentManager;
     public GameObject[] CostValues;
+    public GameObject CraftButton;
     private void Start()
     {
 
@@ -209,6 +210,7 @@ public class ShopGUI : MonoBehaviour
         }
         else if (UpgradeArmour == false)
         {
+            CraftButton.SetActive(true);
             int num = 9;
             if (EquipmentManager.transform.parent.GetComponentInChildren<WeaponSwap>().transform.GetChild(0).gameObject.activeInHierarchy == false)
             {
@@ -224,8 +226,6 @@ public class ShopGUI : MonoBehaviour
 
             for (int i = 0; i < 3; i++)
                 playerInventory.GetInventory(IndexOfMats[i] + 1).DecrementLoot(WeaponUpgrades[WhichWeapon+Level].cost[IndexOfMats[i]]);
-           
-          
 
             EquipmentManager.transform.parent.GetComponentInChildren<WeaponSwap>().transform.GetChild(num).gameObject.SetActive(false);
             PurchaseWeaponUpgrade();
