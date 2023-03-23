@@ -29,13 +29,14 @@ public class CharacterController : MonoBehaviour
 
     private void Start()
     {
-        disableCams(false);
-        CameraMain.SetActive(true);
+     
      
     }
     private void Awake()
     {
-        
+        disableCams(false);
+        CameraMain.SetActive(true);
+
         Player = GetComponent<PlayerInput>();
         Rigidbody = GetComponent<Rigidbody>();
         // PlayerInput.UseAbility += Dodge;
@@ -44,11 +45,19 @@ public class CharacterController : MonoBehaviour
         Player.Move += Move;
         coll = GetComponent<CapsuleCollider>();
         //this line sets default cam to main
- 
-        disableCams(false);
-        CameraMain.SetActive(true);
+        Dodge.Dodged += UseDodge;
 
+        CameraMain.SetActive(true);
+        disableCams(false);
+        CameraDodge.SetActive(false);
+        Invoke(nameof(BandAidFix), 0.5f);
         Invoke(nameof(GetHealthSys),0.5f);
+    }
+    void BandAidFix()
+    {
+        CameraMain.SetActive(true);
+        disableCams(false);
+        CameraDodge.SetActive(false);
     }
         void GetHealthSys()
     {
@@ -59,9 +68,15 @@ public class CharacterController : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Hurt");
     }
-
+    void UseDodge(float num)
+    {
+        Debug.Log("usedCamera       ");
+        CameraDodge.SetActive(true);
+        CameraMain.SetActive(false);
+    }
     private void OnDestroy()
     {
+        Dodge.Dodged -= UseDodge;
         //Health.OnTakeDamage -= HandleDamage;
         Player.Crouching -= SwitchCamCrouch;
         Player.JumpAction -= Jump;
@@ -114,7 +129,8 @@ public class CharacterController : MonoBehaviour
   
   
     public void SwitchLadderCam(bool var)
-    { 
+    {
+     
         disableCams(var);
         CameraDodge.SetActive(var);
     }

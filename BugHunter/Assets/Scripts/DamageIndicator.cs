@@ -68,7 +68,7 @@ public class DamageIndicator : MonoBehaviour
     {
         while (num<1.0f)
         {
-            Debug.Log(Vector3.zero + (offset + num) * Vector3.up);
+            //Debug.Log(Vector3.zero + (offset + num) * Vector3.up);
             num += 0.01f;
             yield return new WaitForSeconds(0.01f);
             if (text)

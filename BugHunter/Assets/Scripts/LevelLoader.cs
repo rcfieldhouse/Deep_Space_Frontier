@@ -8,4 +8,11 @@ public class LevelLoader : MonoBehaviour
     {
         GameManager.instance.SceneChange(level);
     }
+    public void LoadLevelWCharacter(string level)
+    {
+        ClassType ClassSelect;
+        ClassSelect = transform.parent.parent.GetChild(0).GetComponent<ClassCreator>().GetClass();
+        GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().SetClass(ClassSelect);
+        GameManager.instance.SceneChange(level);
+    }
 }

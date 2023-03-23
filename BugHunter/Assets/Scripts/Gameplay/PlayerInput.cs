@@ -37,7 +37,7 @@ public class PlayerInput : MonoBehaviour
     public Vector2 MouseInput;
     private Vector2 KeyboardInput;
     private bool UIToggle = true;
-    public GameObject GenshinCam;
+    //public GameObject GenshinCam;
     private float MouseScroll=0.0f;
 
     public Vector3 Dir;
@@ -144,7 +144,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            GenshinCam.SetActive(!GenshinCam.activeInHierarchy);
+        //    GenshinCam.SetActive(!GenshinCam.activeInHierarchy);
         }
             
 

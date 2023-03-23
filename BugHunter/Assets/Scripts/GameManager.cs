@@ -28,18 +28,19 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        textbox = GameObject.Find("Messages").GetComponent<TextMeshProUGUI>();
+       
 
         DontDestroyOnLoad(this.gameObject);
+      //  textbox = GameObject.Find("Messages").GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()
     {
-        if (messages.Count > 0)
-        {
-            textbox.text += messages.Dequeue();
-
-        }
+       // if (messages.Count > 0)
+       // {
+       //     textbox.text += messages.Dequeue();
+       //
+       // }
         
 
     }
@@ -99,7 +100,7 @@ public class GameManager : MonoBehaviour
             loadingBarFill.fillAmount = progressValue;
             yield return null;
         }
-      
+        loadingScreen.SetActive(false);
     }
 
     internal float WrapEulerAngles(float rotation)
