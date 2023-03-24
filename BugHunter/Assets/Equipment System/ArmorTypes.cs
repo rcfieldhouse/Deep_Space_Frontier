@@ -141,10 +141,10 @@ public class TickArmor : Armor
     }
 }
 
-public class ZephryArmor : Armor
+public class ZephyrArmor : Armor
 {
     public EquipType Equip = EquipType.ARMOR;
-    public ZephryArmor()
+    public ZephyrArmor()
     {
         this.itemName = "Zephyr Armor";
     }

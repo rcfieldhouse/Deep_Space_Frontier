@@ -6,13 +6,23 @@ using UnityEngine;
 /// TODO: Make a Weapon/Augment Only version of the manager
 /// perhaps integrate with current gun system? 
 /// </summary>
-public class EquipmentManager : MonoBehaviour
+/// 
+public enum Armors
+{
+    None,
+    SlimeArmor,
+    BomberArmor,
+    TickArmor,
+    ZephyrArmor
+}
+public class EquipmentManager : MonoBehaviour, IDataPersistence
 {
     public Armor currentEquip;
+
     public SlimeArmor slime_armor;
     public BomberArmor BomberArmor;
     public TickArmor TickArmor;
-    public ZephryArmor ZephryArmor;
+    public ZephyrArmor ZephryArmor;
 
     public bool ValidateEquip(Armor equip)
     {
@@ -25,7 +35,7 @@ public class EquipmentManager : MonoBehaviour
         slime_armor = new SlimeArmor();
         BomberArmor = new BomberArmor();
         TickArmor = new TickArmor();
-        ZephryArmor = new ZephryArmor();
+        ZephryArmor = new ZephyrArmor();
 
 
         currentEquip = slime_armor;
@@ -65,4 +75,51 @@ public class EquipmentManager : MonoBehaviour
         Debug.LogError("Cannot Equip this right now!");
     }
 
+    public void LoadData(GameData data)
+    {
+        if (data.CurrentArmor == 0)
+        {
+            currentEquip = new StandardArmor();
+        }
+
+        else if (data.CurrentArmor == 1)
+        { 
+            currentEquip = new SlimeArmor();
+        }
+
+        else if (data.CurrentArmor == 2)
+        { 
+            currentEquip = new BomberArmor();
+        }
+
+        else if (data.CurrentArmor == 3)
+        { 
+            currentEquip = new TickArmor();
+        }
+
+        else if (data.CurrentArmor == 4)
+        { 
+            currentEquip = new ZephyrArmor();
+        }
+
+
+    }
+
+    public void SaveData(GameData data)
+    {
+        if (currentEquip.itemName == "Standard Armor")
+            data.CurrentArmor = 0;
+
+        else if (currentEquip.itemName == "Slime Armor")
+            data.CurrentArmor = 1;
+
+        else if (currentEquip.itemName == "Bomber Armor")
+            data.CurrentArmor = 2;
+
+        else if (currentEquip.itemName == "Tick Armor")
+            data.CurrentArmor = 3;
+
+        else if (currentEquip.itemName == "Zephyr Armor")
+            data.CurrentArmor = 4;
+    }
 }
