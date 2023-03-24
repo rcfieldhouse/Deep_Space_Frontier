@@ -6,6 +6,8 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
 {
     public GameObject Player;
     private int ChoiceArmour=0;
+    public GameObject EquipPopup;
+    public GameObject EquipButton;
     // UI Parents for each class's primary and secondary weapons
     public GameObject AssaultWeaponUI, EngineerWeaponUI, SniperWeaponUI, ArmorDisplay, WeaponDisplay;
     // UI Parents for each class Upgrades
@@ -51,19 +53,35 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
         {
             case 0:
                 if (Player.GetComponent<EquipmentManager>().slime_armor.isEquippable == true)
+                {
                     Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().slime_armor);
+                    //Enable Popup Message
+                    EquipPopup.SetActive(true);
+                }
                 break;
             case 1:
                 if (Player.GetComponent<EquipmentManager>().TickArmor.isEquippable == true)
+                {
                     Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().TickArmor);
+                    //Enable Popup Message
+                    EquipPopup.SetActive(true);
+                }
                 break;
             case 2:
                 if (Player.GetComponent<EquipmentManager>().ZephryArmor.isEquippable == true)
+                {
                     Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().ZephryArmor);
+                    //Enable Popup Message
+                    EquipPopup.SetActive(true);
+                }
                 break;
             case 3:
                 if (Player.GetComponent<EquipmentManager>().BomberArmor.isEquippable == true)
+                {
                     Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().BomberArmor);
+                    //Enable Popup Message
+                    EquipPopup.SetActive(true);
+                }
                 break;
         }
     }
@@ -89,5 +107,13 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
     {
         ArmorDisplay.SetActive(false);
         WeaponDisplay.SetActive(true);
+    }
+
+    public void ButtonOnMouse()
+    {
+        Vector3 MousePos = Input.mousePosition;
+
+        EquipButton.SetActive(true);
+        EquipButton.transform.position = MousePos;
     }
 }

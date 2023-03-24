@@ -123,7 +123,7 @@ public class TickArmor : Armor
     public override void Enter(GameObject requester)
     {
         CharacterController playerControl = requester.GetComponent<CharacterController>();
-        playerControl.ArmourSpeedIncrease = 1.05f;
+        playerControl.ArmourSpeedIncrease = 1.10f;
         //TODO: Make this work for playerSpeed
        // playerControl.movespeed;
     }
@@ -152,7 +152,7 @@ public class ZephryArmor : Armor
     public override void Enter(GameObject requester)
     {
         CharacterController playerControl = requester.GetComponent<CharacterController>();
-        playerControl.ArmourSpeedIncrease = 1.1f;
+        playerControl.ArmourSpeedIncrease = 1.30f;
     }
     public override int Execute(GameObject requester, int damageAmount)
     {
