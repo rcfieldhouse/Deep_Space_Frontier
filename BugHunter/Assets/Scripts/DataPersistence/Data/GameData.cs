@@ -23,6 +23,8 @@ public class GameData
     public int WeaponLevel;
     public Vector3 playerWaypoint;
 
+    public int CurrentArmor;
+
 
 
     // Values found in this constructor represent initial values for a new save-state
@@ -36,5 +38,6 @@ public class GameData
         this.playerLightMultiplier = 1;
         this.deathCount = 0;
         this.playerWaypoint = new Vector3(0, 0, 0);
+        this.CurrentArmor = 0;
     }
 }
