@@ -34,6 +34,7 @@ public class SlimeBounce : MonoBehaviour
         if (_IsAttacking == false&&GetComponentInParent<Slime>()._IsHitStunned==false)
         {
             GetComponent<Rigidbody>().velocity = Vector3.up * JumpHeight;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Slime_Jump");
             Var = !Var;
             GetComponentInParent<AI>().AI_Animator.SetBool("_IsMoving", Var);
             if (Dead == true)

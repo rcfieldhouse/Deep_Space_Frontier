@@ -39,22 +39,20 @@ public class LootHolder : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
-        int i = 0;
-        foreach (Loot loot in Inventory)
+        for (int i = 0; i<Inventory.Count; i++)
         {
             Debug.Log(i);
-            loot.SetQuantity(data.itemQuantity[i]);
+            Inventory[i].SetQuantity(data.itemQuantity[i]);
             i++;
         }
     }
 
     public void SaveData(GameData data)
     {
-        int i = 0;
-        foreach(Loot loot in Inventory)
+
+        for (int i = 0; i < Inventory.Count; i++)
         {
-            data.itemQuantity[i] = loot.Quantity;
-            i++;
+            data.itemQuantity[i] = Inventory[i].Quantity;
         }
         
     }

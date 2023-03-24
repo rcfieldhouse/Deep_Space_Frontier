@@ -17,6 +17,7 @@ public class Slime : AI
               
                
                 AI_Animator.SetBool("_IsAttacking", true);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/SlimeAttack");
                 Target.GetComponent<HealthSystem>().ModifyHealth(gameObject, Attack_1_Damage);
                 HasAttacked = true;
                 CanAttack = false;

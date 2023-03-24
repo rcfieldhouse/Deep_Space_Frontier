@@ -20406,8 +20406,7 @@ GameObject:
   - component: {fileID: 3971938811333512448}
   - component: {fileID: 3971938811333512449}
   - component: {fileID: 3971938811333512462}
-  - component: {fileID: 355220950792457727}
-  - component: {fileID: 8348976711206794192}
+  - component: {fileID: 1859093886}
   m_Layer: 0
   m_Name: tick
   m_TagString: Untagged
@@ -20509,10 +20508,17 @@ MonoBehaviour:
     m_Bits: 128
   WalkPointRange: 11.1
   WalkSpeed: 12
+  DeathSound:
+    Guid:
+      Data1: -983226715
+      Data2: 1205061460
+      Data3: 1929075873
+      Data4: 1007328216
+    Path: event:/Creature/Tick
   VenomDamageTime: 4
   VenomDamageInterval: 1
   VenomDamage: -5
---- !u!114 &355220950792457727
+--- !u!114 &1859093886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20533,45 +20539,15 @@ MonoBehaviour:
       Data4: 1007328216
     Path: event:/Creature/Tick
   Event: 
-  PlayEvent: 2
+  PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &8348976711206794192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4347374286788319162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1646163411
-      Data2: 1118735739
-      Data3: 1035872665
-      Data4: -1906767279
-    Path: event:/Creature/TickAttack
-  Event: 
-  PlayEvent: 0
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideAttenuation: 1
+  OverrideMinDistance: 9.8
+  OverrideMaxDistance: 90
 --- !u!1 &4428801412591366225
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8291640093700916772}
   - component: {fileID: 3392772244121912975}
   - component: {fileID: 73043935274597779}
+  - component: {fileID: 4142869861113184608}
   m_Layer: 0
   m_Name: ThornProjectile 1
   m_TagString: Untagged
@@ -127,3 +128,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.009054971, y: 0.00736733, z: 0.021460326}
   m_Center: {x: 0.00016291182, y: 0.0000782965, z: -0.00073016516}
+--- !u!114 &4142869861113184608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5085973701434334321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 28787824
+      Data2: 1234166972
+      Data3: 1990365115
+      Data4: -186784564
+    Path: event:/Creature/Zephyr
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 9.8
+  OverrideMaxDistance: 90

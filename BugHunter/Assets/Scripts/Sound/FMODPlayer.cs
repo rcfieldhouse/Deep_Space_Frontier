@@ -48,8 +48,6 @@ public class FMODPlayer : MonoBehaviour
 
     private float volume;
 
-    public FMODUnity.EventReference PlayerStateEvent;
-
 
     void Awake()
     {
@@ -73,9 +71,9 @@ public class FMODPlayer : MonoBehaviour
         Ambience.start();
         Ambience.release();
 
-        Music.start();
-        Music.release();
-        Intensity(1);
+        //Music.start();
+        //Music.release();
+        //Intensity(1);
     }
 
     private void Update()

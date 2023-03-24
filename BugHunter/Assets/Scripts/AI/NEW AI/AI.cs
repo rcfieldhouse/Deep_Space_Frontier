@@ -64,6 +64,8 @@ public abstract class AI : MonoBehaviour
     private Material[] cachedMaterials;
     private Renderer Renderer;
 
+    FMODUnity.StudioEventEmitter DeathSound;
+
     #region MonoBehaviour
     public void Awake()
     {
@@ -75,6 +77,8 @@ public abstract class AI : MonoBehaviour
         MeshRenderer = GetComponentInChildren<MeshRenderer>();
         SkinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         Renderer = GetComponentInChildren<Renderer>();
+
+        DeathSound = GetComponent<FMODUnity.StudioEventEmitter>();
 
         cachedMaterials = Renderer.materials;
 
@@ -187,11 +191,14 @@ public abstract class AI : MonoBehaviour
     }
     public void HandleObjectDeath(Transform context)
     {
-        
+        DeathSound.Play();
+
         if (GetComponent<Tick>())
         {           
             GetComponentInChildren<BoxCollider>().enabled = false;
             GetComponentInChildren<SphereCollider>().enabled = false;
+            
+            Debug.Log("boop");
         }
         if (GetComponent<DreadBomber>())
         {
@@ -201,6 +208,10 @@ public abstract class AI : MonoBehaviour
         if (GetComponent<Slime>())
         {
             GetComponentInChildren<CapsuleCollider>().enabled = false;
+        }
+        if (GetComponent<Beetle>())
+        {
+
         }
         StartCoroutine(DissolveMeshEffect());
 
@@ -315,8 +326,7 @@ public abstract class AI : MonoBehaviour
          
             Serpentine = Random.Range(-EvasionIntensity, EvasionIntensity);
             StartEvasionLocation = transform.position;
-            WalkPointSet = true;
-            Debug.Log("tried to set");
+            WalkPointSet = true;    
             NavAgent.SetDestination(transform.position + WalkPoint + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
         }
         DistanceTravelled = transform.position - StartEvasionLocation;

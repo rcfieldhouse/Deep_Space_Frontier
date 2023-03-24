@@ -4174,8 +4174,7 @@ GameObject:
   - component: {fileID: 6631794320303132433}
   - component: {fileID: 6631794320303132438}
   - component: {fileID: 6631794320303132439}
-  - component: {fileID: 48211635880702040}
-  - component: {fileID: 2670236977338112443}
+  - component: {fileID: 1156703974071501906}
   m_Layer: 0
   m_Name: Zephyr
   m_TagString: Untagged
@@ -4279,7 +4278,7 @@ NavMeshAgent:
   m_BaseOffset: 6
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &48211635880702040
+--- !u!114 &1156703974071501906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4300,45 +4299,15 @@ MonoBehaviour:
       Data4: 72517912
     Path: event:/Creature/ZephyrDeath
   Event: 
-  PlayEvent: 2
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 1
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &2670236977338112443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6287884213789087147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 28787824
-      Data2: 1234166972
-      Data3: 1990365115
-      Data4: -186784564
-    Path: event:/Creature/Zephyr
-  Event: 
   PlayEvent: 0
-  StopEvent: 2
+  StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: 9.8
+  OverrideMaxDistance: 90
 --- !u!1 &6308377981653803813
 GameObject:
   m_ObjectHideFlags: 0
