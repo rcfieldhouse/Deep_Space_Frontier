@@ -15,4 +15,15 @@ public class AmmoPickUp : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            WeaponInfo info = collision.transform.parent.GetComponentInChildren<WeaponInfo>();
+            if (info.GetMaxBullets() * 0.25 > 1) info.SetReserveAmmo(info.GetReserveAmmo() + (int)(info.GetMaxBullets() * 0.25));
+            else info.SetReserveAmmo(info.GetReserveAmmo() + 1);
+
+            Destroy(gameObject);
+        }
+    }
 }

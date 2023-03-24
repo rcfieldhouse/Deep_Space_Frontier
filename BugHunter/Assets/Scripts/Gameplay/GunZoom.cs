@@ -10,9 +10,11 @@ public class GunZoom : MonoBehaviour
     private bool isADS = false;
     public float ADSTime = 0.0f;
     public PlayerInput PlayerInput;
+    private bool Running = false;
     // Start is called before the first frame update
     void Awake()
     {
+        PlayerInput.Sprinting += SetRunning;
         PlayerInput.ADS += Zoom;    
         WeaponSwap.BroadcastADSZoom += SetZoom;
         WeaponSwap.BroadcastChoice += SetChoice;
@@ -23,6 +25,7 @@ public class GunZoom : MonoBehaviour
    
     private void OnDestroy()
     {
+        PlayerInput.Sprinting -= SetRunning;
         PlayerInput.ADS-= Zoom;
         WeaponSwap.BroadcastADSZoom -= SetZoom;
         WeaponSwap.BroadcastChoice -= SetChoice;
@@ -31,7 +34,7 @@ public class GunZoom : MonoBehaviour
     void Update()
     {
 
-        if (ADSTime == 0.0f) return;
+        if (ADSTime == 0.0f||Running) return;
         if (isADS)
             iterator += Time.deltaTime;
         else if (!isADS)
@@ -44,9 +47,10 @@ public class GunZoom : MonoBehaviour
 
 
         Camera.fieldOfView = Mathf.Lerp(BaseZoom, ScopedZoom, iterator/ ADSTime);
-     
-       
-         
+    }
+    public void SetRunning(bool var)
+    {
+        Running = var;
     }
    private void SetChoice(int choice)
     {

@@ -142,7 +142,7 @@ public class ZoomIn : MonoBehaviour
               transform.localPosition = Vector3.zero;
         }
 
-        if (ADSTime == 0.0f||IsEquipping) return;
+        if (ADSTime == 0.0f||IsEquipping|| IsRunning) return;
         if (isScoped)
            ScopedJourney+=Time.deltaTime;
         else if (!isScoped)

@@ -46,7 +46,6 @@ public class ShootableObject : MonoBehaviour
             Debug.Log("Handle Object Death called from " + context.name);
         //create our broken object and reparent it
         GameObject newObject = Instantiate(brokenPrefab,transform.position, transform.rotation);
-        newObject.transform.parent = context.transform.parent;
 
         int index = 0;
         //iterate through children and apply a force
@@ -74,7 +73,7 @@ public class ShootableObject : MonoBehaviour
         }
         if (_CanDropLoot == true)
         {
-            LootSpawner.instance.SprayLoot(context.transform);
+            LootSpawner.instance.SprayLoot(transform);
             LootSpawner.instance.SprayLoot(transform);
             LootSpawner.instance.SprayLoot(transform);
             LootSpawner.instance.SprayLoot(transform);

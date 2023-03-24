@@ -39,17 +39,16 @@ public class MaterialDrop : MonoBehaviour
     private void Awake()
     {
         Health = GetComponent<HealthSystem>();
-        Health.OnObjectDeath += Kaboom;
+        Health.OnObjectDeathT += Kaboom;
     }
     private void OnDisable()
     {
-        Health.OnObjectDeath -= Kaboom;
+        Health.OnObjectDeathT -= Kaboom;
     }
     // Start is called before the first frame update
-    private void Kaboom(GameObject context)
+    private void Kaboom(Transform context)
     {
-        if (context == this.gameObject)
-        {
+       
             if (RandomDrop == false)
             {
                 LootSpawner.instance.DropMaterials(transform, (int)Enemy + (int)rarity);
@@ -63,7 +62,7 @@ public class MaterialDrop : MonoBehaviour
             //checks if the script is attached to any ai 
            if(GetComponentInParent<AI>()==null)
             Destroy(gameObject);
-        }
+       
     }
 
     private void DoRandomDrop()

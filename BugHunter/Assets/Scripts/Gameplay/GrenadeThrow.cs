@@ -93,9 +93,12 @@ public class GrenadeThrow : MonoBehaviour
    
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<HealthSystem>())
+        if(other.gameObject.GetComponent<HealthSystem>()&&other.tag!="Player")
         other.gameObject.GetComponentInParent<HealthSystem>().ModifyHealth(transform,-GrenadeDamage);
-       
+        if (other.gameObject.GetComponent<HealthSystem>() && other.tag == "Player")
+            other.gameObject.GetComponentInParent<HealthSystem>().ModifyHealth( -GrenadeDamage);
+
+
     }
     // function for spawning the grenade VFX on it's current position
     public void SpawnGrenadeVFX()
