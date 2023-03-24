@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6922793697723135513, guid: 5bfaa761d98a72e43a0249e8ce5d57c9, type: 3}
+  - {fileID: 2100000, guid: 618f7ef7fa0da614690c9bf63f628474, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1405222456444216923}
   - component: {fileID: 7037201402214480359}
   - component: {fileID: 2958292556900719807}
+  - component: {fileID: 147365583}
   m_Layer: 0
   m_Name: vendingmachine
   m_TagString: Untagged
@@ -170,6 +171,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &147365583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2687197861964607971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03998604, y: 0.031737655, z: 0.0666461}
+  m_Center: {x: -0.00058778474, y: 0.0059314985, z: 0.03330744}
 --- !u!1 &5729432568431014993
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 5729432568431014993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 977.5056, y: -35.075535, z: 843.7095}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.87627, y: 0.87627, z: 0.2567909}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3529103794623746327}

@@ -33,10 +33,12 @@ public class LootHolder : MonoBehaviour, IDataPersistence
 
         Inventory[index].IncrementLoot(amount);
     }
+
     public Loot GetInventory(int index)
     {
         return Inventory[index];
     }
+
     public void LoadData(GameData data)
     {
         for (int i = 0; i<Inventory.Count; i++)

@@ -27,7 +27,7 @@ public class AimAssist : MonoBehaviour
 
         if (Physics.Raycast(RayOrigin, Camera.transform.forward, out Hit, 250)&& Hit.transform.tag == "Enemy"&&isAim)
         {
-                Debug.Log(Hit.transform.tag);
+            //Debug.Log(Hit.transform.tag);
             PlayerInput.AimAssist = true;
             return;
         }

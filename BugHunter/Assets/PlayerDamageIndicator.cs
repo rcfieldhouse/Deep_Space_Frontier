@@ -41,7 +41,6 @@ public class PlayerDamageIndicator : MonoBehaviour
             Vignette.intensity.Override(VignetteIntensity);
         }
         Vignette.intensity.Override(0.0f);
-        Debug.Log("finished effect");
     }
     public void SetEnvenomed(bool var)
     {

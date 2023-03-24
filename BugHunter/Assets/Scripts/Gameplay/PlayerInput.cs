@@ -90,7 +90,6 @@ public class PlayerInput : MonoBehaviour
         }
         if (AimAssist == true)
         {
-            Debug.Log("Called");
             MouseInput.x -= (AimAssistStrength) * Input.GetAxis("Mouse X") * Sensitivity * 2;
             MouseInput.y -= (AimAssistStrength) * Input.GetAxis("Mouse Y") * Sensitivity * 2;
         }
