@@ -50,7 +50,12 @@ public class SniperRifle : Gun
             Vector3 RayOrigin = Camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
             RaycastHit Hit;
 
-            StartCoroutine(ShotEffect());
+
+             GameObject Shell = Instantiate(AmmoCasingPrefab);
+             Shell.transform.position = CasingEjectPoint.position;
+             Shell.GetComponent<Rigidbody>().AddForce(CasingEjectPoint.transform.rotation * Vector3.right * 10.0f, ForceMode.Impulse);
+
+        StartCoroutine(ShotEffect());
             if (Physics.Raycast(RayOrigin, Camera.transform.forward, out Hit, WeaponRange))
             {
                 //Damage

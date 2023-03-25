@@ -68,6 +68,9 @@ public class Shotgun : Gun
         if (info.GetCanShoot() == false|| gameObject.activeInHierarchy == false||info._isReloading==true)
             return;
 
+        GameObject Shell = Instantiate(AmmoCasingPrefab);
+        Shell.transform.position = CasingEjectPoint.position;
+        Shell.GetComponent<Rigidbody>().AddForce(Vector3.right, ForceMode.Impulse);
         for (int i = 2; i <= 23; i += 2)
         {
             LazerLine.SetPosition(i, GunEnd.position);

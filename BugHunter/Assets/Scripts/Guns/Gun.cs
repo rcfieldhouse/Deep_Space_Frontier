@@ -13,6 +13,8 @@ public abstract class Gun : MonoBehaviour
     [Range(0, 3)] public float CritMultiplier = 1.0f;
     [Range(0, 1)] public float ADS_Accuracy;
     public Vector2 ShotSpread;
+    public Transform CasingEjectPoint;
+    public GameObject AmmoCasingPrefab;
     [HideInInspector] public WeaponInfo info;
     [HideInInspector] public Transform GunEnd;
     [HideInInspector] public LineRenderer LazerLine;
