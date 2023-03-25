@@ -106209,6 +106209,7 @@ GameObject:
   - component: {fileID: 280035010}
   - component: {fileID: 300314204}
   - component: {fileID: 6445963995071136091}
+  - component: {fileID: 8271153383885782933}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -106431,6 +106432,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 4520725862257447243}
 --- !u!114 &6445963995071136091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862257447243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 4520725862257447243}
+--- !u!114 &8271153383885782933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128230,6 +128244,7 @@ GameObject:
   - component: {fileID: 4520725862677166029}
   - component: {fileID: 8588621977256270040}
   - component: {fileID: 7328524510375528255}
+  - component: {fileID: 397438801384372717}
   m_Layer: 0
   m_Name: Camera Crouch
   m_TagString: Untagged
@@ -128337,6 +128352,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7328524510375528255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862677166028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &397438801384372717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134230,7 +134257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb2e3c056f37cf4781a0b07eb00aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassSelection: 0
+  ClassSelection: 2
   ClassIcons: {fileID: 4520725862391307834}
 --- !u!114 &4520725862882063771
 MonoBehaviour:
@@ -135275,7 +135302,7 @@ MonoBehaviour:
   ADS_Accuracy: 0.755
   ShotSpread: {x: 3, y: 3}
   CasingEjectPoint: {fileID: 1936532015860783568}
-  AmmoCasingPrefab: {fileID: 689796873518998926, guid: a6d6f79abfae7b94295102ef6b014355,
+  AmmoCasingPrefab: {fileID: 1379487918872229495, guid: f1cbf0f6b13220943b71733290b5b25f,
     type: 3}
   info: {fileID: 0}
   GunEnd: {fileID: 0}
@@ -135754,7 +135781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4689518437544130122}
   m_LocalRotation: {x: 0.23862973, y: 0.79491234, z: 0.0000000074505797, w: 0.55782634}
-  m_LocalPosition: {x: -0, y: 5.65, z: -1.53}
+  m_LocalPosition: {x: -0, y: 5.65, z: -3.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
