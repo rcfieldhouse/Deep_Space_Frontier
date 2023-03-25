@@ -7,6 +7,7 @@ public class Look : MonoBehaviour
     public GameObject PlayerViewPoint;
     private Vector3 offset = new Vector3(-0.02f, 0.04f, 0.0f);
     private PlayerInput Player;
+    bool Aiming = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -24,9 +25,20 @@ public class Look : MonoBehaviour
  
     private void Aim(Quaternion quaternion)
     {
-        gameObject.transform.localRotation = quaternion;
         gameObject.transform.position = PlayerViewPoint.transform.position;
-       
+        if (Aiming==true) return;
+        gameObject.transform.localRotation = quaternion;
+      
+    }
+    public void AimAssist(Vector3 vec)
+    {
+        Debug.Log("true");
+        Aiming = true;
+        gameObject.transform.LookAt(vec);
+    }
+   public void restoreAim()
+    {
+        Aiming = false;
     }
     private void OnDisable()
     {

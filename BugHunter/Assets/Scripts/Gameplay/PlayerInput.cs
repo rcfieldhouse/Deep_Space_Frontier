@@ -90,8 +90,8 @@ public class PlayerInput : MonoBehaviour
         }
         if (AimAssist == true)
         {
-            MouseInput.x -= (AimAssistStrength) * Input.GetAxis("Mouse X") * Sensitivity * 2;
-            MouseInput.y -= (AimAssistStrength) * Input.GetAxis("Mouse Y") * Sensitivity * 2;
+            MouseInput.x -= (SniperSensitivityReduction * AimAssistStrength) * Input.GetAxis("Mouse X") * Sensitivity * 2;
+            MouseInput.y -= (SniperSensitivityReduction * AimAssistStrength) * Input.GetAxis("Mouse Y") * Sensitivity * 2;
         }
 
         if (Mathf.Abs(MouseInput.y) > 80) {
