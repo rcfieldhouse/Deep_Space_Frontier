@@ -18,4 +18,11 @@ public class EndCutscene : MonoBehaviour
         CutsceneCamera.SetActive(false);
         Player.SetActive(true);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            function();
+
+    }
 }
