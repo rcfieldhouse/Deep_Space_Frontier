@@ -38,9 +38,9 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
         ZephryArmor = new ZephyrArmor();
 
 
-        currentEquip = slime_armor;
-        currentEquip.isEquippable = true;
-        ChangeEquip(currentEquip);
+        //currentEquip = slime_armor;
+        //currentEquip.isEquippable = true;
+        //ChangeEquip(currentEquip);
     }
 
     public void ChangeEquip(Armor newEquip)
