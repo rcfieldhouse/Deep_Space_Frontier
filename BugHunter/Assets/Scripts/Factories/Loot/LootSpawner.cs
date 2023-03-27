@@ -6,6 +6,7 @@ public class LootSpawner : MonoBehaviour
 {
     public static LootSpawner instance;
     public GameObject prefab;
+    public GameObject CommonDrop,UncommonDrop,RareDrop;
     private GameObject Drop;
     public List<GameObject> Prefabs;
     public Transform Transform;
@@ -61,11 +62,36 @@ public class LootSpawner : MonoBehaviour
         }
     }
 
-
-   public void DropMaterials(Transform transform, int LootType)
+    public GameObject GetDropType(int LootNum)
+    {
+        GameObject TempObj= CommonDrop;
+        switch (LootNum)
+        {
+            case 1:
+            case 4:
+            case 7:
+            case 10:
+                TempObj = CommonDrop;
+                break;
+            case 2:
+            case 5:
+            case 8:
+            case 11:
+                TempObj = UncommonDrop;
+                break;
+            case 3:
+            case 6:
+            case 9:
+            case 12:
+                TempObj = RareDrop;
+                break;
+        }
+        return TempObj;
+    }
+    public void DropMaterials(Transform transform, int LootType)
     {
         
-        Drop = Instantiate(prefab, transform.position, Quaternion.identity);
+        Drop = Instantiate(GetDropType(LootType), transform.position+Vector3.up, Quaternion.identity);
         MaterialPickup newMat = new MaterialPickup(LootType);
 
 

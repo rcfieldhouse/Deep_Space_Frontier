@@ -14,7 +14,7 @@ public class MaterialPickup : MonoBehaviour
     public void SetType(int MatType)
     {
         LootIndex = MatType;
-        ChangeMaterial();
+       // ChangeMaterial();
     }
 
     public void ChangeMaterial()
