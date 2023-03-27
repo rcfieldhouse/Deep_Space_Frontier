@@ -64,7 +64,7 @@ public class LootSpawner : MonoBehaviour
 
    public void DropMaterials(Transform transform, int LootType)
     {
-        Debug.Log("Doot");
+        
         Drop = Instantiate(prefab, transform.position, Quaternion.identity);
         MaterialPickup newMat = new MaterialPickup(LootType);
 

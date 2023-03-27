@@ -198,7 +198,6 @@ public abstract class AI : MonoBehaviour
             GetComponentInChildren<BoxCollider>().enabled = false;
             GetComponentInChildren<SphereCollider>().enabled = false;
             
-            Debug.Log("boop");
         }
         if (GetComponent<DreadBomber>())
         {
