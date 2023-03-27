@@ -11,12 +11,14 @@ public enum EnemyType
 }
     public List<EnemyType> EnemySelection;
     public List<int> NumEnemies;
-    public Transform StartDestination;
+   
     [HideInInspector]  public int[] NumSpawns;
     public int[] WaveNum;
     private bool[] SpawnAtWave;
-    public List<GameObject> prefab;
     [Range(0, 30)] public float SpawnTimer = 0.0f;
+    public List<GameObject> prefab;
+    public Transform StartDestination;
+
 
     // Start is called before the first frame update
     void Awake()
