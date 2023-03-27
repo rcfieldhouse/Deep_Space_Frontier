@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class Zipline : MonoBehaviour
 {
+    public bool StartWithLineReady=false;
     public GameObject Player;
     private LineRenderer ZipLine;
     [Range(0, 5)] public float ButtonHoldTime = 1f;
@@ -12,6 +13,7 @@ public class Zipline : MonoBehaviour
     // Start is called before the first frame update
     public void PlayerReadyToZipline(Transform StartPoint, bool _IsEntering)
     {
+        
         PlayerInput = Player.GetComponent<PlayerInput>();
         StartZipLine = StartPoint;
         for (int i = 0; i < transform.childCount; i++)
@@ -23,6 +25,11 @@ public class Zipline : MonoBehaviour
         ZipLine.SetPosition(1, EndZipLine.position);
         if (_IsEntering == true) PlayerInput.Interact += UseZipline;
         else if (_IsEntering==false) PlayerInput.Interact-= UseZipline;
+    }
+    public void SetUsable()
+    {
+        PlayerInput = Player.GetComponent<PlayerInput>();
+        PlayerInput.Interact += UseZipline;
     }
     public void UseZipline()
     {
@@ -46,12 +53,19 @@ public class Zipline : MonoBehaviour
         ZipLine.SetPosition(0, StartZipLine.position);
         ZipLine.SetPosition(1, EndZipLine.position);
     }
-    private void Start()
+    private void Awake()
     {
         ZipLine = GetComponent<LineRenderer>();
         for (int i=0; i<transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.AddComponent<ZipPoint>();
+        }
+
+        if(StartWithLineReady==true)
+        {
+            PlaceZipLine(transform.GetChild(0));
+            transform.GetChild(0).GetComponent<ZipPoint>().SetLinePlaced();
+            transform.GetChild(1).GetComponent<ZipPoint>().SetLinePlaced();
         }
     }
    
@@ -86,7 +100,7 @@ public class ZipPoint : MonoBehaviour
         
         if (other.tag == "Player")
         {
-            GetComponentInParent<Zipline>().Player = null;
+          
             if (LinePlaced == false)
             {
                 holding=false;
@@ -98,6 +112,7 @@ public class ZipPoint : MonoBehaviour
             {
                 GetComponentInParent<Zipline>().PlayerReadyToZipline(transform, false);
             }
+            GetComponentInParent<Zipline>().Player = null;
         }
     }
     public void SetLinePlaced()
@@ -138,6 +153,7 @@ public class ZipPoint : MonoBehaviour
             elapsed = 0.0f;
             PlayerInput.Interact -= StartPlacement;
             PlayerInput.InteractReleased -= EndPlacement;
+            GetComponentInParent<Zipline>().SetUsable();
         }
     }
 }

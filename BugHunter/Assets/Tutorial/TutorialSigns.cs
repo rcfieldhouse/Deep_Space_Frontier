@@ -38,7 +38,7 @@ public class TutorialSigns : MonoBehaviour
                 Invoke(nameof(wait), 0.1f);
             Tutorials[i].SetActive(false);
         }
-        GameManager.instance.ResumeTime();
+      //  GameManager.instance.ResumeTime();
     }
     private void wait(){
 
