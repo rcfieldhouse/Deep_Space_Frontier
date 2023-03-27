@@ -25,11 +25,13 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         if (instance != null)
         {
             Debug.LogError("More than one instance of Data Persistence Manager Found!");
         }
         instance = this;
+        LoadGame();
     }
     public void NewGame()
     {
@@ -71,6 +73,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         SaveGame();
     }
+
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {

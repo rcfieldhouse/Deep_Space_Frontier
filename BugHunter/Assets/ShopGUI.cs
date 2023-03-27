@@ -293,7 +293,7 @@ public class ShopGUI : MonoBehaviour
                 break;
             case 2:
                 ArmourOwned[2] = true;
-                EquipmentManager.ZephryArmor.isEquippable = true;
+                EquipmentManager.ZephyrArmor.isEquippable = true;
                 break;
             case 3:
                 ArmourOwned[3] = true;

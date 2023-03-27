@@ -61,7 +61,7 @@ public class StandardArmor : Armor
 
     public StandardArmor()
     {
-        this.itemName = "StandardArmor";
+        this.itemName = "Standard Armor";
     }
 
     public override void Enter(GameObject requester)
@@ -152,7 +152,7 @@ public class ZephyrArmor : Armor
     public override void Enter(GameObject requester)
     {
         CharacterController playerControl = requester.GetComponent<CharacterController>();
-        playerControl.ArmourSpeedIncrease = 1.30f;
+        playerControl.ArmourSpeedIncrease = 3.30f;
     }
     public override int Execute(GameObject requester, int damageAmount)
     {

@@ -22,7 +22,7 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
     public SlimeArmor slime_armor;
     public BomberArmor BomberArmor;
     public TickArmor TickArmor;
-    public ZephyrArmor ZephryArmor;
+    public ZephyrArmor ZephyrArmor;
 
     public bool ValidateEquip(Armor equip)
     {
@@ -31,18 +31,22 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
 
     private void Awake()
     {
+        if(GameObject.Find("SceneLoadData") != null)
+            Debug.Log("awake");
+
         //temporary for testing
         slime_armor = new SlimeArmor();
         BomberArmor = new BomberArmor();
         TickArmor = new TickArmor();
-        ZephryArmor = new ZephyrArmor();
+        ZephyrArmor = new ZephyrArmor();
 
 
-        //currentEquip = slime_armor;
+        currentEquip = new StandardArmor();
         //currentEquip.isEquippable = true;
         //ChangeEquip(currentEquip);
+        LoadData(GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data);
     }
-
+    
     public void ChangeEquip(Armor newEquip)
     {
         Debug.Log("I have equipped " + newEquip.itemName);
@@ -74,7 +78,23 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
     {
         Debug.LogError("Cannot Equip this right now!");
     }
+    private void OnDestroy()
+    {
+        if (currentEquip.itemName == "Standard Armor")
+            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 0;
 
+        else if (currentEquip.itemName == "Slime Armor")
+            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 1;
+
+        else if (currentEquip.itemName == "Bomber Armor")
+            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 2;
+
+        else if (currentEquip.itemName == "Tick Armor")
+            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 3;
+
+        else if (currentEquip.itemName == "Zephyr Armor")
+            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 4;
+    }
     public void LoadData(GameData data)
     {
         if (data.CurrentArmor == 0)
@@ -84,25 +104,25 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
 
         else if (data.CurrentArmor == 1)
         { 
-            currentEquip = new SlimeArmor();
+            currentEquip = slime_armor;
         }
 
         else if (data.CurrentArmor == 2)
         { 
-            currentEquip = new BomberArmor();
+            currentEquip = BomberArmor;
         }
 
         else if (data.CurrentArmor == 3)
         { 
-            currentEquip = new TickArmor();
+            currentEquip = TickArmor;
         }
 
         else if (data.CurrentArmor == 4)
         { 
-            currentEquip = new ZephyrArmor();
+            currentEquip = ZephyrArmor;
         }
 
-
+        ChangeEquip(currentEquip);
     }
 
     public void SaveData(GameData data)
