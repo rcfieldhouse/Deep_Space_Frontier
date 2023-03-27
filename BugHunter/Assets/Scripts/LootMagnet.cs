@@ -10,6 +10,7 @@ public class LootMagnet : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            GetComponent<Rigidbody>().isKinematic = false;
             Player = other.gameObject;
             Vector3 vec=Vector3.Normalize(Player.transform.position-transform.position);
             GetComponent<Rigidbody>().velocity = vec*8;
