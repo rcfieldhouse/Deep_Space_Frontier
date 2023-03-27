@@ -16128,6 +16128,7 @@ GameObject:
   - component: {fileID: 6253304411025216186}
   - component: {fileID: 1441474389989034340}
   - component: {fileID: 2533319714824569279}
+  - component: {fileID: 6642275521035074233}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Enemy
@@ -16214,6 +16215,25 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 5.52, z: 0.17}
+--- !u!114 &6642275521035074233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635410448601916955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac0a66723e986042a78ace3d19230a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LootType: 0
+  Enemy: 9
+  rarity: 1
+  RandomDrop: 1
+  CommonDrop: 100
+  UncommonDrop: 54.5
+  RareDrop: 29.1
 --- !u!1 &6654931586685384974
 GameObject:
   m_ObjectHideFlags: 0

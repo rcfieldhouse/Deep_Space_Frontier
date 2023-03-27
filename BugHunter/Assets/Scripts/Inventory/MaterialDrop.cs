@@ -67,14 +67,15 @@ public class MaterialDrop : MonoBehaviour
 
     private void DoRandomDrop()
     {
+        Debug.Log("enemy type is "+ (int)Enemy);
         float RnG = Random.Range(0, 100);
 
         if(RnG <= CommonDrop)
-            LootSpawner.instance.DropMaterials(transform, (int)Enemy + 0);
-        if (RnG <= UncommonDrop)
             LootSpawner.instance.DropMaterials(transform, (int)Enemy + 1);
-        if (RnG <= RareDrop)
+        if (RnG <= UncommonDrop)
             LootSpawner.instance.DropMaterials(transform, (int)Enemy + 2);
+        if (RnG <= RareDrop)
+            LootSpawner.instance.DropMaterials(transform, (int)Enemy + 3);
 
     }
 }
