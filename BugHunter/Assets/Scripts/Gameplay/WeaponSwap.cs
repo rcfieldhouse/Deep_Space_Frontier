@@ -10,13 +10,14 @@ public class WeaponSwap : MonoBehaviour
     public List<GameObject> WeaponArray;
     public List<GameObject> RecticleArray;
 
-    public static Action<Vector4> BroadCastWeaponRecoilData;
-    public static Action<Vector3> BroadCastHipRecoil;
-    public static Action<Vector3> BroadCastADSRecoil;
-    public static Action<int,int> BroadcastWeaponListData;
-    public static Action<float> BroadcastADSZoom,BroadcastZoom;
-    public static Action<Vector2> BroadcastSnap;
-    public static Action<int> BroadcastChoice;
+    public event Action <Vector4> BroadCastWeaponRecoilData;
+    public event Action<Vector3> BroadCastHipRecoil;
+    public event Action<Vector3> BroadCastADSRecoil;
+    public event Action<int,int> BroadcastWeaponListData;
+    public event Action<float> BroadcastADSZoom,BroadcastZoom;
+    public event Action<Vector2> BroadcastSnap;
+    public event Action<int> BroadcastChoice;
+    public event Action<bool> maginfo, CanShoot;
     private PlayerInput Player;
     public ReloadGun reloadGun; 
     private int WeaponChoice = 0;
@@ -46,7 +47,19 @@ public class WeaponSwap : MonoBehaviour
     {
         return WeaponChoice;
     }
-
+    private void Update()
+    {
+       // Debug.Log(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCanShoot());
+        if (WeaponArray[WeaponChoice].activeInHierarchy == true)
+        {
+            maginfo.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().hasAmmo());
+            CanShoot.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCanShoot());
+        }  
+    }
+    public GameObject GetWeapon()
+    {
+        return WeaponArray[WeaponChoice];
+    }
     public void SetWeapon(int choice)
     {
         if   (reloadGun.GetIsReloading()== false) { 
@@ -59,8 +72,8 @@ public class WeaponSwap : MonoBehaviour
          WeaponChoice = choice;
 
             //broadcast data to classes that need it 
-            BroadcastZoom.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetZoom());
-            BroadcastADSZoom.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetADSZoom());
+        BroadcastZoom.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetZoom());
+        BroadcastADSZoom.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetADSZoom());
         BroadCastWeaponRecoilData.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetRecoilInfo());
         BroadcastWeaponListData.Invoke(WeaponChoice, WeaponArray.Count-1);
         BroadCastHipRecoil.Invoke(WeaponArray[WeaponChoice].GetComponent<WeaponInfo>().GetCameraRecoilInfo(0));

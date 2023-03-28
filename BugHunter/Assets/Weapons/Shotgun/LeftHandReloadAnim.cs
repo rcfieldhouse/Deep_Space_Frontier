@@ -13,7 +13,7 @@ public class LeftHandReloadAnim : MonoBehaviour
     public void SetIsReloading(bool var)
     {
         Reloading = var;
-        Debug.Log("reloading shotgun");
+
     }
     private void Awake()
     {

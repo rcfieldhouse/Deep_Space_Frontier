@@ -19,6 +19,7 @@ public class NewRecoil : MonoBehaviour
     private bool RecoilStartPossible = true;
    private bool HasAmmo = true,_CanShoot=true;
     private PlayerInput PlayerInput;
+    public WeaponSwap WeaponSwap;
     // Start is called before the first frame update
     private void SetAdsRecoil(Vector3 vec)
     {
@@ -39,8 +40,8 @@ public class NewRecoil : MonoBehaviour
         PlayerInput.Chamber += setRecoilPossible;
         PlayerInput.ADS += SetIsAiming;
 
-        WeaponInfo.maginfo += getIfMagHasAmmo;
-        WeaponInfo.CanShoot += CanShoot;
+        WeaponSwap.maginfo += getIfMagHasAmmo;
+        WeaponSwap.CanShoot += CanShoot;
 
         WeaponSwap.BroadCastADSRecoil += SetAdsRecoil;
         WeaponSwap.BroadCastHipRecoil += SetHipRecoil;
@@ -53,8 +54,8 @@ public class NewRecoil : MonoBehaviour
         PlayerInput.Chamber -= setRecoilPossible;
         PlayerInput.ADS -= SetIsAiming;
 
-        WeaponInfo.maginfo -= getIfMagHasAmmo;
-        WeaponInfo.CanShoot -= CanShoot;
+        WeaponSwap.maginfo -= getIfMagHasAmmo;
+        WeaponSwap.CanShoot -= CanShoot;
 
         WeaponSwap.BroadCastADSRecoil -= SetAdsRecoil;
         WeaponSwap.BroadCastHipRecoil -= SetHipRecoil;
@@ -87,6 +88,7 @@ public class NewRecoil : MonoBehaviour
     }
     void Update()
     {
+        if (WeaponSwap.GetWeapon().transform.GetComponent<WeaponInfo>().GetIsReloading() == true) _CanShoot = false;
         targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, returnSpeed * Time.deltaTime);
         currentRotation = Vector3.Slerp(currentRotation, targetRotation, snappiness * Time.fixedDeltaTime);
         transform.localRotation = Quaternion.Euler(currentRotation);
@@ -107,6 +109,7 @@ public class NewRecoil : MonoBehaviour
     public void RecoilStart()
     {
         if (HasAmmo == true&& _CanShoot==true) { 
+
         if (RecoilStartPossible==true)
         {
             RecoilStartPossible = false;

@@ -18,7 +18,7 @@ public class Recoil : MonoBehaviour
     private Quaternion RecoilRot, BaseRot,RecoilRotSet;
 
     public float RecoilFOV,BaseFOV, RecoilFOVSet, RecoilFOVSetter;
-
+    public WeaponSwap WeaponSwap;
     private bool _IsAds = false;
     Camera Camera;
     private PlayerInput PlayerInput;
@@ -37,21 +37,25 @@ public class Recoil : MonoBehaviour
     //action assignments
         PlayerInput.Shoot += StartShot;
         WeaponSwap.BroadCastWeaponRecoilData += SetAnimProperties;
-        WeaponInfo.maginfo += getIfMagHasAmmo;
-        WeaponInfo.CanShoot += SetCanShoot;
+        WeaponSwap.maginfo += getIfMagHasAmmo;
+        WeaponSwap.CanShoot += SetCanShoot;
         PlayerInput.ADS += SetISADS;
         Weight = 1.25f;
         SetAnimProperties(new Vector4(1.0f, 1.0f, 1.0f, Weight));
 
         Camera = GetComponent<Camera>();
     }
+    private void Update()
+    {
+        if (WeaponSwap.GetWeapon().transform.GetComponent<WeaponInfo>().GetIsReloading() == true) _CanShoot = false;
+    }
     private void OnDestroy()
     {
      
         PlayerInput.Shoot -= StartShot;
         WeaponSwap.BroadCastWeaponRecoilData -= SetAnimProperties;
-        WeaponInfo.maginfo -= getIfMagHasAmmo;
-        WeaponInfo.CanShoot -= SetCanShoot;
+        WeaponSwap.maginfo -= getIfMagHasAmmo;
+        WeaponSwap.CanShoot -= SetCanShoot;
         PlayerInput.ADS -= SetISADS;
     }
     // Update is called once per frame

@@ -18,6 +18,7 @@ public class ZoomIn : MonoBehaviour
     private Vector3 EquipPos1 = new Vector3(0f, -0.5f, 0), EquipPos2 = new Vector3(0f, 0.1f, 0);
     private Quaternion Rot1 = Quaternion.AngleAxis(60.0f, Vector3.right), Rot2 = Quaternion.AngleAxis(-15f, Vector3.right),RunningRot = Quaternion.AngleAxis(0.0f, Vector3.right);
     Vector3 p0, p1, p2, p3;
+    public WeaponSwap WeaponSwap;
     private void Awake()
     {
         Invoke(nameof(bandaidfix), 0.25f);

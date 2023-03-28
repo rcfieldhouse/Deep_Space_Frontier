@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunIconUI : MonoBehaviour
 {
+    public WeaponSwap WeaponSwap;
     public List<GameObject> Icons;
     private int choice = 0;
     // Start is called before the first frame update 

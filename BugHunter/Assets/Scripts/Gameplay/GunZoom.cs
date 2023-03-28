@@ -11,6 +11,7 @@ public class GunZoom : MonoBehaviour
     public float ADSTime = 0.0f;
     public PlayerInput PlayerInput;
     private bool Running = false;
+    public WeaponSwap WeaponSwap;
     // Start is called before the first frame update
     void Awake()
     {

@@ -47,7 +47,7 @@ public class WeaponInfo : MonoBehaviour
     private float AdsZoomScale=0;
        [Range(0, 5)] [SerializeField] [Tooltip("how close weapon is to camera")] 
     private float WeaponAdsZoomScale=0;
-    public static Action<bool> maginfo,CanShoot;
+   // public static Action<bool> maginfo,CanShoot;
 
     [Range(0, 10)] [HideInInspector] [Tooltip("Amount of time to Reload Timer")] 
     public WaitForSeconds ReloadTimer= new WaitForSeconds(1.0f);
@@ -116,13 +116,14 @@ public class WeaponInfo : MonoBehaviour
 
         if (ammoInMag == magSize||reserveAmmo==0)
             _CanReload = false;
-        else _CanReload = true;
+        else if(_isReloading==false) _CanReload = true;
 
-        if (gameObject.activeInHierarchy == true)
-        {
-            maginfo.Invoke(hasAmmo());
-            CanShoot.Invoke(GetCanShoot());
-        }
+        //if (gameObject.activeInHierarchy == true)
+        //{
+        //    maginfo.Invoke(hasAmmo());
+        //    CanShoot.Invoke(GetCanShoot());
+        //}
+        if (_isReloading == true) _CanShoot = false;
         if (IsPaused == true)
             _CanShoot = false;
     }
@@ -197,9 +198,10 @@ public class WeaponInfo : MonoBehaviour
                 reserveAmmo -=1;
                 ammoInMag += 1;
             }
-        _CanShoot = true;
+       // _CanShoot = true;
         if (ammoInMag < magSize)
         {
+            Debug.Log("reloading shotgun");
             StopAllCoroutines();
             StartCoroutine(ReloadShotgun());           
         }
@@ -207,11 +209,13 @@ public class WeaponInfo : MonoBehaviour
             GetComponentInChildren<LeftHandReloadAnim>().SetIsReloading(false); 
             GetComponent<Animator>().SetBool("Reload", false);
             GetComponent<Animator>().SetBool("DoneReloading", true);
+            Debug.Log("Finsished  shotgun");
         }
         yield return new WaitForSeconds(0.5f);
         GetComponent<Animator>().SetBool("DoneReloading", false);
         gameObject.GetComponentInParent<ReloadGun>().SetIsReloading(false);
         _isReloading = false;
+        Debug.Log("reloading shotgun");
 
     }
     // Update is called once per frame

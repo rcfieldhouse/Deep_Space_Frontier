@@ -59,6 +59,10 @@ public class ClientPlayerInput : MonoBehaviour
             PlayerInput.SwapPrimaryWeapon();
         if (Input.GetKeyDown(KeyCode.Alpha2))
             PlayerInput.SwapSecondaryWeapon();
+        if (Input.GetKeyDown(KeyCode.O))
+            PlayerInput.RevivePlayer();
+        if (Input.GetKeyDown(KeyCode.L))
+            PlayerInput.GiveUpAndDie();
 
     }
 }

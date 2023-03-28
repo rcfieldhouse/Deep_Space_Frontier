@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour
     //these are for weapon swapping,
     //swapping weapon is a placeholder until class selection is introduced
 
-    public event Action SwapPrimary, SwapSecondary;
+   // public event Action SwapPrimary, SwapSecondary;
     public event Action<int> SwappingWeapon = delegate { };
     private int WeaponActive = 0,WeaponListLength=5;
 
@@ -43,6 +43,7 @@ public class PlayerInput : MonoBehaviour
 
     public Vector3 Dir;
     public GameObject UserInterface;
+    public WeaponSwap WeaponSwap;
     // Start is called before the first frame update
     //damn you dante, make ur own file 
     void Awake()
@@ -154,11 +155,19 @@ public class PlayerInput : MonoBehaviour
     }
     public void SwapPrimaryWeapon()
     {
-            SwappingWeapon.Invoke(0);
+    SwappingWeapon.Invoke(0);
     }
     public void SwapSecondaryWeapon()
     {
-            SwappingWeapon.Invoke(1);
+        SwappingWeapon.Invoke(1);
+    }
+    public void RevivePlayer()
+    {
+        Revive.Invoke();
+    }
+    public void GiveUpAndDie()
+    {
+        GiveUp.Invoke();
     }
     public void LookInput(Vector2 LookInput)
     {
@@ -194,7 +203,7 @@ public class PlayerInput : MonoBehaviour
         KeyboardInput.x = LookInput.x;
         KeyboardInput.y = LookInput.y;
     }
-        public void MouseScrollInput(float Scroll)
+    public void MouseScrollInput(float Scroll)
     {
         MouseScroll = Scroll;
         //change with scroll wheel
@@ -221,10 +230,7 @@ public class PlayerInput : MonoBehaviour
         //DEVHACK
         if (Input.GetKeyDown(KeyCode.P))
             GetComponent<HealthSystem>().SetInvulnerable(true);
-        if (Input.GetKeyDown(KeyCode.O))
-            Revive.Invoke();
-        if (Input.GetKeyDown(KeyCode.L))
-            GiveUp.Invoke();
+     
 
         //Pause Menu For Plugin
    

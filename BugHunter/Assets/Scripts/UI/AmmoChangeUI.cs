@@ -10,7 +10,7 @@ public class AmmoChangeUI : MonoBehaviour
     private TextMeshProUGUI ammoCount;
     public List<WeaponInfo> magazineSize;
     public int currentWeapon;
-
+    public WeaponSwap WeaponSwap;
     // Start is called before the first frame update
     void Awake()
     {
