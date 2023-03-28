@@ -99,7 +99,7 @@ public class LootSpawner : MonoBehaviour
         Drop.AddComponent<MaterialPickup>();
         Drop.GetComponent<MaterialPickup>().SetType(LootType);
       
-        Drop.AddComponent<SphereCollider>().radius *= 10;
+        Drop.AddComponent<SphereCollider>().radius *= 5;
         Drop.GetComponent<SphereCollider>().isTrigger = true;
         Drop.AddComponent<LootMagnet>();
 

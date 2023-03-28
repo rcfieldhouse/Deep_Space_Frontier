@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoadData : MonoBehaviour
 {
     ClassType ClassSelection;
+    public GameData data;
     // Start is called before the first frame update
     void Awake()
     {       

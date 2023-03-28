@@ -68,9 +68,9 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
                 }
                 break;
             case 2:
-                if (Player.GetComponent<EquipmentManager>().ZephryArmor.isEquippable == true)
+                if (Player.GetComponent<EquipmentManager>().ZephyrArmor.isEquippable == true)
                 {
-                    Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().ZephryArmor);
+                    Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().ZephyrArmor);
                     //Enable Popup Message
                     EquipPopup.SetActive(true);
                 }
