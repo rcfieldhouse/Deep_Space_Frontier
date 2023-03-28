@@ -77,69 +77,157 @@ public class PlayerInput : MonoBehaviour
     {
         ADSWSniper = var;
     }
-    // Update is called once per frame
-    void Update()
+    public void SprintingFalse()
     {
-       
-       MouseInput.x += Input.GetAxis("Mouse X") * Sensitivity * 2; 
-       MouseInput.y += Input.GetAxis("Mouse Y") * Sensitivity * 2;
+        SpeedMod = 1.0f;
+        Sprinting.Invoke(false);
+    }
+    public void SprintingTrue()
+    {
+        SpeedMod = 1.5f;
+        Sprinting.Invoke(true);   
+    }
+    public void Jump()
+    {
+        JumpAction.Invoke();
+    }
+    public void ToggleThrowable()
+    {
+        TabThrowable.Invoke();
+    }
+    public void UseClassAbility()
+    {
+        UseAbility.Invoke();
+    }
+    public void CookGrenade()
+    {
+        WeNeedToCookJesse.Invoke();
+    }
+
+    public void ReleaseGrenade()
+    {
+        Throw.Invoke(Direction);
+    }
+    public void PausePlayer()
+    {
+            PausePlugin.Invoke();
+    }
+    public void BeginInteract()
+    {
+            Interact.Invoke();
+    }
+    public void EndInteract()
+    {
+            InteractReleased.Invoke();
+    }
+    public void PlayerReload()
+    {
+            Reload.Invoke();
+    }
+    public void ShootGun()
+    {
+        if (IsDead == false)
+            Shoot.Invoke();     
+    }
+    public void ChamberGun()
+    {
+           if (IsDead == false)
+            Chamber.Invoke();
+    }
+    public void Aim()
+    {
+        if (IsDead==false)
+        {
+            UIToggle = !UIToggle;
+            UserInterface.SetActive(UIToggle);
+            ADS.Invoke(true);
+        }
+    }
+    public void ReleaseAim()
+    {
+        if (IsDead==false)
+        {
+            UIToggle = !UIToggle;
+            UserInterface.SetActive(UIToggle);
+            ADS.Invoke(false);
+        }
+    }
+    public void SwapPrimaryWeapon()
+    {
+            SwappingWeapon.Invoke(0);
+    }
+    public void SwapSecondaryWeapon()
+    {
+            SwappingWeapon.Invoke(1);
+    }
+    public void LookInput(Vector2 LookInput)
+    {
+
+        MouseInput.x += LookInput.x * Sensitivity * 2;
+        MouseInput.y += LookInput.y * Sensitivity * 2;
         if (ADSWSniper == true)
         {
-            MouseInput.x -= (1.0f - SniperSensitivityReduction) * Input.GetAxis("Mouse X") * Sensitivity * 2;
-            MouseInput.y -= (1.0f - SniperSensitivityReduction) * Input.GetAxis("Mouse Y") * Sensitivity * 2;
+            MouseInput.x -= (1.0f - SniperSensitivityReduction) * LookInput.x * Sensitivity * 2;
+            MouseInput.y -= (1.0f - SniperSensitivityReduction) * LookInput.y * Sensitivity * 2;
         }
         if (AimAssist == true)
         {
-            MouseInput.x -= (SniperSensitivityReduction * AimAssistStrength) * Input.GetAxis("Mouse X") * Sensitivity * 2;
-            MouseInput.y -= (SniperSensitivityReduction * AimAssistStrength) * Input.GetAxis("Mouse Y") * Sensitivity * 2;
+            MouseInput.x -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.x * Sensitivity * 2;
+            MouseInput.y -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.y * Sensitivity * 2;
         }
 
-        if (Mathf.Abs(MouseInput.y) > 80) {
-            MouseInput.y-= MouseInput.y-(80* (MouseInput.y / Mathf.Abs(MouseInput.y)));
+        if (Mathf.Abs(MouseInput.y) > 80)
+        {
+            MouseInput.y -= MouseInput.y - (80 * (MouseInput.y / Mathf.Abs(MouseInput.y)));
         }
 
-       Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
+        Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
         Dir.x = Direction.eulerAngles.x;
-        MouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
+        if (Look != null && Direction != null)
+        {
+            Look.Invoke(Direction);
+            Move.Invoke(KeyboardInput, SpeedMod);
+        }
+    }
+    public void MoveInput(Vector2 LookInput)
+    {
+        KeyboardInput.x = LookInput.x;
+        KeyboardInput.y = LookInput.y;
+    }
+        public void MouseScrollInput(float Scroll)
+    {
+        MouseScroll = Scroll;
+        //change with scroll wheel
+        if (MouseScroll > 0 && WeaponActive > 0)
+            SwappingWeapon.Invoke(WeaponActive - 1);
+        else if (MouseScroll < 0 && WeaponActive < WeaponListLength)
+            SwappingWeapon.Invoke(WeaponActive + 1);
+    }
+    // Update is called once per frame
+    void Update()
+    {
+     
 
 
-        KeyboardInput.x = Input.GetAxisRaw("Horizontal");
-        KeyboardInput.y = Input.GetAxisRaw("Vertical");
+
+      
+
+
+   
         //PlayerINput for controls
         //Turn this to GetButtonDown at some point
-        if (Input.GetKeyDown("space"))
-            JumpAction.Invoke(); 
-
-
-
-        //sprint
-       if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            SpeedMod = 1.5f;
-            Sprinting.Invoke(true);
-        }
-          
-
-       if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            SpeedMod = 1.0f;
-            Sprinting.Invoke(false);
-        }
-         
+      
 
         //DEVHACK
         if (Input.GetKeyDown(KeyCode.P))
             GetComponent<HealthSystem>().SetInvulnerable(true);
-
-
         if (Input.GetKeyDown(KeyCode.O))
             Revive.Invoke();
         if (Input.GetKeyDown(KeyCode.L))
             GiveUp.Invoke();
 
         //Pause Menu For Plugin
-        if (Input.GetKeyDown(KeyCode.Escape))
-            PausePlugin.Invoke();
+   
 
         if (Input.GetKeyDown(KeyCode.T))
             GetTime.Invoke();
@@ -153,9 +241,7 @@ public class PlayerInput : MonoBehaviour
         }
             
 
-        if (Input.GetKeyDown(KeyCode.G))
-            TabThrowable.Invoke();
-
+        
         if (Input.GetKeyDown(KeyCode.RightArrow))
             GameManager.instance.ResumeTime();
 
@@ -177,71 +263,12 @@ public class PlayerInput : MonoBehaviour
             SpeedMod = 1.0f;
 
 
+   
 
 
-        //dodge mechanic
-        if (Input.GetKeyDown(KeyCode.C))
-            UseAbility.Invoke();
-        // else if (Input.GetKeyUp(KeyCode.C))
-        //     DodgeRoll.Invoke(false);
-
-
-
-        //ability
-        if (Input.GetKeyDown(KeyCode.Q))
-            WeNeedToCookJesse.Invoke();
-
-        if (Input.GetKeyUp(KeyCode.Q))
-            Throw.Invoke(Direction);
-
-        if (Input.GetKeyDown(KeyCode.R))
-            Reload.Invoke();
-
-        if (Input.GetKeyDown(KeyCode.E))
-            Interact.Invoke();
-
-        if (Input.GetKeyUp(KeyCode.E))
-            InteractReleased.Invoke();
-        //shoot 
-        //chamber is for full auto
-        if (Input.GetButtonDown("Fire1")&&IsDead==false)
-            Shoot.Invoke();
-        else if (Input.GetButtonUp("Fire1") && IsDead == false)
-            Chamber.Invoke();
       
 
-        //aim code
-        if (Input.GetButtonDown("Fire2"))
-        {
-            UIToggle = !UIToggle;
-            UserInterface.SetActive(UIToggle);
-            ADS.Invoke(true);
-        }
-        else if (Input.GetButtonUp("Fire2"))
-        {
-            UIToggle = !UIToggle;
-            UserInterface.SetActive(UIToggle);
-            ADS.Invoke(false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            SwappingWeapon.Invoke(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            SwappingWeapon.Invoke(1);
-       
-
-        //change with scroll wheel
-        if (MouseScroll > 0 &&WeaponActive>0)
-            SwappingWeapon.Invoke(WeaponActive - 1);
-        else if (MouseScroll < 0 && WeaponActive<WeaponListLength)
-            SwappingWeapon.Invoke(WeaponActive + 1);
-
-
-        if (Look != null && Direction != null)
-        {
-            Look.Invoke(Direction);
-            Move.Invoke(KeyboardInput, SpeedMod);
-        }
+    
       
 
     }
