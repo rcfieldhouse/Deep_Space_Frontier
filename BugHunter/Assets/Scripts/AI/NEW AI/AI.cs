@@ -98,6 +98,7 @@ public abstract class AI : MonoBehaviour
     }
     public virtual void Update()
     {
+ 
         bool playerInSightRange = Physics.CheckSphere(transform.position+ transform.rotation* SightRangeOffset, _SightRange, WhatIsPlayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position + transform.rotation * AttackAreaOffset, _AttackRange, WhatIsPlayer);
         bool playerInAttackRange2 = Physics.CheckSphere(transform.position + transform.rotation * _Attack2AreaOffset, _Attack2_Range, WhatIsPlayer);

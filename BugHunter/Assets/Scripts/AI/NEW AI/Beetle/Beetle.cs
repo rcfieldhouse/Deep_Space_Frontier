@@ -8,12 +8,18 @@ public class Beetle : AI
     [Range(0, 20)] public float ProjectileSpeed = 10;
     FMOD.Studio.EventInstance rangedSound;
     FMOD.Studio.EventInstance meleeSound;
-
+    public override void Update()
+    {
+        Target = FindClosestPlayer();
+        base.Update();
+    }
     public override void AttackPlayer(GameObject Target)
     {
+       
+        Debug.Log(Mathf.Abs((transform.position - Target.transform.position).magnitude));
         if (IsSecondaryAttack == true)
         {
-            if (Mathf.Abs((transform.position - Target.transform.position).magnitude) < 4.0f)
+            if (Mathf.Abs((transform.position - Target.transform.position).magnitude) < 5.0f)
             {
                SecondaryAttack(Target);
             }
