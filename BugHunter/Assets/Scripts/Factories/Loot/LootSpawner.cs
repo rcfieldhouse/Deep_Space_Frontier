@@ -101,7 +101,7 @@ public class LootSpawner : MonoBehaviour
       
         Drop.AddComponent<SphereCollider>().radius *= 5;
         Drop.GetComponent<SphereCollider>().isTrigger = true;
-        Drop.AddComponent<LootMagnet>();
+        Drop.AddComponent<LootMagnetMaterials>();
 
         //for making it schmoov
         Rigidbody rb = transform.GetComponent<Rigidbody>();

@@ -46,7 +46,7 @@ public class MaterialPickup : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {   
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player"|| collision.gameObject.tag == "GodOrb")
         {
             LootHolder playerInventory = collision.gameObject.GetComponent<LootHolder>();
             if (playerInventory == null)
