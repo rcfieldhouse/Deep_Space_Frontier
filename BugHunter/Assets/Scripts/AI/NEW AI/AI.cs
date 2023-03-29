@@ -22,7 +22,7 @@ public abstract class AI : MonoBehaviour
     [Header("Hurt Material")]
     public Material hurtMaterial;
 
-
+    private bool _IsDead = false;
 
     [Header("Detection Stuff")]
     //DetectionStuff
@@ -98,7 +98,9 @@ public abstract class AI : MonoBehaviour
     }
     public virtual void Update()
     {
- 
+        if (_IsDead)
+            return;
+
         bool playerInSightRange = Physics.CheckSphere(transform.position+ transform.rotation* SightRangeOffset, _SightRange, WhatIsPlayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position + transform.rotation * AttackAreaOffset, _AttackRange, WhatIsPlayer);
         bool playerInAttackRange2 = Physics.CheckSphere(transform.position + transform.rotation * _Attack2AreaOffset, _Attack2_Range, WhatIsPlayer);
@@ -214,6 +216,7 @@ public abstract class AI : MonoBehaviour
 
         }
         StartCoroutine(DissolveMeshEffect());
+        _IsDead = true;
         DeathSound.Play();
 
     }
