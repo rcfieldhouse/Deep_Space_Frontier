@@ -6,7 +6,7 @@ public class Queen : AI
 {
     // Start is called before the first frame update
    
-    public List<Transform> ProjectileSpawns;
+    public List<Transform> ProjectileSpawns,EnemySpawns;
     [Range(0, 100)]
     public float SpawnEnemiesRange;
     public GameObject Projectile,Tick,Zephyr;
@@ -35,7 +35,8 @@ public class Queen : AI
             NavAgent.SetDestination(transform.position + (-WalkPoint) + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
             //primary shooting attack
             if (CanAttack == true && HasAttacked == false)
-            {        
+            {
+                AI_Animator.SetBool("ShootingProjectile", true);
                 for (int i = 0; i < ProjectileSpawns.Count*3; i++)
                 {
                     Debug.Log(i);
@@ -50,22 +51,48 @@ public class Queen : AI
             }
             if (HasAttacked == true)
             {
-               //AI_Animator.SetBool("_IsAttacking", false);
+                Invoke(nameof(ResetAnims),0.25f);
                 HasAttacked = false;
                 Invoke(nameof(ResetAttack), Attack_1_Delay);
             }
            
         }
-        else if (IsSecondaryAttack == true)
+        else if (IsSecondaryAttack == true&& CanAttack == true && HasAttacked == false)
         {
             AI_Animator.SetBool("BackwardMove", false);
             AI_Animator.SetBool("ForwardMove", true);
             NavAgent.SetDestination(transform.position + WalkPoint + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
+            bool AbleToSpawn = Physics.CheckSphere(transform.position, SpawnEnemiesRange, WhatIsPlayer);
+            if (AbleToSpawn)
+            {
+                for (int i = 0; i < EnemySpawns.Count; i++)
+                {
+                    if(i!= 2 && i != 3)
+                     Instantiate(Tick, EnemySpawns[i].position, Quaternion.identity);
+                    else
+                     Instantiate(Zephyr, EnemySpawns[i].position, Quaternion.identity);
+                }
+                HasAttacked = true;
+                CanAttack = false;               
+             }
+            if (HasAttacked == true)
+            {
+                AI_Animator.SetBool("Shake", true);
+                Invoke(nameof(ResetAnims), 0.25f);
+                HasAttacked = false;
+                Invoke(nameof(ResetAttack), Attack_2_Delay);
+
+            }
         }
 
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, Target.transform.position-transform.position, NavAgent.angularSpeed*Time.deltaTime, 0.0f);
         transform.rotation = Quaternion.LookRotation(newDirection);
       
+    }
+    public void ResetAnims()
+    {
+        AI_Animator.SetBool("Shake", false);
+        AI_Animator.SetBool("ShootingProjectile", false);
     }
     public override void ChasePlayer()
     {

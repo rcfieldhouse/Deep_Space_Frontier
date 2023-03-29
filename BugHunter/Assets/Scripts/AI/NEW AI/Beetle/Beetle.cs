@@ -16,7 +16,7 @@ public class Beetle : AI
     public override void AttackPlayer(GameObject Target)
     {
        
-        Debug.Log(Mathf.Abs((transform.position - Target.transform.position).magnitude));
+      //  Debug.Log(Mathf.Abs((transform.position - Target.transform.position).magnitude));
         if (IsSecondaryAttack == true)
         {
             if (Mathf.Abs((transform.position - Target.transform.position).magnitude) < 5.0f)
