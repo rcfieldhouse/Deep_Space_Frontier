@@ -192,7 +192,7 @@ public abstract class AI : MonoBehaviour
     }
     public void HandleObjectDeath(Transform context)
     {
-        DeathSound.Play();
+     
 
         if (GetComponent<Tick>())
         {           
@@ -214,7 +214,7 @@ public abstract class AI : MonoBehaviour
 
         }
         StartCoroutine(DissolveMeshEffect());
-
+        DeathSound.Play();
 
     }
     IEnumerator DissolveMeshEffect()
