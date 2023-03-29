@@ -171,6 +171,8 @@ public class PlayerInput : MonoBehaviour
     }
     public void LookInput(Vector2 LookInput)
     {
+        if (IsDead)
+            return;
 
         MouseInput.x += LookInput.x * Sensitivity * 2;
         MouseInput.y += LookInput.y * Sensitivity * 2;

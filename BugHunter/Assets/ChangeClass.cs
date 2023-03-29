@@ -42,5 +42,6 @@ public class ChangeClass : MonoBehaviour
         Vector3 offset = (Vector3.Normalize(Player.transform.GetChild(0).transform.position - transform.position));
         GameObject NewPlayer=Instantiate(prefab, SpawnPoint.position,Quaternion.identity);
         NewPlayer.transform.GetChild(0).GetComponent<ClassCreator>().SetClass(ClassType);
+        GameObject.Find("ClientPlayerInput").GetComponent<ClientPlayerInput>().PlayerInput = NewPlayer.transform.GetChild(0).GetComponent<PlayerInput>();
     }
 }

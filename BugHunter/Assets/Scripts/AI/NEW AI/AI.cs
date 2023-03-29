@@ -53,12 +53,12 @@ public abstract class AI : MonoBehaviour
     [Seperator()]
     //Navigation Stuff
     //Dante, Before you ask, Serpentine is the thing i use to make the enemy go side to side
-    private Vector3 StartEvasionLocation,DistanceTravelled = Vector3.zero;
-    private float Serpentine = 0.0f;
+   [HideInInspector] public Vector3 StartEvasionLocation,DistanceTravelled = Vector3.zero;
+   [HideInInspector] public float Serpentine = 0.0f;
     [Range(0, 10)] public float EvasionIntensity=0, EvasionRecalculationPeriod=0;
     public LayerMask WhatIsGround,WhatIsPlayer;
-    private Vector3 WalkPoint, SpawnPoint,Pos;
-    private bool WalkPointSet=false,_IsChasing=false;
+   [HideInInspector] public Vector3 WalkPoint, SpawnPoint,Pos;
+   [HideInInspector] public bool WalkPointSet=false,_IsChasing=false;
     [Range(0, 100)] public float WalkPointRange,WalkSpeed;
 
     private Material[] cachedMaterials;
@@ -121,7 +121,7 @@ public abstract class AI : MonoBehaviour
         Health.OnTakeDamage -= StaggerMechanic;
         //ScoreManager.instance.sChange(10); 
     }
-    public void OnDrawGizmosSelected()
+    public virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position +transform.rotation*AttackAreaOffset, _AttackRange);
@@ -299,7 +299,8 @@ public abstract class AI : MonoBehaviour
 
         if (WalkPointSet)
         {
-            transform.LookAt(WalkPoint);
+           // transform.Rotate(WalkPoint);
+
             NavAgent.SetDestination(WalkPoint);
         }
         Vector3 distanceToWalkPoint = transform.position - WalkPoint;
