@@ -62,6 +62,8 @@ public class WeaponSwap : MonoBehaviour
     }
     public void SetWeapon(int choice)
     {
+        if (WeaponArray[choice] == null)
+            return;
         if   (reloadGun.GetIsReloading()== false) { 
         for (int i = 0; i < WeaponArray.Count; i++)
         {

@@ -111,7 +111,7 @@ public class PlayerInput : MonoBehaviour
     }
     public void PausePlayer()
     {
-            PausePlugin.Invoke();
+        PausePlugin.Invoke();
     }
     public void BeginInteract()
     {
@@ -155,11 +155,15 @@ public class PlayerInput : MonoBehaviour
     }
     public void SwapPrimaryWeapon()
     {
-    SwappingWeapon.Invoke(0);
+        SwappingWeapon.Invoke(0);
     }
     public void SwapSecondaryWeapon()
     {
         SwappingWeapon.Invoke(1);
+    }
+    public void SwapTertiaryWeapon()
+    {
+        SwappingWeapon.Invoke(2);
     }
     public void RevivePlayer()
     {
@@ -174,17 +178,17 @@ public class PlayerInput : MonoBehaviour
         if (IsDead)
             return;
 
-        MouseInput.x += LookInput.x * Sensitivity * 2;
-        MouseInput.y += LookInput.y * Sensitivity * 2;
+        MouseInput.x += LookInput.x * Sensitivity ;
+        MouseInput.y += LookInput.y * Sensitivity ;
         if (ADSWSniper == true)
         {
-            MouseInput.x -= (1.0f - SniperSensitivityReduction) * LookInput.x * Sensitivity * 2;
-            MouseInput.y -= (1.0f - SniperSensitivityReduction) * LookInput.y * Sensitivity * 2;
+            MouseInput.x -= (1.0f - SniperSensitivityReduction) * LookInput.x * Sensitivity ;
+            MouseInput.y -= (1.0f - SniperSensitivityReduction) * LookInput.y * Sensitivity ;
         }
         if (AimAssist == true)
         {
-            MouseInput.x -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.x * Sensitivity * 2;
-            MouseInput.y -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.y * Sensitivity * 2;
+            MouseInput.x -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.x * Sensitivity;
+            MouseInput.y -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.y * Sensitivity;
         }
 
         if (Mathf.Abs(MouseInput.y) > 80)
@@ -227,49 +231,49 @@ public class PlayerInput : MonoBehaviour
    
         //PlayerINput for controls
         //Turn this to GetButtonDown at some point
-      
-
-        //DEVHACK
-        if (Input.GetKeyDown(KeyCode.P))
-            GetComponent<HealthSystem>().SetInvulnerable(true);
-     
-
-        //Pause Menu For Plugin
-   
-
-        if (Input.GetKeyDown(KeyCode.T))
-            GetTime.Invoke();
-
-        if (Input.GetKeyDown(KeyCode.Z))
-            Undo.Invoke();
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-        //    GenshinCam.SetActive(!GenshinCam.activeInHierarchy);
-        }
-            
-
-        
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-            GameManager.instance.ResumeTime();
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-            GameManager.instance.StopTime();
-
-
-        //cursed crouch controls
-        if (Input.GetButtonDown("Crouch"))
-            Crouching.Invoke(true);      
-        else if (Input.GetButtonUp("Crouch"))
-            Crouching.Invoke(false);
-     
-        if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
-            SpeedMod = controller.m_CrouchSpeed;
-        if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
-            SpeedMod = 2.0f;
-        else if (Input.GetButtonUp("Crouch"))
-            SpeedMod = 1.0f;
-
+   //  
+   //
+   //    //DEVHACK
+   //    if (Input.GetKeyDown(KeyCode.P))
+   //        GetComponent<HealthSystem>().SetInvulnerable(true);
+   // 
+   //
+   //    //Pause Menu For Plugin
+   //
+   //
+   //    if (Input.GetKeyDown(KeyCode.T))
+   //        GetTime.Invoke();
+   //
+   //    if (Input.GetKeyDown(KeyCode.Z))
+   //        Undo.Invoke();
+   //
+   //    if (Input.GetKeyDown(KeyCode.F))
+   //    {
+   //    //    GenshinCam.SetActive(!GenshinCam.activeInHierarchy);
+   //    }
+   //        
+   //
+   //    
+   //    if (Input.GetKeyDown(KeyCode.RightArrow))
+   //        GameManager.instance.ResumeTime();
+   //
+   //    if (Input.GetKeyDown(KeyCode.LeftArrow))
+   //        GameManager.instance.StopTime();
+   //
+   //
+   //    //cursed crouch controls
+   //    if (Input.GetButtonDown("Crouch"))
+   //        Crouching.Invoke(true);      
+   //    else if (Input.GetButtonUp("Crouch"))
+   //        Crouching.Invoke(false);
+   // 
+   //    if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
+   //        SpeedMod = controller.m_CrouchSpeed;
+   //    if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
+   //        SpeedMod = 2.0f;
+   //    else if (Input.GetButtonUp("Crouch"))
+   //        SpeedMod = 1.0f;
+   //
 
    
 

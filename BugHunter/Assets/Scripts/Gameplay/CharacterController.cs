@@ -225,13 +225,13 @@ public class CharacterController : MonoBehaviour
     {
         GetComponent<PlayerAnimatorScript>().Land(isGrounded(3));
         //dev hack
-        if (Input.GetKeyDown(KeyCode.Period))
-        {
-            //#if UNITY_EDITOR
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Konami_Code");
-            //#endif
-            Rigidbody.position = new Vector3(170.0f, 25.0f, 420.0f);
-        }
+       //if (Input.GetKeyDown(KeyCode.Period))
+       //{
+       //    //#if UNITY_EDITOR
+       //    //FMODUnity.RuntimeManager.PlayOneShot("event:/Konami_Code");
+       //    //#endif
+       //    Rigidbody.position = new Vector3(170.0f, 25.0f, 420.0f);
+       //}
         gameObject.transform.rotation = Quaternion.Euler(0.0f, CameraManager.transform.eulerAngles.y, 0.0f);
     }
 
