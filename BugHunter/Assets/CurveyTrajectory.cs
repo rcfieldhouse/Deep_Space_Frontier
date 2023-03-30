@@ -17,7 +17,7 @@ public class CurveyTrajectory : MonoBehaviour
     void Update()
     {
         CurrentTime += Time.deltaTime;
-        Debug.Log(StartPoint+ " "+EndPoint);
+ 
         transform.SetPositionAndRotation(SampleParabola(StartPoint, EndPoint, Height, CurrentTime/TotalTime),Quaternion.identity);
     }
     Vector3 SampleParabola(Vector3 start, Vector3 end, float height, float t)

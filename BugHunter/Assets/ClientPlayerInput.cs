@@ -43,8 +43,28 @@ public class ClientPlayerInput : MonoBehaviour
         PlayerInputController.Player.ToggleNade.performed += cntxt => ToggleNade();
         PlayerInputController.Player.ControllerSpecialWeapon.performed += cntxt => EquipCannon();
         PlayerInputController.Player.KeyboardSpecialWeapon.performed += cntxt => EquipCannon();
-    }
 
+        PlayerInputController.Player.ReviveSelf.performed += cntxt => ReviveSelf();
+        PlayerInputController.Player.GiveUp.performed += cntxt => GiveUp();
+        PlayerInputController.Player.Invincibility.performed += cntxt => GoInvincible();
+        PlayerInputController.Player.BossTeleport.performed += cntxt => GoBoss();
+    }
+    void ReviveSelf()
+    {
+        PlayerInput.RevivePlayer();
+    }
+    void GiveUp()
+    {
+        PlayerInput.GiveUpAndDie();
+    }
+    void GoInvincible()
+    {
+        PlayerInput.SetInvulnerable();
+    }
+    void GoBoss()
+    {
+        PlayerInput.GoToBossArena();
+    }
     void EquipCannon()
     {
         PlayerInput.SwapTertiaryWeapon();
@@ -148,10 +168,9 @@ public class ClientPlayerInput : MonoBehaviour
      vec.y = move.y;
      PlayerInput.MoveInput(vec);
 
-     //
       PlayerInput.MouseScrollInput(Mouse);
         Mouse = 0;
-     //
+    
 
 
   
@@ -159,9 +178,9 @@ public class ClientPlayerInput : MonoBehaviour
     
     
      // if (Input.GetKeyDown(KeyCode.O))
-     //     PlayerInput.RevivePlayer();
+     //    
      // if (Input.GetKeyDown(KeyCode.L))
-     //     PlayerInput.GiveUpAndDie();
+     //     
 
     }
 }

@@ -218,6 +218,14 @@ public class PlayerInput : MonoBehaviour
         else if (MouseScroll < 0 && WeaponActive < WeaponListLength)
             SwappingWeapon.Invoke(WeaponActive + 1);
     }
+    public void SetInvulnerable()
+    {
+         GetComponent<HealthSystem>().SetInvulnerable(true);
+    }
+   public void GoToBossArena()
+    {
+         GetComponent<Rigidbody>().position = new Vector3(170.0f, 25.0f, 420.0f);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -234,8 +242,8 @@ public class PlayerInput : MonoBehaviour
    //  
    //
    //    //DEVHACK
-   //    if (Input.GetKeyDown(KeyCode.P))
-   //        GetComponent<HealthSystem>().SetInvulnerable(true);
+   //    
+   //    
    // 
    //
    //    //Pause Menu For Plugin

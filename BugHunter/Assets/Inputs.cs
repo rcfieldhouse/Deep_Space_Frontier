@@ -170,6 +170,42 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReviveSelf"",
+                    ""type"": ""Button"",
+                    ""id"": ""85b518eb-d0d5-4927-b334-e27fe8e3971a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GiveUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e808bdd-546c-4b55-b7bf-93bbd035147f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Invincibility"",
+                    ""type"": ""Button"",
+                    ""id"": ""fd23466c-7e83-4d32-9c92-1870455fa12c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BossTeleport"",
+                    ""type"": ""Button"",
+                    ""id"": ""4af75c7b-491f-457c-a911-eace159eafd5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -654,6 +690,94 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""KeyboardSpecialWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""998df83d-7e0b-445c-a3e6-2291e6ec36ec"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReviveSelf"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da9ab9f5-8d50-422a-bcfa-ad11c2ed97fd"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReviveSelf"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""582bb79e-7878-42c4-b4c2-132a7f5197d3"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GiveUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d91b5752-b0ab-4b17-81d0-44ed97294c8b"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GiveUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6831cdc-c9a2-4064-bc3c-0ef1b3d37456"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Invincibility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80eab7b1-2bd0-45ed-a155-f2663e90e7d1"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Invincibility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23d8d8e0-d021-458c-80c8-da2b904c009d"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BossTeleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49227575-ad8f-47e6-8d9f-dd2100433ab4"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BossTeleport"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1257,6 +1381,10 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         m_Player_MouseScroll = m_Player.FindAction("MouseScroll", throwIfNotFound: true);
         m_Player_ControllerSpecialWeapon = m_Player.FindAction("ControllerSpecialWeapon", throwIfNotFound: true);
         m_Player_KeyboardSpecialWeapon = m_Player.FindAction("KeyboardSpecialWeapon", throwIfNotFound: true);
+        m_Player_ReviveSelf = m_Player.FindAction("ReviveSelf", throwIfNotFound: true);
+        m_Player_GiveUp = m_Player.FindAction("GiveUp", throwIfNotFound: true);
+        m_Player_Invincibility = m_Player.FindAction("Invincibility", throwIfNotFound: true);
+        m_Player_BossTeleport = m_Player.FindAction("BossTeleport", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1344,6 +1472,10 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MouseScroll;
     private readonly InputAction m_Player_ControllerSpecialWeapon;
     private readonly InputAction m_Player_KeyboardSpecialWeapon;
+    private readonly InputAction m_Player_ReviveSelf;
+    private readonly InputAction m_Player_GiveUp;
+    private readonly InputAction m_Player_Invincibility;
+    private readonly InputAction m_Player_BossTeleport;
     public struct PlayerActions
     {
         private @Inputs m_Wrapper;
@@ -1364,6 +1496,10 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         public InputAction @MouseScroll => m_Wrapper.m_Player_MouseScroll;
         public InputAction @ControllerSpecialWeapon => m_Wrapper.m_Player_ControllerSpecialWeapon;
         public InputAction @KeyboardSpecialWeapon => m_Wrapper.m_Player_KeyboardSpecialWeapon;
+        public InputAction @ReviveSelf => m_Wrapper.m_Player_ReviveSelf;
+        public InputAction @GiveUp => m_Wrapper.m_Player_GiveUp;
+        public InputAction @Invincibility => m_Wrapper.m_Player_Invincibility;
+        public InputAction @BossTeleport => m_Wrapper.m_Player_BossTeleport;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1421,6 +1557,18 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @KeyboardSpecialWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardSpecialWeapon;
                 @KeyboardSpecialWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardSpecialWeapon;
                 @KeyboardSpecialWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardSpecialWeapon;
+                @ReviveSelf.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReviveSelf;
+                @ReviveSelf.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReviveSelf;
+                @ReviveSelf.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReviveSelf;
+                @GiveUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGiveUp;
+                @GiveUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGiveUp;
+                @GiveUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGiveUp;
+                @Invincibility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInvincibility;
+                @Invincibility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInvincibility;
+                @Invincibility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInvincibility;
+                @BossTeleport.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBossTeleport;
+                @BossTeleport.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBossTeleport;
+                @BossTeleport.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBossTeleport;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1473,6 +1621,18 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @KeyboardSpecialWeapon.started += instance.OnKeyboardSpecialWeapon;
                 @KeyboardSpecialWeapon.performed += instance.OnKeyboardSpecialWeapon;
                 @KeyboardSpecialWeapon.canceled += instance.OnKeyboardSpecialWeapon;
+                @ReviveSelf.started += instance.OnReviveSelf;
+                @ReviveSelf.performed += instance.OnReviveSelf;
+                @ReviveSelf.canceled += instance.OnReviveSelf;
+                @GiveUp.started += instance.OnGiveUp;
+                @GiveUp.performed += instance.OnGiveUp;
+                @GiveUp.canceled += instance.OnGiveUp;
+                @Invincibility.started += instance.OnInvincibility;
+                @Invincibility.performed += instance.OnInvincibility;
+                @Invincibility.canceled += instance.OnInvincibility;
+                @BossTeleport.started += instance.OnBossTeleport;
+                @BossTeleport.performed += instance.OnBossTeleport;
+                @BossTeleport.canceled += instance.OnBossTeleport;
             }
         }
     }
@@ -1645,6 +1805,10 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         void OnMouseScroll(InputAction.CallbackContext context);
         void OnControllerSpecialWeapon(InputAction.CallbackContext context);
         void OnKeyboardSpecialWeapon(InputAction.CallbackContext context);
+        void OnReviveSelf(InputAction.CallbackContext context);
+        void OnGiveUp(InputAction.CallbackContext context);
+        void OnInvincibility(InputAction.CallbackContext context);
+        void OnBossTeleport(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
