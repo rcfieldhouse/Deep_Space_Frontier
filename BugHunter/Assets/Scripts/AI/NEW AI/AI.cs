@@ -67,7 +67,7 @@ public abstract class AI : MonoBehaviour
     FMODUnity.StudioEventEmitter DeathSound;
 
     #region MonoBehaviour
-    public void Awake()
+    public virtual void Awake()
     {
         AI_Animator = GetComponentInChildren<Animator>();
         Health = GetComponentInChildren<HealthSystem>();
