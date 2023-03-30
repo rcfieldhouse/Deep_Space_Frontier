@@ -17,6 +17,7 @@ public class TutorialController : MonoBehaviour
 
     // Reference to Player
     public GameObject Player;
+    private PlayerInput PlayerInput;
 
     // Array of UI Checklist Elements for Shooting Section
     public GameObject[] ShootingUIArray;
@@ -39,12 +40,13 @@ public class TutorialController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
         //Set the first section's Canvas to active
         ShootingTutorialUI.SetActive(true);
         //BeginTutorial();
+        PlayerInput = Player.GetComponent<PlayerInput>();
     }
 
     public void BeginTutorial()
@@ -221,5 +223,54 @@ public class TutorialController : MonoBehaviour
         {
             MovementCheckList();
         }
+    }
+
+    private void LeftMouseDown()
+    {
+
+    }
+    private void RightMouseDown()
+    {
+
+    }
+    private void RKeyDown()
+    {
+
+    }
+    private void ScrollWheelDown()
+    {
+
+    }
+    private void QKeyDown()
+    {
+
+    }
+    private void CKeyDown()
+    {
+
+    }
+    private void LSheftKeyDown()
+    {
+
+    }
+    private void WKeyDown()
+    {
+
+    }
+    private void AKeyDown()
+    {
+
+    }
+    private void SKeyDown()
+    {
+
+    }
+    private void DKeyDown()
+    {
+
+    }
+    private void SPacebarKeyDown()
+    {  
+
     }
 }
