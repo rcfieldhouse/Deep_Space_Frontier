@@ -167,8 +167,8 @@ public class ClientPlayerInput : MonoBehaviour
      vec.y = move.y;
      PlayerInput.MoveInput(vec);
 
-      PlayerInput.MouseScrollInput(Mouse);
-        Mouse = 0;
+     PlayerInput.MouseScrollInput(Mouse);
+     Mouse = 0;
     
 
 
