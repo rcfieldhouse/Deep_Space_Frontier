@@ -89,12 +89,16 @@ public class PlayerInput : MonoBehaviour
     {
         SpeedMod = 1.5f;
         Sprinting.Invoke(true);
-        TutorialInput.LSheftKeyDown();
+
+        if (TutorialInput != null)
+            TutorialInput.LSheftKeyDown();
     }
     public void Jump()
     {
         JumpAction.Invoke();
-        TutorialInput.SpacebarKeyDown();
+
+        if (TutorialInput != null)
+            TutorialInput.SpacebarKeyDown();
     }
     public void ToggleThrowable()
     {
@@ -103,7 +107,9 @@ public class PlayerInput : MonoBehaviour
     public void UseClassAbility()
     {
         UseAbility.Invoke();
-        TutorialInput.CKeyDown();
+
+        if (TutorialInput != null)
+            TutorialInput.CKeyDown();
     }
     public void CookGrenade()
     {
@@ -113,7 +119,9 @@ public class PlayerInput : MonoBehaviour
     public void ReleaseGrenade()
     {
         Throw.Invoke(Direction);
-        TutorialInput.QKeyDown();
+
+        if (TutorialInput != null)
+            TutorialInput.QKeyDown();
     }
     public void PausePlayer()
     {
@@ -130,14 +138,17 @@ public class PlayerInput : MonoBehaviour
     public void PlayerReload()
     {
             Reload.Invoke();
-        TutorialInput.RKeyDown();
+
+        if (TutorialInput != null)
+            TutorialInput.RKeyDown();
     }
     public void ShootGun()
     {
         if (IsDead == false)
             Shoot.Invoke();
 
-        TutorialInput.LeftMouseDown();
+        if (TutorialInput != null)
+            TutorialInput.LeftMouseDown();
     }
     public void ChamberGun()
     {
@@ -152,6 +163,8 @@ public class PlayerInput : MonoBehaviour
             UserInterface.SetActive(UIToggle);
             ADS.Invoke(true);
         }
+
+        if(TutorialInput!=null)
         TutorialInput.RightMouseDown();
     }
     public void ReleaseAim()
@@ -230,7 +243,10 @@ public class PlayerInput : MonoBehaviour
         else if (MouseScroll < 0 && WeaponActive < WeaponListLength)
         {
             SwappingWeapon.Invoke(WeaponActive + 1);
-            TutorialInput.ScrollWheelDown();
+            if (TutorialInput != null)
+            {
+                TutorialInput.ScrollWheelDown();
+            }
         }
     }
     public void SetInvulnerable()
