@@ -214,10 +214,10 @@ public class PlayerInput : MonoBehaviour
             Move.Invoke(KeyboardInput, SpeedMod);
         }
     }
-    public void MoveInput(Vector2 LookInput)
+    public void MoveInput(Vector2 MoveInput)
     {
-        KeyboardInput.x = LookInput.x;
-        KeyboardInput.y = LookInput.y;
+        KeyboardInput.x = MoveInput.x;
+        KeyboardInput.y = MoveInput.y;
         if(TutorialInput!=null)
         TutorialInput.MoveKeyDown();
     }
