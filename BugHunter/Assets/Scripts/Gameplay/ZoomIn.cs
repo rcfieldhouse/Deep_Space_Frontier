@@ -64,21 +64,22 @@ public class ZoomIn : MonoBehaviour
     }
     private void Update()
     {
-    
 
-      EquippedJourney += Time.deltaTime;
+      
+        EquippedJourney += Time.deltaTime;
         if (IsEquipping&& EquippedJourney < EquipTime)
         {
-    
             transform.localPosition = Vector3.Lerp(EquipPos1, EquipPos2, EquippedJourney / EquipTime);
            // transform.rotation = Quaternion.AngleAxis(90.0f, Vector3.right);
           transform.localRotation = Quaternion.Lerp( Rot1, Rot2, EquippedJourney / EquipTime);
+   
         }
 
         if (EquippedJourney > EquipTime && IsEquipping)
         {
             transform.localRotation = Quaternion.Lerp(Rot2, Quaternion.AngleAxis(0.0f, Vector3.right), (EquippedJourney - EquipTime) / ((EquipTime * 1.25f) - EquipTime));
             transform.localPosition = Vector3.Lerp(EquipPos2, StationaryPos, (EquippedJourney - EquipTime) / ((EquipTime * 1.25f) - EquipTime));
+     
         }
            
         if (EquippedJourney > EquipTime * 1.25f)
@@ -86,7 +87,7 @@ public class ZoomIn : MonoBehaviour
 
 
 
-        if (IsRunning)
+        if (IsRunning==true&&IsEquipping==false)
         {
             if (ToggleRunSway)
                 RunJourney += Time.deltaTime;
@@ -130,20 +131,22 @@ public class ZoomIn : MonoBehaviour
             transform.localPosition = GetBezierPosition(RunJourney / RunTime);
             return;
         }
-        else if (TransitionPeriodTime < RunTime)
+        else if (TransitionPeriodTime < RunTime&&IsEquipping==false)
         {
             transform.localRotation = Quaternion.Lerp(RunningRot,Quaternion.AngleAxis(0.0f, Vector3.up), TransitionPeriodTime / RunTime);
             transform.localPosition = Vector3.Lerp( p0, new Vector3(0.0f, 0.0f, 0.0f), TransitionPeriodTime / RunTime);
             TransitionPeriodTime += Time.deltaTime * 2;
             return;
         }
-        else
+        else if(IsEquipping == false)
         {
             transform.localRotation = Quaternion.identity;
               transform.localPosition = Vector3.zero;
         }
-
+        Debug.Log(isScoped);
         if (ADSTime == 0.0f||IsEquipping|| IsRunning) return;
+
+       
         if (isScoped)
            ScopedJourney+=Time.deltaTime;
         else if (!isScoped)
@@ -168,7 +171,7 @@ public class ZoomIn : MonoBehaviour
     }
     private void SetWeapon(int foo)
     {
- 
+      
         EquippedJourney = 0.0f;
         IsEquipping = true;
         isPrimary= GetComponentInChildren<WeaponInfo>()._IsPrimaryWeapon;

@@ -158,7 +158,6 @@ public class ClientPlayerInput : MonoBehaviour
     void Update()
     {
       
-     Debug.Log(Mouse);
      Vector2 vector;
      vector.x = look.x;
      vector.y = look.y;

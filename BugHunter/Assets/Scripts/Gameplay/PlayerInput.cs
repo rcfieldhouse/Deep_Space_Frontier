@@ -218,6 +218,7 @@ public class PlayerInput : MonoBehaviour
     {
         KeyboardInput.x = LookInput.x;
         KeyboardInput.y = LookInput.y;
+        if(TutorialInput!=null)
         TutorialInput.MoveKeyDown();
     }
     public void MouseScrollInput(float Scroll)
