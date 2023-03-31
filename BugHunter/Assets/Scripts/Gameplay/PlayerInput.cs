@@ -44,6 +44,8 @@ public class PlayerInput : MonoBehaviour
     public Vector3 Dir;
     public GameObject UserInterface;
     public WeaponSwap WeaponSwap;
+
+    public TutorialController TutorialInput;
     // Start is called before the first frame update
     //damn you dante, make ur own file 
     void Awake()
@@ -86,11 +88,13 @@ public class PlayerInput : MonoBehaviour
     public void SprintingTrue()
     {
         SpeedMod = 1.5f;
-        Sprinting.Invoke(true);   
+        Sprinting.Invoke(true);
+        TutorialInput.LSheftKeyDown();
     }
     public void Jump()
     {
         JumpAction.Invoke();
+        TutorialInput.SpacebarKeyDown();
     }
     public void ToggleThrowable()
     {
@@ -99,6 +103,7 @@ public class PlayerInput : MonoBehaviour
     public void UseClassAbility()
     {
         UseAbility.Invoke();
+        TutorialInput.CKeyDown();
     }
     public void CookGrenade()
     {
@@ -108,6 +113,7 @@ public class PlayerInput : MonoBehaviour
     public void ReleaseGrenade()
     {
         Throw.Invoke(Direction);
+        TutorialInput.QKeyDown();
     }
     public void PausePlayer()
     {
@@ -124,11 +130,14 @@ public class PlayerInput : MonoBehaviour
     public void PlayerReload()
     {
             Reload.Invoke();
+        TutorialInput.RKeyDown();
     }
     public void ShootGun()
     {
         if (IsDead == false)
-            Shoot.Invoke();     
+            Shoot.Invoke();
+
+        TutorialInput.LeftMouseDown();
     }
     public void ChamberGun()
     {
@@ -143,6 +152,7 @@ public class PlayerInput : MonoBehaviour
             UserInterface.SetActive(UIToggle);
             ADS.Invoke(true);
         }
+        TutorialInput.RightMouseDown();
     }
     public void ReleaseAim()
     {
@@ -208,6 +218,7 @@ public class PlayerInput : MonoBehaviour
     {
         KeyboardInput.x = LookInput.x;
         KeyboardInput.y = LookInput.y;
+        TutorialInput.MoveKeyDown();
     }
     public void MouseScrollInput(float Scroll)
     {
@@ -216,7 +227,10 @@ public class PlayerInput : MonoBehaviour
         if (MouseScroll > 0 && WeaponActive > 0)
             SwappingWeapon.Invoke(WeaponActive - 1);
         else if (MouseScroll < 0 && WeaponActive < WeaponListLength)
+        {
             SwappingWeapon.Invoke(WeaponActive + 1);
+            TutorialInput.ScrollWheelDown();
+        }
     }
     public void SetInvulnerable()
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class TutorialController : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class TutorialController : MonoBehaviour
 
     // Reference to Player
     public GameObject Player;
-    private PlayerInput PlayerInput;
 
     // Array of UI Checklist Elements for Shooting Section
     public GameObject[] ShootingUIArray;
@@ -38,15 +38,14 @@ public class TutorialController : MonoBehaviour
 
     public static TutorialController instance;
 
-
     // Start is called before the first frame update
     void Awake()
     {
+        
         instance = this;
         //Set the first section's Canvas to active
         ShootingTutorialUI.SetActive(true);
         //BeginTutorial();
-        PlayerInput = Player.GetComponent<PlayerInput>();
     }
 
     public void BeginTutorial()
@@ -70,42 +69,7 @@ public class TutorialController : MonoBehaviour
         {
             if (i == ShootingUIIndex)
             {
-                //ShootingUIArray[i].SetActive(true);
                 ShootingUIArray[i].GetComponent<Image>().gameObject.SetActive(true);
-            }
-            //else
-            //{
-            //    //ShootingUIArray[i].SetActive(false);
-            //    ShootingUIArray[i].GetComponent<Image>().gameObject.SetActive(false);
-            //}
-        }
-
-        if (ShootingUIIndex == 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                ShootingUIIndex++;
-            }
-        }
-        if (ShootingUIIndex == 1)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                ShootingUIIndex++;
-            }
-        }
-        if (ShootingUIIndex == 2)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                ShootingUIIndex++;
-            }
-        }
-        if (ShootingUIIndex == 3)
-        {
-            if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
-            {
-                ShootingUIIndex++;
             }
         }
         if (ShootingUIIndex == 4)
@@ -125,30 +89,24 @@ public class TutorialController : MonoBehaviour
             {
                 if (i == UtilityUIIndex)
                 {
-                    //ShootingUIArray[i].SetActive(true);
                     UtilityUIArray[i].GetComponent<Image>().gameObject.SetActive(true);
                 }
-                //else
-                //{
-                //    //ShootingUIArray[i].SetActive(false);
-                //    ShootingUIArray[i].GetComponent<Image>().gameObject.SetActive(false);
-                //}
             }
 
-            if (UtilityUIIndex == 0)
-            {
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    UtilityUIIndex++;
-                }
-            }
-            if (UtilityUIIndex == 1)
-            {
-                if (Input.GetKeyDown(KeyCode.C))
-                {
-                    UtilityUIIndex++;
-                }
-            }
+           //if (UtilityUIIndex == 0)
+           //{
+           //    if (Input.GetKeyDown(KeyCode.Q))
+           //    {
+           //        UtilityUIIndex++;
+           //    }
+           //}
+           //if (UtilityUIIndex == 1)
+           //{
+           //    if (Input.GetKeyDown(KeyCode.C))
+           //    {
+           //        UtilityUIIndex++;
+           //    }
+           //}
             if (UtilityUIIndex == 2)
             {
                 UtilityUIArray[2].GetComponent<Image>().gameObject.SetActive(true);
@@ -167,37 +125,31 @@ public class TutorialController : MonoBehaviour
             {
                 if (i == MovementUIIndex)
                 {
-                    //ShootingUIArray[i].SetActive(true);
                     MovementUIArray[i].GetComponent<Image>().gameObject.SetActive(true);
                 }
-                //else
-                //{
-                //    //ShootingUIArray[i].SetActive(false);
-                //    ShootingUIArray[i].GetComponent<Image>().gameObject.SetActive(false);
-                //}
             }
 
-            if (MovementUIIndex == 0)
-            {
-                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-                {
-                    MovementUIIndex++;
-                }
-            }
-            if (MovementUIIndex == 1)
-            {
-                if (Input.GetKeyDown(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
-                {
-                        MovementUIIndex++;
-                }
-            }
-            if (MovementUIIndex == 2)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    MovementUIIndex++;
-                }
-            }
+           //if (MovementUIIndex == 0)
+           //{
+           //    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+           //    {
+           //        MovementUIIndex++;
+           //    }
+           //}
+            //if (MovementUIIndex == 1)
+            //{
+            //    if (Input.GetKeyDown(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
+            //    {
+            //            MovementUIIndex++;
+            //    }
+            //}
+            //if (MovementUIIndex == 2)
+            //{
+            //    if (Input.GetKeyDown(KeyCode.Space))
+            //    {
+            //        MovementUIIndex++;
+            //    }
+            //}
             if(MovementUIIndex == 3)
             {
                 MovementUIArray[3].GetComponent<Image>().gameObject.SetActive(true);
@@ -225,52 +177,67 @@ public class TutorialController : MonoBehaviour
         }
     }
 
-    private void LeftMouseDown()
+    public void LeftMouseDown()
     {
-
+        if(ShootingUIIndex == 0)
+        {
+            ShootingUIIndex++;
+        }
     }
-    private void RightMouseDown()
+    public void RightMouseDown()
     {
-
+        if (ShootingUIIndex == 1)
+        {
+             ShootingUIIndex++;
+        }
     }
-    private void RKeyDown()
+    public void RKeyDown()
     {
-
+        if (ShootingUIIndex == 2)
+        {
+             ShootingUIIndex++;
+        }
     }
-    private void ScrollWheelDown()
+    public void ScrollWheelDown()
     {
-
+        if (ShootingUIIndex == 3)
+        {
+             ShootingUIIndex++;
+        }
     }
-    private void QKeyDown()
+    public void QKeyDown()
     {
-
+        if (UtilityUIIndex == 0 && ShootingComplete == true)
+        {
+             UtilityUIIndex++;
+        }
     }
-    private void CKeyDown()
+    public void CKeyDown()
     {
-
+        if (UtilityUIIndex == 1)
+        {
+            UtilityUIIndex++;
+        }
     }
-    private void LSheftKeyDown()
+    public void LSheftKeyDown()
     {
-
+        if (MovementUIIndex == 1)
+        {
+                MovementUIIndex++;
+        }
     }
-    private void WKeyDown()
+    public void MoveKeyDown()
     {
-
+        if (MovementUIIndex == 0 && UtilityComplete == true)
+        {
+                MovementUIIndex++;
+        }
     }
-    private void AKeyDown()
+    public void SpacebarKeyDown()
     {
-
-    }
-    private void SKeyDown()
-    {
-
-    }
-    private void DKeyDown()
-    {
-
-    }
-    private void SPacebarKeyDown()
-    {  
-
+        if (MovementUIIndex == 2)
+        {
+                MovementUIIndex++;
+        }
     }
 }
