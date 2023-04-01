@@ -107,7 +107,6 @@ public class DamageIndicator : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(LocalHit);
         Holder.GetComponent<DamageIDHolder>().transform.LookAt(DamageReceivedFrom);
         Holder.GetComponent<DamageIDHolder>().transform.Rotate(Vector3.up, 180.0f);
     }
