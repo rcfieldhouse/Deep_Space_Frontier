@@ -12,11 +12,11 @@ public class SniperRifle : Gun
                 GetComponent<WeaponInfo>().magSize += 3;
                 break;
             case 2:
-                GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.9f);
+                GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.7f);
                 break;
             case 3:
-                GetComponent<WeaponInfo>().RecoilX *= 0.9f;
-                GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                GetComponent<WeaponInfo>().RecoilX *= 0.3f;
+                GetComponent<WeaponInfo>().AimRecoilX *= 0.3f;
                 break;
         }
     }
