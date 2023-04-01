@@ -7,6 +7,8 @@ public class DamageIndicator : MonoBehaviour
     float num=0,offset;
     public Transform DamageReceivedFrom;
     public GameObject obj,Holder,text;
+   [HideInInspector] public bool reworkindicator=false;
+   [HideInInspector] public Vector3 HitPos,LocalHit;
     private void Awake()
     {
         offset = 0;
@@ -25,8 +27,14 @@ public class DamageIndicator : MonoBehaviour
         {
             Holder = GetComponentInChildren<DamageIDHolder>().gameObject;
             text = GetComponentInChildren<TextMeshPro>().gameObject;
+            HitPos = gameObject.GetComponent<DamageIndicator>().HitPos;
+            LocalHit = gameObject.GetComponent<DamageIndicator>().LocalHit;
+            reworkindicator = gameObject.GetComponent<DamageIndicator>().reworkindicator;
             gameObject.GetComponent<DamageIndicator>().RemoveThis();
-                return;
+            if (Holder.transform.lossyScale.magnitude <= 1.0f)
+                text.GetComponent<TextMeshPro>().fontSize = 20 * (2 - Holder.transform.lossyScale.magnitude);
+            else text.GetComponent<TextMeshPro>().fontSize = 20;
+            return;
         }
            
         obj = new GameObject();
@@ -38,11 +46,20 @@ public class DamageIndicator : MonoBehaviour
      text.AddComponent<TextMeshPro>();
 
      Holder.transform.localPosition = Vector3.zero;
-        if (transform.parent.gameObject.GetComponent<TargetRange>() != null) offset = 5 ;
-     Holder.GetComponent<DamageIDHolder>().transform.localPosition = Vector3.zero + offset*Vector3.up; 
-     text.GetComponent<TextMeshPro>().fontSize = 12 ;
-     text.GetComponent<TextMeshPro>().alignment = TextAlignmentOptions.Center;
+        if (Holder.transform.lossyScale.magnitude <= 1.0f)
+            text.GetComponent<TextMeshPro>().fontSize = 20 * (2 - Holder.transform.lossyScale.magnitude);
+        else text.GetComponent<TextMeshPro>().fontSize = 20;
+        text.GetComponent<TextMeshPro>().alignment = TextAlignmentOptions.Center;
      text.GetComponent<TextMeshPro>().text = 0.ToString();
+
+       // if (transform.parent.gameObject.GetComponent<TargetRange>() != null) offset = 5;
+       // Holder.GetComponent<DamageIDHolder>().transform.localPosition = Vector3.zero + offset * Vector3.up;
+        if (reworkindicator)
+        {
+            offset = 0.0f;
+            Holder.GetComponent<DamageIDHolder>().transform.position = (Vector3.up * 1.25f) + HitPos;
+        }
+
     }
     public void SetIndicator(Transform transform,int Damage,bool _IsCrit)
     {
@@ -50,7 +67,8 @@ public class DamageIndicator : MonoBehaviour
         Holder.GetComponent<DamageIDHolder>().transform.LookAt(transform);
         Holder.GetComponent<DamageIDHolder>().transform.Rotate(Vector3.up, 180.0f);
         text.GetComponent<TextMeshPro>().text = (int.Parse(text.GetComponent<TextMeshPro>().text)+Damage).ToString();
-
+        Holder.layer = 12;
+        text.layer = 12;
         if (_IsCrit == true)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Creature/Enemy_Hurt Crit");
@@ -64,6 +82,14 @@ public class DamageIndicator : MonoBehaviour
         }
         StartCoroutine(FancySchmancyTextEffect());
     }
+    public void SetHisPos(Vector3 vec)
+    {
+        reworkindicator = true;
+        HitPos = vec;
+        LocalHit = HitPos - transform.position;
+        Holder.GetComponent<DamageIDHolder>().transform.position = (Vector3.up * 1.25f) + vec;
+        offset = 0.0f;
+    }
     public IEnumerator FancySchmancyTextEffect()
     {
         while (num<1.0f)
@@ -74,13 +100,14 @@ public class DamageIndicator : MonoBehaviour
             if (text)
             text.GetComponent<TextMeshPro>().alpha = 1.0f - num;
             if (Holder) 
-            Holder.GetComponent<DamageIDHolder>().transform.localPosition = Vector3.zero + (offset + num) * Vector3.up;
+            Holder.GetComponent<DamageIDHolder>().transform.position = HitPos + (num * Vector3.up)+(Vector3.up*1.25f)- (HitPos - (transform.position+LocalHit));
         }
         Destroy(Holder);
         Destroy(this);
     }
     private void Update()
     {
+        Debug.Log(LocalHit);
         Holder.GetComponent<DamageIDHolder>().transform.LookAt(DamageReceivedFrom);
         Holder.GetComponent<DamageIDHolder>().transform.Rotate(Vector3.up, 180.0f);
     }

@@ -104,8 +104,7 @@ public class Shotgun : Gun
             //Damage
             LazerLine.SetPosition(index, Hit.point);
             HealthSystem Health = FindHealth(Hit.collider);
-            DoDamage(Health, Hit.collider.isTrigger);
-
+            DoDamage(Health, Hit.collider.isTrigger, Hit.point);
             if (Hit.rigidbody != null)
                 Hit.rigidbody.AddForce(-Hit.normal * HitForce);
         }

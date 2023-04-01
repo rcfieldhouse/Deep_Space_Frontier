@@ -143,7 +143,6 @@ public class ZoomIn : MonoBehaviour
             transform.localRotation = Quaternion.identity;
               transform.localPosition = Vector3.zero;
         }
-        Debug.Log(isScoped);
         if (ADSTime == 0.0f||IsEquipping|| IsRunning) return;
 
        

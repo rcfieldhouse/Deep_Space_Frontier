@@ -79,7 +79,7 @@ public abstract class Gun : MonoBehaviour
         else if (Time.time > NextFire && gameObject.activeInHierarchy == true&&info.GetMag()> 0 && info.IsPaused == false)
             info.SetCanShoot(true);
     }
-    public void DoDamage(HealthSystem Health, bool _IsCrit)
+    public void DoDamage(HealthSystem Health, bool _IsCrit,Vector3 point)
     {    
         float DamageX = 1;
         if (_IsCrit) DamageX = CritMultiplier;
@@ -88,6 +88,7 @@ public abstract class Gun : MonoBehaviour
         {
             StartCoroutine(HitMarkerEffect(_IsCrit));
             Health.gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,(int)(Damage*DamageX), _IsCrit);
+            Health.gameObject.GetComponent<DamageIndicator>().SetHisPos(point);
             Health.ModifyHealth(transform,(int)(Damage * DamageX));
         }
     }
