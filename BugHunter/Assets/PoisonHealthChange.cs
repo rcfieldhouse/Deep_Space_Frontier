@@ -10,7 +10,6 @@ public class PoisonHealthChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(DamageRemaining);
         GetComponent<Image>().fillAmount = ((float)Health.GetHealth() + DamageRemaining) / Health.GetMaxHealth();
     }
 }

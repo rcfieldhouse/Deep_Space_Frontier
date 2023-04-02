@@ -20,9 +20,6 @@ public class Venom : MonoBehaviour
         gameObject.GetComponent<GUIHolder>().PoisonedSymbol.SetActive(true);
 
         TotalDamageDone =((int) (Time / Interval) * damage)+damage;
-        Debug.Log(TotalDamageDone);
-        Debug.Log((float)GetComponent<HealthSystem>().GetHealth());
-        Debug.Log(((float)GetComponent<HealthSystem>().GetHealth()+TotalDamageDone)/(float)GetComponent<HealthSystem>().GetMaxHealth());
         GetComponent<GUIHolder>().PoisonedSymbol.transform.parent.GetChild(1).gameObject.SetActive(true);
         GetComponent<GUIHolder>().PoisonedSymbol.transform.parent.GetChild(1).GetComponent<Image>().color = Color.green;
         GetComponent<GUIHolder>().PoisonedSymbol.transform.parent.GetChild(1).GetComponent<Image>().fillAmount =
@@ -34,7 +31,14 @@ public class Venom : MonoBehaviour
         StartCoroutine(BurnDeBoi());
     }
     // Update is called once per frame
-
+    private void Awake()
+    {
+        Invoke(nameof(KillThis), 5.0f);
+    }
+    void KillThis()
+    {
+        Destroy(this);
+    }
     private IEnumerator BurnDeBoi()
     {
       
