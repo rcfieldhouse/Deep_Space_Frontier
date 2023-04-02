@@ -7,14 +7,13 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public Dictionary<int, GameObject> playerList = new Dictionary<int, GameObject>();
-
     public static GameManager instance;
 
-    public static TextMeshProUGUI textbox;
+    public static Dictionary<int, GameObject> playerList = new Dictionary<int, GameObject>();
+    private Queue<int> _IDToSet = new Queue<int>();
 
-    public static Queue<string> messages = new Queue<string>();
-   
+    public GameObject prefab;
+
     //TODO: will need to refactor this at some point.
     [Header("Loading Screen")]
     public GameObject loadingScreen;
@@ -24,27 +23,63 @@ public class GameManager : MonoBehaviour
     public float timeSlowStrength = 0.05f;
     public float timeSlowDuration = 1f;
 
+    public static Queue<MovementCommand> _movementQueue = new Queue<MovementCommand>();
+
+    public static Queue<LookCommand> _lookQueue = new Queue<LookCommand>();
 
     private void Awake()
-    {
+    { 
         instance = this;
-       
-
         DontDestroyOnLoad(this.gameObject);
-      //  textbox = GameObject.Find("Messages").GetComponent<TextMeshProUGUI>();
     }
 
+    #region Server
     private void Update()
     {
-       // if (messages.Count > 0)
-       // {
-       //     textbox.text += messages.Dequeue();
-       //
-       // }
-        
+        //Must Manipulate Objects within Main thread!
+        while (_IDToSet.Count > 0)
+        {
+            int id = _IDToSet.Dequeue();
 
+            GameObject player = Instantiate(prefab, transform);
+            player.name = "Player: " + id;
+            playerList.Add(id, player);
+
+            Debug.Log(player.name + " has been added to the game");
+
+            JoinGame(id);
+        }
+    }
+    public void FixedUpdate()
+    {
+        if (_movementQueue.Count > 0)
+        {
+            MovementCommand cmd = _movementQueue.Dequeue();
+            playerList[cmd.connectionID].GetComponentInChildren<PlayerInput>().MoveInput(cmd.vector);
+            NetworkSend.SendPlayerMove(cmd.connectionID, playerList[cmd.connectionID].transform.position);
+        }
+
+        if (_lookQueue.Count > 0)
+        {
+            LookCommand cmd = _lookQueue.Dequeue();
+            //this vector is not calculated right
+            playerList[cmd.connectionID].GetComponentInChildren<PlayerInput>().LookInput(cmd.vector);
+            NetworkSend.SendPlayerRotation(cmd.connectionID, playerList[cmd.connectionID].transform.rotation);
+        }
     }
 
+    public void JoinGame(int connectionID)
+    {
+        NetworkSend.InstantiateNetworkPlayer(connectionID);
+    }
+
+    public void CreatePlayer(int connectionID)
+    {
+        _IDToSet.Enqueue(connectionID);
+    }
+    #endregion
+
+    #region GameWorld
     public void BulletTime()
     {
         Time.timeScale = timeSlowStrength;
@@ -52,12 +87,8 @@ public class GameManager : MonoBehaviour
     }
     public void StopTime()
     {
-      
-        //oho jotaro
-        //idk how to spell it i dont watch that trash anime
-        Time.timeScale = 0.0f;
-        
-            Time.fixedDeltaTime = 0.0f;
+        Time.timeScale = 0.0f;        
+        Time.fixedDeltaTime = 0.0f;
     }
     public void ResumeTime()
     {
@@ -126,4 +157,6 @@ public class GameManager : MonoBehaviour
     {
 
     }
+    #endregion
+
 }

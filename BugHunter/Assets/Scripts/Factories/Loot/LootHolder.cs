@@ -45,7 +45,8 @@ public class LootHolder : MonoBehaviour, IDataPersistence
         {
             Debug.Log(i);
             Inventory[i].SetQuantity(data.itemQuantity[i]);
-            i++;
+            if (i == 12)
+                return;
         }
     }
 
@@ -55,6 +56,8 @@ public class LootHolder : MonoBehaviour, IDataPersistence
         for (int i = 0; i < Inventory.Count; i++)
         {
             data.itemQuantity[i] = Inventory[i].Quantity;
+            if (i == 12)
+                return;
         }
         
     }

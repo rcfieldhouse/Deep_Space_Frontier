@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
+
+
 public class PlayerInput : MonoBehaviour
-
-
 {
-    //For the Teleport Command Pattern
-
     //actions that the player may perform
     public event Action Interact, InteractReleased,Revive,GiveUp;
     public event Action JumpAction, UseAbility, Shoot, Chamber,Reload,Undo,TabThrowable, WeNeedToCookJesse;
@@ -17,11 +16,6 @@ public class PlayerInput : MonoBehaviour
     public bool IsDead = false;
     //pause menu actions
     public static Action SavePlayer, LoadPlayer, PausePlugin, GetTime;
-
-
-
-    //these are for weapon swapping,
-    //swapping weapon is a placeholder until class selection is introduced
 
    // public event Action SwapPrimary, SwapSecondary;
     public event Action<int> SwappingWeapon = delegate { };
@@ -221,11 +215,14 @@ public class PlayerInput : MonoBehaviour
 
         Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
         Dir.x = Direction.eulerAngles.x;
+
         if (Look != null && Direction != null)
         {
             Look.Invoke(Direction);
             Move.Invoke(KeyboardInput, SpeedMod);
         }
+
+
     }
     public void MoveInput(Vector2 MoveInput)
     {
@@ -260,6 +257,48 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        //DEVHACK
+        if (Input.GetKeyDown(KeyCode.P))
+            GetComponent<HealthSystem>().SetInvulnerable(true);
+     
+
+        //Pause Menu For Plugin
+   
+
+        if (Input.GetKeyDown(KeyCode.T))
+            GetTime.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+            Undo.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+        //    GenshinCam.SetActive(!GenshinCam.activeInHierarchy);
+        }
+            
+
+        
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            GameManager.instance.ResumeTime();
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            GameManager.instance.StopTime();
+
+
+        //cursed crouch controls
+        if (Input.GetButtonDown("Crouch"))
+            Crouching.Invoke(true);      
+        else if (Input.GetButtonUp("Crouch"))
+            Crouching.Invoke(false);
+     
+        if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
+            SpeedMod = controller.m_CrouchSpeed;
+        if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
+            SpeedMod = 2.0f;
+        else if (Input.GetButtonUp("Crouch"))
+            SpeedMod = 1.0f;
      
 
 
@@ -313,15 +352,6 @@ public class PlayerInput : MonoBehaviour
    //    else if (Input.GetButtonUp("Crouch"))
    //        SpeedMod = 1.0f;
    //
-
-   
-
-
-      
-
-    
-      
-
     }
     // UI buttons call this when they want to enable mouse lock
     // Currently used by "Exit_Inventory" Button

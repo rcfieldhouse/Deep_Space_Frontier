@@ -13,7 +13,7 @@ public class ReadInput : MonoBehaviour
     }
     public void ReadStringInput(string message)
     {
-        NetworkSend.SendMessage(message);
+        //NetworkSend.SendMessage(message);
         field.text = "";
     }
 }
