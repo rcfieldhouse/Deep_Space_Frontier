@@ -31,11 +31,11 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.LogError("More than one instance of Data Persistence Manager Found!");
         }
         instance = this;
-        LoadGame();
+        
     }
     public void NewGame()
     {
-        this.gameData = new GameData();
+        gameData = new GameData();
     }
     public void SaveGame()
     {
@@ -44,7 +44,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(gameData);
         }
-        Debug.Log("Enemies Killed save: " + gameData.deathCount);
+        //Debug.Log("Enemies Killed save: " + gameData.deathCount);
         //save that data to a file using the data handler
         dataHandler.Save(gameData);
 
@@ -52,10 +52,10 @@ public class DataPersistenceManager : MonoBehaviour
     public void LoadGame()
     {
         //load save data from JSON file using the data handler
-        this.gameData = dataHandler.Load();
+        gameData = dataHandler.Load();
 
         // if no data can be found, init to NewGame
-        if(this.gameData == null)
+        if(gameData == null)
         {
             Debug.Log("No Save Data was found, Initialising to New Game");
             NewGame();
@@ -66,7 +66,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-        Debug.Log("Enemies Killed load: " + gameData.deathCount);
+        //Debug.Log("Enemies Killed load: " + gameData.deathCount);
 
     }
     private void OnApplicationQuit()

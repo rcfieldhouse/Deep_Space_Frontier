@@ -106229,7 +106229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520725862257447243}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.00000023841858, z: 0.000010251999}
+  m_LocalPosition: {x: 0, y: 0.00000023841858, z: 0.000010251999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -134174,6 +134174,7 @@ GameObject:
   - component: {fileID: 227781475}
   - component: {fileID: 2095233485}
   - component: {fileID: 1896600962}
+  - component: {fileID: 6932415431024336574}
   m_Layer: 7
   m_Name: MixamoCharacter
   m_TagString: Player
@@ -134430,6 +134431,19 @@ MonoBehaviour:
   HealthRegen: {fileID: 1915176226}
   Volume: {fileID: 280035010}
   Vignette: {fileID: 0}
+--- !u!114 &6932415431024336574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520725862882063774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0eb6ec79c80894990b87d8a9ebab15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
 --- !u!1 &4520725862886984377
 GameObject:
   m_ObjectHideFlags: 0

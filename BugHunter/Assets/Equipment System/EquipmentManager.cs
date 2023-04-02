@@ -34,16 +34,12 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
         if(GameObject.Find("SceneLoadData") != null)
             Debug.Log("awake");
 
-        //temporary for testing
         slime_armor = new SlimeArmor();
         BomberArmor = new BomberArmor();
-        TickArmor = new TickArmor();
+        TickArmor   = new TickArmor();
         ZephyrArmor = new ZephyrArmor();
 
-
         currentEquip = new StandardArmor();
-        //currentEquip.isEquippable = true;
-        //ChangeEquip(currentEquip);
         LoadData(GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data);
     }
     
@@ -53,7 +49,11 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
 
         //will need some UI for this, debug.logs for now though.
         if (!ValidateEquip(newEquip))
+        {
             DisplayCannotEquipError();
+            return;
+        }
+            
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/Player/EquipItem");
 
@@ -78,6 +78,7 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
     {
         Debug.LogError("Cannot Equip this right now!");
     }
+
     private void OnDestroy()
     {
         if (currentEquip.itemName == "Standard Armor")

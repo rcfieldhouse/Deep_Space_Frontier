@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
+
+
 public class PlayerInput : MonoBehaviour
-
-
 {
-    //For the Teleport Command Pattern
-
     //actions that the player may perform
     public event Action Interact, InteractReleased,Revive,GiveUp;
     public event Action JumpAction, UseAbility, Shoot, Chamber,Reload,Undo,TabThrowable, WeNeedToCookJesse;
@@ -17,11 +16,6 @@ public class PlayerInput : MonoBehaviour
     public bool IsDead = false;
     //pause menu actions
     public static Action SavePlayer, LoadPlayer, PausePlugin, GetTime;
-
-
-
-    //these are for weapon swapping,
-    //swapping weapon is a placeholder until class selection is introduced
 
    // public event Action SwapPrimary, SwapSecondary;
     public event Action<int> SwappingWeapon = delegate { };
@@ -44,8 +38,9 @@ public class PlayerInput : MonoBehaviour
     public Vector3 Dir;
     public GameObject UserInterface;
     public WeaponSwap WeaponSwap;
-    // Start is called before the first frame update
-    //damn you dante, make ur own file 
+
+
+
     void Awake()
     {
         ADSWSniper = false;
@@ -171,9 +166,11 @@ public class PlayerInput : MonoBehaviour
     }
     public void LookInput(Vector2 LookInput)
     {
+        Debug.Log("Look Vector: " + LookInput);
 
-        MouseInput.x += LookInput.x * Sensitivity * 2;
-        MouseInput.y += LookInput.y * Sensitivity * 2;
+        MouseInput.x += LookInput.x * Sensitivity;
+        MouseInput.y += LookInput.y * Sensitivity;
+
         if (ADSWSniper == true)
         {
             MouseInput.x -= (1.0f - SniperSensitivityReduction) * LookInput.x * Sensitivity * 2;
@@ -192,14 +189,18 @@ public class PlayerInput : MonoBehaviour
 
         Direction = Quaternion.Euler(-MouseInput.y, MouseInput.x, 0);
         Dir.x = Direction.eulerAngles.x;
+
         if (Look != null && Direction != null)
         {
             Look.Invoke(Direction);
             Move.Invoke(KeyboardInput, SpeedMod);
         }
+
+
     }
     public void MoveInput(Vector2 LookInput)
     {
+        Debug.Log("Move Vector: " + LookInput);
         KeyboardInput.x = LookInput.x;
         KeyboardInput.y = LookInput.y;
     }
@@ -215,16 +216,6 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-
-
-
-      
-
-
-   
-        //PlayerINput for controls
-        //Turn this to GetButtonDown at some point
       
 
         //DEVHACK
@@ -267,16 +258,6 @@ public class PlayerInput : MonoBehaviour
             SpeedMod = 2.0f;
         else if (Input.GetButtonUp("Crouch"))
             SpeedMod = 1.0f;
-
-
-   
-
-
-      
-
-    
-      
-
     }
     // UI buttons call this when they want to enable mouse lock
     // Currently used by "Exit_Inventory" Button
