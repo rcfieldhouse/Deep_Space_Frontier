@@ -45,13 +45,13 @@ public class Revolver : Gun
             RaycastHit Hit;
          
             StartCoroutine(ShotEffect());
-            if (Physics.Raycast(RayOrigin, Camera.transform.forward * WeaponRange + Spread, out Hit, WeaponRange))
+            if (Physics.Raycast(RayOrigin, Camera.transform.forward * WeaponRange + Spread, out Hit, 500))
             {
                 //Damage
                 LazerLine.SetPosition(1, Hit.point);
                 HealthSystem Health = FindHealth(Hit.collider);
-            DoDamage(Health, Hit.collider.isTrigger, Hit.point);
-
+            DoDamage(Health, Hit.collider.isTrigger, Hit.point,Hit);
+          
             if (Hit.rigidbody != null)
                     Hit.rigidbody.AddForce(-Hit.normal * HitForce);
 

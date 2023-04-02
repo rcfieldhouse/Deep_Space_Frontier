@@ -36,6 +36,25 @@ public abstract class Gun : MonoBehaviour
         }
           
     }
+    public float CalculateWeaponDamageFalloff(float Distance)
+    {
+        if (Distance <= WeaponRange)
+            return 1;
+
+        for (int i = 0; i < 9; i++)
+        {
+            //Debug.Log(((float)i / 3.0f)*WeaponRange);
+            if (Distance < (WeaponRange + (((i) / 3.0f) * WeaponRange)))
+            {
+                Debug.Log("Distance was " + Distance + " it smaller than " + (WeaponRange + (((i) / 3.0f) * WeaponRange)) + "Damage fallof : " + (1.0f-(float)i / 9.0f));
+                return (1.0f - (float)i / 9.0f);
+            }
+         }
+        return 0;
+  
+           
+      
+    }
     public void SetIsSprinting(bool var)
     {
         _IsSprinting = var;
@@ -79,9 +98,11 @@ public abstract class Gun : MonoBehaviour
         else if (Time.time > NextFire && gameObject.activeInHierarchy == true&&info.GetMag()> 0 && info.IsPaused == false)
             info.SetCanShoot(true);
     }
-    public void DoDamage(HealthSystem Health, bool _IsCrit,Vector3 point)
-    {    
-        float DamageX = 1;
+    public void DoDamage(HealthSystem Health, bool _IsCrit,Vector3 point, RaycastHit Hit)
+    {
+       Debug.Log("Damage done should be "+Damage*CalculateWeaponDamageFalloff(Hit.distance));
+        float DamageX = 1.0f * CalculateWeaponDamageFalloff(Hit.distance);
+     
         if (_IsCrit) DamageX = CritMultiplier;
 
         if (Health)

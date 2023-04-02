@@ -56,13 +56,13 @@ public class SniperRifle : Gun
              Shell.GetComponent<Rigidbody>().AddForce(CasingEjectPoint.transform.rotation * Vector3.right * 10.0f, ForceMode.Impulse);
 
         StartCoroutine(ShotEffect());
-            if (Physics.Raycast(RayOrigin, Camera.transform.forward, out Hit, WeaponRange))
+            if (Physics.Raycast(RayOrigin, Camera.transform.forward, out Hit, 500))
             {
                 //Damage
                 Debug.Log(Hit.collider.name);
                 LazerLine.SetPosition(1, Hit.point);
                 HealthSystem Health = FindHealth(Hit.collider);
-            DoDamage(Health, Hit.collider.isTrigger, Hit.point);
+            DoDamage(Health, Hit.collider.isTrigger, Hit.point, Hit);
             if (Hit.rigidbody != null)
                     Hit.rigidbody.AddForce(-Hit.normal * HitForce);
                 if(Health)
