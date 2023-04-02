@@ -26,14 +26,14 @@ public class Shotgun : Gun
             switch (lvl)
             {
                 case 1:
-                    GetComponent<WeaponInfo>().RecoilX *= 0.9f;
-                    GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                    GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.2f);
+                    // Increase Reload Animation by the same amount here
                     break;
                 case 2:
                     WeaponRange *= 1.15f;
                     break;
                 case 3:
-                   
+                    CritMultiplier *= 1.1f;
                     break;
 
             }
@@ -104,8 +104,7 @@ public class Shotgun : Gun
             //Damage
             LazerLine.SetPosition(index, Hit.point);
             HealthSystem Health = FindHealth(Hit.collider);
-            DoDamage(Health, Hit.collider.isTrigger);
-
+            DoDamage(Health, Hit.collider.isTrigger, Hit.point);
             if (Hit.rigidbody != null)
                 Hit.rigidbody.AddForce(-Hit.normal * HitForce);
         }

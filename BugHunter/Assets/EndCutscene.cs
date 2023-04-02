@@ -11,6 +11,7 @@ public class EndCutscene : MonoBehaviour
     public GameObject CutsceneCamera, Player;
     private void Awake()
     {
+      //  Player.transform.GetChild(0).GetComponent<PlayerInput>().PausePlugin += function;
         Invoke(nameof(function),cutsceneTime);
     }
     void function()

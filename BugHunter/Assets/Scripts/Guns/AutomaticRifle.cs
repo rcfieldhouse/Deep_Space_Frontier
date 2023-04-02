@@ -13,14 +13,14 @@ public class AutomaticRifle : Gun
             switch (lvl)
             {
                 case 1:
-                    GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.9f);
+                    GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.7f);
                     break;
                 case 2:
                     GetComponent<WeaponInfo>().magSize += 10;
                     break;
                 case 3:
-                    GetComponent<WeaponInfo>().RecoilX *= 0.9f;
-                    GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                    GetComponent<WeaponInfo>().RecoilX *= 0.7f;
+                    GetComponent<WeaponInfo>().AimRecoilX *= 0.7f;
                     break;
 
             }
@@ -28,11 +28,11 @@ public class AutomaticRifle : Gun
             switch (lvl)
             {
                 case 1:
-                    GetComponent<WeaponInfo>().RecoilX *= 0.9f;
-                    GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                    GetComponent<WeaponInfo>().RecoilX *= 0.8f;
+                    GetComponent<WeaponInfo>().AimRecoilX *= 0.8f;
                     break;
                 case 2:
-                    GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.9f);
+                    GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.7f);
                     break;
                 case 3:
                     CritMultiplier *= 1.1f;
@@ -104,8 +104,9 @@ public class AutomaticRifle : Gun
                 //Damage
                 LazerLine.SetPosition(1, Hit.point);
                 HealthSystem Health = FindHealth(Hit.collider);
-                DoDamage(Health, Hit.collider.isTrigger);
-
+              
+                DoDamage(Health, Hit.collider.isTrigger, Hit.point);
+               
                 if (Hit.rigidbody != null)
                     Hit.rigidbody.AddForce(-Hit.normal * HitForce);
 

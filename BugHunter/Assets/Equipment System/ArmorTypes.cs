@@ -154,7 +154,7 @@ public class ZephyrArmor : Armor
     public override void Enter(GameObject requester)
     {
         CharacterController playerControl = requester.GetComponent<CharacterController>();
-        playerControl.ArmourSpeedIncrease = 3.30f;
+        playerControl.ArmourSpeedIncrease = 1.30f;
     }
     public override int Execute(GameObject requester, int damageAmount)
     {

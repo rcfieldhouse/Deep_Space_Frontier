@@ -39,8 +39,9 @@ public class PlayerInput : MonoBehaviour
     public GameObject UserInterface;
     public WeaponSwap WeaponSwap;
 
-
-
+    public TutorialController TutorialInput;
+    // Start is called before the first frame update
+    //damn you dante, make ur own file 
     void Awake()
     {
         ADSWSniper = false;
@@ -81,11 +82,17 @@ public class PlayerInput : MonoBehaviour
     public void SprintingTrue()
     {
         SpeedMod = 1.5f;
-        Sprinting.Invoke(true);   
+        Sprinting.Invoke(true);
+
+        if (TutorialInput != null)
+            TutorialInput.LSheftKeyDown();
     }
     public void Jump()
     {
         JumpAction.Invoke();
+
+        if (TutorialInput != null)
+            TutorialInput.SpacebarKeyDown();
     }
     public void ToggleThrowable()
     {
@@ -94,6 +101,9 @@ public class PlayerInput : MonoBehaviour
     public void UseClassAbility()
     {
         UseAbility.Invoke();
+
+        if (TutorialInput != null)
+            TutorialInput.CKeyDown();
     }
     public void CookGrenade()
     {
@@ -103,10 +113,13 @@ public class PlayerInput : MonoBehaviour
     public void ReleaseGrenade()
     {
         Throw.Invoke(Direction);
+
+        if (TutorialInput != null)
+            TutorialInput.QKeyDown();
     }
     public void PausePlayer()
     {
-            PausePlugin.Invoke();
+        PausePlugin.Invoke();
     }
     public void BeginInteract()
     {
@@ -119,11 +132,17 @@ public class PlayerInput : MonoBehaviour
     public void PlayerReload()
     {
             Reload.Invoke();
+
+        if (TutorialInput != null)
+            TutorialInput.RKeyDown();
     }
     public void ShootGun()
     {
         if (IsDead == false)
-            Shoot.Invoke();     
+            Shoot.Invoke();
+
+        if (TutorialInput != null)
+            TutorialInput.LeftMouseDown();
     }
     public void ChamberGun()
     {
@@ -138,6 +157,9 @@ public class PlayerInput : MonoBehaviour
             UserInterface.SetActive(UIToggle);
             ADS.Invoke(true);
         }
+
+        if(TutorialInput!=null)
+        TutorialInput.RightMouseDown();
     }
     public void ReleaseAim()
     {
@@ -150,11 +172,15 @@ public class PlayerInput : MonoBehaviour
     }
     public void SwapPrimaryWeapon()
     {
-    SwappingWeapon.Invoke(0);
+        SwappingWeapon.Invoke(0);
     }
     public void SwapSecondaryWeapon()
     {
         SwappingWeapon.Invoke(1);
+    }
+    public void SwapTertiaryWeapon()
+    {
+        SwappingWeapon.Invoke(2);
     }
     public void RevivePlayer()
     {
@@ -166,20 +192,20 @@ public class PlayerInput : MonoBehaviour
     }
     public void LookInput(Vector2 LookInput)
     {
-        Debug.Log("Look Vector: " + LookInput);
+        if (IsDead)
+            return;
 
-        MouseInput.x += LookInput.x * Sensitivity;
-        MouseInput.y += LookInput.y * Sensitivity;
-
+        MouseInput.x += LookInput.x * Sensitivity ;
+        MouseInput.y += LookInput.y * Sensitivity ;
         if (ADSWSniper == true)
         {
-            MouseInput.x -= (1.0f - SniperSensitivityReduction) * LookInput.x * Sensitivity * 2;
-            MouseInput.y -= (1.0f - SniperSensitivityReduction) * LookInput.y * Sensitivity * 2;
+            MouseInput.x -= (1.0f - SniperSensitivityReduction) * LookInput.x * Sensitivity ;
+            MouseInput.y -= (1.0f - SniperSensitivityReduction) * LookInput.y * Sensitivity ;
         }
         if (AimAssist == true)
         {
-            MouseInput.x -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.x * Sensitivity * 2;
-            MouseInput.y -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.y * Sensitivity * 2;
+            MouseInput.x -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.x * Sensitivity;
+            MouseInput.y -= (SniperSensitivityReduction * AimAssistStrength) * LookInput.y * Sensitivity;
         }
 
         if (Mathf.Abs(MouseInput.y) > 80)
@@ -198,11 +224,12 @@ public class PlayerInput : MonoBehaviour
 
 
     }
-    public void MoveInput(Vector2 LookInput)
+    public void MoveInput(Vector2 MoveInput)
     {
-        Debug.Log("Move Vector: " + LookInput);
-        KeyboardInput.x = LookInput.x;
-        KeyboardInput.y = LookInput.y;
+        KeyboardInput.x = MoveInput.x;
+        KeyboardInput.y = MoveInput.y;
+        if(TutorialInput!=null)
+        TutorialInput.MoveKeyDown();
     }
     public void MouseScrollInput(float Scroll)
     {
@@ -211,12 +238,26 @@ public class PlayerInput : MonoBehaviour
         if (MouseScroll > 0 && WeaponActive > 0)
             SwappingWeapon.Invoke(WeaponActive - 1);
         else if (MouseScroll < 0 && WeaponActive < WeaponListLength)
+        {
             SwappingWeapon.Invoke(WeaponActive + 1);
+            if (TutorialInput != null)
+            {
+                TutorialInput.ScrollWheelDown();
+            }
+        }
+    }
+    public void SetInvulnerable()
+    {
+         GetComponent<HealthSystem>().SetInvulnerable(true);
+    }
+   public void GoToBossArena()
+    {
+         GetComponent<Rigidbody>().position = new Vector3(170.0f, 25.0f, 420.0f);
     }
     // Update is called once per frame
     void Update()
     {
-      
+
 
         //DEVHACK
         if (Input.GetKeyDown(KeyCode.P))
@@ -258,6 +299,59 @@ public class PlayerInput : MonoBehaviour
             SpeedMod = 2.0f;
         else if (Input.GetButtonUp("Crouch"))
             SpeedMod = 1.0f;
+     
+
+
+
+      
+
+
+   
+        //PlayerINput for controls
+        //Turn this to GetButtonDown at some point
+   //  
+   //
+   //    //DEVHACK
+   //    
+   //    
+   // 
+   //
+   //    //Pause Menu For Plugin
+   //
+   //
+   //    if (Input.GetKeyDown(KeyCode.T))
+   //        GetTime.Invoke();
+   //
+   //    if (Input.GetKeyDown(KeyCode.Z))
+   //        Undo.Invoke();
+   //
+   //    if (Input.GetKeyDown(KeyCode.F))
+   //    {
+   //    //    GenshinCam.SetActive(!GenshinCam.activeInHierarchy);
+   //    }
+   //        
+   //
+   //    
+   //    if (Input.GetKeyDown(KeyCode.RightArrow))
+   //        GameManager.instance.ResumeTime();
+   //
+   //    if (Input.GetKeyDown(KeyCode.LeftArrow))
+   //        GameManager.instance.StopTime();
+   //
+   //
+   //    //cursed crouch controls
+   //    if (Input.GetButtonDown("Crouch"))
+   //        Crouching.Invoke(true);      
+   //    else if (Input.GetButtonUp("Crouch"))
+   //        Crouching.Invoke(false);
+   // 
+   //    if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
+   //        SpeedMod = controller.m_CrouchSpeed;
+   //    if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
+   //        SpeedMod = 2.0f;
+   //    else if (Input.GetButtonUp("Crouch"))
+   //        SpeedMod = 1.0f;
+   //
     }
     // UI buttons call this when they want to enable mouse lock
     // Currently used by "Exit_Inventory" Button

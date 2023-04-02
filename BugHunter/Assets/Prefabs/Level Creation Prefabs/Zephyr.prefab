@@ -84,8 +84,8 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8275e84fe0da4a3489efe1a2680c0037, type: 2}
-  - {fileID: 2100000, guid: 253a7d802ac07de45902969fec3b5e75, type: 2}
-  - {fileID: -7184819803674296287, guid: e65501c72cb16af4793be05a13600506, type: 3}
+  - {fileID: 2100000, guid: d94a49b39b1521b418fefde105fb0829, type: 2}
+  - {fileID: 2100000, guid: a669cb7b7e773dc4ebf08f0cc988b234, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4243,6 +4243,9 @@ MonoBehaviour:
   HitStunTimeRequirement: 2
   HitStunTime: 2
   _IsHitStunned: 0
+  StartEvasionLocation: {x: 0, y: 0, z: 0}
+  DistanceTravelled: {x: 0, y: 0, z: 0}
+  Serpentine: 0
   EvasionIntensity: 3.26
   EvasionRecalculationPeriod: 1.95
   WhatIsGround:
@@ -4251,6 +4254,11 @@ MonoBehaviour:
   WhatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  WalkPoint: {x: 0, y: 0, z: 0}
+  SpawnPoint: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
+  WalkPointSet: 0
+  _IsChasing: 0
   WalkPointRange: 41.8
   WalkSpeed: 5.78
   Projectile: {fileID: 5085973701434334321, guid: 25691f096f3806847b041bd0d191efc2,

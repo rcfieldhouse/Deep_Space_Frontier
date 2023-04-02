@@ -12,11 +12,11 @@ public class SniperRifle : Gun
                 GetComponent<WeaponInfo>().magSize += 3;
                 break;
             case 2:
-                GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.9f);
+                GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.7f);
                 break;
             case 3:
-                GetComponent<WeaponInfo>().RecoilX *= 0.9f;
-                GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                GetComponent<WeaponInfo>().RecoilX *= 0.3f;
+                GetComponent<WeaponInfo>().AimRecoilX *= 0.3f;
                 break;
         }
     }
@@ -62,9 +62,8 @@ public class SniperRifle : Gun
                 Debug.Log(Hit.collider.name);
                 LazerLine.SetPosition(1, Hit.point);
                 HealthSystem Health = FindHealth(Hit.collider);
-                DoDamage(Health, Hit.collider.isTrigger);
-
-                if (Hit.rigidbody != null)
+            DoDamage(Health, Hit.collider.isTrigger, Hit.point);
+            if (Hit.rigidbody != null)
                     Hit.rigidbody.AddForce(-Hit.normal * HitForce);
                 if(Health)
                 CurrentBullet.CallShotEffect(Health.gameObject,BulletInfo.GetData(), Hit.collider.isTrigger);

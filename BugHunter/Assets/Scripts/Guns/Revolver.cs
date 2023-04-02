@@ -50,9 +50,9 @@ public class Revolver : Gun
                 //Damage
                 LazerLine.SetPosition(1, Hit.point);
                 HealthSystem Health = FindHealth(Hit.collider);
-                DoDamage(Health, Hit.collider.isTrigger);
+            DoDamage(Health, Hit.collider.isTrigger, Hit.point);
 
-                if (Hit.rigidbody != null)
+            if (Hit.rigidbody != null)
                     Hit.rigidbody.AddForce(-Hit.normal * HitForce);
 
             }

@@ -12,7 +12,7 @@ using UnityEngine;
         obj.AddComponent<GrenadeManager>();
         obj.AddComponent<Dodge>();
         obj.AddComponent<GunSelect>().SelectGun(obj,5,4);
-        obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(2).gameObject.SetActive(false);
+        obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(4).gameObject.SetActive(false);
         obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(3).gameObject.SetActive(false);
         }
     }
@@ -24,8 +24,8 @@ using UnityEngine;
         obj.AddComponent<HealthSystem>().SetMaxHealth(200);
         obj.AddComponent<TurretAbility>();
         obj.AddComponent<GunSelect>().SelectGun(obj, 1, 6);
-        obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(1).gameObject.SetActive(false);
-        obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(3).gameObject.SetActive(false);
+        obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(2).gameObject.SetActive(false);
+        obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(4).gameObject.SetActive(false);
     }
     }
     internal class Sniper : ClassInterface
@@ -37,6 +37,6 @@ using UnityEngine;
         obj.AddComponent<SpecialBulletSelect>();
         obj.AddComponent<GunSelect>().SelectGun(obj, 2, 0);
         obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(2).gameObject.SetActive(false);
-        obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(1).gameObject.SetActive(false);
+        obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(3).gameObject.SetActive(false);
     }
     }
