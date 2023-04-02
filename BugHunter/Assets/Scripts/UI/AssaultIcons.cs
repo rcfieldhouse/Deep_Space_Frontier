@@ -9,6 +9,8 @@ public class AssaultIcons : MonoBehaviour
     private Image ClassAbility;
      private float fillTime = 5.1f,StoppedTime;
     bool Stopped = false;
+    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -50,6 +52,7 @@ public class AssaultIcons : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         ClassAbility.fillAmount = 0.0f;
         FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Dodge_Roll");
+        FMODUnity.RuntimeManager.PauseAllEvents(true);
         StartCoroutine(RechargeAbility(foo)); 
     }
     private IEnumerator RechargeAbility(float RechargeTime)

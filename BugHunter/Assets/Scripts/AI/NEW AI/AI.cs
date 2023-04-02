@@ -194,8 +194,7 @@ public abstract class AI : MonoBehaviour
     }
     public void HandleObjectDeath(Transform context)
     {
-     
-
+    
         if (GetComponent<Tick>())
         {           
             GetComponentInChildren<BoxCollider>().enabled = false;
@@ -214,6 +213,10 @@ public abstract class AI : MonoBehaviour
         if (GetComponent<Beetle>())
         {
 
+        }
+        if (GetComponent<Queen>())
+        {
+            GameManager.instance.SceneChange("Hub");
         }
         StartCoroutine(DissolveMeshEffect());
         _IsDead = true;
