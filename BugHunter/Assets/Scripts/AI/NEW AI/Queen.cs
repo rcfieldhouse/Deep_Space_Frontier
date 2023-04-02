@@ -121,7 +121,7 @@ public class Queen : AI
         // Gizmos.DrawLine(P1, P1 + PhysicsCalc());
         for (int j = 0; j < 9 ; j++)
         {
-             P2 = BombingLocations[j]+ Player.transform.position;
+            P2 = BombingLocations[j]+ Player.transform.position;
             float count = 20;
             Vector3 lastP = P1;
             for (float i = 0; i < count + 1; i++)

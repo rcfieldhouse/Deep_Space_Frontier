@@ -216,6 +216,8 @@ public abstract class AI : MonoBehaviour
         }
         if (GetComponent<Queen>())
         {
+            //Play cutscene instead, call SceneChange when cutscene is done
+
             GameManager.instance.SceneChange("Hub");
         }
         StartCoroutine(DissolveMeshEffect());
