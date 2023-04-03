@@ -8,7 +8,7 @@ internal static class ClientNetworkReceive
         ClientNetworkConfig.socket.PacketId[(int)ServerPackets.SWelcomeMsg] = Packet_WelcomeMsg;
         ClientNetworkConfig.socket.PacketId[(int)ServerPackets.SInstantiatePlayer] = Packet_Spawn;
         ClientNetworkConfig.socket.PacketId[(int)ServerPackets.SMessage] = Packet_Message;
-        ClientNetworkConfig.socket.PacketId[(int)ServerPackets.SPlayerData] = Packet_PlayerData;
+        //ClientNetworkConfig.socket.PacketId[(int)ServerPackets.SPlayerData] = Packet_PlayerData;
 
     }
 
@@ -29,7 +29,7 @@ internal static class ClientNetworkReceive
         //Spawn OTHER players here
 
         int id = buffer.ReadInt32();
-        ClientNetworkManager.instance._IDToSet.Enqueue(id);
+        //ClientNetworkManager.instance._IDToSet.Enqueue(id);
 
         Debug.Log("Spawn");
 

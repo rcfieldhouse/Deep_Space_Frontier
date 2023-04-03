@@ -26,7 +26,7 @@ internal static class ClientNetworkSend
     public static void SendMoveData(Vector2 vector)
     {
         ByteBuffer buffer = new ByteBuffer(4);
-        buffer.WriteInt32((int)ClientPackets.CMoveData);
+       // buffer.WriteInt32((int)ClientPackets.CMoveData);
         buffer.WriteSingle(vector.x);
         buffer.WriteSingle(vector.y);
 
@@ -37,7 +37,7 @@ internal static class ClientNetworkSend
     public static void SendLookData(Vector2 vector)
     {
         ByteBuffer buffer = new ByteBuffer(4);
-        buffer.WriteInt32((int)ClientPackets.CLookData);
+        //buffer.WriteInt32((int)ClientPackets.CLookData);
         buffer.WriteSingle(vector.x);
         buffer.WriteSingle(vector.y);
 

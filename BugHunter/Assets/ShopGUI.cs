@@ -48,6 +48,7 @@ public class ShopGUI : MonoBehaviour
     public EquipmentManager EquipmentManager;
     public GameObject[] CostValues;
     public GameObject CraftButton;
+    public GameObject PopupMessage;
     private void Start()
     {
 
@@ -300,7 +301,7 @@ public class ShopGUI : MonoBehaviour
                 EquipmentManager.BomberArmor.isEquippable = true;
                 break;
         }
-            
+        PopupMessage.SetActive(true);
     }
     public void ValidatePurchasable()
     {
