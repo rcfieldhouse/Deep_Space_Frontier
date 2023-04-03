@@ -218,7 +218,7 @@ public abstract class AI : MonoBehaviour
         {
             //Play cutscene instead, call SceneChange when cutscene is done
 
-            GameManager.instance.SceneChange("Hub");
+            GameManager.instance.SceneChange("Hub", 5.0f);
         }
         StartCoroutine(DissolveMeshEffect());
         _IsDead = true;

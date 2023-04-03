@@ -42,8 +42,26 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
+    public IEnumerator SceneChangeAsyncWDelay(string sceneName, float Time)
+    {
 
+        yield return new WaitForSeconds(Time);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
+        loadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            loadingBarFill.fillAmount = progressValue;
+            yield return null;
+        }
+        loadingScreen.SetActive(false);
+    }
+    public void SceneChange(string sceneName, float Time)
+    {
+        StartCoroutine(SceneChangeAsyncWDelay(sceneName,Time));
+    }
     public void SceneChange(string sceneName)
     {       
         StartCoroutine(SceneChangeAsync(sceneName));
