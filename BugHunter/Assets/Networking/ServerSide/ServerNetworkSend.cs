@@ -3,15 +3,6 @@ using KaymakNetwork;
 using UnityEngine;
 
 
-enum ServerPackets
-{
-    SWelcomeMsg = 1,
-    SInstantiatePlayer,
-    SPlayerMove,
-    SPlayerRotation,
-    SMessage,
-    SAnimation,
-}
 static class ServerNetworkSend
 {
     public static void WelcomeMsg(int connectionID, string msg)
@@ -46,7 +37,7 @@ static class ServerNetworkSend
 
         //Client Responsible for Self-Instantiation
         //Sends update to each other client
-        for (int i = 0; i < GameManager.playerList.Count; i++)
+        for (int i = 0; i < ServerNetworkManager.playerList.Count; i++)
            // if (GameManager.playerList[i] != null)
                 if (i != connectionID)
                     ServerNetworkConfig.socket.SendDataTo(connectionID, PlayerData(connectionID).Data, PlayerData(connectionID).Head);

@@ -5,7 +5,7 @@ public class NetworkDriver : MonoBehaviour
 {
     public bool isServer = false;
     private static Thread threadConsole;
-    public string ip;
+    public string serverIp;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class NetworkDriver : MonoBehaviour
         else
         {
             ClientNetworkConfig.InitNetwork();
-            ClientNetworkConfig.ConnectToServer(ip);
+            ClientNetworkConfig.ConnectToServer(serverIp);
         }
     }
 

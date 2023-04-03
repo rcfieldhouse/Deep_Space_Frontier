@@ -6,17 +6,6 @@ using KaymakNetwork;
 using UnityEngine;
 
 
-enum ClientPackets
-{
-	CPing = 1,
-	CKeyInput,
-	CPlayerRotation,
-	CMessage,
-	CAnimation,
-	CMoveData,
-	CLookData,
-}
-
 #region NetworkCommands
 public enum PlayerAnimations
     {	None,
@@ -144,7 +133,7 @@ internal class ServerNetworkReceive
 		string msg = buffer.ReadString();
 
 		Console.WriteLine(msg);
-		GameManager.instance.CreatePlayer(connectionID);
+		ServerNetworkManager.instance.CreatePlayer(connectionID);
 		buffer.Dispose();
 	}
 	private static void Packet_KeyInput(int connectionID, ref byte[] data)

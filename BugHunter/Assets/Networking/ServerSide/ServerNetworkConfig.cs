@@ -2,11 +2,31 @@
 using KaymakNetwork.Network;
 using UnityEngine;
 
+enum ClientPackets
+{
+    CPing = 1,
+    CKeyInput,
+    CPlayerRotation,
+    CMessage,
+    CAnimation,
+    CMoveData,
+    CLookData,
+}
 
-class ServerNetworkConfig : MonoBehaviour
+enum ServerPackets
+{
+    SWelcomeMsg = 1,
+    SInstantiatePlayer,
+    SPlayerMove,
+    SPlayerRotation,
+    SMessage,
+    SAnimation,
+}
+
+public class ServerNetworkConfig : MonoBehaviour
 {
     private static Server _socket;
-    internal static Server socket
+    public static Server socket
     {
         get { return _socket;}
         set {
@@ -25,7 +45,7 @@ class ServerNetworkConfig : MonoBehaviour
         }
     }
 
-    internal static void InitNetwork()
+    public static void InitNetwork()
     {
         if (!(socket == null))
             return;

@@ -9,13 +9,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public static Dictionary<int, PlayerData> playerList = new Dictionary<int, PlayerData>();
-    public Queue<int> _IDToSet = new Queue<int>();
-
-    public Queue<PlayerData> playerDataToChange = new Queue<PlayerData>();
-
-    public GameObject prefab;
-
     //TODO: will need to refactor this at some point.
     [Header("Loading Screen")]
     public GameObject loadingScreen;
@@ -31,59 +24,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-#region Server
-    private void Update()
-    {
 
-        //Must Manipulate Objects within Main thread!
-        while (_IDToSet.Count > 0)
-        {
-            int id = _IDToSet.Dequeue();
-
-            GameObject player = Instantiate(prefab, transform);           
-            player.name = "Player: " + id;
-
-            PlayerData pData = new PlayerData();
-            playerList.Add(id, pData);
-
-            Debug.Log(player.name + " has been added to the game");
-
-            JoinGame(id);
-        }
-    }
-    public void FixedUpdate()
-    {
-        if (playerDataToChange.Count > 0)
-        {
-            PlayerData data = playerDataToChange.Dequeue();
-            //Change Data Operation
-            //Sync Operation with Clients
-        }
-
-    }
-
-    public void JoinGame(int connectionID)
-    {
-        ServerNetworkSend.InstantiateNetworkPlayer(connectionID);
-    }
-
-    public void CreatePlayer(int connectionID)
-    {
-        _IDToSet.Enqueue(connectionID);
-    }
-
-    //not used by server
-    private void SpawnPlayer(int connectionID)
-    {
-        GameObject player = Instantiate(prefab, transform);
-        player.name = "Player: " + connectionID;
-
-        PlayerData pData = new PlayerData();
-        playerList.Add(connectionID, pData);
-
-        Debug.Log(player.name + " has been added to the game");
-    }
-#endregion
 
 #region GameWorld
     public void BulletTime()

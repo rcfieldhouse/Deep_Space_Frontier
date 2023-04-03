@@ -7,9 +7,7 @@
     using UnityEngine.InputSystem.Controls;
     
     public class ClientInputManager : MonoBehaviour
-    {
-        InputAction LookAction;
-    
+    {         
         public Keys pressedKey;
         public enum Keys
         {
@@ -23,10 +21,6 @@
             MouseScroll,
         }
     
-        private void Awake()
-        {
-            //LookAction = GetComponent<PlayerInput>().actions["Look"];
-        }
     
         // Use this for initialization
         void Start()
@@ -44,7 +38,7 @@
             //if (ctxt.canceled)
                 //NetworkSend.SendLookData(Vector2.zero);
         }
-    
+        
         public void OnMove(InputAction.CallbackContext ctxt)
         {
             if(ctxt.performed)

@@ -30,7 +30,7 @@ public class ServerInputManager : MonoBehaviour
         if (key == Keys.None) return;
 
         //Send New Velocity
-        ServerNetworkSend.SendPlayerMove(connectionID, GameManager.playerList[connectionID].Position);
+        ServerNetworkSend.SendPlayerMove(connectionID, ServerNetworkManager.playerList[connectionID].Position);
     }
 }
 
