@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public static Dictionary<int, GameObject> playerList = new Dictionary<int, GameObject>();
-    private Queue<int> _IDToSet = new Queue<int>();
+    public static Dictionary<int, PlayerData> playerList = new Dictionary<int, PlayerData>();
+    public Queue<int> _IDToSet = new Queue<int>();
+
+    public Queue<PlayerData> playerDataToChange = new Queue<PlayerData>();
 
     public GameObject prefab;
 
@@ -22,10 +24,6 @@ public class GameManager : MonoBehaviour
     [Header("Time Slow")]
     public float timeSlowStrength = 0.05f;
     public float timeSlowDuration = 1f;
-
-    public static Queue<Server.MovementCommand> _movementQueue = new Queue<Server.MovementCommand>();
-
-    public static Queue<Server.LookCommand> _lookQueue = new Queue<Server.LookCommand>();
 
     private void Awake()
     { 
@@ -42,9 +40,11 @@ public class GameManager : MonoBehaviour
         {
             int id = _IDToSet.Dequeue();
 
-            GameObject player = Instantiate(prefab, transform);
+            GameObject player = Instantiate(prefab, transform);           
             player.name = "Player: " + id;
-            playerList.Add(id, player);
+
+            PlayerData pData = new PlayerData();
+            playerList.Add(id, pData);
 
             Debug.Log(player.name + " has been added to the game");
 
@@ -53,25 +53,18 @@ public class GameManager : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        if (_movementQueue.Count > 0)
+        if (playerDataToChange.Count > 0)
         {
-            Server.MovementCommand cmd = _movementQueue.Dequeue();
-            playerList[cmd.connectionID].GetComponentInChildren<PlayerInput>().MoveInput(cmd.vector);
-            Server.NetworkSend.SendPlayerMove(cmd.connectionID, playerList[cmd.connectionID].transform.position);
+            PlayerData data = playerDataToChange.Dequeue();
+            //Change Data Operation
+            //Sync Operation with Clients
         }
 
-        if (_lookQueue.Count > 0)
-        {
-            Server.LookCommand cmd = _lookQueue.Dequeue();
-            //this vector is not calculated right
-            playerList[cmd.connectionID].GetComponentInChildren<PlayerInput>().LookInput(cmd.vector);
-            Server.NetworkSend.SendPlayerRotation(cmd.connectionID, playerList[cmd.connectionID].transform.rotation);
-        }
     }
 
     public void JoinGame(int connectionID)
     {
-        Server.NetworkSend.InstantiateNetworkPlayer(connectionID);
+        ServerNetworkSend.InstantiateNetworkPlayer(connectionID);
     }
 
     public void CreatePlayer(int connectionID)
@@ -79,11 +72,15 @@ public class GameManager : MonoBehaviour
         _IDToSet.Enqueue(connectionID);
     }
 
+    //not used by server
     private void SpawnPlayer(int connectionID)
     {
         GameObject player = Instantiate(prefab, transform);
         player.name = "Player: " + connectionID;
-        playerList.Add(connectionID, player);
+
+        PlayerData pData = new PlayerData();
+        playerList.Add(connectionID, pData);
+
         Debug.Log(player.name + " has been added to the game");
     }
 #endregion

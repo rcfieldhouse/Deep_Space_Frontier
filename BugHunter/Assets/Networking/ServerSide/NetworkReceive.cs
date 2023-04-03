@@ -1,4 +1,4 @@
-﻿namespace Server{
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,137 +8,178 @@ using UnityEngine;
 
 enum ClientPackets
 {
-    CPing = 1,
-    CKeyInput,
-    CPlayerRotation,
-    CMessage,
-    CAnimation,
-    CMoveData,
-    CLookData,
+	CPing = 1,
+	CKeyInput,
+	CPlayerRotation,
+	CMessage,
+	CAnimation,
+	CMoveData,
+	CLookData,
 }
 
-    #region NetworkCommands
-    //Disgusting that I have to do this for thread safety.
-    public struct MovementCommand
-    {
-        public MovementCommand(Vector2 vec, int ID)
-        {
-            vector = vec;
-            connectionID = ID;
-        }
-        public Vector2 vector;
-        public int connectionID;
+#region NetworkCommands
+public enum PlayerAnimations
+    {	None,
+		Idle,
+		Dead,
+		ForwardDive,
+		Backflip,
+		BeginJump,
+		EndJump,
+		PlantTurret,
+		EquipWeapon,
+		MovingGrenadeCook,
+		MovingGrenadeThrow,
+		StandingNadeCook,
+		StandingNadeThrow,
+		RifleIdle,
+		RifleRight,
+		RifleRunBackward,
+		RifleLeft,
+		RifleRunForward,
+		RifleWalkForward,
+		PistolIdle,
+		PistolWalk,
+		PistolForward,
+		PistolLeft,
+		PistolRight,
+		PistolBack,
+		PistolJump,
+		RifleReload,
     }
 
-    public struct LookCommand
-    {
-        public LookCommand(Vector2 lookVec, int ID)
-        {
-            vector = lookVec;
-            connectionID = ID;
-        }
-        public Vector2 vector;
-        public int connectionID;
-    }
-    #endregion
+public enum EnemyStates
+{
+	None,
+	Attacking,
+	Seeking,
+	Patroling,
+}
 
-    internal class NetworkReceive
+public struct PlayerData
+{
+	public int connectionID;
+	public Vector3 LookDirection;
+	public Vector3 Position;
+	public Vector3 Velocity;
+
+	public bool isDead;
+	public bool isConnected;
+	public bool isFiring;
+
+	public float HealthAmount;
+
+	public PlayerAnimations animations;
+}
+public struct EnemyData
+{
+	public Vector3 LookDirection;
+	public Vector3 Position;
+
+	public EnemyStates Seeking;
+	public bool isDead;
+
+
+
+}
+#endregion
+
+internal class ServerNetworkReceive
 {
 
-    internal static void PacketRouter()
-    {
-        NetworkConfig.socket.PacketId[(int)ClientPackets.CPing] = Packet_SpawnPlayer;
-        NetworkConfig.socket.PacketId[(int)ClientPackets.CKeyInput] = Packet_KeyInput;
-        NetworkConfig.socket.PacketId[(int)ClientPackets.CPlayerRotation] = Packet_PlayerRotation;
-        NetworkConfig.socket.PacketId[(int)ClientPackets.CMessage] = Packet_Message;
-        NetworkConfig.socket.PacketId[(int)ClientPackets.CAnimation] = Packet_Animate;
-        NetworkConfig.socket.PacketId[(int)ClientPackets.CMoveData] = Packet_MoveData;
-        NetworkConfig.socket.PacketId[(int)ClientPackets.CLookData] = Packet_LookData;
-    }
+	internal static void PacketRouter()
+	{
+		ServerNetworkConfig.socket.PacketId[(int)ClientPackets.CPing] = Packet_SpawnPlayer;
+		ServerNetworkConfig.socket.PacketId[(int)ClientPackets.CKeyInput] = Packet_KeyInput;
+		ServerNetworkConfig.socket.PacketId[(int)ClientPackets.CPlayerRotation] = Packet_PlayerRotation;
+		ServerNetworkConfig.socket.PacketId[(int)ClientPackets.CMessage] = Packet_Message;
+		ServerNetworkConfig.socket.PacketId[(int)ClientPackets.CAnimation] = Packet_Animate;
+		ServerNetworkConfig.socket.PacketId[(int)ClientPackets.CMoveData] = Packet_MoveData;
+		ServerNetworkConfig.socket.PacketId[(int)ClientPackets.CLookData] = Packet_LookData;
+	}
 
-    private static void Packet_MoveData(int connectionID, ref byte[] data)
-    {
-        
-        ByteBuffer buffer = new ByteBuffer(data);
-        float moveX = buffer.ReadSingle();
-        float moveY = buffer.ReadSingle();
+	private static void Packet_MoveData(int connectionID, ref byte[] data)
+	{
+		
+		ByteBuffer buffer = new ByteBuffer(data);
+		float moveX = buffer.ReadSingle();
+		float moveY = buffer.ReadSingle();
 
-        MovementCommand cmd = new MovementCommand(new Vector2(moveX, moveY), connectionID);
+        //PlayerData pData = GameManager.instance.playerList[buffer.ReadInt32];
 
-        GameManager._movementQueue.Enqueue(cmd);
+        //GameManager._movementQueue.Enqueue(cmd);
 
-        buffer.Dispose();
-    }
+		buffer.Dispose();
+	}
 
-    private static void Packet_LookData(int connectionID, ref byte[] data)
-    {
-        ByteBuffer buffer = new ByteBuffer(data);
-        float moveX = buffer.ReadSingle();
-        float moveY = buffer.ReadSingle();
+	private static void Packet_LookData(int connectionID, ref byte[] data)
+	{
+		ByteBuffer buffer = new ByteBuffer(data);
+		float moveX = buffer.ReadSingle();
+		float moveY = buffer.ReadSingle();
 
-        if ((moveX > 30f) || (moveY > 30.0f))
-            return;
+		if ((moveX > 30f) || (moveY > 30.0f))
+			return;
 
-        LookCommand cmd = new LookCommand(new Vector2(moveX, moveY), connectionID);
+		//LookCommand cmd = new LookCommand(new Vector2(moveX, moveY), connectionID);
 
-        GameManager._lookQueue.Enqueue(cmd);
+		//GameManager._lookQueue.Enqueue(cmd);
 
-  
-        buffer.Dispose();
 
-    }
+		buffer.Dispose();
 
-    private static void Packet_Animate(int connectionID, ref byte[] data)
-    {
-        ByteBuffer buffer = new ByteBuffer(data);
-        //AnimationState anim = (AnimationState)buffer.ReadInt32();
-        
-        buffer.Dispose();
-    }
+	}
 
-    private static void Packet_SpawnPlayer(int connectionID, ref byte[] data)
-    {
-        ByteBuffer buffer = new ByteBuffer(data);
-        string msg = buffer.ReadString();
+	private static void Packet_Animate(int connectionID, ref byte[] data)
+	{
+		ByteBuffer buffer = new ByteBuffer(data);
+		//AnimationState anim = (AnimationState)buffer.ReadInt32();
+		
+		buffer.Dispose();
+	}
 
-        Console.WriteLine(msg);
-        GameManager.instance.CreatePlayer(connectionID);
-        buffer.Dispose();
-    }
-    private static void Packet_KeyInput(int connectionID, ref byte[] data)
-    {
-        ByteBuffer buffer = new ByteBuffer(data);
-        byte key = buffer.ReadByte();
+	private static void Packet_SpawnPlayer(int connectionID, ref byte[] data)
+	{
+		ByteBuffer buffer = new ByteBuffer(data);
+		string msg = buffer.ReadString();
 
-        buffer.Dispose();
-        InputManager.HandleKeyInput(connectionID, (InputManager.Keys)key);
+		Console.WriteLine(msg);
+		GameManager.instance.CreatePlayer(connectionID);
+		buffer.Dispose();
+	}
+	private static void Packet_KeyInput(int connectionID, ref byte[] data)
+	{
+		ByteBuffer buffer = new ByteBuffer(data);
+		byte key = buffer.ReadByte();
 
-    }
-    private static void Packet_PlayerRotation(int connectionID, ref byte[] data)
-    {
-        ByteBuffer buffer = new ByteBuffer(data);
-        float rotX = buffer.ReadSingle();
-        float rotY = buffer.ReadSingle();
-        float rotZ = buffer.ReadSingle();
-        float rotW = buffer.ReadSingle();
+		buffer.Dispose();
+		ServerInputManager.HandleKeyInput(connectionID, (ServerInputManager.Keys)key);
 
-        buffer.Dispose();
+	}
+	private static void Packet_PlayerRotation(int connectionID, ref byte[] data)
+	{
+		ByteBuffer buffer = new ByteBuffer(data);
+		float rotX = buffer.ReadSingle();
+		float rotY = buffer.ReadSingle();
+		float rotZ = buffer.ReadSingle();
 
-        
 
-        GameManager.playerList[connectionID].transform.rotation = new Quaternion(rotX, rotY, rotZ, rotW);
-    }
+		buffer.Dispose();
 
-    private static void Packet_Message(int connectionID, ref byte[] data)
-    {
-        ByteBuffer buffer = new ByteBuffer(data);
-        string message = buffer.ReadString();
+		
 
-        buffer.Dispose();
+		//GameManager.playerList[connectionID].LookDirection = new Vector3(rotX, rotY, rotZ);
+	}
 
-        NetworkSend.SendMessage(connectionID, message);
-    }
+	private static void Packet_Message(int connectionID, ref byte[] data)
+	{
+		ByteBuffer buffer = new ByteBuffer(data);
+		string message = buffer.ReadString();
+
+		buffer.Dispose();
+
+		ServerNetworkSend.SendMessage(connectionID, message);
+	}
 }
 
 
-}

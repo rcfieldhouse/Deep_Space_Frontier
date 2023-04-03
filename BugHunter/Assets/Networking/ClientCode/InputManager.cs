@@ -1,4 +1,4 @@
-namespace Client { 
+
 
     using System.Collections;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@ namespace Client {
     using UnityEngine.InputSystem;
     using UnityEngine.InputSystem.Controls;
     
-    public class InputManager : MonoBehaviour
+    public class ClientInputManager : MonoBehaviour
     {
         InputAction LookAction;
     
@@ -25,7 +25,7 @@ namespace Client {
     
         private void Awake()
         {
-            LookAction = GetComponent<PlayerInput>().actions["Look"];
+            //LookAction = GetComponent<PlayerInput>().actions["Look"];
         }
     
         // Use this for initialization
@@ -39,7 +39,7 @@ namespace Client {
         {
             Debug.Log(ctxt.ReadValue<Vector2>());
             //if (ctxt.performed)
-                NetworkSend.SendLookData(ctxt.ReadValue<Vector2>());
+                ClientNetworkSend.SendLookData(ctxt.ReadValue<Vector2>());
                 
             //if (ctxt.canceled)
                 //NetworkSend.SendLookData(Vector2.zero);
@@ -48,9 +48,9 @@ namespace Client {
         public void OnMove(InputAction.CallbackContext ctxt)
         {
             if(ctxt.performed)
-                NetworkSend.SendMoveData(ctxt.ReadValue<Vector2>());
+                ClientNetworkSend.SendMoveData(ctxt.ReadValue<Vector2>());
             if (ctxt.canceled)
-                NetworkSend.SendMoveData(Vector2.zero);
+                ClientNetworkSend.SendMoveData(Vector2.zero);
         }
     
         public void MovementPrediction()
@@ -101,4 +101,3 @@ namespace Client {
         }
     }
 
-}
