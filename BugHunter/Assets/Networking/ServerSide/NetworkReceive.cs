@@ -1,8 +1,10 @@
-﻿using System;
+﻿namespace Server{
+using System;
 using System.Collections.Generic;
 using System.Text;
 using KaymakNetwork;
 using UnityEngine;
+
 
 enum ClientPackets
 {
@@ -15,32 +17,32 @@ enum ClientPackets
     CLookData,
 }
 
-#region NetworkCommands
-//Disgusting that I have to do this for thread safety.
-public struct MovementCommand
-{
-    public MovementCommand(Vector2 vec, int ID)
+    #region NetworkCommands
+    //Disgusting that I have to do this for thread safety.
+    public struct MovementCommand
     {
-        vector = vec;
-        connectionID = ID;
+        public MovementCommand(Vector2 vec, int ID)
+        {
+            vector = vec;
+            connectionID = ID;
+        }
+        public Vector2 vector;
+        public int connectionID;
     }
-    public Vector2 vector;
-    public int connectionID;
-}
 
-public struct LookCommand
-{
-    public LookCommand(Vector2 lookVec, int ID)
+    public struct LookCommand
     {
-        vector = lookVec;
-        connectionID = ID;
+        public LookCommand(Vector2 lookVec, int ID)
+        {
+            vector = lookVec;
+            connectionID = ID;
+        }
+        public Vector2 vector;
+        public int connectionID;
     }
-    public Vector2 vector;
-    public int connectionID;
-}
-#endregion
+    #endregion
 
-internal class NetworkReceive
+    internal class NetworkReceive
 {
 
     internal static void PacketRouter()
@@ -138,3 +140,5 @@ internal class NetworkReceive
     }
 }
 
+
+}

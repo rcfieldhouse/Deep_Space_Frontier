@@ -23,9 +23,9 @@ public class GameManager : MonoBehaviour
     public float timeSlowStrength = 0.05f;
     public float timeSlowDuration = 1f;
 
-    public static Queue<MovementCommand> _movementQueue = new Queue<MovementCommand>();
+    public static Queue<Server.MovementCommand> _movementQueue = new Queue<Server.MovementCommand>();
 
-    public static Queue<LookCommand> _lookQueue = new Queue<LookCommand>();
+    public static Queue<Server.LookCommand> _lookQueue = new Queue<Server.LookCommand>();
 
     private void Awake()
     { 
@@ -36,10 +36,7 @@ public class GameManager : MonoBehaviour
 #region Server
     private void Update()
     {
-#if !UNITY_SERVER 
-        if (idToSet.Count > 0)
-            SpawnPlayer(idToSet.Dequeue());
-#endif
+
         //Must Manipulate Objects within Main thread!
         while (_IDToSet.Count > 0)
         {
@@ -58,23 +55,23 @@ public class GameManager : MonoBehaviour
     {
         if (_movementQueue.Count > 0)
         {
-            MovementCommand cmd = _movementQueue.Dequeue();
+            Server.MovementCommand cmd = _movementQueue.Dequeue();
             playerList[cmd.connectionID].GetComponentInChildren<PlayerInput>().MoveInput(cmd.vector);
-            NetworkSend.SendPlayerMove(cmd.connectionID, playerList[cmd.connectionID].transform.position);
+            Server.NetworkSend.SendPlayerMove(cmd.connectionID, playerList[cmd.connectionID].transform.position);
         }
 
         if (_lookQueue.Count > 0)
         {
-            LookCommand cmd = _lookQueue.Dequeue();
+            Server.LookCommand cmd = _lookQueue.Dequeue();
             //this vector is not calculated right
             playerList[cmd.connectionID].GetComponentInChildren<PlayerInput>().LookInput(cmd.vector);
-            NetworkSend.SendPlayerRotation(cmd.connectionID, playerList[cmd.connectionID].transform.rotation);
+            Server.NetworkSend.SendPlayerRotation(cmd.connectionID, playerList[cmd.connectionID].transform.rotation);
         }
     }
 
     public void JoinGame(int connectionID)
     {
-        NetworkSend.InstantiateNetworkPlayer(connectionID);
+        Server.NetworkSend.InstantiateNetworkPlayer(connectionID);
     }
 
     public void CreatePlayer(int connectionID)
