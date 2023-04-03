@@ -29,7 +29,11 @@ public class AmmoChangeUI : MonoBehaviour
     void Update()
     {
         int i = currentWeapon;
-         ammoCount.text = magazineSize[i].GetMag().ToString() +
+        if (magazineSize[i].GetMag() <= magazineSize[i].magSize / 4.0f)
+            ammoCount.color = Color.red;
+        else ammoCount.color = Color.white;
+
+        ammoCount.text = magazineSize[i].GetMag().ToString() +
            " / "+ magazineSize[i].GetReserveAmmo().ToString();
     }
 
