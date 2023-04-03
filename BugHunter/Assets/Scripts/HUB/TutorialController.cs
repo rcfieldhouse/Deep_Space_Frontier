@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
 
 public class TutorialController : MonoBehaviour
 {
@@ -38,6 +39,20 @@ public class TutorialController : MonoBehaviour
 
     public static TutorialController instance;
 
+    FMOD.Studio.EventInstance IntroVoiceline;
+    FMOD.Studio.EventInstance WeaponCheck;
+    FMOD.Studio.EventInstance Reload;
+    FMOD.Studio.EventInstance DodgeRoll;
+    FMOD.Studio.EventInstance Explosives;
+    FMOD.Studio.EventInstance SecondaryWeapon;
+    FMOD.Studio.EventInstance SuitCali;
+    FMOD.Studio.EventInstance NewHome;
+
+    FMOD.Studio.PLAYBACK_STATE PlaybackState;
+
+    private bool beginVoicelines = true;
+    private bool beginSuitCalibration = true;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -46,6 +61,9 @@ public class TutorialController : MonoBehaviour
         //Set the first section's Canvas to active
         ShootingTutorialUI.SetActive(true);
         //BeginTutorial();
+        IntroVoiceline = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Good Morning Pioneer");
+        IntroVoiceline.start();
+        
     }
 
     public void BeginTutorial()
@@ -72,7 +90,20 @@ public class TutorialController : MonoBehaviour
                 ShootingUIArray[i].GetComponent<Image>().gameObject.SetActive(true);
             }
         }
-        if (ShootingUIIndex == 4)
+
+        if (ShootingUIIndex == 0)
+        {
+            if (IsPlaying(IntroVoiceline) == false && beginVoicelines == true)
+            {
+                //IntroVoiceline.release();
+               IntroVoiceline.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+               WeaponCheck = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Weapons Check");
+               WeaponCheck.start();
+               beginVoicelines = false;
+            }
+        }
+
+            if (ShootingUIIndex == 4)
         {
             ShootingUIArray[4].GetComponent<Image>().gameObject.SetActive(true);
             ShootingComplete = true;
@@ -93,20 +124,6 @@ public class TutorialController : MonoBehaviour
                 }
             }
 
-           //if (UtilityUIIndex == 0)
-           //{
-           //    if (Input.GetKeyDown(KeyCode.Q))
-           //    {
-           //        UtilityUIIndex++;
-           //    }
-           //}
-           //if (UtilityUIIndex == 1)
-           //{
-           //    if (Input.GetKeyDown(KeyCode.C))
-           //    {
-           //        UtilityUIIndex++;
-           //    }
-           //}
             if (UtilityUIIndex == 2)
             {
                 UtilityUIArray[2].GetComponent<Image>().gameObject.SetActive(true);
@@ -131,26 +148,18 @@ public class TutorialController : MonoBehaviour
 
            //if (MovementUIIndex == 0)
            //{
-           //    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+           //    if (IsPlaying(DodgeRoll) == false && beginSuitCalibration == true)
            //    {
-           //        MovementUIIndex++;
+           //        Debug.Log("DodgeRoll is done playing");
+           //        FMODUnity.RuntimeManager.PlayOneShot("event:/VoiceLines/Suit Calibration");
+           //        //SuitCali = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Suit Calibration");
+           //        //SuitCali.start();
+           //        beginSuitCalibration = false;
            //    }
            //}
-            //if (MovementUIIndex == 1)
-            //{
-            //    if (Input.GetKeyDown(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
-            //    {
-            //            MovementUIIndex++;
-            //    }
-            //}
-            //if (MovementUIIndex == 2)
-            //{
-            //    if (Input.GetKeyDown(KeyCode.Space))
-            //    {
-            //        MovementUIIndex++;
-            //    }
-            //}
-            if(MovementUIIndex == 3)
+
+
+            if (MovementUIIndex == 3)
             {
                 MovementUIArray[3].GetComponent<Image>().gameObject.SetActive(true);
                 MovementComplete = true;
@@ -182,6 +191,7 @@ public class TutorialController : MonoBehaviour
         if(ShootingUIIndex == 0)
         {
             ShootingUIIndex++;
+            ShootingTutorialUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
         }
     }
     public void RightMouseDown()
@@ -189,6 +199,16 @@ public class TutorialController : MonoBehaviour
         if (ShootingUIIndex == 1)
         {
              ShootingUIIndex++;
+            ShootingTutorialUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+
+            IntroVoiceline.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            IntroVoiceline.release();
+
+            WeaponCheck.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            WeaponCheck.release();
+
+            Reload = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Reload Weapons");
+            Reload.start();
         }
     }
     public void RKeyDown()
@@ -196,6 +216,12 @@ public class TutorialController : MonoBehaviour
         if (ShootingUIIndex == 2)
         {
              ShootingUIIndex++;
+            ShootingTutorialUI.transform.GetChild(3).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+
+           Reload.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+           //Reload.release();
+           SecondaryWeapon = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Secondary Gun");
+           SecondaryWeapon.start();
         }
     }
     public void ScrollWheelDown()
@@ -203,6 +229,12 @@ public class TutorialController : MonoBehaviour
         if (ShootingUIIndex == 3)
         {
              ShootingUIIndex++;
+            ShootingTutorialUI.transform.GetChild(4).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+
+            SecondaryWeapon.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            //Reload.release();
+            Explosives = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Explosives");
+            Explosives.start();
         }
     }
     public void QKeyDown()
@@ -210,20 +242,38 @@ public class TutorialController : MonoBehaviour
         if (UtilityUIIndex == 0 && ShootingComplete == true)
         {
              UtilityUIIndex++;
+            UtilityTutorialUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+
+            Explosives.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            //Reload.release();
+            DodgeRoll = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Dodge Roll");
+            DodgeRoll.start();
         }
     }
     public void CKeyDown()
     {
         if (UtilityUIIndex == 1)
         {
+            DodgeRoll.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            //Reload.release();
+            SuitCali = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Suit Calibration");
+            SuitCali.start();
+            
+            Reload.getPlaybackState(out PlaybackState);
+                Debug.Log(PlaybackState);
+    
             UtilityUIIndex++;
+            UtilityTutorialUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+    
         }
     }
+
     public void LSheftKeyDown()
     {
         if (MovementUIIndex == 1)
         {
                 MovementUIIndex++;
+            MovementTutorialUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
         }
     }
     public void MoveKeyDown()
@@ -231,6 +281,7 @@ public class TutorialController : MonoBehaviour
         if (MovementUIIndex == 0 && UtilityComplete == true)
         {
                 MovementUIIndex++;
+            MovementTutorialUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
         }
     }
     public void SpacebarKeyDown()
@@ -238,6 +289,18 @@ public class TutorialController : MonoBehaviour
         if (MovementUIIndex == 2)
         {
                 MovementUIIndex++;
+            MovementTutorialUI.transform.GetChild(3).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+
+            SuitCali.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            SuitCali.release();
+            NewHome = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/New Home");
+            NewHome.start();
         }
+    }
+    bool IsPlaying(FMOD.Studio.EventInstance instance)
+    {
+        FMOD.Studio.PLAYBACK_STATE state;
+        instance.getPlaybackState(out state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
     }
 }

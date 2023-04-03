@@ -231,8 +231,8 @@ public class PlayerInput : MonoBehaviour
     {
         KeyboardInput.x = MoveInput.x;
         KeyboardInput.y = MoveInput.y;
-        if(TutorialInput!=null)
-        TutorialInput.MoveKeyDown();
+        if (TutorialInput != null && MoveInput != Vector2.zero)
+            TutorialInput.MoveKeyDown();
     }
     public void MouseScrollInput(float Scroll)
     {

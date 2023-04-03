@@ -13,4 +13,12 @@ public class LoadGame : MonoBehaviour
         GameManager.instance.SceneChange("Hub");
         //SceneManager.LoadScene("SampleScene",LoadSceneMode.Single);
     }
+
+    public void LoadDeepSpaceFrontierTutorial()
+    {
+        GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().SetClass(ClassSelect);
+        //GameManager.instance.SceneChange("SampleScene");
+        GameManager.instance.SceneChange("Hub 1");
+        //SceneManager.LoadScene("SampleScene",LoadSceneMode.Single);
+    }
 }
