@@ -38,41 +38,11 @@ static class ServerNetworkSend
         //Client Responsible for Self-Instantiation
         //Sends update to each other client
         for (int i = 0; i < ServerNetworkManager.playerList.Count; i++)
-           // if (GameManager.playerList[i] != null)
+            if (ServerNetworkManager.playerList[i].Equals(default(PlayerData)))
                 if (i != connectionID)
                     ServerNetworkConfig.socket.SendDataTo(connectionID, PlayerData(connectionID).Data, PlayerData(connectionID).Head);
 
         ServerNetworkConfig.socket.SendDataToAll(PlayerData(connectionID).Data, PlayerData(connectionID).Head);
-    }
-
-    public static void SendPlayerMove(int connectionID, Vector3 position)
-    {
-        ByteBuffer buffer = new ByteBuffer(4);
-        buffer.WriteInt32((int)ServerPackets.SPlayerMove);
-        buffer.WriteInt32(connectionID);
-
-        buffer.WriteSingle(position.x);
-        buffer.WriteSingle(position.y);
-        buffer.WriteSingle(position.z);
-
-        //Console.WriteLine("X: " + x + " Y: " + y + " Z: " + z);
-        ServerNetworkConfig.socket.SendDataToAll(buffer.Data, buffer.Head);
-
-        buffer.Dispose();
-    }
-
-    public static void SendPlayerRotation(int connectionID, Quaternion rotation)
-    {
-        ByteBuffer buffer = new ByteBuffer(4);
-        buffer.WriteInt32((int)ServerPackets.SPlayerRotation);
-        buffer.WriteInt32(connectionID);
-
-        buffer.WriteSingle(rotation.x);
-        buffer.WriteSingle(rotation.y);
-        buffer.WriteSingle(rotation.z);
-        buffer.WriteSingle(rotation.w);
-
-        buffer.Dispose();
     }
 
     public static void SendMessage(int connectionID, string message)
@@ -89,17 +59,33 @@ static class ServerNetworkSend
         buffer.Dispose();
     }
 
-    internal static void SendAnimationData(int connectionID)
+    internal static void SendPlayerData(int connectionID, PlayerData Data)
     {
         ByteBuffer buffer = new ByteBuffer(4);
-        buffer.WriteInt32((int)ServerPackets.SAnimation);
-        buffer.WriteInt32(connectionID);
 
-        //buffer.WriteInt32((int)animation);
-        ServerNetworkConfig.socket.SendDataToAll(buffer.Data, buffer.Head);
+        //position
+        buffer.WriteSingle(Data.Position.x);
+        buffer.WriteSingle(Data.Position.y);
+        buffer.WriteSingle(Data.Position.z);
 
-        buffer.Dispose();
+        //rotation
+        buffer.WriteSingle(Data.LookDirection.x);
+        buffer.WriteSingle(Data.LookDirection.y);
+        buffer.WriteSingle(Data.LookDirection.z);
+
+        //velocity
+        buffer.WriteSingle(Data.Velocity.x);
+        buffer.WriteSingle(Data.Velocity.y);
+        buffer.WriteSingle(Data.Velocity.z);
+
+        //Animations
+
+        //bools
+
+        //Health
+
     }
+
 }
 
 

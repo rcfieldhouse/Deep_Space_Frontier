@@ -6,24 +6,19 @@ enum ClientPackets
 {
     CPing = 1,
     CKeyInput,
-    CPlayerRotation,
     CMessage,
-    CAnimation,
-    CMoveData,
-    CLookData,
+    CPlayerData,
 }
 
 enum ServerPackets
 {
     SWelcomeMsg = 1,
     SInstantiatePlayer,
-    SPlayerMove,
-    SPlayerRotation,
     SMessage,
-    SAnimation,
+    SPlayerData,
 }
 
-public class ServerNetworkConfig : MonoBehaviour
+public class ServerNetworkConfig
 {
     private static Server _socket;
     public static Server socket

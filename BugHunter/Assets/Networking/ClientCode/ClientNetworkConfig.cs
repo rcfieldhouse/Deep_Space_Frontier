@@ -1,30 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UnityEngine;
 using KaymakNetwork.Network;
 
 enum ClientPackets
 {
     CPing = 1,
     CKeyInput,
-    CPlayerRotation,
     CMessage,
-    CAnimation,
-    CMoveData,
-    CLookData,
+    CPlayerData,
 }
-
 
 enum ServerPackets
 {
     SWelcomeMsg = 1,
     SInstantiatePlayer,
-    SPlayerMove,
-    SPlayerRotation,
     SMessage,
-    SAnimation,
+    SPlayerData,
 }
 
 public static class ClientNetworkConfig
@@ -40,6 +30,7 @@ public static class ClientNetworkConfig
 
     public static void ConnectToServer(string ip)
     {
+        Debug.Log("Called");
         socket.Connect(ip, 8888);
     }
 

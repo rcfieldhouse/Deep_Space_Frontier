@@ -17,9 +17,11 @@ public class ServerNetworkManager : MonoBehaviour
     }
 
     public static Dictionary<int, PlayerData> playerList = new Dictionary<int, PlayerData>();
+    public static Dictionary<int, GameObject> playerObjectList = new Dictionary<int, GameObject>();
+
     public Queue<int> _IDToSet = new Queue<int>();
 
-    public Queue<PlayerData> playerDataToChange = new Queue<PlayerData>();
+    public static Queue<int> playerToUpdate = new Queue<int>();
 
     public GameObject prefab;
 
@@ -30,32 +32,31 @@ public class ServerNetworkManager : MonoBehaviour
     }
     private void Update()
     {
-
         //Must Manipulate Objects within Main thread!
         while (_IDToSet.Count > 0)
         {
             int id = _IDToSet.Dequeue();
 
+            PlayerData pData = new PlayerData();
             GameObject player = Instantiate(prefab, transform);
             player.name = "Player: " + id;
 
-            PlayerData pData = new PlayerData();
             playerList.Add(id, pData);
+            playerObjectList.Add(id, player);
 
             Debug.Log(player.name + " has been added to the game");
 
             JoinGame(id);
         }
     }
+
     public void FixedUpdate()
     {
-        if (playerDataToChange.Count > 0)
+        //Post Update Physics
+        if (playerToUpdate.Count > 0)
         {
-            PlayerData data = playerDataToChange.Dequeue();
-            //Change Data Operation
-            //Sync Operation with Clients
+            UpdatePlayer(playerToUpdate.Dequeue());
         }
-
     }
 
     public void JoinGame(int connectionID)
@@ -68,16 +69,25 @@ public class ServerNetworkManager : MonoBehaviour
         _IDToSet.Enqueue(connectionID);
     }
 
-    //not used by server
-    private void SpawnPlayer(int connectionID)
+    public void UpdatePlayer(int index)
     {
-        GameObject player = Instantiate(prefab, transform);
-        player.name = "Player: " + connectionID;
+        PlayerData Data = playerList[index];
+        GameObject player = playerObjectList[index];
 
-        PlayerData pData = new PlayerData();
-        playerList.Add(connectionID, pData);
+        player.transform.position = Data.Position;
+        player.transform.rotation = Quaternion.Euler(Data.LookDirection);
+        player.GetComponent<Rigidbody>().velocity = Data.Velocity;
 
-        Debug.Log(player.name + " has been added to the game");
+        //TODO: Need a function that Handles Animations
+        //player.AnimationRouter(Data.animations)
+
+        //TODO: Must Call isDead Remotely
+        //player.GetComponent<>();
+
+        //TODO: Must Call isFiring Remotely
+        //player.GetComponent<>();
+
+
     }
     #endregion
 }

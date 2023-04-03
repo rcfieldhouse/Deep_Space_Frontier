@@ -1,3 +1,4 @@
+using System.Net;
 using System.Threading;
 using UnityEngine;
 
@@ -6,11 +7,12 @@ public class NetworkDriver : MonoBehaviour
     public bool isServer = false;
     private static Thread threadConsole;
     public string serverIp;
-
+    IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName()); // `Dns.Resolve()` method is deprecated.
+    
     private void Start()
     {
         DontDestroyOnLoad(this);
-
+        IPAddress ipAddress = ipHostInfo.AddressList[1];
         if (isServer)
         {
             threadConsole = new Thread(new ThreadStart(ConsoleThread));
@@ -19,7 +21,7 @@ public class NetworkDriver : MonoBehaviour
             ServerNetworkConfig.InitNetwork();
             ServerNetworkConfig.socket.StartListening(8888, 5, 1);
             Debug.Log("-------------------------===============Network Initialized===============-------------------------");
-            Debug.Log("Host IP: " + System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList[1]);
+            Debug.Log("Host IP: " + ipAddress);
         }
         else
         {
@@ -31,8 +33,13 @@ public class NetworkDriver : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Debug.Log("Quit");
-        ClientNetworkConfig.DisconectFromServer();
+        if (!isServer)
+        {
+            ClientNetworkConfig.DisconectFromServer();
+            Debug.Log("Quit");
+        }
+
+
     }
 
     private static void ConsoleThread()
