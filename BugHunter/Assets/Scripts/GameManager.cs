@@ -33,9 +33,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    #region Server
+#region Server
     private void Update()
     {
+#if !UNITY_SERVER 
+        if (idToSet.Count > 0)
+            SpawnPlayer(idToSet.Dequeue());
+#endif
         //Must Manipulate Objects within Main thread!
         while (_IDToSet.Count > 0)
         {
@@ -77,9 +81,17 @@ public class GameManager : MonoBehaviour
     {
         _IDToSet.Enqueue(connectionID);
     }
-    #endregion
 
-    #region GameWorld
+    private void SpawnPlayer(int connectionID)
+    {
+        GameObject player = Instantiate(prefab, transform);
+        player.name = "Player: " + connectionID;
+        playerList.Add(connectionID, player);
+        Debug.Log(player.name + " has been added to the game");
+    }
+#endregion
+
+#region GameWorld
     public void BulletTime()
     {
         Time.timeScale = timeSlowStrength;
@@ -157,6 +169,6 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    #endregion
+#endregion
 
 }

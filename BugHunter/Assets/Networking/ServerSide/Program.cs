@@ -2,7 +2,7 @@
 using System.Threading;
 using UnityEngine;
 
-
+using namespace Server
 class Program : MonoBehaviour
 {
     private static Thread threadConsole;
