@@ -69,7 +69,7 @@ public class WeaponInfo : MonoBehaviour
     private PlayerInput PlayerInput;
     public bool _CanShoot = true, _CanReload = false, _isReloading = false, tempTimer = true;
     public bool _IsPrimaryWeapon = false;
-    private bool CancelReload;
+    public bool CancelReload=false;
     // Start is called before the first frame update
     void Awake()
     {       
@@ -174,7 +174,7 @@ public class WeaponInfo : MonoBehaviour
     public void Reload()
     {
        if(GetComponent<Shotgun>() != null && _IsPrimaryWeapon == true){
-
+            CancelReload = false;
             StartCoroutine(ReloadShotgun());
         }
        else if (_CanReload == true)
@@ -199,13 +199,14 @@ public class WeaponInfo : MonoBehaviour
                 ammoInMag += 1;
             }
        // _CanShoot = true;
-        if (ammoInMag < magSize)
+        if (ammoInMag < magSize&&CancelReload==false)
         {
             Debug.Log("reloading shotgun");
             StopAllCoroutines();
             StartCoroutine(ReloadShotgun());           
         }
-        else { 
+        else if (ammoInMag >= magSize||CancelReload==true)
+        { 
             GetComponentInChildren<LeftHandReloadAnim>().SetIsReloading(false); 
             GetComponent<Animator>().SetBool("Reload", false);
             GetComponent<Animator>().SetBool("DoneReloading", true);

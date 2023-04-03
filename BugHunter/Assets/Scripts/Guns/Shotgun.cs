@@ -64,6 +64,7 @@ public class Shotgun : Gun
     }
     public override void Shoot()
     {
+        GetComponent<WeaponInfo>().CancelReload = true;
         base.Shoot();
         if (info.GetCanShoot() == false|| gameObject.activeInHierarchy == false||info._isReloading==true)
             return;

@@ -46,21 +46,21 @@ public class TurretAbility : MonoBehaviour
     }
     public void PlaceTurret()
     {
+
+        RaycastHit Hit;
+
         GameObject Turret;
         Vector3 rayOrigin = Cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-        Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo;
-        
-        if (Physics.Raycast(ray, out hitInfo, 25)&&TurretCount>0)
+        if (Physics.Raycast(rayOrigin, Cam.transform.forward * 25.0f, out Hit, 25.0f))
         {
             TurretCount--;
             //&& Turrets.Count<3
             FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Turret_Place");
             Turret = Instantiate(TurretPrefab);
-            Turret.transform.position = hitInfo.point + new Vector3(0.0f, 3.0f, 0.0f);
-            Turret.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            Turret.transform.position = Hit.point + new Vector3(0.0f, 3.0f, 0.0f);
+            Turret.transform.rotation = Quaternion.FromToRotation(Vector3.up, Hit.normal);
 
-            if (hitInfo.transform.gameObject.tag == "Ground" && (Mathf.Abs(Turret.transform.rotation.x) < 0.15f && Mathf.Abs(Turret.transform.rotation.z) < 0.15f))
+            if (Hit.transform.gameObject.tag == "Ground" && (Mathf.Abs(Turret.transform.rotation.x) < 0.15f && Mathf.Abs(Turret.transform.rotation.z) < 0.15f))
             {
                 Turrets.Add(Turret);
                 UsedTurret.Invoke(TurretCount);

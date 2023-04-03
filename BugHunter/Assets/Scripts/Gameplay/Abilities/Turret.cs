@@ -70,6 +70,10 @@ public class Turret : MonoBehaviour
                 {
                     Line.SetPosition(1, hit.point);
                     hit.collider.gameObject.GetComponent<HealthSystem>().ModifyHealth(transform,Damage);
+                    HealthSystem Health = hit.collider.gameObject.GetComponent<HealthSystem>();
+                    Health.gameObject.AddComponent<DamageIndicator>().SetIndicator(transform, (int)(Damage ), false);
+                    Health.gameObject.GetComponent<DamageIndicator>().SetHisPos(hit.point);
+
                     if (hit.collider.gameObject.GetComponent<HealthSystem>().GetHealth() <= 0)
                     {
                         hit.collider.gameObject.tag = "Dead";
