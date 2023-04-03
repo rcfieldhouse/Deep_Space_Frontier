@@ -79,8 +79,8 @@ public class AutomaticRifle : Gun
         {
             //For hipfire spray
             Vector3 Spread;
-            Spread.x = Random.Range(-ShotSpread.x, ShotSpread.x);
-            Spread.y = Random.Range(-ShotSpread.y, ShotSpread.y);
+            Spread.x = RandomGaussian(-ShotSpread.x, ShotSpread.x);
+            Spread.y = RandomGaussian(-ShotSpread.y, ShotSpread.y);
             Spread.z = 0.0f;
             //for ads accuracy
             if (_IsAiming == true)
@@ -115,7 +115,29 @@ public class AutomaticRifle : Gun
                 LazerLine.SetPosition(1, RayOrigin + (Camera.transform.forward * WeaponRange) + Spread);
         }
     }
-   public override void Update()
+    public static float RandomGaussian(float minValue = 0.0f, float maxValue = 1.0f)
+    {
+        float u, v, S;
+
+        do
+        {
+            u = 2.0f * UnityEngine.Random.value - 1.0f;
+            v = 2.0f * UnityEngine.Random.value - 1.0f;
+            S = u * u + v * v;
+        }
+
+        while (S >= 1.0f);
+
+        // Standard Normal Distribution
+        float std = u * Mathf.Sqrt(-2.0f * Mathf.Log(S) / S);
+
+        // Normal Distribution centered between the min and max value
+        // and clamped following the "three-sigma rule"
+        float mean = (minValue + maxValue) / 2.0f;
+        float sigma = (maxValue - mean) / 3.0f;
+        return Mathf.Clamp(std * sigma + mean, minValue, maxValue);
+    }
+    public override void Update()
     {
         if (_IsShooting == true&&_IsSprinting==false)
             Player.AutomaticBandAid();

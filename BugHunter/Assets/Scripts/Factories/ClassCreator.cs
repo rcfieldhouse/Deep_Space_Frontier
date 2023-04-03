@@ -6,6 +6,8 @@ public class ClassCreator : MonoBehaviour
 {
     [SerializeField] ClassType ClassSelection;
     public GameObject ClassIcons;
+    public List<Mesh> CharacterModels;
+    public List<Material> CharacterMaterials;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -26,7 +28,7 @@ public class ClassCreator : MonoBehaviour
     public void CreateClass(GameObject Player)
     {
         ClassInterface ClassCreator = ClassFactory.SpawnClass(ClassSelection);
-        ClassCreator.CreateClass(Player);
+        ClassCreator.CreateClass(Player,CharacterModels,CharacterMaterials);
     }
     public void SetClass(ClassType classType)
     {
