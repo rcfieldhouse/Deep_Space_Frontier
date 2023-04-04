@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class WaveIndicator : MonoBehaviour
 {
     public GameObject Background, Text;
+    float num = 0;
+    float TimeStopped = 0;
     private void Awake()
     {
         ArenaManager.NewWave += DisplayNewWave;
@@ -13,6 +15,7 @@ public class WaveIndicator : MonoBehaviour
     }
     void DisplayNewWave(int wave)
     {
+        TimeStopped = Time.time;
         Background.SetActive(true);
         Text.SetActive(true);
 
@@ -21,15 +24,21 @@ public class WaveIndicator : MonoBehaviour
         tempColor2.a = 1.0f;
         Background.GetComponent<Image>().color = tempColor2;
         Text.GetComponent<TextMeshProUGUI>().text = "Wave " + wave.ToString();
-
+        num = 0;
         StartCoroutine(FadeOut());
+       
     }
    
     public IEnumerator FadeOut()
     {
-        yield return new WaitForSeconds(3.0f);
+        if (num == 0.0f)
+        {
+            Debug.Log(("waiting"));
+            yield return new WaitForSeconds(3.0f);
+        }
+       
       
-        float num = 0;
+
         while (num < 1.0f)
         {
       
@@ -39,7 +48,6 @@ public class WaveIndicator : MonoBehaviour
             var tempColor = Background.GetComponent<Image>().color;
             tempColor.a = 1- num;
             Background.GetComponent<Image>().color = tempColor;
-            Debug.Log(num);
             yield return new WaitForSeconds(0.01f);
 
         }
@@ -47,5 +55,15 @@ public class WaveIndicator : MonoBehaviour
         var tempColor2 = Background.GetComponent<Image>().color;
         tempColor2.a = 0.0f;
         Background.GetComponent<Image>().color = tempColor2;
+    }
+    private void OnEnable()
+    {
+        num += Time.time - TimeStopped;
+        StartCoroutine(FadeOut());
+    }
+    private void OnDisable()
+    {
+        TimeStopped = Time.time;
+        StopAllCoroutines();
     }
 }

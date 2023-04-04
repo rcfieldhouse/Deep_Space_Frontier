@@ -46,6 +46,8 @@ public class TurretAbility : MonoBehaviour
     }
     public void PlaceTurret()
     {
+        if (TurretCount <= 0)
+            return;
 
         RaycastHit Hit;
 

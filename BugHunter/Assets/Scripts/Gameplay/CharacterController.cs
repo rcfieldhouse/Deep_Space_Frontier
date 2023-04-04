@@ -26,7 +26,7 @@ public class CharacterController : MonoBehaviour
     private CapsuleCollider coll;
 
     private HealthSystem Health;
-
+    private float Journey = 0, JourneyTime = 0.0f;
     private void Start()
     {
      
@@ -92,6 +92,9 @@ public class CharacterController : MonoBehaviour
     }
     public void SetZiplinePoint(Transform Start, Transform End)
     {
+        Journey = 0.0f;
+        JourneyTime = (Start.position - End.position).magnitude / 30.0f;
+        Debug.Log((Start.position - End.position).magnitude);
         OnZipline = true; 
         StartPos = Start;
         EndPos = End;
@@ -201,7 +204,9 @@ public class CharacterController : MonoBehaviour
         if (OnZipline == true)
         {
             // Zipline.ogg
-            Rigidbody.velocity = SpeedMod*Vector3.Normalize( EndPos.position- StartPos.position);
+            Journey += Time.deltaTime;
+            Rigidbody.position = Vector3.Lerp(StartPos.position, EndPos.position, Journey/ JourneyTime);
+               // SpeedMod*Vector3.Normalize( EndPos.position- StartPos.position);
         }
         Rigidbody.angularVelocity = Vector3.zero;      
     }
