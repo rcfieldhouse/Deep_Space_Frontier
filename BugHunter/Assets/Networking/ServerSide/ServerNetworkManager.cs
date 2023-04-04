@@ -17,7 +17,6 @@ public class ServerNetworkManager : MonoBehaviour
     }
 
     public static Dictionary<int, PlayerData> playerList = new Dictionary<int, PlayerData>();
-    public static Dictionary<int, GameObject> playerObjectList = new Dictionary<int, GameObject>();
 
     public Queue<int> _IDToSet = new Queue<int>();
 
@@ -25,7 +24,7 @@ public class ServerNetworkManager : MonoBehaviour
 
     public GameObject prefab;
 
-    #region Server
+#region Server
     private void Awake()
     {
         _instance = this;
@@ -35,6 +34,7 @@ public class ServerNetworkManager : MonoBehaviour
         //Must Manipulate Objects within Main thread!
         while (_IDToSet.Count > 0)
         {
+            Debug.Log("IDToSet Triggered");
             int id = _IDToSet.Dequeue();
 
             PlayerData pData = new PlayerData();
@@ -42,7 +42,6 @@ public class ServerNetworkManager : MonoBehaviour
             player.name = "Player: " + id;
 
             playerList.Add(id, pData);
-            playerObjectList.Add(id, player);
 
             Debug.Log(player.name + " has been added to the game");
 
@@ -55,7 +54,7 @@ public class ServerNetworkManager : MonoBehaviour
         //Post Update Physics
         if (playerToUpdate.Count > 0)
         {
-            UpdatePlayer(playerToUpdate.Dequeue());
+            //Reconciliation here
         }
     }
 
@@ -69,25 +68,21 @@ public class ServerNetworkManager : MonoBehaviour
         _IDToSet.Enqueue(connectionID);
     }
 
-    public void UpdatePlayer(int index)
-    {
-        PlayerData Data = playerList[index];
-        GameObject player = playerObjectList[index];
-
-        player.transform.position = Data.Position;
-        player.transform.rotation = Quaternion.Euler(Data.LookDirection);
-        player.GetComponent<Rigidbody>().velocity = Data.Velocity;
-
-        //TODO: Need a function that Handles Animations
-        //player.AnimationRouter(Data.animations)
-
-        //TODO: Must Call isDead Remotely
-        //player.GetComponent<>();
-
-        //TODO: Must Call isFiring Remotely
-        //player.GetComponent<>();
-
-
-    }
-    #endregion
+#endregion
+    public void MovementPrediction()
+        {
+            //Synchronise client clocks with the Server Clocks
+    
+            //OnTick for pre-Physics calcs
+            //    movement command from client (this is to improve preserved latency i.e. movement prediction)
+            //    client does a tentative movement
+    
+            //PostOnTick post physics
+            //    player moves on serverside
+            //    Server corrects position if necessary
+            //    client updates to corrected position
+            //    Timestamps (found in data packet header) determine where client should be ona  particular frame
+            //    Velocity is used to bridge the gap between server packet send rate
+    
+        }
 }

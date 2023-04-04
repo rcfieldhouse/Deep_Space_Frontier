@@ -168,13 +168,7 @@ public class ClientPlayerInput : MonoBehaviour
      PlayerInput.MoveInput(vec);
 
      PlayerInput.MouseScrollInput(Mouse);
-     Mouse = 0;
-    
-
-
-  
-
-    
+     Mouse = 0; 
     
      // if (Input.GetKeyDown(KeyCode.O))
      //    

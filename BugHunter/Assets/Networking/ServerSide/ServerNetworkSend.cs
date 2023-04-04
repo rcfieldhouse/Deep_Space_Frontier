@@ -7,6 +7,7 @@ static class ServerNetworkSend
 {
     public static void WelcomeMsg(int connectionID, string msg)
     {
+        Debug.Log("Welcome Message Triggered");
         ByteBuffer buffer = new ByteBuffer(4);
         buffer.WriteInt32((int)ServerPackets.SWelcomeMsg);
         buffer.WriteInt32(connectionID);
@@ -17,32 +18,26 @@ static class ServerNetworkSend
         buffer.Dispose();
     }
 
-    private static ByteBuffer PlayerData(int connectionID)
-    {
-        ByteBuffer buffer = new ByteBuffer(4);
-        buffer.WriteInt32((int)ServerPackets.SInstantiatePlayer);
-        buffer.WriteInt32(connectionID);
-
-        //can't access connectionID normally must send twice
-        buffer.WriteInt32(connectionID);
-
-        return buffer;
-    }
-
     public static void InstantiateNetworkPlayer(int connectionID)
     {
+        Debug.Log("InstantiateNetworkPlayer Triggered");
         ByteBuffer buffer = new ByteBuffer(4);
+
         buffer.WriteInt32((int)ServerPackets.SInstantiatePlayer);
         buffer.WriteInt32(connectionID);
 
+        PlayerData data = ServerNetworkManager.playerList[connectionID];
         //Client Responsible for Self-Instantiation
         //Sends update to each other client
-        for (int i = 0; i < ServerNetworkManager.playerList.Count; i++)
-            if (ServerNetworkManager.playerList[i].Equals(default(PlayerData)))
+        for (int i = 1; i <= ServerNetworkManager.playerList.Count; i++)
+           if (!ServerNetworkManager.playerList[i].Equals(default(PlayerData)))
                 if (i != connectionID)
-                    ServerNetworkConfig.socket.SendDataTo(connectionID, PlayerData(connectionID).Data, PlayerData(connectionID).Head);
-
-        ServerNetworkConfig.socket.SendDataToAll(PlayerData(connectionID).Data, PlayerData(connectionID).Head);
+                {
+                    Debug.Log("Executed @" + i);
+                    ServerNetworkConfig.socket.SendDataTo(i, SpawnedPlayer(connectionID).Data, SpawnedPlayer(connectionID).Head);
+                }
+        
+        ServerNetworkConfig.socket.SendDataToAll(SpawnedPlayer(connectionID).Data, SpawnedPlayer(connectionID).Head);
     }
 
     public static void SendMessage(int connectionID, string message)
@@ -59,9 +54,28 @@ static class ServerNetworkSend
         buffer.Dispose();
     }
 
-    internal static void SendPlayerData(int connectionID, PlayerData Data)
+    private static ByteBuffer SpawnedPlayer(int connectionID)
     {
         ByteBuffer buffer = new ByteBuffer(4);
+
+        buffer.WriteInt32((int)ServerPackets.SInstantiatePlayer);
+        buffer.WriteInt32(connectionID);
+
+        return buffer;
+        
+    }
+
+    public static void SendPlayerData(int connectionID, PlayerData Data)
+    {
+        Debug.Log("SendPlayerData Triggered");
+        ByteBuffer buffer = new ByteBuffer(4);
+        buffer.WriteInt32((int)ServerPackets.SPlayerData);
+
+        //ID to send to
+        buffer.WriteInt32(connectionID);
+
+        //Owner of Data
+        buffer.WriteInt32(Data.connectionID);
 
         //position
         buffer.WriteSingle(Data.Position.x);
@@ -79,11 +93,18 @@ static class ServerNetworkSend
         buffer.WriteSingle(Data.Velocity.z);
 
         //Animations
+        buffer.WriteInt32((int)Data.animations);
 
         //bools
+        buffer.WriteBoolean(Data.isDead);
+        buffer.WriteBoolean(Data.isFiring);
 
         //Health
+        buffer.WriteSingle(Data.HealthAmount);
 
+        ServerNetworkConfig.socket.SendDataToAll(buffer.Data, buffer.Head);
+
+        buffer.Dispose();
     }
 
 }

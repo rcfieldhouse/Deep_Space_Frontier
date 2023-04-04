@@ -1,36 +1,125 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine;
 
 public class ServerInputManager : MonoBehaviour
 {
-    public Keys pressedKey;
+    public PlayerActions currentAction;
 
-    public enum Keys
+    public enum PlayerActions
     {
         None,
-        W,
-        A,
-        S,
-        D,
-        Mouse1,
-        Mouse2,
-        MouseScroll,
+        Revive,
+        EquipCannon,
+        ToggleNade,
+        ToggleWeapon,
+        //fuck ryan function names
+        LooksieHere,
+        Pause,
+        ShootGun,
+        Aim,
+        ReleaseAim,
+        ChamberGun,
+        Reload,
+        Jump,
+        Interact,
+        EndInteract,
+        CookGrenade,
+        ThrowGrenade,
+        Ability,
+        SprintTrue,
+        SprintFalse,
+
+        //TODO: Delete these for the final build
+        GiveUp,
+        GoInvincible,
+        GoBoss,
     }
 
     // Use this for initialization
     void Start()
     {
-        pressedKey = Keys.None;
+        currentAction = PlayerActions.None;
     }
 
-    public static void HandleKeyInput(int connectionID, Keys key)
+    public static void HandleKeyInput(int connectionID, PlayerActions action)
     {
-        if (key == Keys.None) return;
+        if (action == PlayerActions.None) return;
 
-        //Send New Velocity
-        //ServerNetworkSend.SendPlayerMove(connectionID, ServerNetworkManager.playerList[connectionID].Position);
+        PlayerData pData = ServerNetworkManager.playerList[connectionID];
+
+
+        if (action == PlayerActions.Ability)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.Aim)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.ChamberGun)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.CookGrenade)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.EndInteract)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.EquipCannon)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.Interact)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.Jump)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.LooksieHere)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.Pause)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.ReleaseAim)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.Reload)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.Revive)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.ShootGun)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.SprintFalse)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.SprintTrue)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.ThrowGrenade)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.ToggleNade)
+            pData.animations = PlayerAnimations.None;
+
+        else if (action == PlayerActions.ToggleWeapon)
+            pData.animations = PlayerAnimations.None;
+
+        HandleMovement(connectionID, pData);
+        MovementReconciliation(connectionID, pData);
+
+        ServerNetworkSend.SendPlayerData(connectionID, pData);
+    }
+
+    private static void HandleMovement(int connectionID, PlayerData pData)
+    {
+        //PerformMovementCheck(int connectionID, pData);
+    }
+
+    private static void MovementReconciliation(int connectionID, PlayerData pData)
+    {
+        //ReconcileMovement(int connectionID, pData);
     }
 }
 

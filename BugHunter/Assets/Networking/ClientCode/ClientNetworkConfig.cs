@@ -25,12 +25,12 @@ public static class ClientNetworkConfig
     {
         if (!ReferenceEquals(socket, null)) return;
         socket = new Client(100);
+
         ClientNetworkReceive.PacketRouter();
     }
 
     public static void ConnectToServer(string ip)
     {
-        Debug.Log("Called");
         socket.Connect(ip, 8888);
     }
 

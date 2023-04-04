@@ -45,6 +45,22 @@ public enum EnemyStates
 }
 public struct PlayerData
 {
+    PlayerData(int id)
+    {
+		connectionID = id;
+		isConnected = true;
+
+		Position = new Vector3(0,0,0);
+		LookDirection = new Vector3(0, 0, 0);
+		Velocity = new Vector3(0, 0, 0);
+
+		animations = 0;
+
+		isDead = false;
+		isFiring = false;
+
+		HealthAmount = 200;
+	}
 	//for use by the server
 	public int connectionID;
 	public bool isConnected;
@@ -85,9 +101,11 @@ internal class ServerNetworkReceive
 
 	private static void Packet_PlayerData(int connectionID, ref byte[] data)
 	{
+		Debug.Log("Packet_PlayerData Called");
 		//Data Packing Must be Done in this order to be valid
 		if (!ServerNetworkManager.playerList[connectionID].isConnected)
 			return;
+		Debug.Log("Packet_PlayerData Called and validated");
 
 		ByteBuffer buffer = new ByteBuffer(data);
 		PlayerData tempData = new PlayerData();
@@ -128,9 +146,10 @@ internal class ServerNetworkReceive
 
 	private static void Packet_SpawnPlayer(int connectionID, ref byte[] data)
 	{
+		Debug.Log("Packet_SpawnPlayer Triggered");
 		ByteBuffer buffer = new ByteBuffer(data);
 		string msg = buffer.ReadString();
-		Debug.Log("Boop");
+		
 		Console.WriteLine(msg);
 		ServerNetworkManager.instance.CreatePlayer(connectionID);
 		buffer.Dispose();
@@ -142,7 +161,7 @@ internal class ServerNetworkReceive
 		byte key = buffer.ReadByte();
 
 		buffer.Dispose();
-		ServerInputManager.HandleKeyInput(connectionID, (ServerInputManager.Keys)key);
+		//ServerInputManager.HandleKeyInput(connectionID, (ServerInputManager.)key);
 	}
 
 	private static void Packet_Message(int connectionID, ref byte[] data)

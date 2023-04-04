@@ -7,7 +7,7 @@ public class NetworkDriver : MonoBehaviour
     public bool isServer = false;
     private static Thread threadConsole;
     public string serverIp;
-    IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName()); // `Dns.Resolve()` method is deprecated.
+    IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
     
     private void Start()
     {
