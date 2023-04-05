@@ -171,7 +171,7 @@ public class CharacterController : MonoBehaviour
         //Perform an initial save when he player moves once
         // unfortunetly can't use Start() functions bc some Start() functions
         // are called before others which produces null references when saving
-        if(move.y!=1.0f)
+        if(move.y < 0f)
             SpeedMod=1.0f;
 
         move = move.normalized;

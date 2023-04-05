@@ -34,6 +34,7 @@ public class ClientPlayerInput : MonoBehaviour
         PlayerInputController.Player.Interact.canceled += cntxt => EndInteract();
         PlayerInputController.Player.Sprinting.performed += cntxt => SprintTrue();
         PlayerInputController.Player.Sprinting.canceled += cntxt => SprintFalse();
+        PlayerInputController.Player.Sprinting.started += cntxt => SprintTrue();
 
         PlayerInputController.Player.Reload.performed += cntxt => Reload();
         PlayerInputController.Player.Jump.performed += cntxt => Jump();
@@ -87,7 +88,7 @@ public class ClientPlayerInput : MonoBehaviour
         if (Device == "Mouse:/Mouse")
             Sensitivity = 0.5f;
         else
-            Sensitivity = 12;
+            Sensitivity = 8;
     }
     private void Pause()
     {
@@ -139,6 +140,7 @@ public class ClientPlayerInput : MonoBehaviour
     }
     void SprintTrue()
     {
+        Debug.Log("Sprinting");
         PlayerInput.SprintingTrue();
     }
     void SprintFalse()
