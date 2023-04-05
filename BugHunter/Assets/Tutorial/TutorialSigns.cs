@@ -6,6 +6,8 @@ public class TutorialSigns : MonoBehaviour
 {
     public static TutorialSigns instance;
     public List<GameObject> Tutorials;
+    public PlayerInput PlayerInput;
+
     // Start is called before the first frame update
     void Awake()
     {
