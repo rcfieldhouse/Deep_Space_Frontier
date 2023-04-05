@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 136559627}
-  m_IndirectSpecularColor: {r: 0.031483587, g: 0.009458372, b: 0.013140744, a: 1}
+  m_IndirectSpecularColor: {r: 0.031442195, g: 0.009468702, b: 0.013107872, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15938,8 +15938,6 @@ GameObject:
   - component: {fileID: 414052982}
   - component: {fileID: 414052983}
   - component: {fileID: 414052984}
-  - component: {fileID: 414052985}
-  - component: {fileID: 414052986}
   - component: {fileID: 414052987}
   - component: {fileID: 414052988}
   - component: {fileID: 414052989}
@@ -15995,30 +15993,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2debc05ab0fa84e9426b92c1346d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &414052985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414052981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cedda09410bdb604789688dc9faf2b34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &414052986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414052981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb12dd1732b77844e8c2517f332c22ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &414052987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16032,15 +16006,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 6188316193510723446, guid: acac2ad2d808dd14eb2dcfa868b3db87, type: 3}
-  CommonDrop: {fileID: 0}
-  UncommonDrop: {fileID: 0}
-  RareDrop: {fileID: 0}
+  CommonDrop: {fileID: 1384522422322425585, guid: a31bae43c62dcd64eb37386d0a20a7da,
+    type: 3}
+  UncommonDrop: {fileID: 5097395799502951655, guid: cd991d401c4750c46a6ec78706730331,
+    type: 3}
+  RareDrop: {fileID: 235814544752234128, guid: d97e56293cbb9eb4a9c39b2240500c64, type: 3}
   Prefabs:
   - {fileID: 6121389003956922742, guid: de7435556675da6419c1284cc30f070d, type: 3}
   - {fileID: 1873918526317527613, guid: 8ff98f17433dbe744808f6e230cb73cb, type: 3}
   - {fileID: 6188316193510723446, guid: acac2ad2d808dd14eb2dcfa868b3db87, type: 3}
   Transform: {fileID: 0}
-  spawnForce: 20
+  spawnForce: 5
 --- !u!114 &414052988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23179,7 +23155,7 @@ PrefabInstance:
     - target: {fileID: 1578661293926204167, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -8.189972
+      value: -8.190002
       objectReference: {fileID: 0}
     - target: {fileID: 3601042120282120012, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
@@ -23330,6 +23306,11 @@ PrefabInstance:
         type: 3}
       propertyPath: field of view
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520725862882063764, guid: 3c53c9234287a8047b94ba05223d8526,
+        type: 3}
+      propertyPath: ClassSelection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4520725862882063771, guid: 3c53c9234287a8047b94ba05223d8526,
         type: 3}
@@ -61911,7 +61892,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2aba00e26c34d5498608f4cf761be93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a7c8850a1e3a7e439ef63ce51306812, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
