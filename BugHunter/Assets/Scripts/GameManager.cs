@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     public float timeSlowDuration = 1f;
 
     private void Awake()
-    { 
+    {
+        if(instance==null)
         instance = this;
         DontDestroyOnLoad(this.gameObject);
     }

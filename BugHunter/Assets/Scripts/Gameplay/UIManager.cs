@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     private bool toggle = true;
    // public Canvas InventoryUI;
     public GameObject WeaponHolder;
+    public PlayerInput PlayerInput;
     // Start is called before the first frame update
     void Awake()
     {

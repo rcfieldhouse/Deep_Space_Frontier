@@ -10,13 +10,13 @@ public class PlayerInput : MonoBehaviour
 
     //actions that the player may perform
     public event Action Interact, InteractReleased,Revive,GiveUp;
-    public event Action JumpAction, UseAbility, Shoot, Chamber,Reload,Undo,TabThrowable, WeNeedToCookJesse;
+    public event Action JumpAction, UseAbility, Shoot, Chamber,Reload,Undo,TabThrowable, WeNeedToCookJesse, PausePlugin;
     public event Action<bool>Crouching,ADS,Sprinting;
     public event Action<Quaternion> Look, Throw ;
     public event Action<Vector2,float> Move = delegate { };
     public bool IsDead = false;
     //pause menu actions
-    public static Action SavePlayer, LoadPlayer, PausePlugin, GetTime;
+    public static Action SavePlayer, LoadPlayer, GetTime;
 
 
 
