@@ -92,6 +92,10 @@ public class AutomaticRifle : Gun
 
             GameObject Shell = Instantiate(AmmoCasingPrefab);
             Shell.transform.position = CasingEjectPoint.position;
+            Shell.GetComponent<Rigidbody>().velocity = Player.gameObject.GetComponent<Rigidbody>().velocity;
+            Shell.transform.rotation = this.transform.rotation;
+            Shell.transform.Rotate(Vector3.up, -90.0f);
+            Shell.GetComponent<Rigidbody>().AddForce(CasingEjectPoint.transform.rotation * Vector3.right * 10.0f, ForceMode.Impulse);
             Shell.GetComponent<Rigidbody>().AddForce(CasingEjectPoint.transform.rotation*Vector3.right*10.0f, ForceMode.Impulse);
 
             //Bullet raycast
