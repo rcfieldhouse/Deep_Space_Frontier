@@ -8,6 +8,9 @@ public class EndCutscene : MonoBehaviour
     public float cutsceneTime = 0.0f;
     Inputs PlayerInputController;
     public GameObject CutsceneCamera, Player;
+    public GameObject cutscenecharacter1;
+    public GameObject cutscenecharacter2;
+    public GameObject cutscenecharacter3;
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -17,7 +20,11 @@ public class EndCutscene : MonoBehaviour
     {
         CutsceneCamera.SetActive(false);
         Player.SetActive(true);
+        Destroy(cutscenecharacter1);
+        Destroy(cutscenecharacter2);
+        Destroy(cutscenecharacter3);
         Destroy(transform.parent);
+
     }
 
 
