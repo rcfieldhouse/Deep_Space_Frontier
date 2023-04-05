@@ -35,6 +35,7 @@ public class LoseCondition : MonoBehaviour
     }
     void Loose()
     {
+        Player.gameObject.GetComponent<LootHolder>().SaveData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
         GameManager.instance.SceneChange("Hub");
     }
 }

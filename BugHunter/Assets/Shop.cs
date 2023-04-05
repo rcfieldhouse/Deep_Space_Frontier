@@ -30,6 +30,7 @@ public class Shop : MonoBehaviour
                 ShopInterface = gui.LVLSelect;
             PlayerInput = Player.GetComponent<PlayerInput>();
             PlayerInput.Interact += ToggleShop;
+            PlayerInput.PausePlugin += ToggleShop;
 
         }
     }
@@ -47,6 +48,7 @@ public class Shop : MonoBehaviour
             // commented this out since I couldn't re-open canvases in game because of it
             //ShopInterface = null;
             PlayerInput.Interact -= ToggleShop;
+            PlayerInput.PausePlugin -= ToggleShop;
             PlayerInput = null;
             gui = null;
         }

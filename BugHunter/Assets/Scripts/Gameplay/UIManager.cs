@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     private bool toggle = true;
    // public Canvas InventoryUI;
     public GameObject WeaponHolder;
+    public PlayerInput PlayerInput;
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,12 +42,10 @@ public class UIManager : MonoBehaviour
         if (GameplayUI.enabled == true)
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Debug.Log(" locked");
         }
         else if (GameplayUI.enabled == false)
         {
             Cursor.lockState = CursorLockMode.None;
-            Debug.Log(" not");
         }
 
         //Time.timeScale = 0;
