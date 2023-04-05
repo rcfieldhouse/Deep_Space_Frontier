@@ -3,27 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EndCutscene : MonoBehaviour
-
     
 {
     public float cutsceneTime = 0.0f;
-
+    Inputs PlayerInputController;
     public GameObject CutsceneCamera, Player;
     private void Awake()
     {
-      //  Player.transform.GetChild(0).GetComponent<PlayerInput>().PausePlugin += function;
+        Cursor.lockState = CursorLockMode.None;
         Invoke(nameof(function),cutsceneTime);
     }
-    void function()
+    public void function()
     {
         CutsceneCamera.SetActive(false);
         Player.SetActive(true);
+        Destroy(transform.parent);
     }
 
-    private void Update()
-    {
-     //  if (Input.GetKeyDown(KeyCode.Escape))
-     //      function();
-     //
-    }
+
 }

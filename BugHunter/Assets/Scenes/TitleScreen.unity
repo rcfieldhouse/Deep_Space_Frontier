@@ -1760,6 +1760,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: DataPersistenceManager
       objectReference: {fileID: 0}
+    - target: {fileID: 649756663111490606, guid: 0aef504e21954a343998fc76bad20d0c,
+        type: 3}
+      propertyPath: gameData.WeaponLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 649756663111490606, guid: 0aef504e21954a343998fc76bad20d0c,
+        type: 3}
+      propertyPath: gameData.SecondaryWeaponLevel
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 649756663111490607, guid: 0aef504e21954a343998fc76bad20d0c,
         type: 3}
       propertyPath: m_RootOrder
@@ -4165,7 +4175,6 @@ GameObject:
   - component: {fileID: 1591350092}
   - component: {fileID: 1591350091}
   - component: {fileID: 1591350090}
-  - component: {fileID: 1591350087}
   - component: {fileID: 1591350086}
   - component: {fileID: 1591350085}
   - component: {fileID: 1591350084}
@@ -4213,30 +4222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba89e0f0e482f045911f9655ab99629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1591350087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591350083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc103d4ad492fcb47b42bd07e2d6c1af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 6188316193510723446, guid: acac2ad2d808dd14eb2dcfa868b3db87, type: 3}
-  CommonDrop: {fileID: 1384522422322425585, guid: a31bae43c62dcd64eb37386d0a20a7da,
-    type: 3}
-  UncommonDrop: {fileID: 5097395799502951655, guid: cd991d401c4750c46a6ec78706730331,
-    type: 3}
-  RareDrop: {fileID: 235814544752234128, guid: d97e56293cbb9eb4a9c39b2240500c64, type: 3}
-  Prefabs:
-  - {fileID: 6121389003956922742, guid: de7435556675da6419c1284cc30f070d, type: 3}
-  - {fileID: 1873918526317527613, guid: 8ff98f17433dbe744808f6e230cb73cb, type: 3}
-  - {fileID: 6188316193510723446, guid: acac2ad2d808dd14eb2dcfa868b3db87, type: 3}
-  Transform: {fileID: 0}
-  spawnForce: 5
 --- !u!114 &1591350090
 MonoBehaviour:
   m_ObjectHideFlags: 0

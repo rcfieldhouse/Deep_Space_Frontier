@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
         GameplayUI.enabled = !toggle;
         PauseMenuUI.enabled = toggle;
        // WeaponHolder.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
+     
 
         transform.parent.GetComponentInChildren<WeaponInfo>().SetPaused(toggle);
         transform.parent.GetComponentInChildren<WeaponInfo>().SetIsReloading(toggle);
@@ -41,11 +41,14 @@ public class UIManager : MonoBehaviour
         if (GameplayUI.enabled == true)
         {
             Cursor.lockState = CursorLockMode.Locked;
-            //this is only so that esc is able to close the vendor for the sake of user integrity
-         
+            Debug.Log(" locked");
         }
-          
-    
+        else if (GameplayUI.enabled == false)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Debug.Log(" not");
+        }
+
         //Time.timeScale = 0;
     }
     public void ResumeGame()
