@@ -223,12 +223,13 @@ public class PlayerInput : MonoBehaviour
         Dir.x = Direction.eulerAngles.x;
         if (Look != null && Direction != null)
         {
+       
             Look.Invoke(Direction);
             Move.Invoke(KeyboardInput, SpeedMod);
         }
     }
     public void MoveInput(Vector2 MoveInput)
-    {
+    {    
         KeyboardInput.x = MoveInput.x;
         KeyboardInput.y = MoveInput.y;
         if (TutorialInput != null && MoveInput != Vector2.zero)

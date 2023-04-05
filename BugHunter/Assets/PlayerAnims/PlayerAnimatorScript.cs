@@ -108,10 +108,10 @@ public class PlayerAnimatorScript : MonoBehaviour
         else PlayerAnimator.SetBool("_IsRunning", false);
 
         if (Dir == Vector2.zero) DirectionMovement = 0;    
-        if (Dir == Vector2.right) DirectionMovement = 3;
-        if (Dir == Vector2.left) DirectionMovement = 4;
-        if (Dir == Vector2.up) DirectionMovement = 1;
-        if (Dir == Vector2.down) DirectionMovement = 2;
+        if (Dir.x > 0) DirectionMovement = 3;
+        if (Dir.x < 0 ) DirectionMovement = 4;
+        if (Dir.y > 0) DirectionMovement = 1;
+        if (Dir.y < 0 ) DirectionMovement = 2;
 
         if (LastDir != DirectionMovement||Dir==Vector2.zero) PlayerAnimator.SetBool("_ChangeWalk", true);
         else PlayerAnimator.SetBool("_ChangeWalk", false);
