@@ -22,8 +22,8 @@ public class EndCutscene : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            function();
+       // if (Input.GetKeyDown(KeyCode.Escape))
+       //     function();
 
     }
 }

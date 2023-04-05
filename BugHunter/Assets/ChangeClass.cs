@@ -35,14 +35,16 @@ public class ChangeClass : MonoBehaviour
         Debug.Log("change");
     }
     public void ChangeClassType()
-    { 
-      
+    {
+        if(GameObject.Find("SceneLoadData")!=null)
+        GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().SetClass(ClassType);
+
         Transform SpawnPoint = Player.transform.GetChild(0).transform;
         Destroy(Player.transform.parent.gameObject);
         Vector3 offset = (Vector3.Normalize(Player.transform.GetChild(0).transform.position - transform.position));
         GameObject NewPlayer=Instantiate(prefab, SpawnPoint.position,Quaternion.identity);
         NewPlayer.transform.GetChild(0).GetComponent<ClassCreator>().SetClass(ClassType);
-        GameObject.Find("ClientPlayerInput").GetComponent<ClientPlayerInput>().PlayerInput = NewPlayer.transform.GetChild(0).GetComponent<PlayerInput>();
-        GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().SetClass(ClassType);
+    
+     
     }
 }
