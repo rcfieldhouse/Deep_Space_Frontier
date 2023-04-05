@@ -192,6 +192,10 @@ public abstract class AI : MonoBehaviour
         NavAgent.enabled = true;
         _IsHitStunned = false;
     }
+    public virtual void PlayEndCutScene()
+    {
+
+    }
     public void HandleObjectDeath(Transform context)
     {
     
@@ -217,8 +221,8 @@ public abstract class AI : MonoBehaviour
         if (GetComponent<Queen>())
         {
             //Play cutscene instead, call SceneChange when cutscene is done
-
-            GameManager.instance.SceneChange("Hub", 5.0f);
+            PlayEndCutScene();
+           
         }
         StartCoroutine(DissolveMeshEffect());
         _IsDead = true;

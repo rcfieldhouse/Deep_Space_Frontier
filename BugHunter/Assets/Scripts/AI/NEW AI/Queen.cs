@@ -16,7 +16,16 @@ public class Queen : AI
     [Range(0, 50)] public float LaunchHeight;
     [Range(0, 30)] public float CarpetBombSpread,AOEBombSpread;
     public List<Vector3> BombingLocations,AOEBombingLocations;
+    public GameObject EndCutscene;
     // Update is called once per frame
+    public override void PlayEndCutScene()
+    {
+        Debug.Log("won");
+        FindClosestPlayer().transform.parent.gameObject.SetActive(false);
+        EndCutscene.SetActive(true);
+        GameManager.instance.SceneChange("Hub", 22.0f);
+        base.PlayEndCutScene();
+    }
     public override void Patroling()
     {
         base.Patroling();

@@ -33,6 +33,7 @@ public class Zipline : MonoBehaviour
     }
     public void UseZipline()
     {
+      Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
         Player.GetComponent<CharacterController>().SetZiplinePoint(StartZipLine, EndZipLine);
     }
     public void ExitZipLine()
@@ -87,9 +88,11 @@ public class ZipPoint : MonoBehaviour
                 PlayerInput = other.gameObject.GetComponent<PlayerInput>();
                 PlayerInput.Interact += StartPlacement;
                 PlayerInput.InteractReleased += EndPlacement;
+             
             }
             else if (LinePlaced == true)
             {
+                other.gameObject.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
                 GetComponentInParent<Zipline>().PlayerReadyToZipline(transform,true);
                 GetComponentInParent<Zipline>().ExitZipLine();
             }
@@ -103,13 +106,15 @@ public class ZipPoint : MonoBehaviour
           
             if (LinePlaced == false)
             {
-                holding=false;
+              
+                holding =false;
                 PlayerInput.Interact -= StartPlacement;
                 PlayerInput.InteractReleased -= EndPlacement;
                 PlayerInput = null;
             }
             else if (LinePlaced == true)
             {
+                other.gameObject.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
                 GetComponentInParent<Zipline>().PlayerReadyToZipline(transform, false);
             }
             GetComponentInParent<Zipline>().Player = null;
