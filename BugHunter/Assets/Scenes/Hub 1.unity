@@ -7257,7 +7257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6644d3bc60bb1c74cbd0a9e21d3bab17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
   loadingScreen: {fileID: 63849032}
   loadingBarFill: {fileID: 1353190090}
   timeSlowStrength: 0.05
@@ -8529,9 +8528,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 609920726}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevel
+      - m_Target: {fileID: 414052983}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SceneChange
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12910,18 +12909,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &609920726 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1772650918, guid: 3c53c9234287a8047b94ba05223d8526,
-    type: 3}
-  m_PrefabInstance: {fileID: 609920724}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a533ce4234fd1f4c883317f7dbab97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &618923214
@@ -24831,6 +24818,7 @@ MonoBehaviour:
   EquipmentManager: {fileID: 0}
   CostValues: []
   CraftButton: {fileID: 0}
+  PopupMessage: {fileID: 0}
 --- !u!1001 &1454793534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33100,7 +33088,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2.4999695}
+  m_AnchoredPosition: {x: 0, y: -2.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1904703554
