@@ -81,6 +81,9 @@ MonoBehaviour:
   HitStunTimeRequirement: 2
   HitStunTime: 2
   _IsHitStunned: 0
+  StartEvasionLocation: {x: 0, y: 0, z: 0}
+  DistanceTravelled: {x: 0, y: 0, z: 0}
+  Serpentine: 0
   EvasionIntensity: 0
   EvasionRecalculationPeriod: 0
   WhatIsGround:
@@ -89,6 +92,11 @@ MonoBehaviour:
   WhatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  WalkPoint: {x: 0, y: 0, z: 0}
+  SpawnPoint: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
+  WalkPointSet: 0
+  _IsChasing: 0
   WalkPointRange: 5
   WalkSpeed: 2
 --- !u!195 &107484649466263846
@@ -339,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cbabc1d983a274984eefec95fc2ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpHeight: 15
+  JumpHeight: 12
   HeightSlime: 0.69
 --- !u!114 &107484650129027013
 MonoBehaviour:
