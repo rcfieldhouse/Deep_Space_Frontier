@@ -2,29 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
 
     [SerializeField] private string fileName;
-    private GameData gameData;
+    public GameData gameData;
 
     public static DataPersistenceManager instance { get; private set; }
 
     private List<IDataPersistence> dataPersistenceObjects;
-
+    
     private FileDataHandler dataHandler;
 
     private void Start()
     {
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
+        try
+        {
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            dataPersistenceObjects = FindAllDataPersistenceObjects();
+            LoadGame();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
     }
 
     private void Awake()
     {
+        dataPersistenceObjects = FindAllDataPersistenceObjects();
         DontDestroyOnLoad(gameObject);
         if (instance != null)
         {
@@ -39,33 +48,36 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void SaveGame()
     {
+        dataPersistenceObjects = FindAllDataPersistenceObjects();
         //pass the data to other scripts that need it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.SaveData(gameData);
         }
-        Debug.Log("Enemies Killed save: " + gameData.deathCount);
+      //  Debug.Log("Enemies Killed save: " + gameData.deathCount);
         //save that data to a file using the data handler
         dataHandler.Save(gameData);
 
     }
     public void LoadGame()
     {
-        //load save data from JSON file using the data handler
-        this.gameData = dataHandler.Load();
+        if(dataHandler!=null)
+            gameData = dataHandler.Load();
 
         // if no data can be found, init to NewGame
-        if(this.gameData == null)
+        if (this.gameData == null)
         {
             Debug.Log("No Save Data was found, Initialising to New Game");
             NewGame();
         }
 
+        dataPersistenceObjects = FindAllDataPersistenceObjects();
         // TODO - push loaded data to scripts that need it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
-        {
-            dataPersistenceObj.LoadData(gameData);
-        }
+            {
+                dataPersistenceObj.LoadData(gameData);
+            }
+
         Debug.Log("Enemies Killed load: " + gameData.deathCount);
 
     }
@@ -74,7 +86,7 @@ public class DataPersistenceManager : MonoBehaviour
         SaveGame();
     }
 
-
+    
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>()

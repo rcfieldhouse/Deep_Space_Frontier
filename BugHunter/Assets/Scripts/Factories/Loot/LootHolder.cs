@@ -16,8 +16,12 @@ public class LootHolder : MonoBehaviour, IDataPersistence
             //Inventory.Add(ScriptableObject.CreateInstance<Loot>());
             Inventory.Add(new Loot(0,i));
         }
-
+        LoadData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
         DontDestroyOnLoad(gameObject);
+    }
+    private void OnDestroy()
+    {
+      
     }
     public int GetLootFromInventory(int index)
     {
@@ -25,7 +29,8 @@ public class LootHolder : MonoBehaviour, IDataPersistence
     }
 
     public void GainLoot(int index)
-    {        
+    {
+        SaveData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
         Inventory[index].IncrementLoot(1);
     }
     public void GainLoot(int index, int amount)
@@ -41,20 +46,27 @@ public class LootHolder : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        Debug.Log("inventory loaded");
         for (int i = 0; i<Inventory.Count; i++)
         {
-            Debug.Log(i);
+            if (i >= 12)
+                return;
+
             Inventory[i].SetQuantity(data.itemQuantity[i]);
-            i++;
+
         }
     }
 
     public void SaveData(GameData data)
     {
-
+        Debug.Log("inventory saved");
         for (int i = 0; i < Inventory.Count; i++)
         {
+            if (i >= 12)
+                return;
+
             data.itemQuantity[i] = Inventory[i].Quantity;
+
         }
         
     }

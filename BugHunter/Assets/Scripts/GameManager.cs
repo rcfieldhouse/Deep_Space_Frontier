@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     {
 
         yield return new WaitForSeconds(Time);
+        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().SaveGame();
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
         loadingScreen.SetActive(true);
@@ -57,6 +58,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         loadingScreen.SetActive(false);
+        Debug.Log("new scene loaded");
+        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().LoadGame();
     }
     public void SceneChange(string sceneName, float Time)
     {
@@ -86,6 +89,8 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator SceneChangeAsync(string sceneName)
     {
+        Debug.Log("new scene");
+        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().SaveGame();
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
         loadingScreen.SetActive(true);
@@ -97,6 +102,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         loadingScreen.SetActive(false);
+        Debug.Log("new scene loaded");
+        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().LoadGame();
     }
 
     internal float WrapEulerAngles(float rotation)

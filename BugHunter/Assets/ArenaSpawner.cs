@@ -36,7 +36,6 @@ public enum EnemyType
     }
     private void SpawnWave(int Wave)
     {
-        Debug.Log("SpawnedWave "+ Wave);
         if (SpawnAtWave[Wave] == false)
             return;
 

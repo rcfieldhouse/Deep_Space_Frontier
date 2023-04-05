@@ -20,7 +20,7 @@ public class GameData
     public int playerHealthMultiplier;
     public int playerSpeedMultiplier;
     public int playerLightMultiplier;
-    public int WeaponLevel;
+    public int WeaponLevel,SecondaryWeaponLevel;
     public Vector3 playerWaypoint;
 
     public int CurrentArmor;
@@ -31,6 +31,7 @@ public class GameData
     public GameData()
     {
         this.WeaponLevel = 0;
+        this.SecondaryWeaponLevel = 0;
         this.itemQuantity = new int[] { 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0};
         this.weaponDamageMultiplier = 1;
         this.playerHealthMultiplier = 1;

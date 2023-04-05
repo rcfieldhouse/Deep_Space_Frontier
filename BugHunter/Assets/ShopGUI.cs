@@ -137,7 +137,7 @@ public class ShopGUI : MonoBehaviour
                     CostValues[i].GetComponent<TextMeshProUGUI>().text += "/";
                     CostValues[i].GetComponent<TextMeshProUGUI>().text += WeaponUpgrades[3 * index + Level].cost[j];
                     AmountNeeded[i]= WeaponUpgrades[3 * index + Level].cost[j];
-                    Debug.Log(WeaponUpgrades[3 * index + Level].cost[j]+" found at "+j);
+                  //  Debug.Log(WeaponUpgrades[3 * index + Level].cost[j]+" found at "+j);
                     IndexOfMats[i] = j;
                     Value = j;
                     break;

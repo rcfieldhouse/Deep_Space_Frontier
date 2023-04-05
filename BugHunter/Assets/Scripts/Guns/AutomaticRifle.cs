@@ -44,6 +44,8 @@ public class AutomaticRifle : Gun
     // Start is called before the first frame update
     private void Awake()
     {
+       // Debug.Log("gun is awake");
+
         Player = transform.parent.parent.parent.parent.GetChild(0).GetComponent<PlayerInput>();
         HitMarkers = transform.parent.parent.parent.parent.GetComponentInChildren<GUIHolder>().HitMarkers;
         info = GetComponent<WeaponInfo>();

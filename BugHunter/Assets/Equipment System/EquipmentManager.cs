@@ -32,7 +32,7 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
     private void Awake()
     {
         if(GameObject.Find("SceneLoadData") != null)
-            Debug.Log("awake");
+            Debug.Log("Equipment manager is awake");
 
         //temporary for testing
         slime_armor = new SlimeArmor();
@@ -44,7 +44,8 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
         currentEquip = new StandardArmor();
         //currentEquip.isEquippable = true;
         //ChangeEquip(currentEquip);
-        LoadData(GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data);
+        // LoadData(GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data);
+        LoadData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
     }
     
     public void ChangeEquip(Armor newEquip)
@@ -80,23 +81,11 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
     }
     private void OnDestroy()
     {
-        if (currentEquip.itemName == "Standard Armor")
-            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 0;
-
-        else if (currentEquip.itemName == "Slime Armor")
-            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 1;
-
-        else if (currentEquip.itemName == "Bomber Armor")
-            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 2;
-
-        else if (currentEquip.itemName == "Tick Armor")
-            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 3;
-
-        else if (currentEquip.itemName == "Zephyr Armor")
-            GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().data.CurrentArmor = 4;
+        SaveData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
     }
     public void LoadData(GameData data)
     {
+        Debug.Log("Equipment manager is loading");
         if (data.CurrentArmor == 0)
         {
             currentEquip = new StandardArmor();
@@ -127,6 +116,7 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
+        Debug.Log("Equipment manager is saving");
         if (currentEquip.itemName == "Standard Armor")
             data.CurrentArmor = 0;
 

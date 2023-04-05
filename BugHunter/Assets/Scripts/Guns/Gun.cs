@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Gun : MonoBehaviour
+public abstract class Gun : MonoBehaviour, IDataPersistence
 {
     public int Level = 0;
     //variables that all guns will be using
@@ -25,7 +25,8 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector] public bool _IsAiming=false,_IsSprinting=false;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.15f);
     [HideInInspector] public PlayerInput Player;
-    
+    public int PrimaryWeaponLvl = 0, SecondaryWeaponLvl = 0;
+    private bool UpdatedLevel = false;
     public virtual void Shoot() 
     {
         if (info.GetCanReload() == true && info.GetMag() <= 0&&info._isReloading==false)
@@ -80,11 +81,19 @@ public abstract class Gun : MonoBehaviour
         Player.Sprinting += SetIsSprinting;
         Player.Shoot += Shoot;
         Player.ADS += AIM;
+        StartCoroutine(LoadBandaid());
     }
     private void OnDestroy()
     {
         Player.Shoot -= Shoot;
         Player.ADS -= AIM;
+    }
+    private void OnEnable()
+    {
+        if(UpdatedLevel==false)
+            StartCoroutine(LoadBandaid());
+
+      
     }
     public void AIM(bool aiming)
     {
@@ -100,7 +109,7 @@ public abstract class Gun : MonoBehaviour
     }
     public void DoDamage(HealthSystem Health, bool _IsCrit,Vector3 point, RaycastHit Hit)
     {
-       Debug.Log("Damage done should be "+Damage*CalculateWeaponDamageFalloff(Hit.distance));
+     //  Debug.Log("Damage done should be "+Damage*CalculateWeaponDamageFalloff(Hit.distance));
         float DamageX = 1.0f * CalculateWeaponDamageFalloff(Hit.distance);
      
         if (_IsCrit) DamageX = CritMultiplier;
@@ -145,5 +154,33 @@ public abstract class Gun : MonoBehaviour
         LazerLine.SetPosition(0, GunEnd.position);
         yield return shotDuration;
         LazerLine.enabled = false;
+    }
+    private IEnumerator LoadBandaid()
+    {
+        yield return new WaitForSeconds(0.1f);
+        LoadData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
+    }
+    public void LoadData(GameData data)
+    {
+        UpdatedLevel = true;
+        PrimaryWeaponLvl = data.WeaponLevel;
+        SecondaryWeaponLvl = data.SecondaryWeaponLevel;
+        if (GetComponent<WeaponInfo>()._IsPrimaryWeapon==true)
+        Level = data.WeaponLevel;
+        else if (GetComponent<WeaponInfo>()._IsPrimaryWeapon==false)
+        Level = data.SecondaryWeaponLevel;
+
+        for (int i=0; i < Level; i++)
+        {
+            WeaponUpgrades(i+1);
+        }
+    }
+
+    public void SaveData(GameData data)
+    {
+        if (GetComponent<WeaponInfo>()._IsPrimaryWeapon)
+            data.WeaponLevel = Level;
+        else if (!GetComponent<WeaponInfo>()._IsPrimaryWeapon)
+            data.SecondaryWeaponLevel = Level;
     }
 }

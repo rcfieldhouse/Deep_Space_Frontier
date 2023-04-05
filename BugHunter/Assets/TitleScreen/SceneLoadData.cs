@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoadData : MonoBehaviour
 {
     ClassType ClassSelection;
-    public GameData data;
+   // public GameData data;
     bool AppStarting = true;
     // Start is called before the first frame update
     void Awake()
@@ -34,9 +34,5 @@ public class SceneLoadData : MonoBehaviour
     {
         return ClassSelection;
     }
-    private void MainSceneLoaded()
-    {
-        GameObject.Find("MixamoCharacter").GetComponent<CharacterController>().disableCams(false);
-    }
-    
+
 }
