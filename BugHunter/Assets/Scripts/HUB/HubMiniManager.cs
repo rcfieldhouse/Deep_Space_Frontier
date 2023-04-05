@@ -8,13 +8,24 @@ public class HubMiniManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //HubTheme = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Level1Sting");
-        //HubTheme.start();
+        HubTheme = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Very Trashy");
+        HubTheme.setVolume(0.1f);
+        HubTheme.start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (IsPlaying(HubTheme) == false)
+        {
+            HubTheme.start();
+        }
+    }
+
+    bool IsPlaying(FMOD.Studio.EventInstance instance)
+    {
+        FMOD.Studio.PLAYBACK_STATE state;
+        instance.getPlaybackState(out state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
     }
 }
