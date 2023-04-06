@@ -11,6 +11,7 @@ public class EndCutscene : MonoBehaviour
     public GameObject cutscenecharacter1;
     public GameObject cutscenecharacter2;
     public GameObject cutscenecharacter3;
+    public GameObject ship;
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -23,6 +24,7 @@ public class EndCutscene : MonoBehaviour
         Destroy(cutscenecharacter1);
         Destroy(cutscenecharacter2);
         Destroy(cutscenecharacter3);
+        Destroy(ship);
         Destroy(transform.parent);
 
     }
