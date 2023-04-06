@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FMODPlayer : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class FMODPlayer : MonoBehaviour
     private float volume;
 
 
+
     void Awake()
     {
 
@@ -57,23 +59,6 @@ public class FMODPlayer : MonoBehaviour
             _instance = this;
         }
 
-        //Attach sound @ runtime                                
-        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>(), GetComponent<Rigidbody>());
-
-        Ambience = FMODUnity.RuntimeManager.CreateInstance("event:/Ambient/Ambience_Outdoor");
-        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Level1");
-
-        MasterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
-        //SoundFXVolume = FMODUnity.RuntimeManager.GetBus("bus:/Sounds");
-        //DialogueVolume = FMODUnity.RuntimeManager.GetBus("bus:/Dialogue");
-        //MusicVolume = FMODUnity.RuntimeManager.GetBus("bus:/Music");
-
-        Ambience.start();
-        Ambience.release();
-
-        //Music.start();
-        //Music.release();
-        //Intensity(1);
     }
 
     private void Update()

@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class HubMiniManager : MonoBehaviour
 {
-    FMOD.Studio.EventInstance HubTheme;
+    FMOD.Studio.EventInstance Music;
     // Start is called before the first frame update
     void Start()
     {
-        HubTheme = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Very Trashy");
-        HubTheme.setVolume(0.1f);
-        HubTheme.start();
+        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Odyssey");
+        Music.setParameterByName("Intensity", 1.0f);
+        Music.setVolume(0.2f);
+        Music.start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (IsPlaying(HubTheme) == false)
+        if (IsPlaying(Music) == false)
         {
-            HubTheme.start();
+            Music.start();
         }
     }
 
