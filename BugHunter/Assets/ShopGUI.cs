@@ -49,6 +49,7 @@ public class ShopGUI : MonoBehaviour
     public GameObject[] CostValues;
     public GameObject CraftButton;
     public GameObject PopupMessage;
+    public GameObject WeaponPopupMessage;
     private void Start()
     {
 
@@ -159,6 +160,7 @@ public class ShopGUI : MonoBehaviour
             purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Image>().color = Color.gray;
             purchaseUpgradeParents[index].transform.GetChild(0).GetComponent<Button>().enabled = false;
             CraftButton.SetActive(false);
+            WeaponPopupMessage.SetActive(true);
         }
         // Level 2
         if (Level == 2)
@@ -174,6 +176,7 @@ public class ShopGUI : MonoBehaviour
             purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Image>().color = Color.gray;
             purchaseUpgradeParents[index].transform.GetChild(1).GetComponent<Button>().enabled = false;
             CraftButton.SetActive(false);
+            WeaponPopupMessage.SetActive(true);
         }
         // Level 3
         if (Level == 3)
@@ -195,6 +198,7 @@ public class ShopGUI : MonoBehaviour
             //These both disable the crafting button
             //purchaseUpgradeParents[index].transform.GetChild(2).GetComponent<Button>().enabled = false;
             CraftButton.SetActive(false);
+            WeaponPopupMessage.SetActive(true);
         }
         EquipmentManager.transform.parent.GetComponentInChildren<WeaponSwap>().transform.GetChild(num).gameObject.SetActive(false);
 

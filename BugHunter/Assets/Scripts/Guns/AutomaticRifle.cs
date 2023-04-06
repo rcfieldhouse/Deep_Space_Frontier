@@ -19,8 +19,10 @@ public class AutomaticRifle : Gun
                     GetComponent<WeaponInfo>().magSize += 10;
                     break;
                 case 3:
-                    GetComponent<WeaponInfo>().RecoilX *= 0.7f;
-                    GetComponent<WeaponInfo>().AimRecoilX *= 0.7f;
+                    GetComponent<WeaponInfo>().RecoilX *= 0.5f;
+                    GetComponent<WeaponInfo>().AimRecoilX *= 0.5f;
+                    GetComponent<WeaponInfo>().RecoilY *= 0.5f;
+                    GetComponent<WeaponInfo>().AimRecoilY *= 0.5f;
                     break;
 
             }
@@ -28,14 +30,16 @@ public class AutomaticRifle : Gun
             switch (lvl)
             {
                 case 1:
-                    GetComponent<WeaponInfo>().RecoilX *= 0.8f;
-                    GetComponent<WeaponInfo>().AimRecoilX *= 0.8f;
+                    GetComponent<WeaponInfo>().RecoilX *= 0.7f;
+                    GetComponent<WeaponInfo>().AimRecoilX *= 0.7f;
+                    GetComponent<WeaponInfo>().RecoilY *= 0.7f;
+                    GetComponent<WeaponInfo>().AimRecoilY *= 0.7f;
                     break;
                 case 2:
                     GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.7f);
                     break;
                 case 3:
-                    CritMultiplier *= 1.1f;
+                    CritMultiplier *= 1.15f;
                     break;
 
             }

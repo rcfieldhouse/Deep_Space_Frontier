@@ -17,8 +17,10 @@ public class Shotgun : Gun
                     ShotSpread *= 0.95f;
                     break;
                 case 3:
-                    GetComponent<WeaponInfo>().RecoilX *= 0.9f;
-                    GetComponent<WeaponInfo>().AimRecoilX *= 0.9f;
+                    GetComponent<WeaponInfo>().RecoilX *= 0.5f;
+                    GetComponent<WeaponInfo>().AimRecoilX *= 0.5f;
+                    GetComponent<WeaponInfo>().RecoilY *= 0.5f;
+                    GetComponent<WeaponInfo>().AimRecoilY *= 0.5f;
                     break;
 
             }
@@ -26,7 +28,7 @@ public class Shotgun : Gun
             switch (lvl)
             {
                 case 1:
-                    GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.2f);
+                    GetComponent<WeaponInfo>().ReloadTimer = new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.6f);
                     // Increase Reload Animation by the same amount here
                     break;
                 case 2:

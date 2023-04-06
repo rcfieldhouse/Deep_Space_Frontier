@@ -8,15 +8,15 @@ public class Revolver : Gun
     {
         switch (lvl) {
             case 1:
-                GetComponent<WeaponInfo>().ReloadTimer =new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.9f);
+                GetComponent<WeaponInfo>().ReloadTimer =new WaitForSeconds(GetComponent<WeaponInfo>()._reloadTimer *= 0.7f);
                     break;
             case 2:
                 WeaponRange *= 1.15f;
-                GetComponent<WeaponInfo>().RecoilX *= 1.05f;
+                GetComponent<WeaponInfo>().RecoilX *= 1.10f;
                 GetComponent<WeaponInfo>().AimRecoilX *= 1.05f;
                     break;
             case 3:
-                Damage =(int)(Damage* 1.05f);
+                Damage =(int)(Damage* 1.20f);
                     break;
         }
 
