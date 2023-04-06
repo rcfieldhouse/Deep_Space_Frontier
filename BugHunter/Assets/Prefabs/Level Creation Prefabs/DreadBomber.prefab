@@ -16231,9 +16231,9 @@ MonoBehaviour:
   Enemy: 9
   rarity: 1
   RandomDrop: 1
-  CommonDrop: 100
-  UncommonDrop: 54.5
-  RareDrop: 29.1
+  CommonDrop: 25
+  UncommonDrop: 15
+  RareDrop: 8
 --- !u!1 &6654931586685384974
 GameObject:
   m_ObjectHideFlags: 0
@@ -21522,6 +21522,9 @@ MonoBehaviour:
   HitStunTimeRequirement: 2
   HitStunTime: 1
   _IsHitStunned: 0
+  StartEvasionLocation: {x: 0, y: 0, z: 0}
+  DistanceTravelled: {x: 0, y: 0, z: 0}
+  Serpentine: 0
   EvasionIntensity: 0
   EvasionRecalculationPeriod: 0
   WhatIsGround:
@@ -21530,6 +21533,11 @@ MonoBehaviour:
   WhatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  WalkPoint: {x: 0, y: 0, z: 0}
+  SpawnPoint: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
+  WalkPointSet: 0
+  _IsChasing: 0
   WalkPointRange: 8.7
   WalkSpeed: 2.5
   Projectile: {fileID: 5208889938825677951, guid: e20c548efe95d6844889d4a03fb83687,

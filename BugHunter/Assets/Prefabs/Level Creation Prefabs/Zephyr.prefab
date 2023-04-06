@@ -1628,6 +1628,7 @@ GameObject:
   - component: {fileID: 7292850838511642199}
   - component: {fileID: 7292850838511642193}
   - component: {fileID: 7292850838511642198}
+  - component: {fileID: 5533765703907994581}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Enemy
@@ -1702,6 +1703,25 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   fadeInTime: 0.5
+--- !u!114 &5533765703907994581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463988283346100773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac0a66723e986042a78ace3d19230a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LootType: 0
+  Enemy: 6
+  rarity: 1
+  RandomDrop: 1
+  CommonDrop: 25
+  UncommonDrop: 15
+  RareDrop: 8
 --- !u!1 &2505707517761109774
 GameObject:
   m_ObjectHideFlags: 0
