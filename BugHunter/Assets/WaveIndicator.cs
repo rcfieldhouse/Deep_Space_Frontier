@@ -11,7 +11,7 @@ public class WaveIndicator : MonoBehaviour
     private void Awake()
     {
         ArenaManager.NewWave += DisplayNewWave;
-        Text.AddComponent<TextMeshPro>();
+        Text.AddComponent<TextMeshProUGUI>();
     }
     void DisplayNewWave(int wave)
     {
@@ -63,6 +63,7 @@ public class WaveIndicator : MonoBehaviour
     }
     private void OnDisable()
     {
+        ArenaManager.NewWave -= DisplayNewWave;
         TimeStopped = Time.time;
         StopAllCoroutines();
     }

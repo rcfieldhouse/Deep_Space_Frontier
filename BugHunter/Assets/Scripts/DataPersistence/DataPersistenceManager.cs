@@ -57,7 +57,6 @@ public class DataPersistenceManager : MonoBehaviour
       //  Debug.Log("Enemies Killed save: " + gameData.deathCount);
         //save that data to a file using the data handler
         dataHandler.Save(gameData);
-
     }
     public void LoadGame()
     {
@@ -74,9 +73,9 @@ public class DataPersistenceManager : MonoBehaviour
         dataPersistenceObjects = FindAllDataPersistenceObjects();
         // TODO - push loaded data to scripts that need it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
-            {
-                dataPersistenceObj.LoadData(gameData);
-            }
+        {
+            dataPersistenceObj.LoadData(gameData);
+        }
 
         Debug.Log("Enemies Killed load: " + gameData.deathCount);
 

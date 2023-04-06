@@ -21,6 +21,6 @@ public class QueenCutscene : MonoBehaviour
     void Update()
     {
         descend();
-        GetComponent<Rigidbody>().velocity = Vector3.down * moveSpeed;
+        //GetComponent<Rigidbody>().velocity = Vector3.down * moveSpeed;
     }
 }

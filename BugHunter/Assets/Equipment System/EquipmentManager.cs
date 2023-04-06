@@ -81,7 +81,7 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
     }
     private void OnDestroy()
     {
-        SaveData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
+        //SaveData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
     }
     public void LoadData(GameData data)
     {

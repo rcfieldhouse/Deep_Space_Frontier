@@ -34,11 +34,16 @@ public enum EnemyType
            //     StartDestination = gameObject.transform.GetChild(0);
              
     }
+    private void OnDisable()
+    {
+        ArenaManager.NewWave -= SpawnWave;
+    }
     private void SpawnWave(int Wave)
     {
+        Debug.Log("DonkDonk");
         if (SpawnAtWave[Wave] == false)
             return;
-
+        Debug.Log("DeetDeet");
         int index = 0;
         for (int i = 0; i < WaveNum.Length; i++)
         {
@@ -47,12 +52,13 @@ public enum EnemyType
         }
 
 
-            SelectEnemy(EnemySelection[index], index);
+        SelectEnemy(EnemySelection[index], index);
     }
     // Update is called once per frame
 
     public void SelectEnemy(EnemyType TypeEnemy, int index)
     {
+        Debug.Log(TypeEnemy);
         switch (TypeEnemy)
         {
             case EnemyType.Hound:

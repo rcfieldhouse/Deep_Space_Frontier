@@ -21,8 +21,16 @@ public class Queen : AI
     public override void PlayEndCutScene()
     {
         Debug.Log("won");
+
         FindClosestPlayer().transform.parent.gameObject.SetActive(false);
+        FMODUnity.RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        FMOD.Studio.EventInstance Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/DeepSpace");
+        Music.start();
+        Music.setParameterByName("Intensity", 1.0f);
+        Music.setVolume(0.1f);
+        Music.release();
         EndCutscene.SetActive(true);
+
         GameManager.instance.SceneChange("Hub", 22.0f);
         base.PlayEndCutScene();
     }

@@ -28,7 +28,7 @@ public class Ladder : MonoBehaviour
             Player = other.gameObject;
             PlayerInput = Player.GetComponent<PlayerInput>();
             PlayerInput.Interact += UseLadder;
-            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
+            //Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -36,7 +36,7 @@ public class Ladder : MonoBehaviour
         if (other.tag == "Player")
         {
             _IsInTrigger = false;
-            Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+            //Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
             Player.GetComponent<CharacterController>().SetIfOnLadder(false);
             Player = null;
             PlayerInput.Interact -= UseLadder;
@@ -52,13 +52,13 @@ public class Ladder : MonoBehaviour
         {
             //get off the ladder function
             _IsInTrigger = false;
-                Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+                //Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
                 Player.GetComponent<CharacterController>().SetIfOnLadder(false);
             Player = null;
         }
         if (_IsInTrigger == true)
         {
-                Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
+                //Player.GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
                 Player.GetComponent<CharacterController>().SetIfOnLadder(true);
         }
         }

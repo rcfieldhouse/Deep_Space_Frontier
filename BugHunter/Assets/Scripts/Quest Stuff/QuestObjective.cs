@@ -13,6 +13,10 @@ public class QuestObjective : MonoBehaviour
         Health = GetComponent<HealthSystem>();
         Health.OnObjectDeath += HandleObjectDeath;
     }
+    private void OnDisable()
+    {
+        Health.OnObjectDeath -= HandleObjectDeath;
+    }
     void Delay()
     {
         QuestManager.instance.quests[QuestStep] = gameObject;

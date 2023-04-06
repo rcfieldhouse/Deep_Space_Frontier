@@ -12,7 +12,7 @@ public class DissolveManyObj : MonoBehaviour
         Health = GetComponent<HealthSystem>();
         MeshRenderers = GetComponentsInChildren<MeshRenderer>();
 
-          if (MeshRenderers != null)
+        if (MeshRenderers != null)
         for (int i = 0; i < MeshRenderers.Length; i++)
         {
             for (int j = 0; j < MeshRenderers[i].materials.Length; j++)
@@ -27,6 +27,9 @@ public class DissolveManyObj : MonoBehaviour
     }
     IEnumerator DissolveMeshEffect()
     {
+        if (GetComponent<BoxCollider>())
+            GetComponent<BoxCollider>().enabled = false;
+
         if (Materials.Count > 0)
         {
             float counter = 0;
