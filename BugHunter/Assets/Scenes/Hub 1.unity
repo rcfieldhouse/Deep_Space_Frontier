@@ -7356,6 +7356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: []
+  Player: {fileID: 0}
 --- !u!1001 &414977264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11009,6 +11010,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 6e569c48c322f02478078d7adac76ac1,
         type: 3}
+    - target: {fileID: 420311801, guid: 3c53c9234287a8047b94ba05223d8526, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 528524075, guid: 3c53c9234287a8047b94ba05223d8526, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -24819,6 +24824,7 @@ MonoBehaviour:
   CostValues: []
   CraftButton: {fileID: 0}
   PopupMessage: {fileID: 0}
+  WeaponPopupMessage: {fileID: 0}
 --- !u!1001 &1454793534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26365,7 +26371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2aba00e26c34d5498608f4cf761be93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57d677b78402e69419547fe51e9ae308, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -34155,16 +34161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb5e76c26bbd4145bcc273acb818c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    deathCount: 0
-    itemQuantity: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    weaponDamageMultiplier: 1
-    playerHealthMultiplier: 1
-    playerSpeedMultiplier: 1
-    playerLightMultiplier: 1
-    WeaponLevel: 0
-    playerWaypoint: {x: 0, y: 0, z: 0}
-    CurrentArmor: 0
 --- !u!4 &1948858813
 Transform:
   m_ObjectHideFlags: 0
