@@ -34,7 +34,7 @@ public class LootHolder : MonoBehaviour, IDataPersistence
 
     public void GainLoot(int index)
     {
-        SaveData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
+        //SaveData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
         Inventory[index].IncrementLoot(1);
     }
     public void GainLoot(int index, int amount)
