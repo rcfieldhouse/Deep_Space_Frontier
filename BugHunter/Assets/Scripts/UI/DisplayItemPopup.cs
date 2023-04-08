@@ -13,20 +13,10 @@ public class DisplayItemPopup : MonoBehaviour
     public Image Itemimage;
     public TextMeshProUGUI ItemName;
     public TextMeshProUGUI ItemRarity;
+    public Image Background;
     public Animator popupAnim;
-
+    private float num = 0.0f;
     //.GetComponent<TextMeshProUGUI>().text
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void DisplayNewItem(int index)
     {
@@ -36,12 +26,37 @@ public class DisplayItemPopup : MonoBehaviour
         switch (index % 3)
         {
             case 0: ItemRarity.text = "Rare";
-                break;
+                Background.color = Color.cyan;
+                break;           
             case 1: ItemRarity.text = "Common";
+                Background.color = Color.white;
                 break;
             case 2: ItemRarity.text = "Uncommon";
+                Background.color = Color.green;
                 break;
         }
-        popupAnim.Play("ItemPopupAnim");
+        StartCoroutine(FadeOut());
+        popupAnim.SetBool("Animate", true);
     }
+    public IEnumerator FadeOut()
+    {
+        yield return new WaitForSeconds(1.0f);
+        while (num < 1.0f)
+        {
+            //Debug.Log(Vector3.zero + (offset + num) * Vector3.up);
+            num += 0.02f;
+                yield return new WaitForSeconds(0.02f);
+            ItemName.alpha = 1.0f - num;
+            ItemRarity.alpha = 1.0f - num;
+            var tempColor = Background.GetComponent<Image>().color;
+            tempColor.a = 1 - num;
+            Background.color = tempColor;
+
+            var tempColor2 = Itemimage.GetComponent<Image>().color;
+            tempColor2.a = 1 - num;
+            Itemimage.color = tempColor2;
+        }
+        Destroy(gameObject);
+    }
+
 }

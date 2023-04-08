@@ -10,7 +10,8 @@ public class LootHolder : MonoBehaviour, IDataPersistence
 {
     public List<Loot> Inventory = new List<Loot>{};
     public GameObject Player;
-    public DisplayItemPopup DisplayItemPopup;
+    public GameObject DisplayItemPopup;
+    public List<GameObject> Indicators = new List<GameObject> { };
     void Awake()
     {
         //TODO: Instantiate this in the lootholder with the player
@@ -34,14 +35,27 @@ public class LootHolder : MonoBehaviour, IDataPersistence
         return Inventory[index].Quantity;
 
     }
-
+    //    foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
     public void GainLoot(int index)
     {
         //SaveData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
         Inventory[index].IncrementLoot(1);
-
-        DisplayItemPopup.DisplayNewItem(index);
-
+        if (GetComponent<PlayerInput>() != null)
+        {
+            GameObject Indicator = Instantiate(DisplayItemPopup, transform.parent.GetChild(2));
+            Indicators.Add(Indicator);
+            StartCoroutine(Remove(Indicator));
+            Indicator.GetComponent<DisplayItemPopup>().DisplayNewItem(index);
+            foreach (GameObject indicator in Indicators)
+            {
+                indicator.transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition += Vector2.up * 120;
+            }
+        }
+    }
+    IEnumerator Remove(GameObject Indicator)
+    {
+        yield return new WaitForSeconds(2.0f);
+        Indicators.Remove(Indicator);
     }
     public void GainLoot(int index, int amount)
     {
