@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public class LootHolder : MonoBehaviour, IDataPersistence
 {
     public List<Loot> Inventory = new List<Loot>{};
     public GameObject Player;
+    public DisplayItemPopup DisplayItemPopup;
     void Awake()
     {
         //TODO: Instantiate this in the lootholder with the player
@@ -36,6 +39,9 @@ public class LootHolder : MonoBehaviour, IDataPersistence
     {
         //SaveData(GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().gameData);
         Inventory[index].IncrementLoot(1);
+
+        DisplayItemPopup.DisplayNewItem(index);
+
     }
     public void GainLoot(int index, int amount)
     {
