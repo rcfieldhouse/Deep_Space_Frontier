@@ -15,7 +15,7 @@ public class DisplayItemPopup : MonoBehaviour
     public TextMeshProUGUI ItemRarity;
     public Image Background;
     public Animator popupAnim;
-    private float num = 0.0f;
+    private float num = 0.0f,TimePaused=0.0f;
     //.GetComponent<TextMeshProUGUI>().text
 
     public void DisplayNewItem(int index)
@@ -38,8 +38,19 @@ public class DisplayItemPopup : MonoBehaviour
         StartCoroutine(FadeOut());
         popupAnim.SetBool("Animate", true);
     }
+    private void OnEnable()
+    {
+        if (TimePaused != 0.0f)
+            num += (Time.time - TimePaused);
+        StartCoroutine(FadeOut());
+    }
+    private void OnDisable()
+    {
+        TimePaused = Time.time;
+    }
     public IEnumerator FadeOut()
     {
+        if(num==0.0f)
         yield return new WaitForSeconds(1.0f);
         while (num < 1.0f)
         {
