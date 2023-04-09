@@ -88,7 +88,6 @@ public class WeaponInfo : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("used");
         transform.localPosition = Startpos;
         transform.localRotation = StartRot;
     }
