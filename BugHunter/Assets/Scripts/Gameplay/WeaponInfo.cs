@@ -70,15 +70,27 @@ public class WeaponInfo : MonoBehaviour
     public bool _CanShoot = true, _CanReload = false, _isReloading = false, tempTimer = true;
     public bool _IsPrimaryWeapon = false;
     public bool CancelReload=false;
+
+   public Vector3 Startpos;
+   public Quaternion StartRot;
     // Start is called before the first frame update
     void Awake()
-    {       
+    {
+        Startpos = transform.localPosition;
+        StartRot = transform.localRotation;
         ReloadTimer = new WaitForSeconds(_reloadTimer);         
         ammoInMag = magSize;
        
         Invoke(nameof(Wait), 0.1f);
         if(GetComponent<Gun>()!=null)
         RecoilTimer = GetComponent<Gun>().FireRate;
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("used");
+        transform.localPosition = Startpos;
+        transform.localRotation = StartRot;
     }
     void Wait()
     {
@@ -126,6 +138,16 @@ public class WeaponInfo : MonoBehaviour
         if (_isReloading == true) _CanShoot = false;
         if (IsPaused == true)
             _CanShoot = false;
+
+    
+    }
+    private void LateUpdate()
+    {
+        if (_isReloading == false && transform.localPosition != Startpos)
+        {
+            transform.localPosition = Startpos;
+            transform.localRotation = StartRot;
+        }
     }
     public void SetPaused(bool var)
     {

@@ -5826,14 +5826,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3159086732803634767}
-  m_LocalRotation: {x: -0, y: 0.0000001872535, z: -0, w: 1}
+  m_LocalRotation: {x: -0.3735337, y: 0.00000017369956, z: -0.00000006994555, w: 0.92761666}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3159086733394329249}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -43.867, y: 0, z: 0}
 --- !u!198 &3159086732803634762
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5843,7 +5843,7 @@ ParticleSystem:
   m_GameObject: {fileID: 3159086732803634767}
   serializedVersion: 8
   lengthInSec: 4
-  simulationSpeed: 1
+  simulationSpeed: 5.8
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -6373,7 +6373,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.2
+      scalar: -1.65
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -10654,14 +10654,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3159086732958822276}
-  m_LocalRotation: {x: -0, y: 0.0000001872535, z: -0, w: 1}
+  m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3159086733394329249}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 28.073002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
 --- !u!198 &3159086732958822275
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -15315,8 +15315,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3159086733394329248}
   serializedVersion: 8
-  lengthInSec: 2
-  simulationSpeed: 1
+  lengthInSec: 4
+  simulationSpeed: 10
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -15443,7 +15443,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.001
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -19228,7 +19228,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 0
     ratio: 1
     lifetime:
@@ -20063,6 +20063,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20498,6 +20499,9 @@ MonoBehaviour:
   HitStunTimeRequirement: 3
   HitStunTime: 1
   _IsHitStunned: 0
+  StartEvasionLocation: {x: 0, y: 0, z: 0}
+  DistanceTravelled: {x: 0, y: 0, z: 0}
+  Serpentine: 0
   EvasionIntensity: 2.03
   EvasionRecalculationPeriod: 0.5
   WhatIsGround:
@@ -20506,6 +20510,11 @@ MonoBehaviour:
   WhatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  WalkPoint: {x: 0, y: 0, z: 0}
+  SpawnPoint: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
+  WalkPointSet: 0
+  _IsChasing: 0
   WalkPointRange: 11.1
   WalkSpeed: 12
   VenomDamageTime: 4
