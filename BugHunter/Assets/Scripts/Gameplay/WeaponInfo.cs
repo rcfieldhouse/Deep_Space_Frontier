@@ -233,7 +233,7 @@ public class WeaponInfo : MonoBehaviour
             GetComponent<Animator>().SetBool("DoneReloading", true);
             Debug.Log("Finsished  shotgun");
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         GetComponent<Animator>().SetBool("DoneReloading", false);
         gameObject.GetComponentInParent<ReloadGun>().SetIsReloading(false);
         _isReloading = false;

@@ -50,13 +50,13 @@ public class ZoomIn : MonoBehaviour
         {
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);
-            _DepthOfField.active = true;
+           // _DepthOfField.active = true;
         }
         else
         {
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);
-            _DepthOfField.active = false;
+           // _DepthOfField.active = false;
         }
         if(GetComponent<WeaponSwap>().WeaponArray[0].GetComponent<SniperRifle>() != null  && choice == 0)
             PlayerInput.SetAimWSniper(isAiming);

@@ -40,7 +40,5 @@ public class QuestManager : MonoBehaviour
     {
         if ((Player.transform.position - MarkerInstance.transform.position).magnitude > 100.0f)
             MarkerInstance.transform.GetChild(0).localScale = Vector3.one * (Player.transform.position - MarkerInstance.transform.position).magnitude/100.0f;
-        Debug.Log((Player.transform.position - MarkerInstance.transform.position).magnitude);
-        Debug.Log(Vector3.one * (Player.transform.position - MarkerInstance.transform.position).magnitude);
     }
 }

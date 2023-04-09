@@ -57080,6 +57080,8 @@ MonoBehaviour:
   tempTimer: 1
   _IsPrimaryWeapon: 0
   CancelReload: 0
+  Startpos: {x: 0, y: 0, z: 0}
+  StartRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &4520725861187674673
 Animator:
   serializedVersion: 4
@@ -105047,6 +105049,8 @@ MonoBehaviour:
   tempTimer: 1
   _IsPrimaryWeapon: 0
   CancelReload: 0
+  Startpos: {x: 0, y: 0, z: 0}
+  StartRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &4520725862064343691
 Animator:
   serializedVersion: 4
@@ -106160,6 +106164,8 @@ MonoBehaviour:
   tempTimer: 1
   _IsPrimaryWeapon: 0
   CancelReload: 0
+  Startpos: {x: 0, y: 0, z: 0}
+  StartRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &130235973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106234,7 +106240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520725862257447243}
   m_LocalRotation: {x: 0.18138552, y: -0, z: -0, w: 0.98341215}
-  m_LocalPosition: {x: 0, y: 5.17, z: -8.649953}
+  m_LocalPosition: {x: 0, y: 5.17, z: -8.650014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -106736,6 +106742,8 @@ MonoBehaviour:
   tempTimer: 1
   _IsPrimaryWeapon: 1
   CancelReload: 0
+  Startpos: {x: 0, y: 0, z: 0}
+  StartRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &4520725862314434009
 Animator:
   serializedVersion: 4
@@ -112771,6 +112779,8 @@ MonoBehaviour:
   tempTimer: 1
   _IsPrimaryWeapon: 1
   CancelReload: 0
+  Startpos: {x: 0, y: 0, z: 0}
+  StartRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &4520725862436225209
 Animator:
   serializedVersion: 4
@@ -134292,7 +134302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb2e3c056f37cf4781a0b07eb00aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassSelection: 1
+  ClassSelection: 0
   ClassIcons: {fileID: 4520725862391307834}
   CharacterModels:
   - {fileID: -5495902117074765545, guid: 9d72a2ab3e8c86e45b03deb653d56911, type: 3}
@@ -134375,7 +134385,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: []
-  Player: {fileID: 0}
+  Player: {fileID: 4520725862882063774}
+  DisplayItemPopup: {fileID: 7740955402706058696, guid: d80b45c0819f7814f94ac1f35bb19db7,
+    type: 3}
+  Indicators: []
 --- !u!114 &4520725862882063775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134473,6 +134486,7 @@ MonoBehaviour:
   HealthRegen: {fileID: 1915176226}
   Volume: {fileID: 280035010}
   Vignette: {fileID: 0}
+  ChromaticAberration: {fileID: 0}
 --- !u!114 &2047353478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135510,6 +135524,8 @@ MonoBehaviour:
   tempTimer: 1
   _IsPrimaryWeapon: 0
   CancelReload: 0
+  Startpos: {x: 0, y: 0, z: 0}
+  StartRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1959664530313096326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135816,6 +135832,8 @@ MonoBehaviour:
   tempTimer: 1
   _IsPrimaryWeapon: 1
   CancelReload: 0
+  Startpos: {x: 0, y: 0, z: 0}
+  StartRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &4520725863101130651
 Animator:
   serializedVersion: 4
