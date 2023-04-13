@@ -115,11 +115,12 @@ public class ClientPlayerInput : MonoBehaviour
     }
     public void LooksieHere(InputAction.CallbackContext action)
     {
+    
         string Device = action.control.device.ToString();
         if (Device == "Mouse:/Mouse")
             Sensitivity = 0.5f;
         else
-            Sensitivity = 8;
+            Sensitivity = 6;
         if (!NetworkDriver.instance.isServer)
         {
             ClientNetworkSend.SendKeyInput(PlayerStates.LooksieHere);
@@ -127,7 +128,7 @@ public class ClientPlayerInput : MonoBehaviour
     }
     public void LooksieHere()
     {
-        Sensitivity = 8;
+       // Sensitivity = 8;
         if (!NetworkDriver.instance.isServer)
         {
             ClientNetworkSend.SendKeyInput(PlayerStates.LooksieHere);
