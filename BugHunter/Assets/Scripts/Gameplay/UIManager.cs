@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public Canvas GameplayUI;
-    public Canvas PauseMenuUI;
+    public Canvas PauseMenuUI, OptionsUI;
     private bool toggle = true;
    // public Canvas InventoryUI;
     public GameObject WeaponHolder;
@@ -16,18 +16,36 @@ public class UIManager : MonoBehaviour
         GameplayUI = transform.parent.GetComponentInChildren<GUIHolder>().GUI.GetComponent<Canvas>();
         PauseMenuUI = transform.parent.GetComponentInChildren<GUIHolder>().PauseUI.GetComponent<Canvas>();
         PlayerInput.PausePlugin += PauseMenuEnabled;
+        PlayerInput.PausePlugin += DisableOptionsMenu;
     }
     private void OnDestroy()
     {
         PlayerInput.PausePlugin -= PauseMenuEnabled;
+        PlayerInput.PausePlugin -= DisableOptionsMenu;
     }
     // Update is called once per frame
 
+    public void EnableOptionsMenu()
+    {
+        PauseMenuUI.enabled = false;
+        OptionsUI.enabled = true;
+    }
+    public void DisableOptionsMenu()
+    {
+
+        if (OptionsUI.enabled == false)
+            return;
+
+        OptionsUI.enabled = false;
+        PauseMenuUI.enabled = true;
+    }
 
     void PauseMenuEnabled()
    {
+        if (OptionsUI.enabled == true)
+            return;
         //disable gamepaly UI and enable Pause Menu UI when escape is pressed
- 
+      //  OptionsUI.enabled = false;
         GameplayUI.enabled = !toggle;
         PauseMenuUI.enabled = toggle;
        // WeaponHolder.SetActive(false);
@@ -41,6 +59,7 @@ public class UIManager : MonoBehaviour
 
         if (GameplayUI.enabled == true)
         {
+          //ResumeGame();
             Cursor.lockState = CursorLockMode.Locked;
         }
         else if (GameplayUI.enabled == false)
