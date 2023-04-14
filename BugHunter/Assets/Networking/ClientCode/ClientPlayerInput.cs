@@ -137,10 +137,10 @@ public class ClientPlayerInput : MonoBehaviour
     public void Pause()
     {
         PlayerInput.PausePlayer();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.Pause);
-        }
+     // if (!NetworkDriver.instance.isServer)
+     // {
+     //     ClientNetworkSend.SendKeyInput(PlayerStates.Pause);
+     // }
     }
     public void ShootGun()
     {

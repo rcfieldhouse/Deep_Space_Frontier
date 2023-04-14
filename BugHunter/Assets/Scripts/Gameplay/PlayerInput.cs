@@ -30,7 +30,7 @@ public class PlayerInput : MonoBehaviour
     //public static Action<bool,int>thing;
     [SerializeField] private float SpeedMod = 1.0f;
     [SerializeField] private CharacterController controller;
-    [Range(0, 1)] [SerializeField] private float Sensitivity = .5f;
+    [Range(0, 1)]public float Sensitivity = .5f;
     [Range(0, 1)] [SerializeField] private float SniperSensitivityReduction = 1.0f;
     [Range(0, 1)] [SerializeField] private float AimAssistStrength = 1.0f;
     [HideInInspector] public bool ADSWSniper = false,AimAssist = false;

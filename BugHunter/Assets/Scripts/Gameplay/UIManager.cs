@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
         OptionsUI.enabled = false;
         PauseMenuUI.enabled = true;
     }
-
+  
     void PauseMenuEnabled()
    {
         if (OptionsUI.enabled == true)

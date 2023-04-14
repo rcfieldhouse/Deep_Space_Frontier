@@ -80,7 +80,7 @@ public class CharacterController : MonoBehaviour
 
         if (var == true)
         {
-            MotionBlur.intensity.Override(0.1f);
+            MotionBlur.intensity.Override(0.05f);
             LensDistortion.intensity.Override(-0.15f);
         }
         else if(var==false)

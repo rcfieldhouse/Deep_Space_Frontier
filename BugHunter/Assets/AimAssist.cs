@@ -7,7 +7,7 @@ public class AimAssist : MonoBehaviour
   public  Camera Camera;
     public PlayerInput PlayerInput;
     bool isAim;
-   public bool AIMHacks ;
+   public bool AIMHacks;
     private void Awake()
     {
         AIMHacks = false;
