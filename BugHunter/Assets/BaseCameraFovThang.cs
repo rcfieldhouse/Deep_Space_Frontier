@@ -11,6 +11,10 @@ public class BaseCameraFovThang : MonoBehaviour
     private float FOVChange = 0,BaseZoom=0,iterator;
     private bool _IsADS = false,Running=false;
     public WeaponSwap WeaponSwap;
+    public void SetBaseZoom(float num )
+    {
+        BaseZoom = num;
+    }
     // Start is called before the first frame update
     private void Awake()
     {
