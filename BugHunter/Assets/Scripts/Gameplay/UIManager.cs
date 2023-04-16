@@ -54,7 +54,8 @@ public class UIManager : MonoBehaviour
         transform.parent.GetComponentInChildren<WeaponInfo>().SetPaused(toggle);
         transform.parent.GetComponentInChildren<WeaponInfo>().SetIsReloading(toggle);
         transform.parent.GetComponentInChildren<Look>().SetIsPaused(toggle);
-
+        WeaponHolder.GetComponent<ZoomIn>().paused = toggle;
+        PlayerInput.gameObject.GetComponent<Rigidbody>().isKinematic = toggle;
         toggle = !toggle;
 
         if (GameplayUI.enabled == true)
@@ -82,6 +83,8 @@ public class UIManager : MonoBehaviour
         transform.parent.GetComponentInChildren<WeaponInfo>().SetPaused(false);
         transform.parent.GetComponentInChildren<WeaponInfo>().SetIsReloading(false);
         transform.parent.GetComponentInChildren<Look>().SetIsPaused(false);
+        WeaponHolder.GetComponent<ZoomIn>().paused = false;
+        PlayerInput.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         toggle = !toggle;
     }
     public void QuitGame()

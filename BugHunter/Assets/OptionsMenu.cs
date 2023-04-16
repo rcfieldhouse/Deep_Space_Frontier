@@ -15,6 +15,8 @@ public class OptionsMenu : MonoBehaviour, IDataPersistence
     public void ApplyChanges()
     {
         PlayerInput.Sensitivity = Sensitivity.GetComponentInChildren<Slider>().value;
+        PlayerInput.SniperSensitivityReduction = SniperSensitivity.GetComponentInChildren<Slider>().value;
+        PlayerInput.ADSAimStrength = ADSSensitivity.GetComponentInChildren<Slider>().value;
         AimAssist.AIMHacks = AimLock.GetComponentInChildren<Toggle>().isOn;
         MotionBlur tmp;
         if (Volume.profile.TryGet<MotionBlur>(out tmp))
@@ -24,6 +26,7 @@ public class OptionsMenu : MonoBehaviour, IDataPersistence
             tmp2.active = MotionBlur.GetComponentInChildren<Toggle>().isOn;
 
         Camera.SetBaseZoom(40+ 30*FOV.GetComponentInChildren<Slider>().value);
+        
     }
 
     public void LoadData(GameData data)
@@ -36,3 +39,4 @@ public class OptionsMenu : MonoBehaviour, IDataPersistence
         Debug.Log("Tried to save OPtions menu");
     }
 }
+ 

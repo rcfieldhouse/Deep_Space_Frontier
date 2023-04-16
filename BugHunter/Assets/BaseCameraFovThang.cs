@@ -45,6 +45,7 @@ public class BaseCameraFovThang : MonoBehaviour
     }
     private void Update()
     {
+        if (WeaponSwap.gameObject.GetComponent<ZoomIn>().paused == true) return;
         if (Running) return;
         iterator += Time.deltaTime;
         if (_IsADS == true)
