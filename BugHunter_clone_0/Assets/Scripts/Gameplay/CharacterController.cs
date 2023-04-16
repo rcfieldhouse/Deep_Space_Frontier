@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 public class CharacterController : MonoBehaviour
 {
     public Rigidbody Rigidbody;
@@ -27,6 +28,9 @@ public class CharacterController : MonoBehaviour
 
     private HealthSystem Health;
     private float Journey = 0, JourneyTime = 0.0f;
+    public Volume Volume;
+    [HideInInspector] public MotionBlur MotionBlur;
+    [HideInInspector] public LensDistortion LensDistortion;
     private void Start()
     {
      
@@ -34,6 +38,7 @@ public class CharacterController : MonoBehaviour
     }
     private void Awake()
     {
+       
         disableCams(false);
         CameraMain.SetActive(true);
 
@@ -46,12 +51,43 @@ public class CharacterController : MonoBehaviour
         coll = GetComponent<CapsuleCollider>();
         //this line sets default cam to main
         Dodge.Dodged += UseDodge;
-
+        Player.Sprinting += SetSprintingVFX;
         CameraMain.SetActive(true);
         disableCams(false);
         CameraDodge.SetActive(false);
         Invoke(nameof(BandAidFix), 0.5f);
         Invoke(nameof(GetHealthSys),0.5f);
+ 
+    }
+    void SetMotionBlur()
+    {
+        MotionBlur tmp;
+        if (Volume.profile.TryGet<MotionBlur>(out tmp))
+            MotionBlur = tmp;
+    }
+    void SetLensDistortion()
+    {
+        LensDistortion tmp;
+        if (Volume.profile.TryGet<LensDistortion>(out tmp))
+            LensDistortion = tmp;
+    }
+    void SetSprintingVFX(bool var)
+    {
+        if(MotionBlur==null)
+        SetMotionBlur();
+        if(LensDistortion==null)
+        SetLensDistortion();
+
+        if (var == true)
+        {
+            MotionBlur.intensity.Override(0.05f);
+            LensDistortion.intensity.Override(-0.15f);
+        }
+        else if(var==false)
+        {
+            MotionBlur.intensity.Override(0.0f);
+            LensDistortion.intensity.Override(0.0f);
+        }
     }
     void BandAidFix()
     {

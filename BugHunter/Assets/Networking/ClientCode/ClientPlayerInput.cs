@@ -4,15 +4,16 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 using KaymakNetwork;
+using Unity.Netcode;
 
-public class ClientPlayerInput : MonoBehaviour
+public class ClientPlayerInput : NetworkBehaviour
 {
-    private float Sensitivity=1;
+    private float Sensitivity = 1;
     Inputs PlayerInputController;
     public PlayerInput PlayerInput;
     Vector2 move, look;
     float Mouse = 0;
-    bool UsingPrimary=true;
+    bool UsingPrimary = true;
     // Start is called before the first frame update
 
     void Awake()
@@ -55,202 +56,159 @@ public class ClientPlayerInput : MonoBehaviour
     }
     public void ReviveSelf()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.RevivePlayer();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.Revive);
-        }
     }
     public void GiveUp()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.GiveUpAndDie();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.GiveUp);
-        }
     }
     public void GoInvincible()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.SetInvulnerable();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.GoInvincible);
-        }
     }
     public void GoBoss()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.GoToBossArena();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.GoBoss);
-        }
+
     }
     public void EquipCannon()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.SwapTertiaryWeapon();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.EquipCannon);
-        }
     }
     public void ToggleNade()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.ToggleThrowable();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.ToggleNade);
-        }
     }
     public void ToggleWeapon()
     {
+        if (!IsOwner)
+            return;
+
         if (UsingPrimary)
             PlayerInput.SwapSecondaryWeapon();
         else PlayerInput.SwapPrimaryWeapon();
 
         UsingPrimary = !UsingPrimary;
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.ToggleWeapon);
-        }
     }
     public void LooksieHere(InputAction.CallbackContext action)
     {
-    
+        if (!IsOwner)
+            return;
+
         string Device = action.control.device.ToString();
         if (Device == "Mouse:/Mouse")
             Sensitivity = 0.5f;
         else
             Sensitivity = 6;
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.LooksieHere);
-        }
     }
     public void LooksieHere()
     {
-       // Sensitivity = 8;
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.LooksieHere);
-        }
+        // Sensitivity = 8;
+
     }
     public void Pause()
     {
+        if (!IsOwner)
+            return;
+
         PlayerInput.PausePlayer();
-     // if (!NetworkDriver.instance.isServer)
-     // {
-     //     ClientNetworkSend.SendKeyInput(PlayerStates.Pause);
-     // }
+
     }
     public void ShootGun()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.ShootGun();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.ShootGun);
-        }
     }
     public void Aim()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.Aim();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.Aim);
-        }
     }
     public void ReleaseAim()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.ReleaseAim();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.ReleaseAim);
-        }
     }
     public void ChamberGun()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.ChamberGun();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.ChamberGun);
-        }
     }
     public void Reload()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.PlayerReload();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.Reload);
-        }
     }
     public void Jump()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.Jump();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.Jump);
-        }
     }
     public void Interact()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.BeginInteract();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.Interact);
-        }
     }
     public void EndInteract()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.EndInteract();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.EndInteract);
-        }
     }
     public void CookGrenade()
     {
-         PlayerInput.CookGrenade();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.CookGrenade);
-        }
+        if (!IsOwner)
+            return;
+        PlayerInput.CookGrenade();
     }
     public void ThrowGrenade()
     {
-         PlayerInput.ReleaseGrenade();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.ThrowGrenade);
-        }
+        if (!IsOwner)
+            return;
+        PlayerInput.ReleaseGrenade();
     }
     public void Ability()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.UseClassAbility();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.Ability);
-        }
     }
     public void SprintTrue()
     {
+        if (!IsOwner)
+            return;
         Debug.Log("Sprinting");
         PlayerInput.SprintingTrue();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.SprintTrue);
-        }
     }
     public void SprintFalse()
     {
+        if (!IsOwner)
+            return;
         PlayerInput.SprintingFalse();
-        if (!NetworkDriver.instance.isServer)
-        {
-            ClientNetworkSend.SendKeyInput(PlayerStates.SprintFalse);
-        }
     }
     private void OnEnable()
     {
         PlayerInputController.Player.Enable();
-      
+
     }
     private void OnDisable()
     {
@@ -269,19 +227,9 @@ public class ClientPlayerInput : MonoBehaviour
         vec.x = move.x;
         vec.y = move.y;
         PlayerInput.MoveInput(vec);
-       
+
         PlayerInput.MouseScrollInput(Mouse);
         Mouse = 0;
 
-    }
-
-    public void FixedUpdate()
-    {
-        if (!NetworkDriver.instance.isServer)
-        {
-
-            ClientNetworkSend.SendPlayerData();
-        }
-            
     }
 }

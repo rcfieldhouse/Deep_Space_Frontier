@@ -34,6 +34,8 @@ public class GunZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.parent.GetComponentInChildren<ZoomIn>().paused == true)
+            return;
 
         if (ADSTime == 0.0f||Running) return;
         if (isADS)

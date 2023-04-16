@@ -58,13 +58,18 @@ public class Shop : MonoBehaviour
     {
         if (Player == null)
             return;
+        Player.transform.parent.GetComponentInChildren<WeaponInfo>().SetPaused(true);
+        Player.transform.parent.GetComponentInChildren<WeaponInfo>().SetIsReloading(true);
+        Player.transform.parent.GetComponentInChildren<Look>().SetIsPaused(true);
+
         bool toggle = !ShopInterface.activeInHierarchy;
         // i only need the canvas to activate not everything attached to it for tab switching
         //ShopInterface.SetActiveRecursively(!ShopInterface.activeInHierarchy);
         ShopInterface.SetActive(toggle);
 
-       
 
+        gui.PauseUI.GetComponent<Canvas>().enabled = false;
+        gui.GUI.GetComponent<Canvas>().enabled = true;
         gui.PickupPrompt.SetActive(!toggle);
 
          Player.transform.parent.GetComponentInChildren<WeaponInfo>().SetPaused(toggle);

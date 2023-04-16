@@ -9,7 +9,8 @@ public class PlayerDamageIndicator : MonoBehaviour
     public Volume Volume;
     private HealthSystem healthSystem;
     [HideInInspector] public Vignette Vignette;
-    private float VignetteIntensity = 0.0f;
+    [HideInInspector] public ChromaticAberration ChromaticAberration;
+    private float VignetteIntensity = 0.0f,AbberationIntensity =0.1f;
     private void Awake()
     {
         Invoke(nameof(GetInfo), 0.5f);
@@ -27,12 +28,25 @@ public class PlayerDamageIndicator : MonoBehaviour
 
         if (Vignette == null)
             SetVignette();
-
+        if (ChromaticAberration == null)
+            SetCA();
 
         VignetteIntensity = 0.4f;
+        AbberationIntensity = 0.3f;
         StartCoroutine(VignetteEffect());
+        StartCoroutine(CrmAbbEffect());
     }
-   public IEnumerator VignetteEffect()
+    public IEnumerator CrmAbbEffect()
+    {
+        while (AbberationIntensity > 0.0f)
+        {
+            yield return new WaitForSeconds(0.01f);
+            AbberationIntensity -= 0.01f;
+            ChromaticAberration.intensity.Override(AbberationIntensity);
+        }
+        ChromaticAberration.intensity.Override(0.0f);
+    }
+    public IEnumerator VignetteEffect()
     {
         while (VignetteIntensity > 0.0f)
         {
@@ -55,6 +69,12 @@ public class PlayerDamageIndicator : MonoBehaviour
         if (Volume.profile.TryGet<Vignette>(out tmp))
             Vignette = tmp;
     }
+    void SetCA()
+    {
+        ChromaticAberration tmp;
+        if (Volume.profile.TryGet<ChromaticAberration>(out tmp))
+            ChromaticAberration = tmp;
+    }
     // Update is called once per frame
-  
+
 }

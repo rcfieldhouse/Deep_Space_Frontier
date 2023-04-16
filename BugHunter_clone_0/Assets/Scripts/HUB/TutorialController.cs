@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System;
+using TMPro;
 
 public class TutorialController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TutorialController : MonoBehaviour
     public GameObject ShootingTutorialUI;
     public GameObject UtilityTutorialUI;
     public GameObject MovementTutorialUI;
+    public TextMeshProUGUI Subtitle;
 
     // UI Parent for End Tutorial Popup
     public GameObject TutorialCompleteUI;
@@ -63,7 +65,9 @@ public class TutorialController : MonoBehaviour
         //BeginTutorial();
         IntroVoiceline = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Good Morning Pioneer");
         IntroVoiceline.start();
-        
+        Subtitle.text = "Good morning pioneer, welcome to Ferallous, you've been in zero gravity for quite some time, before you receive your first mission lets run through some basic training to test your skills.";
+
+
     }
 
     public void BeginTutorial()
@@ -99,6 +103,7 @@ public class TutorialController : MonoBehaviour
                IntroVoiceline.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                WeaponCheck = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Weapons Check");
                WeaponCheck.start();
+               Subtitle.text = "Let's check if you can still handle your firearm, shoot (MOUSE 1) some of those targets in front of you, you can aim down sights (MOUSE 2) to be more accurate.";
                beginVoicelines = false;
             }
         }
@@ -209,6 +214,7 @@ public class TutorialController : MonoBehaviour
 
             Reload = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Reload Weapons");
             Reload.start();
+            Subtitle.text = "Go on and reload (R KEY) your weapon, you can't shoot aliens with an empty gun.";
         }
     }
     public void RKeyDown()
@@ -222,6 +228,7 @@ public class TutorialController : MonoBehaviour
            //Reload.release();
            SecondaryWeapon = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Secondary Gun");
            SecondaryWeapon.start();
+           Subtitle.text = "Pioneers are also equipped with a sidearm, try taking it out now (MOUSE SCROLLWHEEL) and shooting at a target.";
         }
     }
     public void ScrollWheelDown()
@@ -235,6 +242,7 @@ public class TutorialController : MonoBehaviour
             //Reload.release();
             Explosives = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Explosives");
             Explosives.start();
+            Subtitle.text = "Now that your firearm authorized, lets see if you can handle some explosives, pull out a grenade (Q KEY HOLD) and throw it (Q KEY RELEASE) at one of those targets, your helmets HUD will show it where it will land.";
         }
     }
     public void QKeyDown()
@@ -248,6 +256,7 @@ public class TutorialController : MonoBehaviour
             //Reload.release();
             DodgeRoll = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Dodge Roll");
             DodgeRoll.start();
+            Subtitle.text = "Each pioneer has a unique ability they bring to the team, as an assault class pioneer your meant to be on the frontlines facing enemies head on, your dodge roll ability will help you avoid enemy attacks.";
         }
     }
     public void CKeyDown()
@@ -258,6 +267,7 @@ public class TutorialController : MonoBehaviour
             //Reload.release();
             SuitCali = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Suit Calibration");
             SuitCali.start();
+            Subtitle.text = "We need to calibrate your pioneer suit try moving around  (W A S D KEYS)";
             
             Reload.getPlaybackState(out PlaybackState);
                 Debug.Log(PlaybackState);
@@ -295,6 +305,7 @@ public class TutorialController : MonoBehaviour
             SuitCali.release();
             NewHome = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/New Home");
             NewHome.start();
+            Subtitle.text = "Congratulations, you are now a fully authorized pioneer, good luck exploring the frontier.";
         }
     }
     bool IsPlaying(FMOD.Studio.EventInstance instance)

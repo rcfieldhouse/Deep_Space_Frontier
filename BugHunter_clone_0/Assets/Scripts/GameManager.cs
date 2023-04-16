@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             Ambience.start();
             Ambience.release();
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 5 || SceneManager.GetActiveScene().buildIndex == 8)
+        else if (SceneManager.GetActiveScene().buildIndex == 5) //|| SceneManager.GetActiveScene().buildIndex == 8)
         {
             Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Odyssey");
             Music.setParameterByName("Intensity", 1.0f);
