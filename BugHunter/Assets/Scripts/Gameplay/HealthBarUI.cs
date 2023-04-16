@@ -17,10 +17,15 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField]
     private FMOD.Studio.EventInstance HealthChange;
 
+    public bool IsBarrierHPBar = false;
+
     private void Awake()
     {
         StartCoroutine(wait());
-        HealthBar.color = Color.cyan;
+        if (IsBarrierHPBar == false)
+        {
+            HealthBar.color = Color.cyan;
+        }
     }
 
     private void HandleHealthChanged(float pct)
@@ -46,7 +51,10 @@ public class HealthBarUI : MonoBehaviour
           
             yield return null;
         }
-        HealthBar.color = Color.Lerp(Color.red, Color.cyan, pct);
+        if(IsBarrierHPBar == false)
+        {
+            HealthBar.color = Color.Lerp(Color.red, Color.cyan, pct);
+        }
         
         HealthBar.fillAmount = pct;
     }
