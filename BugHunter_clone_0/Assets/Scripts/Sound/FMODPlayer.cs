@@ -9,26 +9,13 @@ public class FMODPlayer : MonoBehaviour
     private static FMOD.Studio.EventInstance Ambience;
     private static FMOD.Studio.EventInstance Music;
     private static FMOD.Studio.Bus MasterBus;
-    private static FMOD.Studio.Bus SoundFXBus;
-    private static FMOD.Studio.Bus DialogueBus;
-    private static FMOD.Studio.Bus MusicBus;
 
-
-    [SerializeField]
-    private FMODUnity.EventReference uiUpEvent;
-
-    [SerializeField]
-    private FMODUnity.EventReference uiDownEvent;
-
-    [SerializeField]
-    private FMODUnity.EventReference uiSelectEvent;
-
-    [SerializeField]
-    private FMODUnity.EventReference uiDeselectEvent;
-
-    [SerializeField]
-    private FMODUnity.EventReference music;
-
+    private static FMOD.Studio.VCA MasterVCA;
+    private static FMOD.Studio.VCA AmbientVCA;
+    private static FMOD.Studio.VCA SFXVCA;
+    private static FMOD.Studio.VCA UIVCA;
+    private static FMOD.Studio.VCA VoiceLineVCA;
+    private static FMOD.Studio.VCA MusicVCA;
 
 
     [SerializeField]
@@ -41,11 +28,19 @@ public class FMODPlayer : MonoBehaviour
 
     [SerializeField]
     [Range(-80f, 10f)]
+    private float AmbientVolume;
+
+    [SerializeField]
+    [Range(-80f, 10f)]
     private float DialogueVolume;
 
     [SerializeField]
     [Range(-80f, 10f)]
     private float MusicVolume;
+
+    [SerializeField]
+    [Range(-80f, 10f)]
+    private float UIVolume;
 
     private float volume;
 
@@ -59,15 +54,32 @@ public class FMODPlayer : MonoBehaviour
             _instance = this;
         }
 
+        MasterVCA = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
+        VoiceLineVCA = FMODUnity.RuntimeManager.GetVCA("vca:/VoiceLines");
+        SFXVCA = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
+        MusicVCA = FMODUnity.RuntimeManager.GetVCA("vca:/Music");
+        AmbientVCA = FMODUnity.RuntimeManager.GetVCA("vca:/Ambience");
+        UIVCA = FMODUnity.RuntimeManager.GetVCA("vca:/UI");
+
+        //EventClass.OnSliderChanged += SetVolume;
+
     }
 
     private void Update()
     {
         volume = Mathf.Pow(10.0f, MasterVolume / 20f);
-        MasterBus.setVolume(volume);
     }
 
-    
+    private void SetVolume()
+    {
+        MasterVCA.setVolume(MasterVolume);
+        VoiceLineVCA.setVolume(DialogueVolume);
+        SFXVCA.setVolume(SoundFXVolume);
+        MusicVCA.setVolume(MusicVolume);
+        AmbientVCA.setVolume(AmbientVolume);
+        UIVCA.setVolume(UIVolume);
+    }
+
     public void Intensity(float ProgressLevel)
     {
         Music.setParameterByName("Intensity", ProgressLevel);

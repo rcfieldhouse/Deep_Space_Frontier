@@ -7,6 +7,7 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
     public GameObject Player;
     private int ChoiceArmour=0;
     public GameObject EquipPopup;
+    public GameObject NotEquipPopup;
     public GameObject EquipButton;
     // UI Parents for each class's primary and secondary weapons
     public GameObject AssaultWeaponUI, EngineerWeaponUI, SniperWeaponUI, ArmorDisplay, WeaponDisplay;
@@ -58,13 +59,21 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
                     //Enable Popup Message
                     EquipPopup.SetActive(true);
                 }
-                break;
+                if (Player.GetComponent<EquipmentManager>().slime_armor.isEquippable == false)
+                {
+                    NotEquipPopup.SetActive(true);
+                }
+                    break;
             case 1:
                 if (Player.GetComponent<EquipmentManager>().TickArmor.isEquippable == true)
                 {
                     Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().TickArmor);
                     //Enable Popup Message
                     EquipPopup.SetActive(true);
+                }
+                if (Player.GetComponent<EquipmentManager>().TickArmor.isEquippable == false)
+                {
+                    NotEquipPopup.SetActive(true);
                 }
                 break;
             case 2:
@@ -74,6 +83,10 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
                     //Enable Popup Message
                     EquipPopup.SetActive(true);
                 }
+                if (Player.GetComponent<EquipmentManager>().ZephyrArmor.isEquippable == false)
+                {
+                    NotEquipPopup.SetActive(true);
+                }
                 break;
             case 3:
                 if (Player.GetComponent<EquipmentManager>().BomberArmor.isEquippable == true)
@@ -81,6 +94,10 @@ public class EquipmentLockerCanvasManager : MonoBehaviour
                     Player.GetComponent<EquipmentManager>().ChangeEquip(Player.GetComponent<EquipmentManager>().BomberArmor);
                     //Enable Popup Message
                     EquipPopup.SetActive(true);
+                }
+                if (Player.GetComponent<EquipmentManager>().BomberArmor.isEquippable == false)
+                {
+                    NotEquipPopup.SetActive(true);
                 }
                 break;
         }

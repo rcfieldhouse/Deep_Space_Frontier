@@ -8,7 +8,8 @@ public class QuestManager : MonoBehaviour
     public int CurrentQuestStep=0;
     public GameObject Marker,MarkerInstance;
     public List<GameObject> quests;
-    public GameObject Player;
+    private GameObject Player;
+    [Range(1, 5)] public float SizeMarker = 1;
     private void Awake()
     {
         Player = GameObject.Find("MixamoCharacter");
@@ -39,8 +40,6 @@ public class QuestManager : MonoBehaviour
     private void Update()
     {
         if ((Player.transform.position - MarkerInstance.transform.position).magnitude > 100.0f)
-            MarkerInstance.transform.GetChild(0).localScale = Vector3.one * (Player.transform.position - MarkerInstance.transform.position).magnitude/100.0f;
-        Debug.Log((Player.transform.position - MarkerInstance.transform.position).magnitude);
-        Debug.Log(Vector3.one * (Player.transform.position - MarkerInstance.transform.position).magnitude);
+            MarkerInstance.transform.GetChild(0).localScale = Vector3.one * (Player.transform.position - MarkerInstance.transform.position).magnitude/100.0f * SizeMarker;
     }
 }

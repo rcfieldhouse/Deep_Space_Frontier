@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 public class ZoomIn : MonoBehaviour
-{ 
+{
+    public bool paused = false;
     public Animator animator;
     [SerializeField] private bool isScoped = false,IsEquipping = false;
     [SerializeField]  private VolumeProfile volumeProfile;
@@ -50,21 +51,24 @@ public class ZoomIn : MonoBehaviour
         {
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);
-            _DepthOfField.active = true;
+           // _DepthOfField.active = true;
         }
         else
         {
             isScoped = !isScoped;
             animator.SetBool("isScoped", isScoped);
-            _DepthOfField.active = false;
+           // _DepthOfField.active = false;
         }
         if(GetComponent<WeaponSwap>().WeaponArray[0].GetComponent<SniperRifle>() != null  && choice == 0)
             PlayerInput.SetAimWSniper(isAiming);
-        
+        else
+            PlayerInput.SetAimWRegular(isAiming);
+
     }
     private void Update()
     {
-
+        if (paused == true)
+            return;
       
         EquippedJourney += Time.deltaTime;
         if (IsEquipping&& EquippedJourney < EquipTime)

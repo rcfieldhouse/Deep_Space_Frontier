@@ -30,10 +30,11 @@ public class PlayerInput : MonoBehaviour
     //public static Action<bool,int>thing;
     [SerializeField] private float SpeedMod = 1.0f;
     [SerializeField] private CharacterController controller;
-    [Range(0, 1)] [SerializeField] private float Sensitivity = .5f;
-    [Range(0, 1)] [SerializeField] private float SniperSensitivityReduction = 1.0f;
-    [Range(0, 1)] [SerializeField] private float AimAssistStrength = 1.0f;
-    [HideInInspector] public bool ADSWSniper = false,AimAssist = false;
+    [Range(0, 1)]public float Sensitivity = .5f;
+    [Range(0, 1)]public float SniperSensitivityReduction = 1.0f;
+    [Range(0, 1)]public float AimAssistStrength = 1.0f;
+    [Range(0, 1)] public float ADSAimStrength = 1.0f;
+    [HideInInspector] public bool ADSWSniper = false, Aiming =false,AimAssist = false;
     private Quaternion Direction;    
     public Vector2 MouseInput;
     private Vector2 KeyboardInput;
@@ -79,6 +80,10 @@ public class PlayerInput : MonoBehaviour
     public void SetAimWSniper(bool var)
     {
         ADSWSniper = var;
+    }
+    public void SetAimWRegular(bool var)
+    {
+        Aiming = var;
     }
     public void SprintingFalse()
     {
@@ -207,6 +212,11 @@ public class PlayerInput : MonoBehaviour
         {
             MouseInput.x -= (1.0f - SniperSensitivityReduction) * LookInput.x * Sensitivity ;
             MouseInput.y -= (1.0f - SniperSensitivityReduction) * LookInput.y * Sensitivity ;
+        }
+        if (Aiming == true)
+        {
+            MouseInput.x -= (1.0f - ADSAimStrength) * LookInput.x * Sensitivity;
+            MouseInput.y -= (1.0f - ADSAimStrength) * LookInput.y * Sensitivity;
         }
         if (AimAssist == true)
         {
