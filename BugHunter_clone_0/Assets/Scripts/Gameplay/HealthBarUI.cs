@@ -48,13 +48,15 @@ public class HealthBarUI : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             HealthBar.fillAmount = Mathf.Lerp(preChangePercent, pct, elapsed / updateSpeedSeconds);
-          
+
+            if (IsBarrierHPBar == false)
+            {
+                HealthBar.color = Color.Lerp(Color.red, Color.cyan, elapsed / updateSpeedSeconds);
+            }
+
             yield return null;
         }
-        if(IsBarrierHPBar == false)
-        {
-            HealthBar.color = Color.Lerp(Color.red, Color.cyan, pct);
-        }
+
         
         HealthBar.fillAmount = pct;
     }
