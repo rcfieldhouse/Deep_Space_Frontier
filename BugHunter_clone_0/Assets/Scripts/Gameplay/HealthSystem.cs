@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Unity.Netcode;
 
-public class HealthSystem : MonoBehaviour
+public class HealthSystem : NetworkBehaviour
 {
     [SerializeField] private int maxHealth = 500;
     public int currentHealth;
@@ -16,7 +17,6 @@ public class HealthSystem : MonoBehaviour
     static public VolumeProfile volumeProfile;
     UnityEngine.Rendering.Universal.Vignette vignette;
     public float fadeInTime = 0.5f;
-
 
     private void OnEnable()
     {
@@ -72,7 +72,7 @@ public class HealthSystem : MonoBehaviour
             //play Dante.sound.ogg all things to do with health 
     
             //could in theory just use a statement if being damaged or healed 
-            currentHealth += amount;
+            currentHealth = currentHealth + amount;
     
                 
             if (currentHealth > maxHealth) currentHealth = maxHealth;

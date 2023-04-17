@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class TurretAbility : MonoBehaviour
+using Unity.Netcode;
+public class TurretAbility : NetworkBehaviour
 {
     public static Action<int> UsedTurret;
     public static Action ClearedTurret;
     public List<GameObject> Turrets;
-    public GameObject TurretPrefab;
+    public NetworkObject TurretPrefab;
     public Camera Cam;
     private PlayerInput Player;
     private int TurretCount = 2;
     private float CurrentRegenTime=0;
+
+    GameObject Turret;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -20,7 +24,7 @@ public class TurretAbility : MonoBehaviour
         Player.UseAbility += PlaceTurret;
         Player.Undo += ClearTurrets;
         
-        TurretPrefab = Resources.Load<GameObject>("Turret");
+        TurretPrefab = Resources.Load<GameObject>("Turret").GetComponent<NetworkObject>();
         Cam = transform.parent.GetChild(1).GetChild(3).GetComponent<Camera>();
         Invoke(nameof(Wait), 0.1f);
     }
@@ -46,33 +50,38 @@ public class TurretAbility : MonoBehaviour
     }
     public void PlaceTurret()
     {
-        if (TurretCount <= 0)
+        if (TurretCount <= 0 || !IsOwner)
             return;
-
+        
         RaycastHit Hit;
 
-        GameObject Turret;
+        
         Vector3 rayOrigin = Cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-        if (Physics.Raycast(rayOrigin, Cam.transform.forward * 25.0f, out Hit, 25.0f))
-        {
-            TurretCount--;
-            //&& Turrets.Count<3
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Turret_Place");
-            Turret = Instantiate(TurretPrefab);
-            Turret.transform.position = Hit.point + new Vector3(0.0f, 3.0f, 0.0f);
-            Turret.transform.rotation = Quaternion.FromToRotation(Vector3.up, Hit.normal);
-
-            if (Hit.transform.gameObject.tag == "Ground" && (Mathf.Abs(Turret.transform.rotation.x) < 0.15f && Mathf.Abs(Turret.transform.rotation.z) < 0.15f))
-            {
-                Turrets.Add(Turret);
-                UsedTurret.Invoke(TurretCount);
-            }
-            else
-                Destroy(Turret);
-
-        }
+        if (!Physics.Raycast(rayOrigin, Cam.transform.forward * 25.0f, out Hit, 25.0f))
+            return;
+                    
+            PlaceTurretServerRpc(Hit.point, Hit.normal, Hit.transform.gameObject.tag);
+  
     }
-   
+
+    [ServerRpc]
+    public void PlaceTurretServerRpc(Vector3 point, Vector3 normal, string tag)
+    {
+        TurretCount--;
+        NetworkObject TurretInstance = Instantiate(TurretPrefab, point, Quaternion.FromToRotation(Vector3.up, normal));
+        TurretInstance.SpawnWithOwnership(OwnerClientId);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Turret_Place");
+
+        if (tag == "Ground" && (Mathf.Abs(TurretInstance.transform.rotation.x) < 0.15f && Mathf.Abs(TurretInstance.transform.rotation.z) < 0.15f))
+        {
+            Turrets.Add(Turret);
+            UsedTurret.Invoke(TurretCount);
+        }
+        else
+            Destroy(Turret);
+
+    }
+
     public void ClearTurrets()
     {
         for (int i = 0; i < Turrets.Count; i++)

@@ -63665,6 +63665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyFightPrefab: {fileID: 4268337303824860453, guid: 0d2a36e143ea770428eaa6ab4f4bc3f6,
     type: 3}
+  EnemySpawnPrefab: {fileID: 8091881087789755575, guid: e94acc74a94e6374c87d8ad6fdfa665a,
+    type: 3}
 --- !u!1 &4520725861026956577
 GameObject:
   m_ObjectHideFlags: 0
@@ -114049,9 +114051,6 @@ GameObject:
   - component: {fileID: 280035011}
   - component: {fileID: 280035010}
   - component: {fileID: 300314204}
-  - component: {fileID: 6445963995071136091}
-  - component: {fileID: 8271153383885782933}
-  - component: {fileID: 2751488596551426853}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -114261,45 +114260,6 @@ MonoBehaviour:
   weight: 1
   sharedProfile: {fileID: 11400000, guid: a958641cf8095a34dbae0fd4bb623d91, type: 2}
 --- !u!114 &300314204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4520725862257447243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 4520725862257447243}
---- !u!114 &6445963995071136091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4520725862257447243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 4520725862257447243}
---- !u!114 &8271153383885782933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4520725862257447243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 4520725862257447243}
---- !u!114 &2751488596551426853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147674,7 +147634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 483.4, y: 9761.33}
+  m_AnchoredPosition: {x: 483.4, y: 14856.827}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6523754284031274275
