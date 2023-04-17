@@ -49,10 +49,10 @@ public class ServerNetworkConfig
         for(int i = 0; i<ServerNetworkManager.enemyCount; i++)
         {
             Debug.Log("Updating Enemy Positions.......");
-            EnemyType type = ServerNetworkManager.enemyObjectList[i].GetComponentInChildren<AI>().type;
+           // EnemyType type = ServerNetworkManager.enemyObjectList[i].GetComponentInChildren<AI>().type;
             
 
-            ServerNetworkSend.InstantiateNetworkEnemy(i, type);
+           // ServerNetworkSend.InstantiateNetworkEnemy(i, type);
         }
         Debug.Log("Updating Enemy Positions.......Done!");
     }

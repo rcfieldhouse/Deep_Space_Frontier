@@ -13,12 +13,13 @@ public class ArenaManager : MonoBehaviour
     {
         if (!instance)
             instance = this;
+        StartCoroutine(WackyUpdate());
 
     }
     private void Start()
     {
         
-        StartCoroutine(WackyUpdate());
+       
     }
     // Update is called once per frame
     public IEnumerator WackyUpdate()

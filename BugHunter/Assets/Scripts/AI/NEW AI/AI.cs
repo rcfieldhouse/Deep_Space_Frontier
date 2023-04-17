@@ -66,52 +66,11 @@ public abstract class AI : MonoBehaviour
 
     FMODUnity.StudioEventEmitter DeathSound;
 
-    public EnemyType type = EnemyType.Slime;
+ 
     int myEnemyID;
 
     #region MonoBehaviour
-    private void Start()
-    {
-        if (NetworkDriver.instance.isServer)
-        {
-            
-            int availableKey = ServerNetworkManager.enemyCount++;            
-            ServerNetworkManager.enemyObjectList.Add(availableKey, transform.gameObject);
-            EnemyData EData = new EnemyData();
-            
 
-            ServerNetworkManager.enemyList.Add(availableKey, EData);
-
-            myEnemyID = availableKey;
-
-            Debug.Log("Adding Enemy to List: " + availableKey);
-
-            if (GetComponent<Tick>())
-            {
-                type = EnemyType.Tick;
-            }
-            else if (GetComponent<DreadBomber>())
-            {
-                type = EnemyType.DreadBomber;
-            }
-            else if (GetComponent<Slime>())
-            {
-                type = EnemyType.Slime;
-            }
-            else if (GetComponent<Beetle>())
-            {
-                type = EnemyType.Zephyr;
-            }
-            else if (GetComponent<Queen>())
-            {
-                type = EnemyType.Queen;
-            }
-            else
-                type = EnemyType.Tick;
-
-            ServerNetworkSend.InstantiateNetworkEnemy(availableKey, type);
-        }
-    }
     public virtual void Awake()
     {
 
