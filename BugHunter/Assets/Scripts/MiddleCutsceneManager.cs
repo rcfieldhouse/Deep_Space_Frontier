@@ -24,7 +24,7 @@ public class MiddleCutsceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        MCutsceneEnded = false;
     }
 
     private void Update()
@@ -34,7 +34,7 @@ public class MiddleCutsceneManager : MonoBehaviour
             if(MCutsceneEnded == false)
             {
                 CutsceneEnded();
-                MCutsceneEnded = false;
+                MCutsceneEnded = true;
             }
             
         }
@@ -59,5 +59,6 @@ public class MiddleCutsceneManager : MonoBehaviour
     {
         BrokenTreeBarrier.SetActive(true);
         CutsceneAnimTree.SetActive(false);
+        FirstCutsceneParent.SetActive(false);
     }
 }
