@@ -739,6 +739,7 @@ GameObject:
   - component: {fileID: 7783000284701873840}
   - component: {fileID: 2123515691445935919}
   - component: {fileID: 8954115688084091881}
+  - component: {fileID: 2956336514494827179}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Enemy
@@ -843,6 +844,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.82
   m_Center: {x: 0, y: 1.43, z: 1.49}
+--- !u!114 &2956336514494827179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3025982450132909506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 3603763846043272106}
 --- !u!1 &3312128455664995278
 GameObject:
   m_ObjectHideFlags: 0
@@ -21536,6 +21551,8 @@ GameObject:
   - component: {fileID: 8227387349322170010}
   - component: {fileID: 8227387349322170005}
   - component: {fileID: 4986228580006721253}
+  - component: {fileID: 2676144483323835349}
+  - component: {fileID: 5240896974914943882}
   m_Layer: 0
   m_Name: Arena Tick
   m_TagString: Untagged
@@ -21678,6 +21695,48 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 9.8
   OverrideMaxDistance: 90
+--- !u!114 &2676144483323835349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8747782236773000225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
+--- !u!114 &5240896974914943882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8747782236773000225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &8955043844826439876
 GameObject:
   m_ObjectHideFlags: 0

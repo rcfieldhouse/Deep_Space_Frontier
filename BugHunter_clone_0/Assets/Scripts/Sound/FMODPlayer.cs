@@ -53,7 +53,14 @@ public class FMODPlayer : MonoBehaviour
         {
             _instance = this;
         }
+        StartCoroutine(InitVCA());
 
+        //EventClass.OnSliderChanged += SetVolume;
+
+    }
+    IEnumerator InitVCA()
+    {
+        yield return new WaitForSeconds(1);
         MasterVCA = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
         VoiceLineVCA = FMODUnity.RuntimeManager.GetVCA("vca:/VoiceLines");
         SFXVCA = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
@@ -61,10 +68,7 @@ public class FMODPlayer : MonoBehaviour
         AmbientVCA = FMODUnity.RuntimeManager.GetVCA("vca:/Ambience");
         UIVCA = FMODUnity.RuntimeManager.GetVCA("vca:/UI");
 
-        //EventClass.OnSliderChanged += SetVolume;
-
     }
-
     private void Update()
     {
         volume = Mathf.Pow(10.0f, MasterVolume / 20f);

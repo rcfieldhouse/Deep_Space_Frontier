@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 107484649466263847}
   - component: {fileID: 107484649466263846}
   - component: {fileID: 5483030808488158345}
+  - component: {fileID: 1980906224}
+  - component: {fileID: 4324160799506143761}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -151,6 +153,48 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &1980906224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107484649466263841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &4324160799506143761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107484649466263841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
 --- !u!1 &107484649661384372
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +305,7 @@ GameObject:
   - component: {fileID: 107484650129027018}
   - component: {fileID: 107484650129027013}
   - component: {fileID: 7954309001754812773}
+  - component: {fileID: 8551184376994773153}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Enemy
@@ -383,6 +428,20 @@ MonoBehaviour:
   CommonDrop: 25
   UncommonDrop: 15
   RareDrop: 8
+--- !u!114 &8551184376994773153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107484650129027015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 107484650129027019}
 --- !u!1 &107484650237295692
 GameObject:
   m_ObjectHideFlags: 0

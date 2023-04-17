@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class AirAi : MonoBehaviour
+using Unity.Netcode;
+
+public class AirAi : NetworkBehaviour
 {
     // Start is called before the first frame update
 
@@ -158,7 +160,9 @@ public class AirAi : MonoBehaviour
     {
         //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
         LootSpawner.instance.SprayLoot(transform);
-        Destroy(gameObject);
+        if (IsServer)
+            GetComponent<NetworkObject>();
+            //Destroy(gameObject);
     }
     private void OnDrawGizmosSelected()
     {

@@ -11,7 +11,6 @@ public class BeenElectrified : MonoBehaviour
     }
     private void Kill()
     {
-    
         Destroy(this);
     }
 }

@@ -63,8 +63,12 @@ public class WaveIndicator : MonoBehaviour
     }
     private void OnDisable()
     {
-        ArenaManager.NewWave -= DisplayNewWave;
+        
         TimeStopped = Time.time;
         StopAllCoroutines();
+    }
+    private void OnDestroy()
+    {
+        ArenaManager.NewWave -= DisplayNewWave;
     }
 }

@@ -38,6 +38,7 @@ public class DissolveRock : MonoBehaviour
             }
             else
                 Destroy(gameObject);
+            //NetworkDestroy
         }
     }
   

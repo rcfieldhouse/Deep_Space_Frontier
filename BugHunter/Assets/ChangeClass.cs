@@ -40,6 +40,8 @@ public class ChangeClass : MonoBehaviour
             GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().SetClass(ClassType);
 
         Transform SpawnPoint = Player.transform.GetChild(0).transform;
+
+        //Might Need Some Server Spawn Logic here
         Destroy(Player.transform.parent.gameObject);
         Vector3 offset = (Vector3.Normalize(Player.transform.GetChild(0).transform.position - transform.position));
         GameObject NewPlayer=Instantiate(prefab, SpawnPoint.position,Quaternion.identity);

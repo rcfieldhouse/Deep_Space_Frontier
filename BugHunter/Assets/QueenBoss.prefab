@@ -812,6 +812,7 @@ GameObject:
   - component: {fileID: 1001905672237037330}
   - component: {fileID: 1984989279}
   - component: {fileID: 127021237}
+  - component: {fileID: 2595274771433333302}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -871,6 +872,20 @@ MonoBehaviour:
   maxHealth: 500
   currentHealth: 0
   fadeInTime: 0.5
+--- !u!114 &2595274771433333302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3162269238654408299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 1984989279}
 --- !u!1 &3353110373828340426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1846,8 @@ GameObject:
   - component: {fileID: 7703964885078950798}
   - component: {fileID: 1501039880}
   - component: {fileID: 1501039881}
+  - component: {fileID: 2058075253948442447}
+  - component: {fileID: 1113551335359296202}
   m_Layer: 0
   m_Name: QueenBoss
   m_TagString: Boss
@@ -1955,7 +1972,57 @@ MonoBehaviour:
     type: 3}
   Tick: {fileID: 91451346394294282, guid: 0f60318766ce6354ea91da9d880355da, type: 3}
   Zephyr: {fileID: 4301354911348233816, guid: 21d0a112ca242634598f6c1a5329ca8a, type: 3}
+  AOE_Orb: {fileID: 0}
   ProjectileSpeed: 29.4
+  VollyLaunchPoint: {fileID: 0}
+  LaunchHeight: 0
+  CarpetBombSpread: 0
+  AOEBombSpread: 0
+  BombingLocations: []
+  AOEBombingLocations: []
+  EndCutscene: {fileID: 0}
+--- !u!114 &2058075253948442447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7035233476043774260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &1113551335359296202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7035233476043774260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
 --- !u!1 &7095921511352275258
 GameObject:
   m_ObjectHideFlags: 0

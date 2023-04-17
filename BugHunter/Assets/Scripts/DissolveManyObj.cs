@@ -42,6 +42,7 @@ public class DissolveManyObj : MonoBehaviour
                 }
                 yield return new WaitForSeconds(0.025f);
             }
+            //NetworkDestroy
             Destroy(gameObject);
         }
     }

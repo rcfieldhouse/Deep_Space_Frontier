@@ -5018,6 +5018,7 @@ GameObject:
   - component: {fileID: 2298142107888867745}
   - component: {fileID: 2298142107888867758}
   - component: {fileID: 8140847102560540430}
+  - component: {fileID: 2035106367950937493}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Enemy
@@ -5140,6 +5141,20 @@ MonoBehaviour:
   CommonDrop: 100
   UncommonDrop: 57
   RareDrop: 42.7
+--- !u!114 &2035106367950937493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2298142107888867756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 2298142107888867744}
 --- !u!1 &2298142107999466956
 GameObject:
   m_ObjectHideFlags: 0
@@ -5280,6 +5295,8 @@ GameObject:
   - component: {fileID: 2298142108887043916}
   - component: {fileID: 2298142108887043917}
   - component: {fileID: 5948933853428028130}
+  - component: {fileID: -2174024691114190337}
+  - component: {fileID: -7635263971687762192}
   m_Layer: 0
   m_Name: Arena Slime
   m_TagString: Untagged
@@ -5419,6 +5436,48 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &-2174024691114190337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2298142108887043914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &-7635263971687762192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2298142108887043914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
 --- !u!1 &5026716243743217835
 GameObject:
   m_ObjectHideFlags: 0
