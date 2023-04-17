@@ -208,15 +208,29 @@ public class ClientPlayerInput : NetworkBehaviour
     private void OnEnable()
     {
         PlayerInputController.Player.Enable();
-
     }
     private void OnDisable()
     {
         PlayerInputController.Player.Disable();
     }
+
+   public override void OnNetworkSpawn()
+   {
+       if (!IsOwner)
+       {
+           gameObject.transform.parent.transform.GetChild(1).gameObject.SetActive(false);
+       }
+   }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+    }
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner)
+            return;
 
         Vector2 vector;
         vector.x = look.x;
@@ -226,6 +240,7 @@ public class ClientPlayerInput : NetworkBehaviour
         Vector2 vec;
         vec.x = move.x;
         vec.y = move.y;
+
         PlayerInput.MoveInput(vec);
 
         PlayerInput.MouseScrollInput(Mouse);

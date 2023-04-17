@@ -16,7 +16,7 @@ public class PlayerInput : MonoBehaviour
     public event Action<Vector2,float> Move = delegate { };
     public bool IsDead = false;
     //pause menu actions
-    public static Action SavePlayer, LoadPlayer, GetTime;
+    //public static Action SavePlayer, LoadPlayer, GetTime;
 
 
 
@@ -268,72 +268,7 @@ public class PlayerInput : MonoBehaviour
     {
          GetComponent<Rigidbody>().position = new Vector3(170.0f, 25.0f, 420.0f);
     }
-    // Update is called once per frame
-    void Update()
-    {
-     
 
-
-
-      
-
-
-   
-        //PlayerINput for controls
-        //Turn this to GetButtonDown at some point
-   //  
-   //
-   //    //DEVHACK
-   //    
-   //    
-   // 
-   //
-   //    //Pause Menu For Plugin
-   //
-   //
-   //    if (Input.GetKeyDown(KeyCode.T))
-   //        GetTime.Invoke();
-   //
-   //    if (Input.GetKeyDown(KeyCode.Z))
-   //        Undo.Invoke();
-   //
-   //    if (Input.GetKeyDown(KeyCode.F))
-   //    {
-   //    //    GenshinCam.SetActive(!GenshinCam.activeInHierarchy);
-   //    }
-   //        
-   //
-   //    
-   //    if (Input.GetKeyDown(KeyCode.RightArrow))
-   //        GameManager.instance.ResumeTime();
-   //
-   //    if (Input.GetKeyDown(KeyCode.LeftArrow))
-   //        GameManager.instance.StopTime();
-   //
-   //
-   //    //cursed crouch controls
-   //    if (Input.GetButtonDown("Crouch"))
-   //        Crouching.Invoke(true);      
-   //    else if (Input.GetButtonUp("Crouch"))
-   //        Crouching.Invoke(false);
-   // 
-   //    if (Input.GetButtonDown("Crouch") && (SpeedMod != 2.0f))
-   //        SpeedMod = controller.m_CrouchSpeed;
-   //    if (Input.GetButtonDown("Crouch") && (SpeedMod == 2.0f))
-   //        SpeedMod = 2.0f;
-   //    else if (Input.GetButtonUp("Crouch"))
-   //        SpeedMod = 1.0f;
-   //
-
-   
-
-
-      
-
-    
-      
-
-    }
     // UI buttons call this when they want to enable mouse lock
     // Currently used by "Exit_Inventory" Button
     public void MouseState()
