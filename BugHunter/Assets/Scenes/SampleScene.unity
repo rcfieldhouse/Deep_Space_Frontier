@@ -21339,6 +21339,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476983098}
   m_CullTransparentMesh: 1
+--- !u!114 &479715856 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7654177967310939385, guid: 0acdd088e339cde4988e9e6e4037c199,
+    type: 3}
+  m_PrefabInstance: {fileID: 1163832421}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769b1894470198b48a5388b3ee9d1620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &481175935
 GameObject:
   m_ObjectHideFlags: 0
@@ -39809,13 +39821,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 988024839}
+  - component: {fileID: 988024840}
   m_Layer: 0
   m_Name: CutsceneParent5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &988024839
 Transform:
   m_ObjectHideFlags: 0
@@ -39834,6 +39847,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &988024840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988024838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ea03c9370d9754cbb247a7dd03005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheRock: {fileID: 479715856}
+  ExplosionTime: 2.4
 --- !u!1001 &990737190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46907,6 +46934,21 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2508249173
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654177967310939385, guid: 0acdd088e339cde4988e9e6e4037c199,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654177967310939385, guid: 0acdd088e339cde4988e9e6e4037c199,
+        type: 3}
+      propertyPath: shatterForce
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654177967310939386, guid: 0acdd088e339cde4988e9e6e4037c199,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7654177967508835334, guid: 0acdd088e339cde4988e9e6e4037c199,
         type: 3}
