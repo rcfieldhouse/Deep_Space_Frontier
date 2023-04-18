@@ -66,7 +66,7 @@ public abstract class AI : NetworkBehaviour
 	private Renderer Renderer;
 
 	FMODUnity.StudioEventEmitter DeathSound;
-
+	[HideInInspector] public bool Aggrivated = false;
  
 	int myEnemyID;
     #region NetworkBehaviour
@@ -123,7 +123,7 @@ public abstract class AI : NetworkBehaviour
 		{
 			IsSecondaryAttack = playerInAttackRange2;   
 			if (!playerInSightRange && !playerInAttackRange) Patroling();
-			if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+			if ((playerInSightRange && !playerInAttackRange)||(playerInAttackRange==false && Aggrivated ==true)) ChasePlayer();
 			if (playerInAttackRange && playerInSightRange) AttackPlayer(Target);
 	
 			//if (!playerInAttackRange) SetLunged();
@@ -353,7 +353,6 @@ public abstract class AI : NetworkBehaviour
 		if (Target==null)
 		  Target = FindClosestPlayer();
 
-
 		if (WalkPointSet == false)
 		{
 		 
@@ -382,9 +381,11 @@ public abstract class AI : NetworkBehaviour
    
 		bool attackDirectly = Physics.CheckSphere(transform.position, WalkPointRange, WhatIsPlayer);
 
-		if (attackDirectly==true)
+		if (attackDirectly==true|| Aggrivated == true)
 			NavAgent.SetDestination(Target.transform.position);
-		
+
+		if (Aggrivated == true)
+			NavAgent.SetDestination(Target.transform.position);
 	}
 
 

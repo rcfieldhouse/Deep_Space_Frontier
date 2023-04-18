@@ -4321,11 +4321,6 @@ PrefabInstance:
       propertyPath: BombingLocations.Array.data[8].z
       value: -6
       objectReference: {fileID: 0}
-    - target: {fileID: 2058075253948442447, guid: e92507ef582e0254d8c81c47b7eee9e0,
-        type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 986044962
-      objectReference: {fileID: 0}
     - target: {fileID: 7035233476043774260, guid: e92507ef582e0254d8c81c47b7eee9e0,
         type: 3}
       propertyPath: m_Name
@@ -18251,7 +18246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2500
   currentHealth: 0
-  Invulnerable: 0
   fadeInTime: 0.5
 --- !u!95 &356960831
 Animator:
@@ -21339,18 +21333,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476983098}
   m_CullTransparentMesh: 1
---- !u!114 &479715856 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7654177967310939385, guid: 0acdd088e339cde4988e9e6e4037c199,
-    type: 3}
-  m_PrefabInstance: {fileID: 1163832421}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769b1894470198b48a5388b3ee9d1620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &481175935
 GameObject:
   m_ObjectHideFlags: 0
@@ -39821,7 +39803,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 988024839}
-  - component: {fileID: 988024840}
   m_Layer: 0
   m_Name: CutsceneParent5
   m_TagString: Untagged
@@ -39847,20 +39828,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &988024840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988024838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15ea03c9370d9754cbb247a7dd03005d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TheRock: {fileID: 479715856}
-  ExplosionTime: 2.4
 --- !u!1001 &990737190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46935,21 +46902,6 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 2508249173
       objectReference: {fileID: 0}
-    - target: {fileID: 7654177967310939385, guid: 0acdd088e339cde4988e9e6e4037c199,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654177967310939385, guid: 0acdd088e339cde4988e9e6e4037c199,
-        type: 3}
-      propertyPath: shatterForce
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654177967310939386, guid: 0acdd088e339cde4988e9e6e4037c199,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7654177967508835334, guid: 0acdd088e339cde4988e9e6e4037c199,
         type: 3}
       propertyPath: GlobalObjectIdHash
@@ -47015,11 +46967,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7654177968057689310, guid: 0acdd088e339cde4988e9e6e4037c199,
-        type: 3}
-      propertyPath: HealthComponentOverride
-      value: 
-      objectReference: {fileID: 1446740371}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0acdd088e339cde4988e9e6e4037c199, type: 3}
 --- !u!1 &1164988712
@@ -51934,7 +51881,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2500
   currentHealth: 0
-  Invulnerable: 0
   fadeInTime: 0.5
 --- !u!1 &1321452922
 GameObject:
@@ -55824,12 +55770,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6224936072974377987, guid: ffa49a54993fd44488bb99edccd20d1c,
     type: 3}
   m_PrefabInstance: {fileID: 1442193322}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1446740371 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1220856331643062701, guid: 0acdd088e339cde4988e9e6e4037c199,
-    type: 3}
-  m_PrefabInstance: {fileID: 1163832421}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1447371289
 GameObject:
