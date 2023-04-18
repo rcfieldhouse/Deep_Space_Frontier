@@ -4321,6 +4321,11 @@ PrefabInstance:
       propertyPath: BombingLocations.Array.data[8].z
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 2058075253948442447, guid: e92507ef582e0254d8c81c47b7eee9e0,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 986044962
+      objectReference: {fileID: 0}
     - target: {fileID: 7035233476043774260, guid: e92507ef582e0254d8c81c47b7eee9e0,
         type: 3}
       propertyPath: m_Name
@@ -18246,6 +18251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2500
   currentHealth: 0
+  Invulnerable: 0
   fadeInTime: 0.5
 --- !u!95 &356960831
 Animator:
@@ -39809,7 +39815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &988024839
 Transform:
   m_ObjectHideFlags: 0
@@ -46967,6 +46973,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7654177968057689310, guid: 0acdd088e339cde4988e9e6e4037c199,
+        type: 3}
+      propertyPath: HealthComponentOverride
+      value: 
+      objectReference: {fileID: 1446740371}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0acdd088e339cde4988e9e6e4037c199, type: 3}
 --- !u!1 &1164988712
@@ -51881,6 +51892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2500
   currentHealth: 0
+  Invulnerable: 0
   fadeInTime: 0.5
 --- !u!1 &1321452922
 GameObject:
@@ -55770,6 +55782,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6224936072974377987, guid: ffa49a54993fd44488bb99edccd20d1c,
     type: 3}
   m_PrefabInstance: {fileID: 1442193322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1446740371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1220856331643062701, guid: 0acdd088e339cde4988e9e6e4037c199,
+    type: 3}
+  m_PrefabInstance: {fileID: 1163832421}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1447371289
 GameObject:

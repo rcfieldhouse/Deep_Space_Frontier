@@ -120,6 +120,8 @@ public abstract class Gun : MonoBehaviour, IDataPersistence
             Health.gameObject.AddComponent<DamageIndicator>().SetIndicator(transform,(int)(Damage*DamageX), _IsCrit);
             Health.gameObject.GetComponent<DamageIndicator>().SetHisPos(point);
             Health.ModifyHealth(transform,(int)(Damage * DamageX));
+            if (Health.transform.parent.GetComponent<AI>())
+                Health.transform.parent.GetComponent<AI>().Aggrivated = true;
         }
     }
     public HealthSystem FindHealth(Collider collider)
