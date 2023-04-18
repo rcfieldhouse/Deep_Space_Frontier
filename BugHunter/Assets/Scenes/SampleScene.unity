@@ -32629,6 +32629,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1354486927}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &738236318 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7654177967310939385, guid: 0acdd088e339cde4988e9e6e4037c199,
+    type: 3}
+  m_PrefabInstance: {fileID: 1163832421}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769b1894470198b48a5388b3ee9d1620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &738607464
 GameObject:
   m_ObjectHideFlags: 0
@@ -39804,6 +39816,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 988024839}
+  - component: {fileID: 988024840}
   m_Layer: 0
   m_Name: CutsceneParent5
   m_TagString: Untagged
@@ -39829,6 +39842,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &988024840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988024838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ea03c9370d9754cbb247a7dd03005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheRock: {fileID: 738236318}
+  boom: {fileID: 1206496755}
+  ExplosionTime: 3.1
+  ThrowBombs: 0.4
 --- !u!1001 &990737190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48804,6 +48833,7 @@ GameObject:
   - component: {fileID: 1206496753}
   - component: {fileID: 1206496752}
   - component: {fileID: 1206496751}
+  - component: {fileID: 1206496755}
   m_Layer: 0
   m_Name: MidQueenBoss CutsceneEnd
   m_TagString: Boss
@@ -48889,6 +48919,23 @@ Transform:
   m_Father: {fileID: 988024839}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 359.0301, z: 0}
+--- !u!114 &1206496755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206496750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6660e4797b1c4484598a7fe5ca51a526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AOEBombSpread: 6.2
+  AOE_Orb: {fileID: 2859584290559547447, guid: 45b7609fece603d4abbb3f5347837e3f, type: 3}
+  VollyLaunchPoint: {fileID: 827041346}
+  AOEBombingLocations: []
+  LaunchHeight: 18.8
 --- !u!1001 &1206901852
 PrefabInstance:
   m_ObjectHideFlags: 0
