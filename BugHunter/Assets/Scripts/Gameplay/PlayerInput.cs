@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 public class PlayerInput : MonoBehaviour
-
-
 {
     //For the Teleport Command Pattern
-
     //actions that the player may perform
+
     public event Action Interact, InteractReleased,Revive,GiveUp;
     public event Action JumpAction, UseAbility, Shoot, Chamber,Reload,Undo,TabThrowable, WeNeedToCookJesse, PausePlugin;
     public event Action<bool>Crouching,ADS,Sprinting;
     public event Action<Quaternion> Look, Throw ;
     public event Action<Vector2,float> Move = delegate { };
     public bool IsDead = false;
+
     //pause menu actions
     //public static Action SavePlayer, LoadPlayer, GetTime;
-
-
 
     //these are for weapon swapping,
     //swapping weapon is a placeholder until class selection is introduced
@@ -47,13 +44,11 @@ public class PlayerInput : MonoBehaviour
     public WeaponSwap WeaponSwap;
 
     public TutorialController TutorialInput;
-    // Start is called before the first frame update
-    //damn you dante, make ur own file 
+
     void Awake()
     {
         ADSWSniper = false;
-        // Commented temporarily unitl inventory system is implemented
-        Cursor.lockState= CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         UserInterface = GetComponent<GUIHolder>().GUI;
         WeaponSwap.BroadcastWeaponListData += SetWeaponActive;
     }

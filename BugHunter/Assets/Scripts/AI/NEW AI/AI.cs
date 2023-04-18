@@ -69,10 +69,17 @@ public abstract class AI : NetworkBehaviour
 
  
 	int myEnemyID;
+    #region NetworkBehaviour
 
-	#region MonoBehaviour
+    override public void OnNetworkSpawn()
+    {
+		if (!IsOwner)
+			GetComponentInParent<NavMeshAgent>().enabled = false;
+    }
+    #endregion
+    #region MonoBehaviour
 
-	public virtual void Awake()
+    public virtual void Awake()
 	{
 		if (IsOwner)
 			Destroy(transform);	  
@@ -91,8 +98,8 @@ public abstract class AI : NetworkBehaviour
 
 		if (HitStunDamageRequirement!=0)
 		Health.OnTakeDamage += StaggerMechanic;
-		if (NavAgent.isOnNavMesh == false)
-			Debug.Log("NOOOOOO");
+		//if (NavAgent.isOnNavMesh == false)
+		//	Debug.Log("NOOOOOO");
 		if (MeshRenderer != null)
 			Materials = MeshRenderer.materials;
 		else if (SkinnedMeshRenderer != null)
@@ -265,7 +272,12 @@ public abstract class AI : NetworkBehaviour
 
 			//idea is to spray pieces as the object dissolves
 			if (IsServer)
-				GetComponent<NetworkObject>().Despawn();
+				if (TryGetComponent<NetworkObject>(out NetworkObject netObj))
+					netObj.Despawn();
+				else
+					GetComponentInParent<NetworkObject>().Despawn();
+
+			Debug.Log(transform.name + " Successfully Despawned");
 			//Destroy(gameObject);
 		}
 	}

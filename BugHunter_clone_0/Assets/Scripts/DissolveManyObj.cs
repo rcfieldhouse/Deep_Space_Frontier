@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class DissolveManyObj : MonoBehaviour
+public class DissolveManyObj : NetworkBehaviour
 {
     public List<Material> Materials;
     public HealthSystem Health;
@@ -43,7 +44,9 @@ public class DissolveManyObj : MonoBehaviour
                 yield return new WaitForSeconds(0.025f);
             }
             //NetworkDestroy
-            Destroy(gameObject);
+            if (IsServer)
+                GetComponent<NetworkObject>().Despawn();
+                //Destroy(gameObject);
         }
     }
 }

@@ -5,9 +5,10 @@ using UnityEngine;
 public class QueenCutsceneMid : MonoBehaviour
 {
     public float moveSpeed = 2.0f;
+
     public void move()
     {
-        GetComponent<Animator>().Play("MoveFowardFinal");
+        GetComponent<Animator>().Play("MoveForwardFinal");
     }
     // Start is called before the first frame update
     void Awake()

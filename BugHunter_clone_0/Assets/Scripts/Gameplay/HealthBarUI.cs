@@ -30,12 +30,22 @@ public class HealthBarUI : MonoBehaviour
 
     private void HandleHealthChanged(float pct)
     {
-        if (gameObject.activeInHierarchy == true)
-            StartCoroutine(ChangeToPercent(pct));
-        else
-            HealthBar.fillAmount = pct;
-    }
+        Debug.Log("HandleHealthChanged UI Called");
 
+
+            StartCoroutine(ChangeToPercent(pct));
+
+            //HealthBar.fillAmount = pct;
+    }
+    private void OnDisable()
+    {
+        if (HealthComponentOverride != null)
+            HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged -= HandleHealthChanged;
+        else
+            GetComponentInParent<HealthSystem>().OnHealthPercentChanged -= HandleHealthChanged;
+
+        //was nulled??
+    }
     private IEnumerator ChangeToPercent(float pct)
     {
         float preChangePercent = HealthBar.fillAmount;
@@ -66,7 +76,6 @@ public class HealthBarUI : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         if (HealthComponentOverride != null)
             HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
-
         else
             GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
     }

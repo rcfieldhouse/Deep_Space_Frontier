@@ -161,7 +161,12 @@ public class AirAi : NetworkBehaviour
         //this will need to be more elaborate later when we have anims and such, so i'm reworking it now ryan
         LootSpawner.instance.SprayLoot(transform);
         if (IsServer)
-            GetComponent<NetworkObject>();
+            if (TryGetComponent<NetworkObject>(out NetworkObject netObj))
+                netObj.Despawn();
+            else
+                GetComponentInParent<NetworkObject>().Despawn();
+
+        Debug.Log(transform.name + " Successfully Despawned");
             //Destroy(gameObject);
     }
     private void OnDrawGizmosSelected()

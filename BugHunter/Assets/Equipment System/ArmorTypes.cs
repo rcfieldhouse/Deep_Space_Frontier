@@ -15,7 +15,7 @@ public class Armor : Item, IEquip
 
     virtual public int Execute(GameObject requester, int damageAmount)
     {
-        Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
+        //Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
         return damageAmount;
     }
 
@@ -46,7 +46,7 @@ public class SlimeArmor : Armor
         temp *= 0.9;
         damageAmount = (int)temp;
 
-        Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
+        //Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
         return damageAmount;
     }
     public override void Exit(GameObject requester)
@@ -71,7 +71,7 @@ public class StandardArmor : Armor
 
     public override int Execute(GameObject requester, int damageAmount)
     {
-        Debug.Log("boohoo the standard armour does nothing");
+        //Debug.Log("boohoo the standard armour does nothing");
             return base.Execute(requester, damageAmount);
     }
     public override void Exit(GameObject requester)
@@ -107,7 +107,7 @@ public class BomberArmor : Armor
     //flat damage reduction from all sources
     public override int Execute(GameObject requester, int damageAmount)
     {
-        Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
+        //Debug.Log("Damage is: " + damageAmount + " POST-mitigation, from " + requester.name);
         return base.Execute(requester, damageAmount);
     }
 }

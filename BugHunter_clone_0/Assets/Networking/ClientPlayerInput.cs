@@ -20,6 +20,7 @@ public class ClientPlayerInput : NetworkBehaviour
         PlayerInputController = new Inputs();
 
         PlayerInputController.Player.Move.performed += cntxt => move = cntxt.ReadValue<Vector2>();
+
         PlayerInputController.Player.Move.canceled += cntxt => move = Vector2.zero;
 
         PlayerInputController.Player.Look.performed += cntxt => look = cntxt.ReadValue<Vector2>();

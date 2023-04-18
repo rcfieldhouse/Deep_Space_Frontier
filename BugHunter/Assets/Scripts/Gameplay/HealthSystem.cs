@@ -8,7 +8,7 @@ public class HealthSystem : NetworkBehaviour
 {
     [SerializeField] private int maxHealth = 500;
     public int currentHealth;
-    private bool Invulnerable = false;
+    public bool Invulnerable = false;
     public event Action<float> OnHealthPercentChanged = delegate { };
     public event Action<int> OnTakeDamage = delegate { };
     public event Action<GameObject> OnObjectDeath = delegate { };
@@ -18,13 +18,20 @@ public class HealthSystem : NetworkBehaviour
     UnityEngine.Rendering.Universal.Vignette vignette;
     public float fadeInTime = 0.5f;
 
+    NetworkVariable<int> networkHealth = new NetworkVariable<int>();
+
     private void OnEnable()
-    {
-   
+    {  
         if (gameObject.tag == "Player")
             gameObject.AddComponent<LoseCondition>();
 
         currentHealth = maxHealth;
+
+        networkHealth.OnValueChanged +=  OnNetworkHealthChanged;
+    }
+    private void OnDisable()
+    {
+        networkHealth.OnValueChanged -= OnNetworkHealthChanged;
     }
     public void SetInvulnerable(bool foo)
     {
@@ -32,31 +39,81 @@ public class HealthSystem : NetworkBehaviour
     }
     public int GetHealth()
     {
-        return currentHealth;
+        return networkHealth.Value;
     }
     public int GetMaxHealth()
     {
         return maxHealth;
     }
+
     public void SetHealth(int health)
     {
         currentHealth = health;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
-
-        float currentHealthPercent = (float)currentHealth / (float)maxHealth;
+        networkHealth.Value = currentHealth;
+        float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
         OnHealthPercentChanged(currentHealthPercent);
     }
+
     public void SetMaxHealth(int foo)
     {
         maxHealth = foo;
-        currentHealth = foo;
+        currentHealth = foo;       
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void NetworkHealthServerRpc(int amount, ServerRpcParams serverRpcParams = default)
+    {
+        Debug.Log("NetworkHealthServerRpc Called");
+
+        currentHealth += amount;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+
+        networkHealth.Value = currentHealth;
+
+        float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
+
+
+        OnHealthPercentChanged(currentHealthPercent);
+        Debug.Log("[server] currentHealthPercent: " + currentHealthPercent);
+
+        //Check if health has fallen below zero
+        if (networkHealth.Value <= 0.0f)
+        {
+            //if (TryGetComponent<NetworkObject>(out NetworkObject netObj))
+            //    netObj.Despawn();
+            //else
+            //    GetComponentInParent<NetworkObject>().Despawn();
+
+            Debug.Log(transform.name+" Successfully Despawned");
+
+            OnObjectDeath?.Invoke(transform.gameObject);
+            OnObjectDeathT?.Invoke(transform);
+        }
+    }
+
+    public void OnNetworkHealthChanged(int previous, int current)
+    {
+        Debug.Log("[Client] OnNetworkHealthChanged Called");
+        currentHealth = networkHealth.Value;
+        float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
+       
+        OnHealthPercentChanged(currentHealthPercent);
+
+        //Check if health has fallen below zero
+        if (networkHealth.Value <= 0.0f)
+        {
+            OnObjectDeath?.Invoke(transform.gameObject);
+            OnObjectDeathT?.Invoke(transform);
+        }
+
     }
 
     private int HandleDamageModifiers(GameObject requester, int amount)
     {
         EquipmentManager equipment = transform.GetComponent<EquipmentManager>();
 
-        Debug.Log("Damage is: " + amount + " PRE-mitigation, from " + requester.name);
+        //Debug.Log("Damage is: " + amount + " PRE-mitigation, from " + requester.name);
 
         return equipment.ExecuteEquip(requester, amount);
     }
@@ -65,73 +122,52 @@ public class HealthSystem : NetworkBehaviour
     {
         if (Invulnerable == false && currentHealth >= 0)
         {
-    
+
+            NetworkHealthServerRpc(amount);
+
             if (requester != null)
                 amount = HandleDamageModifiers(requester, amount);
-    
-            //play Dante.sound.ogg all things to do with health 
-    
-            //could in theory just use a statement if being damaged or healed 
-            currentHealth = currentHealth + amount;
-    
-                
-            if (currentHealth > maxHealth) currentHealth = maxHealth;
-    
-            float currentHealthPercent = (float)currentHealth / (float)maxHealth;
-            OnHealthPercentChanged(currentHealthPercent);
+
+
+
+           //if(transform.tag == "Player")
+           //{
+           //    currentHealth += amount;
+           //    Debug.Log("Current Health: " + currentHealth);
+           //    Debug.Log("networkHealth: " + networkHealth.Value);
+           //    
+           //    networkHealth.Value = currentHealth;
+           //
+           //    float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
+           //    Debug.Log("Current Health Percent: " + currentHealthPercent);
+           //    OnHealthPercentChanged(currentHealthPercent);
+           //
+           //    //Check if health has fallen below zero
+           //    if (networkHealth.Value <= 0.0f)
+           //    {
+           //        OnObjectDeath?.Invoke(transform.gameObject);
+           //        OnObjectDeathT?.Invoke(transform);
+           //    }
+           //}
             OnTakeDamage(amount);
-            //Check if health has fallen below zero
-            if (currentHealth <= 0.0f)
-                OnObjectDeath?.Invoke(requester);
-            
+
         }
     }
+
     public void ModifyHealth(Transform requester, int amount)
     {
         if (Invulnerable == false && currentHealth >= 0)
         {
-            currentHealth += amount;
-            if (currentHealth > maxHealth) currentHealth = maxHealth;
-            float currentHealthPercent = (float)currentHealth / (float)maxHealth;
-
-            OnHealthPercentChanged(currentHealthPercent);
+            NetworkHealthServerRpc(amount);
             OnTakeDamage(amount);
-            //Check if health has fallen below zero
-            if (currentHealth <= 0.0f)
-            {
-                //Broadcast that the object has died
-                //   Destroy(gameObject);
-                OnObjectDeathT?.Invoke(requester);
-
-
-                //gameObject.SetActive(false);
-            }
         }
     }
     public void ModifyHealth(int amount)
     {
-
         if (Invulnerable == false && currentHealth >= 0)
-        {
-            //play Dante.sound.ogg all things to do with health 
-            //could in theory just use a statement if being damaged or healed 
-            Debug.Log("Damage is: " + amount + " PRE-mitigation");
-            currentHealth += amount;
-
-            if (currentHealth > maxHealth) currentHealth = maxHealth;
-
-            float currentHealthPercent = (float)currentHealth / (float)maxHealth;
-            OnHealthPercentChanged(currentHealthPercent);
+        {           
+            NetworkHealthServerRpc(amount);
             OnTakeDamage(amount);
-            //Check if health has fallen below zero
-            if (currentHealth <= 0.0f)
-            {
-                //Broadcast that the object has died
-                //   Destroy(gameObject);
-                OnObjectDeath?.Invoke(transform.gameObject);
-
-                //gameObject.SetActive(false);
-            }
         }
     }
 }
