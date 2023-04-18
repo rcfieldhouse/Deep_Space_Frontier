@@ -8,6 +8,7 @@ public class DissolveManyObj : NetworkBehaviour
     public List<Material> Materials;
     public HealthSystem Health;
     public MeshRenderer[] MeshRenderers;
+
     private void Awake()
     {
         Health = GetComponent<HealthSystem>();
@@ -20,6 +21,12 @@ public class DissolveManyObj : NetworkBehaviour
                 Materials.Add(MeshRenderers[i].materials[j]);
         }
         Health.OnObjectDeathT += Health_OnObjectDeath;
+    }
+
+    public override void OnDestroy()
+    {
+        Health.OnObjectDeathT -= Health_OnObjectDeath;
+        base.OnNetworkDespawn();
     }
 
     private void Health_OnObjectDeath(Transform obj)

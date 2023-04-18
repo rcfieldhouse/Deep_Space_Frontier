@@ -25,9 +25,10 @@ public class HealthSystem : NetworkBehaviour
         if (gameObject.tag == "Player")
             gameObject.AddComponent<LoseCondition>();
 
-        currentHealth = maxHealth;
 
         networkHealth.OnValueChanged +=  OnNetworkHealthChanged;
+        currentHealth = maxHealth;
+        networkHealth.Value = maxHealth;
     }
     private void OnDisable()
     {
@@ -58,13 +59,12 @@ public class HealthSystem : NetworkBehaviour
     public void SetMaxHealth(int foo)
     {
         maxHealth = foo;
-        currentHealth = foo;       
+        currentHealth = foo;
     }
 
     [ServerRpc(RequireOwnership = false)]
     void NetworkHealthServerRpc(int amount)
     {
-
         Debug.Log("NetworkHealthServerRpc Called");
 
         currentHealth += amount;
@@ -74,51 +74,14 @@ public class HealthSystem : NetworkBehaviour
 
         float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
 
-
         OnHealthPercentChanged(currentHealthPercent);
         Debug.Log("[server] currentHealthPercent: " + currentHealthPercent);
 
         //Check if health has fallen below zero
         if (networkHealth.Value <= 0.0f)
         {
-            //if (TryGetComponent<NetworkObject>(out NetworkObject netObj))
-            //    netObj.Despawn();
-            //else
-            //    GetComponentInParent<NetworkObject>().Despawn();
 
             Debug.Log(transform.name+" Successfully Despawned");
-
-            OnObjectDeath?.Invoke(transform.gameObject);
-            OnObjectDeathT?.Invoke(transform);
-        }
-    }
-
-    [ClientRpc]
-    void NetworkHealthClientRpc(int amount)
-    {
-
-        Debug.Log("NetworkHealthClientRpc Called");
-
-        currentHealth += amount;
-        if (currentHealth > maxHealth) currentHealth = maxHealth;
-
-        networkHealth.Value = currentHealth;
-
-        float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
-
-
-        OnHealthPercentChanged(currentHealthPercent);
-        Debug.Log("[server] currentHealthPercent: " + currentHealthPercent);
-
-        //Check if health has fallen below zero
-        if (networkHealth.Value <= 0.0f)
-        {
-            //if (TryGetComponent<NetworkObject>(out NetworkObject netObj))
-            //    netObj.Despawn();
-            //else
-            //    GetComponentInParent<NetworkObject>().Despawn();
-
-            Debug.Log(transform.name + " Successfully Despawned");
 
             OnObjectDeath?.Invoke(transform.gameObject);
             OnObjectDeathT?.Invoke(transform);
@@ -162,10 +125,7 @@ public class HealthSystem : NetworkBehaviour
 
             if(transform.tag == "Player")
             {
-                currentHealth += amount;
-                Debug.Log("Current Health: " + currentHealth);
-                Debug.Log("networkHealth: " + networkHealth.Value);
-                
+                currentHealth += amount;               
                 networkHealth.Value = currentHealth;
             
                 float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
@@ -192,8 +152,6 @@ public class HealthSystem : NetworkBehaviour
             if (transform.tag == "Player")
             {
                 currentHealth += amount;
-                Debug.Log("Current Health: " + currentHealth);
-                Debug.Log("networkHealth: " + networkHealth.Value);
 
                 networkHealth.Value = currentHealth;
 

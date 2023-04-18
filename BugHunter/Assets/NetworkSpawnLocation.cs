@@ -9,6 +9,7 @@ public class NetworkSpawnLocation : NetworkBehaviour
     public GameObject EnemyFightPrefab;
     public GameObject EnemySpawnPrefab;
     public GameObject BarrierPrefab;
+
     public override void OnNetworkSpawn()
     {
         transform.position = GameObject.Find("NetworkManager").transform.position;

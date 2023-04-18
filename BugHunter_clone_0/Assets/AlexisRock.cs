@@ -5,13 +5,19 @@ using UnityEngine;
 public class AlexisRock : MonoBehaviour
 {
     public ShootableObject TheRock;
-    [Range(0, 30)] public float ExplosionTime;
+    public CutsceneBoomBoom boom;
+    [Range(0, 30)] public float ExplosionTime, ThrowBombs;
     private void Awake()
     {
         Invoke(nameof(BreakTheRock),ExplosionTime);
+        Invoke(nameof(DoBoom), ThrowBombs);
     }
     void BreakTheRock()
-    {
+    {   
         TheRock.HandleObjectDeath(TheRock.transform);
+    }
+    void DoBoom()
+    {
+        boom.DoTheBoom();
     }
 }

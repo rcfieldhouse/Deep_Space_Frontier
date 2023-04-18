@@ -10,6 +10,7 @@ public class QuestManager : MonoBehaviour
     public List<GameObject> quests;
     private GameObject Player;
     [Range(1, 5)] public float SizeMarker = 1;
+
     private void Awake()
     {
         Player = GameObject.Find("MixamoCharacter");

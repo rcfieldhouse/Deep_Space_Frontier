@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
+using Unity.Netcode;
 
-public class HealthBarUI : MonoBehaviour
+public class HealthBarUI : NetworkBehaviour
 {
     [SerializeField]
     private Image HealthBar;
@@ -21,38 +22,62 @@ public class HealthBarUI : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(wait());
+
+        //StartCoroutine(wait());
         if (IsBarrierHPBar == false)
         {
             HealthBar.color = Color.cyan;
         }
     }
 
+    override public void OnNetworkSpawn()
+    {
+        StartCoroutine(wait()); 
+
+    }
+
+    private IEnumerator wait()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        if (HealthComponentOverride != null)
+            HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
+        else
+            GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
+        Debug.Log(gameObject.transform.parent.name + " HealthBar Initialized");
+
+    }
+
     private void HandleHealthChanged(float pct)
     {
-        Debug.Log("HandleHealthChanged UI Called");
 
+        Debug.Log(gameObject.transform.parent.name + "HandleHealthChanged UI Called");
 
-            StartCoroutine(ChangeToPercent(pct));
+        StartCoroutine(ChangeToPercent(pct));
+
 
             //HealthBar.fillAmount = pct;
     }
+
     private void OnDisable()
     {
+
         if (HealthComponentOverride != null)
             HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged -= HandleHealthChanged;
         else
             GetComponentInParent<HealthSystem>().OnHealthPercentChanged -= HandleHealthChanged;
 
-        //was nulled??
     }
     private IEnumerator ChangeToPercent(float pct)
     {
+        Debug.Log(gameObject.transform.parent.name + " ChangeToPercent");
         float preChangePercent = HealthBar.fillAmount;
         float elapsed = 0f;
 
         if(preChangePercent<=pct)
             PlayHealthSound(pct);
+
+
 
         while (elapsed<updateSpeedSeconds)
         {
@@ -67,17 +92,9 @@ public class HealthBarUI : MonoBehaviour
             yield return null;
         }
 
+
         
         HealthBar.fillAmount = pct;
-    }
-    // Update is called once per frame
-    private IEnumerator wait()
-    {
-        yield return new WaitForSeconds(0.1f);
-        if (HealthComponentOverride != null)
-            HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
-        else
-            GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
     }
 
     void PlayHealthSound(float healthPercent)

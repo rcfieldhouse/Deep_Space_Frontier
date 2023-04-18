@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class QuestObjective : MonoBehaviour
+public class QuestObjective : NetworkBehaviour
 {
     public int QuestStep = 0;
     public HealthSystem Health;
 
-    private void Awake()
-    {      
+    public override void OnNetworkSpawn()
+    {
         Invoke(nameof(Delay), 0.01f);
         Health = GetComponent<HealthSystem>();
         Health.OnObjectDeathT += HandleObjectDeath;
+        base.OnNetworkSpawn();
     }
     private void OnDisable()
     {
