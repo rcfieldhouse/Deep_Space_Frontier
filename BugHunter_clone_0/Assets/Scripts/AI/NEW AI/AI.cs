@@ -362,7 +362,7 @@ public abstract class AI : NetworkBehaviour
 			NavAgent.SetDestination(transform.position + WalkPoint + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
 		}
 		DistanceTravelled = transform.position - StartEvasionLocation;
-		AI_Animator.SetBool("_IsMoving", true);
+		//AI_Animator.SetBool("_IsMoving", true);
 		 if (DistanceTravelled.magnitude > EvasionRecalculationPeriod)
 		{
 			WalkPointSet = false;

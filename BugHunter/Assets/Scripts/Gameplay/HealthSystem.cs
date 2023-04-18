@@ -62,8 +62,9 @@ public class HealthSystem : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    void NetworkHealthServerRpc(int amount, ServerRpcParams serverRpcParams = default)
+    void NetworkHealthServerRpc(int amount)
     {
+
         Debug.Log("NetworkHealthServerRpc Called");
 
         currentHealth += amount;
@@ -86,6 +87,38 @@ public class HealthSystem : NetworkBehaviour
             //    GetComponentInParent<NetworkObject>().Despawn();
 
             Debug.Log(transform.name+" Successfully Despawned");
+
+            OnObjectDeath?.Invoke(transform.gameObject);
+            OnObjectDeathT?.Invoke(transform);
+        }
+    }
+
+    [ClientRpc]
+    void NetworkHealthClientRpc(int amount)
+    {
+
+        Debug.Log("NetworkHealthClientRpc Called");
+
+        currentHealth += amount;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+
+        networkHealth.Value = currentHealth;
+
+        float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
+
+
+        OnHealthPercentChanged(currentHealthPercent);
+        Debug.Log("[server] currentHealthPercent: " + currentHealthPercent);
+
+        //Check if health has fallen below zero
+        if (networkHealth.Value <= 0.0f)
+        {
+            //if (TryGetComponent<NetworkObject>(out NetworkObject netObj))
+            //    netObj.Despawn();
+            //else
+            //    GetComponentInParent<NetworkObject>().Despawn();
+
+            Debug.Log(transform.name + " Successfully Despawned");
 
             OnObjectDeath?.Invoke(transform.gameObject);
             OnObjectDeathT?.Invoke(transform);
@@ -122,33 +155,30 @@ public class HealthSystem : NetworkBehaviour
     {
         if (Invulnerable == false && currentHealth >= 0)
         {
-
-            NetworkHealthServerRpc(amount);
-
             if (requester != null)
                 amount = HandleDamageModifiers(requester, amount);
 
+            NetworkHealthServerRpc(amount);
 
-
-           //if(transform.tag == "Player")
-           //{
-           //    currentHealth += amount;
-           //    Debug.Log("Current Health: " + currentHealth);
-           //    Debug.Log("networkHealth: " + networkHealth.Value);
-           //    
-           //    networkHealth.Value = currentHealth;
-           //
-           //    float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
-           //    Debug.Log("Current Health Percent: " + currentHealthPercent);
-           //    OnHealthPercentChanged(currentHealthPercent);
-           //
-           //    //Check if health has fallen below zero
-           //    if (networkHealth.Value <= 0.0f)
-           //    {
-           //        OnObjectDeath?.Invoke(transform.gameObject);
-           //        OnObjectDeathT?.Invoke(transform);
-           //    }
-           //}
+            if(transform.tag == "Player")
+            {
+                currentHealth += amount;
+                Debug.Log("Current Health: " + currentHealth);
+                Debug.Log("networkHealth: " + networkHealth.Value);
+                
+                networkHealth.Value = currentHealth;
+            
+                float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
+                Debug.Log("Current Health Percent: " + currentHealthPercent);
+                OnHealthPercentChanged(currentHealthPercent);
+            
+                //Check if health has fallen below zero
+                if (networkHealth.Value <= 0.0f)
+                {
+                    OnObjectDeath?.Invoke(transform.gameObject);
+                    OnObjectDeathT?.Invoke(transform);
+                }
+            }
             OnTakeDamage(amount);
 
         }
@@ -159,6 +189,25 @@ public class HealthSystem : NetworkBehaviour
         if (Invulnerable == false && currentHealth >= 0)
         {
             NetworkHealthServerRpc(amount);
+            if (transform.tag == "Player")
+            {
+                currentHealth += amount;
+                Debug.Log("Current Health: " + currentHealth);
+                Debug.Log("networkHealth: " + networkHealth.Value);
+
+                networkHealth.Value = currentHealth;
+
+                float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
+                Debug.Log("Current Health Percent: " + currentHealthPercent);
+                OnHealthPercentChanged(currentHealthPercent);
+
+                //Check if health has fallen below zero
+                if (networkHealth.Value <= 0.0f)
+                {
+                    OnObjectDeath?.Invoke(transform.gameObject);
+                    OnObjectDeathT?.Invoke(transform);
+                }
+            }
             OnTakeDamage(amount);
         }
     }
@@ -167,7 +216,27 @@ public class HealthSystem : NetworkBehaviour
         if (Invulnerable == false && currentHealth >= 0)
         {           
             NetworkHealthServerRpc(amount);
+            if (transform.tag == "Player")
+            {
+                currentHealth += amount;
+                Debug.Log("Current Health: " + currentHealth);
+                Debug.Log("networkHealth: " + networkHealth.Value);
+
+                networkHealth.Value = currentHealth;
+
+                float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
+                Debug.Log("Current Health Percent: " + currentHealthPercent);
+                OnHealthPercentChanged(currentHealthPercent);
+
+                //Check if health has fallen below zero
+                if (networkHealth.Value <= 0.0f)
+                {
+                    OnObjectDeath?.Invoke(transform.gameObject);
+                    OnObjectDeathT?.Invoke(transform);
+                }
+            }
             OnTakeDamage(amount);
+
         }
     }
 }
