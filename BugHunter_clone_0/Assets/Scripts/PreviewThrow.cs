@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PreviewThrow : MonoBehaviour
+public class PreviewThrow : NetworkBehaviour
 {
     private bool _IsCooking = false;
     private Quaternion Direction;
@@ -13,10 +14,18 @@ public class PreviewThrow : MonoBehaviour
     GameObject WeaponHolder, CameraManager;
     void Awake()
     {
+
+
         PreviewLine = gameObject.GetComponent<LineRenderer>();
         PreviewLine.positionCount = 10;
         PreviewLine.startWidth = 0.15f;
         PreviewLine.endWidth = 0.15f;
+    }
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner)
+            Destroy(this);
+        base.OnNetworkSpawn();
     }
 
     // Update is called once per frame

@@ -18,15 +18,19 @@ public class MidTierQueen : MonoBehaviour
     {
         Debug.Log("attacked");
         Target= FindClosestPlayer();
-        transform.LookAt(Target.transform);
-        for (int i = 0; i < ProjectileSpawns.Count * 3; i++)
+        if (Target != null)
         {
-            // Debug.Log(i);
-            Rigidbody rb = Instantiate(Projectile, ProjectileSpawns[i % 4].position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(Vector3.Normalize(Target.transform.position - (ProjectileSpawns[i % 4].position)) * (ProjectileSpeed + (i * 2)), ForceMode.Impulse);
-            rb.gameObject.GetComponent<Thorn>().SetDamage(AttackDamage);
-            rb.gameObject.transform.LookAt(Target.transform);
+            transform.LookAt(Target.transform);
+            for (int i = 0; i < ProjectileSpawns.Count * 3; i++)
+            {
+                // Debug.Log(i);
+                Rigidbody rb = Instantiate(Projectile, ProjectileSpawns[i % 4].position, Quaternion.identity).GetComponent<Rigidbody>();
+                rb.AddForce(Vector3.Normalize(Target.transform.position - (ProjectileSpawns[i % 4].position)) * (ProjectileSpeed + (i * 2)), ForceMode.Impulse);
+                rb.gameObject.GetComponent<Thorn>().SetDamage(AttackDamage);
+                rb.gameObject.transform.LookAt(Target.transform);
+            }
         }
+
         Invoke(nameof(ThornVolley), AttackSpeed);
     }
     public GameObject FindClosestPlayer()

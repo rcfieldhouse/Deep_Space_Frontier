@@ -54,11 +54,35 @@ public class ClientPlayerInput : NetworkBehaviour
         PlayerInputController.Player.Invincibility.performed += cntxt => GoInvincible();
         PlayerInputController.Player.BossTeleport.performed += cntxt => GoBoss();
     }
+
+    public GameObject FindClosestPlayer()
+    {
+
+        GameObject[] AllPlayers = GameObject.FindGameObjectsWithTag("Player");
+
+        float SmallestDistance = 20.0f;
+        GameObject foo = null;
+        foreach (GameObject Player in AllPlayers)
+        {
+            if (Mathf.Abs((Player.transform.position - transform.position).magnitude) < SmallestDistance)
+            {
+                SmallestDistance = Mathf.Abs((Player.transform.position - transform.position).magnitude);
+                foo = Player;
+            }
+        }
+        return foo;
+    }
+
     public void ReviveSelf()
     {
         if (!IsOwner)
             return;
-        PlayerInput.RevivePlayer();
+        GameObject ReviveTarget = FindClosestPlayer();
+
+        if((ReviveTarget != null) && (ReviveTarget != gameObject))
+            ReviveTarget.GetComponent<PlayerInput>().RevivePlayer();
+
+        //PlayerInput.RevivePlayer();
     }
     public void GiveUp()
     {
@@ -218,18 +242,27 @@ public class ClientPlayerInput : NetworkBehaviour
    {
        if (!IsOwner)
        {
-            gameObject.transform.parent.transform.GetChild(1).GetChild(3).GetChild(3).SetParent(transform);
-
-            gameObject.transform.parent.transform.GetChild(1).gameObject.SetActive(false);           
+            Transform CameraManager = gameObject.transform.parent.transform.GetChild(1);
+            Transform WeaponHolder = CameraManager.GetChild(3).GetChild(3);
+            WeaponHolder.SetParent(transform);
+            
+            foreach (Transform child in CameraManager)
+            {
+                child.gameObject.SetActive(false);
+            }
+                      
             gameObject.transform.parent.transform.GetChild(2).gameObject.SetActive(false);
             gameObject.transform.parent.transform.GetChild(3).gameObject.SetActive(false);
             gameObject.transform.parent.transform.GetChild(4).gameObject.SetActive(false);
             gameObject.transform.parent.transform.GetChild(5).gameObject.SetActive(false);
 
+            int LayerDefault = LayerMask.NameToLayer("Default");
+            
             foreach (Transform child in transform)
             {
-                child.gameObject.layer = 0;
+                child.gameObject.layer = LayerDefault;
             }
+
 
        }
    }
@@ -242,7 +275,13 @@ public class ClientPlayerInput : NetworkBehaviour
     void Update()
     {
         if (!IsOwner)
+        {
+            Transform CameraManager = gameObject.transform.parent.transform.GetChild(1);
+            CameraManager.GetChild(0);
+
             return;
+        }
+            
 
         Vector2 vector;
         vector.x = look.x;

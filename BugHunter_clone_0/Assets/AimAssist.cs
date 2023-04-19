@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class AimAssist : MonoBehaviour
+public class AimAssist : NetworkBehaviour
 {
     public  Camera Camera;
 
@@ -11,8 +12,15 @@ public class AimAssist : MonoBehaviour
     bool isAim;
     public bool AIMHacks;
 
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner)
+            Destroy(this);
+        base.OnNetworkSpawn();
+    }
     private void Awake()
     {
+
         AIMHacks = false;
         PlayerInput.ADS += SetAiming;
     }
