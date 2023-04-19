@@ -57,8 +57,10 @@ public class ClientPlayerInput : NetworkBehaviour
         PlayerInputController.Player.BossTeleport.performed += cntxt => GoBoss();
 
         if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
             transform.position = new Vector3(910, 7, 943);
-
+            transform.GetChild(3).gameObject.SetActive(true);
+        }
         else if (SceneManager.GetActiveScene().buildIndex == 5)
             transform.position = new Vector3(1014, -29, 916);
 

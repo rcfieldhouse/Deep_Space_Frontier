@@ -30,6 +30,8 @@ public class GameManager : NetworkBehaviour
     public bool isHost;
     public string IP = "127.0.0.1";
 
+    bool skippedCutscene = false;
+
 #if UNITY_EDITOR
     public UnityEditor.SceneAsset SceneAsset;
     private void OnValidate()
@@ -73,18 +75,48 @@ public class GameManager : NetworkBehaviour
         ChangeSceneMusic();
     }
 
+    public void SetaBool()
+    {
+        skippedCutscene = true;
+    }
+
     private IEnumerator DelayNetwork()
     {
-        yield return new WaitForSeconds(1.0f);
-        if (isHost)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            NetworkManager.Singleton.StartHost();
+            for (int i = 0; i<43; i++)
+            {
+                if (skippedCutscene)
+                {
+                    if (isHost)
+                    {
+                        NetworkManager.Singleton.StartHost();
+                    }
+                    else
+                    {
+
+                        NetworkManager.Singleton.StartClient();
+                    }
+                }
+                yield return new WaitForSeconds(1.0f);
+            }
+            
         }
         else
         {
+            yield return new WaitForSeconds(1.0f);
+            if (isHost)
+            {
+                NetworkManager.Singleton.StartHost();
+            }
+            else
+            {
 
-            NetworkManager.Singleton.StartClient();
+                NetworkManager.Singleton.StartClient();
+            }
         }
+
+       
     }
 
     private static void ChangeSceneMusic()
