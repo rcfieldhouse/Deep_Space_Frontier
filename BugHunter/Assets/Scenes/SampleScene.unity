@@ -36826,7 +36826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstCutsceneParent: {fileID: 1390730581}
-  SecondCutsceneParent: {fileID: 988024838}
+  SecondCutsceneParent: {fileID: 0}
   BrokenTreeBarrier: {fileID: 2078361463}
   PlaceholderTree: {fileID: 2026621939}
   GameplayQueen: {fileID: 0}
@@ -40459,6 +40459,7 @@ MonoBehaviour:
   boom: {fileID: 1206496755}
   ExplosionTime: 3.1
   ThrowBombs: 0.4
+  TurnOffCutScene: 4.8
 --- !u!1001 &990737190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51448,6 +51449,7 @@ GameObject:
   - component: {fileID: 1260356037}
   - component: {fileID: 1260356036}
   - component: {fileID: 1260356035}
+  - component: {fileID: 1260356039}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -51535,6 +51537,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1260356039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260356033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0269e9958c693fd4f999e67187bb14ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cutscene5: {fileID: 988024838}
 --- !u!1 &1264377451
 GameObject:
   m_ObjectHideFlags: 0
@@ -55216,6 +55231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1390730582}
+  - component: {fileID: 1390730583}
   m_Layer: 0
   m_Name: CutsceneParent4
   m_TagString: Untagged
@@ -55243,6 +55259,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1390730583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390730581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c950ae63c31b67244a77050c10fb7644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Queen: {fileID: 248271468}
 --- !u!4 &1392550350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1178262977758372236, guid: c9072c1e0698b80448376b57abadc2a2,
@@ -56279,7 +56308,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428304625}
-  m_LocalRotation: {x: -0.017038047, y: 0.96244854, z: 0.06218624, w: 0.2636957}
+  m_LocalRotation: {x: -0.01703805, y: 0.96244854, z: 0.06218625, w: 0.2636957}
   m_LocalPosition: {x: -399.43, y: 16.32, z: -422.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -57197,8 +57226,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451536714}
-  m_LocalRotation: {x: 0.03478722, y: 0.66068685, z: 0.03083161, w: -0.7492211}
-  m_LocalPosition: {x: -373.64996, y: 53.38, z: -447.55}
+  m_LocalRotation: {x: -0.01703805, y: 0.96244854, z: 0.06218625, w: 0.2636957}
+  m_LocalPosition: {x: -399.43, y: 16.32, z: -422.39996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
