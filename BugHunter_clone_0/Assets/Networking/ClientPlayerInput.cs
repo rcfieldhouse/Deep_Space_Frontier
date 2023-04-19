@@ -5,6 +5,8 @@ using System;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 using Cinemachine;
+using UnityEngine.SceneManagement;
+
 public class ClientPlayerInput : NetworkBehaviour
 {
     private float Sensitivity = 1;
@@ -53,11 +55,19 @@ public class ClientPlayerInput : NetworkBehaviour
         PlayerInputController.Player.GiveUp.performed += cntxt => GiveUp();
         PlayerInputController.Player.Invincibility.performed += cntxt => GoInvincible();
         PlayerInputController.Player.BossTeleport.performed += cntxt => GoBoss();
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+            transform.position = new Vector3(910, 7, 943);
+
+        else if (SceneManager.GetActiveScene().buildIndex == 5)
+            transform.position = new Vector3(1014, -29, 916);
+
+        else if (SceneManager.GetActiveScene().buildIndex == 7)
+            transform.position = new Vector3(100, 920, -993);
     }
 
     public GameObject FindClosestPlayer()
     {
-
         GameObject[] AllPlayers = GameObject.FindGameObjectsWithTag("Player");
 
         float SmallestDistance = 20.0f;
@@ -245,7 +255,10 @@ public class ClientPlayerInput : NetworkBehaviour
 
    public override void OnNetworkSpawn()
    {
-       if (!IsOwner)
+
+
+
+        if (!IsOwner)
        {
             // WeaponHolder.SetParent(transform);
 

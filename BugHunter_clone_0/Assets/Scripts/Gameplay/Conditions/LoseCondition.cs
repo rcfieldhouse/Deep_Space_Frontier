@@ -18,6 +18,7 @@ public class LoseCondition : MonoBehaviour
         Health = GetComponent<HealthSystem>();
         CountDownText = GameObject.Find("CountDownText").GetComponent<TextMeshProUGUI>();
         CountDownText.gameObject.SetActive(false);
+
         Player.Revive += Revive;
         Player.GiveUp += Loose;
         Health.OnObjectDeath += Die;
@@ -34,7 +35,6 @@ public class LoseCondition : MonoBehaviour
         isAlive = false;
 
         StartCoroutine(CountDown());
-
         
     }
     private IEnumerator CountDown()

@@ -66,7 +66,11 @@ public class TutorialController : MonoBehaviour
         IntroVoiceline = FMODUnity.RuntimeManager.CreateInstance("event:/VoiceLines/Good Morning Pioneer");
         IntroVoiceline.start();
         Subtitle.text = "Good morning pioneer, welcome to Ferallous, you've been in zero gravity for quite some time, before you receive your first mission lets run through some basic training to test your skills.";
-
+        TutorialCanvas = GameObject.Find("Tutorials");
+        ShootingTutorialUI = GameObject.Find("ShootingTutorialUI");
+        UtilityTutorialUI = GameObject.Find("UtilityTutorialUI");
+        MovementTutorialUI = GameObject.Find("MovementTutorialUI");
+        Subtitle = GameObject.Find("Subtitle").GetComponent<TextMeshProUGUI>();
 
     }
 

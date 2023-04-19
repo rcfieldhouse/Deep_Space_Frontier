@@ -12,7 +12,7 @@ public class NetworkSpawnLocation : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        transform.position = GameObject.Find("NetworkManager").transform.position;
+        //transform.position = GameObject.Find("NetworkManager").transform.position;
 
         if(IsServer && SceneManager.GetActiveScene().name == "SampleScene")
         {

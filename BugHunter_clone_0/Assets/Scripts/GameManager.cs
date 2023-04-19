@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 
 public class GameManager : NetworkBehaviour
 {
@@ -26,6 +27,9 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     private string m_SceneName;
 
+    public bool isHost;
+    public string IP = "127.0.0.1";
+
 #if UNITY_EDITOR
     public UnityEditor.SceneAsset SceneAsset;
     private void OnValidate()
@@ -37,6 +41,14 @@ public class GameManager : NetworkBehaviour
     }
 #endif
 
+    public void SetIP(string ip)
+    {
+        IP = ip;
+    }
+    public void SetHost(bool host)
+    {
+        isHost = host;
+    }
     private void Awake()
     {
         if(instance==null)
@@ -48,14 +60,36 @@ public class GameManager : NetworkBehaviour
     {
         SceneManager.activeSceneChanged += ChangedActiveScene;        
     }
-
+    
     private void ChangedActiveScene(Scene arg0, Scene arg1)
     {
+        NetworkManager.Singleton.Shutdown();
+        Debug.Log("NETWARKING");
+        NetworkManager.GetComponent<UnityTransport>().ConnectionData.Address = IP;
+        StartCoroutine(DelayNetwork());
+
+       
+        Debug.Log("NETWARKING!!!!");
         ChangeSceneMusic();
+    }
+
+    private IEnumerator DelayNetwork()
+    {
+        yield return new WaitForSeconds(1.0f);
+        if (isHost)
+        {
+            NetworkManager.Singleton.StartHost();
+        }
+        else
+        {
+
+            NetworkManager.Singleton.StartClient();
+        }
     }
 
     private static void ChangeSceneMusic()
     {
+        Debug.Log("NETWARKING@@@@@");
         FMODUnity.RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         Ambience = FMODUnity.RuntimeManager.CreateInstance("event:/Ambient/Ambience_Outdoor");
         if (SceneManager.GetActiveScene().buildIndex == 1)
@@ -69,6 +103,7 @@ public class GameManager : NetworkBehaviour
 
             Ambience.start();
             Ambience.release();
+            NetworkManager.Singleton.gameObject.transform.position = new Vector3(910, 7, 943);
         }
         else if (SceneManager.GetActiveScene().buildIndex == 5) //|| SceneManager.GetActiveScene().buildIndex == 8)
         {
@@ -78,6 +113,8 @@ public class GameManager : NetworkBehaviour
 
             Music.start();
             Music.release();
+            NetworkManager.Singleton.gameObject.transform.position = new Vector3(1014, -29, 916);
+
         }
         else if (SceneManager.GetActiveScene().buildIndex == 7)
         {
@@ -88,6 +125,7 @@ public class GameManager : NetworkBehaviour
 
             Ambience.start();
             Ambience.release();
+            NetworkManager.Singleton.gameObject.transform.position = new Vector3(100, 920, -993);
         }
         else if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -98,6 +136,7 @@ public class GameManager : NetworkBehaviour
             Music.start();
             Music.release();
         }
+        Debug.Log("NETWARKING#####");
     }
 
 
