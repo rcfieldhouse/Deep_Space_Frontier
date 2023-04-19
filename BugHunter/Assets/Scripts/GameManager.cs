@@ -84,23 +84,18 @@ public class GameManager : NetworkBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            for (int i = 0; i<43; i++)
-            {
-                if (skippedCutscene)
-                {
-                    if (isHost)
-                    {
-                        NetworkManager.Singleton.StartHost();
-                    }
-                    else
-                    {
 
-                        NetworkManager.Singleton.StartClient();
-                    }
-                }
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(40.0f);
+
+            if (isHost)
+            {
+                NetworkManager.Singleton.StartHost();
             }
-            
+            else
+            {
+
+                NetworkManager.Singleton.StartClient();
+            }
         }
         else
         {

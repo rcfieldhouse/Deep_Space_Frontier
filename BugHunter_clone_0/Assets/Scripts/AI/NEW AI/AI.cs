@@ -323,8 +323,8 @@ public abstract class AI : NetworkBehaviour
 	public virtual void Patroling()
 	{
 		_IsChasing = false;
-		//if (Target == null)
-		//    Target = FindClosestPlayer();
+		if (Target == null)
+		    Target = FindClosestPlayer();
 		////play Dante.sound.ogg AI idle
 		if (!WalkPointSet)
 			SearchWalkPoint();
