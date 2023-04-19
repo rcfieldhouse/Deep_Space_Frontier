@@ -259,6 +259,7 @@ public class PlayerInput : MonoBehaviour
     {
          GetComponent<HealthSystem>().SetInvulnerable(true);
     }
+
    public void GoToBossArena()
     {
          GetComponent<Rigidbody>().position = new Vector3(170.0f, 25.0f, 420.0f);
