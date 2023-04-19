@@ -28,7 +28,7 @@ public class MiddleCutsceneManager : NetworkBehaviour
     void Start()
     {
         MCutsceneEnded = false;
-        GameplayQueen.SetActive(false);
+        //GameplayQueen.SetActive(false);
     }
 
     private void Update()
@@ -46,9 +46,12 @@ public class MiddleCutsceneManager : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (MCutsceneEnded == true)
+            return;
         // Need This logic when a player enters the cutscene trigger
         if (other.gameObject.tag == "Player")
         {
+            GetComponent<EndCutscene5>().StartCutscene();
             //GameObject[] AllPlayers = GameObject.FindGameObjectsWithTag("Player");
 
             FirstCutsceneParent.SetActive(true);
@@ -64,6 +67,9 @@ public class MiddleCutsceneManager : NetworkBehaviour
            //}
             other.gameObject.transform.position = PlayerCutscenePos.transform.position;
 
+
+                //CutsceneServerRpc(other.gameObject.transform.position);
+            
         }
 
     }
@@ -79,17 +85,27 @@ public class MiddleCutsceneManager : NetworkBehaviour
 
         FirstCutsceneParent.SetActive(false);
 
-        GameplayQueen.SetActive(true);
+        //GameplayQueen.SetActive(true);
     }
 
-   //[ServerRpc(RequireOwnership = false)]
-   //public void DanteServerRPC(ulong id)
-   //{
-   //        GameObject PlayerObject = NetworkManager.Singleton.ConnectedClients[(int)id].PlayerObject;
-   //
-   //        FirstCutsceneParent.SetActive(true);
-   //        PlayerInCutscene = true;
-   //        PlaceholderTree.SetActive(false);
-   //        PlayerObject.gameObject.transform.position = PlayerCutscenePos.transform.position;
-   //}
+    [ServerRpc(RequireOwnership =false)]
+    public void CutsceneServerRpc(Vector3 pos)
+    {
+        foreach(NetworkClient obj in NetworkManager.Singleton.ConnectedClients.Values)
+        {
+            obj.PlayerObject.transform.position = pos;
+        }
+    }
+
+
+    //[ServerRpc(RequireOwnership = false)]
+    //public void DanteServerRPC(ulong id)
+    //{
+    //        GameObject PlayerObject = NetworkManager.Singleton.ConnectedClients[(int)id].PlayerObject;
+    //
+    //        FirstCutsceneParent.SetActive(true);
+    //        PlayerInCutscene = true;
+    //        PlaceholderTree.SetActive(false);
+    //        PlayerObject.gameObject.transform.position = PlayerCutscenePos.transform.position;
+    //}
 }

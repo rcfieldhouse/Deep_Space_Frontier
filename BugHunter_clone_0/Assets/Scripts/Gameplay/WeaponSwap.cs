@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class WeaponSwap : MonoBehaviour
+using Unity.Netcode;
+public class WeaponSwap : NetworkBehaviour
 {
     
     // Start is called before the first frame update
@@ -36,6 +37,12 @@ public class WeaponSwap : MonoBehaviour
 
         reloadGun = GetComponent<ReloadGun>();
         Player.SwappingWeapon += SetWeapon;
+    }
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner)
+            Destroy(this);
+        base.OnNetworkSpawn();
     }
     private void OnDestroy()
     {

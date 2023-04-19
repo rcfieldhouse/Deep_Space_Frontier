@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class ReloadGun : MonoBehaviour
+public class ReloadGun : NetworkBehaviour
 {
     // Start is called before the first frame update
     private float currentGun;
@@ -10,7 +11,15 @@ public class ReloadGun : MonoBehaviour
     private Animator gunAnimator;
     private bool Reloading = false;
     private PlayerInput PlayerInput;
-    public LeftHandReloadAnim ShotgunHandReload; 
+    public LeftHandReloadAnim ShotgunHandReload;
+
+
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner)
+            Destroy(this);
+        base.OnNetworkSpawn();
+    }
 
     public bool GetIsReloading()
     {

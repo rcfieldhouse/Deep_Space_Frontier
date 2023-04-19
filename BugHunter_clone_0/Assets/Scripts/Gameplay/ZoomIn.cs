@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-public class ZoomIn : MonoBehaviour
+using Unity.Netcode;
+public class ZoomIn : NetworkBehaviour
 {
     public bool paused = false;
     public Animator animator;
@@ -37,6 +38,12 @@ public class ZoomIn : MonoBehaviour
         EquipTime = GetComponentInChildren<WeaponInfo>().EquipTime;
         ADSTime = GetComponentInChildren<WeaponInfo>().ADSTime;
  
+    }
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner)
+            Destroy(this);
+        base.OnNetworkSpawn();
     }
     private void OnDestroy()
     {

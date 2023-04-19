@@ -22,7 +22,6 @@ public class Queen : AI
     {
         Debug.Log("won");
 
-        FindClosestPlayer().transform.parent.gameObject.SetActive(false);
         FMODUnity.RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         FMOD.Studio.EventInstance Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/DeepSpace");
         Music.start();

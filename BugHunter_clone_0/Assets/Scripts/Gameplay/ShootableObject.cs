@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class ShootableObject : MonoBehaviour
+public class ShootableObject : NetworkBehaviour
 {
     //The object's current health point total
     [SerializeField]

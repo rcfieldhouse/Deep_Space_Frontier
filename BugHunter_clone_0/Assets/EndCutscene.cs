@@ -20,7 +20,6 @@ public class EndCutscene : MonoBehaviour
     public void function()
     {
         CutsceneCamera.SetActive(false);
-        Player.SetActive(true);
         Destroy(cutscenecharacter1);
         Destroy(cutscenecharacter2);
         Destroy(cutscenecharacter3);

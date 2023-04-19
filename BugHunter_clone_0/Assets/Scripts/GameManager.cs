@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.Netcode;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public static GameManager instance;
 
@@ -22,7 +23,19 @@ public class GameManager : MonoBehaviour
     private static FMOD.Studio.EventInstance Ambience;
     private static FMOD.Studio.EventInstance Music;
 
-    
+    [SerializeField]
+    private string m_SceneName;
+
+#if UNITY_EDITOR
+    public UnityEditor.SceneAsset SceneAsset;
+    private void OnValidate()
+    {
+        if (SceneAsset != null)
+        {
+            m_SceneName = SceneAsset.name;
+        }
+    }
+#endif
 
     private void Awake()
     {
@@ -109,7 +122,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Called");
         yield return new WaitForSeconds(Time);
 
-        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().SaveGame();
+        //GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().SaveGame();
         FMODUnity.RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
@@ -125,7 +138,7 @@ public class GameManager : MonoBehaviour
         loadingScreen.SetActive(false);
         Debug.Log("new scene loaded");
         
-        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().LoadGame();
+        //GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().LoadGame();
     }
     public void SceneChange(string sceneName, float Time)
     {
@@ -145,7 +158,7 @@ public class GameManager : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
 
-        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().SaveGame();
+        //GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().SaveGame();
         FMODUnity.RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
         loadingScreen.SetActive(true);
@@ -157,14 +170,15 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
+
         loadingScreen.SetActive(false);
-        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().LoadGame();
+        //GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().LoadGame();
     }
     public IEnumerator SceneChangeAsync(string sceneName)
     {
         Debug.Log("new scene");
 
-        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().SaveGame();
+        //GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().SaveGame();
         FMODUnity.RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
@@ -179,7 +193,7 @@ public class GameManager : MonoBehaviour
         }
         loadingScreen.SetActive(false);
         Debug.Log("new scene loaded");
-        GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().LoadGame();
+        //GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>().LoadGame();
     }
 
     internal float WrapEulerAngles(float rotation)

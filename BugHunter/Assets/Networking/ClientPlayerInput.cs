@@ -78,9 +78,14 @@ public class ClientPlayerInput : NetworkBehaviour
         if (!IsOwner)
             return;
         GameObject ReviveTarget = FindClosestPlayer();
+        
 
         if((ReviveTarget != null) && (ReviveTarget != gameObject))
+        {
+            Debug.Log(ReviveTarget.name);
             ReviveTarget.GetComponent<PlayerInput>().RevivePlayer();
+        }
+            
 
         //PlayerInput.RevivePlayer();
     }
@@ -242,8 +247,6 @@ public class ClientPlayerInput : NetworkBehaviour
    {
        if (!IsOwner)
        {
-            Transform CameraManager = gameObject.transform.parent.transform.GetChild(1);
-            Transform WeaponHolder = CameraManager.GetChild(3).GetChild(3);
             // WeaponHolder.SetParent(transform);
 
             // foreach (Transform child in CameraManager)
@@ -253,27 +256,45 @@ public class ClientPlayerInput : NetworkBehaviour
 
             // gameObject.transform.parent.transform.GetChild(2).gameObject.SetActive(false);
 
-            gameObject.transform.parent.transform.GetChild(1).GetChild(3).GetComponent<CinemachineBrain>().enabled = false;
-            gameObject.transform.parent.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
-            gameObject.transform.parent.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-            gameObject.transform.parent.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-      
-            gameObject.transform.parent.transform.GetChild(1).GetChild(3).GetComponent<Camera>().enabled = false;
-            gameObject.transform.parent.transform.GetChild(1).GetChild(3).gameObject.AddComponent<IDCanymore>().SetTarget(CameraManager.gameObject);
-            gameObject.transform.parent.transform.GetChild(3).gameObject.SetActive(false);
-            gameObject.transform.parent.transform.GetChild(4).gameObject.SetActive(false);
-            gameObject.transform.parent.transform.GetChild(5).gameObject.SetActive(false);
+            //gameObject.transform.parent.transform.GetChild(1).GetChild(3).GetComponent<CinemachineBrain>().enabled=false;
+            //gameObject.transform.parent.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            //gameObject.transform.parent.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            //gameObject.transform.parent.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+            //
+            //gameObject.transform.parent.transform.GetChild(1).GetChild(3).GetComponent<Camera>().enabled = false;
 
-            int LayerDefault = LayerMask.NameToLayer("Default");
-            
-            foreach (Transform child in transform)
-            {
-                child.gameObject.layer = LayerDefault;
-            }
+            //gameObject.transform.parent.transform.GetChild(3).gameObject.SetActive(false);
+            //gameObject.transform.parent.transform.GetChild(4).gameObject.SetActive(false);
+            //gameObject.transform.parent.transform.GetChild(5).gameObject.SetActive(false);
 
+            StartCoroutine(wait());
 
        }
    }
+    public IEnumerator wait()
+    {
+
+        yield return new WaitForSeconds(0.5f);
+
+        Transform CameraManager = gameObject.transform.parent.transform.GetChild(1);
+        Transform WeaponHolder = CameraManager.GetChild(3).GetChild(3);
+
+        WeaponHolder.SetParent(transform);
+        gameObject.transform.parent.transform.GetChild(1).gameObject.SetActive(false);
+        gameObject.transform.parent.transform.GetChild(2).gameObject.SetActive(false);
+        gameObject.transform.parent.transform.GetChild(3).gameObject.SetActive(false);
+        gameObject.transform.parent.transform.GetChild(4).gameObject.SetActive(false);
+        gameObject.transform.parent.transform.GetChild(5).gameObject.SetActive(false);
+
+
+
+        int LayerDefault = LayerMask.NameToLayer("Default");
+
+        foreach (Transform child in transform)
+        {
+            child.gameObject.layer = LayerDefault;
+        }
+    }
 
     public override void OnNetworkDespawn()
     {

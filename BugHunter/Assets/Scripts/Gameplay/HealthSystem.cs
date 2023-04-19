@@ -18,7 +18,7 @@ public class HealthSystem : NetworkBehaviour
     UnityEngine.Rendering.Universal.Vignette vignette;
     public float fadeInTime = 0.5f;
 
-    NetworkVariable<int> networkHealth = new NetworkVariable<int>();
+    NetworkVariable<int> networkHealth = new NetworkVariable<int>(200);
 
     private void OnEnable()
     {  
@@ -28,6 +28,10 @@ public class HealthSystem : NetworkBehaviour
 
         networkHealth.OnValueChanged +=  OnNetworkHealthChanged;
         currentHealth = maxHealth;
+        
+    }
+    override public void OnNetworkSpawn()
+    {
         networkHealth.Value = maxHealth;
     }
     private void OnDisable()
@@ -90,7 +94,7 @@ public class HealthSystem : NetworkBehaviour
 
     public void OnNetworkHealthChanged(int previous, int current)
     {
-        Debug.Log("[Client] OnNetworkHealthChanged Called");
+        //Debug.Log("[Client] OnNetworkHealthChanged Called");
         currentHealth = networkHealth.Value;
         float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
        
