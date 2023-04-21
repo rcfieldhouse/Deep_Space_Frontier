@@ -23,7 +23,7 @@ public class EndCutscene5 : MonoBehaviour
         Debug.Log("IT HAPPENED2");
         
         Cutscene5.SetActive(true);
-        GameObject.Find("StupidQueen").SetActive(false);
+        Destroy(GameObject.Find("StupidQueen"));
         //transform.parent.gameObject.SetActive(false);
     }
 }

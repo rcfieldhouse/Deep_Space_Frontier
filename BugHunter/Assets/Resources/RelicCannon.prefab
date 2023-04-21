@@ -110,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6112794171006465559}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -1, z: 0}
   m_LocalScale: {x: 71.22415, y: 71.22415, z: 71.22415}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -195,7 +195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7380320551132385858}
   m_LocalRotation: {x: -0, y: 0.01221705, z: -0, w: 0.9999254}
-  m_LocalPosition: {x: -0.378, y: 0.1671653, z: 3.259}
+  m_LocalPosition: {x: -0.378, y: -0.92, z: 1.82}
   m_LocalScale: {x: 3.5742335, y: 3.574234, z: 3.5742335}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9934,7 +9934,10 @@ MonoBehaviour:
   maxAmmo: 1
   magSize: 1
   reserveAmmo: 1
+  ADSTime: 0
+  EquipTime: 0
   AdsZoomScale: 0
+  WeaponAdsZoomScale: 0
   _reloadTimer: 3
   RecoilX: 6.2
   AimRecoilX: 12.1
@@ -9949,6 +9952,10 @@ MonoBehaviour:
   _CanReload: 0
   _isReloading: 0
   tempTimer: 1
+  _IsPrimaryWeapon: 0
+  CancelReload: 0
+  Startpos: {x: 0, y: 0, z: 0}
+  StartRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &7686874501214963013
 Animator:
   serializedVersion: 4

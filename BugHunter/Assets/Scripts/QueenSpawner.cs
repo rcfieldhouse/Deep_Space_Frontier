@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class QueenSpawner : MonoBehaviour
+public class QueenSpawner : NetworkBehaviour
 {
 
     public GameObject Prefab;
@@ -11,7 +12,9 @@ public class QueenSpawner : MonoBehaviour
     {
         if (other.tag == "Ground")
         {
-            Instantiate(Prefab, transform.position , Quaternion.identity);
+            GameObject Enemy = Instantiate(Prefab, transform.position , Quaternion.identity);
+            Enemy.GetComponent<NetworkObject>().Spawn();
+
             Destroy(gameObject);
         }
     }

@@ -11,13 +11,13 @@ public class DreadSpawner : NetworkBehaviour
     {
         if (other.tag == "Ground")
         {
-            if (!IsServer)
-            {
-                return;
-            }
 
-            Instantiate(Slime, transform.position + transform.rotation * Vector3.right, Quaternion.identity);
-            Instantiate(Slime, transform.position + transform.rotation * Vector3.left, Quaternion.identity);
+            GameObject Enemy = Instantiate(Slime, transform.position + transform.rotation * Vector3.right, Quaternion.identity);
+            Enemy.GetComponent<NetworkObject>().Spawn();
+
+            Enemy = Instantiate(Slime, transform.position + transform.rotation * Vector3.left, Quaternion.identity);
+            Enemy.GetComponent<NetworkObject>().Spawn();
+
 
             Destroy(gameObject);
         }       

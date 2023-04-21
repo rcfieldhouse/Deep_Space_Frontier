@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class GrenadeManager : MonoBehaviour
+
+public class GrenadeManager : NetworkBehaviour
 {
     public Transform StartingTransform;
     public GameObject Grenade,GrenadeGraphic,Fruit,WeaponCamera,PlayerCamera;
@@ -122,7 +124,8 @@ public class GrenadeManager : MonoBehaviour
     {
         PlayerCamera.SetActive(false);
         GrenadeGraphic.SetActive(false);
-        GameObject nade = Instantiate(Grenade,transform.parent.GetChild(1).GetComponent<Look>().PlayerViewPoint.transform.position - Vector3.up / 4, Quaternion.identity);
+        GameObject nade = Instantiate(Grenade, transform.parent.GetChild(1).GetComponent<Look>().PlayerViewPoint.transform.position - Vector3.up / 4, Quaternion.identity);
+        nade.GetComponent<NetworkObject>().Spawn();
         nade.transform.position += 0.1f * (quat * (ThrowForce + (0.1f * Physics.gravity)));
         nade.GetComponent<GrenadeThrow>().ThowGrenade(quat * ThrowForce);
         Invoke(nameof(EnableCam),1.5f);

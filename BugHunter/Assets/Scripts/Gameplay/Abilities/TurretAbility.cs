@@ -50,18 +50,33 @@ public class TurretAbility : NetworkBehaviour
     }
     public void PlaceTurret()
     {
-        if (TurretCount <= 0 || !IsOwner)
+        Debug.Log("Pomf");
+        if (TurretCount <= 0)
             return;
-        
+        Debug.Log("Pomf2");
         RaycastHit Hit;
 
         
         Vector3 rayOrigin = Cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
         if (!Physics.Raycast(rayOrigin, Cam.transform.forward * 25.0f, out Hit, 25.0f))
             return;
-                    
-            PlaceTurretServerRpc(Hit.point, Hit.normal, Hit.transform.gameObject.tag);
-  
+
+        TurretCount--;
+        NetworkObject TurretInstance = Instantiate(TurretPrefab, Hit.point+(Vector3.up*2), Quaternion.FromToRotation(Vector3.up, Hit.normal));
+        TurretInstance.GetComponent<NetworkObject>().Spawn();
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Turret_Place");
+
+        Debug.Log("Pomf3");
+
+        if (tag == "Ground" && (Mathf.Abs(TurretInstance.transform.rotation.x) < 0.15f && Mathf.Abs(TurretInstance.transform.rotation.z) < 0.15f))
+        {
+            Turrets.Add(Turret);
+            UsedTurret.Invoke(TurretCount);
+        }
+        else
+            Destroy(Turret);
+
     }
 
     [ServerRpc]

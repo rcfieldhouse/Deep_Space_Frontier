@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
 
 public class HealthBarUI : NetworkBehaviour
 {
@@ -66,6 +67,13 @@ public class HealthBarUI : NetworkBehaviour
             HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged -= HandleHealthChanged;
         else
             GetComponentInParent<HealthSystem>().OnHealthPercentChanged -= HandleHealthChanged;
+
+    }
+    private void Update()
+    {
+        TextMeshProUGUI txt = transform.parent.GetChild(6).gameObject.GetComponent<TextMeshProUGUI>();
+
+        txt.text = GameObject.Find("MixamoCharacter").GetComponent<HealthSystem>().currentHealth.ToString();
 
     }
     private IEnumerator ChangeToPercent(float pct)

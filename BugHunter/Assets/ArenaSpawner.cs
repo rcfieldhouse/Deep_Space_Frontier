@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class ArenaSpawner : MonoBehaviour
+public class ArenaSpawner : NetworkBehaviour
 {
     // Start is called before the first frame update
 public enum EnemyType
@@ -87,6 +88,10 @@ public enum EnemyType
     }
     private void HoundSpawn()
     {
+        if (!IsServer)
+        {
+            return;
+        }
         if (NumSpawns[0] <= 0)
             return;
 
@@ -104,10 +109,15 @@ public enum EnemyType
     }
     private void DreadBomberSpawn()
     {
+        if (!IsServer)
+        {
+            return;
+        }
         if (NumSpawns[1] <= 0)
             return;
 
         GameObject Enemy = GameObject.Instantiate(prefab[1], gameObject.transform);
+        Enemy.GetComponent<NetworkObject>().Spawn();
         Enemy.AddComponent<ArenaEnemy>();
         if (StartDestination != null)
         {
@@ -121,10 +131,15 @@ public enum EnemyType
     }
     private void TickSpawn()
     {
+        if (!IsServer)
+        {
+            return;
+        }
         if (NumSpawns[2] <= 0)
             return;
 
         GameObject Enemy = GameObject.Instantiate(prefab[2], gameObject.transform);
+        Enemy.GetComponent<NetworkObject>().Spawn();
         Enemy.AddComponent<ArenaEnemy>();
         if (StartDestination != null)
         {
@@ -138,10 +153,15 @@ public enum EnemyType
     }
     private void ZephyrSpawn()
     {
+        if (!IsServer)
+        {
+            return;
+        }
         if (NumSpawns[3] <= 0)
             return;
 
         GameObject Enemy = GameObject.Instantiate(prefab[3], gameObject.transform);
+        Enemy.GetComponent<NetworkObject>().Spawn();
         Enemy.AddComponent<ArenaEnemy>();
         if (StartDestination != null)
         {
@@ -156,11 +176,18 @@ public enum EnemyType
     }
     private void SlimeSpawn()
     {
+        if (!IsServer)
+        {
+            return;
+        }
         if (NumSpawns[4] <= 0)
             return;
 
         GameObject Enemy = GameObject.Instantiate(prefab[4], gameObject.transform);
+
+        Enemy.GetComponent<NetworkObject>().Spawn();
         Enemy.AddComponent<ArenaEnemy>();
+
         if (StartDestination != null)
         {
             Enemy.GetComponent<Slime>().SetInitialDestination(StartDestination.position);
