@@ -59,7 +59,11 @@ public class HealthSystem : NetworkBehaviour
         float currentHealthPercent = (float)networkHealth.Value / (float)maxHealth;
         OnHealthPercentChanged(currentHealthPercent);
     }
-
+    private void Update()
+    {
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        networkHealth.Value = currentHealth;
+    }
     public void SetMaxHealth(int foo)
     {
         maxHealth = foo;
