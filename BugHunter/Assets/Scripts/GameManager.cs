@@ -75,9 +75,10 @@ public class GameManager : NetworkBehaviour
         ChangeSceneMusic();
     }
 
-    public void SetaBool()
+    public void SkipScene()
     {
-        skippedCutscene = true;
+        StopAllCoroutines();
+        StartCoroutine(ImmediateNetwork());
     }
 
     private IEnumerator DelayNetwork()
@@ -99,7 +100,7 @@ public class GameManager : NetworkBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.5f);
             if (isHost)
             {
                 NetworkManager.Singleton.StartHost();
@@ -113,7 +114,39 @@ public class GameManager : NetworkBehaviour
 
        
     }
+    private IEnumerator ImmediateNetwork()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
 
+            yield return new WaitForSeconds(0.5f);
+
+            if (isHost)
+            {
+                NetworkManager.Singleton.StartHost();
+            }
+            else
+            {
+
+                NetworkManager.Singleton.StartClient();
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (isHost)
+            {
+                NetworkManager.Singleton.StartHost();
+            }
+            else
+            {
+
+                NetworkManager.Singleton.StartClient();
+            }
+        }
+
+
+    }
     private static void ChangeSceneMusic()
     {
         Debug.Log("NETWARKING@@@@@");

@@ -19,6 +19,8 @@ public class EndCutscene : MonoBehaviour
     }
     public void function()
     {
+        //StartHost
+        GameManager.instance.SkipScene();
         CutsceneCamera.SetActive(false);
         Destroy(cutscenecharacter1);
         Destroy(cutscenecharacter2);
