@@ -18,7 +18,7 @@ using UnityEngine;
         renderer.materials = mats;
 
 
-        obj.AddComponent<HealthSystem>().SetMaxHealth(170);
+        obj.AddComponent<HealthSystem>().SetMaxHealth(300);
         obj.AddComponent<GrenadeManager>();
         obj.AddComponent<Dodge>();
         obj.AddComponent<GunSelect>().SelectGun(obj,5,4);
@@ -41,7 +41,7 @@ using UnityEngine;
         renderer.materials = mats;
 
         obj.AddComponent<GrenadeManager>();
-        obj.AddComponent<HealthSystem>().SetMaxHealth(200);
+        obj.AddComponent<HealthSystem>().SetMaxHealth(400);
         obj.AddComponent<TurretAbility>();
         obj.AddComponent<GunSelect>().SelectGun(obj, 1, 6);
         obj.GetComponent<ClassCreator>().ClassIcons.transform.GetChild(2).gameObject.SetActive(false);
@@ -62,7 +62,7 @@ using UnityEngine;
         }
         renderer.materials = mats;
 
-        obj.AddComponent<HealthSystem>().SetMaxHealth(130);
+        obj.AddComponent<HealthSystem>().SetMaxHealth(200);
         obj.AddComponent<GrenadeManager>();
         obj.AddComponent<SpecialBulletSelect>();
         obj.AddComponent<GunSelect>().SelectGun(obj, 2, 0);
