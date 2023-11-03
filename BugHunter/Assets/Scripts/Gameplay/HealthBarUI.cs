@@ -27,6 +27,7 @@ public class HealthBarUI : NetworkBehaviour
         //StartCoroutine(wait());
         if (IsBarrierHPBar == false)
         {
+            StartCoroutine(wait());
             HealthBar.color = Color.cyan;
         }
     }
@@ -69,11 +70,20 @@ public class HealthBarUI : NetworkBehaviour
             GetComponentInParent<HealthSystem>().OnHealthPercentChanged -= HandleHealthChanged;
 
     }
+    private void OnEnable()
+    {
+        if (HealthComponentOverride != null)
+            HealthComponentOverride.GetComponent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
+        else
+            GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChanged;
+
+        HealthBar.color = Color.cyan;
+    }
     private void Update()
     {
         TextMeshProUGUI txt = transform.parent.GetChild(6).gameObject.GetComponent<TextMeshProUGUI>();
         if(!IsBarrierHPBar)
-        txt.text = GameObject.Find("MixamoCharacter").GetComponent<HealthSystem>().currentHealth.ToString();
+            txt.text = GameObject.Find("MixamoCharacter").GetComponent<HealthSystem>().currentHealth.ToString();
 
     }
     private IEnumerator ChangeToPercent(float pct)
