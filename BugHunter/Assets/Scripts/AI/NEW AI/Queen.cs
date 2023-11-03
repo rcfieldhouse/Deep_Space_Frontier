@@ -17,6 +17,11 @@ public class Queen : AI
     [Range(0, 30)] public float CarpetBombSpread,AOEBombSpread;
     public List<Vector3> BombingLocations,AOEBombingLocations;
     public GameObject EndCutscene;
+    [Range(0, 200)]
+    public float CentreStageRange = 10;
+    public bool BeginEncounter = false, ReturnToCentre=false;
+    public Transform CentreStage;
+    public LayerMask WhatIsQueen;
     // Update is called once per frame
     public override void PlayEndCutScene()
     {
@@ -35,6 +40,9 @@ public class Queen : AI
     }
     public override void Patroling()
     {
+        if (!BeginEncounter)
+            return;
+
         base.Patroling();
         AI_Animator.SetBool("ForwardMove", true);
     }
@@ -97,9 +105,37 @@ public class Queen : AI
        AOEBombingLocations.Add(vector16);
        AOEBombingLocations.Add(vector17);
     }
+    public bool QueenInPlayArea()
+    {
+        return Physics.CheckSphere(CentreStage.position ,CentreStageRange, WhatIsQueen);
+    }
+    public void ReturnToSender()
+    {
+        ReturnToCentre = true;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (!QueenInPlayArea())
+            ReturnToSender();
+
+        if (ReturnToCentre)
+        {
+            AI_Animator.SetBool("BackwardMove", false);
+            AI_Animator.SetBool("ForwardMove", true);
+            NavAgent.destination = CentreStage.position;
+        }
+        Debug.Log((CentreStage.position - transform.position).magnitude);
+        if ((CentreStage.position - transform.position).magnitude < 30.0f)
+            ReturnToCentre = false;
+    }
     public override void OnDrawGizmosSelected()
     {
         base.OnDrawGizmosSelected();
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(CentreStage.position, CentreStageRange);
+        
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, SpawnEnemiesRange);
 
@@ -218,15 +254,20 @@ public class Queen : AI
     }
     public override void AttackPlayer(GameObject Target)
     {
+        //this is so that she does not wander until the player is in her range for the first time
+        BeginEncounter = true;
        // Debug.Log((Target.transform.position - transform.position).magnitude);
-       Debug.Log((Target.transform.position - transform.position).magnitude );
+      // Debug.Log((Target.transform.position - transform.position).magnitude );
         if (IsSecondaryAttack == false)
         {
             //allignment and avoidance
             AI_Animator.SetBool("BackwardMove", true);
             AI_Animator.SetBool("ForwardMove", false);
-            NavAgent.destination = transform.position;
-            NavAgent.SetDestination(transform.position + (-WalkPoint) + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
+            if (!ReturnToCentre)
+            {
+                NavAgent.destination = transform.position;
+                NavAgent.SetDestination(transform.position + (-WalkPoint) + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
+            }
             //primary shooting attack
             if (CanAttack == true && HasAttacked == false)
             {
@@ -256,7 +297,9 @@ public class Queen : AI
         {
             AI_Animator.SetBool("BackwardMove", false);
             AI_Animator.SetBool("ForwardMove", true);
+            if(!ReturnToCentre)
             NavAgent.SetDestination(transform.position + WalkPoint + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
+           
             bool AbleToSpawn = Physics.CheckSphere(transform.position, SpawnEnemiesRange, WhatIsPlayer);
             if (AbleToSpawn)
             {
@@ -296,6 +339,7 @@ public class Queen : AI
             Serpentine = Random.Range(-EvasionIntensity, EvasionIntensity);
             StartEvasionLocation = transform.position;
             WalkPointSet = true;
+            if(!ReturnToCentre)
             NavAgent.SetDestination(transform.position + WalkPoint + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
         }
 
@@ -308,6 +352,7 @@ public class Queen : AI
             WalkPoint = Vector3.Normalize(Target.transform.position - transform.position);
             WalkPoint *= WalkPointRange;
         }
+        if(!ReturnToCentre)
         NavAgent.SetDestination(transform.position + WalkPoint + transform.rotation * new Vector3(Serpentine, 0.0f, 0.0f));
 
 
@@ -317,7 +362,7 @@ public class Queen : AI
 
         bool attackDirectly = Physics.CheckSphere(transform.position, WalkPointRange, WhatIsPlayer);
 
-        if (attackDirectly == true)
+        if (attackDirectly == true&&!ReturnToCentre)
             NavAgent.SetDestination(Target.transform.position);
 
     }

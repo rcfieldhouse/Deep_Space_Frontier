@@ -4241,6 +4241,11 @@ PrefabInstance:
       propertyPath: BombingLocations.Array.data[8].z
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 2058075253948442447, guid: e92507ef582e0254d8c81c47b7eee9e0,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 986044962
+      objectReference: {fileID: 0}
     - target: {fileID: 7035233476043774260, guid: e92507ef582e0254d8c81c47b7eee9e0,
         type: 3}
       propertyPath: m_Name
@@ -4599,6 +4604,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa49a54993fd44488bb99edccd20d1c, type: 3}
+--- !u!1 &128166347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 128166348}
+  - component: {fileID: 128166349}
+  m_Layer: 14
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &128166348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128166347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.88, z: 0}
+  m_LocalScale: {x: 0.14, y: 0.14, z: 0.14}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1764097567}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &128166349
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128166347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &128948759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22063,6 +22113,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 524921784}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &526869552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 526869553}
+  m_Layer: 0
+  m_Name: DONOTFUCKINGDELETE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &526869553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526869552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 182.7, y: 48.074875, z: 522.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 35
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534292929
 GameObject:
   m_ObjectHideFlags: 0
@@ -32450,6 +32531,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 523941769}
     - target: {fileID: 1501039881, guid: e92507ef582e0254d8c81c47b7eee9e0, type: 3}
+      propertyPath: CentreStage
+      value: 
+      objectReference: {fileID: 526869553}
+    - target: {fileID: 1501039881, guid: e92507ef582e0254d8c81c47b7eee9e0, type: 3}
       propertyPath: EndCutscene
       value: 
       objectReference: {fileID: 1736634580}
@@ -32498,12 +32583,20 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1501039881, guid: e92507ef582e0254d8c81c47b7eee9e0, type: 3}
+      propertyPath: CentreStageRange
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501039881, guid: e92507ef582e0254d8c81c47b7eee9e0, type: 3}
       propertyPath: VollyLaunchPoint
       value: 
       objectReference: {fileID: 1199950958}
     - target: {fileID: 1501039881, guid: e92507ef582e0254d8c81c47b7eee9e0, type: 3}
       propertyPath: SpawnEnemiesRange
       value: 28.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501039881, guid: e92507ef582e0254d8c81c47b7eee9e0, type: 3}
+      propertyPath: WhatIsQueen.m_Bits
+      value: 16384
       objectReference: {fileID: 0}
     - target: {fileID: 1501039881, guid: e92507ef582e0254d8c81c47b7eee9e0, type: 3}
       propertyPath: SkinnedMeshRenderer
@@ -61825,6 +61918,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760925319}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1764097567 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7703964885078950798, guid: e92507ef582e0254d8c81c47b7eee9e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 770771497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1772562686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7194334903057085620, guid: 328fee47fe495e74289c215316436d12,
