@@ -72,7 +72,7 @@ public class HealthBarUI : NetworkBehaviour
     private void Update()
     {
         TextMeshProUGUI txt = transform.parent.GetChild(6).gameObject.GetComponent<TextMeshProUGUI>();
-
+        if(!IsBarrierHPBar)
         txt.text = GameObject.Find("MixamoCharacter").GetComponent<HealthSystem>().currentHealth.ToString();
 
     }
