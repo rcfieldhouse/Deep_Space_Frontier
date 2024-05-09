@@ -75,9 +75,9 @@ public class NewRecoil : MonoBehaviour
     }
     // Update is called once per frame
 
-    private void SetIsAiming(bool foo)
+    private void SetIsAiming(bool aiming)
     {
-        _isAiming = foo;
+        _isAiming = aiming;
         //Debug.Log("Isaiming" + _isAiming);
     }
 
@@ -100,9 +100,9 @@ public class NewRecoil : MonoBehaviour
             baseAim = 0;
             RecoilStartPossible = true;
         }
-       
-        Player.GetComponent<PlayerInput>().MouseInput.y += -AimCorrection * returnSpeed* Time.deltaTime;
         AimCorrection = Mathf.Lerp(AimCorrection, 0.0f, returnSpeed * Time.deltaTime);
+
+        Player.GetComponent<PlayerInput>().MouseInput.y += -AimCorrection * returnSpeed* Time.deltaTime;
      
     }
 
@@ -124,11 +124,15 @@ public class NewRecoil : MonoBehaviour
                 num = num - 360.0f;
             AimCorrection = baseAim - num;
         }
+           
         if (_isAiming==false)
         targetRotation += new Vector3(RecoilX, Random.Range(-RecoilY, RecoilY), Random.Range(-RecoilZ, RecoilZ));
 
         if(_isAiming == true)
         targetRotation += new Vector3(AimRecoilX, Random.Range(-AimRecoilY, AimRecoilY), Random.Range(-AimRecoilZ, AimRecoilZ));
-    }
+
+            targetRotation = new Vector3(targetRotation.x,targetRotation.y, targetRotation.z);
+            Debug.Log(currentRotation.magnitude > new Vector3(AimRecoilX, Random.Range(-AimRecoilY, AimRecoilY), Random.Range(-AimRecoilZ, AimRecoilZ)).magnitude) ;
+        }
     }
 }

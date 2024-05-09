@@ -32,14 +32,16 @@ public class PreviewThrow : NetworkBehaviour
     void Update()
     {
         Direction = GetComponentInChildren<WeaponSwap>().transform.rotation;
-        LaunchPoint =GetComponent<Look>().PlayerViewPoint.transform.position - Vector3.up/4;
+        LaunchPoint = GetComponent<Look>().PlayerViewPoint.transform.position - Vector3.up/4;
         LaunchPoint += 0.1f * (Direction * (ThrowForce + (0.1f * Physics.gravity)));
         if (_IsCooking == true)
         {
+          
             PreviewLine.SetPosition(0, LaunchPoint);
             for (int i = 1; i <= 9; i++)
             {
-                PreviewLine.SetPosition(i, PreviewLine.GetPosition(i-1) + 0.1f*(Direction * (ThrowForce + (0.1f*i*Physics.gravity))));
+                PreviewLine.SetPosition(i, PreviewLine.GetPosition(i-1) + 0.1f*(Direction * (ThrowForce + (0.1f*(i)*Physics.gravity))));
+                
             }
           
         }
