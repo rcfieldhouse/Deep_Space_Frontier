@@ -174,9 +174,9 @@ public class CharacterController : MonoBehaviour
         CameraDodge.SetActive(var);
     }
  
-    public void SetSuspendMovement(bool foo)
+    public void SetSuspendMovement(bool SusMove)
     {
-        SuspendMovement = foo;
+        SuspendMovement = SusMove;
     }
 
 

@@ -16,13 +16,13 @@ public class GunIconUI : MonoBehaviour
     {
         WeaponSwap.BroadcastChoice -= ChooseIcon;
     }
-    private void ChooseIcon(int foo)
+    private void ChooseIcon(int Index)
     {
-        choice = foo;
+        choice = Index;
         for (int i = 0; i < Icons.Count; i++)
         {
             Icons[i].SetActive(false);
         }
-        Icons[foo].SetActive(true);
+        Icons[Index].SetActive(true);
     }
 }

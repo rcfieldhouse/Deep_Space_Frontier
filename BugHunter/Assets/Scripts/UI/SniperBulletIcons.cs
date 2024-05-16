@@ -32,13 +32,13 @@ public class SniperBulletIcons : MonoBehaviour
 
         BulletNum.text = (Sniper.SpecialBulletCapacity[BulletType]).ToString();
     }
-    void SelectBullet(int foo)
+    void SelectBullet(int Choice)
     {
         for (int i = 0; i < transform.childCount-1; i++)
         {
             Icons[i].SetActive(false);
         }
-        Icons[foo].SetActive(true);
-        BulletType = foo;
+        Icons[Choice].SetActive(true);
+        BulletType = Choice;
     }
 }

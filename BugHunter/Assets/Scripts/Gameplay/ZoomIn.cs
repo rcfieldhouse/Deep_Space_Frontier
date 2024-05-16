@@ -179,7 +179,7 @@ public class ZoomIn : NetworkBehaviour
         IsRunning = var;
         TransitionPeriodTime = 0.0f;
     }
-    private void SetWeapon(int foo)
+    private void SetWeapon(int Index)
     {
       
         EquippedJourney = 0.0f;
@@ -187,7 +187,7 @@ public class ZoomIn : NetworkBehaviour
         isPrimary= GetComponentInChildren<WeaponInfo>()._IsPrimaryWeapon;
         EquipTime = GetComponentInChildren<WeaponInfo>().EquipTime;
         ADSTime = GetComponentInChildren<WeaponInfo>().ADSTime;
-        //foo is the index in the array DANTE
-        choice = foo;
+
+        choice = Index;
     }
 }

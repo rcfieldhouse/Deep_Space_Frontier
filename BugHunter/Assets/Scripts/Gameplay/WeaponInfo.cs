@@ -109,10 +109,10 @@ public class WeaponInfo : MonoBehaviour
     {
         _isReloading = var;
     }
-    public void SetCanShoot(bool foo)
+    public void SetCanShoot(bool CanShoot)
     {
         
-        _CanShoot = foo;
+        _CanShoot = CanShoot;
     }
     public bool GetCanShoot()
     {

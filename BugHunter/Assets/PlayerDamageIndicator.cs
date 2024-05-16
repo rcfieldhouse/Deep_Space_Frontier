@@ -21,9 +21,9 @@ public class PlayerDamageIndicator : MonoBehaviour
         healthSystem.OnTakeDamage += TakeDamage;
     }
    
-    void TakeDamage(int foo)
+    void TakeDamage(int DMG)
     {
-        if (foo >= 0)
+        if (DMG >= 0)
             return;
 
         if (Vignette == null)

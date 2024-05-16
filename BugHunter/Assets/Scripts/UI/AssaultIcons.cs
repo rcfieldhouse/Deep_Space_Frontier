@@ -46,12 +46,12 @@ public class AssaultIcons : MonoBehaviour
     {
         Dodge.Dodged -= UseDodge;
     }
-    void UseDodge(float foo)
+    void UseDodge(float Amount)
     {
         fillTime = 0;
         transform.GetChild(0).gameObject.SetActive(true);
         ClassAbility.fillAmount = 0.0f;
-        StartCoroutine(RechargeAbility(foo)); 
+        StartCoroutine(RechargeAbility(Amount)); 
     }
     private IEnumerator RechargeAbility(float RechargeTime)
     {

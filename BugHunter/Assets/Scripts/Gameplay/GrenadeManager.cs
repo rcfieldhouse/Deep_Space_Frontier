@@ -169,12 +169,12 @@ public class GrenadeManager : NetworkBehaviour
     {
         return StartingTransform;
     }
-    public void SetHasFruit(bool foo,Transform transform)
+    public void SetHasFruit(bool HasFruit,Transform transform)
     {
-        if (foo == true)
+        if (HasFruit == true)
         {
             StartingTransform = transform;
         }
-        HasFruit = foo;
+        this.HasFruit = HasFruit;
     }
 }

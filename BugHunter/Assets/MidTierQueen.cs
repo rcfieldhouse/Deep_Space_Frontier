@@ -37,15 +37,15 @@ public class MidTierQueen : MonoBehaviour
     {
         GameObject[] AllPlayers = GameObject.FindGameObjectsWithTag("Player");
         float SmallestDistance = 100000.0f;
-        GameObject foo = null;
+        GameObject ClosestPlayer = null;
         foreach (GameObject Player in AllPlayers)
         {
             if (Mathf.Abs((Player.transform.position - transform.position).magnitude) < SmallestDistance)
             {
                 SmallestDistance = Mathf.Abs((Player.transform.position - transform.position).magnitude);
-                foo = Player;
+                ClosestPlayer = Player;
             }
         }
-        return foo;
+        return ClosestPlayer;
     }
 }

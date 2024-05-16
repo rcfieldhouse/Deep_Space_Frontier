@@ -10,8 +10,6 @@ public class Recoil : MonoBehaviour
     [Range(0, 1)] private float Weight;
     private float animTime;
     private float UpTime, DownTime;
-    private WaitForSeconds foo = new WaitForSeconds(0.07f);
-    private WaitForSeconds bar = new WaitForSeconds(0.93f);
 
     private Vector3 RecoilPos,BasePos, RecoilPosSet;
 
@@ -59,9 +57,9 @@ public class Recoil : MonoBehaviour
         PlayerInput.ADS -= SetISADS;
     }
     // Update is called once per frame
-    private void SetISADS(bool foo)
+    private void SetISADS(bool ADS)
     {
-        _IsAds = foo;
+        _IsAds = ADS;
     }
     private void getIfMagHasAmmo(bool var)
     {
@@ -102,7 +100,7 @@ public class Recoil : MonoBehaviour
     private IEnumerator DoRecoil()
     {
         //delay for line renderer
-        //yield return foo;
+
         BaseFOV = GetComponent<Camera>().fieldOfView;
         RecoilFOV = BaseFOV - RecoilFOVSetter;
         //gun going up anim

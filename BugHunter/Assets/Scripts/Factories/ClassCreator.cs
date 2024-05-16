@@ -21,6 +21,8 @@ public class ClassCreator : MonoBehaviour
         {
             ClassSelection = GameObject.Find("SceneLoadData").GetComponent<SceneLoadData>().GetClass();
         }
+        else ClassSelection = ClassType.Assault;
+
         CreateClass(gameObject);
        GetComponent<GUIHolder>().PickupPrompt.SetActive(false);
     }

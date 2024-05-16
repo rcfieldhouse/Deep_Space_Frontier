@@ -38,9 +38,9 @@ public class HealthSystem : NetworkBehaviour
     {
         networkHealth.OnValueChanged -= OnNetworkHealthChanged;
     }
-    public void SetInvulnerable(bool foo)
+    public void SetInvulnerable(bool inv)
     {
-        Invulnerable = foo;
+        Invulnerable = inv;
     }
     public int GetHealth()
     {
@@ -64,10 +64,10 @@ public class HealthSystem : NetworkBehaviour
         if (currentHealth > maxHealth) currentHealth = maxHealth;
         networkHealth.Value = currentHealth;
     }
-    public void SetMaxHealth(int foo)
+    public void SetMaxHealth(int Health)
     {
-        maxHealth = foo;
-        currentHealth = foo;
+        maxHealth = Health;
+        currentHealth = Health;
     }
 
     [ServerRpc(RequireOwnership = false)]

@@ -50,13 +50,13 @@ public class ThrowableSwap : MonoBehaviour
         DisplayNum(Selection);
     }
  
-    public void DisplayNum(int foo)
+    public void DisplayNum(int Choice)
     {   
-        if (foo == 0)
+        if (Choice == 0)
         {
           GetComponentInChildren<TextMeshProUGUI>().text=GrenadeManager.GetNumNades().ToString();
         }
-        else if (foo == 1)
+        else if (Choice == 1)
         {
             int i=0;
             if (GrenadeManager.GetHasFruit() == false) i = 0;

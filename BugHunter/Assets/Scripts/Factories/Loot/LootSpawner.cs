@@ -43,13 +43,13 @@ public class LootSpawner : MonoBehaviour
 
         Create(loot,transform,x);
     }
-    void Create(LFInterface foo, Transform transform,int num)
+    void Create(LFInterface Loot, Transform transform,int num)
     {
         
         
         Drop=Instantiate(Prefabs[num], transform.position, Quaternion.identity);
        
-        foo.Create(Drop);
+        Loot.Create(Drop);
         Rigidbody rb = Drop.GetComponent<Rigidbody>();
         float x = Random.Range(-1.0f, 1.0f);
         float y = Random.Range(0.0f, 1.0f);

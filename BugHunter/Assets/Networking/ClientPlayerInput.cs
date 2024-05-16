@@ -73,16 +73,16 @@ public class ClientPlayerInput : NetworkBehaviour
         GameObject[] AllPlayers = GameObject.FindGameObjectsWithTag("Player");
 
         float SmallestDistance = 20.0f;
-        GameObject foo = null;
+        GameObject ClosestPlayer = null;
         foreach (GameObject Player in AllPlayers)
         {
             if (Mathf.Abs((Player.transform.position - transform.position).magnitude) < SmallestDistance)
             {
                 SmallestDistance = Mathf.Abs((Player.transform.position - transform.position).magnitude);
-                foo = Player;
+                ClosestPlayer = Player;
             }
         }
-        return foo;
+        return ClosestPlayer;
     }
 
     public void ReviveSelf()
